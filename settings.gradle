@@ -1,0 +1,12 @@
+rootProject.name = "monorepo"
+
+include ":packages:proto-gen-java"
+
+include ":packages:java-lib:logger"
+include ":packages:java-lib:tracer"
+include ":packages:java-lib:metrics"
+include ":packages:java-lib:config"
+
+include ":services:product-service"
+include ":services:order-service"
+include ":services:search-service"

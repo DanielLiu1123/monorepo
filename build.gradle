@@ -1,0 +1,86 @@
+plugins {
+    id "org.springframework.boot" version "${springBootVersion}" apply false
+    id "io.spring.dependency-management" version "${dependencyManagementPluginVersion}" apply false
+    id "com.diffplug.spotless" version "${spotlessPluginVersion}" apply false
+    id "com.github.spotbugs" version "${spotbugsPluginVersion}" apply false
+    id "com.google.protobuf" version "${protobufPluginVersion}" apply false
+    id "io.spring.nullability" version "${nullabilityPluginVersion}" apply false
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "java-library"
+    apply plugin: "io.spring.dependency-management"
+    apply plugin: "io.spring.nullability"
+    apply plugin: "com.diffplug.spotless"
+    apply plugin: "com.github.spotbugs"
+
+    java {
+        sourceCompatibility = "25"
+        targetCompatibility = "25"
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs += ["-parameters"]
+        options.encoding = "UTF-8"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "io.github.danielliu1123:grpc-starter-dependencies:${grpcStarterVersion}"
+            mavenBom "com.google.protobuf:protobuf-bom:${protobufVersion}"
+            mavenBom "io.grpc:grpc-bom:${grpcVersion}"
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        }
+    }
+
+    dependencies {
+        compileOnly("org.projectlombok:lombok")
+        annotationProcessor("org.projectlombok:lombok")
+        testCompileOnly("org.projectlombok:lombok")
+        testAnnotationProcessor("org.projectlombok:lombok")
+
+        testImplementation("org.junit.jupiter:junit-jupiter")
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+        testImplementation("org.assertj:assertj-core")
+    }
+
+    test {
+        useJUnitPlatform()
+        jvmArgs("-XX:+EnableDynamicAgentLoading")
+    }
+
+    spotless {
+        encoding "UTF-8"
+        java {
+            toggleOffOn()
+            removeUnusedImports()
+            trimTrailingWhitespace()
+            endWithNewline()
+            palantirJavaFormat()
+
+            targetExclude(
+                    "build/generated/**",
+                    "**/entity/*.java",
+                    "**/mapper/*Mapper.java",
+                    "**/mapper/*DynamicSqlSupport.java"
+            )
+
+            custom("Refuse wildcard imports", {
+                if (it =~ /\nimport .*\*;/) {
+                    throw new IllegalStateException("Do not use wildcard imports, 'spotlessApply' cannot resolve this issue, please fix it manually.")
+                }
+            } as Closure<String>)
+        }
+    }
+
+    spotbugs {
+        spotbugsTest.enabled = false
+        omitVisitors.addAll "FindReturnRef", "DontReusePublicIdentifiers"
+        excludeFilter = file("${rootDir}/gradle/config/spotbugs/exclude.xml")
+    }
+}

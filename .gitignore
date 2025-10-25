@@ -221,7 +221,7 @@ dist
 # vendor/
 
 # Go workspace file
-go.work
+# go.work (tracked for monorepo)
 go.work.sum
 
 ### Angular template
@@ -456,3 +456,6 @@ dmypy.json
 cython_debug/
 
 *.iml
+.serena/
+
+!scripts/build/

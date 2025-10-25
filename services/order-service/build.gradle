@@ -1,0 +1,14 @@
+plugins {
+    id "org.springframework.boot"
+}
+
+dependencies {
+    implementation "io.github.danielliu1123:grpc-boot-starter"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+}
+
+bootJar {
+    archiveBaseName = "app"
+    version = ""
+}
