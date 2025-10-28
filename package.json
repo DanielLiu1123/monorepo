@@ -4,12 +4,13 @@
   "private": true,
   "description": "Enterprise monorepo with multi-language microservices",
   "workspaces": [
-    "apps/*",
-    "packages/ui-components",
-    "packages/api-client",
-    "packages/grpc-clients",
-    "packages/ts-lib/*",
-    "services/notification-service"
+    "apps/admin",
+    "apps/admin-bff",
+    "apps/mobile",
+    "apps/mobile-bff",
+    "apps/web",
+    "apps/web-bff",
+    "packages/ui-components"
   ],
   "scripts": {
     "build": "turbo run build",
