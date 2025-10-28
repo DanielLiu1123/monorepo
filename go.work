@@ -6,10 +6,10 @@ use (
 	./apps/admin-bff
 	./apps/mobile-bff
 	./apps/web-bff
-	./packages/go-lib/config
-	./packages/go-lib/logger
-	./packages/go-lib/metrics
-	./packages/go-lib/tracer
+	./packages/lib-go/config
+	./packages/lib-go/logger
+	./packages/lib-go/metrics
+	./packages/lib-go/tracer
 	./packages/proto-gen-go
 	./services/payment-service
 	./services/user-service
