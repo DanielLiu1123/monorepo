@@ -1,0 +1,43 @@
+# GitHub Configuration
+github_organization = "your-org-name"
+repository_name     = "example-repo"
+
+# Engineering Team Members
+engineering_members = {
+  "user1" = {
+    username = "alice"
+    role     = "maintainer"
+  }
+  "user2" = {
+    username = "bob"
+    role     = "member"
+  }
+  "user3" = {
+    username = "charlie"
+    role     = "member"
+  }
+}
+
+# DevOps Team Members
+devops_members = {
+  "devops1" = {
+    username = "david"
+    role     = "maintainer"
+  }
+  "devops2" = {
+    username = "eve"
+    role     = "member"
+  }
+}
+
+# Organization Members (requires org owner permissions)
+# organization_members = {
+#   "member1" = {
+#     username = "alice"
+#     role     = "admin"
+#   }
+#   "member2" = {
+#     username = "bob"
+#     role     = "member"
+#   }
+# }
