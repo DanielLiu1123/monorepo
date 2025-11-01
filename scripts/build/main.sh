@@ -41,6 +41,51 @@ execute_command() {
     eval "$@"
 }
 
+# Load project-level build.sh if exists
+load_project_build_script() {
+    local project_path="$1"
+    local build_script="$project_path/build.sh"
+
+    if [ -f "$build_script" ]; then
+        print_info "Loading custom build script from $build_script"
+        # shellcheck disable=SC1090
+        source "$build_script"
+        return 0
+    fi
+    return 1
+}
+
+# Check if custom command function exists
+has_custom_command() {
+    local command="$1"
+
+    if declare -f "$command" > /dev/null 2>&1; then
+        return 0
+    fi
+    return 1
+}
+
+# Execute custom command if available, otherwise use default
+execute_project_command() {
+    local command="$1"
+    local project_path="$2"
+    local default_function="cmd_${command}"
+
+    # Try to load project-level build.sh
+    if load_project_build_script "$project_path"; then
+        # Check if custom function exists
+        if has_custom_command "$command"; then
+            print_info "Using custom $command implementation from $project_path/build.sh"
+            $command "$project_path"
+            return $?
+        fi
+    fi
+
+    # Use default implementation
+    $default_function "$project_path"
+    return $?
+}
+
 # Normalize path: remove leading ./ and trailing /
 normalize_path() {
     local path="$1"
@@ -185,7 +230,7 @@ execute_for_projects() {
         ((total++))
         echo ""
         print_info "[$total] Processing: $project"
-        if "cmd_${command}" "$project"; then
+        if execute_project_command "$command" "$project"; then
             ((success++))
         else
             ((failed++))
@@ -273,8 +318,8 @@ main() {
 
             # Check if path is a project directory or a parent directory
             if is_project_dir "$path"; then
-                # Single project: execute command directly
-                cmd_"${command}" "$path"
+                # Single project: execute command with custom support
+                execute_project_command "${command}" "$path"
             else
                 # Parent directory: find and execute for all projects
                 execute_for_projects "${command}" "$path"
@@ -288,7 +333,7 @@ main() {
                 print_info "Please specify a project path"
                 exit 1
             fi
-            cmd_run "$path"
+            execute_project_command "run" "$path"
             ;;
         help|--help|-h)
             show_usage
