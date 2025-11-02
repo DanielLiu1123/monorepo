@@ -3,9 +3,6 @@ package monorepo.proto.product.v1;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
- * <pre>
- * Product service definition
- * </pre>
  */
 @io.grpc.stub.annotations.GrpcGenerated
 public final class ProductServiceGrpc {
@@ -44,130 +41,6 @@ public final class ProductServiceGrpc {
       }
     }
     return getGetProductMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<monorepo.proto.product.v1.CreateProductRequest,
-      monorepo.proto.product.v1.CreateProductResponse> getCreateProductMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "CreateProduct",
-      requestType = monorepo.proto.product.v1.CreateProductRequest.class,
-      responseType = monorepo.proto.product.v1.CreateProductResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<monorepo.proto.product.v1.CreateProductRequest,
-      monorepo.proto.product.v1.CreateProductResponse> getCreateProductMethod() {
-    io.grpc.MethodDescriptor<monorepo.proto.product.v1.CreateProductRequest, monorepo.proto.product.v1.CreateProductResponse> getCreateProductMethod;
-    if ((getCreateProductMethod = ProductServiceGrpc.getCreateProductMethod) == null) {
-      synchronized (ProductServiceGrpc.class) {
-        if ((getCreateProductMethod = ProductServiceGrpc.getCreateProductMethod) == null) {
-          ProductServiceGrpc.getCreateProductMethod = getCreateProductMethod =
-              io.grpc.MethodDescriptor.<monorepo.proto.product.v1.CreateProductRequest, monorepo.proto.product.v1.CreateProductResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CreateProduct"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.product.v1.CreateProductRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.product.v1.CreateProductResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new ProductServiceMethodDescriptorSupplier("CreateProduct"))
-              .build();
-        }
-      }
-    }
-    return getCreateProductMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<monorepo.proto.product.v1.UpdateProductRequest,
-      monorepo.proto.product.v1.UpdateProductResponse> getUpdateProductMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "UpdateProduct",
-      requestType = monorepo.proto.product.v1.UpdateProductRequest.class,
-      responseType = monorepo.proto.product.v1.UpdateProductResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<monorepo.proto.product.v1.UpdateProductRequest,
-      monorepo.proto.product.v1.UpdateProductResponse> getUpdateProductMethod() {
-    io.grpc.MethodDescriptor<monorepo.proto.product.v1.UpdateProductRequest, monorepo.proto.product.v1.UpdateProductResponse> getUpdateProductMethod;
-    if ((getUpdateProductMethod = ProductServiceGrpc.getUpdateProductMethod) == null) {
-      synchronized (ProductServiceGrpc.class) {
-        if ((getUpdateProductMethod = ProductServiceGrpc.getUpdateProductMethod) == null) {
-          ProductServiceGrpc.getUpdateProductMethod = getUpdateProductMethod =
-              io.grpc.MethodDescriptor.<monorepo.proto.product.v1.UpdateProductRequest, monorepo.proto.product.v1.UpdateProductResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateProduct"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.product.v1.UpdateProductRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.product.v1.UpdateProductResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new ProductServiceMethodDescriptorSupplier("UpdateProduct"))
-              .build();
-        }
-      }
-    }
-    return getUpdateProductMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<monorepo.proto.product.v1.DeleteProductRequest,
-      monorepo.proto.product.v1.DeleteProductResponse> getDeleteProductMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "DeleteProduct",
-      requestType = monorepo.proto.product.v1.DeleteProductRequest.class,
-      responseType = monorepo.proto.product.v1.DeleteProductResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<monorepo.proto.product.v1.DeleteProductRequest,
-      monorepo.proto.product.v1.DeleteProductResponse> getDeleteProductMethod() {
-    io.grpc.MethodDescriptor<monorepo.proto.product.v1.DeleteProductRequest, monorepo.proto.product.v1.DeleteProductResponse> getDeleteProductMethod;
-    if ((getDeleteProductMethod = ProductServiceGrpc.getDeleteProductMethod) == null) {
-      synchronized (ProductServiceGrpc.class) {
-        if ((getDeleteProductMethod = ProductServiceGrpc.getDeleteProductMethod) == null) {
-          ProductServiceGrpc.getDeleteProductMethod = getDeleteProductMethod =
-              io.grpc.MethodDescriptor.<monorepo.proto.product.v1.DeleteProductRequest, monorepo.proto.product.v1.DeleteProductResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeleteProduct"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.product.v1.DeleteProductRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.product.v1.DeleteProductResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new ProductServiceMethodDescriptorSupplier("DeleteProduct"))
-              .build();
-        }
-      }
-    }
-    return getDeleteProductMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<monorepo.proto.product.v1.ListProductsRequest,
-      monorepo.proto.product.v1.ListProductsResponse> getListProductsMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "ListProducts",
-      requestType = monorepo.proto.product.v1.ListProductsRequest.class,
-      responseType = monorepo.proto.product.v1.ListProductsResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<monorepo.proto.product.v1.ListProductsRequest,
-      monorepo.proto.product.v1.ListProductsResponse> getListProductsMethod() {
-    io.grpc.MethodDescriptor<monorepo.proto.product.v1.ListProductsRequest, monorepo.proto.product.v1.ListProductsResponse> getListProductsMethod;
-    if ((getListProductsMethod = ProductServiceGrpc.getListProductsMethod) == null) {
-      synchronized (ProductServiceGrpc.class) {
-        if ((getListProductsMethod = ProductServiceGrpc.getListProductsMethod) == null) {
-          ProductServiceGrpc.getListProductsMethod = getListProductsMethod =
-              io.grpc.MethodDescriptor.<monorepo.proto.product.v1.ListProductsRequest, monorepo.proto.product.v1.ListProductsResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ListProducts"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.product.v1.ListProductsRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.product.v1.ListProductsResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new ProductServiceMethodDescriptorSupplier("ListProducts"))
-              .build();
-        }
-      }
-    }
-    return getListProductsMethod;
   }
 
   /**
@@ -230,9 +103,6 @@ public final class ProductServiceGrpc {
   }
 
   /**
-   * <pre>
-   * Product service definition
-   * </pre>
    */
   public interface AsyncService {
 
@@ -242,41 +112,10 @@ public final class ProductServiceGrpc {
         io.grpc.stub.StreamObserver<monorepo.proto.product.v1.GetProductResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetProductMethod(), responseObserver);
     }
-
-    /**
-     */
-    default void createProduct(monorepo.proto.product.v1.CreateProductRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.product.v1.CreateProductResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateProductMethod(), responseObserver);
-    }
-
-    /**
-     */
-    default void updateProduct(monorepo.proto.product.v1.UpdateProductRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.product.v1.UpdateProductResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateProductMethod(), responseObserver);
-    }
-
-    /**
-     */
-    default void deleteProduct(monorepo.proto.product.v1.DeleteProductRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.product.v1.DeleteProductResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteProductMethod(), responseObserver);
-    }
-
-    /**
-     */
-    default void listProducts(monorepo.proto.product.v1.ListProductsRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.product.v1.ListProductsResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getListProductsMethod(), responseObserver);
-    }
   }
 
   /**
    * Base class for the server implementation of the service ProductService.
-   * <pre>
-   * Product service definition
-   * </pre>
    */
   public static abstract class ProductServiceImplBase
       implements io.grpc.BindableService, AsyncService {
@@ -288,9 +127,6 @@ public final class ProductServiceGrpc {
 
   /**
    * A stub to allow clients to do asynchronous rpc calls to service ProductService.
-   * <pre>
-   * Product service definition
-   * </pre>
    */
   public static final class ProductServiceStub
       extends io.grpc.stub.AbstractAsyncStub<ProductServiceStub> {
@@ -312,45 +148,10 @@ public final class ProductServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetProductMethod(), getCallOptions()), request, responseObserver);
     }
-
-    /**
-     */
-    public void createProduct(monorepo.proto.product.v1.CreateProductRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.product.v1.CreateProductResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getCreateProductMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void updateProduct(monorepo.proto.product.v1.UpdateProductRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.product.v1.UpdateProductResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getUpdateProductMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void deleteProduct(monorepo.proto.product.v1.DeleteProductRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.product.v1.DeleteProductResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getDeleteProductMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void listProducts(monorepo.proto.product.v1.ListProductsRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.product.v1.ListProductsResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getListProductsMethod(), getCallOptions()), request, responseObserver);
-    }
   }
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service ProductService.
-   * <pre>
-   * Product service definition
-   * </pre>
    */
   public static final class ProductServiceBlockingV2Stub
       extends io.grpc.stub.AbstractBlockingStub<ProductServiceBlockingV2Stub> {
@@ -371,41 +172,10 @@ public final class ProductServiceGrpc {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetProductMethod(), getCallOptions(), request);
     }
-
-    /**
-     */
-    public monorepo.proto.product.v1.CreateProductResponse createProduct(monorepo.proto.product.v1.CreateProductRequest request) throws io.grpc.StatusException {
-      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
-          getChannel(), getCreateProductMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public monorepo.proto.product.v1.UpdateProductResponse updateProduct(monorepo.proto.product.v1.UpdateProductRequest request) throws io.grpc.StatusException {
-      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
-          getChannel(), getUpdateProductMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public monorepo.proto.product.v1.DeleteProductResponse deleteProduct(monorepo.proto.product.v1.DeleteProductRequest request) throws io.grpc.StatusException {
-      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
-          getChannel(), getDeleteProductMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public monorepo.proto.product.v1.ListProductsResponse listProducts(monorepo.proto.product.v1.ListProductsRequest request) throws io.grpc.StatusException {
-      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
-          getChannel(), getListProductsMethod(), getCallOptions(), request);
-    }
   }
 
   /**
    * A stub to allow clients to do limited synchronous rpc calls to service ProductService.
-   * <pre>
-   * Product service definition
-   * </pre>
    */
   public static final class ProductServiceBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<ProductServiceBlockingStub> {
@@ -426,41 +196,10 @@ public final class ProductServiceGrpc {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetProductMethod(), getCallOptions(), request);
     }
-
-    /**
-     */
-    public monorepo.proto.product.v1.CreateProductResponse createProduct(monorepo.proto.product.v1.CreateProductRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getCreateProductMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public monorepo.proto.product.v1.UpdateProductResponse updateProduct(monorepo.proto.product.v1.UpdateProductRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getUpdateProductMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public monorepo.proto.product.v1.DeleteProductResponse deleteProduct(monorepo.proto.product.v1.DeleteProductRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getDeleteProductMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public monorepo.proto.product.v1.ListProductsResponse listProducts(monorepo.proto.product.v1.ListProductsRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getListProductsMethod(), getCallOptions(), request);
-    }
   }
 
   /**
    * A stub to allow clients to do ListenableFuture-style rpc calls to service ProductService.
-   * <pre>
-   * Product service definition
-   * </pre>
    */
   public static final class ProductServiceFutureStub
       extends io.grpc.stub.AbstractFutureStub<ProductServiceFutureStub> {
@@ -482,45 +221,9 @@ public final class ProductServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetProductMethod(), getCallOptions()), request);
     }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.product.v1.CreateProductResponse> createProduct(
-        monorepo.proto.product.v1.CreateProductRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getCreateProductMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.product.v1.UpdateProductResponse> updateProduct(
-        monorepo.proto.product.v1.UpdateProductRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getUpdateProductMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.product.v1.DeleteProductResponse> deleteProduct(
-        monorepo.proto.product.v1.DeleteProductRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getDeleteProductMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.product.v1.ListProductsResponse> listProducts(
-        monorepo.proto.product.v1.ListProductsRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getListProductsMethod(), getCallOptions()), request);
-    }
   }
 
   private static final int METHODID_GET_PRODUCT = 0;
-  private static final int METHODID_CREATE_PRODUCT = 1;
-  private static final int METHODID_UPDATE_PRODUCT = 2;
-  private static final int METHODID_DELETE_PRODUCT = 3;
-  private static final int METHODID_LIST_PRODUCTS = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -542,22 +245,6 @@ public final class ProductServiceGrpc {
         case METHODID_GET_PRODUCT:
           serviceImpl.getProduct((monorepo.proto.product.v1.GetProductRequest) request,
               (io.grpc.stub.StreamObserver<monorepo.proto.product.v1.GetProductResponse>) responseObserver);
-          break;
-        case METHODID_CREATE_PRODUCT:
-          serviceImpl.createProduct((monorepo.proto.product.v1.CreateProductRequest) request,
-              (io.grpc.stub.StreamObserver<monorepo.proto.product.v1.CreateProductResponse>) responseObserver);
-          break;
-        case METHODID_UPDATE_PRODUCT:
-          serviceImpl.updateProduct((monorepo.proto.product.v1.UpdateProductRequest) request,
-              (io.grpc.stub.StreamObserver<monorepo.proto.product.v1.UpdateProductResponse>) responseObserver);
-          break;
-        case METHODID_DELETE_PRODUCT:
-          serviceImpl.deleteProduct((monorepo.proto.product.v1.DeleteProductRequest) request,
-              (io.grpc.stub.StreamObserver<monorepo.proto.product.v1.DeleteProductResponse>) responseObserver);
-          break;
-        case METHODID_LIST_PRODUCTS:
-          serviceImpl.listProducts((monorepo.proto.product.v1.ListProductsRequest) request,
-              (io.grpc.stub.StreamObserver<monorepo.proto.product.v1.ListProductsResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -584,34 +271,6 @@ public final class ProductServiceGrpc {
               monorepo.proto.product.v1.GetProductRequest,
               monorepo.proto.product.v1.GetProductResponse>(
                 service, METHODID_GET_PRODUCT)))
-        .addMethod(
-          getCreateProductMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              monorepo.proto.product.v1.CreateProductRequest,
-              monorepo.proto.product.v1.CreateProductResponse>(
-                service, METHODID_CREATE_PRODUCT)))
-        .addMethod(
-          getUpdateProductMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              monorepo.proto.product.v1.UpdateProductRequest,
-              monorepo.proto.product.v1.UpdateProductResponse>(
-                service, METHODID_UPDATE_PRODUCT)))
-        .addMethod(
-          getDeleteProductMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              monorepo.proto.product.v1.DeleteProductRequest,
-              monorepo.proto.product.v1.DeleteProductResponse>(
-                service, METHODID_DELETE_PRODUCT)))
-        .addMethod(
-          getListProductsMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              monorepo.proto.product.v1.ListProductsRequest,
-              monorepo.proto.product.v1.ListProductsResponse>(
-                service, METHODID_LIST_PRODUCTS)))
         .build();
   }
 
@@ -661,10 +320,6 @@ public final class ProductServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ProductServiceFileDescriptorSupplier())
               .addMethod(getGetProductMethod())
-              .addMethod(getCreateProductMethod())
-              .addMethod(getUpdateProductMethod())
-              .addMethod(getDeleteProductMethod())
-              .addMethod(getListProductsMethod())
               .build();
         }
       }

@@ -6,10 +6,6 @@
 package monorepo.proto.user.v1;
 
 /**
- * <pre>
- * Request/Response messages
- * </pre>
- *
  * Protobuf type {@code user.v1.GetUserRequest}
  */
 @com.google.protobuf.Generated
@@ -244,10 +240,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * Request/Response messages
-   * </pre>
-   *
    * Protobuf type {@code user.v1.GetUserRequest}
    */
   public static final class Builder extends

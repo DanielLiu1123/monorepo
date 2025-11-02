@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package order.v1;
+
+option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/order/v1;orderv1";
+option java_package = "monorepo.proto.order.v1";
+option java_multiple_files = true;
+
+message Order {
+
+}
