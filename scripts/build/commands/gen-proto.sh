@@ -11,12 +11,14 @@ get_proto_packages() {
     sort -u
 }
 
-# Setup Java module for a package (create build.gradle if needed)
+# Setup Java module for a package (create build.gradle and build.sh if needed)
 setup_java_module() {
   local package_name="$1"
   local java_module_dir="$ROOT_DIR/packages/proto-gen-java/proto-$package_name"
   local build_gradle_tpl="$ROOT_DIR/packages/proto-gen-java/build.gradle.tpl"
+  local build_sh_tpl="$ROOT_DIR/packages/proto-gen-java/build.sh.tpl"
   local module_build_gradle="$java_module_dir/build.gradle"
+  local module_build_sh="$java_module_dir/build.sh"
 
   # Create module directory if it doesn't exist
   if [ ! -d "$java_module_dir" ]; then
@@ -33,6 +35,18 @@ setup_java_module() {
 
     cp "$build_gradle_tpl" "$module_build_gradle"
     print_success "Created build.gradle for proto-$package_name from template"
+  fi
+
+  # Create build.sh from template if it doesn't exist
+  if [ ! -f "$module_build_sh" ]; then
+    if [ ! -f "$build_sh_tpl" ]; then
+      print_warning "Template file not found: $build_sh_tpl"
+      return 1
+    fi
+
+    cp "$build_sh_tpl" "$module_build_sh"
+    chmod +x "$module_build_sh"
+    print_success "Created build.sh for proto-$package_name from template"
   fi
 
   return 0
