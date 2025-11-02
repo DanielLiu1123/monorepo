@@ -1,28 +1,147 @@
 #!/usr/bin/env bash
 
-# Get changed proto files from git diff
-get_changed_proto_paths() {
+# Get all proto packages (top-level directories in proto dir that contain .proto files)
+get_proto_packages() {
   local proto_dir="$1"
-  local changed_files
 
-  # Get all changed .proto files (both staged and unstaged)
-  # Use --relative to get paths relative to the proto directory
-  changed_files=$(cd "$proto_dir" && git diff --name-only --relative HEAD 2>/dev/null | grep '\.proto$')
+  # Find all .proto files and extract the first-level directory (package name)
+  find "$proto_dir" -name "*.proto" -type f | \
+    sed "s|^$proto_dir/||" | \
+    awk -F'/' '{print $1}' | \
+    sort -u
+}
 
-  if [ -z "$changed_files" ]; then
-    # If no changes in working tree, check for untracked files
-    # For untracked files, we need to manually strip the proto dir prefix
-    local proto_dir_name=$(basename "$proto_dir")
-    local proto_parent_dir=$(dirname "$proto_dir")
-    changed_files=$(cd "$proto_parent_dir" && git ls-files --others --exclude-standard "$proto_dir_name" 2>/dev/null | grep '\.proto$' | sed "s|^$proto_dir_name/||")
+# Setup Java module for a package (create build.gradle if needed)
+setup_java_module() {
+  local package_name="$1"
+  local java_module_dir="$ROOT_DIR/packages/proto-gen-java/proto-$package_name"
+  local build_gradle_tpl="$ROOT_DIR/packages/proto-gen-java/build.gradle.tpl"
+  local module_build_gradle="$java_module_dir/build.gradle"
+
+  # Create module directory if it doesn't exist
+  if [ ! -d "$java_module_dir" ]; then
+    mkdir -p "$java_module_dir"
+    print_info "Created Java module directory: proto-$package_name"
   fi
 
-  if [ -z "$changed_files" ]; then
+  # Create build.gradle from template if it doesn't exist
+  if [ ! -f "$module_build_gradle" ]; then
+    if [ ! -f "$build_gradle_tpl" ]; then
+      print_warning "Template file not found: $build_gradle_tpl"
+      return 1
+    fi
+
+    cp "$build_gradle_tpl" "$module_build_gradle"
+    print_success "Created build.gradle for proto-$package_name from template"
+  fi
+
+  return 0
+}
+
+# Update proto-gen-java/build.gradle to include the module
+update_parent_build_gradle() {
+  local package_name="$1"
+  local parent_build_gradle="$ROOT_DIR/packages/proto-gen-java/build.gradle"
+  local module_reference="api project(\":packages:proto-gen-java:proto-$package_name\")"
+
+  # Check if module is already in build.gradle
+  if grep -q "proto-$package_name" "$parent_build_gradle" 2>/dev/null; then
+    return 0
+  fi
+
+  # Add module to dependencies
+  if [ -f "$parent_build_gradle" ]; then
+    # Insert before the closing brace of dependencies block
+    sed -i '' "/^dependencies {/a\\
+    $module_reference
+" "$parent_build_gradle"
+    print_success "Added proto-$package_name to proto-gen-java/build.gradle"
+  else
+    print_warning "Parent build.gradle not found: $parent_build_gradle"
     return 1
   fi
 
-  # Extract unique directory paths from changed files
-  echo "$changed_files" | xargs -n1 dirname | sort -u
+  return 0
+}
+
+# Update settings.gradle to include the module
+update_settings_gradle() {
+  local package_name="$1"
+  local settings_gradle="$ROOT_DIR/settings.gradle"
+  local module_include="include \":packages:proto-gen-java:proto-$package_name\""
+
+  # Check if module is already in settings.gradle
+  if grep -q "proto-gen-java:proto-$package_name" "$settings_gradle" 2>/dev/null; then
+    return 0
+  fi
+
+  # Find the last proto-gen-java include line and add after it
+  if [ -f "$settings_gradle" ]; then
+    # Find line number of last proto-gen-java include
+    local last_line=$(grep -n "include \":packages:proto-gen-java" "$settings_gradle" | tail -1 | cut -d: -f1)
+
+    if [ -n "$last_line" ]; then
+      # Insert after the last proto-gen-java include
+      sed -i '' "${last_line}a\\
+$module_include
+" "$settings_gradle"
+    else
+      # If no proto-gen-java includes found, add after the main proto-gen-java include
+      sed -i '' "/include \":packages:proto-gen-java\"/a\\
+$module_include
+" "$settings_gradle"
+    fi
+
+    print_success "Added proto-$package_name to settings.gradle"
+  else
+    print_warning "settings.gradle not found: $settings_gradle"
+    return 1
+  fi
+
+  return 0
+}
+
+# Generate code for a specific package
+generate_package() {
+  local proto_dir="$1"
+  local package_name="$2"
+  local package_path="$3"
+
+  local template_file="buf.gen._pkg_.yaml"
+  local temp_config_file=".buf.gen.${package_name}.tmp.yaml"
+
+  # Check if template exists
+  if [ ! -f "$proto_dir/$template_file" ]; then
+    print_error "Template file not found: $template_file"
+    return 1
+  fi
+
+  print_info "Generating code for package: $package_name"
+
+  # Create temporary config file by replacing ${package} placeholder
+  sed "s/\${package}/$package_name/g" "$proto_dir/$template_file" > "$proto_dir/$temp_config_file"
+
+  # Build buf generate command with package path filter
+  local buf_cmd="buf generate --template \"$temp_config_file\" --path \"$package_path\""
+
+  # Generate proto code
+  local result=0
+  if cd "$proto_dir" && eval "$buf_cmd"; then
+    print_success "Package $package_name generated successfully"
+
+    # Setup Java module (create build.gradle if needed and register in parent files)
+    setup_java_module "$package_name"
+    update_parent_build_gradle "$package_name"
+    update_settings_gradle "$package_name"
+  else
+    print_error "Failed to generate package: $package_name"
+    result=1
+  fi
+
+  # Clean up temporary config file
+  rm -f "$proto_dir/$temp_config_file"
+
+  return $result
 }
 
 cmd_gen_proto() {
@@ -34,60 +153,84 @@ cmd_gen_proto() {
     return 1
   fi
 
-  local buf_args=""
+  local packages_to_generate=()
 
-  # Determine which paths to generate
-  if [ -n "$target_path" ]; then
-    # Path explicitly provided
-    print_info "Generating code for specified path: $target_path"
-
-    # Validate the path exists
-    if [ ! -e "$proto_dir/$target_path" ]; then
-      print_error "Path not found: $target_path"
-      return 1
-    fi
-
-    # Add --path argument for buf generate
-    if [ "$target_path" != "." ] && [ "$target_path" != "./" ]; then
-      buf_args="--path \"$target_path\""
-    fi
-  else
-    # No path provided, use git diff to detect changes
-    print_info "No path specified, detecting changed proto files..."
-
-    local changed_paths
-    # Temporarily disable exit on error for this check
-    set +e
-    changed_paths=$(get_changed_proto_paths "$proto_dir")
-    local diff_status=$?
-    set -e
-
-    if [ $diff_status -eq 0 ] && [ -n "$changed_paths" ]; then
-      print_info "Found changed proto files in:"
-      echo "$changed_paths" | while read -r path; do
-        echo "  - $path"
-      done
-
-      # Build --path arguments for each changed path
-      while IFS= read -r path; do
-        buf_args="$buf_args --path \"$path\""
-      done <<< "$changed_paths"
-
-      print_info "Using paths: $buf_args"
-    else
-      print_info "No changed proto files detected, skip to generate."
-      exit 0
-    fi
+  # Normalize target_path: if empty, default to "." (all packages)
+  if [ -z "$target_path" ]; then
+    target_path="."
   fi
 
-  print_info "Generating code from proto files..."
-
-  # Generate proto code with eval to handle quoted arguments properly
-  if cd "$proto_dir" && eval "buf generate $buf_args"; then
-    print_success "Proto code generated successfully"
-    return 0
-  else
-    print_error "Failed to generate proto code"
+  # Validate the path exists
+  if [ ! -e "$proto_dir/$target_path" ]; then
+    print_error "Path not found: $target_path"
     return 1
   fi
+
+  # Determine which packages to generate based on path
+  if [ "$target_path" = "." ]; then
+    # Generate all packages
+    local all_packages
+    all_packages=$(get_proto_packages "$proto_dir")
+
+    if [ -z "$all_packages" ]; then
+      print_info "No proto packages found"
+      return 0
+    fi
+
+    print_info "Generating code for all packages..."
+    print_info "Found proto packages:"
+    echo "$all_packages" | while read -r pkg; do
+      echo "  - $pkg"
+    done
+
+    # Build package list
+    while IFS= read -r pkg; do
+      packages_to_generate+=("$pkg:$pkg")
+    done <<< "$all_packages"
+  else
+    # Path explicitly provided (specific package or path within package)
+    print_info "Generating code for specified path: $target_path"
+
+    # Extract package name from path (first directory component)
+    local package_name=$(echo "$target_path" | awk -F'/' '{print $1}')
+
+    if [ -n "$package_name" ]; then
+      packages_to_generate+=("$package_name:$target_path")
+    fi
+  fi
+
+  # Generate code for each package
+  local total=${#packages_to_generate[@]}
+  local success=0
+  local failed=0
+
+  if [ $total -eq 0 ]; then
+    print_info "No packages to generate"
+    return 0
+  fi
+
+  print_info "Generating code for $total package(s)..."
+
+  for pkg_info in "${packages_to_generate[@]}"; do
+    local package_name="${pkg_info%%:*}"
+    local package_path="${pkg_info#*:}"
+
+    if generate_package "$proto_dir" "$package_name" "$package_path"; then
+      ((success++))
+    else
+      ((failed++))
+    fi
+  done
+
+  echo ""
+  echo "================================"
+  print_info "Generation Summary: $total package(s)"
+  print_success "$success succeeded"
+
+  if [ $failed -gt 0 ]; then
+    print_error "$failed failed"
+    return 1
+  fi
+
+  return 0
 }

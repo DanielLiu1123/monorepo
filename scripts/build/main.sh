@@ -296,7 +296,8 @@ show_usage() {
 
 main() {
     local command="$1"
-    local path="$2"
+    local path
+    path=$(normalize_path "$2")
 
     if [ -z "$command" ]; then
         show_usage

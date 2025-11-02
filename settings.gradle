@@ -1,6 +1,8 @@
 rootProject.name = "monorepo"
 
 include ":packages:proto-gen-java"
+include ":packages:proto-gen-java:proto-product"
+include ":packages:proto-gen-java:proto-user"
 
 include ":packages:lib-java:logger"
 include ":packages:lib-java:tracer"
