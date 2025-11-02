@@ -213,28 +213,47 @@ cmd_gen_proto() {
     fi
   fi
 
-  # Generate code for each package
+  # Generate code for each package (in parallel)
   local total=${#packages_to_generate[@]}
-  local success=0
-  local failed=0
 
   if [ $total -eq 0 ]; then
     print_info "No packages to generate"
     return 0
   fi
 
-  print_info "Generating code for $total package(s)..."
+  print_info "Generating code for $total package(s) in parallel..."
 
+  # Create temporary directory for tracking results
+  local tmp_dir=$(mktemp -d)
+  local pids=()
+
+  # Launch parallel generation tasks
   for pkg_info in "${packages_to_generate[@]}"; do
     local package_name="${pkg_info%%:*}"
     local package_path="${pkg_info#*:}"
 
-    if generate_package "$proto_dir" "$package_name" "$package_path"; then
-      ((success++))
-    else
-      ((failed++))
-    fi
+    # Run in background and track PID
+    (
+      if generate_package "$proto_dir" "$package_name" "$package_path"; then
+        touch "$tmp_dir/$package_name.success"
+      else
+        touch "$tmp_dir/$package_name.failed"
+      fi
+    ) &
+    pids+=($!)
   done
+
+  # Wait for all background jobs to complete
+  for pid in "${pids[@]}"; do
+    wait "$pid"
+  done
+
+  # Count results
+  local success=$(find "$tmp_dir" -name "*.success" 2>/dev/null | wc -l | tr -d ' ')
+  local failed=$(find "$tmp_dir" -name "*.failed" 2>/dev/null | wc -l | tr -d ' ')
+
+  # Clean up temporary directory
+  rm -rf "$tmp_dir"
 
   echo ""
   echo "================================"
