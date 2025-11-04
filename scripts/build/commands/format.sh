@@ -4,7 +4,7 @@
 format_go() {
     local project_path="$1"
 
-    execute_command "(go fmt ./$project_path/...)" || return 1
+    execute_command "(cd $project_path && go fmt ./... && goimports -w . && go mod tidy)" || return 1
 }
 
 # Format Gradle project

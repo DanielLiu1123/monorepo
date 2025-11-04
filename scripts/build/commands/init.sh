@@ -49,6 +49,11 @@ install_tools() {
         brew install protoc-gen-go-grpc
     fi
 
+    if ! command -v goimports >/dev/null 2>&1; then
+        print_info "Installing goimports..."
+        go install golang.org/x/tools/cmd/goimports@latest
+    fi
+
     print_success "All required tools installed"
 }
 
