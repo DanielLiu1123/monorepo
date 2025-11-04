@@ -10,9 +10,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@monorepo/api-client": "*",
-    "@monorepo/ui-components": "*",
-    "next": "15.1.6",
+    "@monorepo/api-client": "workspace:*",
+    "@monorepo/ui-components": "workspace:*",
+    "next": "15.4.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "@tanstack/react-query": "^5.62.8",

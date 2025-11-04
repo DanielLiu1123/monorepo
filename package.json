@@ -3,15 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "description": "Enterprise monorepo with multi-language microservices",
-  "workspaces": [
-    "apps/admin",
-    "apps/admin-bff",
-    "apps/mobile",
-    "apps/mobile-bff",
-    "apps/web",
-    "apps/web-bff",
-    "packages/ui-components"
-  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
@@ -29,7 +20,7 @@
   },
   "engines": {
     "node": ">=24.10.0",
-    "npm": ">=11.6.0"
+    "pnpm": ">=10.20.0"
   },
-  "packageManager": "npm@11.6.0"
+  "packageManager": "pnpm@10.20.0"
 }
