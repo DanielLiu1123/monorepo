@@ -15,5 +15,6 @@ import java.util.Map;
 public class Order {
     private Long id;
     private List<Long> itemIds;
+    private String[] itemNames;
     private Map<String, String> attributes;
 }

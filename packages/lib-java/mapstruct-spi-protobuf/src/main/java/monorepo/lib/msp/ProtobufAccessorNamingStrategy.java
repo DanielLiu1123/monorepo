@@ -23,57 +23,50 @@ package monorepo.lib.msp;
  * #L%
  */
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import org.mapstruct.ap.spi.DefaultAccessorNamingStrategy;
+import org.mapstruct.ap.spi.MapStructProcessingEnvironment;
+import org.mapstruct.ap.spi.util.IntrospectorUtils;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
-
-import org.mapstruct.ap.spi.DefaultAccessorNamingStrategy;
-import org.mapstruct.ap.spi.MapStructProcessingEnvironment;
-import org.mapstruct.ap.spi.util.IntrospectorUtils;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Arne Seime
  */
 public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrategy {
+    /**
+     * repeated string
+     */
     public static final String PROTOBUF_STRING_LIST_TYPE = "com.google.protobuf.ProtocolStringList";
     public static final String PROTOBUF_MESSAGE_OR_BUILDER = "com.google.protobuf.MessageLiteOrBuilder";
-    public static final String BUILDER_LIST_SUFFIX = "BuilderList";
 
-    protected static final Set<String> INTERNAL_METHODS = new HashSet<>(Arrays.asList("newBuilder", "newBuilderForType", "parseFrom", "parseDelimitedFrom",
-            "getDefaultInstance", "getDescriptor", "getDescriptorForType", "getDefaultInstanceForType", "clear", "clearField", "clearOneof", "mergeFrom",
-            "setRepeatedField", "setUnknownFields", "getSerializedSize", "getAllFields", "getAllFieldsMutable", "getAllFieldsRaw", "getDescriptorForType",
-            "getField", "getFieldRaw", "getOneofFieldDescriptor", "getParserForType", "getRepeatedField", "getRepeatedFieldCount", "getUnknownFields",
-            "getInitializationErrorString", "getMemoizedSerializedSize", "getOneofFieldDescriptor", "getSerializedSize", "getMemoizedSerializedSize",
-            "getSerializingExceptionMessage", "isInitialized", "mergeUnknownFields"));
+    private static Set<MethodSignature> INTERNAL_METHODS;
 
-    protected static final List<String> INTERNAL_SPECIAL_METHOD_ENDINGS = Arrays.asList("Value", "Count", "Bytes", "Map", "ValueList");
+    protected static final List<String> INTERNAL_SPECIAL_METHOD_ENDINGS = Arrays.asList("Value", "Count", "Bytes", "ValueList");
 
-    protected static final List<String> INTERNAL_SPECIAL_METHOD_BEGINNINGS = Arrays.asList("remove", "clear", "mutable", "merge", "putAll");
-
-    protected TypeMirror protobufMesageOrBuilderType;
+    protected TypeMirror protobufMessageOrBuilderType;
 
     @Override
     public void init(MapStructProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
 
+        INTERNAL_METHODS = getInternalMethods();
+
         TypeElement typeElement = elementUtils.getTypeElement(PROTOBUF_MESSAGE_OR_BUILDER);
         if (typeElement != null) {
-            protobufMesageOrBuilderType = typeElement.asType();
+            protobufMessageOrBuilderType = typeElement.asType();
         }
     }
 
     private boolean isSpecialMethod(ExecutableElement method) {
-        if (!isMethodFromProtobufGeneratedClass(method)) {
-            return false;
-        }
         String methodName = method.getSimpleName().toString();
 
         for (String checkMethod : INTERNAL_SPECIAL_METHOD_ENDINGS) {
@@ -89,24 +82,6 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             }
         }
 
-        for (String checkMethod : INTERNAL_SPECIAL_METHOD_BEGINNINGS) {
-            if (methodName.startsWith(checkMethod)) {
-                String propertyMethod = "get" + methodName.substring(checkMethod.length());
-
-                boolean propertyMethodExists = method.getEnclosingElement()
-                        .getEnclosedElements()
-                        .stream()
-                        .anyMatch(e -> (e).getSimpleName().toString().equals(propertyMethod));
-                if (propertyMethodExists) {
-                    return true;
-                }
-            }
-        }
-
-        if (isOneOfCaseSelector(method)) {
-            return true;
-        }
-
         return false;
     }
 
@@ -116,48 +91,21 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return super.isGetterMethod(method);
         }
 
+        if (INTERNAL_METHODS.contains(new MethodSignature(method))) {
+            return false;
+        }
+
         String methodName = method.getSimpleName().toString();
 
-//        if (methodName.endsWith("Builder")) {
-//            return false;
-//        }
-
-        if (methodName.endsWith("OrBuilder")) {
-            return false;
-        }
-
-        if (methodName.endsWith("OrBuilderList")) {
-            return false;
-        }
-
-        if (methodName.endsWith(BUILDER_LIST_SUFFIX)) {
-            return false;
-        }
-
-        if (INTERNAL_METHODS.contains(methodName)) {
-            return false;
-        }
-
-        if (isSpecialMethod(method)) {
-            return false;
-        }
-
-        if (isGetList(method)) {
+        if (methodName.startsWith("get")) {
+            if (!method.getParameters().isEmpty()) return false;
+            if (isDeprecated(method)) return false;
+            if (isGetList(method)) return true;
+            if (isGetMap(method)) return true;
+            if (isSpecialMethod(method)) return false;
             return true;
         }
 
-        if (isGetMap(method)) {
-            return isGetUnmodifiableMap(method);
-        }
-
-        return super.isGetterMethod(method);
-    }
-
-    private boolean isOneOfCaseSelector(ExecutableElement method) {
-        String methodName = method.getSimpleName().toString();
-        if (methodName.startsWith("getOneOf") && methodName.endsWith("Case")) {
-            return true;
-        }
         return false;
     }
 
@@ -167,25 +115,15 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return super.isSetterMethod(method);
         }
 
+        if (INTERNAL_METHODS.contains(new MethodSignature(method))) {
+            return false;
+        }
+
         String methodName = method.getSimpleName().toString();
 
-        if (INTERNAL_METHODS.contains(methodName)) {
-            return false;
-        }
-
-        if (isSpecialMethod(method)) {
-            return false;
-        }
-
-        if (isAddAllMethod(method)) {
-            return true;
-        }
-
-        if (isPutAllMethod(method)) {
-            return true;
-        }
-
-        return super.isSetterMethod(method);
+        return methodName.startsWith("set")
+               || isAddAllMethod(method)
+               || isPutAllMethod(method);
     }
 
     private boolean isAddAllMethod(ExecutableElement method) {
@@ -194,6 +132,17 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             if (method.getParameters().size() == 1) {
                 TypeMirror paramType = method.getParameters().get(0).asType();
                 return paramType.toString().startsWith(Iterable.class.getCanonicalName());
+            }
+        }
+        return false;
+    }
+
+    private boolean isAddMethod(ExecutableElement method) {
+        String methodName = method.getSimpleName().toString();
+        if (methodName.startsWith("add")) {
+            if (method.getParameters().size() == 1) {
+                TypeMirror paramType = method.getParameters().get(0).asType();
+                return !paramType.toString().startsWith(Iterable.class.getCanonicalName());
             }
         }
         return false;
@@ -216,26 +165,15 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return super.isFluentSetter(method);
         }
 
+        if (INTERNAL_METHODS.contains(new MethodSignature(method))) {
+            return false;
+        }
+
         String methodName = method.getSimpleName().toString();
 
-        if (INTERNAL_METHODS.contains(methodName)) {
-            return false;
-        } else if (methodName.startsWith("get")) {
-            // Protobuf fluent setters should always start with set, if it starts with get it is probably a getter
-            // for a builder in a list field with recursive references (param being index).
-            // For instance UserDTO.getUsersBuilder(idx) in provided test case
-            return false;
-        } else if (isPutAllMethod(method)) {
-            return true;
-        } else if (isAddAllMethod(method)) {
-            return true;
-        } else {
-            if (isOneOfCaseSelector(method)) {
-                return false;
-            }
-
-            return super.isFluentSetter(method);
-        }
+        return methodName.startsWith("set")
+               || isAddAllMethod(method)
+               || isPutAllMethod(method);
     }
 
     @Override
@@ -250,28 +188,11 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
 
     @Override
     public boolean isPresenceCheckMethod(ExecutableElement method) {
-        if (!isProtobufGeneratedMessage(method.getEnclosingElement())) {
-            return super.isPresenceCheckMethod(method);
-        }
-
-        String methodName = method.getSimpleName().toString();
-
-        if (INTERNAL_METHODS.contains(methodName)) {
-            return false;
-        } else {
-            if (isOneOfCaseSelector(method)) {
-                return true;
-            }
-            return super.isPresenceCheckMethod(method);
-        }
+        return super.isPresenceCheckMethod(method);
     }
 
     @Override
     public String getElementName(ExecutableElement adderMethod) {
-        if (!isProtobufGeneratedMessage(adderMethod.getEnclosingElement())) {
-            return super.getElementName(adderMethod);
-        }
-
         return super.getElementName(adderMethod);
     }
 
@@ -284,7 +205,7 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         String methodName = getterOrSetterMethod.getSimpleName().toString();
 
         // 'get...Map'
-        if (isGetUnmodifiableMap(getterOrSetterMethod)) {
+        if (isGetMap(getterOrSetterMethod)) {
             return IntrospectorUtils.decapitalize(methodName.substring(3, methodName.length() - 3));
         }
 
@@ -293,22 +214,36 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return IntrospectorUtils.decapitalize(methodName.substring(3, methodName.length() - 4));
         }
 
+        // 'addAll...'
+        if (isAddAllMethod(getterOrSetterMethod)) {
+            return IntrospectorUtils.decapitalize(methodName.substring(6));
+        }
+
+        // 'putAll...'
+        if (isPutAllMethod(getterOrSetterMethod)) {
+            return IntrospectorUtils.decapitalize(methodName.substring(6));
+        }
+
         return super.getPropertyName(getterOrSetterMethod);
     }
 
     private boolean isGetList(ExecutableElement element) {
-        return element.getSimpleName().toString().startsWith("get") && isListType(element.getReturnType());
+        // repeated fields getter: getXxxList()
+        var method = element.getSimpleName().toString();
+        return method.startsWith("get")
+               && Character.isUpperCase(method.charAt("get".length()))
+               && isListType(element.getReturnType());
     }
 
     private boolean isGetMap(ExecutableElement element) {
-        return element.getSimpleName().toString().startsWith("get") && isMapType(element.getReturnType());
-    }
-
-    private boolean isGetUnmodifiableMap(ExecutableElement element) {
+        // There are many getter methods for map in protobuf generated code, only one is the real getter:
+        // - getXxx deprecated
+        // - getMutableXxx deprecated
+        // - getXxxMap the real getter
         var method = element.getSimpleName().toString();
         return !isDeprecated(element)
                && method.startsWith("get")
-               && method.endsWith("Map")
+               && Character.isUpperCase(method.charAt("get".length()))
                && isMapType(element.getReturnType());
     }
 
@@ -355,9 +290,62 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return false;
     }
 
-    private boolean isMethodFromProtobufGeneratedClass(ExecutableElement method) {
-        Element receiver = method.getEnclosingElement();
-        return protobufMesageOrBuilderType != null && receiver != null && typeUtils.isAssignable(receiver.asType(), protobufMesageOrBuilderType);
+    private Set<MethodSignature> getInternalMethods() {
+        String[] internalClasses = {
+            "com.google.protobuf.MessageLite",
+            "com.google.protobuf.MessageLite.Builder",
+            "com.google.protobuf.Message",
+            "com.google.protobuf.Message.Builder"
+        };
+
+        HashSet<MethodSignature> methods = new HashSet<>();
+        for (String className : internalClasses) {
+            TypeElement typeElement = elementUtils.getTypeElement(className);
+            if (typeElement != null) {
+                collectMethodsRecursively(typeElement, methods);
+            }
+        }
+        return methods;
+    }
+
+    private void collectMethodsRecursively(TypeElement typeElement, Set<MethodSignature> methods) {
+        // Collect methods from current type
+        for (Element element : typeElement.getEnclosedElements()) {
+            if (element instanceof ExecutableElement) {
+                methods.add(new MethodSignature((ExecutableElement) element));
+            }
+        }
+
+        // Collect from superclass
+        TypeMirror superclass = typeElement.getSuperclass();
+        if (superclass instanceof DeclaredType) {
+            DeclaredType declaredType = (DeclaredType) superclass;
+            Element superElement = declaredType.asElement();
+            if (superElement instanceof TypeElement && !superElement.toString().equals("java.lang.Object")) {
+                collectMethodsRecursively((TypeElement) superElement, methods);
+            }
+        }
+
+        // Collect from interfaces
+        for (TypeMirror interfaceType : typeElement.getInterfaces()) {
+            if (interfaceType instanceof DeclaredType) {
+                DeclaredType declaredType = (DeclaredType) interfaceType;
+                Element interfaceElement = declaredType.asElement();
+                if (interfaceElement instanceof TypeElement) {
+                    collectMethodsRecursively((TypeElement) interfaceElement, methods);
+                }
+            }
+        }
+    }
+
+    record MethodSignature(String name, List<String> parameterTypes) {
+        public MethodSignature(ExecutableElement method) {
+            this(method.getSimpleName().toString(),
+                    method.getParameters().stream()
+                            .map(p -> p.asType().toString())
+                            .toList()
+            );
+        }
     }
 
 }

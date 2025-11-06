@@ -29,6 +29,8 @@ private static final long serialVersionUID = 0L;
   }
   private OrderModel() {
     itemIds_ = emptyLongList();
+    itemNames_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -41,7 +43,7 @@ private static final long serialVersionUID = 0L;
   protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
       int number) {
     switch (number) {
-      case 3:
+      case 4:
         return internalGetAttributes();
       default:
         throw new RuntimeException(
@@ -97,7 +99,44 @@ private static final long serialVersionUID = 0L;
   }
   private int itemIdsMemoizedSerializedSize = -1;
 
-  public static final int ATTRIBUTES_FIELD_NUMBER = 3;
+  public static final int ITEM_NAMES_FIELD_NUMBER = 3;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.LazyStringArrayList itemNames_ =
+      com.google.protobuf.LazyStringArrayList.emptyList();
+  /**
+   * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+   * @return A list containing the itemNames.
+   */
+  public com.google.protobuf.ProtocolStringList
+      getItemNamesList() {
+    return itemNames_;
+  }
+  /**
+   * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+   * @return The count of itemNames.
+   */
+  public int getItemNamesCount() {
+    return itemNames_.size();
+  }
+  /**
+   * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+   * @param index The index of the element to return.
+   * @return The itemNames at the given index.
+   */
+  public java.lang.String getItemNames(int index) {
+    return itemNames_.get(index);
+  }
+  /**
+   * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the itemNames at the given index.
+   */
+  public com.google.protobuf.ByteString
+      getItemNamesBytes(int index) {
+    return itemNames_.getByteString(index);
+  }
+
+  public static final int ATTRIBUTES_FIELD_NUMBER = 4;
   private static final class AttributesDefaultEntryHolder {
     static final com.google.protobuf.MapEntry<
         java.lang.String, java.lang.String> defaultEntry =
@@ -124,7 +163,7 @@ private static final long serialVersionUID = 0L;
     return internalGetAttributes().getMap().size();
   }
   /**
-   * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+   * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
    */
   @java.lang.Override
   public boolean containsAttributes(
@@ -141,14 +180,14 @@ private static final long serialVersionUID = 0L;
     return getAttributesMap();
   }
   /**
-   * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+   * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
    */
   @java.lang.Override
   public java.util.Map<java.lang.String, java.lang.String> getAttributesMap() {
     return internalGetAttributes().getMap();
   }
   /**
-   * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+   * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
    */
   @java.lang.Override
   public /* nullable */
@@ -162,7 +201,7 @@ java.lang.String defaultValue) {
     return map.containsKey(key) ? map.get(key) : defaultValue;
   }
   /**
-   * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+   * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
    */
   @java.lang.Override
   public java.lang.String getAttributesOrThrow(
@@ -201,12 +240,15 @@ java.lang.String defaultValue) {
     for (int i = 0; i < itemIds_.size(); i++) {
       output.writeInt64NoTag(itemIds_.getLong(i));
     }
+    for (int i = 0; i < itemNames_.size(); i++) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 3, itemNames_.getRaw(i));
+    }
     com.google.protobuf.GeneratedMessage
       .serializeStringMapTo(
         output,
         internalGetAttributes(),
         AttributesDefaultEntryHolder.defaultEntry,
-        3);
+        4);
     getUnknownFields().writeTo(output);
   }
 
@@ -234,6 +276,14 @@ java.lang.String defaultValue) {
       }
       itemIdsMemoizedSerializedSize = dataSize;
     }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < itemNames_.size(); i++) {
+        dataSize += computeStringSizeNoTag(itemNames_.getRaw(i));
+      }
+      size += dataSize;
+      size += 1 * getItemNamesList().size();
+    }
     for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
          : internalGetAttributes().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
@@ -242,7 +292,7 @@ java.lang.String defaultValue) {
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, attributes__);
+          .computeMessageSize(4, attributes__);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -263,6 +313,8 @@ java.lang.String defaultValue) {
         != other.getId()) return false;
     if (!getItemIdsList()
         .equals(other.getItemIdsList())) return false;
+    if (!getItemNamesList()
+        .equals(other.getItemNamesList())) return false;
     if (!internalGetAttributes().equals(
         other.internalGetAttributes())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -282,6 +334,10 @@ java.lang.String defaultValue) {
     if (getItemIdsCount() > 0) {
       hash = (37 * hash) + ITEM_IDS_FIELD_NUMBER;
       hash = (53 * hash) + getItemIdsList().hashCode();
+    }
+    if (getItemNamesCount() > 0) {
+      hash = (37 * hash) + ITEM_NAMES_FIELD_NUMBER;
+      hash = (53 * hash) + getItemNamesList().hashCode();
     }
     if (!internalGetAttributes().getMap().isEmpty()) {
       hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
@@ -400,7 +456,7 @@ java.lang.String defaultValue) {
     protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
         int number) {
       switch (number) {
-        case 3:
+        case 4:
           return internalGetAttributes();
         default:
           throw new RuntimeException(
@@ -411,7 +467,7 @@ java.lang.String defaultValue) {
     protected com.google.protobuf.MapFieldReflectionAccessor internalGetMutableMapFieldReflection(
         int number) {
       switch (number) {
-        case 3:
+        case 4:
           return internalGetMutableAttributes();
         default:
           throw new RuntimeException(
@@ -442,6 +498,8 @@ java.lang.String defaultValue) {
       bitField0_ = 0;
       id_ = 0L;
       itemIds_ = emptyLongList();
+      itemNames_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       internalGetMutableAttributes().clear();
       return this;
     }
@@ -484,6 +542,10 @@ java.lang.String defaultValue) {
         result.itemIds_ = itemIds_;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
+        itemNames_.makeImmutable();
+        result.itemNames_ = itemNames_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
         result.attributes_ = internalGetAttributes();
         result.attributes_.makeImmutable();
       }
@@ -515,9 +577,19 @@ java.lang.String defaultValue) {
         }
         onChanged();
       }
+      if (!other.itemNames_.isEmpty()) {
+        if (itemNames_.isEmpty()) {
+          itemNames_ = other.itemNames_;
+          bitField0_ |= 0x00000004;
+        } else {
+          ensureItemNamesIsMutable();
+          itemNames_.addAll(other.itemNames_);
+        }
+        onChanged();
+      }
       internalGetMutableAttributes().mergeFrom(
           other.internalGetAttributes());
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -566,14 +638,20 @@ java.lang.String defaultValue) {
               break;
             } // case 18
             case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+              ensureItemNamesIsMutable();
+              itemNames_.add(s);
+              break;
+            } // case 26
+            case 34: {
               com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
               attributes__ = input.readMessage(
                   AttributesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
               internalGetMutableAttributes().getMutableMap().put(
                   attributes__.getKey(), attributes__.getValue());
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000008;
               break;
-            } // case 26
+            } // case 34
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -707,6 +785,117 @@ java.lang.String defaultValue) {
       return this;
     }
 
+    private com.google.protobuf.LazyStringArrayList itemNames_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    private void ensureItemNamesIsMutable() {
+      if (!itemNames_.isModifiable()) {
+        itemNames_ = new com.google.protobuf.LazyStringArrayList(itemNames_);
+      }
+      bitField0_ |= 0x00000004;
+    }
+    /**
+     * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+     * @return A list containing the itemNames.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getItemNamesList() {
+      itemNames_.makeImmutable();
+      return itemNames_;
+    }
+    /**
+     * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+     * @return The count of itemNames.
+     */
+    public int getItemNamesCount() {
+      return itemNames_.size();
+    }
+    /**
+     * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+     * @param index The index of the element to return.
+     * @return The itemNames at the given index.
+     */
+    public java.lang.String getItemNames(int index) {
+      return itemNames_.get(index);
+    }
+    /**
+     * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the itemNames at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getItemNamesBytes(int index) {
+      return itemNames_.getByteString(index);
+    }
+    /**
+     * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+     * @param index The index to set the value at.
+     * @param value The itemNames to set.
+     * @return This builder for chaining.
+     */
+    public Builder setItemNames(
+        int index, java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureItemNamesIsMutable();
+      itemNames_.set(index, value);
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+     * @param value The itemNames to add.
+     * @return This builder for chaining.
+     */
+    public Builder addItemNames(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureItemNamesIsMutable();
+      itemNames_.add(value);
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+     * @param values The itemNames to add.
+     * @return This builder for chaining.
+     */
+    public Builder addAllItemNames(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureItemNamesIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, itemNames_);
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearItemNames() {
+      itemNames_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000004);;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+     * @param value The bytes of the itemNames to add.
+     * @return This builder for chaining.
+     */
+    public Builder addItemNamesBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      ensureItemNamesIsMutable();
+      itemNames_.add(value);
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+
     private com.google.protobuf.MapField<
         java.lang.String, java.lang.String> attributes_;
     private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -726,7 +915,7 @@ java.lang.String defaultValue) {
       if (!attributes_.isMutable()) {
         attributes_ = attributes_.copy();
       }
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       onChanged();
       return attributes_;
     }
@@ -734,7 +923,7 @@ java.lang.String defaultValue) {
       return internalGetAttributes().getMap().size();
     }
     /**
-     * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+     * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
      */
     @java.lang.Override
     public boolean containsAttributes(
@@ -751,14 +940,14 @@ java.lang.String defaultValue) {
       return getAttributesMap();
     }
     /**
-     * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+     * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
      */
     @java.lang.Override
     public java.util.Map<java.lang.String, java.lang.String> getAttributesMap() {
       return internalGetAttributes().getMap();
     }
     /**
-     * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+     * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
      */
     @java.lang.Override
     public /* nullable */
@@ -772,7 +961,7 @@ java.lang.String defaultValue) {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+     * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
      */
     @java.lang.Override
     public java.lang.String getAttributesOrThrow(
@@ -786,13 +975,13 @@ java.lang.String defaultValue) {
       return map.get(key);
     }
     public Builder clearAttributes() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000008);
       internalGetMutableAttributes().getMutableMap()
           .clear();
       return this;
     }
     /**
-     * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+     * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
      */
     public Builder removeAttributes(
         java.lang.String key) {
@@ -807,11 +996,11 @@ java.lang.String defaultValue) {
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String>
         getMutableAttributes() {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return internalGetMutableAttributes().getMutableMap();
     }
     /**
-     * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+     * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
      */
     public Builder putAttributes(
         java.lang.String key,
@@ -820,17 +1009,17 @@ java.lang.String defaultValue) {
       if (value == null) { throw new NullPointerException("map value"); }
       internalGetMutableAttributes().getMutableMap()
           .put(key, value);
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return this;
     }
     /**
-     * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+     * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
      */
     public Builder putAllAttributes(
         java.util.Map<java.lang.String, java.lang.String> values) {
       internalGetMutableAttributes().getMutableMap()
           .putAll(values);
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       return this;
     }
 

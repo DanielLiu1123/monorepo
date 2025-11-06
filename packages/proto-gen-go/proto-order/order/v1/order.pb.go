@@ -24,7 +24,8 @@ type OrderModel struct {
 	state                 protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id         int64                  `protobuf:"varint,1,opt,name=id,proto3"`
 	xxx_hidden_ItemIds    []int64                `protobuf:"varint,2,rep,packed,name=item_ids,json=itemIds,proto3"`
-	xxx_hidden_Attributes map[string]string      `protobuf:"bytes,3,rep,name=attributes,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_ItemNames  []string               `protobuf:"bytes,3,rep,name=item_names,json=itemNames,proto3"`
+	xxx_hidden_Attributes map[string]string      `protobuf:"bytes,4,rep,name=attributes,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -68,6 +69,13 @@ func (x *OrderModel) GetItemIds() []int64 {
 	return nil
 }
 
+func (x *OrderModel) GetItemNames() []string {
+	if x != nil {
+		return x.xxx_hidden_ItemNames
+	}
+	return nil
+}
+
 func (x *OrderModel) GetAttributes() map[string]string {
 	if x != nil {
 		return x.xxx_hidden_Attributes
@@ -83,6 +91,10 @@ func (x *OrderModel) SetItemIds(v []int64) {
 	x.xxx_hidden_ItemIds = v
 }
 
+func (x *OrderModel) SetItemNames(v []string) {
+	x.xxx_hidden_ItemNames = v
+}
+
 func (x *OrderModel) SetAttributes(v map[string]string) {
 	x.xxx_hidden_Attributes = v
 }
@@ -92,6 +104,7 @@ type OrderModel_builder struct {
 
 	Id         int64
 	ItemIds    []int64
+	ItemNames  []string
 	Attributes map[string]string
 }
 
@@ -101,6 +114,7 @@ func (b0 OrderModel_builder) Build() *OrderModel {
 	_, _ = b, x
 	x.xxx_hidden_Id = b.Id
 	x.xxx_hidden_ItemIds = b.ItemIds
+	x.xxx_hidden_ItemNames = b.ItemNames
 	x.xxx_hidden_Attributes = b.Attributes
 	return m0
 }
@@ -109,13 +123,15 @@ var File_order_v1_order_proto protoreflect.FileDescriptor
 
 const file_order_v1_order_proto_rawDesc = "" +
 	"\n" +
-	"\x14order/v1/order.proto\x12\border.v1\"\xbc\x01\n" +
+	"\x14order/v1/order.proto\x12\border.v1\"\xdb\x01\n" +
 	"\n" +
 	"OrderModel\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
-	"\bitem_ids\x18\x02 \x03(\x03R\aitemIds\x12D\n" +
+	"\bitem_ids\x18\x02 \x03(\x03R\aitemIds\x12\x1d\n" +
 	"\n" +
-	"attributes\x18\x03 \x03(\v2$.order.v1.OrderModel.AttributesEntryR\n" +
+	"item_names\x18\x03 \x03(\tR\titemNames\x12D\n" +
+	"\n" +
+	"attributes\x18\x04 \x03(\v2$.order.v1.OrderModel.AttributesEntryR\n" +
 	"attributes\x1a=\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +

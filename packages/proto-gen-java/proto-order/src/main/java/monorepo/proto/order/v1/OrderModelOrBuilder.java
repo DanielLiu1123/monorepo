@@ -34,11 +34,36 @@ public interface OrderModelOrBuilder extends
   long getItemIds(int index);
 
   /**
-   * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+   * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+   * @return A list containing the itemNames.
+   */
+  java.util.List<java.lang.String>
+      getItemNamesList();
+  /**
+   * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+   * @return The count of itemNames.
+   */
+  int getItemNamesCount();
+  /**
+   * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+   * @param index The index of the element to return.
+   * @return The itemNames at the given index.
+   */
+  java.lang.String getItemNames(int index);
+  /**
+   * <code>repeated string item_names = 3 [json_name = "itemNames"];</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the itemNames at the given index.
+   */
+  com.google.protobuf.ByteString
+      getItemNamesBytes(int index);
+
+  /**
+   * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
    */
   int getAttributesCount();
   /**
-   * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+   * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
    */
   boolean containsAttributes(
       java.lang.String key);
@@ -49,12 +74,12 @@ public interface OrderModelOrBuilder extends
   java.util.Map<java.lang.String, java.lang.String>
   getAttributes();
   /**
-   * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+   * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
    */
   java.util.Map<java.lang.String, java.lang.String>
   getAttributesMap();
   /**
-   * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+   * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
    */
   /* nullable */
 java.lang.String getAttributesOrDefault(
@@ -62,7 +87,7 @@ java.lang.String getAttributesOrDefault(
       /* nullable */
 java.lang.String defaultValue);
   /**
-   * <code>map&lt;string, string&gt; attributes = 3 [json_name = "attributes"];</code>
+   * <code>map&lt;string, string&gt; attributes = 4 [json_name = "attributes"];</code>
    */
   java.lang.String getAttributesOrThrow(
       java.lang.String key);
