@@ -5,15 +5,9 @@
 
 package monorepo.proto.order.v1;
 
-/**
- * Protobuf type {@code order.v1.Order}
- */
 @com.google.protobuf.Generated
-public final class Order extends
-    com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:order.v1.Order)
-    OrderOrBuilder {
-private static final long serialVersionUID = 0L;
+public final class Order extends com.google.protobuf.GeneratedFile {
+  private Order() {}
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
       com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
@@ -23,337 +17,62 @@ private static final long serialVersionUID = 0L;
       /* suffix= */ "",
       "Order");
   }
-  // Use Order.newBuilder() to construct.
-  private Order(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-    super(builder);
-  }
-  private Order() {
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
-  public static final com.google.protobuf.Descriptors.Descriptor
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
+  }
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_OrderModel_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_OrderModel_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_OrderModel_AttributesEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_OrderModel_AttributesEntry_fieldAccessorTable;
+
+  public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
-    return monorepo.proto.order.v1.OrderOuterClass.internal_static_order_v1_Order_descriptor;
+    return descriptor;
   }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return monorepo.proto.order.v1.OrderOuterClass.internal_static_order_v1_Order_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            monorepo.proto.order.v1.Order.class, monorepo.proto.order.v1.Order.Builder.class);
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    getUnknownFields().writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    size += getUnknownFields().getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof monorepo.proto.order.v1.Order)) {
-      return super.equals(obj);
-    }
-    monorepo.proto.order.v1.Order other = (monorepo.proto.order.v1.Order) obj;
-
-    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-    return true;
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static monorepo.proto.order.v1.Order parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static monorepo.proto.order.v1.Order parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static monorepo.proto.order.v1.Order parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static monorepo.proto.order.v1.Order parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static monorepo.proto.order.v1.Order parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static monorepo.proto.order.v1.Order parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static monorepo.proto.order.v1.Order parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessage
-        .parseWithIOException(PARSER, input);
-  }
-  public static monorepo.proto.order.v1.Order parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessage
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static monorepo.proto.order.v1.Order parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessage
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static monorepo.proto.order.v1.Order parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessage
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static monorepo.proto.order.v1.Order parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessage
-        .parseWithIOException(PARSER, input);
-  }
-  public static monorepo.proto.order.v1.Order parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessage
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(monorepo.proto.order.v1.Order prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * Protobuf type {@code order.v1.Order}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:order.v1.Order)
-      monorepo.proto.order.v1.OrderOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return monorepo.proto.order.v1.OrderOuterClass.internal_static_order_v1_Order_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return monorepo.proto.order.v1.OrderOuterClass.internal_static_order_v1_Order_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              monorepo.proto.order.v1.Order.class, monorepo.proto.order.v1.Order.Builder.class);
-    }
-
-    // Construct using monorepo.proto.order.v1.Order.newBuilder()
-    private Builder() {
-
-    }
-
-    private Builder(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      super(parent);
-
-    }
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      return this;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-      return monorepo.proto.order.v1.OrderOuterClass.internal_static_order_v1_Order_descriptor;
-    }
-
-    @java.lang.Override
-    public monorepo.proto.order.v1.Order getDefaultInstanceForType() {
-      return monorepo.proto.order.v1.Order.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public monorepo.proto.order.v1.Order build() {
-      monorepo.proto.order.v1.Order result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public monorepo.proto.order.v1.Order buildPartial() {
-      monorepo.proto.order.v1.Order result = new monorepo.proto.order.v1.Order(this);
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof monorepo.proto.order.v1.Order) {
-        return mergeFrom((monorepo.proto.order.v1.Order)other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(monorepo.proto.order.v1.Order other) {
-      if (other == monorepo.proto.order.v1.Order.getDefaultInstance()) return this;
-      this.mergeUnknownFields(other.getUnknownFields());
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                done = true; // was an endgroup tag
-              }
-              break;
-            } // default:
-          } // switch (tag)
-        } // while (!done)
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.unwrapIOException();
-      } finally {
-        onChanged();
-      } // finally
-      return this;
-    }
-
-    // @@protoc_insertion_point(builder_scope:order.v1.Order)
-  }
-
-  // @@protoc_insertion_point(class_scope:order.v1.Order)
-  private static final monorepo.proto.order.v1.Order DEFAULT_INSTANCE;
+  private static  com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
   static {
-    DEFAULT_INSTANCE = new monorepo.proto.order.v1.Order();
+    java.lang.String[] descriptorData = {
+      "\n\024order/v1/order.proto\022\010order.v1\"\274\001\n\nOrd" +
+      "erModel\022\016\n\002id\030\001 \001(\003R\002id\022\031\n\010item_ids\030\002 \003(" +
+      "\003R\007itemIds\022D\n\nattributes\030\003 \003(\0132$.order.v" +
+      "1.OrderModel.AttributesEntryR\nattributes" +
+      "\032=\n\017AttributesEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n" +
+      "\005value\030\002 \001(\tR\005value:\0028\001B_\n\027monorepo.prot" +
+      "o.order.v1P\001ZBgithub.com/yourorg/monorep" +
+      "o/packages/proto-gen-go/order/v1;orderv1" +
+      "b\006proto3"
+    };
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+        });
+    internal_static_order_v1_OrderModel_descriptor =
+      getDescriptor().getMessageType(0);
+    internal_static_order_v1_OrderModel_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_OrderModel_descriptor,
+        new java.lang.String[] { "Id", "ItemIds", "Attributes", });
+    internal_static_order_v1_OrderModel_AttributesEntry_descriptor =
+      internal_static_order_v1_OrderModel_descriptor.getNestedType(0);
+    internal_static_order_v1_OrderModel_AttributesEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_OrderModel_AttributesEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    descriptor.resolveAllFeaturesImmutable();
   }
 
-  public static monorepo.proto.order.v1.Order getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<Order>
-      PARSER = new com.google.protobuf.AbstractParser<Order>() {
-    @java.lang.Override
-    public Order parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      Builder builder = newBuilder();
-      try {
-        builder.mergeFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(builder.buildPartial());
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e)
-            .setUnfinishedMessage(builder.buildPartial());
-      }
-      return builder.buildPartial();
-    }
-  };
-
-  public static com.google.protobuf.Parser<Order> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<Order> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public monorepo.proto.order.v1.Order getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
+  // @@protoc_insertion_point(outer_class_scope)
 }
-

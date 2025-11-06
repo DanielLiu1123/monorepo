@@ -20,26 +20,29 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Order struct {
-	state         protoimpl.MessageState `protogen:"opaque.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+type OrderModel struct {
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id         int64                  `protobuf:"varint,1,opt,name=id,proto3"`
+	xxx_hidden_ItemIds    []int64                `protobuf:"varint,2,rep,packed,name=item_ids,json=itemIds,proto3"`
+	xxx_hidden_Attributes map[string]string      `protobuf:"bytes,3,rep,name=attributes,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
-func (x *Order) Reset() {
-	*x = Order{}
+func (x *OrderModel) Reset() {
+	*x = OrderModel{}
 	mi := &file_order_v1_order_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Order) String() string {
+func (x *OrderModel) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Order) ProtoMessage() {}
+func (*OrderModel) ProtoMessage() {}
 
-func (x *Order) ProtoReflect() protoreflect.Message {
+func (x *OrderModel) ProtoReflect() protoreflect.Message {
 	mi := &file_order_v1_order_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -51,15 +54,54 @@ func (x *Order) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-type Order_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
+func (x *OrderModel) GetId() int64 {
+	if x != nil {
+		return x.xxx_hidden_Id
+	}
+	return 0
 }
 
-func (b0 Order_builder) Build() *Order {
-	m0 := &Order{}
+func (x *OrderModel) GetItemIds() []int64 {
+	if x != nil {
+		return x.xxx_hidden_ItemIds
+	}
+	return nil
+}
+
+func (x *OrderModel) GetAttributes() map[string]string {
+	if x != nil {
+		return x.xxx_hidden_Attributes
+	}
+	return nil
+}
+
+func (x *OrderModel) SetId(v int64) {
+	x.xxx_hidden_Id = v
+}
+
+func (x *OrderModel) SetItemIds(v []int64) {
+	x.xxx_hidden_ItemIds = v
+}
+
+func (x *OrderModel) SetAttributes(v map[string]string) {
+	x.xxx_hidden_Attributes = v
+}
+
+type OrderModel_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id         int64
+	ItemIds    []int64
+	Attributes map[string]string
+}
+
+func (b0 OrderModel_builder) Build() *OrderModel {
+	m0 := &OrderModel{}
 	b, x := &b0, m0
 	_, _ = b, x
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_ItemIds = b.ItemIds
+	x.xxx_hidden_Attributes = b.Attributes
 	return m0
 }
 
@@ -67,20 +109,31 @@ var File_order_v1_order_proto protoreflect.FileDescriptor
 
 const file_order_v1_order_proto_rawDesc = "" +
 	"\n" +
-	"\x14order/v1/order.proto\x12\border.v1\"\a\n" +
-	"\x05OrderB_\n" +
+	"\x14order/v1/order.proto\x12\border.v1\"\xbc\x01\n" +
+	"\n" +
+	"OrderModel\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
+	"\bitem_ids\x18\x02 \x03(\x03R\aitemIds\x12D\n" +
+	"\n" +
+	"attributes\x18\x03 \x03(\v2$.order.v1.OrderModel.AttributesEntryR\n" +
+	"attributes\x1a=\n" +
+	"\x0fAttributesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B_\n" +
 	"\x17monorepo.proto.order.v1P\x01ZBgithub.com/yourorg/monorepo/packages/proto-gen-go/order/v1;orderv1b\x06proto3"
 
-var file_order_v1_order_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_order_v1_order_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_order_v1_order_proto_goTypes = []any{
-	(*Order)(nil), // 0: order.v1.Order
+	(*OrderModel)(nil), // 0: order.v1.OrderModel
+	nil,                // 1: order.v1.OrderModel.AttributesEntry
 }
 var file_order_v1_order_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: order.v1.OrderModel.attributes:type_name -> order.v1.OrderModel.AttributesEntry
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_order_v1_order_proto_init() }
@@ -94,7 +147,7 @@ func file_order_v1_order_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_order_v1_order_proto_rawDesc), len(file_order_v1_order_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -6,6 +6,8 @@ option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/order/v1;
 option java_package = "monorepo.proto.order.v1";
 option java_multiple_files = true;
 
-message Order {
-
+message OrderModel {
+  int64 id = 1;
+  repeated int64 item_ids = 2;
+  map<string, string> attributes = 3;
 }
