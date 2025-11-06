@@ -30,13 +30,11 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
 
-import org.mapstruct.ap.internal.util.Nouns;
 import org.mapstruct.ap.spi.DefaultAccessorNamingStrategy;
 import org.mapstruct.ap.spi.MapStructProcessingEnvironment;
 import org.mapstruct.ap.spi.util.IntrospectorUtils;
@@ -47,7 +45,6 @@ import org.mapstruct.ap.spi.util.IntrospectorUtils;
 public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrategy {
     public static final String PROTOBUF_STRING_LIST_TYPE = "com.google.protobuf.ProtocolStringList";
     public static final String PROTOBUF_MESSAGE_OR_BUILDER = "com.google.protobuf.MessageLiteOrBuilder";
-    public static final String PROTOBUF_BUILDER = "com.google.protobuf.GeneratedMessageV3.Builder";
     public static final String BUILDER_LIST_SUFFIX = "BuilderList";
 
     protected static final Set<String> INTERNAL_METHODS = new HashSet<>(Arrays.asList("newBuilder", "newBuilderForType", "parseFrom", "parseDelimitedFrom",
@@ -139,19 +136,21 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
 
         if (INTERNAL_METHODS.contains(methodName)) {
             return false;
-        } else {
-            if (isSpecialMethod(method)) {
-                return false;
-            }
-            if (isGetMutableMap(method)) {
-                return true;
-            }
-            if (isGetUnmodifiableMap(method)) {
-                return !isMethodFromProtobufBuilder(method);
-            }
-            return super.isGetterMethod(method);
         }
 
+        if (isSpecialMethod(method)) {
+            return false;
+        }
+
+        if (isGetList(method)) {
+            return true;
+        }
+
+        if (isGetMap(method)) {
+            return isGetUnmodifiableMap(method);
+        }
+
+        return super.isGetterMethod(method);
     }
 
     private boolean isOneOfCaseSelector(ExecutableElement method) {
@@ -172,12 +171,43 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
 
         if (INTERNAL_METHODS.contains(methodName)) {
             return false;
-        } else {
-            if (isSpecialMethod(method)) {
-                return false;
-            }
-            return super.isSetterMethod(method);
         }
+
+        if (isSpecialMethod(method)) {
+            return false;
+        }
+
+        if (isAddAllMethod(method)) {
+            return true;
+        }
+
+        if (isPutAllMethod(method)) {
+            return true;
+        }
+
+        return super.isSetterMethod(method);
+    }
+
+    private boolean isAddAllMethod(ExecutableElement method) {
+        String methodName = method.getSimpleName().toString();
+        if (methodName.startsWith("addAll")) {
+            if (method.getParameters().size() == 1) {
+                TypeMirror paramType = method.getParameters().get(0).asType();
+                return paramType.toString().startsWith(Iterable.class.getCanonicalName());
+            }
+        }
+        return false;
+    }
+
+    private boolean isPutAllMethod(ExecutableElement method) {
+        String methodName = method.getSimpleName().toString();
+        if (methodName.startsWith("putAll")) {
+            if (method.getParameters().size() == 1) {
+                TypeMirror paramType = method.getParameters().get(0).asType();
+                return paramType.toString().startsWith(Map.class.getCanonicalName());
+            }
+        }
+        return false;
     }
 
     @Override
@@ -195,22 +225,10 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             // for a builder in a list field with recursive references (param being index).
             // For instance UserDTO.getUsersBuilder(idx) in provided test case
             return false;
-        } else if (methodName.startsWith("putAll")) {
-            // Protobuf map field setters
-            // if parameter is a Map, it is a fluent setter
-            if (method.getParameters().size() == 1) {
-                TypeMirror paramType = method.getParameters().get(0).asType();
-                return paramType.toString().startsWith(Map.class.getCanonicalName());
-            }
-            return false;
-        } else if (methodName.equals("addAll")) {
-            // Protobuf repeated field setters
-            // if parameter is Iterable, it is a fluent setter
-            if (method.getParameters().size() == 1) {
-                TypeMirror paramType = method.getParameters().get(0).asType();
-                return paramType.toString().startsWith(Iterable.class.getCanonicalName());
-            }
-            return false;
+        } else if (isPutAllMethod(method)) {
+            return true;
+        } else if (isAddAllMethod(method)) {
+            return true;
         } else {
             if (isOneOfCaseSelector(method)) {
                 return false;
@@ -226,16 +244,8 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return super.isAdderMethod(method);
         }
 
-        String methodName = method.getSimpleName().toString();
-
-        if (INTERNAL_METHODS.contains(methodName)) {
-            return false;
-        } else {
-            if (isOneOfCaseSelector(method)) {
-                return false;
-            }
-            return super.isAdderMethod(method);
-        }
+        // Protobuf does not have adder methods, only addAll as a setter for collections
+        return false;
     }
 
     @Override
@@ -262,13 +272,7 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return super.getElementName(adderMethod);
         }
 
-        String methodName = super.getElementName(adderMethod);
-        if (isMethodFromProtobufGeneratedClass(adderMethod)) {
-            String singularizedMethodName = Nouns.singularize(methodName);
-            methodName = singularizedMethodName;
-        }
-
-        return methodName;
+        return super.getElementName(adderMethod);
     }
 
     @Override
@@ -279,27 +283,16 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
 
         String methodName = getterOrSetterMethod.getSimpleName().toString();
 
-        boolean isGetMutableMap = isGetMutableMap(getterOrSetterMethod);
-        boolean isGetUnmodifiableMap = isGetUnmodifiableMap(getterOrSetterMethod);
-
-        if (isGetList(getterOrSetterMethod) || isSetList(getterOrSetterMethod) || isGetMutableMap) {
-            Element receiver = getterOrSetterMethod.getEnclosingElement();
-            if (receiver != null && (receiver.getKind() == ElementKind.CLASS || receiver.getKind() == ElementKind.INTERFACE)) {
-                TypeElement type = (TypeElement) receiver;
-                if (isProtobufGeneratedMessage(type)) {
-                    if (isGetMutableMap) {
-                        // 'getMutable...'
-                        return IntrospectorUtils.decapitalize(methodName.substring(10));
-                    } else if (isGetUnmodifiableMap) {
-                        // 'get...'
-                        return IntrospectorUtils.decapitalize(methodName.substring(3));
-                    } else {
-                        // 'get...List'
-                        return IntrospectorUtils.decapitalize(methodName.substring(3, methodName.length() - 4));
-                    }
-                }
-            }
+        // 'get...Map'
+        if (isGetUnmodifiableMap(getterOrSetterMethod)) {
+            return IntrospectorUtils.decapitalize(methodName.substring(3, methodName.length() - 3));
         }
+
+        // 'get...List'
+        if (isGetList(getterOrSetterMethod)) {
+            return IntrospectorUtils.decapitalize(methodName.substring(3, methodName.length() - 4));
+        }
+
         return super.getPropertyName(getterOrSetterMethod);
     }
 
@@ -307,22 +300,20 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return element.getSimpleName().toString().startsWith("get") && isListType(element.getReturnType());
     }
 
+    private boolean isGetMap(ExecutableElement element) {
+        return element.getSimpleName().toString().startsWith("get") && isMapType(element.getReturnType());
+    }
+
     private boolean isGetUnmodifiableMap(ExecutableElement element) {
-        return element.getSimpleName().toString().startsWith("get") && !element.getSimpleName().toString().startsWith("getMutable")
-               // skip 'get..'.Map pattern (this method are duplicated by 'get...')
-               && !element.getSimpleName().toString().endsWith("Map") && isMapType(element.getReturnType());
+        var method = element.getSimpleName().toString();
+        return !isDeprecated(element)
+               && method.startsWith("get")
+               && method.endsWith("Map")
+               && isMapType(element.getReturnType());
     }
 
-    private boolean isGetMutableMap(ExecutableElement element) {
-        return element.getSimpleName().toString().startsWith("getMutable") && isMapType(element.getReturnType());
-    }
-
-    private boolean isSetList(ExecutableElement element) {
-        if (element.getSimpleName().toString().startsWith("set") && element.getParameters().size() == 1) {
-            TypeMirror param = element.getParameters().get(0).asType();
-            return isListType(param);
-        }
-        return false;
+    private boolean isDeprecated(ExecutableElement element) {
+        return element.getAnnotation(Deprecated.class) != null;
     }
 
     private boolean isListType(TypeMirror t) {
@@ -369,8 +360,4 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return protobufMesageOrBuilderType != null && receiver != null && typeUtils.isAssignable(receiver.asType(), protobufMesageOrBuilderType);
     }
 
-    private boolean isMethodFromProtobufBuilder(ExecutableElement method) {
-        TypeElement cls = (TypeElement) method.getEnclosingElement();
-        return cls.getSuperclass().toString().startsWith(PROTOBUF_BUILDER);
-    }
 }
