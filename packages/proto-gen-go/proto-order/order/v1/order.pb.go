@@ -9,6 +9,7 @@ package orderv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -26,6 +27,7 @@ type OrderModel struct {
 	xxx_hidden_ItemIds    []int64                `protobuf:"varint,2,rep,packed,name=item_ids,json=itemIds,proto3"`
 	xxx_hidden_ItemNames  []string               `protobuf:"bytes,3,rep,name=item_names,json=itemNames,proto3"`
 	xxx_hidden_Attributes map[string]string      `protobuf:"bytes,4,rep,name=attributes,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_CreatedAt  *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -83,6 +85,13 @@ func (x *OrderModel) GetAttributes() map[string]string {
 	return nil
 }
 
+func (x *OrderModel) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_CreatedAt
+	}
+	return nil
+}
+
 func (x *OrderModel) SetId(v int64) {
 	x.xxx_hidden_Id = v
 }
@@ -99,6 +108,21 @@ func (x *OrderModel) SetAttributes(v map[string]string) {
 	x.xxx_hidden_Attributes = v
 }
 
+func (x *OrderModel) SetCreatedAt(v *timestamppb.Timestamp) {
+	x.xxx_hidden_CreatedAt = v
+}
+
+func (x *OrderModel) HasCreatedAt() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_CreatedAt != nil
+}
+
+func (x *OrderModel) ClearCreatedAt() {
+	x.xxx_hidden_CreatedAt = nil
+}
+
 type OrderModel_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
@@ -106,6 +130,7 @@ type OrderModel_builder struct {
 	ItemIds    []int64
 	ItemNames  []string
 	Attributes map[string]string
+	CreatedAt  *timestamppb.Timestamp
 }
 
 func (b0 OrderModel_builder) Build() *OrderModel {
@@ -116,6 +141,7 @@ func (b0 OrderModel_builder) Build() *OrderModel {
 	x.xxx_hidden_ItemIds = b.ItemIds
 	x.xxx_hidden_ItemNames = b.ItemNames
 	x.xxx_hidden_Attributes = b.Attributes
+	x.xxx_hidden_CreatedAt = b.CreatedAt
 	return m0
 }
 
@@ -123,7 +149,7 @@ var File_order_v1_order_proto protoreflect.FileDescriptor
 
 const file_order_v1_order_proto_rawDesc = "" +
 	"\n" +
-	"\x14order/v1/order.proto\x12\border.v1\"\xdb\x01\n" +
+	"\x14order/v1/order.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x96\x02\n" +
 	"\n" +
 	"OrderModel\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
@@ -132,7 +158,9 @@ const file_order_v1_order_proto_rawDesc = "" +
 	"item_names\x18\x03 \x03(\tR\titemNames\x12D\n" +
 	"\n" +
 	"attributes\x18\x04 \x03(\v2$.order.v1.OrderModel.AttributesEntryR\n" +
-	"attributes\x1a=\n" +
+	"attributes\x129\n" +
+	"\n" +
+	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x1a=\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B_\n" +
@@ -140,16 +168,18 @@ const file_order_v1_order_proto_rawDesc = "" +
 
 var file_order_v1_order_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_order_v1_order_proto_goTypes = []any{
-	(*OrderModel)(nil), // 0: order.v1.OrderModel
-	nil,                // 1: order.v1.OrderModel.AttributesEntry
+	(*OrderModel)(nil),            // 0: order.v1.OrderModel
+	nil,                           // 1: order.v1.OrderModel.AttributesEntry
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_order_v1_order_proto_depIdxs = []int32{
 	1, // 0: order.v1.OrderModel.attributes:type_name -> order.v1.OrderModel.AttributesEntry
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 1: order.v1.OrderModel.created_at:type_name -> google.protobuf.Timestamp
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_order_v1_order_proto_init() }

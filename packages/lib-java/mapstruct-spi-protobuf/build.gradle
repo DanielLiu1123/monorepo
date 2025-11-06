@@ -1,8 +1,8 @@
 dependencies {
     api "org.mapstruct:mapstruct:+"
     api "org.mapstruct:mapstruct-processor:+"
+    api "com.google.protobuf:protobuf-java"
 
     testImplementation "com.google.testing.compile:compile-testing:+"
-    testImplementation "com.google.protobuf:protobuf-java"
     testImplementation project(":packages:proto-gen-java:proto-order")
 }

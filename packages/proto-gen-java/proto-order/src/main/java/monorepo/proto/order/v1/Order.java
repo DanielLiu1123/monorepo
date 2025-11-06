@@ -45,26 +45,30 @@ public final class Order extends com.google.protobuf.GeneratedFile {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024order/v1/order.proto\022\010order.v1\"\333\001\n\nOrd" +
-      "erModel\022\016\n\002id\030\001 \001(\003R\002id\022\031\n\010item_ids\030\002 \003(" +
-      "\003R\007itemIds\022\035\n\nitem_names\030\003 \003(\tR\titemName" +
-      "s\022D\n\nattributes\030\004 \003(\0132$.order.v1.OrderMo" +
-      "del.AttributesEntryR\nattributes\032=\n\017Attri" +
-      "butesEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 " +
-      "\001(\tR\005value:\0028\001B_\n\027monorepo.proto.order.v" +
-      "1P\001ZBgithub.com/yourorg/monorepo/package" +
-      "s/proto-gen-go/order/v1;orderv1b\006proto3"
+      "\n\024order/v1/order.proto\022\010order.v1\032\037google" +
+      "/protobuf/timestamp.proto\"\226\002\n\nOrderModel" +
+      "\022\016\n\002id\030\001 \001(\003R\002id\022\031\n\010item_ids\030\002 \003(\003R\007item" +
+      "Ids\022\035\n\nitem_names\030\003 \003(\tR\titemNames\022D\n\nat" +
+      "tributes\030\004 \003(\0132$.order.v1.OrderModel.Att" +
+      "ributesEntryR\nattributes\0229\n\ncreated_at\030\005" +
+      " \001(\0132\032.google.protobuf.TimestampR\tcreate" +
+      "dAt\032=\n\017AttributesEntry\022\020\n\003key\030\001 \001(\tR\003key" +
+      "\022\024\n\005value\030\002 \001(\tR\005value:\0028\001B_\n\027monorepo.p" +
+      "roto.order.v1P\001ZBgithub.com/yourorg/mono" +
+      "repo/packages/proto-gen-go/order/v1;orde" +
+      "rv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.TimestampProto.getDescriptor(),
         });
     internal_static_order_v1_OrderModel_descriptor =
       getDescriptor().getMessageType(0);
     internal_static_order_v1_OrderModel_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_order_v1_OrderModel_descriptor,
-        new java.lang.String[] { "Id", "ItemIds", "ItemNames", "Attributes", });
+        new java.lang.String[] { "Id", "ItemIds", "ItemNames", "Attributes", "CreatedAt", });
     internal_static_order_v1_OrderModel_AttributesEntry_descriptor =
       internal_static_order_v1_OrderModel_descriptor.getNestedType(0);
     internal_static_order_v1_OrderModel_AttributesEntry_fieldAccessorTable = new
@@ -72,6 +76,7 @@ public final class Order extends com.google.protobuf.GeneratedFile {
         internal_static_order_v1_OrderModel_AttributesEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     descriptor.resolveAllFeaturesImmutable();
+    com.google.protobuf.TimestampProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
