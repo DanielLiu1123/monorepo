@@ -1,9 +1,3 @@
-/*
- * Copyright MapStruct Authors.
- *
- * Licensed under the Apache License version 2.0, available at http://www.apache.org/licenses/LICENSE-2.0
- */
-
 package monorepo.lib.msp;
 
 import java.util.HashMap;
@@ -122,7 +116,6 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return super.isAdderMethod(method);
         }
 
-        // Collection adder: addXxx
         if (hasPrefixWithUpperCaseNext(method, "add")) {
             if (method.getParameters().size() != 1) {
                 return false;
@@ -132,17 +125,6 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             }
             if (isSpecialAddMethod(method)) {
                 return false;
-            }
-            return true;
-        }
-
-        // Map adder: putXxx
-        if (hasPrefixWithUpperCaseNext(method, "put")) {
-            if (method.getParameters().size() != 2) {
-                return false;
-            }
-            if (isTargetClass(method.getParameters().get(0).asType(), Map.class)) {
-                return false; // putAll should treat as setter
             }
             return true;
         }

@@ -19,6 +19,6 @@ dependencies {
 }
 
 bootJar {
-    archiveBaseName = "app"
+    archiveBaseName = "app1"
     version = ""
 }
