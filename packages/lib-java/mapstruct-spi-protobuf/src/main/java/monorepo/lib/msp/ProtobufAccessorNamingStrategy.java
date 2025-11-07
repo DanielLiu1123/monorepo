@@ -1,11 +1,13 @@
 package monorepo.lib.msp;
 
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
@@ -28,8 +30,13 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
     private static final String PROTOBUF_STRING_LIST_TYPE = "com.google.protobuf.ProtocolStringList";
 
     private static final String PROTOBUF_MESSAGE_OR_BUILDER = "com.google.protobuf.MessageLiteOrBuilder";
-    private static final List<String> INTERNAL_SPECIAL_METHOD_ENDINGS =
-            Arrays.asList("Value", "Count", "Bytes", "ValueList");
+
+    private static final Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>>
+            SPECIAL_GETTER_CHECKER = getSpecialGetterChecker();
+    private static final Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>>
+            SPECIAL_SETTER_CHECKER = getSpecialSetterChecker();
+    private static final Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>>
+            SPECIAL_ADDER_CHECKER = getSpecialAdderChecker();
 
     private static Set<MethodSignature> INTERNAL_METHODS;
 
@@ -72,11 +79,8 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return super.isSetterMethod(method);
         }
 
-        if (INTERNAL_METHODS.contains(new MethodSignature(method))) {
-            return false;
-        }
-
-        return hasPrefixWithUpperCaseNext(method, "set") || isAddAllMethod(method) || isPutAllMethod(method);
+        // Protobuf message only has fluent setters
+        return isFluentSetter(method);
     }
 
     @Override
@@ -89,7 +93,21 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return false;
         }
 
-        return hasPrefixWithUpperCaseNext(method, "set") || isAddAllMethod(method) || isPutAllMethod(method);
+        if (isAddAllMethod(method) || isPutAllMethod(method)) {
+            return true;
+        }
+
+        if (hasPrefixWithUpperCaseNext(method, "set")) {
+            if (method.getParameters().size() != 1) {
+                return false;
+            }
+            if (isSpecialSetMethod(method)) {
+                return false;
+            }
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -98,7 +116,16 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return super.isAdderMethod(method);
         }
 
-        if (isAddMethod(method)) {
+        if (hasPrefixWithUpperCaseNext(method, "add")) {
+            if (method.getParameters().size() != 1) {
+                return false;
+            }
+            if (isTargetClass(method.getParameters().get(0).asType(), Iterable.class)) {
+                return false; // addAll should treat as setter
+            }
+            if (isSpecialAddMethod(method)) {
+                return false;
+            }
             return true;
         }
 
@@ -164,20 +191,147 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return methods;
     }
 
-    private static boolean isSpecialGetMethod(ExecutableElement method) {
-        String methodName = method.getSimpleName().toString();
+    private static Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>>
+            getSpecialGetterChecker() {
+        Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> result =
+                new HashMap<>();
 
-        for (String checkMethod : INTERNAL_SPECIAL_METHOD_ENDINGS) {
-            if (methodName.endsWith(checkMethod)) {
-                String propertyMethod = methodName.substring(0, methodName.length() - checkMethod.length());
-                boolean propertyMethodExists = method.getEnclosingElement().getEnclosedElements().stream()
-                        .anyMatch(e -> e.getSimpleName().toString().equals(propertyMethod));
-                if (propertyMethodExists) {
+        // string field generates extra getXxxBytes() method
+        result.put(method -> getMethodName(method).endsWith("Bytes"), (method, methods) -> {
+            String methodName = getMethodName(method);
+            String withoutSuffix = methodName.substring(0, methodName.length() - "Bytes".length());
+            return methods.stream()
+                    .anyMatch(m -> isTargetClass(m.getReturnType(), String.class)
+                            && getMethodName(m).equals(withoutSuffix));
+        });
+
+        // repeated and map field generates extra getXxxCount() method
+        result.put(method -> getMethodName(method).endsWith("Count"), (method, methods) -> {
+            String methodName = getMethodName(method);
+            String withoutSuffix = methodName.substring(0, methodName.length() - "Count".length());
+            // map field generates getXxxMap() getter (getXxx() is deprecated)
+            boolean hasMapGetter = methods.stream()
+                    .anyMatch(m -> isMapType(m.getReturnType())
+                            && (getMethodName(m).equals(withoutSuffix + "Map")
+                                    || getMethodName(m).equals(withoutSuffix)));
+            if (hasMapGetter) {
+                return true;
+            }
+            // repeated field generates getXxxList() getter
+            return methods.stream()
+                    .anyMatch(m ->
+                            isListType(m.getReturnType()) && getMethodName(m).equals(withoutSuffix + "List"));
+        });
+
+        // message field generates extra getXxxBuilder() and getXxxOrBuilder() methods
+        result.put(method -> getMethodName(method).endsWith("Builder"), (method, methods) -> {
+            String methodName = getMethodName(method);
+            String withoutSuffix = methodName.substring(0, methodName.length() - "Builder".length());
+            return methods.stream().anyMatch(m -> getMethodName(m).equals(withoutSuffix));
+        });
+        result.put(method -> getMethodName(method).endsWith("OrBuilder"), (method, methods) -> {
+            String methodName = getMethodName(method);
+            String withoutSuffix = methodName.substring(0, methodName.length() - "OrBuilder".length());
+            return methods.stream().anyMatch(m -> getMethodName(m).equals(withoutSuffix));
+        });
+
+        // repeated message field generates extra getXxxBuilderList() and getXxxOrBuilderList() methods
+        result.put(method -> getMethodName(method).endsWith("BuilderList"), (method, methods) -> {
+            String methodName = getMethodName(method);
+            String withoutSuffix = methodName.substring(0, methodName.length() - "BuilderList".length());
+            return methods.stream().anyMatch(m -> getMethodName(m).equals(withoutSuffix + "List"));
+        });
+        result.put(method -> getMethodName(method).endsWith("OrBuilderList"), (method, methods) -> {
+            String methodName = getMethodName(method);
+            String withoutSuffix = methodName.substring(0, methodName.length() - "OrBuilderList".length());
+            return methods.stream().anyMatch(m -> getMethodName(m).equals(withoutSuffix + "List"));
+        });
+
+        return result;
+    }
+
+    private static Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>>
+            getSpecialSetterChecker() {
+        Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> result =
+                new HashMap<>();
+
+        // string field generates extra setXxxBytes() method
+        result.put(method -> getMethodName(method).endsWith("Bytes"), (method, methods) -> {
+            String methodName = getMethodName(method);
+            String withoutSuffix = methodName.substring(0, methodName.length() - "Bytes".length());
+            return methods.stream()
+                    .anyMatch(m -> m.getParameters().size() == 1
+                            && isTargetClass(m.getParameters().get(0).asType(), String.class)
+                            && getMethodName(m).equals(withoutSuffix));
+        });
+
+        return result;
+    }
+
+    private static Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>>
+            getSpecialAdderChecker() {
+        Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> result =
+                new HashMap<>();
+
+        // 'repeated string' field generates extra addXxxBytes() method
+        result.put(method -> getMethodName(method).endsWith("Bytes"), (method, methods) -> {
+            String methodName = getMethodName(method);
+            String withoutSuffix = methodName.substring(0, methodName.length() - "Bytes".length());
+            return methods.stream()
+                    .anyMatch(m -> m.getParameters().size() == 1
+                            && isTargetClass(m.getParameters().get(0).asType(), String.class)
+                            && getMethodName(m).equals(withoutSuffix));
+        });
+
+        // 'repeated message' field generates extra addXxxBuilder(int) method
+        result.put(
+                method -> getMethodName(method).endsWith("Builder")
+                        && method.getParameters().size() == 1
+                        && method.getParameters().get(0).asType().toString().equals("int"),
+                (method, methods) -> {
+                    String methodName = getMethodName(method);
+                    String withoutSuffix = methodName.substring(0, methodName.length() - "Builder".length());
+                    return methods.stream()
+                            .anyMatch(m -> m.getParameters().size() == 1
+                                    && getMethodName(m).equals(withoutSuffix));
+                });
+
+        return result;
+    }
+
+    private static boolean isSpecialGetMethod(ExecutableElement method) {
+        for (Map.Entry<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> entry :
+                SPECIAL_GETTER_CHECKER.entrySet()) {
+            if (entry.getKey().test(method)) {
+                if (entry.getValue().test(method, getPublicNonStaticMethods(method.getEnclosingElement()))) {
                     return true;
                 }
             }
         }
+        return false;
+    }
 
+    private static boolean isSpecialSetMethod(ExecutableElement method) {
+        for (Map.Entry<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> entry :
+                SPECIAL_SETTER_CHECKER.entrySet()) {
+            if (entry.getKey().test(method)) {
+                if (entry.getValue().test(method, getPublicNonStaticMethods(method.getEnclosingElement()))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static boolean isSpecialAddMethod(ExecutableElement method) {
+        for (Map.Entry<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> entry :
+                SPECIAL_ADDER_CHECKER.entrySet()) {
+            if (entry.getKey().test(method)) {
+                if (entry.getValue().test(method, getPublicNonStaticMethods(method.getEnclosingElement()))) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -228,6 +382,10 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return !isDeprecated(element)
                 && hasPrefixWithUpperCaseNext(element, "get")
                 && isMapType(element.getReturnType());
+    }
+
+    private static String getMethodName(ExecutableElement element) {
+        return element.getSimpleName().toString();
     }
 
     private static boolean isDeprecated(ExecutableElement element) {
@@ -302,6 +460,19 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
                 }
             }
         }
+    }
+
+    private static List<ExecutableElement> getPublicNonStaticMethods(Element type) {
+        return type.getEnclosedElements().stream()
+                .filter(e -> {
+                    if (e instanceof ExecutableElement) {
+                        return isPublicNonStaticMethod((ExecutableElement) e);
+                    } else {
+                        return false;
+                    }
+                })
+                .map(e -> (ExecutableElement) e)
+                .collect(Collectors.toList());
     }
 
     private static boolean isPublicNonStaticMethod(ExecutableElement method) {
