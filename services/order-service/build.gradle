@@ -9,6 +9,8 @@ dependencies {
     // add mapstruct
     implementation "org.mapstruct:mapstruct:1.7.0-SNAPSHOT"
     annotationProcessor "org.mapstruct:mapstruct-processor:1.7.0-SNAPSHOT"
+//    implementation "org.mapstruct:mapstruct:+"
+//    annotationProcessor "org.mapstruct:mapstruct-processor:+"
     annotationProcessor "org.projectlombok:lombok-mapstruct-binding:+"
 //    implementation project(":packages:lib-java:mapstruct-spi-protobuf")
 //    annotationProcessor project(":packages:lib-java:mapstruct-spi-protobuf")

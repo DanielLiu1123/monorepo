@@ -63,7 +63,7 @@ class ProtobufAccessorNamingStrategyTest {
                 import org.mapstruct.factory.Mappers;
                 import monorepo.proto.order.v1.OrderModel;
 
-                @Mapper
+                @Mapper(collectionMappingStrategy = org.mapstruct.CollectionMappingStrategy.ADDER_PREFERRED)
                 public interface OrderMapper {
                     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
