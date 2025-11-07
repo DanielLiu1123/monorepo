@@ -36,6 +36,46 @@ public final class Order extends com.google.protobuf.GeneratedFile {
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_order_v1_OrderModel_AttributesEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_Everything_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_Everything_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_Everything_MapInt32StringEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_Everything_MapInt32StringEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_Everything_MapInt64StringEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_Everything_MapInt64StringEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_Everything_MapBoolStringEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_Everything_MapBoolStringEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_Everything_MapStringStringEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_Everything_MapStringStringEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_Everything_MapStringBytesEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_Everything_MapStringBytesEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_Everything_MapStringMessageEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_Everything_MapStringMessageEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_order_v1_Everything_Message_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_order_v1_Everything_Message_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -53,10 +93,49 @@ public final class Order extends com.google.protobuf.GeneratedFile {
       "ributesEntryR\nattributes\0229\n\ncreated_at\030\005" +
       " \001(\0132\032.google.protobuf.TimestampR\tcreate" +
       "dAt\032=\n\017AttributesEntry\022\020\n\003key\030\001 \001(\tR\003key" +
-      "\022\024\n\005value\030\002 \001(\tR\005value:\0028\001B_\n\027monorepo.p" +
-      "roto.order.v1P\001ZBgithub.com/yourorg/mono" +
-      "repo/packages/proto-gen-go/order/v1;orde" +
-      "rv1b\006proto3"
+      "\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\233\014\n\nEverythin" +
+      "g\022\024\n\005int32\030\001 \001(\005R\005int32\022\024\n\005int64\030\003 \001(\003R\005" +
+      "int64\022\024\n\005float\030\013 \001(\002R\005float\022\026\n\006double\030\014 " +
+      "\001(\001R\006double\022\022\n\004bool\030\r \001(\010R\004bool\022\026\n\006strin" +
+      "g\030\016 \001(\tR\006string\022\024\n\005bytes\030\017 \001(\014R\005bytes\022%\n" +
+      "\016repeated_int32\030\020 \003(\005R\rrepeatedInt32\022%\n\016" +
+      "repeated_int64\030\022 \003(\003R\rrepeatedInt64\022%\n\016r" +
+      "epeated_float\030\032 \003(\002R\rrepeatedFloat\022\'\n\017re" +
+      "peated_double\030\033 \003(\001R\016repeatedDouble\022#\n\rr" +
+      "epeated_bool\030\034 \003(\010R\014repeatedBool\022\'\n\017repe" +
+      "ated_string\030\035 \003(\tR\016repeatedString\022%\n\016rep" +
+      "eated_bytes\030\036 \003(\014R\rrepeatedBytes\022R\n\020map_" +
+      "int32_string\030  \003(\0132(.order.v1.Everything" +
+      ".MapInt32StringEntryR\016mapInt32String\022R\n\020" +
+      "map_int64_string\030\" \003(\0132(.order.v1.Everyt" +
+      "hing.MapInt64StringEntryR\016mapInt64String" +
+      "\022O\n\017map_bool_string\030, \003(\0132\'.order.v1.Eve" +
+      "rything.MapBoolStringEntryR\rmapBoolStrin" +
+      "g\022U\n\021map_string_string\030- \003(\0132).order.v1." +
+      "Everything.MapStringStringEntryR\017mapStri" +
+      "ngString\022R\n\020map_string_bytes\030. \003(\0132(.ord" +
+      "er.v1.Everything.MapStringBytesEntryR\016ma" +
+      "pStringBytes\0226\n\007message\0302 \001(\0132\034.order.v1" +
+      ".Everything.MessageR\007message\022G\n\020repeated" +
+      "_message\0303 \003(\0132\034.order.v1.Everything.Mes" +
+      "sageR\017repeatedMessage\022X\n\022map_string_mess" +
+      "age\0304 \003(\0132*.order.v1.Everything.MapStrin" +
+      "gMessageEntryR\020mapStringMessage\032A\n\023MapIn" +
+      "t32StringEntry\022\020\n\003key\030\001 \001(\005R\003key\022\024\n\005valu" +
+      "e\030\002 \001(\tR\005value:\0028\001\032A\n\023MapInt64StringEntr" +
+      "y\022\020\n\003key\030\001 \001(\003R\003key\022\024\n\005value\030\002 \001(\tR\005valu" +
+      "e:\0028\001\032@\n\022MapBoolStringEntry\022\020\n\003key\030\001 \001(\010" +
+      "R\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032B\n\024MapSt" +
+      "ringStringEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005val" +
+      "ue\030\002 \001(\tR\005value:\0028\001\032A\n\023MapStringBytesEnt" +
+      "ry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\014R\005val" +
+      "ue:\0028\001\032a\n\025MapStringMessageEntry\022\020\n\003key\030\001" +
+      " \001(\tR\003key\0222\n\005value\030\002 \001(\0132\034.order.v1.Ever" +
+      "ything.MessageR\005value:\0028\001\032-\n\007Message\022\016\n\002" +
+      "id\030\001 \001(\003R\002id\022\022\n\004name\030\002 \001(\tR\004nameB_\n\027mono" +
+      "repo.proto.order.v1P\001ZBgithub.com/youror" +
+      "g/monorepo/packages/proto-gen-go/order/v" +
+      "1;orderv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -75,6 +154,54 @@ public final class Order extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_order_v1_OrderModel_AttributesEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
+    internal_static_order_v1_Everything_descriptor =
+      getDescriptor().getMessageType(1);
+    internal_static_order_v1_Everything_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_Everything_descriptor,
+        new java.lang.String[] { "Int32", "Int64", "Float", "Double", "Bool", "String", "Bytes", "RepeatedInt32", "RepeatedInt64", "RepeatedFloat", "RepeatedDouble", "RepeatedBool", "RepeatedString", "RepeatedBytes", "MapInt32String", "MapInt64String", "MapBoolString", "MapStringString", "MapStringBytes", "Message", "RepeatedMessage", "MapStringMessage", });
+    internal_static_order_v1_Everything_MapInt32StringEntry_descriptor =
+      internal_static_order_v1_Everything_descriptor.getNestedType(0);
+    internal_static_order_v1_Everything_MapInt32StringEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_Everything_MapInt32StringEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_order_v1_Everything_MapInt64StringEntry_descriptor =
+      internal_static_order_v1_Everything_descriptor.getNestedType(1);
+    internal_static_order_v1_Everything_MapInt64StringEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_Everything_MapInt64StringEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_order_v1_Everything_MapBoolStringEntry_descriptor =
+      internal_static_order_v1_Everything_descriptor.getNestedType(2);
+    internal_static_order_v1_Everything_MapBoolStringEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_Everything_MapBoolStringEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_order_v1_Everything_MapStringStringEntry_descriptor =
+      internal_static_order_v1_Everything_descriptor.getNestedType(3);
+    internal_static_order_v1_Everything_MapStringStringEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_Everything_MapStringStringEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_order_v1_Everything_MapStringBytesEntry_descriptor =
+      internal_static_order_v1_Everything_descriptor.getNestedType(4);
+    internal_static_order_v1_Everything_MapStringBytesEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_Everything_MapStringBytesEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_order_v1_Everything_MapStringMessageEntry_descriptor =
+      internal_static_order_v1_Everything_descriptor.getNestedType(5);
+    internal_static_order_v1_Everything_MapStringMessageEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_Everything_MapStringMessageEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_order_v1_Everything_Message_descriptor =
+      internal_static_order_v1_Everything_descriptor.getNestedType(6);
+    internal_static_order_v1_Everything_Message_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_order_v1_Everything_Message_descriptor,
+        new java.lang.String[] { "Id", "Name", });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.TimestampProto.getDescriptor();
   }

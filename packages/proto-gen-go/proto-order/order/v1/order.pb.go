@@ -145,6 +145,444 @@ func (b0 OrderModel_builder) Build() *OrderModel {
 	return m0
 }
 
+type Everything struct {
+	state                       protoimpl.MessageState         `protogen:"opaque.v1"`
+	xxx_hidden_Int32            int32                          `protobuf:"varint,1,opt,name=int32,proto3"`
+	xxx_hidden_Int64            int64                          `protobuf:"varint,3,opt,name=int64,proto3"`
+	xxx_hidden_Float            float32                        `protobuf:"fixed32,11,opt,name=float,proto3"`
+	xxx_hidden_Double           float64                        `protobuf:"fixed64,12,opt,name=double,proto3"`
+	xxx_hidden_Bool             bool                           `protobuf:"varint,13,opt,name=bool,proto3"`
+	xxx_hidden_String_          string                         `protobuf:"bytes,14,opt,name=string,proto3"`
+	xxx_hidden_Bytes            []byte                         `protobuf:"bytes,15,opt,name=bytes,proto3"`
+	xxx_hidden_RepeatedInt32    []int32                        `protobuf:"varint,16,rep,packed,name=repeated_int32,json=repeatedInt32,proto3"`
+	xxx_hidden_RepeatedInt64    []int64                        `protobuf:"varint,18,rep,packed,name=repeated_int64,json=repeatedInt64,proto3"`
+	xxx_hidden_RepeatedFloat    []float32                      `protobuf:"fixed32,26,rep,packed,name=repeated_float,json=repeatedFloat,proto3"`
+	xxx_hidden_RepeatedDouble   []float64                      `protobuf:"fixed64,27,rep,packed,name=repeated_double,json=repeatedDouble,proto3"`
+	xxx_hidden_RepeatedBool     []bool                         `protobuf:"varint,28,rep,packed,name=repeated_bool,json=repeatedBool,proto3"`
+	xxx_hidden_RepeatedString   []string                       `protobuf:"bytes,29,rep,name=repeated_string,json=repeatedString,proto3"`
+	xxx_hidden_RepeatedBytes    [][]byte                       `protobuf:"bytes,30,rep,name=repeated_bytes,json=repeatedBytes,proto3"`
+	xxx_hidden_MapInt32String   map[int32]string               `protobuf:"bytes,32,rep,name=map_int32_string,json=mapInt32String,proto3" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapInt64String   map[int64]string               `protobuf:"bytes,34,rep,name=map_int64_string,json=mapInt64String,proto3" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapBoolString    map[bool]string                `protobuf:"bytes,44,rep,name=map_bool_string,json=mapBoolString,proto3" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapStringString  map[string]string              `protobuf:"bytes,45,rep,name=map_string_string,json=mapStringString,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapStringBytes   map[string][]byte              `protobuf:"bytes,46,rep,name=map_string_bytes,json=mapStringBytes,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Message          *Everything_Message            `protobuf:"bytes,50,opt,name=message,proto3"`
+	xxx_hidden_RepeatedMessage  *[]*Everything_Message         `protobuf:"bytes,51,rep,name=repeated_message,json=repeatedMessage,proto3"`
+	xxx_hidden_MapStringMessage map[string]*Everything_Message `protobuf:"bytes,52,rep,name=map_string_message,json=mapStringMessage,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
+}
+
+func (x *Everything) Reset() {
+	*x = Everything{}
+	mi := &file_order_v1_order_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Everything) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Everything) ProtoMessage() {}
+
+func (x *Everything) ProtoReflect() protoreflect.Message {
+	mi := &file_order_v1_order_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *Everything) GetInt32() int32 {
+	if x != nil {
+		return x.xxx_hidden_Int32
+	}
+	return 0
+}
+
+func (x *Everything) GetInt64() int64 {
+	if x != nil {
+		return x.xxx_hidden_Int64
+	}
+	return 0
+}
+
+func (x *Everything) GetFloat() float32 {
+	if x != nil {
+		return x.xxx_hidden_Float
+	}
+	return 0
+}
+
+func (x *Everything) GetDouble() float64 {
+	if x != nil {
+		return x.xxx_hidden_Double
+	}
+	return 0
+}
+
+func (x *Everything) GetBool() bool {
+	if x != nil {
+		return x.xxx_hidden_Bool
+	}
+	return false
+}
+
+func (x *Everything) GetString() string {
+	if x != nil {
+		return x.xxx_hidden_String_
+	}
+	return ""
+}
+
+func (x *Everything) GetBytes() []byte {
+	if x != nil {
+		return x.xxx_hidden_Bytes
+	}
+	return nil
+}
+
+func (x *Everything) GetRepeatedInt32() []int32 {
+	if x != nil {
+		return x.xxx_hidden_RepeatedInt32
+	}
+	return nil
+}
+
+func (x *Everything) GetRepeatedInt64() []int64 {
+	if x != nil {
+		return x.xxx_hidden_RepeatedInt64
+	}
+	return nil
+}
+
+func (x *Everything) GetRepeatedFloat() []float32 {
+	if x != nil {
+		return x.xxx_hidden_RepeatedFloat
+	}
+	return nil
+}
+
+func (x *Everything) GetRepeatedDouble() []float64 {
+	if x != nil {
+		return x.xxx_hidden_RepeatedDouble
+	}
+	return nil
+}
+
+func (x *Everything) GetRepeatedBool() []bool {
+	if x != nil {
+		return x.xxx_hidden_RepeatedBool
+	}
+	return nil
+}
+
+func (x *Everything) GetRepeatedString() []string {
+	if x != nil {
+		return x.xxx_hidden_RepeatedString
+	}
+	return nil
+}
+
+func (x *Everything) GetRepeatedBytes() [][]byte {
+	if x != nil {
+		return x.xxx_hidden_RepeatedBytes
+	}
+	return nil
+}
+
+func (x *Everything) GetMapInt32String() map[int32]string {
+	if x != nil {
+		return x.xxx_hidden_MapInt32String
+	}
+	return nil
+}
+
+func (x *Everything) GetMapInt64String() map[int64]string {
+	if x != nil {
+		return x.xxx_hidden_MapInt64String
+	}
+	return nil
+}
+
+func (x *Everything) GetMapBoolString() map[bool]string {
+	if x != nil {
+		return x.xxx_hidden_MapBoolString
+	}
+	return nil
+}
+
+func (x *Everything) GetMapStringString() map[string]string {
+	if x != nil {
+		return x.xxx_hidden_MapStringString
+	}
+	return nil
+}
+
+func (x *Everything) GetMapStringBytes() map[string][]byte {
+	if x != nil {
+		return x.xxx_hidden_MapStringBytes
+	}
+	return nil
+}
+
+func (x *Everything) GetMessage() *Everything_Message {
+	if x != nil {
+		return x.xxx_hidden_Message
+	}
+	return nil
+}
+
+func (x *Everything) GetRepeatedMessage() []*Everything_Message {
+	if x != nil {
+		if x.xxx_hidden_RepeatedMessage != nil {
+			return *x.xxx_hidden_RepeatedMessage
+		}
+	}
+	return nil
+}
+
+func (x *Everything) GetMapStringMessage() map[string]*Everything_Message {
+	if x != nil {
+		return x.xxx_hidden_MapStringMessage
+	}
+	return nil
+}
+
+func (x *Everything) SetInt32(v int32) {
+	x.xxx_hidden_Int32 = v
+}
+
+func (x *Everything) SetInt64(v int64) {
+	x.xxx_hidden_Int64 = v
+}
+
+func (x *Everything) SetFloat(v float32) {
+	x.xxx_hidden_Float = v
+}
+
+func (x *Everything) SetDouble(v float64) {
+	x.xxx_hidden_Double = v
+}
+
+func (x *Everything) SetBool(v bool) {
+	x.xxx_hidden_Bool = v
+}
+
+func (x *Everything) SetString(v string) {
+	x.xxx_hidden_String_ = v
+}
+
+func (x *Everything) SetBytes(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_Bytes = v
+}
+
+func (x *Everything) SetRepeatedInt32(v []int32) {
+	x.xxx_hidden_RepeatedInt32 = v
+}
+
+func (x *Everything) SetRepeatedInt64(v []int64) {
+	x.xxx_hidden_RepeatedInt64 = v
+}
+
+func (x *Everything) SetRepeatedFloat(v []float32) {
+	x.xxx_hidden_RepeatedFloat = v
+}
+
+func (x *Everything) SetRepeatedDouble(v []float64) {
+	x.xxx_hidden_RepeatedDouble = v
+}
+
+func (x *Everything) SetRepeatedBool(v []bool) {
+	x.xxx_hidden_RepeatedBool = v
+}
+
+func (x *Everything) SetRepeatedString(v []string) {
+	x.xxx_hidden_RepeatedString = v
+}
+
+func (x *Everything) SetRepeatedBytes(v [][]byte) {
+	x.xxx_hidden_RepeatedBytes = v
+}
+
+func (x *Everything) SetMapInt32String(v map[int32]string) {
+	x.xxx_hidden_MapInt32String = v
+}
+
+func (x *Everything) SetMapInt64String(v map[int64]string) {
+	x.xxx_hidden_MapInt64String = v
+}
+
+func (x *Everything) SetMapBoolString(v map[bool]string) {
+	x.xxx_hidden_MapBoolString = v
+}
+
+func (x *Everything) SetMapStringString(v map[string]string) {
+	x.xxx_hidden_MapStringString = v
+}
+
+func (x *Everything) SetMapStringBytes(v map[string][]byte) {
+	x.xxx_hidden_MapStringBytes = v
+}
+
+func (x *Everything) SetMessage(v *Everything_Message) {
+	x.xxx_hidden_Message = v
+}
+
+func (x *Everything) SetRepeatedMessage(v []*Everything_Message) {
+	x.xxx_hidden_RepeatedMessage = &v
+}
+
+func (x *Everything) SetMapStringMessage(v map[string]*Everything_Message) {
+	x.xxx_hidden_MapStringMessage = v
+}
+
+func (x *Everything) HasMessage() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Message != nil
+}
+
+func (x *Everything) ClearMessage() {
+	x.xxx_hidden_Message = nil
+}
+
+type Everything_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Int32            int32
+	Int64            int64
+	Float            float32
+	Double           float64
+	Bool             bool
+	String           string
+	Bytes            []byte
+	RepeatedInt32    []int32
+	RepeatedInt64    []int64
+	RepeatedFloat    []float32
+	RepeatedDouble   []float64
+	RepeatedBool     []bool
+	RepeatedString   []string
+	RepeatedBytes    [][]byte
+	MapInt32String   map[int32]string
+	MapInt64String   map[int64]string
+	MapBoolString    map[bool]string
+	MapStringString  map[string]string
+	MapStringBytes   map[string][]byte
+	Message          *Everything_Message
+	RepeatedMessage  []*Everything_Message
+	MapStringMessage map[string]*Everything_Message
+}
+
+func (b0 Everything_builder) Build() *Everything {
+	m0 := &Everything{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Int32 = b.Int32
+	x.xxx_hidden_Int64 = b.Int64
+	x.xxx_hidden_Float = b.Float
+	x.xxx_hidden_Double = b.Double
+	x.xxx_hidden_Bool = b.Bool
+	x.xxx_hidden_String_ = b.String
+	x.xxx_hidden_Bytes = b.Bytes
+	x.xxx_hidden_RepeatedInt32 = b.RepeatedInt32
+	x.xxx_hidden_RepeatedInt64 = b.RepeatedInt64
+	x.xxx_hidden_RepeatedFloat = b.RepeatedFloat
+	x.xxx_hidden_RepeatedDouble = b.RepeatedDouble
+	x.xxx_hidden_RepeatedBool = b.RepeatedBool
+	x.xxx_hidden_RepeatedString = b.RepeatedString
+	x.xxx_hidden_RepeatedBytes = b.RepeatedBytes
+	x.xxx_hidden_MapInt32String = b.MapInt32String
+	x.xxx_hidden_MapInt64String = b.MapInt64String
+	x.xxx_hidden_MapBoolString = b.MapBoolString
+	x.xxx_hidden_MapStringString = b.MapStringString
+	x.xxx_hidden_MapStringBytes = b.MapStringBytes
+	x.xxx_hidden_Message = b.Message
+	x.xxx_hidden_RepeatedMessage = &b.RepeatedMessage
+	x.xxx_hidden_MapStringMessage = b.MapStringMessage
+	return m0
+}
+
+type Everything_Message struct {
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id   int64                  `protobuf:"varint,1,opt,name=id,proto3"`
+	xxx_hidden_Name string                 `protobuf:"bytes,2,opt,name=name,proto3"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Everything_Message) Reset() {
+	*x = Everything_Message{}
+	mi := &file_order_v1_order_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Everything_Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Everything_Message) ProtoMessage() {}
+
+func (x *Everything_Message) ProtoReflect() protoreflect.Message {
+	mi := &file_order_v1_order_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *Everything_Message) GetId() int64 {
+	if x != nil {
+		return x.xxx_hidden_Id
+	}
+	return 0
+}
+
+func (x *Everything_Message) GetName() string {
+	if x != nil {
+		return x.xxx_hidden_Name
+	}
+	return ""
+}
+
+func (x *Everything_Message) SetId(v int64) {
+	x.xxx_hidden_Id = v
+}
+
+func (x *Everything_Message) SetName(v string) {
+	x.xxx_hidden_Name = v
+}
+
+type Everything_Message_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id   int64
+	Name string
+}
+
+func (b0 Everything_Message_builder) Build() *Everything_Message {
+	m0 := &Everything_Message{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Name = b.Name
+	return m0
+}
+
 var File_order_v1_order_proto protoreflect.FileDescriptor
 
 const file_order_v1_order_proto_rawDesc = "" +
@@ -163,23 +601,85 @@ const file_order_v1_order_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x1a=\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B_\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x9b\f\n" +
+	"\n" +
+	"Everything\x12\x14\n" +
+	"\x05int32\x18\x01 \x01(\x05R\x05int32\x12\x14\n" +
+	"\x05int64\x18\x03 \x01(\x03R\x05int64\x12\x14\n" +
+	"\x05float\x18\v \x01(\x02R\x05float\x12\x16\n" +
+	"\x06double\x18\f \x01(\x01R\x06double\x12\x12\n" +
+	"\x04bool\x18\r \x01(\bR\x04bool\x12\x16\n" +
+	"\x06string\x18\x0e \x01(\tR\x06string\x12\x14\n" +
+	"\x05bytes\x18\x0f \x01(\fR\x05bytes\x12%\n" +
+	"\x0erepeated_int32\x18\x10 \x03(\x05R\rrepeatedInt32\x12%\n" +
+	"\x0erepeated_int64\x18\x12 \x03(\x03R\rrepeatedInt64\x12%\n" +
+	"\x0erepeated_float\x18\x1a \x03(\x02R\rrepeatedFloat\x12'\n" +
+	"\x0frepeated_double\x18\x1b \x03(\x01R\x0erepeatedDouble\x12#\n" +
+	"\rrepeated_bool\x18\x1c \x03(\bR\frepeatedBool\x12'\n" +
+	"\x0frepeated_string\x18\x1d \x03(\tR\x0erepeatedString\x12%\n" +
+	"\x0erepeated_bytes\x18\x1e \x03(\fR\rrepeatedBytes\x12R\n" +
+	"\x10map_int32_string\x18  \x03(\v2(.order.v1.Everything.MapInt32StringEntryR\x0emapInt32String\x12R\n" +
+	"\x10map_int64_string\x18\" \x03(\v2(.order.v1.Everything.MapInt64StringEntryR\x0emapInt64String\x12O\n" +
+	"\x0fmap_bool_string\x18, \x03(\v2'.order.v1.Everything.MapBoolStringEntryR\rmapBoolString\x12U\n" +
+	"\x11map_string_string\x18- \x03(\v2).order.v1.Everything.MapStringStringEntryR\x0fmapStringString\x12R\n" +
+	"\x10map_string_bytes\x18. \x03(\v2(.order.v1.Everything.MapStringBytesEntryR\x0emapStringBytes\x126\n" +
+	"\amessage\x182 \x01(\v2\x1c.order.v1.Everything.MessageR\amessage\x12G\n" +
+	"\x10repeated_message\x183 \x03(\v2\x1c.order.v1.Everything.MessageR\x0frepeatedMessage\x12X\n" +
+	"\x12map_string_message\x184 \x03(\v2*.order.v1.Everything.MapStringMessageEntryR\x10mapStringMessage\x1aA\n" +
+	"\x13MapInt32StringEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aA\n" +
+	"\x13MapInt64StringEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\x03R\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a@\n" +
+	"\x12MapBoolStringEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\bR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aB\n" +
+	"\x14MapStringStringEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aA\n" +
+	"\x13MapStringBytesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\fR\x05value:\x028\x01\x1aa\n" +
+	"\x15MapStringMessageEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x122\n" +
+	"\x05value\x18\x02 \x01(\v2\x1c.order.v1.Everything.MessageR\x05value:\x028\x01\x1a-\n" +
+	"\aMessage\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04nameB_\n" +
 	"\x17monorepo.proto.order.v1P\x01ZBgithub.com/yourorg/monorepo/packages/proto-gen-go/order/v1;orderv1b\x06proto3"
 
-var file_order_v1_order_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_order_v1_order_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_order_v1_order_proto_goTypes = []any{
 	(*OrderModel)(nil),            // 0: order.v1.OrderModel
-	nil,                           // 1: order.v1.OrderModel.AttributesEntry
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(*Everything)(nil),            // 1: order.v1.Everything
+	nil,                           // 2: order.v1.OrderModel.AttributesEntry
+	nil,                           // 3: order.v1.Everything.MapInt32StringEntry
+	nil,                           // 4: order.v1.Everything.MapInt64StringEntry
+	nil,                           // 5: order.v1.Everything.MapBoolStringEntry
+	nil,                           // 6: order.v1.Everything.MapStringStringEntry
+	nil,                           // 7: order.v1.Everything.MapStringBytesEntry
+	nil,                           // 8: order.v1.Everything.MapStringMessageEntry
+	(*Everything_Message)(nil),    // 9: order.v1.Everything.Message
+	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
 }
 var file_order_v1_order_proto_depIdxs = []int32{
-	1, // 0: order.v1.OrderModel.attributes:type_name -> order.v1.OrderModel.AttributesEntry
-	2, // 1: order.v1.OrderModel.created_at:type_name -> google.protobuf.Timestamp
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	2,  // 0: order.v1.OrderModel.attributes:type_name -> order.v1.OrderModel.AttributesEntry
+	10, // 1: order.v1.OrderModel.created_at:type_name -> google.protobuf.Timestamp
+	3,  // 2: order.v1.Everything.map_int32_string:type_name -> order.v1.Everything.MapInt32StringEntry
+	4,  // 3: order.v1.Everything.map_int64_string:type_name -> order.v1.Everything.MapInt64StringEntry
+	5,  // 4: order.v1.Everything.map_bool_string:type_name -> order.v1.Everything.MapBoolStringEntry
+	6,  // 5: order.v1.Everything.map_string_string:type_name -> order.v1.Everything.MapStringStringEntry
+	7,  // 6: order.v1.Everything.map_string_bytes:type_name -> order.v1.Everything.MapStringBytesEntry
+	9,  // 7: order.v1.Everything.message:type_name -> order.v1.Everything.Message
+	9,  // 8: order.v1.Everything.repeated_message:type_name -> order.v1.Everything.Message
+	8,  // 9: order.v1.Everything.map_string_message:type_name -> order.v1.Everything.MapStringMessageEntry
+	9,  // 10: order.v1.Everything.MapStringMessageEntry.value:type_name -> order.v1.Everything.Message
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_order_v1_order_proto_init() }
@@ -193,7 +693,7 @@ func file_order_v1_order_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_order_v1_order_proto_rawDesc), len(file_order_v1_order_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
