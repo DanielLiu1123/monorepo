@@ -1,14 +1,13 @@
 package monorepo.lib.msp;
 
+import static com.google.testing.compile.CompilationSubject.assertThat;
+
 import com.google.testing.compile.Compilation;
 import com.google.testing.compile.Compiler;
 import com.google.testing.compile.JavaFileObjects;
+import javax.tools.JavaFileObject;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.ap.MappingProcessor;
-
-import javax.tools.JavaFileObject;
-
-import static com.google.testing.compile.CompilationSubject.assertThat;
 
 /**
  * Tests for ProtobufAccessorNamingStrategy using Google's compile-testing library
@@ -21,17 +20,19 @@ class ProtobufAccessorNamingStrategyTest {
      */
     @Test
     void testSimpleScalarFieldMapping() {
-        JavaFileObject dto = JavaFileObjects.forSourceString("test.OrderDTO", """
+        JavaFileObject dto = JavaFileObjects.forSourceString(
+                "test.OrderDTO",
+                """
                 package test;
-                
+
                 import java.util.List;
                 import java.util.Map;
-                
+
                 public class OrderDTO {
                     private long id;
                     private List<Long> itemIds;
                     private Map<String, String> attributes;
-                
+
                     public long getId() {
                         return id;
                     }
@@ -53,25 +54,26 @@ class ProtobufAccessorNamingStrategyTest {
                 }
                 """);
 
-        JavaFileObject mapper = JavaFileObjects.forSourceString("test.OrderMapper", """
+        JavaFileObject mapper = JavaFileObjects.forSourceString(
+                "test.OrderMapper",
+                """
                 package test;
-                
+
                 import org.mapstruct.Mapper;
                 import org.mapstruct.factory.Mappers;
                 import monorepo.proto.order.v1.OrderModel;
-                
+
                 @Mapper
                 public interface OrderMapper {
                     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
-                
+
                     OrderDTO modelToDTO(OrderModel orderModel);
                     OrderModel dtoToModel(OrderDTO orderDTO);
                 }
                 """);
 
-        Compilation compilation = Compiler.javac()
-                .withProcessors(new MappingProcessor())
-                .compile(dto, mapper);
+        Compilation compilation =
+                Compiler.javac().withProcessors(new MappingProcessor()).compile(dto, mapper);
 
         assertThat(compilation).succeeded();
         assertThat(compilation)
@@ -79,5 +81,4 @@ class ProtobufAccessorNamingStrategyTest {
                 .contentsAsUtf8String()
                 .contains("getId()");
     }
-
 }

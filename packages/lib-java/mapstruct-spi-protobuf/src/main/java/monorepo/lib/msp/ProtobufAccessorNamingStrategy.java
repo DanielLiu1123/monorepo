@@ -1,93 +1,48 @@
 package monorepo.lib.msp;
 
-/*-
- * #%L
- * protobuf-spi-impl
- * %%
- * Copyright (C) 2019 - 2020 Entur
- * %%
- * Licensed under the EUPL, Version 1.1 or – as soon they will be
- * approved by the European Commission - subsequent versions of the
- * EUPL (the "Licence");
- *
- * You may not use this work except in compliance with the Licence.
- * You may obtain a copy of the Licence at:
- *
- * http://ec.europa.eu/idabc/eupl5
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the Licence is distributed on an "AS IS" basis,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the Licence for the specific language governing permissions and
- * limitations under the Licence.
- * #L%
- */
-
-import org.mapstruct.ap.spi.DefaultAccessorNamingStrategy;
-import org.mapstruct.ap.spi.MapStructProcessingEnvironment;
-import org.mapstruct.ap.spi.util.IntrospectorUtils;
-
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.DeclaredType;
-import javax.lang.model.type.TypeMirror;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Modifier;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.TypeMirror;
+import org.mapstruct.ap.spi.DefaultAccessorNamingStrategy;
+import org.mapstruct.ap.spi.MapStructProcessingEnvironment;
+import org.mapstruct.ap.spi.util.IntrospectorUtils;
 
 /**
- * @author Arne Seime
+ * @author Freeman
  */
 public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrategy {
     /**
-     * repeated string
+     * repeated string getter will return ProtocolStringList
      */
-    public static final String PROTOBUF_STRING_LIST_TYPE = "com.google.protobuf.ProtocolStringList";
-    public static final String PROTOBUF_MESSAGE_OR_BUILDER = "com.google.protobuf.MessageLiteOrBuilder";
+    private static final String PROTOBUF_STRING_LIST_TYPE = "com.google.protobuf.ProtocolStringList";
+
+    private static final String PROTOBUF_MESSAGE_OR_BUILDER = "com.google.protobuf.MessageLiteOrBuilder";
+    private static final List<String> INTERNAL_SPECIAL_METHOD_ENDINGS =
+            Arrays.asList("Value", "Count", "Bytes", "ValueList");
 
     private static Set<MethodSignature> INTERNAL_METHODS;
-
-    protected static final List<String> INTERNAL_SPECIAL_METHOD_ENDINGS = Arrays.asList("Value", "Count", "Bytes", "ValueList");
-
-    protected TypeMirror protobufMessageOrBuilderType;
 
     @Override
     public void init(MapStructProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
 
         INTERNAL_METHODS = getInternalMethods();
-
-        TypeElement typeElement = elementUtils.getTypeElement(PROTOBUF_MESSAGE_OR_BUILDER);
-        if (typeElement != null) {
-            protobufMessageOrBuilderType = typeElement.asType();
-        }
-    }
-
-    private boolean isSpecialMethod(ExecutableElement method) {
-        String methodName = method.getSimpleName().toString();
-
-        for (String checkMethod : INTERNAL_SPECIAL_METHOD_ENDINGS) {
-            if (methodName.endsWith(checkMethod)) {
-                String propertyMethod = methodName.substring(0, methodName.length() - checkMethod.length());
-                boolean propertyMethodExists = method.getEnclosingElement()
-                        .getEnclosedElements()
-                        .stream()
-                        .anyMatch(e -> e.getSimpleName().toString().equals(propertyMethod));
-                if (propertyMethodExists) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     @Override
     public boolean isGetterMethod(ExecutableElement method) {
-        if (!isProtobufGeneratedMessage(method.getEnclosingElement())) {
+        if (!isProtobufMessage(method.getEnclosingElement())) {
             return super.isGetterMethod(method);
         }
 
@@ -95,14 +50,16 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return false;
         }
 
-        String methodName = method.getSimpleName().toString();
-
-        if (methodName.startsWith("get")) {
-            if (!method.getParameters().isEmpty()) return false;
-            if (isDeprecated(method)) return false;
-            if (isGetList(method)) return true;
-            if (isGetMap(method)) return true;
-            if (isSpecialMethod(method)) return false;
+        if (hasPrefixWithUpperCaseNext(method, "get")) {
+            if (!method.getParameters().isEmpty()) {
+                return false;
+            }
+            if (isDeprecated(method)) {
+                return false;
+            }
+            if (isSpecialGetMethod(method)) {
+                return false;
+            }
             return true;
         }
 
@@ -111,7 +68,7 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
 
     @Override
     public boolean isSetterMethod(ExecutableElement method) {
-        if (!isProtobufGeneratedMessage(method.getEnclosingElement())) {
+        if (!isProtobufMessage(method.getEnclosingElement())) {
             return super.isSetterMethod(method);
         }
 
@@ -119,49 +76,12 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return false;
         }
 
-        String methodName = method.getSimpleName().toString();
-
-        return methodName.startsWith("set")
-               || isAddAllMethod(method)
-               || isPutAllMethod(method);
-    }
-
-    private boolean isAddAllMethod(ExecutableElement method) {
-        String methodName = method.getSimpleName().toString();
-        if (methodName.startsWith("addAll")) {
-            if (method.getParameters().size() == 1) {
-                TypeMirror paramType = method.getParameters().get(0).asType();
-                return paramType.toString().startsWith(Iterable.class.getCanonicalName());
-            }
-        }
-        return false;
-    }
-
-    private boolean isAddMethod(ExecutableElement method) {
-        String methodName = method.getSimpleName().toString();
-        if (methodName.startsWith("add")) {
-            if (method.getParameters().size() == 1) {
-                TypeMirror paramType = method.getParameters().get(0).asType();
-                return !paramType.toString().startsWith(Iterable.class.getCanonicalName());
-            }
-        }
-        return false;
-    }
-
-    private boolean isPutAllMethod(ExecutableElement method) {
-        String methodName = method.getSimpleName().toString();
-        if (methodName.startsWith("putAll")) {
-            if (method.getParameters().size() == 1) {
-                TypeMirror paramType = method.getParameters().get(0).asType();
-                return paramType.toString().startsWith(Map.class.getCanonicalName());
-            }
-        }
-        return false;
+        return hasPrefixWithUpperCaseNext(method, "set") || isAddAllMethod(method) || isPutAllMethod(method);
     }
 
     @Override
     protected boolean isFluentSetter(ExecutableElement method) {
-        if (!isProtobufGeneratedMessage(method.getEnclosingElement())) {
+        if (!isProtobufMessage(method.getEnclosingElement())) {
             return super.isFluentSetter(method);
         }
 
@@ -169,20 +89,19 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return false;
         }
 
-        String methodName = method.getSimpleName().toString();
-
-        return methodName.startsWith("set")
-               || isAddAllMethod(method)
-               || isPutAllMethod(method);
+        return hasPrefixWithUpperCaseNext(method, "set") || isAddAllMethod(method) || isPutAllMethod(method);
     }
 
     @Override
     public boolean isAdderMethod(ExecutableElement method) {
-        if (!isProtobufGeneratedMessage(method.getEnclosingElement())) {
+        if (!isProtobufMessage(method.getEnclosingElement())) {
             return super.isAdderMethod(method);
         }
 
-        // Protobuf does not have adder methods, only addAll as a setter for collections
+        if (isAddMethod(method)) {
+            return true;
+        }
+
         return false;
     }
 
@@ -198,7 +117,7 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
 
     @Override
     public String getPropertyName(ExecutableElement getterOrSetterMethod) {
-        if (!isProtobufGeneratedMessage(getterOrSetterMethod.getEnclosingElement())) {
+        if (!isProtobufMessage(getterOrSetterMethod.getEnclosingElement())) {
             return super.getPropertyName(getterOrSetterMethod);
         }
 
@@ -227,69 +146,6 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return super.getPropertyName(getterOrSetterMethod);
     }
 
-    private boolean isGetList(ExecutableElement element) {
-        // repeated fields getter: getXxxList()
-        var method = element.getSimpleName().toString();
-        return method.startsWith("get")
-               && Character.isUpperCase(method.charAt("get".length()))
-               && isListType(element.getReturnType());
-    }
-
-    private boolean isGetMap(ExecutableElement element) {
-        // There are many getter methods for map in protobuf generated code, only one is the real getter:
-        // - getXxx deprecated
-        // - getMutableXxx deprecated
-        // - getXxxMap the real getter
-        var method = element.getSimpleName().toString();
-        return !isDeprecated(element)
-               && method.startsWith("get")
-               && Character.isUpperCase(method.charAt("get".length()))
-               && isMapType(element.getReturnType());
-    }
-
-    private boolean isDeprecated(ExecutableElement element) {
-        return element.getAnnotation(Deprecated.class) != null;
-    }
-
-    private boolean isListType(TypeMirror t) {
-        return t.toString().startsWith(List.class.getCanonicalName()) || t.toString().startsWith(PROTOBUF_STRING_LIST_TYPE);
-    }
-
-    private boolean isMapType(TypeMirror t) {
-        return t.toString().startsWith(Map.class.getCanonicalName());
-    }
-
-    private boolean isProtobufGeneratedMessage(Element type) {
-        if (!(type instanceof TypeElement)) {
-            return false;
-        }
-
-        var typeElement = (TypeElement) type;
-        List<? extends TypeMirror> interfaces = typeElement.getInterfaces();
-
-        if (interfaces != null) {
-            for (TypeMirror implementedInterface : interfaces) {
-                if (implementedInterface.toString().startsWith(PROTOBUF_MESSAGE_OR_BUILDER)) {
-                    return true;
-                } else if (implementedInterface instanceof DeclaredType) {
-                    DeclaredType declared = (DeclaredType) implementedInterface;
-                    Element supertypeElement = declared.asElement();
-                    if (isProtobufGeneratedMessage(supertypeElement)) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        TypeMirror superType = typeElement.getSuperclass();
-        if (superType instanceof DeclaredType) {
-            DeclaredType declared = (DeclaredType) superType;
-            Element supertypeElement = declared.asElement();
-            return isProtobufGeneratedMessage(supertypeElement);
-        }
-        return false;
-    }
-
     private Set<MethodSignature> getInternalMethods() {
         String[] internalClasses = {
             "com.google.protobuf.MessageLite",
@@ -302,16 +158,126 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         for (String className : internalClasses) {
             TypeElement typeElement = elementUtils.getTypeElement(className);
             if (typeElement != null) {
-                collectMethodsRecursively(typeElement, methods);
+                collectMethods(typeElement, methods);
             }
         }
         return methods;
     }
 
-    private void collectMethodsRecursively(TypeElement typeElement, Set<MethodSignature> methods) {
+    private static boolean isSpecialGetMethod(ExecutableElement method) {
+        String methodName = method.getSimpleName().toString();
+
+        for (String checkMethod : INTERNAL_SPECIAL_METHOD_ENDINGS) {
+            if (methodName.endsWith(checkMethod)) {
+                String propertyMethod = methodName.substring(0, methodName.length() - checkMethod.length());
+                boolean propertyMethodExists = method.getEnclosingElement().getEnclosedElements().stream()
+                        .anyMatch(e -> e.getSimpleName().toString().equals(propertyMethod));
+                if (propertyMethodExists) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private static boolean isAddAllMethod(ExecutableElement method) {
+        if (hasPrefixWithUpperCaseNext(method, "addAll")) {
+            if (method.getParameters().size() == 1) {
+                TypeMirror paramType = method.getParameters().get(0).asType();
+                return isTargetClass(paramType, Iterable.class);
+            }
+        }
+        return false;
+    }
+
+    private static boolean isAddMethod(ExecutableElement method) {
+        if (hasPrefixWithUpperCaseNext(method, "add")) {
+            if (method.getParameters().size() == 1) {
+                TypeMirror paramType = method.getParameters().get(0).asType();
+                return !isTargetClass(paramType, Iterable.class); // not addAll
+            }
+        }
+        return false;
+    }
+
+    private static boolean isPutAllMethod(ExecutableElement method) {
+        if (hasPrefixWithUpperCaseNext(method, "putAll")) {
+            if (method.getParameters().size() == 1) {
+                TypeMirror paramType = method.getParameters().get(0).asType();
+                return isTargetClass(paramType, Map.class);
+            }
+        }
+        return false;
+    }
+
+    private static boolean isTargetClass(TypeMirror paramType, Class<?> targetType) {
+        return paramType.toString().startsWith(targetType.getCanonicalName());
+    }
+
+    private static boolean isGetList(ExecutableElement element) {
+        // repeated fields getter: getXxxList()
+        return hasPrefixWithUpperCaseNext(element, "get") && isListType(element.getReturnType());
+    }
+
+    private static boolean isGetMap(ExecutableElement element) {
+        // There are many getter methods for map in protobuf generated code, only one is the real getter:
+        // - getXxx deprecated
+        // - getMutableXxx deprecated
+        // - getXxxMap the real getter
+        return !isDeprecated(element)
+                && hasPrefixWithUpperCaseNext(element, "get")
+                && isMapType(element.getReturnType());
+    }
+
+    private static boolean isDeprecated(ExecutableElement element) {
+        return element.getAnnotation(Deprecated.class) != null;
+    }
+
+    private static boolean isListType(TypeMirror t) {
+        return isTargetClass(t, List.class) || t.toString().startsWith(PROTOBUF_STRING_LIST_TYPE);
+    }
+
+    private static boolean isMapType(TypeMirror t) {
+        return isTargetClass(t, Map.class);
+    }
+
+    private static boolean isProtobufMessage(Element type) {
+        if (!(type instanceof TypeElement)) {
+            return false;
+        }
+
+        TypeElement typeElement = (TypeElement) type;
+        List<? extends TypeMirror> interfaces = typeElement.getInterfaces();
+
+        if (interfaces != null) {
+            for (TypeMirror implementedInterface : interfaces) {
+                if (implementedInterface.toString().startsWith(PROTOBUF_MESSAGE_OR_BUILDER)) {
+                    return true;
+                }
+                if (implementedInterface instanceof DeclaredType) {
+                    DeclaredType declared = (DeclaredType) implementedInterface;
+                    Element supertypeElement = declared.asElement();
+                    if (isProtobufMessage(supertypeElement)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        TypeMirror superType = typeElement.getSuperclass();
+        if (superType instanceof DeclaredType) {
+            DeclaredType declared = (DeclaredType) superType;
+            Element supertypeElement = declared.asElement();
+            return isProtobufMessage(supertypeElement);
+        }
+        return false;
+    }
+
+    private static void collectMethods(TypeElement typeElement, HashSet<MethodSignature> methods) {
         // Collect methods from current type
         for (Element element : typeElement.getEnclosedElements()) {
-            if (element instanceof ExecutableElement) {
+            if (element instanceof ExecutableElement && isPublicNonStaticMethod((ExecutableElement) element)) {
                 methods.add(new MethodSignature((ExecutableElement) element));
             }
         }
@@ -322,7 +288,7 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             DeclaredType declaredType = (DeclaredType) superclass;
             Element superElement = declaredType.asElement();
             if (superElement instanceof TypeElement && !superElement.toString().equals("java.lang.Object")) {
-                collectMethodsRecursively((TypeElement) superElement, methods);
+                collectMethods((TypeElement) superElement, methods);
             }
         }
 
@@ -332,20 +298,48 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
                 DeclaredType declaredType = (DeclaredType) interfaceType;
                 Element interfaceElement = declaredType.asElement();
                 if (interfaceElement instanceof TypeElement) {
-                    collectMethodsRecursively((TypeElement) interfaceElement, methods);
+                    collectMethods((TypeElement) interfaceElement, methods);
                 }
             }
         }
     }
 
-    record MethodSignature(String name, List<String> parameterTypes) {
-        public MethodSignature(ExecutableElement method) {
-            this(method.getSimpleName().toString(),
-                    method.getParameters().stream()
-                            .map(p -> p.asType().toString())
-                            .toList()
-            );
-        }
+    private static boolean isPublicNonStaticMethod(ExecutableElement method) {
+        Set<Modifier> modifiers = method.getModifiers();
+        return method.getKind() == ElementKind.METHOD
+                && modifiers.contains(Modifier.PUBLIC)
+                && !modifiers.contains(Modifier.STATIC);
     }
 
+    private static boolean hasPrefixWithUpperCaseNext(ExecutableElement method, String prefix) {
+        String name = method.getSimpleName().toString();
+        int len = prefix.length();
+        return name.startsWith(prefix) && name.length() > len && Character.isUpperCase(name.charAt(len));
+    }
+
+    private static final class MethodSignature {
+        private final String name;
+        private final List<String> parameterTypes;
+
+        public MethodSignature(ExecutableElement method) {
+            this.name = method.getSimpleName().toString();
+            this.parameterTypes = method.getParameters().stream()
+                    .map(p -> p.asType().toString())
+                    .collect(Collectors.toList());
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            MethodSignature that = (MethodSignature) o;
+            return Objects.equals(name, that.name) && Objects.equals(parameterTypes, that.parameterTypes);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, parameterTypes);
+        }
+    }
 }

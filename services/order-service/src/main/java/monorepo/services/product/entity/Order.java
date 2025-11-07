@@ -2,7 +2,7 @@ package monorepo.services.product.entity;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
@@ -18,5 +18,5 @@ public class Order {
     private List<Long> itemIds;
     private String[] itemNames;
     private Map<String, String> attributes;
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 }

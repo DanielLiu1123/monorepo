@@ -1,17 +1,16 @@
 package monorepo.lib.msp;
 
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ap.spi.DefaultEnumMappingStrategy;
-import org.mapstruct.ap.spi.MapStructProcessingEnvironment;
-
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.TypeMirror;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.TypeMirror;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ap.spi.DefaultEnumMappingStrategy;
+import org.mapstruct.ap.spi.MapStructProcessingEnvironment;
 
 /**
  * MapStruct SPI implementation for Protocol Buffer enum mapping strategy.
@@ -123,10 +122,7 @@ public class ProtobufEnumMappingStrategy extends DefaultEnumMappingStrategy {
                     .map(String::trim)
                     .filter(s -> !s.isEmpty() && s.contains("="))
                     .map(override -> override.split("=", 2))
-                    .collect(Collectors.toMap(
-                            args -> args[0].trim(),
-                            args -> args[1].trim()
-                    ));
+                    .collect(Collectors.toMap(args -> args[0].trim(), args -> args[1].trim()));
         } else {
             enumPostfixOverrides = Map.of();
         }
@@ -229,8 +225,8 @@ public class ProtobufEnumMappingStrategy extends DefaultEnumMappingStrategy {
             List<? extends TypeMirror> interfaces = type.getInterfaces();
             for (TypeMirror implementedInterface : interfaces) {
                 String interfaceName = implementedInterface.toString();
-                if (PROTOBUF_ENUM_INTERFACE.equals(interfaceName) ||
-                    PROTOBUF_LITE_ENUM_INTERFACE.equals(interfaceName)) {
+                if (PROTOBUF_ENUM_INTERFACE.equals(interfaceName)
+                        || PROTOBUF_LITE_ENUM_INTERFACE.equals(interfaceName)) {
                     return true;
                 }
             }

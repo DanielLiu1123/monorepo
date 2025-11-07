@@ -12,8 +12,6 @@ import com.google.protobuf.StringValue;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.UInt32Value;
 import com.google.protobuf.UInt64Value;
-import org.mapstruct.Mapper;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
