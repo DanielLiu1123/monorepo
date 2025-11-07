@@ -35,8 +35,6 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             SPECIAL_GETTER_CHECKER = getSpecialGetterChecker();
     private static final Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>>
             SPECIAL_SETTER_CHECKER = getSpecialSetterChecker();
-    private static final Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>>
-            SPECIAL_ADDER_CHECKER = getSpecialAdderChecker();
 
     private static Set<MethodSignature> INTERNAL_METHODS;
 
@@ -58,13 +56,7 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         }
 
         if (hasPrefixWithUpperCaseNext(method, "get")) {
-            if (!method.getParameters().isEmpty()) {
-                return false;
-            }
-            if (isDeprecated(method)) {
-                return false;
-            }
-            if (isSpecialGetMethod(method)) {
+            if (!method.getParameters().isEmpty() || isDeprecated(method) || isSpecialGetMethod(method)) {
                 return false;
             }
             return true;
@@ -98,10 +90,7 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         }
 
         if (hasPrefixWithUpperCaseNext(method, "set")) {
-            if (method.getParameters().size() != 1) {
-                return false;
-            }
-            if (isSpecialSetMethod(method)) {
+            if (method.getParameters().size() != 1 || isSpecialSetMethod(method)) {
                 return false;
             }
             return true;
@@ -116,19 +105,9 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
             return super.isAdderMethod(method);
         }
 
-        if (hasPrefixWithUpperCaseNext(method, "add")) {
-            if (method.getParameters().size() != 1) {
-                return false;
-            }
-            if (isTargetClass(method.getParameters().get(0).asType(), Iterable.class)) {
-                return false; // addAll should treat as setter
-            }
-            if (isSpecialAddMethod(method)) {
-                return false;
-            }
-            return true;
-        }
-
+        // Protobuf message do have adders for repeated and putters for map fields,
+        // but we uniformly use addAllXxx() and putAllXxx() methods as setters.
+        // Just make life easier.
         return false;
     }
 
@@ -268,37 +247,6 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return result;
     }
 
-    private static Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>>
-            getSpecialAdderChecker() {
-        Map<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> result =
-                new HashMap<>();
-
-        // 'repeated string' field generates extra addXxxBytes() method
-        result.put(method -> getMethodName(method).endsWith("Bytes"), (method, methods) -> {
-            String methodName = getMethodName(method);
-            String withoutSuffix = methodName.substring(0, methodName.length() - "Bytes".length());
-            return methods.stream()
-                    .anyMatch(m -> m.getParameters().size() == 1
-                            && isTargetClass(m.getParameters().get(0).asType(), String.class)
-                            && getMethodName(m).equals(withoutSuffix));
-        });
-
-        // 'repeated message' field generates extra addXxxBuilder(int) method
-        result.put(
-                method -> getMethodName(method).endsWith("Builder")
-                        && method.getParameters().size() == 1
-                        && method.getParameters().get(0).asType().toString().equals("int"),
-                (method, methods) -> {
-                    String methodName = getMethodName(method);
-                    String withoutSuffix = methodName.substring(0, methodName.length() - "Builder".length());
-                    return methods.stream()
-                            .anyMatch(m -> m.getParameters().size() == 1
-                                    && getMethodName(m).equals(withoutSuffix));
-                });
-
-        return result;
-    }
-
     private static boolean isSpecialGetMethod(ExecutableElement method) {
         for (Map.Entry<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> entry :
                 SPECIAL_GETTER_CHECKER.entrySet()) {
@@ -314,18 +262,6 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
     private static boolean isSpecialSetMethod(ExecutableElement method) {
         for (Map.Entry<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> entry :
                 SPECIAL_SETTER_CHECKER.entrySet()) {
-            if (entry.getKey().test(method)) {
-                if (entry.getValue().test(method, getPublicNonStaticMethods(method.getEnclosingElement()))) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private static boolean isSpecialAddMethod(ExecutableElement method) {
-        for (Map.Entry<Predicate<ExecutableElement>, BiPredicate<ExecutableElement, List<ExecutableElement>>> entry :
-                SPECIAL_ADDER_CHECKER.entrySet()) {
             if (entry.getKey().test(method)) {
                 if (entry.getValue().test(method, getPublicNonStaticMethods(method.getEnclosingElement()))) {
                     return true;
