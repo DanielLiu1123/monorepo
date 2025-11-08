@@ -41,7 +41,7 @@ public class Everything {
     // repeated
     private Integer[] repeatedInt32;
     private Set<Long> repeatedInt64;
-    private List<Double> repeatedFloat;
+    private List<Float> repeatedFloat;
     private List<DoubleValue> repeatedDouble;
     private List<BoolValue> repeatedBool;
     private List<String> repeatedString;
