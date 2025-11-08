@@ -109,7 +109,7 @@ public class Everything {
 
     // google/type package
     private LocalTime timeOfDay;
-    private LocalDate date;
+    private String date;
     private DayOfWeek dayOfWeek;
     private Month month;
 
