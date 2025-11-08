@@ -2078,6 +2078,70 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
     return map.get(key);
   }
 
+  public static final int TIMESTAMP_FIELD_NUMBER = 65;
+  private com.google.protobuf.Timestamp timestamp_;
+  /**
+   * <pre>
+   * wellknown
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+   * @return Whether the timestamp field is set.
+   */
+  @java.lang.Override
+  public boolean hasTimestamp() {
+    return ((bitField0_ & 0x00000200) != 0);
+  }
+  /**
+   * <pre>
+   * wellknown
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+   * @return The timestamp.
+   */
+  @java.lang.Override
+  public com.google.protobuf.Timestamp getTimestamp() {
+    return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+  }
+  /**
+   * <pre>
+   * wellknown
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
+    return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+  }
+
+  public static final int DURATION_FIELD_NUMBER = 66;
+  private com.google.protobuf.Duration duration_;
+  /**
+   * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+   * @return Whether the duration field is set.
+   */
+  @java.lang.Override
+  public boolean hasDuration() {
+    return ((bitField0_ & 0x00000400) != 0);
+  }
+  /**
+   * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+   * @return The duration.
+   */
+  @java.lang.Override
+  public com.google.protobuf.Duration getDuration() {
+    return duration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : duration_;
+  }
+  /**
+   * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.DurationOrBuilder getDurationOrBuilder() {
+    return duration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : duration_;
+  }
+
   public static final int TIME_OF_DAY_FIELD_NUMBER = 70;
   private com.google.type.TimeOfDay timeOfDay_;
   /**
@@ -2090,7 +2154,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
    */
   @java.lang.Override
   public boolean hasTimeOfDay() {
-    return ((bitField0_ & 0x00000200) != 0);
+    return ((bitField0_ & 0x00000800) != 0);
   }
   /**
    * <pre>
@@ -2124,7 +2188,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
    */
   @java.lang.Override
   public boolean hasDate() {
-    return ((bitField0_ & 0x00000400) != 0);
+    return ((bitField0_ & 0x00001000) != 0);
   }
   /**
    * <code>.google.type.Date date = 71 [json_name = "date"];</code>
@@ -2145,10 +2209,6 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
   public static final int DAY_OF_WEEK_FIELD_NUMBER = 73;
   private int dayOfWeek_ = 0;
   /**
-   * <pre>
-   * google.type.DateTime date_time = 72;
-   * </pre>
-   *
    * <code>.google.type.DayOfWeek day_of_week = 73 [json_name = "dayOfWeek"];</code>
    * @return The enum numeric value on the wire for dayOfWeek.
    */
@@ -2156,10 +2216,6 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
     return dayOfWeek_;
   }
   /**
-   * <pre>
-   * google.type.DateTime date_time = 72;
-   * </pre>
-   *
    * <code>.google.type.DayOfWeek day_of_week = 73 [json_name = "dayOfWeek"];</code>
    * @return The dayOfWeek.
    */
@@ -2346,9 +2402,15 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
         MapStringEnumDefaultEntryHolder.defaultEntry,
         63);
     if (((bitField0_ & 0x00000200) != 0)) {
-      output.writeMessage(70, getTimeOfDay());
+      output.writeMessage(65, getTimestamp());
     }
     if (((bitField0_ & 0x00000400) != 0)) {
+      output.writeMessage(66, getDuration());
+    }
+    if (((bitField0_ & 0x00000800) != 0)) {
+      output.writeMessage(70, getTimeOfDay());
+    }
+    if (((bitField0_ & 0x00001000) != 0)) {
       output.writeMessage(71, getDate());
     }
     if (dayOfWeek_ != com.google.type.DayOfWeek.DAY_OF_WEEK_UNSPECIFIED.getNumber()) {
@@ -2599,9 +2661,17 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
     }
     if (((bitField0_ & 0x00000200) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(70, getTimeOfDay());
+        .computeMessageSize(65, getTimestamp());
     }
     if (((bitField0_ & 0x00000400) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(66, getDuration());
+    }
+    if (((bitField0_ & 0x00000800) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(70, getTimeOfDay());
+    }
+    if (((bitField0_ & 0x00001000) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(71, getDate());
     }
@@ -2720,6 +2790,16 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
     if (!repeatedEnum_.equals(other.repeatedEnum_)) return false;
     if (!internalGetMapStringEnum().equals(
         other.internalGetMapStringEnum())) return false;
+    if (hasTimestamp() != other.hasTimestamp()) return false;
+    if (hasTimestamp()) {
+      if (!getTimestamp()
+          .equals(other.getTimestamp())) return false;
+    }
+    if (hasDuration() != other.hasDuration()) return false;
+    if (hasDuration()) {
+      if (!getDuration()
+          .equals(other.getDuration())) return false;
+    }
     if (hasTimeOfDay() != other.hasTimeOfDay()) return false;
     if (hasTimeOfDay()) {
       if (!getTimeOfDay()
@@ -2862,6 +2942,14 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
     if (!internalGetMapStringEnum().getMap().isEmpty()) {
       hash = (37 * hash) + MAP_STRING_ENUM_FIELD_NUMBER;
       hash = (53 * hash) + internalGetMapStringEnum().hashCode();
+    }
+    if (hasTimestamp()) {
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + getTimestamp().hashCode();
+    }
+    if (hasDuration()) {
+      hash = (37 * hash) + DURATION_FIELD_NUMBER;
+      hash = (53 * hash) + getDuration().hashCode();
     }
     if (hasTimeOfDay()) {
       hash = (37 * hash) + TIME_OF_DAY_FIELD_NUMBER;
@@ -3060,6 +3148,8 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
         internalGetBytesValueFieldBuilder();
         internalGetMessageFieldBuilder();
         internalGetRepeatedMessageFieldBuilder();
+        internalGetTimestampFieldBuilder();
+        internalGetDurationFieldBuilder();
         internalGetTimeOfDayFieldBuilder();
         internalGetDateFieldBuilder();
       }
@@ -3141,6 +3231,16 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       optionalEnum_ = 0;
       repeatedEnum_ = emptyIntList();
       internalGetMutableMapStringEnum().clear();
+      timestamp_ = null;
+      if (timestampBuilder_ != null) {
+        timestampBuilder_.dispose();
+        timestampBuilder_ = null;
+      }
+      duration_ = null;
+      if (durationBuilder_ != null) {
+        durationBuilder_.dispose();
+        durationBuilder_ = null;
+      }
       timeOfDay_ = null;
       if (timeOfDayBuilder_ != null) {
         timeOfDayBuilder_.dispose();
@@ -3343,21 +3443,33 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       }
       int to_bitField0_ = 0;
       if (((from_bitField1_ & 0x00000002) != 0)) {
-        result.timeOfDay_ = timeOfDayBuilder_ == null
-            ? timeOfDay_
-            : timeOfDayBuilder_.build();
+        result.timestamp_ = timestampBuilder_ == null
+            ? timestamp_
+            : timestampBuilder_.build();
         to_bitField0_ |= 0x00000200;
       }
       if (((from_bitField1_ & 0x00000004) != 0)) {
-        result.date_ = dateBuilder_ == null
-            ? date_
-            : dateBuilder_.build();
+        result.duration_ = durationBuilder_ == null
+            ? duration_
+            : durationBuilder_.build();
         to_bitField0_ |= 0x00000400;
       }
       if (((from_bitField1_ & 0x00000008) != 0)) {
-        result.dayOfWeek_ = dayOfWeek_;
+        result.timeOfDay_ = timeOfDayBuilder_ == null
+            ? timeOfDay_
+            : timeOfDayBuilder_.build();
+        to_bitField0_ |= 0x00000800;
       }
       if (((from_bitField1_ & 0x00000010) != 0)) {
+        result.date_ = dateBuilder_ == null
+            ? date_
+            : dateBuilder_.build();
+        to_bitField0_ |= 0x00001000;
+      }
+      if (((from_bitField1_ & 0x00000020) != 0)) {
+        result.dayOfWeek_ = dayOfWeek_;
+      }
+      if (((from_bitField1_ & 0x00000040) != 0)) {
         result.month_ = month_;
       }
       result.bitField0_ |= to_bitField0_;
@@ -3562,6 +3674,12 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       internalGetMutableMapStringEnum().mergeFrom(
           other.internalGetMapStringEnum());
       bitField1_ |= 0x00000001;
+      if (other.hasTimestamp()) {
+        mergeTimestamp(other.getTimestamp());
+      }
+      if (other.hasDuration()) {
+        mergeDuration(other.getDuration());
+      }
       if (other.hasTimeOfDay()) {
         mergeTimeOfDay(other.getTimeOfDay());
       }
@@ -3888,28 +4006,42 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
               bitField1_ |= 0x00000001;
               break;
             } // case 506
+            case 522: {
+              input.readMessage(
+                  internalGetTimestampFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField1_ |= 0x00000002;
+              break;
+            } // case 522
+            case 530: {
+              input.readMessage(
+                  internalGetDurationFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField1_ |= 0x00000004;
+              break;
+            } // case 530
             case 562: {
               input.readMessage(
                   internalGetTimeOfDayFieldBuilder().getBuilder(),
                   extensionRegistry);
-              bitField1_ |= 0x00000002;
+              bitField1_ |= 0x00000008;
               break;
             } // case 562
             case 570: {
               input.readMessage(
                   internalGetDateFieldBuilder().getBuilder(),
                   extensionRegistry);
-              bitField1_ |= 0x00000004;
+              bitField1_ |= 0x00000010;
               break;
             } // case 570
             case 584: {
               dayOfWeek_ = input.readEnum();
-              bitField1_ |= 0x00000008;
+              bitField1_ |= 0x00000020;
               break;
             } // case 584
             case 592: {
               month_ = input.readEnum();
-              bitField1_ |= 0x00000010;
+              bitField1_ |= 0x00000040;
               break;
             } // case 592
             default: {
@@ -7278,6 +7410,284 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       return this;
     }
 
+    private com.google.protobuf.Timestamp timestamp_;
+    private com.google.protobuf.SingleFieldBuilder<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timestampBuilder_;
+    /**
+     * <pre>
+     * wellknown
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+     * @return Whether the timestamp field is set.
+     */
+    public boolean hasTimestamp() {
+      return ((bitField1_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * wellknown
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+     * @return The timestamp.
+     */
+    public com.google.protobuf.Timestamp getTimestamp() {
+      if (timestampBuilder_ == null) {
+        return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+      } else {
+        return timestampBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * wellknown
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+     */
+    public Builder setTimestamp(com.google.protobuf.Timestamp value) {
+      if (timestampBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        timestamp_ = value;
+      } else {
+        timestampBuilder_.setMessage(value);
+      }
+      bitField1_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * wellknown
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+     */
+    public Builder setTimestamp(
+        com.google.protobuf.Timestamp.Builder builderForValue) {
+      if (timestampBuilder_ == null) {
+        timestamp_ = builderForValue.build();
+      } else {
+        timestampBuilder_.setMessage(builderForValue.build());
+      }
+      bitField1_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * wellknown
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+     */
+    public Builder mergeTimestamp(com.google.protobuf.Timestamp value) {
+      if (timestampBuilder_ == null) {
+        if (((bitField1_ & 0x00000002) != 0) &&
+          timestamp_ != null &&
+          timestamp_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+          getTimestampBuilder().mergeFrom(value);
+        } else {
+          timestamp_ = value;
+        }
+      } else {
+        timestampBuilder_.mergeFrom(value);
+      }
+      if (timestamp_ != null) {
+        bitField1_ |= 0x00000002;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * wellknown
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+     */
+    public Builder clearTimestamp() {
+      bitField1_ = (bitField1_ & ~0x00000002);
+      timestamp_ = null;
+      if (timestampBuilder_ != null) {
+        timestampBuilder_.dispose();
+        timestampBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * wellknown
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+     */
+    public com.google.protobuf.Timestamp.Builder getTimestampBuilder() {
+      bitField1_ |= 0x00000002;
+      onChanged();
+      return internalGetTimestampFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * wellknown
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+     */
+    public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
+      if (timestampBuilder_ != null) {
+        return timestampBuilder_.getMessageOrBuilder();
+      } else {
+        return timestamp_ == null ?
+            com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+      }
+    }
+    /**
+     * <pre>
+     * wellknown
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+        internalGetTimestampFieldBuilder() {
+      if (timestampBuilder_ == null) {
+        timestampBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                getTimestamp(),
+                getParentForChildren(),
+                isClean());
+        timestamp_ = null;
+      }
+      return timestampBuilder_;
+    }
+
+    private com.google.protobuf.Duration duration_;
+    private com.google.protobuf.SingleFieldBuilder<
+        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> durationBuilder_;
+    /**
+     * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+     * @return Whether the duration field is set.
+     */
+    public boolean hasDuration() {
+      return ((bitField1_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+     * @return The duration.
+     */
+    public com.google.protobuf.Duration getDuration() {
+      if (durationBuilder_ == null) {
+        return duration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : duration_;
+      } else {
+        return durationBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+     */
+    public Builder setDuration(com.google.protobuf.Duration value) {
+      if (durationBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        duration_ = value;
+      } else {
+        durationBuilder_.setMessage(value);
+      }
+      bitField1_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+     */
+    public Builder setDuration(
+        com.google.protobuf.Duration.Builder builderForValue) {
+      if (durationBuilder_ == null) {
+        duration_ = builderForValue.build();
+      } else {
+        durationBuilder_.setMessage(builderForValue.build());
+      }
+      bitField1_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+     */
+    public Builder mergeDuration(com.google.protobuf.Duration value) {
+      if (durationBuilder_ == null) {
+        if (((bitField1_ & 0x00000004) != 0) &&
+          duration_ != null &&
+          duration_ != com.google.protobuf.Duration.getDefaultInstance()) {
+          getDurationBuilder().mergeFrom(value);
+        } else {
+          duration_ = value;
+        }
+      } else {
+        durationBuilder_.mergeFrom(value);
+      }
+      if (duration_ != null) {
+        bitField1_ |= 0x00000004;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+     */
+    public Builder clearDuration() {
+      bitField1_ = (bitField1_ & ~0x00000004);
+      duration_ = null;
+      if (durationBuilder_ != null) {
+        durationBuilder_.dispose();
+        durationBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+     */
+    public com.google.protobuf.Duration.Builder getDurationBuilder() {
+      bitField1_ |= 0x00000004;
+      onChanged();
+      return internalGetDurationFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+     */
+    public com.google.protobuf.DurationOrBuilder getDurationOrBuilder() {
+      if (durationBuilder_ != null) {
+        return durationBuilder_.getMessageOrBuilder();
+      } else {
+        return duration_ == null ?
+            com.google.protobuf.Duration.getDefaultInstance() : duration_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
+        internalGetDurationFieldBuilder() {
+      if (durationBuilder_ == null) {
+        durationBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>(
+                getDuration(),
+                getParentForChildren(),
+                isClean());
+        duration_ = null;
+      }
+      return durationBuilder_;
+    }
+
     private com.google.type.TimeOfDay timeOfDay_;
     private com.google.protobuf.SingleFieldBuilder<
         com.google.type.TimeOfDay, com.google.type.TimeOfDay.Builder, com.google.type.TimeOfDayOrBuilder> timeOfDayBuilder_;
@@ -7290,7 +7700,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      * @return Whether the timeOfDay field is set.
      */
     public boolean hasTimeOfDay() {
-      return ((bitField1_ & 0x00000002) != 0);
+      return ((bitField1_ & 0x00000008) != 0);
     }
     /**
      * <pre>
@@ -7323,7 +7733,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       } else {
         timeOfDayBuilder_.setMessage(value);
       }
-      bitField1_ |= 0x00000002;
+      bitField1_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -7341,7 +7751,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       } else {
         timeOfDayBuilder_.setMessage(builderForValue.build());
       }
-      bitField1_ |= 0x00000002;
+      bitField1_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -7354,7 +7764,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      */
     public Builder mergeTimeOfDay(com.google.type.TimeOfDay value) {
       if (timeOfDayBuilder_ == null) {
-        if (((bitField1_ & 0x00000002) != 0) &&
+        if (((bitField1_ & 0x00000008) != 0) &&
           timeOfDay_ != null &&
           timeOfDay_ != com.google.type.TimeOfDay.getDefaultInstance()) {
           getTimeOfDayBuilder().mergeFrom(value);
@@ -7365,7 +7775,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
         timeOfDayBuilder_.mergeFrom(value);
       }
       if (timeOfDay_ != null) {
-        bitField1_ |= 0x00000002;
+        bitField1_ |= 0x00000008;
         onChanged();
       }
       return this;
@@ -7378,7 +7788,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      * <code>.google.type.TimeOfDay time_of_day = 70 [json_name = "timeOfDay"];</code>
      */
     public Builder clearTimeOfDay() {
-      bitField1_ = (bitField1_ & ~0x00000002);
+      bitField1_ = (bitField1_ & ~0x00000008);
       timeOfDay_ = null;
       if (timeOfDayBuilder_ != null) {
         timeOfDayBuilder_.dispose();
@@ -7395,7 +7805,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      * <code>.google.type.TimeOfDay time_of_day = 70 [json_name = "timeOfDay"];</code>
      */
     public com.google.type.TimeOfDay.Builder getTimeOfDayBuilder() {
-      bitField1_ |= 0x00000002;
+      bitField1_ |= 0x00000008;
       onChanged();
       return internalGetTimeOfDayFieldBuilder().getBuilder();
     }
@@ -7443,7 +7853,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      * @return Whether the date field is set.
      */
     public boolean hasDate() {
-      return ((bitField1_ & 0x00000004) != 0);
+      return ((bitField1_ & 0x00000010) != 0);
     }
     /**
      * <code>.google.type.Date date = 71 [json_name = "date"];</code>
@@ -7468,7 +7878,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       } else {
         dateBuilder_.setMessage(value);
       }
-      bitField1_ |= 0x00000004;
+      bitField1_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -7482,7 +7892,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       } else {
         dateBuilder_.setMessage(builderForValue.build());
       }
-      bitField1_ |= 0x00000004;
+      bitField1_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -7491,7 +7901,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      */
     public Builder mergeDate(com.google.type.Date value) {
       if (dateBuilder_ == null) {
-        if (((bitField1_ & 0x00000004) != 0) &&
+        if (((bitField1_ & 0x00000010) != 0) &&
           date_ != null &&
           date_ != com.google.type.Date.getDefaultInstance()) {
           getDateBuilder().mergeFrom(value);
@@ -7502,7 +7912,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
         dateBuilder_.mergeFrom(value);
       }
       if (date_ != null) {
-        bitField1_ |= 0x00000004;
+        bitField1_ |= 0x00000010;
         onChanged();
       }
       return this;
@@ -7511,7 +7921,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      * <code>.google.type.Date date = 71 [json_name = "date"];</code>
      */
     public Builder clearDate() {
-      bitField1_ = (bitField1_ & ~0x00000004);
+      bitField1_ = (bitField1_ & ~0x00000010);
       date_ = null;
       if (dateBuilder_ != null) {
         dateBuilder_.dispose();
@@ -7524,7 +7934,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      * <code>.google.type.Date date = 71 [json_name = "date"];</code>
      */
     public com.google.type.Date.Builder getDateBuilder() {
-      bitField1_ |= 0x00000004;
+      bitField1_ |= 0x00000010;
       onChanged();
       return internalGetDateFieldBuilder().getBuilder();
     }
@@ -7558,10 +7968,6 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
 
     private int dayOfWeek_ = 0;
     /**
-     * <pre>
-     * google.type.DateTime date_time = 72;
-     * </pre>
-     *
      * <code>.google.type.DayOfWeek day_of_week = 73 [json_name = "dayOfWeek"];</code>
      * @return The enum numeric value on the wire for dayOfWeek.
      */
@@ -7569,25 +7975,17 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       return dayOfWeek_;
     }
     /**
-     * <pre>
-     * google.type.DateTime date_time = 72;
-     * </pre>
-     *
      * <code>.google.type.DayOfWeek day_of_week = 73 [json_name = "dayOfWeek"];</code>
      * @param value The enum numeric value on the wire for dayOfWeek to set.
      * @return This builder for chaining.
      */
     public Builder setDayOfWeekValue(int value) {
       dayOfWeek_ = value;
-      bitField1_ |= 0x00000008;
+      bitField1_ |= 0x00000020;
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * google.type.DateTime date_time = 72;
-     * </pre>
-     *
      * <code>.google.type.DayOfWeek day_of_week = 73 [json_name = "dayOfWeek"];</code>
      * @return The dayOfWeek.
      */
@@ -7597,31 +7995,23 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
       return result == null ? com.google.type.DayOfWeek.UNRECOGNIZED : result;
     }
     /**
-     * <pre>
-     * google.type.DateTime date_time = 72;
-     * </pre>
-     *
      * <code>.google.type.DayOfWeek day_of_week = 73 [json_name = "dayOfWeek"];</code>
      * @param value The dayOfWeek to set.
      * @return This builder for chaining.
      */
     public Builder setDayOfWeek(com.google.type.DayOfWeek value) {
       if (value == null) { throw new NullPointerException(); }
-      bitField1_ |= 0x00000008;
+      bitField1_ |= 0x00000020;
       dayOfWeek_ = value.getNumber();
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * google.type.DateTime date_time = 72;
-     * </pre>
-     *
      * <code>.google.type.DayOfWeek day_of_week = 73 [json_name = "dayOfWeek"];</code>
      * @return This builder for chaining.
      */
     public Builder clearDayOfWeek() {
-      bitField1_ = (bitField1_ & ~0x00000008);
+      bitField1_ = (bitField1_ & ~0x00000020);
       dayOfWeek_ = 0;
       onChanged();
       return this;
@@ -7642,7 +8032,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      */
     public Builder setMonthValue(int value) {
       month_ = value;
-      bitField1_ |= 0x00000010;
+      bitField1_ |= 0x00000040;
       onChanged();
       return this;
     }
@@ -7662,7 +8052,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      */
     public Builder setMonth(com.google.type.Month value) {
       if (value == null) { throw new NullPointerException(); }
-      bitField1_ |= 0x00000010;
+      bitField1_ |= 0x00000040;
       month_ = value.getNumber();
       onChanged();
       return this;
@@ -7672,7 +8062,7 @@ monorepo.proto.order.v1.EverythingModel.Enum defaultValue) {
      * @return This builder for chaining.
      */
     public Builder clearMonth() {
-      bitField1_ = (bitField1_ & ~0x00000010);
+      bitField1_ = (bitField1_ & ~0x00000040);
       month_ = 0;
       onChanged();
       return this;

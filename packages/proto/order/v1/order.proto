@@ -3,6 +3,7 @@ syntax = "proto3";
 package order.v1;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/wrappers.proto";
 import "google/type/timeofday.proto";
 import "google/type/date.proto";
@@ -62,10 +63,13 @@ message EverythingModel {
   repeated Enum repeated_enum = 61;
   map<string, Enum> map_string_enum = 63;
 
+  // wellknown
+  google.protobuf.Timestamp timestamp = 65;
+  google.protobuf.Duration duration = 66;
+
   // google/type package
   google.type.TimeOfDay time_of_day = 70;
   google.type.Date date = 71;
-//  google.type.DateTime date_time = 72;
   google.type.DayOfWeek day_of_week = 73;
   google.type.Month month = 74;
 

@@ -14,6 +14,7 @@ import (
 	timeofday "google.golang.org/genproto/googleapis/type/timeofday"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
@@ -230,6 +231,8 @@ type EverythingModel struct {
 	xxx_hidden_OptionalEnum     EverythingModel_Enum                `protobuf:"varint,62,opt,name=optional_enum,json=optionalEnum,proto3,enum=order.v1.EverythingModel_Enum,oneof"`
 	xxx_hidden_RepeatedEnum     []EverythingModel_Enum              `protobuf:"varint,61,rep,packed,name=repeated_enum,json=repeatedEnum,proto3,enum=order.v1.EverythingModel_Enum"`
 	xxx_hidden_MapStringEnum    map[string]EverythingModel_Enum     `protobuf:"bytes,63,rep,name=map_string_enum,json=mapStringEnum,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=order.v1.EverythingModel_Enum"`
+	xxx_hidden_Timestamp        *timestamppb.Timestamp              `protobuf:"bytes,65,opt,name=timestamp,proto3"`
+	xxx_hidden_Duration         *durationpb.Duration                `protobuf:"bytes,66,opt,name=duration,proto3"`
 	xxx_hidden_TimeOfDay        *timeofday.TimeOfDay                `protobuf:"bytes,70,opt,name=time_of_day,json=timeOfDay,proto3"`
 	xxx_hidden_Date             *date.Date                          `protobuf:"bytes,71,opt,name=date,proto3"`
 	xxx_hidden_DayOfWeek        dayofweek.DayOfWeek                 `protobuf:"varint,73,opt,name=day_of_week,json=dayOfWeek,proto3,enum=google.type.DayOfWeek"`
@@ -500,6 +503,20 @@ func (x *EverythingModel) GetMapStringEnum() map[string]EverythingModel_Enum {
 	return nil
 }
 
+func (x *EverythingModel) GetTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_Timestamp
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetDuration() *durationpb.Duration {
+	if x != nil {
+		return x.xxx_hidden_Duration
+	}
+	return nil
+}
+
 func (x *EverythingModel) GetTimeOfDay() *timeofday.TimeOfDay {
 	if x != nil {
 		return x.xxx_hidden_TimeOfDay
@@ -653,7 +670,7 @@ func (x *EverythingModel) SetEnum(v EverythingModel_Enum) {
 
 func (x *EverythingModel) SetOptionalEnum(v EverythingModel_Enum) {
 	x.xxx_hidden_OptionalEnum = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 30, 37)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 30, 39)
 }
 
 func (x *EverythingModel) SetRepeatedEnum(v []EverythingModel_Enum) {
@@ -662,6 +679,14 @@ func (x *EverythingModel) SetRepeatedEnum(v []EverythingModel_Enum) {
 
 func (x *EverythingModel) SetMapStringEnum(v map[string]EverythingModel_Enum) {
 	x.xxx_hidden_MapStringEnum = v
+}
+
+func (x *EverythingModel) SetTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_Timestamp = v
+}
+
+func (x *EverythingModel) SetDuration(v *durationpb.Duration) {
+	x.xxx_hidden_Duration = v
 }
 
 func (x *EverythingModel) SetTimeOfDay(v *timeofday.TimeOfDay) {
@@ -743,6 +768,20 @@ func (x *EverythingModel) HasOptionalEnum() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 30)
 }
 
+func (x *EverythingModel) HasTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Timestamp != nil
+}
+
+func (x *EverythingModel) HasDuration() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Duration != nil
+}
+
 func (x *EverythingModel) HasTimeOfDay() bool {
 	if x == nil {
 		return false
@@ -794,6 +833,14 @@ func (x *EverythingModel) ClearOptionalEnum() {
 	x.xxx_hidden_OptionalEnum = EverythingModel_ENUM_UNSPECIFIED
 }
 
+func (x *EverythingModel) ClearTimestamp() {
+	x.xxx_hidden_Timestamp = nil
+}
+
+func (x *EverythingModel) ClearDuration() {
+	x.xxx_hidden_Duration = nil
+}
+
 func (x *EverythingModel) ClearTimeOfDay() {
 	x.xxx_hidden_TimeOfDay = nil
 }
@@ -838,10 +885,12 @@ type EverythingModel_builder struct {
 	OptionalEnum     *EverythingModel_Enum
 	RepeatedEnum     []EverythingModel_Enum
 	MapStringEnum    map[string]EverythingModel_Enum
+	// wellknown
+	Timestamp *timestamppb.Timestamp
+	Duration  *durationpb.Duration
 	// google/type package
 	TimeOfDay *timeofday.TimeOfDay
 	Date      *date.Date
-	// google.type.DateTime date_time = 72;
 	DayOfWeek dayofweek.DayOfWeek
 	Month     month.Month
 }
@@ -881,11 +930,13 @@ func (b0 EverythingModel_builder) Build() *EverythingModel {
 	x.xxx_hidden_MapStringMessage = b.MapStringMessage
 	x.xxx_hidden_Enum = b.Enum
 	if b.OptionalEnum != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 30, 37)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 30, 39)
 		x.xxx_hidden_OptionalEnum = *b.OptionalEnum
 	}
 	x.xxx_hidden_RepeatedEnum = b.RepeatedEnum
 	x.xxx_hidden_MapStringEnum = b.MapStringEnum
+	x.xxx_hidden_Timestamp = b.Timestamp
+	x.xxx_hidden_Duration = b.Duration
 	x.xxx_hidden_TimeOfDay = b.TimeOfDay
 	x.xxx_hidden_Date = b.Date
 	x.xxx_hidden_DayOfWeek = b.DayOfWeek
@@ -968,7 +1019,7 @@ var File_order_v1_order_proto protoreflect.FileDescriptor
 
 const file_order_v1_order_proto_rawDesc = "" +
 	"\n" +
-	"\x14order/v1/order.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1bgoogle/type/timeofday.proto\x1a\x16google/type/date.proto\x1a\x1agoogle/type/datetime.proto\x1a\x1bgoogle/type/dayofweek.proto\x1a\x17google/type/month.proto\"\x96\x02\n" +
+	"\x14order/v1/order.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1bgoogle/type/timeofday.proto\x1a\x16google/type/date.proto\x1a\x1agoogle/type/datetime.proto\x1a\x1bgoogle/type/dayofweek.proto\x1a\x17google/type/month.proto\"\x96\x02\n" +
 	"\n" +
 	"OrderModel\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
@@ -982,7 +1033,7 @@ const file_order_v1_order_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x1a=\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x92\x15\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x83\x16\n" +
 	"\x0fEverythingModel\x12\x14\n" +
 	"\x05int32\x18\x01 \x01(\x05R\x05int32\x12\x14\n" +
 	"\x05int64\x18\x03 \x01(\x03R\x05int64\x12\x14\n" +
@@ -1021,7 +1072,9 @@ const file_order_v1_order_proto_rawDesc = "" +
 	"\x04enum\x18< \x01(\x0e2\x1e.order.v1.EverythingModel.EnumR\x04enum\x12H\n" +
 	"\roptional_enum\x18> \x01(\x0e2\x1e.order.v1.EverythingModel.EnumH\x00R\foptionalEnum\x88\x01\x01\x12C\n" +
 	"\rrepeated_enum\x18= \x03(\x0e2\x1e.order.v1.EverythingModel.EnumR\frepeatedEnum\x12T\n" +
-	"\x0fmap_string_enum\x18? \x03(\v2,.order.v1.EverythingModel.MapStringEnumEntryR\rmapStringEnum\x126\n" +
+	"\x0fmap_string_enum\x18? \x03(\v2,.order.v1.EverythingModel.MapStringEnumEntryR\rmapStringEnum\x128\n" +
+	"\ttimestamp\x18A \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x125\n" +
+	"\bduration\x18B \x01(\v2\x19.google.protobuf.DurationR\bduration\x126\n" +
 	"\vtime_of_day\x18F \x01(\v2\x16.google.type.TimeOfDayR\ttimeOfDay\x12%\n" +
 	"\x04date\x18G \x01(\v2\x11.google.type.DateR\x04date\x126\n" +
 	"\vday_of_week\x18I \x01(\x0e2\x16.google.type.DayOfWeekR\tdayOfWeek\x12(\n" +
@@ -1080,10 +1133,11 @@ var file_order_v1_order_proto_goTypes = []any{
 	(*wrapperspb.BoolValue)(nil),    // 17: google.protobuf.BoolValue
 	(*wrapperspb.StringValue)(nil),  // 18: google.protobuf.StringValue
 	(*wrapperspb.BytesValue)(nil),   // 19: google.protobuf.BytesValue
-	(*timeofday.TimeOfDay)(nil),     // 20: google.type.TimeOfDay
-	(*date.Date)(nil),               // 21: google.type.Date
-	(dayofweek.DayOfWeek)(0),        // 22: google.type.DayOfWeek
-	(month.Month)(0),                // 23: google.type.Month
+	(*durationpb.Duration)(nil),     // 20: google.protobuf.Duration
+	(*timeofday.TimeOfDay)(nil),     // 21: google.type.TimeOfDay
+	(*date.Date)(nil),               // 22: google.type.Date
+	(dayofweek.DayOfWeek)(0),        // 23: google.type.DayOfWeek
+	(month.Month)(0),                // 24: google.type.Month
 }
 var file_order_v1_order_proto_depIdxs = []int32{
 	3,  // 0: order.v1.OrderModel.attributes:type_name -> order.v1.OrderModel.AttributesEntry
@@ -1107,17 +1161,19 @@ var file_order_v1_order_proto_depIdxs = []int32{
 	0,  // 18: order.v1.EverythingModel.optional_enum:type_name -> order.v1.EverythingModel.Enum
 	0,  // 19: order.v1.EverythingModel.repeated_enum:type_name -> order.v1.EverythingModel.Enum
 	10, // 20: order.v1.EverythingModel.map_string_enum:type_name -> order.v1.EverythingModel.MapStringEnumEntry
-	20, // 21: order.v1.EverythingModel.time_of_day:type_name -> google.type.TimeOfDay
-	21, // 22: order.v1.EverythingModel.date:type_name -> google.type.Date
-	22, // 23: order.v1.EverythingModel.day_of_week:type_name -> google.type.DayOfWeek
-	23, // 24: order.v1.EverythingModel.month:type_name -> google.type.Month
-	11, // 25: order.v1.EverythingModel.MapStringMessageEntry.value:type_name -> order.v1.EverythingModel.Message
-	0,  // 26: order.v1.EverythingModel.MapStringEnumEntry.value:type_name -> order.v1.EverythingModel.Enum
-	27, // [27:27] is the sub-list for method output_type
-	27, // [27:27] is the sub-list for method input_type
-	27, // [27:27] is the sub-list for extension type_name
-	27, // [27:27] is the sub-list for extension extendee
-	0,  // [0:27] is the sub-list for field type_name
+	12, // 21: order.v1.EverythingModel.timestamp:type_name -> google.protobuf.Timestamp
+	20, // 22: order.v1.EverythingModel.duration:type_name -> google.protobuf.Duration
+	21, // 23: order.v1.EverythingModel.time_of_day:type_name -> google.type.TimeOfDay
+	22, // 24: order.v1.EverythingModel.date:type_name -> google.type.Date
+	23, // 25: order.v1.EverythingModel.day_of_week:type_name -> google.type.DayOfWeek
+	24, // 26: order.v1.EverythingModel.month:type_name -> google.type.Month
+	11, // 27: order.v1.EverythingModel.MapStringMessageEntry.value:type_name -> order.v1.EverythingModel.Message
+	0,  // 28: order.v1.EverythingModel.MapStringEnumEntry.value:type_name -> order.v1.EverythingModel.Enum
+	29, // [29:29] is the sub-list for method output_type
+	29, // [29:29] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_order_v1_order_proto_init() }

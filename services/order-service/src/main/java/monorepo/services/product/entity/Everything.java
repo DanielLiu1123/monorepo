@@ -1,6 +1,8 @@
 package monorepo.services.product.entity;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
@@ -101,10 +103,13 @@ public class Everything {
     private List<String> repeatedEnum;
     private Map<String, Integer> mapStringEnum;
 
+    // wellknown
+    private Instant timestamp;
+    private Duration duration;
+
     // google/type package
     private LocalTime timeOfDay;
     private LocalDate date;
-//    private OffsetDateTime dateTime;
     private DayOfWeek dayOfWeek;
     private Month month;
 

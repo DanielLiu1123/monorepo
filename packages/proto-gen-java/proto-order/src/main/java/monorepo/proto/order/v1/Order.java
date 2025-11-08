@@ -92,93 +92,97 @@ public final class Order extends com.google.protobuf.GeneratedFile {
     java.lang.String[] descriptorData = {
       "\n\024order/v1/order.proto\022\010order.v1\032\037google" +
       "/protobuf/timestamp.proto\032\036google/protob" +
-      "uf/wrappers.proto\032\033google/type/timeofday" +
-      ".proto\032\026google/type/date.proto\032\032google/t" +
-      "ype/datetime.proto\032\033google/type/dayofwee" +
-      "k.proto\032\027google/type/month.proto\"\226\002\n\nOrd" +
-      "erModel\022\016\n\002id\030\001 \001(\003R\002id\022\031\n\010item_ids\030\002 \003(" +
-      "\003R\007itemIds\022\035\n\nitem_names\030\003 \003(\tR\titemName" +
-      "s\022D\n\nattributes\030\004 \003(\0132$.order.v1.OrderMo" +
-      "del.AttributesEntryR\nattributes\0229\n\ncreat" +
-      "ed_at\030\005 \001(\0132\032.google.protobuf.TimestampR" +
-      "\tcreatedAt\032=\n\017AttributesEntry\022\020\n\003key\030\001 \001" +
-      "(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\222\025\n\017Ev" +
-      "erythingModel\022\024\n\005int32\030\001 \001(\005R\005int32\022\024\n\005i" +
-      "nt64\030\003 \001(\003R\005int64\022\024\n\005float\030\013 \001(\002R\005float\022" +
-      "\026\n\006double\030\014 \001(\001R\006double\022\022\n\004bool\030\r \001(\010R\004b" +
-      "ool\022\026\n\006string\030\016 \001(\tR\006string\022\024\n\005bytes\030\017 \001" +
-      "(\014R\005bytes\022%\n\016repeated_int32\030\020 \003(\005R\rrepea" +
-      "tedInt32\022%\n\016repeated_int64\030\022 \003(\003R\rrepeat" +
-      "edInt64\022%\n\016repeated_float\030\032 \003(\002R\rrepeate" +
-      "dFloat\022\'\n\017repeated_double\030\033 \003(\001R\016repeate" +
-      "dDouble\022#\n\rrepeated_bool\030\034 \003(\010R\014repeated" +
-      "Bool\022\'\n\017repeated_string\030\035 \003(\tR\016repeatedS" +
-      "tring\022%\n\016repeated_bytes\030\036 \003(\014R\rrepeatedB" +
-      "ytes\022<\n\013int32_value\030\024 \001(\0132\033.google.proto" +
-      "buf.Int32ValueR\nint32Value\022<\n\013int64_valu" +
-      "e\030\025 \001(\0132\033.google.protobuf.Int64ValueR\nin" +
-      "t64Value\022<\n\013float_value\030\026 \001(\0132\033.google.p" +
-      "rotobuf.FloatValueR\nfloatValue\022?\n\014double" +
-      "_value\030\027 \001(\0132\034.google.protobuf.DoubleVal" +
-      "ueR\013doubleValue\0229\n\nbool_value\030\030 \001(\0132\032.go" +
-      "ogle.protobuf.BoolValueR\tboolValue\022?\n\014st" +
-      "ring_value\030\031 \001(\0132\034.google.protobuf.Strin" +
-      "gValueR\013stringValue\022<\n\013bytes_value\030\037 \001(\013" +
-      "2\033.google.protobuf.BytesValueR\nbytesValu" +
-      "e\022W\n\020map_int32_string\030  \003(\0132-.order.v1.E" +
-      "verythingModel.MapInt32StringEntryR\016mapI" +
-      "nt32String\022W\n\020map_int64_string\030\" \003(\0132-.o" +
-      "rder.v1.EverythingModel.MapInt64StringEn" +
-      "tryR\016mapInt64String\022T\n\017map_bool_string\030," +
-      " \003(\0132,.order.v1.EverythingModel.MapBoolS" +
-      "tringEntryR\rmapBoolString\022Z\n\021map_string_" +
-      "string\030- \003(\0132..order.v1.EverythingModel." +
-      "MapStringStringEntryR\017mapStringString\022W\n" +
-      "\020map_string_bytes\030. \003(\0132-.order.v1.Every" +
-      "thingModel.MapStringBytesEntryR\016mapStrin" +
-      "gBytes\022;\n\007message\0302 \001(\0132!.order.v1.Every" +
-      "thingModel.MessageR\007message\022L\n\020repeated_" +
-      "message\0303 \003(\0132!.order.v1.EverythingModel" +
-      ".MessageR\017repeatedMessage\022]\n\022map_string_" +
-      "message\0304 \003(\0132/.order.v1.EverythingModel" +
-      ".MapStringMessageEntryR\020mapStringMessage" +
-      "\0222\n\004enum\030< \001(\0162\036.order.v1.EverythingMode" +
-      "l.EnumR\004enum\022H\n\roptional_enum\030> \001(\0162\036.or" +
-      "der.v1.EverythingModel.EnumH\000R\014optionalE" +
-      "num\210\001\001\022C\n\rrepeated_enum\030= \003(\0162\036.order.v1" +
-      ".EverythingModel.EnumR\014repeatedEnum\022T\n\017m" +
-      "ap_string_enum\030? \003(\0132,.order.v1.Everythi" +
-      "ngModel.MapStringEnumEntryR\rmapStringEnu" +
-      "m\0226\n\013time_of_day\030F \001(\0132\026.google.type.Tim" +
-      "eOfDayR\ttimeOfDay\022%\n\004date\030G \001(\0132\021.google" +
-      ".type.DateR\004date\0226\n\013day_of_week\030I \001(\0162\026." +
-      "google.type.DayOfWeekR\tdayOfWeek\022(\n\005mont" +
-      "h\030J \001(\0162\022.google.type.MonthR\005month\032A\n\023Ma" +
-      "pInt32StringEntry\022\020\n\003key\030\001 \001(\005R\003key\022\024\n\005v" +
-      "alue\030\002 \001(\tR\005value:\0028\001\032A\n\023MapInt64StringE" +
-      "ntry\022\020\n\003key\030\001 \001(\003R\003key\022\024\n\005value\030\002 \001(\tR\005v" +
-      "alue:\0028\001\032@\n\022MapBoolStringEntry\022\020\n\003key\030\001 " +
-      "\001(\010R\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032B\n\024Ma" +
-      "pStringStringEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005" +
-      "value\030\002 \001(\tR\005value:\0028\001\032A\n\023MapStringBytes" +
-      "Entry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\014R\005" +
-      "value:\0028\001\032f\n\025MapStringMessageEntry\022\020\n\003ke" +
-      "y\030\001 \001(\tR\003key\0227\n\005value\030\002 \001(\0132!.order.v1.E" +
-      "verythingModel.MessageR\005value:\0028\001\032`\n\022Map" +
-      "StringEnumEntry\022\020\n\003key\030\001 \001(\tR\003key\0224\n\005val" +
-      "ue\030\002 \001(\0162\036.order.v1.EverythingModel.Enum" +
-      "R\005value:\0028\001\032-\n\007Message\022\016\n\002id\030\001 \001(\003R\002id\022\022" +
-      "\n\004name\030\002 \001(\tR\004name\"@\n\004Enum\022\024\n\020ENUM_UNSPE" +
-      "CIFIED\020\000\022\020\n\014ENUM_VALUE_1\020\001\022\020\n\014ENUM_VALUE" +
-      "_2\020\002B\020\n\016_optional_enumB_\n\027monorepo.proto" +
-      ".order.v1P\001ZBgithub.com/yourorg/monorepo" +
-      "/packages/proto-gen-go/order/v1;orderv1b" +
-      "\006proto3"
+      "uf/duration.proto\032\036google/protobuf/wrapp" +
+      "ers.proto\032\033google/type/timeofday.proto\032\026" +
+      "google/type/date.proto\032\032google/type/date" +
+      "time.proto\032\033google/type/dayofweek.proto\032" +
+      "\027google/type/month.proto\"\226\002\n\nOrderModel\022" +
+      "\016\n\002id\030\001 \001(\003R\002id\022\031\n\010item_ids\030\002 \003(\003R\007itemI" +
+      "ds\022\035\n\nitem_names\030\003 \003(\tR\titemNames\022D\n\natt" +
+      "ributes\030\004 \003(\0132$.order.v1.OrderModel.Attr" +
+      "ibutesEntryR\nattributes\0229\n\ncreated_at\030\005 " +
+      "\001(\0132\032.google.protobuf.TimestampR\tcreated" +
+      "At\032=\n\017AttributesEntry\022\020\n\003key\030\001 \001(\tR\003key\022" +
+      "\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\203\026\n\017Everything" +
+      "Model\022\024\n\005int32\030\001 \001(\005R\005int32\022\024\n\005int64\030\003 \001" +
+      "(\003R\005int64\022\024\n\005float\030\013 \001(\002R\005float\022\026\n\006doubl" +
+      "e\030\014 \001(\001R\006double\022\022\n\004bool\030\r \001(\010R\004bool\022\026\n\006s" +
+      "tring\030\016 \001(\tR\006string\022\024\n\005bytes\030\017 \001(\014R\005byte" +
+      "s\022%\n\016repeated_int32\030\020 \003(\005R\rrepeatedInt32" +
+      "\022%\n\016repeated_int64\030\022 \003(\003R\rrepeatedInt64\022" +
+      "%\n\016repeated_float\030\032 \003(\002R\rrepeatedFloat\022\'" +
+      "\n\017repeated_double\030\033 \003(\001R\016repeatedDouble\022" +
+      "#\n\rrepeated_bool\030\034 \003(\010R\014repeatedBool\022\'\n\017" +
+      "repeated_string\030\035 \003(\tR\016repeatedString\022%\n" +
+      "\016repeated_bytes\030\036 \003(\014R\rrepeatedBytes\022<\n\013" +
+      "int32_value\030\024 \001(\0132\033.google.protobuf.Int3" +
+      "2ValueR\nint32Value\022<\n\013int64_value\030\025 \001(\0132" +
+      "\033.google.protobuf.Int64ValueR\nint64Value" +
+      "\022<\n\013float_value\030\026 \001(\0132\033.google.protobuf." +
+      "FloatValueR\nfloatValue\022?\n\014double_value\030\027" +
+      " \001(\0132\034.google.protobuf.DoubleValueR\013doub" +
+      "leValue\0229\n\nbool_value\030\030 \001(\0132\032.google.pro" +
+      "tobuf.BoolValueR\tboolValue\022?\n\014string_val" +
+      "ue\030\031 \001(\0132\034.google.protobuf.StringValueR\013" +
+      "stringValue\022<\n\013bytes_value\030\037 \001(\0132\033.googl" +
+      "e.protobuf.BytesValueR\nbytesValue\022W\n\020map" +
+      "_int32_string\030  \003(\0132-.order.v1.Everythin" +
+      "gModel.MapInt32StringEntryR\016mapInt32Stri" +
+      "ng\022W\n\020map_int64_string\030\" \003(\0132-.order.v1." +
+      "EverythingModel.MapInt64StringEntryR\016map" +
+      "Int64String\022T\n\017map_bool_string\030, \003(\0132,.o" +
+      "rder.v1.EverythingModel.MapBoolStringEnt" +
+      "ryR\rmapBoolString\022Z\n\021map_string_string\030-" +
+      " \003(\0132..order.v1.EverythingModel.MapStrin" +
+      "gStringEntryR\017mapStringString\022W\n\020map_str" +
+      "ing_bytes\030. \003(\0132-.order.v1.EverythingMod" +
+      "el.MapStringBytesEntryR\016mapStringBytes\022;" +
+      "\n\007message\0302 \001(\0132!.order.v1.EverythingMod" +
+      "el.MessageR\007message\022L\n\020repeated_message\030" +
+      "3 \003(\0132!.order.v1.EverythingModel.Message" +
+      "R\017repeatedMessage\022]\n\022map_string_message\030" +
+      "4 \003(\0132/.order.v1.EverythingModel.MapStri" +
+      "ngMessageEntryR\020mapStringMessage\0222\n\004enum" +
+      "\030< \001(\0162\036.order.v1.EverythingModel.EnumR\004" +
+      "enum\022H\n\roptional_enum\030> \001(\0162\036.order.v1.E" +
+      "verythingModel.EnumH\000R\014optionalEnum\210\001\001\022C" +
+      "\n\rrepeated_enum\030= \003(\0162\036.order.v1.Everyth" +
+      "ingModel.EnumR\014repeatedEnum\022T\n\017map_strin" +
+      "g_enum\030? \003(\0132,.order.v1.EverythingModel." +
+      "MapStringEnumEntryR\rmapStringEnum\0228\n\ttim" +
+      "estamp\030A \001(\0132\032.google.protobuf.Timestamp" +
+      "R\ttimestamp\0225\n\010duration\030B \001(\0132\031.google.p" +
+      "rotobuf.DurationR\010duration\0226\n\013time_of_da" +
+      "y\030F \001(\0132\026.google.type.TimeOfDayR\ttimeOfD" +
+      "ay\022%\n\004date\030G \001(\0132\021.google.type.DateR\004dat" +
+      "e\0226\n\013day_of_week\030I \001(\0162\026.google.type.Day" +
+      "OfWeekR\tdayOfWeek\022(\n\005month\030J \001(\0162\022.googl" +
+      "e.type.MonthR\005month\032A\n\023MapInt32StringEnt" +
+      "ry\022\020\n\003key\030\001 \001(\005R\003key\022\024\n\005value\030\002 \001(\tR\005val" +
+      "ue:\0028\001\032A\n\023MapInt64StringEntry\022\020\n\003key\030\001 \001" +
+      "(\003R\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032@\n\022Map" +
+      "BoolStringEntry\022\020\n\003key\030\001 \001(\010R\003key\022\024\n\005val" +
+      "ue\030\002 \001(\tR\005value:\0028\001\032B\n\024MapStringStringEn" +
+      "try\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005va" +
+      "lue:\0028\001\032A\n\023MapStringBytesEntry\022\020\n\003key\030\001 " +
+      "\001(\tR\003key\022\024\n\005value\030\002 \001(\014R\005value:\0028\001\032f\n\025Ma" +
+      "pStringMessageEntry\022\020\n\003key\030\001 \001(\tR\003key\0227\n" +
+      "\005value\030\002 \001(\0132!.order.v1.EverythingModel." +
+      "MessageR\005value:\0028\001\032`\n\022MapStringEnumEntry" +
+      "\022\020\n\003key\030\001 \001(\tR\003key\0224\n\005value\030\002 \001(\0162\036.orde" +
+      "r.v1.EverythingModel.EnumR\005value:\0028\001\032-\n\007" +
+      "Message\022\016\n\002id\030\001 \001(\003R\002id\022\022\n\004name\030\002 \001(\tR\004n" +
+      "ame\"@\n\004Enum\022\024\n\020ENUM_UNSPECIFIED\020\000\022\020\n\014ENU" +
+      "M_VALUE_1\020\001\022\020\n\014ENUM_VALUE_2\020\002B\020\n\016_option" +
+      "al_enumB_\n\027monorepo.proto.order.v1P\001ZBgi" +
+      "thub.com/yourorg/monorepo/packages/proto" +
+      "-gen-go/order/v1;orderv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.TimestampProto.getDescriptor(),
+          com.google.protobuf.DurationProto.getDescriptor(),
           com.google.protobuf.WrappersProto.getDescriptor(),
           com.google.type.TimeOfDayProto.getDescriptor(),
           com.google.type.DateProto.getDescriptor(),
@@ -203,7 +207,7 @@ public final class Order extends com.google.protobuf.GeneratedFile {
     internal_static_order_v1_EverythingModel_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_order_v1_EverythingModel_descriptor,
-        new java.lang.String[] { "Int32", "Int64", "Float", "Double", "Bool", "String", "Bytes", "RepeatedInt32", "RepeatedInt64", "RepeatedFloat", "RepeatedDouble", "RepeatedBool", "RepeatedString", "RepeatedBytes", "Int32Value", "Int64Value", "FloatValue", "DoubleValue", "BoolValue", "StringValue", "BytesValue", "MapInt32String", "MapInt64String", "MapBoolString", "MapStringString", "MapStringBytes", "Message", "RepeatedMessage", "MapStringMessage", "Enum", "OptionalEnum", "RepeatedEnum", "MapStringEnum", "TimeOfDay", "Date", "DayOfWeek", "Month", });
+        new java.lang.String[] { "Int32", "Int64", "Float", "Double", "Bool", "String", "Bytes", "RepeatedInt32", "RepeatedInt64", "RepeatedFloat", "RepeatedDouble", "RepeatedBool", "RepeatedString", "RepeatedBytes", "Int32Value", "Int64Value", "FloatValue", "DoubleValue", "BoolValue", "StringValue", "BytesValue", "MapInt32String", "MapInt64String", "MapBoolString", "MapStringString", "MapStringBytes", "Message", "RepeatedMessage", "MapStringMessage", "Enum", "OptionalEnum", "RepeatedEnum", "MapStringEnum", "Timestamp", "Duration", "TimeOfDay", "Date", "DayOfWeek", "Month", });
     internal_static_order_v1_EverythingModel_MapInt32StringEntry_descriptor =
       internal_static_order_v1_EverythingModel_descriptor.getNestedType(0);
     internal_static_order_v1_EverythingModel_MapInt32StringEntry_fieldAccessorTable = new
@@ -254,6 +258,7 @@ public final class Order extends com.google.protobuf.GeneratedFile {
         new java.lang.String[] { "Id", "Name", });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.TimestampProto.getDescriptor();
+    com.google.protobuf.DurationProto.getDescriptor();
     com.google.protobuf.WrappersProto.getDescriptor();
     com.google.type.TimeOfDayProto.getDescriptor();
     com.google.type.DateProto.getDescriptor();

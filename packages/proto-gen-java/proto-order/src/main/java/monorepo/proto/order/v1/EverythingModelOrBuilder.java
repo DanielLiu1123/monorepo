@@ -647,6 +647,48 @@ monorepo.proto.order.v1.EverythingModel.Enum         defaultValue);
 
   /**
    * <pre>
+   * wellknown
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+   * @return Whether the timestamp field is set.
+   */
+  boolean hasTimestamp();
+  /**
+   * <pre>
+   * wellknown
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+   * @return The timestamp.
+   */
+  com.google.protobuf.Timestamp getTimestamp();
+  /**
+   * <pre>
+   * wellknown
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp = 65 [json_name = "timestamp"];</code>
+   */
+  com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder();
+
+  /**
+   * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+   * @return Whether the duration field is set.
+   */
+  boolean hasDuration();
+  /**
+   * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+   * @return The duration.
+   */
+  com.google.protobuf.Duration getDuration();
+  /**
+   * <code>.google.protobuf.Duration duration = 66 [json_name = "duration"];</code>
+   */
+  com.google.protobuf.DurationOrBuilder getDurationOrBuilder();
+
+  /**
+   * <pre>
    * google/type package
    * </pre>
    *
@@ -688,19 +730,11 @@ monorepo.proto.order.v1.EverythingModel.Enum         defaultValue);
   com.google.type.DateOrBuilder getDateOrBuilder();
 
   /**
-   * <pre>
-   * google.type.DateTime date_time = 72;
-   * </pre>
-   *
    * <code>.google.type.DayOfWeek day_of_week = 73 [json_name = "dayOfWeek"];</code>
    * @return The enum numeric value on the wire for dayOfWeek.
    */
   int getDayOfWeekValue();
   /**
-   * <pre>
-   * google.type.DateTime date_time = 72;
-   * </pre>
-   *
    * <code>.google.type.DayOfWeek day_of_week = 73 [json_name = "dayOfWeek"];</code>
    * @return The dayOfWeek.
    */
