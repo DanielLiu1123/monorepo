@@ -7,9 +7,15 @@
 package orderv1
 
 import (
+	date "google.golang.org/genproto/googleapis/type/date"
+	_ "google.golang.org/genproto/googleapis/type/datetime"
+	dayofweek "google.golang.org/genproto/googleapis/type/dayofweek"
+	month "google.golang.org/genproto/googleapis/type/month"
+	timeofday "google.golang.org/genproto/googleapis/type/timeofday"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -20,6 +26,50 @@ const (
 	// Verify that runtime/protoimpl is sufficiently up-to-date.
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
+
+type EverythingModel_Enum int32
+
+const (
+	EverythingModel_ENUM_UNSPECIFIED EverythingModel_Enum = 0
+	EverythingModel_ENUM_VALUE_1     EverythingModel_Enum = 1
+	EverythingModel_ENUM_VALUE_2     EverythingModel_Enum = 2
+)
+
+// Enum value maps for EverythingModel_Enum.
+var (
+	EverythingModel_Enum_name = map[int32]string{
+		0: "ENUM_UNSPECIFIED",
+		1: "ENUM_VALUE_1",
+		2: "ENUM_VALUE_2",
+	}
+	EverythingModel_Enum_value = map[string]int32{
+		"ENUM_UNSPECIFIED": 0,
+		"ENUM_VALUE_1":     1,
+		"ENUM_VALUE_2":     2,
+	}
+)
+
+func (x EverythingModel_Enum) Enum() *EverythingModel_Enum {
+	p := new(EverythingModel_Enum)
+	*p = x
+	return p
+}
+
+func (x EverythingModel_Enum) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (EverythingModel_Enum) Descriptor() protoreflect.EnumDescriptor {
+	return file_order_v1_order_proto_enumTypes[0].Descriptor()
+}
+
+func (EverythingModel_Enum) Type() protoreflect.EnumType {
+	return &file_order_v1_order_proto_enumTypes[0]
+}
+
+func (x EverythingModel_Enum) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
 
 type OrderModel struct {
 	state                 protoimpl.MessageState `protogen:"opaque.v1"`
@@ -145,48 +195,65 @@ func (b0 OrderModel_builder) Build() *OrderModel {
 	return m0
 }
 
-type Everything struct {
-	state                       protoimpl.MessageState         `protogen:"opaque.v1"`
-	xxx_hidden_Int32            int32                          `protobuf:"varint,1,opt,name=int32,proto3"`
-	xxx_hidden_Int64            int64                          `protobuf:"varint,3,opt,name=int64,proto3"`
-	xxx_hidden_Float            float32                        `protobuf:"fixed32,11,opt,name=float,proto3"`
-	xxx_hidden_Double           float64                        `protobuf:"fixed64,12,opt,name=double,proto3"`
-	xxx_hidden_Bool             bool                           `protobuf:"varint,13,opt,name=bool,proto3"`
-	xxx_hidden_String_          string                         `protobuf:"bytes,14,opt,name=string,proto3"`
-	xxx_hidden_Bytes            []byte                         `protobuf:"bytes,15,opt,name=bytes,proto3"`
-	xxx_hidden_RepeatedInt32    []int32                        `protobuf:"varint,16,rep,packed,name=repeated_int32,json=repeatedInt32,proto3"`
-	xxx_hidden_RepeatedInt64    []int64                        `protobuf:"varint,18,rep,packed,name=repeated_int64,json=repeatedInt64,proto3"`
-	xxx_hidden_RepeatedFloat    []float32                      `protobuf:"fixed32,26,rep,packed,name=repeated_float,json=repeatedFloat,proto3"`
-	xxx_hidden_RepeatedDouble   []float64                      `protobuf:"fixed64,27,rep,packed,name=repeated_double,json=repeatedDouble,proto3"`
-	xxx_hidden_RepeatedBool     []bool                         `protobuf:"varint,28,rep,packed,name=repeated_bool,json=repeatedBool,proto3"`
-	xxx_hidden_RepeatedString   []string                       `protobuf:"bytes,29,rep,name=repeated_string,json=repeatedString,proto3"`
-	xxx_hidden_RepeatedBytes    [][]byte                       `protobuf:"bytes,30,rep,name=repeated_bytes,json=repeatedBytes,proto3"`
-	xxx_hidden_MapInt32String   map[int32]string               `protobuf:"bytes,32,rep,name=map_int32_string,json=mapInt32String,proto3" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_MapInt64String   map[int64]string               `protobuf:"bytes,34,rep,name=map_int64_string,json=mapInt64String,proto3" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_MapBoolString    map[bool]string                `protobuf:"bytes,44,rep,name=map_bool_string,json=mapBoolString,proto3" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_MapStringString  map[string]string              `protobuf:"bytes,45,rep,name=map_string_string,json=mapStringString,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_MapStringBytes   map[string][]byte              `protobuf:"bytes,46,rep,name=map_string_bytes,json=mapStringBytes,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_Message          *Everything_Message            `protobuf:"bytes,50,opt,name=message,proto3"`
-	xxx_hidden_RepeatedMessage  *[]*Everything_Message         `protobuf:"bytes,51,rep,name=repeated_message,json=repeatedMessage,proto3"`
-	xxx_hidden_MapStringMessage map[string]*Everything_Message `protobuf:"bytes,52,rep,name=map_string_message,json=mapStringMessage,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+type EverythingModel struct {
+	state                       protoimpl.MessageState              `protogen:"opaque.v1"`
+	xxx_hidden_Int32            int32                               `protobuf:"varint,1,opt,name=int32,proto3"`
+	xxx_hidden_Int64            int64                               `protobuf:"varint,3,opt,name=int64,proto3"`
+	xxx_hidden_Float            float32                             `protobuf:"fixed32,11,opt,name=float,proto3"`
+	xxx_hidden_Double           float64                             `protobuf:"fixed64,12,opt,name=double,proto3"`
+	xxx_hidden_Bool             bool                                `protobuf:"varint,13,opt,name=bool,proto3"`
+	xxx_hidden_String_          string                              `protobuf:"bytes,14,opt,name=string,proto3"`
+	xxx_hidden_Bytes            []byte                              `protobuf:"bytes,15,opt,name=bytes,proto3"`
+	xxx_hidden_RepeatedInt32    []int32                             `protobuf:"varint,16,rep,packed,name=repeated_int32,json=repeatedInt32,proto3"`
+	xxx_hidden_RepeatedInt64    []int64                             `protobuf:"varint,18,rep,packed,name=repeated_int64,json=repeatedInt64,proto3"`
+	xxx_hidden_RepeatedFloat    []float32                           `protobuf:"fixed32,26,rep,packed,name=repeated_float,json=repeatedFloat,proto3"`
+	xxx_hidden_RepeatedDouble   []float64                           `protobuf:"fixed64,27,rep,packed,name=repeated_double,json=repeatedDouble,proto3"`
+	xxx_hidden_RepeatedBool     []bool                              `protobuf:"varint,28,rep,packed,name=repeated_bool,json=repeatedBool,proto3"`
+	xxx_hidden_RepeatedString   []string                            `protobuf:"bytes,29,rep,name=repeated_string,json=repeatedString,proto3"`
+	xxx_hidden_RepeatedBytes    [][]byte                            `protobuf:"bytes,30,rep,name=repeated_bytes,json=repeatedBytes,proto3"`
+	xxx_hidden_Int32Value       *wrapperspb.Int32Value              `protobuf:"bytes,20,opt,name=int32_value,json=int32Value,proto3"`
+	xxx_hidden_Int64Value       *wrapperspb.Int64Value              `protobuf:"bytes,21,opt,name=int64_value,json=int64Value,proto3"`
+	xxx_hidden_FloatValue       *wrapperspb.FloatValue              `protobuf:"bytes,22,opt,name=float_value,json=floatValue,proto3"`
+	xxx_hidden_DoubleValue      *wrapperspb.DoubleValue             `protobuf:"bytes,23,opt,name=double_value,json=doubleValue,proto3"`
+	xxx_hidden_BoolValue        *wrapperspb.BoolValue               `protobuf:"bytes,24,opt,name=bool_value,json=boolValue,proto3"`
+	xxx_hidden_StringValue      *wrapperspb.StringValue             `protobuf:"bytes,25,opt,name=string_value,json=stringValue,proto3"`
+	xxx_hidden_BytesValue       *wrapperspb.BytesValue              `protobuf:"bytes,31,opt,name=bytes_value,json=bytesValue,proto3"`
+	xxx_hidden_MapInt32String   map[int32]string                    `protobuf:"bytes,32,rep,name=map_int32_string,json=mapInt32String,proto3" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapInt64String   map[int64]string                    `protobuf:"bytes,34,rep,name=map_int64_string,json=mapInt64String,proto3" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapBoolString    map[bool]string                     `protobuf:"bytes,44,rep,name=map_bool_string,json=mapBoolString,proto3" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapStringString  map[string]string                   `protobuf:"bytes,45,rep,name=map_string_string,json=mapStringString,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapStringBytes   map[string][]byte                   `protobuf:"bytes,46,rep,name=map_string_bytes,json=mapStringBytes,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Message          *EverythingModel_Message            `protobuf:"bytes,50,opt,name=message,proto3"`
+	xxx_hidden_RepeatedMessage  *[]*EverythingModel_Message         `protobuf:"bytes,51,rep,name=repeated_message,json=repeatedMessage,proto3"`
+	xxx_hidden_MapStringMessage map[string]*EverythingModel_Message `protobuf:"bytes,52,rep,name=map_string_message,json=mapStringMessage,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Enum             EverythingModel_Enum                `protobuf:"varint,60,opt,name=enum,proto3,enum=order.v1.EverythingModel_Enum"`
+	xxx_hidden_OptionalEnum     EverythingModel_Enum                `protobuf:"varint,62,opt,name=optional_enum,json=optionalEnum,proto3,enum=order.v1.EverythingModel_Enum,oneof"`
+	xxx_hidden_RepeatedEnum     []EverythingModel_Enum              `protobuf:"varint,61,rep,packed,name=repeated_enum,json=repeatedEnum,proto3,enum=order.v1.EverythingModel_Enum"`
+	xxx_hidden_MapStringEnum    map[string]EverythingModel_Enum     `protobuf:"bytes,63,rep,name=map_string_enum,json=mapStringEnum,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=order.v1.EverythingModel_Enum"`
+	xxx_hidden_TimeOfDay        *timeofday.TimeOfDay                `protobuf:"bytes,70,opt,name=time_of_day,json=timeOfDay,proto3"`
+	xxx_hidden_Date             *date.Date                          `protobuf:"bytes,71,opt,name=date,proto3"`
+	xxx_hidden_DayOfWeek        dayofweek.DayOfWeek                 `protobuf:"varint,73,opt,name=day_of_week,json=dayOfWeek,proto3,enum=google.type.DayOfWeek"`
+	xxx_hidden_Month            month.Month                         `protobuf:"varint,74,opt,name=month,proto3,enum=google.type.Month"`
+	XXX_raceDetectHookData      protoimpl.RaceDetectHookData
+	XXX_presence                [2]uint32
 	unknownFields               protoimpl.UnknownFields
 	sizeCache                   protoimpl.SizeCache
 }
 
-func (x *Everything) Reset() {
-	*x = Everything{}
+func (x *EverythingModel) Reset() {
+	*x = EverythingModel{}
 	mi := &file_order_v1_order_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Everything) String() string {
+func (x *EverythingModel) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Everything) ProtoMessage() {}
+func (*EverythingModel) ProtoMessage() {}
 
-func (x *Everything) ProtoReflect() protoreflect.Message {
+func (x *EverythingModel) ProtoReflect() protoreflect.Message {
 	mi := &file_order_v1_order_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -198,147 +265,196 @@ func (x *Everything) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *Everything) GetInt32() int32 {
+func (x *EverythingModel) GetInt32() int32 {
 	if x != nil {
 		return x.xxx_hidden_Int32
 	}
 	return 0
 }
 
-func (x *Everything) GetInt64() int64 {
+func (x *EverythingModel) GetInt64() int64 {
 	if x != nil {
 		return x.xxx_hidden_Int64
 	}
 	return 0
 }
 
-func (x *Everything) GetFloat() float32 {
+func (x *EverythingModel) GetFloat() float32 {
 	if x != nil {
 		return x.xxx_hidden_Float
 	}
 	return 0
 }
 
-func (x *Everything) GetDouble() float64 {
+func (x *EverythingModel) GetDouble() float64 {
 	if x != nil {
 		return x.xxx_hidden_Double
 	}
 	return 0
 }
 
-func (x *Everything) GetBool() bool {
+func (x *EverythingModel) GetBool() bool {
 	if x != nil {
 		return x.xxx_hidden_Bool
 	}
 	return false
 }
 
-func (x *Everything) GetString() string {
+func (x *EverythingModel) GetString() string {
 	if x != nil {
 		return x.xxx_hidden_String_
 	}
 	return ""
 }
 
-func (x *Everything) GetBytes() []byte {
+func (x *EverythingModel) GetBytes() []byte {
 	if x != nil {
 		return x.xxx_hidden_Bytes
 	}
 	return nil
 }
 
-func (x *Everything) GetRepeatedInt32() []int32 {
+func (x *EverythingModel) GetRepeatedInt32() []int32 {
 	if x != nil {
 		return x.xxx_hidden_RepeatedInt32
 	}
 	return nil
 }
 
-func (x *Everything) GetRepeatedInt64() []int64 {
+func (x *EverythingModel) GetRepeatedInt64() []int64 {
 	if x != nil {
 		return x.xxx_hidden_RepeatedInt64
 	}
 	return nil
 }
 
-func (x *Everything) GetRepeatedFloat() []float32 {
+func (x *EverythingModel) GetRepeatedFloat() []float32 {
 	if x != nil {
 		return x.xxx_hidden_RepeatedFloat
 	}
 	return nil
 }
 
-func (x *Everything) GetRepeatedDouble() []float64 {
+func (x *EverythingModel) GetRepeatedDouble() []float64 {
 	if x != nil {
 		return x.xxx_hidden_RepeatedDouble
 	}
 	return nil
 }
 
-func (x *Everything) GetRepeatedBool() []bool {
+func (x *EverythingModel) GetRepeatedBool() []bool {
 	if x != nil {
 		return x.xxx_hidden_RepeatedBool
 	}
 	return nil
 }
 
-func (x *Everything) GetRepeatedString() []string {
+func (x *EverythingModel) GetRepeatedString() []string {
 	if x != nil {
 		return x.xxx_hidden_RepeatedString
 	}
 	return nil
 }
 
-func (x *Everything) GetRepeatedBytes() [][]byte {
+func (x *EverythingModel) GetRepeatedBytes() [][]byte {
 	if x != nil {
 		return x.xxx_hidden_RepeatedBytes
 	}
 	return nil
 }
 
-func (x *Everything) GetMapInt32String() map[int32]string {
+func (x *EverythingModel) GetInt32Value() *wrapperspb.Int32Value {
+	if x != nil {
+		return x.xxx_hidden_Int32Value
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetInt64Value() *wrapperspb.Int64Value {
+	if x != nil {
+		return x.xxx_hidden_Int64Value
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetFloatValue() *wrapperspb.FloatValue {
+	if x != nil {
+		return x.xxx_hidden_FloatValue
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetDoubleValue() *wrapperspb.DoubleValue {
+	if x != nil {
+		return x.xxx_hidden_DoubleValue
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetBoolValue() *wrapperspb.BoolValue {
+	if x != nil {
+		return x.xxx_hidden_BoolValue
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetStringValue() *wrapperspb.StringValue {
+	if x != nil {
+		return x.xxx_hidden_StringValue
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetBytesValue() *wrapperspb.BytesValue {
+	if x != nil {
+		return x.xxx_hidden_BytesValue
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetMapInt32String() map[int32]string {
 	if x != nil {
 		return x.xxx_hidden_MapInt32String
 	}
 	return nil
 }
 
-func (x *Everything) GetMapInt64String() map[int64]string {
+func (x *EverythingModel) GetMapInt64String() map[int64]string {
 	if x != nil {
 		return x.xxx_hidden_MapInt64String
 	}
 	return nil
 }
 
-func (x *Everything) GetMapBoolString() map[bool]string {
+func (x *EverythingModel) GetMapBoolString() map[bool]string {
 	if x != nil {
 		return x.xxx_hidden_MapBoolString
 	}
 	return nil
 }
 
-func (x *Everything) GetMapStringString() map[string]string {
+func (x *EverythingModel) GetMapStringString() map[string]string {
 	if x != nil {
 		return x.xxx_hidden_MapStringString
 	}
 	return nil
 }
 
-func (x *Everything) GetMapStringBytes() map[string][]byte {
+func (x *EverythingModel) GetMapStringBytes() map[string][]byte {
 	if x != nil {
 		return x.xxx_hidden_MapStringBytes
 	}
 	return nil
 }
 
-func (x *Everything) GetMessage() *Everything_Message {
+func (x *EverythingModel) GetMessage() *EverythingModel_Message {
 	if x != nil {
 		return x.xxx_hidden_Message
 	}
 	return nil
 }
 
-func (x *Everything) GetRepeatedMessage() []*Everything_Message {
+func (x *EverythingModel) GetRepeatedMessage() []*EverythingModel_Message {
 	if x != nil {
 		if x.xxx_hidden_RepeatedMessage != nil {
 			return *x.xxx_hidden_RepeatedMessage
@@ -347,116 +463,346 @@ func (x *Everything) GetRepeatedMessage() []*Everything_Message {
 	return nil
 }
 
-func (x *Everything) GetMapStringMessage() map[string]*Everything_Message {
+func (x *EverythingModel) GetMapStringMessage() map[string]*EverythingModel_Message {
 	if x != nil {
 		return x.xxx_hidden_MapStringMessage
 	}
 	return nil
 }
 
-func (x *Everything) SetInt32(v int32) {
+func (x *EverythingModel) GetEnum() EverythingModel_Enum {
+	if x != nil {
+		return x.xxx_hidden_Enum
+	}
+	return EverythingModel_ENUM_UNSPECIFIED
+}
+
+func (x *EverythingModel) GetOptionalEnum() EverythingModel_Enum {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 30) {
+			return x.xxx_hidden_OptionalEnum
+		}
+	}
+	return EverythingModel_ENUM_UNSPECIFIED
+}
+
+func (x *EverythingModel) GetRepeatedEnum() []EverythingModel_Enum {
+	if x != nil {
+		return x.xxx_hidden_RepeatedEnum
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetMapStringEnum() map[string]EverythingModel_Enum {
+	if x != nil {
+		return x.xxx_hidden_MapStringEnum
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetTimeOfDay() *timeofday.TimeOfDay {
+	if x != nil {
+		return x.xxx_hidden_TimeOfDay
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetDate() *date.Date {
+	if x != nil {
+		return x.xxx_hidden_Date
+	}
+	return nil
+}
+
+func (x *EverythingModel) GetDayOfWeek() dayofweek.DayOfWeek {
+	if x != nil {
+		return x.xxx_hidden_DayOfWeek
+	}
+	return dayofweek.DayOfWeek(0)
+}
+
+func (x *EverythingModel) GetMonth() month.Month {
+	if x != nil {
+		return x.xxx_hidden_Month
+	}
+	return month.Month(0)
+}
+
+func (x *EverythingModel) SetInt32(v int32) {
 	x.xxx_hidden_Int32 = v
 }
 
-func (x *Everything) SetInt64(v int64) {
+func (x *EverythingModel) SetInt64(v int64) {
 	x.xxx_hidden_Int64 = v
 }
 
-func (x *Everything) SetFloat(v float32) {
+func (x *EverythingModel) SetFloat(v float32) {
 	x.xxx_hidden_Float = v
 }
 
-func (x *Everything) SetDouble(v float64) {
+func (x *EverythingModel) SetDouble(v float64) {
 	x.xxx_hidden_Double = v
 }
 
-func (x *Everything) SetBool(v bool) {
+func (x *EverythingModel) SetBool(v bool) {
 	x.xxx_hidden_Bool = v
 }
 
-func (x *Everything) SetString(v string) {
+func (x *EverythingModel) SetString(v string) {
 	x.xxx_hidden_String_ = v
 }
 
-func (x *Everything) SetBytes(v []byte) {
+func (x *EverythingModel) SetBytes(v []byte) {
 	if v == nil {
 		v = []byte{}
 	}
 	x.xxx_hidden_Bytes = v
 }
 
-func (x *Everything) SetRepeatedInt32(v []int32) {
+func (x *EverythingModel) SetRepeatedInt32(v []int32) {
 	x.xxx_hidden_RepeatedInt32 = v
 }
 
-func (x *Everything) SetRepeatedInt64(v []int64) {
+func (x *EverythingModel) SetRepeatedInt64(v []int64) {
 	x.xxx_hidden_RepeatedInt64 = v
 }
 
-func (x *Everything) SetRepeatedFloat(v []float32) {
+func (x *EverythingModel) SetRepeatedFloat(v []float32) {
 	x.xxx_hidden_RepeatedFloat = v
 }
 
-func (x *Everything) SetRepeatedDouble(v []float64) {
+func (x *EverythingModel) SetRepeatedDouble(v []float64) {
 	x.xxx_hidden_RepeatedDouble = v
 }
 
-func (x *Everything) SetRepeatedBool(v []bool) {
+func (x *EverythingModel) SetRepeatedBool(v []bool) {
 	x.xxx_hidden_RepeatedBool = v
 }
 
-func (x *Everything) SetRepeatedString(v []string) {
+func (x *EverythingModel) SetRepeatedString(v []string) {
 	x.xxx_hidden_RepeatedString = v
 }
 
-func (x *Everything) SetRepeatedBytes(v [][]byte) {
+func (x *EverythingModel) SetRepeatedBytes(v [][]byte) {
 	x.xxx_hidden_RepeatedBytes = v
 }
 
-func (x *Everything) SetMapInt32String(v map[int32]string) {
+func (x *EverythingModel) SetInt32Value(v *wrapperspb.Int32Value) {
+	x.xxx_hidden_Int32Value = v
+}
+
+func (x *EverythingModel) SetInt64Value(v *wrapperspb.Int64Value) {
+	x.xxx_hidden_Int64Value = v
+}
+
+func (x *EverythingModel) SetFloatValue(v *wrapperspb.FloatValue) {
+	x.xxx_hidden_FloatValue = v
+}
+
+func (x *EverythingModel) SetDoubleValue(v *wrapperspb.DoubleValue) {
+	x.xxx_hidden_DoubleValue = v
+}
+
+func (x *EverythingModel) SetBoolValue(v *wrapperspb.BoolValue) {
+	x.xxx_hidden_BoolValue = v
+}
+
+func (x *EverythingModel) SetStringValue(v *wrapperspb.StringValue) {
+	x.xxx_hidden_StringValue = v
+}
+
+func (x *EverythingModel) SetBytesValue(v *wrapperspb.BytesValue) {
+	x.xxx_hidden_BytesValue = v
+}
+
+func (x *EverythingModel) SetMapInt32String(v map[int32]string) {
 	x.xxx_hidden_MapInt32String = v
 }
 
-func (x *Everything) SetMapInt64String(v map[int64]string) {
+func (x *EverythingModel) SetMapInt64String(v map[int64]string) {
 	x.xxx_hidden_MapInt64String = v
 }
 
-func (x *Everything) SetMapBoolString(v map[bool]string) {
+func (x *EverythingModel) SetMapBoolString(v map[bool]string) {
 	x.xxx_hidden_MapBoolString = v
 }
 
-func (x *Everything) SetMapStringString(v map[string]string) {
+func (x *EverythingModel) SetMapStringString(v map[string]string) {
 	x.xxx_hidden_MapStringString = v
 }
 
-func (x *Everything) SetMapStringBytes(v map[string][]byte) {
+func (x *EverythingModel) SetMapStringBytes(v map[string][]byte) {
 	x.xxx_hidden_MapStringBytes = v
 }
 
-func (x *Everything) SetMessage(v *Everything_Message) {
+func (x *EverythingModel) SetMessage(v *EverythingModel_Message) {
 	x.xxx_hidden_Message = v
 }
 
-func (x *Everything) SetRepeatedMessage(v []*Everything_Message) {
+func (x *EverythingModel) SetRepeatedMessage(v []*EverythingModel_Message) {
 	x.xxx_hidden_RepeatedMessage = &v
 }
 
-func (x *Everything) SetMapStringMessage(v map[string]*Everything_Message) {
+func (x *EverythingModel) SetMapStringMessage(v map[string]*EverythingModel_Message) {
 	x.xxx_hidden_MapStringMessage = v
 }
 
-func (x *Everything) HasMessage() bool {
+func (x *EverythingModel) SetEnum(v EverythingModel_Enum) {
+	x.xxx_hidden_Enum = v
+}
+
+func (x *EverythingModel) SetOptionalEnum(v EverythingModel_Enum) {
+	x.xxx_hidden_OptionalEnum = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 30, 37)
+}
+
+func (x *EverythingModel) SetRepeatedEnum(v []EverythingModel_Enum) {
+	x.xxx_hidden_RepeatedEnum = v
+}
+
+func (x *EverythingModel) SetMapStringEnum(v map[string]EverythingModel_Enum) {
+	x.xxx_hidden_MapStringEnum = v
+}
+
+func (x *EverythingModel) SetTimeOfDay(v *timeofday.TimeOfDay) {
+	x.xxx_hidden_TimeOfDay = v
+}
+
+func (x *EverythingModel) SetDate(v *date.Date) {
+	x.xxx_hidden_Date = v
+}
+
+func (x *EverythingModel) SetDayOfWeek(v dayofweek.DayOfWeek) {
+	x.xxx_hidden_DayOfWeek = v
+}
+
+func (x *EverythingModel) SetMonth(v month.Month) {
+	x.xxx_hidden_Month = v
+}
+
+func (x *EverythingModel) HasInt32Value() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Int32Value != nil
+}
+
+func (x *EverythingModel) HasInt64Value() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Int64Value != nil
+}
+
+func (x *EverythingModel) HasFloatValue() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_FloatValue != nil
+}
+
+func (x *EverythingModel) HasDoubleValue() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_DoubleValue != nil
+}
+
+func (x *EverythingModel) HasBoolValue() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_BoolValue != nil
+}
+
+func (x *EverythingModel) HasStringValue() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_StringValue != nil
+}
+
+func (x *EverythingModel) HasBytesValue() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_BytesValue != nil
+}
+
+func (x *EverythingModel) HasMessage() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_Message != nil
 }
 
-func (x *Everything) ClearMessage() {
+func (x *EverythingModel) HasOptionalEnum() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 30)
+}
+
+func (x *EverythingModel) HasTimeOfDay() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_TimeOfDay != nil
+}
+
+func (x *EverythingModel) HasDate() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Date != nil
+}
+
+func (x *EverythingModel) ClearInt32Value() {
+	x.xxx_hidden_Int32Value = nil
+}
+
+func (x *EverythingModel) ClearInt64Value() {
+	x.xxx_hidden_Int64Value = nil
+}
+
+func (x *EverythingModel) ClearFloatValue() {
+	x.xxx_hidden_FloatValue = nil
+}
+
+func (x *EverythingModel) ClearDoubleValue() {
+	x.xxx_hidden_DoubleValue = nil
+}
+
+func (x *EverythingModel) ClearBoolValue() {
+	x.xxx_hidden_BoolValue = nil
+}
+
+func (x *EverythingModel) ClearStringValue() {
+	x.xxx_hidden_StringValue = nil
+}
+
+func (x *EverythingModel) ClearBytesValue() {
+	x.xxx_hidden_BytesValue = nil
+}
+
+func (x *EverythingModel) ClearMessage() {
 	x.xxx_hidden_Message = nil
 }
 
-type Everything_builder struct {
+func (x *EverythingModel) ClearOptionalEnum() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 30)
+	x.xxx_hidden_OptionalEnum = EverythingModel_ENUM_UNSPECIFIED
+}
+
+func (x *EverythingModel) ClearTimeOfDay() {
+	x.xxx_hidden_TimeOfDay = nil
+}
+
+func (x *EverythingModel) ClearDate() {
+	x.xxx_hidden_Date = nil
+}
+
+type EverythingModel_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Int32            int32
@@ -473,18 +819,35 @@ type Everything_builder struct {
 	RepeatedBool     []bool
 	RepeatedString   []string
 	RepeatedBytes    [][]byte
+	Int32Value       *wrapperspb.Int32Value
+	Int64Value       *wrapperspb.Int64Value
+	FloatValue       *wrapperspb.FloatValue
+	DoubleValue      *wrapperspb.DoubleValue
+	BoolValue        *wrapperspb.BoolValue
+	StringValue      *wrapperspb.StringValue
+	BytesValue       *wrapperspb.BytesValue
 	MapInt32String   map[int32]string
 	MapInt64String   map[int64]string
 	MapBoolString    map[bool]string
 	MapStringString  map[string]string
 	MapStringBytes   map[string][]byte
-	Message          *Everything_Message
-	RepeatedMessage  []*Everything_Message
-	MapStringMessage map[string]*Everything_Message
+	Message          *EverythingModel_Message
+	RepeatedMessage  []*EverythingModel_Message
+	MapStringMessage map[string]*EverythingModel_Message
+	Enum             EverythingModel_Enum
+	OptionalEnum     *EverythingModel_Enum
+	RepeatedEnum     []EverythingModel_Enum
+	MapStringEnum    map[string]EverythingModel_Enum
+	// google/type package
+	TimeOfDay *timeofday.TimeOfDay
+	Date      *date.Date
+	// google.type.DateTime date_time = 72;
+	DayOfWeek dayofweek.DayOfWeek
+	Month     month.Month
 }
 
-func (b0 Everything_builder) Build() *Everything {
-	m0 := &Everything{}
+func (b0 EverythingModel_builder) Build() *EverythingModel {
+	m0 := &EverythingModel{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Int32 = b.Int32
@@ -501,6 +864,13 @@ func (b0 Everything_builder) Build() *Everything {
 	x.xxx_hidden_RepeatedBool = b.RepeatedBool
 	x.xxx_hidden_RepeatedString = b.RepeatedString
 	x.xxx_hidden_RepeatedBytes = b.RepeatedBytes
+	x.xxx_hidden_Int32Value = b.Int32Value
+	x.xxx_hidden_Int64Value = b.Int64Value
+	x.xxx_hidden_FloatValue = b.FloatValue
+	x.xxx_hidden_DoubleValue = b.DoubleValue
+	x.xxx_hidden_BoolValue = b.BoolValue
+	x.xxx_hidden_StringValue = b.StringValue
+	x.xxx_hidden_BytesValue = b.BytesValue
 	x.xxx_hidden_MapInt32String = b.MapInt32String
 	x.xxx_hidden_MapInt64String = b.MapInt64String
 	x.xxx_hidden_MapBoolString = b.MapBoolString
@@ -509,10 +879,21 @@ func (b0 Everything_builder) Build() *Everything {
 	x.xxx_hidden_Message = b.Message
 	x.xxx_hidden_RepeatedMessage = &b.RepeatedMessage
 	x.xxx_hidden_MapStringMessage = b.MapStringMessage
+	x.xxx_hidden_Enum = b.Enum
+	if b.OptionalEnum != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 30, 37)
+		x.xxx_hidden_OptionalEnum = *b.OptionalEnum
+	}
+	x.xxx_hidden_RepeatedEnum = b.RepeatedEnum
+	x.xxx_hidden_MapStringEnum = b.MapStringEnum
+	x.xxx_hidden_TimeOfDay = b.TimeOfDay
+	x.xxx_hidden_Date = b.Date
+	x.xxx_hidden_DayOfWeek = b.DayOfWeek
+	x.xxx_hidden_Month = b.Month
 	return m0
 }
 
-type Everything_Message struct {
+type EverythingModel_Message struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id   int64                  `protobuf:"varint,1,opt,name=id,proto3"`
 	xxx_hidden_Name string                 `protobuf:"bytes,2,opt,name=name,proto3"`
@@ -520,21 +901,21 @@ type Everything_Message struct {
 	sizeCache       protoimpl.SizeCache
 }
 
-func (x *Everything_Message) Reset() {
-	*x = Everything_Message{}
-	mi := &file_order_v1_order_proto_msgTypes[9]
+func (x *EverythingModel_Message) Reset() {
+	*x = EverythingModel_Message{}
+	mi := &file_order_v1_order_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Everything_Message) String() string {
+func (x *EverythingModel_Message) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Everything_Message) ProtoMessage() {}
+func (*EverythingModel_Message) ProtoMessage() {}
 
-func (x *Everything_Message) ProtoReflect() protoreflect.Message {
-	mi := &file_order_v1_order_proto_msgTypes[9]
+func (x *EverythingModel_Message) ProtoReflect() protoreflect.Message {
+	mi := &file_order_v1_order_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -545,37 +926,37 @@ func (x *Everything_Message) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *Everything_Message) GetId() int64 {
+func (x *EverythingModel_Message) GetId() int64 {
 	if x != nil {
 		return x.xxx_hidden_Id
 	}
 	return 0
 }
 
-func (x *Everything_Message) GetName() string {
+func (x *EverythingModel_Message) GetName() string {
 	if x != nil {
 		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
-func (x *Everything_Message) SetId(v int64) {
+func (x *EverythingModel_Message) SetId(v int64) {
 	x.xxx_hidden_Id = v
 }
 
-func (x *Everything_Message) SetName(v string) {
+func (x *EverythingModel_Message) SetName(v string) {
 	x.xxx_hidden_Name = v
 }
 
-type Everything_Message_builder struct {
+type EverythingModel_Message_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Id   int64
 	Name string
 }
 
-func (b0 Everything_Message_builder) Build() *Everything_Message {
-	m0 := &Everything_Message{}
+func (b0 EverythingModel_Message_builder) Build() *EverythingModel_Message {
+	m0 := &EverythingModel_Message{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Id = b.Id
@@ -587,7 +968,7 @@ var File_order_v1_order_proto protoreflect.FileDescriptor
 
 const file_order_v1_order_proto_rawDesc = "" +
 	"\n" +
-	"\x14order/v1/order.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x96\x02\n" +
+	"\x14order/v1/order.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1bgoogle/type/timeofday.proto\x1a\x16google/type/date.proto\x1a\x1agoogle/type/datetime.proto\x1a\x1bgoogle/type/dayofweek.proto\x1a\x17google/type/month.proto\"\x96\x02\n" +
 	"\n" +
 	"OrderModel\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
@@ -601,9 +982,8 @@ const file_order_v1_order_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x1a=\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x9b\f\n" +
-	"\n" +
-	"Everything\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x92\x15\n" +
+	"\x0fEverythingModel\x12\x14\n" +
 	"\x05int32\x18\x01 \x01(\x05R\x05int32\x12\x14\n" +
 	"\x05int64\x18\x03 \x01(\x03R\x05int64\x12\x14\n" +
 	"\x05float\x18\v \x01(\x02R\x05float\x12\x16\n" +
@@ -617,15 +997,35 @@ const file_order_v1_order_proto_rawDesc = "" +
 	"\x0frepeated_double\x18\x1b \x03(\x01R\x0erepeatedDouble\x12#\n" +
 	"\rrepeated_bool\x18\x1c \x03(\bR\frepeatedBool\x12'\n" +
 	"\x0frepeated_string\x18\x1d \x03(\tR\x0erepeatedString\x12%\n" +
-	"\x0erepeated_bytes\x18\x1e \x03(\fR\rrepeatedBytes\x12R\n" +
-	"\x10map_int32_string\x18  \x03(\v2(.order.v1.Everything.MapInt32StringEntryR\x0emapInt32String\x12R\n" +
-	"\x10map_int64_string\x18\" \x03(\v2(.order.v1.Everything.MapInt64StringEntryR\x0emapInt64String\x12O\n" +
-	"\x0fmap_bool_string\x18, \x03(\v2'.order.v1.Everything.MapBoolStringEntryR\rmapBoolString\x12U\n" +
-	"\x11map_string_string\x18- \x03(\v2).order.v1.Everything.MapStringStringEntryR\x0fmapStringString\x12R\n" +
-	"\x10map_string_bytes\x18. \x03(\v2(.order.v1.Everything.MapStringBytesEntryR\x0emapStringBytes\x126\n" +
-	"\amessage\x182 \x01(\v2\x1c.order.v1.Everything.MessageR\amessage\x12G\n" +
-	"\x10repeated_message\x183 \x03(\v2\x1c.order.v1.Everything.MessageR\x0frepeatedMessage\x12X\n" +
-	"\x12map_string_message\x184 \x03(\v2*.order.v1.Everything.MapStringMessageEntryR\x10mapStringMessage\x1aA\n" +
+	"\x0erepeated_bytes\x18\x1e \x03(\fR\rrepeatedBytes\x12<\n" +
+	"\vint32_value\x18\x14 \x01(\v2\x1b.google.protobuf.Int32ValueR\n" +
+	"int32Value\x12<\n" +
+	"\vint64_value\x18\x15 \x01(\v2\x1b.google.protobuf.Int64ValueR\n" +
+	"int64Value\x12<\n" +
+	"\vfloat_value\x18\x16 \x01(\v2\x1b.google.protobuf.FloatValueR\n" +
+	"floatValue\x12?\n" +
+	"\fdouble_value\x18\x17 \x01(\v2\x1c.google.protobuf.DoubleValueR\vdoubleValue\x129\n" +
+	"\n" +
+	"bool_value\x18\x18 \x01(\v2\x1a.google.protobuf.BoolValueR\tboolValue\x12?\n" +
+	"\fstring_value\x18\x19 \x01(\v2\x1c.google.protobuf.StringValueR\vstringValue\x12<\n" +
+	"\vbytes_value\x18\x1f \x01(\v2\x1b.google.protobuf.BytesValueR\n" +
+	"bytesValue\x12W\n" +
+	"\x10map_int32_string\x18  \x03(\v2-.order.v1.EverythingModel.MapInt32StringEntryR\x0emapInt32String\x12W\n" +
+	"\x10map_int64_string\x18\" \x03(\v2-.order.v1.EverythingModel.MapInt64StringEntryR\x0emapInt64String\x12T\n" +
+	"\x0fmap_bool_string\x18, \x03(\v2,.order.v1.EverythingModel.MapBoolStringEntryR\rmapBoolString\x12Z\n" +
+	"\x11map_string_string\x18- \x03(\v2..order.v1.EverythingModel.MapStringStringEntryR\x0fmapStringString\x12W\n" +
+	"\x10map_string_bytes\x18. \x03(\v2-.order.v1.EverythingModel.MapStringBytesEntryR\x0emapStringBytes\x12;\n" +
+	"\amessage\x182 \x01(\v2!.order.v1.EverythingModel.MessageR\amessage\x12L\n" +
+	"\x10repeated_message\x183 \x03(\v2!.order.v1.EverythingModel.MessageR\x0frepeatedMessage\x12]\n" +
+	"\x12map_string_message\x184 \x03(\v2/.order.v1.EverythingModel.MapStringMessageEntryR\x10mapStringMessage\x122\n" +
+	"\x04enum\x18< \x01(\x0e2\x1e.order.v1.EverythingModel.EnumR\x04enum\x12H\n" +
+	"\roptional_enum\x18> \x01(\x0e2\x1e.order.v1.EverythingModel.EnumH\x00R\foptionalEnum\x88\x01\x01\x12C\n" +
+	"\rrepeated_enum\x18= \x03(\x0e2\x1e.order.v1.EverythingModel.EnumR\frepeatedEnum\x12T\n" +
+	"\x0fmap_string_enum\x18? \x03(\v2,.order.v1.EverythingModel.MapStringEnumEntryR\rmapStringEnum\x126\n" +
+	"\vtime_of_day\x18F \x01(\v2\x16.google.type.TimeOfDayR\ttimeOfDay\x12%\n" +
+	"\x04date\x18G \x01(\v2\x11.google.type.DateR\x04date\x126\n" +
+	"\vday_of_week\x18I \x01(\x0e2\x16.google.type.DayOfWeekR\tdayOfWeek\x12(\n" +
+	"\x05month\x18J \x01(\x0e2\x12.google.type.MonthR\x05month\x1aA\n" +
 	"\x13MapInt32StringEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aA\n" +
@@ -640,46 +1040,84 @@ const file_order_v1_order_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aA\n" +
 	"\x13MapStringBytesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\fR\x05value:\x028\x01\x1aa\n" +
+	"\x05value\x18\x02 \x01(\fR\x05value:\x028\x01\x1af\n" +
 	"\x15MapStringMessageEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x122\n" +
-	"\x05value\x18\x02 \x01(\v2\x1c.order.v1.Everything.MessageR\x05value:\x028\x01\x1a-\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x127\n" +
+	"\x05value\x18\x02 \x01(\v2!.order.v1.EverythingModel.MessageR\x05value:\x028\x01\x1a`\n" +
+	"\x12MapStringEnumEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x124\n" +
+	"\x05value\x18\x02 \x01(\x0e2\x1e.order.v1.EverythingModel.EnumR\x05value:\x028\x01\x1a-\n" +
 	"\aMessage\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04nameB_\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"@\n" +
+	"\x04Enum\x12\x14\n" +
+	"\x10ENUM_UNSPECIFIED\x10\x00\x12\x10\n" +
+	"\fENUM_VALUE_1\x10\x01\x12\x10\n" +
+	"\fENUM_VALUE_2\x10\x02B\x10\n" +
+	"\x0e_optional_enumB_\n" +
 	"\x17monorepo.proto.order.v1P\x01ZBgithub.com/yourorg/monorepo/packages/proto-gen-go/order/v1;orderv1b\x06proto3"
 
-var file_order_v1_order_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_order_v1_order_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_order_v1_order_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_order_v1_order_proto_goTypes = []any{
-	(*OrderModel)(nil),            // 0: order.v1.OrderModel
-	(*Everything)(nil),            // 1: order.v1.Everything
-	nil,                           // 2: order.v1.OrderModel.AttributesEntry
-	nil,                           // 3: order.v1.Everything.MapInt32StringEntry
-	nil,                           // 4: order.v1.Everything.MapInt64StringEntry
-	nil,                           // 5: order.v1.Everything.MapBoolStringEntry
-	nil,                           // 6: order.v1.Everything.MapStringStringEntry
-	nil,                           // 7: order.v1.Everything.MapStringBytesEntry
-	nil,                           // 8: order.v1.Everything.MapStringMessageEntry
-	(*Everything_Message)(nil),    // 9: order.v1.Everything.Message
-	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
+	(EverythingModel_Enum)(0),       // 0: order.v1.EverythingModel.Enum
+	(*OrderModel)(nil),              // 1: order.v1.OrderModel
+	(*EverythingModel)(nil),         // 2: order.v1.EverythingModel
+	nil,                             // 3: order.v1.OrderModel.AttributesEntry
+	nil,                             // 4: order.v1.EverythingModel.MapInt32StringEntry
+	nil,                             // 5: order.v1.EverythingModel.MapInt64StringEntry
+	nil,                             // 6: order.v1.EverythingModel.MapBoolStringEntry
+	nil,                             // 7: order.v1.EverythingModel.MapStringStringEntry
+	nil,                             // 8: order.v1.EverythingModel.MapStringBytesEntry
+	nil,                             // 9: order.v1.EverythingModel.MapStringMessageEntry
+	nil,                             // 10: order.v1.EverythingModel.MapStringEnumEntry
+	(*EverythingModel_Message)(nil), // 11: order.v1.EverythingModel.Message
+	(*timestamppb.Timestamp)(nil),   // 12: google.protobuf.Timestamp
+	(*wrapperspb.Int32Value)(nil),   // 13: google.protobuf.Int32Value
+	(*wrapperspb.Int64Value)(nil),   // 14: google.protobuf.Int64Value
+	(*wrapperspb.FloatValue)(nil),   // 15: google.protobuf.FloatValue
+	(*wrapperspb.DoubleValue)(nil),  // 16: google.protobuf.DoubleValue
+	(*wrapperspb.BoolValue)(nil),    // 17: google.protobuf.BoolValue
+	(*wrapperspb.StringValue)(nil),  // 18: google.protobuf.StringValue
+	(*wrapperspb.BytesValue)(nil),   // 19: google.protobuf.BytesValue
+	(*timeofday.TimeOfDay)(nil),     // 20: google.type.TimeOfDay
+	(*date.Date)(nil),               // 21: google.type.Date
+	(dayofweek.DayOfWeek)(0),        // 22: google.type.DayOfWeek
+	(month.Month)(0),                // 23: google.type.Month
 }
 var file_order_v1_order_proto_depIdxs = []int32{
-	2,  // 0: order.v1.OrderModel.attributes:type_name -> order.v1.OrderModel.AttributesEntry
-	10, // 1: order.v1.OrderModel.created_at:type_name -> google.protobuf.Timestamp
-	3,  // 2: order.v1.Everything.map_int32_string:type_name -> order.v1.Everything.MapInt32StringEntry
-	4,  // 3: order.v1.Everything.map_int64_string:type_name -> order.v1.Everything.MapInt64StringEntry
-	5,  // 4: order.v1.Everything.map_bool_string:type_name -> order.v1.Everything.MapBoolStringEntry
-	6,  // 5: order.v1.Everything.map_string_string:type_name -> order.v1.Everything.MapStringStringEntry
-	7,  // 6: order.v1.Everything.map_string_bytes:type_name -> order.v1.Everything.MapStringBytesEntry
-	9,  // 7: order.v1.Everything.message:type_name -> order.v1.Everything.Message
-	9,  // 8: order.v1.Everything.repeated_message:type_name -> order.v1.Everything.Message
-	8,  // 9: order.v1.Everything.map_string_message:type_name -> order.v1.Everything.MapStringMessageEntry
-	9,  // 10: order.v1.Everything.MapStringMessageEntry.value:type_name -> order.v1.Everything.Message
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	3,  // 0: order.v1.OrderModel.attributes:type_name -> order.v1.OrderModel.AttributesEntry
+	12, // 1: order.v1.OrderModel.created_at:type_name -> google.protobuf.Timestamp
+	13, // 2: order.v1.EverythingModel.int32_value:type_name -> google.protobuf.Int32Value
+	14, // 3: order.v1.EverythingModel.int64_value:type_name -> google.protobuf.Int64Value
+	15, // 4: order.v1.EverythingModel.float_value:type_name -> google.protobuf.FloatValue
+	16, // 5: order.v1.EverythingModel.double_value:type_name -> google.protobuf.DoubleValue
+	17, // 6: order.v1.EverythingModel.bool_value:type_name -> google.protobuf.BoolValue
+	18, // 7: order.v1.EverythingModel.string_value:type_name -> google.protobuf.StringValue
+	19, // 8: order.v1.EverythingModel.bytes_value:type_name -> google.protobuf.BytesValue
+	4,  // 9: order.v1.EverythingModel.map_int32_string:type_name -> order.v1.EverythingModel.MapInt32StringEntry
+	5,  // 10: order.v1.EverythingModel.map_int64_string:type_name -> order.v1.EverythingModel.MapInt64StringEntry
+	6,  // 11: order.v1.EverythingModel.map_bool_string:type_name -> order.v1.EverythingModel.MapBoolStringEntry
+	7,  // 12: order.v1.EverythingModel.map_string_string:type_name -> order.v1.EverythingModel.MapStringStringEntry
+	8,  // 13: order.v1.EverythingModel.map_string_bytes:type_name -> order.v1.EverythingModel.MapStringBytesEntry
+	11, // 14: order.v1.EverythingModel.message:type_name -> order.v1.EverythingModel.Message
+	11, // 15: order.v1.EverythingModel.repeated_message:type_name -> order.v1.EverythingModel.Message
+	9,  // 16: order.v1.EverythingModel.map_string_message:type_name -> order.v1.EverythingModel.MapStringMessageEntry
+	0,  // 17: order.v1.EverythingModel.enum:type_name -> order.v1.EverythingModel.Enum
+	0,  // 18: order.v1.EverythingModel.optional_enum:type_name -> order.v1.EverythingModel.Enum
+	0,  // 19: order.v1.EverythingModel.repeated_enum:type_name -> order.v1.EverythingModel.Enum
+	10, // 20: order.v1.EverythingModel.map_string_enum:type_name -> order.v1.EverythingModel.MapStringEnumEntry
+	20, // 21: order.v1.EverythingModel.time_of_day:type_name -> google.type.TimeOfDay
+	21, // 22: order.v1.EverythingModel.date:type_name -> google.type.Date
+	22, // 23: order.v1.EverythingModel.day_of_week:type_name -> google.type.DayOfWeek
+	23, // 24: order.v1.EverythingModel.month:type_name -> google.type.Month
+	11, // 25: order.v1.EverythingModel.MapStringMessageEntry.value:type_name -> order.v1.EverythingModel.Message
+	0,  // 26: order.v1.EverythingModel.MapStringEnumEntry.value:type_name -> order.v1.EverythingModel.Enum
+	27, // [27:27] is the sub-list for method output_type
+	27, // [27:27] is the sub-list for method input_type
+	27, // [27:27] is the sub-list for extension type_name
+	27, // [27:27] is the sub-list for extension extendee
+	0,  // [0:27] is the sub-list for field type_name
 }
 
 func init() { file_order_v1_order_proto_init() }
@@ -687,18 +1125,20 @@ func file_order_v1_order_proto_init() {
 	if File_order_v1_order_proto != nil {
 		return
 	}
+	file_order_v1_order_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_order_v1_order_proto_rawDesc), len(file_order_v1_order_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   10,
+			NumEnums:      1,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_order_v1_order_proto_goTypes,
 		DependencyIndexes: file_order_v1_order_proto_depIdxs,
+		EnumInfos:         file_order_v1_order_proto_enumTypes,
 		MessageInfos:      file_order_v1_order_proto_msgTypes,
 	}.Build()
 	File_order_v1_order_proto = out.File

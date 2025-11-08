@@ -16,6 +16,8 @@ dependencies {
 //    annotationProcessor project(":packages:lib-java:mapstruct-spi-protobuf")
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "com.google.testing.compile:compile-testing:+"
+    testImplementation "org.mapstruct:mapstruct-processor:1.7.0-SNAPSHOT"
 }
 
 bootJar {
