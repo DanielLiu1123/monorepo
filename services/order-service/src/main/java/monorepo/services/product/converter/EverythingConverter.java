@@ -29,5 +29,4 @@ public interface EverythingConverter {
     @Mapping(target = "double", source = "double_")
     @Mapping(target = "enum", source = "enum_")
     EverythingModel entityToModel(Everything entity);
-
 }
