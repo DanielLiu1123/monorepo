@@ -7,6 +7,7 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.BytesValue;
 import com.google.protobuf.DoubleValue;
 import com.google.protobuf.FloatValue;
+import com.google.protobuf.Int32Value;
 import com.google.protobuf.StringValue;
 import com.google.testing.compile.Compilation;
 import com.google.testing.compile.CompilationSubject;
@@ -22,7 +23,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import monorepo.proto.order.v1.EverythingModel;
+
+import monorepo.proto.order.v1.EverythingEdition2023;
+import monorepo.proto.order.v1.EverythingProto2;
+import monorepo.proto.order.v1.EverythingProto3;
 import monorepo.services.product.entity.Everything;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.ap.MappingProcessor;
@@ -142,10 +146,10 @@ class EverythingConverterTest {
         original.setMapStringBytes(mapStringBytes);
 
         // Message fields
-        original.setMessage(EverythingModel.Message.newBuilder()
-                .setId(999L)
-                .setName("test message")
-                .build());
+        Everything.Message message = new Everything.Message();
+        message.setId(999L);
+        message.setName("test message");
+        original.setMessage(message);
 
         Everything.Message msg1 = new Everything.Message();
         msg1.setId(1L);
@@ -163,13 +167,13 @@ class EverythingConverterTest {
         original.setMapStringMessage(mapStringMessage);
 
         // Enum fields
-        original.setEnum_(EverythingModel.Enum.ENUM_VALUE_1);
-        original.setOptionalEnum(EverythingModel.Enum.ENUM_VALUE_2.getNumber());
+        original.setEnum_(1);
+        original.setOptionalEnum(2);
         original.setRepeatedEnum(Arrays.asList("ENUM_VALUE_1", "ENUM_VALUE_2"));
 
         Map<String, Integer> mapStringEnum = new HashMap<>();
-        mapStringEnum.put("enum1", EverythingModel.Enum.ENUM_VALUE_1.getNumber());
-        mapStringEnum.put("enum2", EverythingModel.Enum.ENUM_VALUE_2.getNumber());
+        mapStringEnum.put("enum1", 1);
+        mapStringEnum.put("enum2", 2);
         original.setMapStringEnum(mapStringEnum);
 
         // Well-known types
@@ -182,13 +186,22 @@ class EverythingConverterTest {
         original.setDayOfWeek(DayOfWeek.MONDAY);
         original.setMonth(Month.JANUARY);
 
-        // Convert to EverythingModel
-        EverythingModel model = EverythingConverter.INSTANCE.entityToModel(original);
+        // Oneof
+        original.setOneofInt32(Int32Value.of(12345));
 
-        // Convert back to Everything
-        Everything result = EverythingConverter.INSTANCE.modelToEntity(model);
+        // Convert
+        EverythingProto3 proto3Message = EverythingConverter.INSTANCE.javaBeanToProto3(original);
+        Everything proto3Result = EverythingConverter.INSTANCE.proto3ToJavaBean(proto3Message);
+
+        EverythingProto2 proto2Message = EverythingConverter.INSTANCE.javaBeanToProto2(original);
+        Everything proto2Result = EverythingConverter.INSTANCE.proto2ToJavaBean(proto2Message);
+
+        EverythingEdition2023 edition2023Message = EverythingConverter.INSTANCE.javaBeanToEdition2023(original);
+        Everything edition2023Result = EverythingConverter.INSTANCE.edition2023ToJavaBean(edition2023Message);
 
         // Use AssertJ recursive comparison to verify equality
-        assertThat(result).isEqualTo(original);
+        assertThat(proto3Result).isEqualTo(original);
+        assertThat(proto2Result).isEqualTo(original);
+        assertThat(edition2023Result).isEqualTo(original);
     }
 }

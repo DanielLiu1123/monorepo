@@ -13,9 +13,9 @@ import "google/type/month.proto";
 option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/order/v1;orderv1";
 option java_package = "monorepo.proto.order.v1";
 option java_multiple_files = true;
-option java_outer_classname = "EverythingProto";
+option java_outer_classname = "EverythingProto3Proto";
 
-message EverythingModel {
+message EverythingProto3 {
   int32 int32 = 1;
   int64 int64 = 3;
   float float = 11;

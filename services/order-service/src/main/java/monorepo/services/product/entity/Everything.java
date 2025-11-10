@@ -17,7 +17,8 @@ import com.google.protobuf.FloatValue;
 import com.google.protobuf.Int32Value;
 import com.google.protobuf.StringValue;
 import lombok.Data;
-import monorepo.proto.order.v1.EverythingModel;
+import monorepo.proto.order.v1.EverythingProto3;
+//import monorepo.proto.order.v1.EverythingProto3;
 
 @Data
 public class Everything {
@@ -56,12 +57,12 @@ public class Everything {
     private Map<String, BytesValue> mapStringBytes;
 
     // message
-    private EverythingModel.Message message;
+    private Message message;
     private List<Message> repeatedMessage;
     private Map<StringValue, Message> mapStringMessage;
 
     // enum
-    private EverythingModel.Enum enum_;
+    private Integer enum_;
     private int optionalEnum;
     private List<String> repeatedEnum;
     private Map<String, Integer> mapStringEnum;
