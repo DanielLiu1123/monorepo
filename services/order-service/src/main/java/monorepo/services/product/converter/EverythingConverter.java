@@ -15,7 +15,7 @@ import org.mapstruct.factory.Mappers;
  * @author Freeman
  * @since 2025/11/8
  */
-@Mapper(nullValueCheckStrategy = ALWAYS, unmappedTargetPolicy = ERROR)
+@Mapper(nullValueCheckStrategy = ALWAYS, unmappedTargetPolicy = ERROR, unmappedSourcePolicy = ERROR)
 public interface EverythingConverter {
 
     EverythingConverter INSTANCE = Mappers.getMapper(EverythingConverter.class);
@@ -29,4 +29,6 @@ public interface EverythingConverter {
     @Mapping(target = "double", source = "double_")
     @Mapping(target = "enum", source = "enum_")
     EverythingModel entityToModel(Everything entity);
+
+    EverythingModel modelToModel(EverythingModel model);
 }

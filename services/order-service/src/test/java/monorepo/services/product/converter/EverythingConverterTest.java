@@ -52,7 +52,7 @@ class EverythingConverterTest {
                  * @author Freeman
                  * @since 2025/11/8
                  */
-                @Mapper(nullValueCheckStrategy = ALWAYS, unmappedTargetPolicy = ERROR)
+                @Mapper(nullValueCheckStrategy = ALWAYS, unmappedTargetPolicy = ERROR, unmappedSourcePolicy =  ERROR)
                 public interface EverythingConverter {
 
                     EverythingConverter INSTANCE = Mappers.getMapper(EverythingConverter.class);

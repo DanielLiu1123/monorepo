@@ -14,6 +14,7 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.BytesValue;
 import com.google.protobuf.DoubleValue;
 import com.google.protobuf.FloatValue;
+import com.google.protobuf.Int32Value;
 import com.google.protobuf.StringValue;
 import lombok.Data;
 import monorepo.proto.order.v1.EverythingModel;
@@ -74,6 +75,12 @@ public class Everything {
     private String date;
     private DayOfWeek dayOfWeek;
     private Month month;
+
+    // oneof
+    private Int32Value oneofInt32;
+    private StringValue oneofString;
+    private Integer oneofEnum;
+    private Message oneofMessage;
 
     @Data
     public static class Message {
