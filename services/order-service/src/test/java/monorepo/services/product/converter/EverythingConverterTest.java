@@ -23,7 +23,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 import monorepo.proto.order.v1.EverythingEdition2023;
 import monorepo.proto.order.v1.EverythingProto2;
 import monorepo.proto.order.v1.EverythingProto3;
@@ -44,18 +43,12 @@ class EverythingConverterTest {
                 import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
                 import static org.mapstruct.ReportingPolicy.ERROR;
 
-                import monorepo.proto.order.v1.EverythingModel;
+                import monorepo.proto.order.v1.EverythingProto3;
                 import monorepo.services.product.entity.Everything;
                 import org.mapstruct.Mapper;
                 import org.mapstruct.Mapping;
                 import org.mapstruct.factory.Mappers;
 
-                /**
-                 *
-                 *
-                 * @author Freeman
-                 * @since 2025/11/8
-                 */
                 @Mapper(nullValueCheckStrategy = ALWAYS, unmappedTargetPolicy = ERROR, unmappedSourcePolicy =  ERROR)
                 public interface EverythingConverter {
 
@@ -64,12 +57,12 @@ class EverythingConverterTest {
                     @Mapping(target = "float_", source = "float")
                     @Mapping(target = "double_", source = "double")
                     @Mapping(target = "enum_", source = "enum")
-                    Everything modelToEntity(EverythingModel model);
+                    Everything modelToEntity(EverythingProto3 model);
 
                     @Mapping(target = "float", source = "float_")
                     @Mapping(target = "double", source = "double_")
                     @Mapping(target = "enum", source = "enum_")
-                    EverythingModel entityToModel(Everything entity);
+                    EverythingProto3 entityToModel(Everything entity);
                 }
                 """);
 
@@ -189,7 +182,7 @@ class EverythingConverterTest {
         // Oneof
         original.setOneofInt32(Int32Value.of(12345));
 
-        // Convert
+        // Convert to Proto3, Proto2, and Edition2023 and back
         EverythingProto3 proto3Message = EverythingConverter.INSTANCE.javaBeanToProto3(original);
         Everything proto3Result = EverythingConverter.INSTANCE.proto3ToJavaBean(proto3Message);
 
@@ -199,9 +192,25 @@ class EverythingConverterTest {
         EverythingEdition2023 edition2023Message = EverythingConverter.INSTANCE.javaBeanToEdition2023(original);
         Everything edition2023Result = EverythingConverter.INSTANCE.edition2023ToJavaBean(edition2023Message);
 
+        // Update existing Proto messages from Java bean and back
+        EverythingProto2.Builder proto2Builder = EverythingProto2.newBuilder();
+        EverythingConverter.INSTANCE.updateProto2FromJavaBean(proto2Builder, original);
+        Everything proto2Updated = EverythingConverter.INSTANCE.proto2ToJavaBean(proto2Builder.build());
+
+        EverythingProto3.Builder proto3Builder = EverythingProto3.newBuilder();
+        EverythingConverter.INSTANCE.updateProto3FromJavaBean(proto3Builder, original);
+        Everything proto3Updated = EverythingConverter.INSTANCE.proto3ToJavaBean(proto3Builder.build());
+
+        EverythingEdition2023.Builder edition2023Builder = EverythingEdition2023.newBuilder();
+        EverythingConverter.INSTANCE.updateEdition2023FromJavaBean(edition2023Builder, original);
+        Everything edition2023Updated = EverythingConverter.INSTANCE.edition2023ToJavaBean(edition2023Builder.build());
+
         // Use AssertJ recursive comparison to verify equality
         assertThat(proto3Result).isEqualTo(original);
         assertThat(proto2Result).isEqualTo(original);
         assertThat(edition2023Result).isEqualTo(original);
+        assertThat(proto2Updated).isEqualTo(original);
+        assertThat(proto3Updated).isEqualTo(original);
+        assertThat(edition2023Updated).isEqualTo(original);
     }
 }
