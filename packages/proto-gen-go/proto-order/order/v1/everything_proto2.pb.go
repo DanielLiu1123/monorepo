@@ -72,51 +72,64 @@ func (x EverythingProto2_Enum) Number() protoreflect.EnumNumber {
 }
 
 type EverythingProto2 struct {
-	state                       protoimpl.MessageState               `protogen:"opaque.v1"`
-	xxx_hidden_Int32            int32                                `protobuf:"varint,1,req,name=int32"`
-	xxx_hidden_Int64            int64                                `protobuf:"varint,3,req,name=int64"`
-	xxx_hidden_Float            float32                              `protobuf:"fixed32,11,req,name=float"`
-	xxx_hidden_Double           float64                              `protobuf:"fixed64,12,req,name=double"`
-	xxx_hidden_Bool             bool                                 `protobuf:"varint,13,req,name=bool"`
-	xxx_hidden_String_          *string                              `protobuf:"bytes,14,req,name=string"`
-	xxx_hidden_Bytes            []byte                               `protobuf:"bytes,15,req,name=bytes"`
-	xxx_hidden_RepeatedInt32    []int32                              `protobuf:"varint,16,rep,name=repeated_int32,json=repeatedInt32"`
-	xxx_hidden_RepeatedInt64    []int64                              `protobuf:"varint,18,rep,name=repeated_int64,json=repeatedInt64"`
-	xxx_hidden_RepeatedFloat    []float32                            `protobuf:"fixed32,26,rep,name=repeated_float,json=repeatedFloat"`
-	xxx_hidden_RepeatedDouble   []float64                            `protobuf:"fixed64,27,rep,name=repeated_double,json=repeatedDouble"`
-	xxx_hidden_RepeatedBool     []bool                               `protobuf:"varint,28,rep,name=repeated_bool,json=repeatedBool"`
-	xxx_hidden_RepeatedString   []string                             `protobuf:"bytes,29,rep,name=repeated_string,json=repeatedString"`
-	xxx_hidden_RepeatedBytes    [][]byte                             `protobuf:"bytes,30,rep,name=repeated_bytes,json=repeatedBytes"`
-	xxx_hidden_Int32Value       *wrapperspb.Int32Value               `protobuf:"bytes,20,req,name=int32_value,json=int32Value"`
-	xxx_hidden_Int64Value       *wrapperspb.Int64Value               `protobuf:"bytes,21,req,name=int64_value,json=int64Value"`
-	xxx_hidden_FloatValue       *wrapperspb.FloatValue               `protobuf:"bytes,22,req,name=float_value,json=floatValue"`
-	xxx_hidden_DoubleValue      *wrapperspb.DoubleValue              `protobuf:"bytes,23,req,name=double_value,json=doubleValue"`
-	xxx_hidden_BoolValue        *wrapperspb.BoolValue                `protobuf:"bytes,24,req,name=bool_value,json=boolValue"`
-	xxx_hidden_StringValue      *wrapperspb.StringValue              `protobuf:"bytes,25,req,name=string_value,json=stringValue"`
-	xxx_hidden_BytesValue       *wrapperspb.BytesValue               `protobuf:"bytes,31,req,name=bytes_value,json=bytesValue"`
-	xxx_hidden_MapInt32String   map[int32]string                     `protobuf:"bytes,32,rep,name=map_int32_string,json=mapInt32String" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_MapInt64String   map[int64]string                     `protobuf:"bytes,34,rep,name=map_int64_string,json=mapInt64String" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_MapBoolString    map[bool]string                      `protobuf:"bytes,44,rep,name=map_bool_string,json=mapBoolString" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_MapStringString  map[string]string                    `protobuf:"bytes,45,rep,name=map_string_string,json=mapStringString" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_MapStringBytes   map[string][]byte                    `protobuf:"bytes,46,rep,name=map_string_bytes,json=mapStringBytes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_Message          *EverythingProto2_Message            `protobuf:"bytes,50,req,name=message"`
-	xxx_hidden_RepeatedMessage  *[]*EverythingProto2_Message         `protobuf:"bytes,51,rep,name=repeated_message,json=repeatedMessage"`
-	xxx_hidden_MapStringMessage map[string]*EverythingProto2_Message `protobuf:"bytes,52,rep,name=map_string_message,json=mapStringMessage" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_Enum             EverythingProto2_Enum                `protobuf:"varint,60,req,name=enum,enum=order.v1.EverythingProto2_Enum"`
-	xxx_hidden_OptionalEnum     EverythingProto2_Enum                `protobuf:"varint,62,opt,name=optional_enum,json=optionalEnum,enum=order.v1.EverythingProto2_Enum"`
-	xxx_hidden_RepeatedEnum     []EverythingProto2_Enum              `protobuf:"varint,61,rep,name=repeated_enum,json=repeatedEnum,enum=order.v1.EverythingProto2_Enum"`
-	xxx_hidden_MapStringEnum    map[string]EverythingProto2_Enum     `protobuf:"bytes,63,rep,name=map_string_enum,json=mapStringEnum" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=order.v1.EverythingProto2_Enum"`
-	xxx_hidden_Timestamp        *timestamppb.Timestamp               `protobuf:"bytes,65,req,name=timestamp"`
-	xxx_hidden_Duration         *durationpb.Duration                 `protobuf:"bytes,66,req,name=duration"`
-	xxx_hidden_TimeOfDay        *timeofday.TimeOfDay                 `protobuf:"bytes,70,req,name=time_of_day,json=timeOfDay"`
-	xxx_hidden_Date             *date.Date                           `protobuf:"bytes,71,req,name=date"`
-	xxx_hidden_DayOfWeek        dayofweek.DayOfWeek                  `protobuf:"varint,73,req,name=day_of_week,json=dayOfWeek,enum=google.type.DayOfWeek"`
-	xxx_hidden_Month            month.Month                          `protobuf:"varint,74,req,name=month,enum=google.type.Month"`
-	xxx_hidden_Oneof            isEverythingProto2_Oneof             `protobuf_oneof:"oneof"`
-	XXX_raceDetectHookData      protoimpl.RaceDetectHookData
-	XXX_presence                [2]uint32
-	unknownFields               protoimpl.UnknownFields
-	sizeCache                   protoimpl.SizeCache
+	state                               protoimpl.MessageState               `protogen:"opaque.v1"`
+	xxx_hidden_Int32                    int32                                `protobuf:"varint,1,req,name=int32"`
+	xxx_hidden_Int64                    int64                                `protobuf:"varint,3,req,name=int64"`
+	xxx_hidden_Float                    float32                              `protobuf:"fixed32,11,req,name=float"`
+	xxx_hidden_Double                   float64                              `protobuf:"fixed64,12,req,name=double"`
+	xxx_hidden_Bool                     bool                                 `protobuf:"varint,13,req,name=bool"`
+	xxx_hidden_String_                  *string                              `protobuf:"bytes,14,req,name=string"`
+	xxx_hidden_Bytes                    []byte                               `protobuf:"bytes,15,req,name=bytes"`
+	xxx_hidden_RepeatedInt32            []int32                              `protobuf:"varint,16,rep,name=repeated_int32,json=repeatedInt32"`
+	xxx_hidden_RepeatedInt64            []int64                              `protobuf:"varint,18,rep,name=repeated_int64,json=repeatedInt64"`
+	xxx_hidden_RepeatedFloat            []float32                            `protobuf:"fixed32,26,rep,name=repeated_float,json=repeatedFloat"`
+	xxx_hidden_RepeatedDouble           []float64                            `protobuf:"fixed64,27,rep,name=repeated_double,json=repeatedDouble"`
+	xxx_hidden_RepeatedBool             []bool                               `protobuf:"varint,28,rep,name=repeated_bool,json=repeatedBool"`
+	xxx_hidden_RepeatedString           []string                             `protobuf:"bytes,29,rep,name=repeated_string,json=repeatedString"`
+	xxx_hidden_RepeatedBytes            [][]byte                             `protobuf:"bytes,30,rep,name=repeated_bytes,json=repeatedBytes"`
+	xxx_hidden_Int32Value               *wrapperspb.Int32Value               `protobuf:"bytes,20,req,name=int32_value,json=int32Value"`
+	xxx_hidden_Int64Value               *wrapperspb.Int64Value               `protobuf:"bytes,21,req,name=int64_value,json=int64Value"`
+	xxx_hidden_FloatValue               *wrapperspb.FloatValue               `protobuf:"bytes,22,req,name=float_value,json=floatValue"`
+	xxx_hidden_DoubleValue              *wrapperspb.DoubleValue              `protobuf:"bytes,23,req,name=double_value,json=doubleValue"`
+	xxx_hidden_BoolValue                *wrapperspb.BoolValue                `protobuf:"bytes,24,req,name=bool_value,json=boolValue"`
+	xxx_hidden_StringValue              *wrapperspb.StringValue              `protobuf:"bytes,25,req,name=string_value,json=stringValue"`
+	xxx_hidden_BytesValue               *wrapperspb.BytesValue               `protobuf:"bytes,31,req,name=bytes_value,json=bytesValue"`
+	xxx_hidden_MapInt32String           map[int32]string                     `protobuf:"bytes,32,rep,name=map_int32_string,json=mapInt32String" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapInt64String           map[int64]string                     `protobuf:"bytes,34,rep,name=map_int64_string,json=mapInt64String" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapBoolString            map[bool]string                      `protobuf:"bytes,44,rep,name=map_bool_string,json=mapBoolString" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapStringString          map[string]string                    `protobuf:"bytes,45,rep,name=map_string_string,json=mapStringString" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MapStringBytes           map[string][]byte                    `protobuf:"bytes,46,rep,name=map_string_bytes,json=mapStringBytes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Message                  *EverythingProto2_Message            `protobuf:"bytes,50,req,name=message"`
+	xxx_hidden_RepeatedMessage          *[]*EverythingProto2_Message         `protobuf:"bytes,51,rep,name=repeated_message,json=repeatedMessage"`
+	xxx_hidden_MapStringMessage         map[string]*EverythingProto2_Message `protobuf:"bytes,52,rep,name=map_string_message,json=mapStringMessage" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Enum                     EverythingProto2_Enum                `protobuf:"varint,60,req,name=enum,enum=order.v1.EverythingProto2_Enum"`
+	xxx_hidden_OptionalEnum             EverythingProto2_Enum                `protobuf:"varint,62,opt,name=optional_enum,json=optionalEnum,enum=order.v1.EverythingProto2_Enum"`
+	xxx_hidden_RepeatedEnum             []EverythingProto2_Enum              `protobuf:"varint,61,rep,name=repeated_enum,json=repeatedEnum,enum=order.v1.EverythingProto2_Enum"`
+	xxx_hidden_MapStringEnum            map[string]EverythingProto2_Enum     `protobuf:"bytes,63,rep,name=map_string_enum,json=mapStringEnum" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=order.v1.EverythingProto2_Enum"`
+	xxx_hidden_Timestamp                *timestamppb.Timestamp               `protobuf:"bytes,65,req,name=timestamp"`
+	xxx_hidden_Duration                 *durationpb.Duration                 `protobuf:"bytes,66,req,name=duration"`
+	xxx_hidden_TimeOfDay                *timeofday.TimeOfDay                 `protobuf:"bytes,70,req,name=time_of_day,json=timeOfDay"`
+	xxx_hidden_Date                     *date.Date                           `protobuf:"bytes,71,req,name=date"`
+	xxx_hidden_DayOfWeek                dayofweek.DayOfWeek                  `protobuf:"varint,73,req,name=day_of_week,json=dayOfWeek,enum=google.type.DayOfWeek"`
+	xxx_hidden_Month                    month.Month                          `protobuf:"varint,74,req,name=month,enum=google.type.Month"`
+	xxx_hidden_Oneof                    isEverythingProto2_Oneof             `protobuf_oneof:"oneof"`
+	xxx_hidden_DeprecatedInt32          int32                                `protobuf:"varint,90,req,name=deprecated_int32,json=deprecatedInt32"`
+	xxx_hidden_DeprecatedString         *string                              `protobuf:"bytes,91,req,name=deprecated_string,json=deprecatedString"`
+	xxx_hidden_DeprecatedRepeatedString []string                             `protobuf:"bytes,92,rep,name=deprecated_repeated_string,json=deprecatedRepeatedString"`
+	xxx_hidden_DeprecatedMapStringInt32 map[string]int32                     `protobuf:"bytes,93,rep,name=deprecated_map_string_int32,json=deprecatedMapStringInt32" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	xxx_hidden_DeprecatedEnum           EverythingProto2_Enum                `protobuf:"varint,94,req,name=deprecated_enum,json=deprecatedEnum,enum=order.v1.EverythingProto2_Enum"`
+	xxx_hidden_StrBytes                 *string                              `protobuf:"bytes,100,req,name=str_bytes,json=strBytes"`
+	xxx_hidden_EValue                   EverythingProto2_Enum                `protobuf:"varint,101,req,name=e_value,json=eValue,enum=order.v1.EverythingProto2_Enum"`
+	xxx_hidden_ReptStringList           []string                             `protobuf:"bytes,102,rep,name=rept_string_list,json=reptStringList"`
+	xxx_hidden_ReptEnumValueList        []EverythingProto2_Enum              `protobuf:"varint,107,rep,name=rept_enum_value_list,json=reptEnumValueList,enum=order.v1.EverythingProto2_Enum"`
+	xxx_hidden_MStringStringMap         map[string]string                    `protobuf:"bytes,103,rep,name=m_string_string_map,json=mStringStringMap" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MStringEnumMap           map[string]EverythingProto2_Enum     `protobuf:"bytes,104,rep,name=m_string_enum_map,json=mStringEnumMap" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=order.v1.EverythingProto2_Enum"`
+	xxx_hidden_MsgBuilder               *EverythingProto2_Message            `protobuf:"bytes,105,req,name=msg_builder,json=msgBuilder"`
+	xxx_hidden_MsgOrBuilder             *EverythingProto2_Message            `protobuf:"bytes,106,req,name=msg_or_builder,json=msgOrBuilder"`
+	XXX_raceDetectHookData              protoimpl.RaceDetectHookData
+	XXX_presence                        [2]uint32
+	unknownFields                       protoimpl.UnknownFields
+	sizeCache                           protoimpl.SizeCache
 }
 
 func (x *EverythingProto2) Reset() {
@@ -466,34 +479,140 @@ func (x *EverythingProto2) GetOneofMessage() *EverythingProto2_Message {
 	return nil
 }
 
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) GetDeprecatedInt32() int32 {
+	if x != nil {
+		return x.xxx_hidden_DeprecatedInt32
+	}
+	return 0
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) GetDeprecatedString() string {
+	if x != nil {
+		if x.xxx_hidden_DeprecatedString != nil {
+			return *x.xxx_hidden_DeprecatedString
+		}
+		return ""
+	}
+	return ""
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) GetDeprecatedRepeatedString() []string {
+	if x != nil {
+		return x.xxx_hidden_DeprecatedRepeatedString
+	}
+	return nil
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) GetDeprecatedMapStringInt32() map[string]int32 {
+	if x != nil {
+		return x.xxx_hidden_DeprecatedMapStringInt32
+	}
+	return nil
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) GetDeprecatedEnum() EverythingProto2_Enum {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[1]), 44) {
+			return x.xxx_hidden_DeprecatedEnum
+		}
+	}
+	return EverythingProto2_ENUM_UNSPECIFIED
+}
+
+func (x *EverythingProto2) GetStrBytes() string {
+	if x != nil {
+		if x.xxx_hidden_StrBytes != nil {
+			return *x.xxx_hidden_StrBytes
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *EverythingProto2) GetEValue() EverythingProto2_Enum {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[1]), 46) {
+			return x.xxx_hidden_EValue
+		}
+	}
+	return EverythingProto2_ENUM_UNSPECIFIED
+}
+
+func (x *EverythingProto2) GetReptStringList() []string {
+	if x != nil {
+		return x.xxx_hidden_ReptStringList
+	}
+	return nil
+}
+
+func (x *EverythingProto2) GetReptEnumValueList() []EverythingProto2_Enum {
+	if x != nil {
+		return x.xxx_hidden_ReptEnumValueList
+	}
+	return nil
+}
+
+func (x *EverythingProto2) GetMStringStringMap() map[string]string {
+	if x != nil {
+		return x.xxx_hidden_MStringStringMap
+	}
+	return nil
+}
+
+func (x *EverythingProto2) GetMStringEnumMap() map[string]EverythingProto2_Enum {
+	if x != nil {
+		return x.xxx_hidden_MStringEnumMap
+	}
+	return nil
+}
+
+func (x *EverythingProto2) GetMsgBuilder() *EverythingProto2_Message {
+	if x != nil {
+		return x.xxx_hidden_MsgBuilder
+	}
+	return nil
+}
+
+func (x *EverythingProto2) GetMsgOrBuilder() *EverythingProto2_Message {
+	if x != nil {
+		return x.xxx_hidden_MsgOrBuilder
+	}
+	return nil
+}
+
 func (x *EverythingProto2) SetInt32(v int32) {
 	x.xxx_hidden_Int32 = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 53)
 }
 
 func (x *EverythingProto2) SetInt64(v int64) {
 	x.xxx_hidden_Int64 = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 53)
 }
 
 func (x *EverythingProto2) SetFloat(v float32) {
 	x.xxx_hidden_Float = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 53)
 }
 
 func (x *EverythingProto2) SetDouble(v float64) {
 	x.xxx_hidden_Double = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 53)
 }
 
 func (x *EverythingProto2) SetBool(v bool) {
 	x.xxx_hidden_Bool = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 53)
 }
 
 func (x *EverythingProto2) SetString(v string) {
 	x.xxx_hidden_String_ = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 53)
 }
 
 func (x *EverythingProto2) SetBytes(v []byte) {
@@ -501,7 +620,7 @@ func (x *EverythingProto2) SetBytes(v []byte) {
 		v = []byte{}
 	}
 	x.xxx_hidden_Bytes = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 53)
 }
 
 func (x *EverythingProto2) SetRepeatedInt32(v []int32) {
@@ -594,12 +713,12 @@ func (x *EverythingProto2) SetMapStringMessage(v map[string]*EverythingProto2_Me
 
 func (x *EverythingProto2) SetEnum(v EverythingProto2_Enum) {
 	x.xxx_hidden_Enum = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 29, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 29, 53)
 }
 
 func (x *EverythingProto2) SetOptionalEnum(v EverythingProto2_Enum) {
 	x.xxx_hidden_OptionalEnum = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 30, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 30, 53)
 }
 
 func (x *EverythingProto2) SetRepeatedEnum(v []EverythingProto2_Enum) {
@@ -628,12 +747,12 @@ func (x *EverythingProto2) SetDate(v *date.Date) {
 
 func (x *EverythingProto2) SetDayOfWeek(v dayofweek.DayOfWeek) {
 	x.xxx_hidden_DayOfWeek = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[1]), 37, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[1]), 37, 53)
 }
 
 func (x *EverythingProto2) SetMonth(v month.Month) {
 	x.xxx_hidden_Month = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[1]), 38, 40)
+	protoimpl.X.SetPresent(&(x.XXX_presence[1]), 38, 53)
 }
 
 func (x *EverythingProto2) SetOneofInt32(v int32) {
@@ -654,6 +773,68 @@ func (x *EverythingProto2) SetOneofMessage(v *EverythingProto2_Message) {
 		return
 	}
 	x.xxx_hidden_Oneof = &everythingProto2_OneofMessage{v}
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) SetDeprecatedInt32(v int32) {
+	x.xxx_hidden_DeprecatedInt32 = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[1]), 40, 53)
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) SetDeprecatedString(v string) {
+	x.xxx_hidden_DeprecatedString = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[1]), 41, 53)
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) SetDeprecatedRepeatedString(v []string) {
+	x.xxx_hidden_DeprecatedRepeatedString = v
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) SetDeprecatedMapStringInt32(v map[string]int32) {
+	x.xxx_hidden_DeprecatedMapStringInt32 = v
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) SetDeprecatedEnum(v EverythingProto2_Enum) {
+	x.xxx_hidden_DeprecatedEnum = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[1]), 44, 53)
+}
+
+func (x *EverythingProto2) SetStrBytes(v string) {
+	x.xxx_hidden_StrBytes = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[1]), 45, 53)
+}
+
+func (x *EverythingProto2) SetEValue(v EverythingProto2_Enum) {
+	x.xxx_hidden_EValue = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[1]), 46, 53)
+}
+
+func (x *EverythingProto2) SetReptStringList(v []string) {
+	x.xxx_hidden_ReptStringList = v
+}
+
+func (x *EverythingProto2) SetReptEnumValueList(v []EverythingProto2_Enum) {
+	x.xxx_hidden_ReptEnumValueList = v
+}
+
+func (x *EverythingProto2) SetMStringStringMap(v map[string]string) {
+	x.xxx_hidden_MStringStringMap = v
+}
+
+func (x *EverythingProto2) SetMStringEnumMap(v map[string]EverythingProto2_Enum) {
+	x.xxx_hidden_MStringEnumMap = v
+}
+
+func (x *EverythingProto2) SetMsgBuilder(v *EverythingProto2_Message) {
+	x.xxx_hidden_MsgBuilder = v
+}
+
+func (x *EverythingProto2) SetMsgOrBuilder(v *EverythingProto2_Message) {
+	x.xxx_hidden_MsgOrBuilder = v
 }
 
 func (x *EverythingProto2) HasInt32() bool {
@@ -856,6 +1037,58 @@ func (x *EverythingProto2) HasOneofMessage() bool {
 	return ok
 }
 
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) HasDeprecatedInt32() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[1]), 40)
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) HasDeprecatedString() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[1]), 41)
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) HasDeprecatedEnum() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[1]), 44)
+}
+
+func (x *EverythingProto2) HasStrBytes() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[1]), 45)
+}
+
+func (x *EverythingProto2) HasEValue() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[1]), 46)
+}
+
+func (x *EverythingProto2) HasMsgBuilder() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_MsgBuilder != nil
+}
+
+func (x *EverythingProto2) HasMsgOrBuilder() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_MsgOrBuilder != nil
+}
+
 func (x *EverythingProto2) ClearInt32() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Int32 = 0
@@ -987,6 +1220,42 @@ func (x *EverythingProto2) ClearOneofMessage() {
 	}
 }
 
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) ClearDeprecatedInt32() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[1]), 40)
+	x.xxx_hidden_DeprecatedInt32 = 0
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) ClearDeprecatedString() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[1]), 41)
+	x.xxx_hidden_DeprecatedString = nil
+}
+
+// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+func (x *EverythingProto2) ClearDeprecatedEnum() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[1]), 44)
+	x.xxx_hidden_DeprecatedEnum = EverythingProto2_ENUM_UNSPECIFIED
+}
+
+func (x *EverythingProto2) ClearStrBytes() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[1]), 45)
+	x.xxx_hidden_StrBytes = nil
+}
+
+func (x *EverythingProto2) ClearEValue() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[1]), 46)
+	x.xxx_hidden_EValue = EverythingProto2_ENUM_UNSPECIFIED
+}
+
+func (x *EverythingProto2) ClearMsgBuilder() {
+	x.xxx_hidden_MsgBuilder = nil
+}
+
+func (x *EverythingProto2) ClearMsgOrBuilder() {
+	x.xxx_hidden_MsgOrBuilder = nil
+}
+
 const EverythingProto2_Oneof_not_set_case case_EverythingProto2_Oneof = 0
 const EverythingProto2_OneofInt32_case case_EverythingProto2_Oneof = 80
 const EverythingProto2_OneofString_case case_EverythingProto2_Oneof = 81
@@ -1063,6 +1332,27 @@ type EverythingProto2_builder struct {
 	OneofEnum    *EverythingProto2_Enum
 	OneofMessage *EverythingProto2_Message
 	// -- end of xxx_hidden_Oneof
+	// deprecated field
+	//
+	// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+	DeprecatedInt32 *int32
+	// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+	DeprecatedString *string
+	// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+	DeprecatedRepeatedString []string
+	// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+	DeprecatedMapStringInt32 map[string]int32
+	// Deprecated: Marked as deprecated in order/v1/everything_proto2.proto.
+	DeprecatedEnum *EverythingProto2_Enum
+	// special naming
+	StrBytes          *string
+	EValue            *EverythingProto2_Enum
+	ReptStringList    []string
+	ReptEnumValueList []EverythingProto2_Enum
+	MStringStringMap  map[string]string
+	MStringEnumMap    map[string]EverythingProto2_Enum
+	MsgBuilder        *EverythingProto2_Message
+	MsgOrBuilder      *EverythingProto2_Message
 }
 
 func (b0 EverythingProto2_builder) Build() *EverythingProto2 {
@@ -1070,31 +1360,31 @@ func (b0 EverythingProto2_builder) Build() *EverythingProto2 {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Int32 != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 53)
 		x.xxx_hidden_Int32 = *b.Int32
 	}
 	if b.Int64 != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 53)
 		x.xxx_hidden_Int64 = *b.Int64
 	}
 	if b.Float != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 53)
 		x.xxx_hidden_Float = *b.Float
 	}
 	if b.Double != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 53)
 		x.xxx_hidden_Double = *b.Double
 	}
 	if b.Bool != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 53)
 		x.xxx_hidden_Bool = *b.Bool
 	}
 	if b.String != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 53)
 		x.xxx_hidden_String_ = b.String
 	}
 	if b.Bytes != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 53)
 		x.xxx_hidden_Bytes = b.Bytes
 	}
 	x.xxx_hidden_RepeatedInt32 = b.RepeatedInt32
@@ -1120,11 +1410,11 @@ func (b0 EverythingProto2_builder) Build() *EverythingProto2 {
 	x.xxx_hidden_RepeatedMessage = &b.RepeatedMessage
 	x.xxx_hidden_MapStringMessage = b.MapStringMessage
 	if b.Enum != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 29, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 29, 53)
 		x.xxx_hidden_Enum = *b.Enum
 	}
 	if b.OptionalEnum != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 30, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 30, 53)
 		x.xxx_hidden_OptionalEnum = *b.OptionalEnum
 	}
 	x.xxx_hidden_RepeatedEnum = b.RepeatedEnum
@@ -1134,11 +1424,11 @@ func (b0 EverythingProto2_builder) Build() *EverythingProto2 {
 	x.xxx_hidden_TimeOfDay = b.TimeOfDay
 	x.xxx_hidden_Date = b.Date
 	if b.DayOfWeek != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[1]), 37, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[1]), 37, 53)
 		x.xxx_hidden_DayOfWeek = *b.DayOfWeek
 	}
 	if b.Month != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[1]), 38, 40)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[1]), 38, 53)
 		x.xxx_hidden_Month = *b.Month
 	}
 	if b.OneofInt32 != nil {
@@ -1153,6 +1443,34 @@ func (b0 EverythingProto2_builder) Build() *EverythingProto2 {
 	if b.OneofMessage != nil {
 		x.xxx_hidden_Oneof = &everythingProto2_OneofMessage{b.OneofMessage}
 	}
+	if b.DeprecatedInt32 != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[1]), 40, 53)
+		x.xxx_hidden_DeprecatedInt32 = *b.DeprecatedInt32
+	}
+	if b.DeprecatedString != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[1]), 41, 53)
+		x.xxx_hidden_DeprecatedString = b.DeprecatedString
+	}
+	x.xxx_hidden_DeprecatedRepeatedString = b.DeprecatedRepeatedString
+	x.xxx_hidden_DeprecatedMapStringInt32 = b.DeprecatedMapStringInt32
+	if b.DeprecatedEnum != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[1]), 44, 53)
+		x.xxx_hidden_DeprecatedEnum = *b.DeprecatedEnum
+	}
+	if b.StrBytes != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[1]), 45, 53)
+		x.xxx_hidden_StrBytes = b.StrBytes
+	}
+	if b.EValue != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[1]), 46, 53)
+		x.xxx_hidden_EValue = *b.EValue
+	}
+	x.xxx_hidden_ReptStringList = b.ReptStringList
+	x.xxx_hidden_ReptEnumValueList = b.ReptEnumValueList
+	x.xxx_hidden_MStringStringMap = b.MStringStringMap
+	x.xxx_hidden_MStringEnumMap = b.MStringEnumMap
+	x.xxx_hidden_MsgBuilder = b.MsgBuilder
+	x.xxx_hidden_MsgOrBuilder = b.MsgOrBuilder
 	return m0
 }
 
@@ -1206,7 +1524,7 @@ type EverythingProto2_Message struct {
 
 func (x *EverythingProto2_Message) Reset() {
 	*x = EverythingProto2_Message{}
-	mi := &file_order_v1_everything_proto2_proto_msgTypes[8]
+	mi := &file_order_v1_everything_proto2_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1218,7 +1536,7 @@ func (x *EverythingProto2_Message) String() string {
 func (*EverythingProto2_Message) ProtoMessage() {}
 
 func (x *EverythingProto2_Message) ProtoReflect() protoreflect.Message {
-	mi := &file_order_v1_everything_proto2_proto_msgTypes[8]
+	mi := &file_order_v1_everything_proto2_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1306,7 +1624,7 @@ var File_order_v1_everything_proto2_proto protoreflect.FileDescriptor
 
 const file_order_v1_everything_proto2_proto_rawDesc = "" +
 	"\n" +
-	" order/v1/everything_proto2.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1bgoogle/type/timeofday.proto\x1a\x16google/type/date.proto\x1a\x1bgoogle/type/dayofweek.proto\x1a\x17google/type/month.proto\"\xd9\x17\n" +
+	" order/v1/everything_proto2.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1bgoogle/type/timeofday.proto\x1a\x16google/type/date.proto\x1a\x1bgoogle/type/dayofweek.proto\x1a\x17google/type/month.proto\"\xda \n" +
 	"\x10EverythingProto2\x12\x14\n" +
 	"\x05int32\x18\x01 \x02(\x05R\x05int32\x12\x14\n" +
 	"\x05int64\x18\x03 \x02(\x03R\x05int64\x12\x14\n" +
@@ -1357,7 +1675,21 @@ const file_order_v1_everything_proto2_proto_rawDesc = "" +
 	"\foneof_string\x18Q \x01(\tH\x00R\voneofString\x12@\n" +
 	"\n" +
 	"oneof_enum\x18R \x01(\x0e2\x1f.order.v1.EverythingProto2.EnumH\x00R\toneofEnum\x12I\n" +
-	"\roneof_message\x18S \x01(\v2\".order.v1.EverythingProto2.MessageH\x00R\foneofMessage\x1aA\n" +
+	"\roneof_message\x18S \x01(\v2\".order.v1.EverythingProto2.MessageH\x00R\foneofMessage\x12-\n" +
+	"\x10deprecated_int32\x18Z \x02(\x05B\x02\x18\x01R\x0fdeprecatedInt32\x12/\n" +
+	"\x11deprecated_string\x18[ \x02(\tB\x02\x18\x01R\x10deprecatedString\x12@\n" +
+	"\x1adeprecated_repeated_string\x18\\ \x03(\tB\x02\x18\x01R\x18deprecatedRepeatedString\x12{\n" +
+	"\x1bdeprecated_map_string_int32\x18] \x03(\v28.order.v1.EverythingProto2.DeprecatedMapStringInt32EntryB\x02\x18\x01R\x18deprecatedMapStringInt32\x12L\n" +
+	"\x0fdeprecated_enum\x18^ \x02(\x0e2\x1f.order.v1.EverythingProto2.EnumB\x02\x18\x01R\x0edeprecatedEnum\x12\x1b\n" +
+	"\tstr_bytes\x18d \x02(\tR\bstrBytes\x128\n" +
+	"\ae_value\x18e \x02(\x0e2\x1f.order.v1.EverythingProto2.EnumR\x06eValue\x12(\n" +
+	"\x10rept_string_list\x18f \x03(\tR\x0ereptStringList\x12P\n" +
+	"\x14rept_enum_value_list\x18k \x03(\x0e2\x1f.order.v1.EverythingProto2.EnumR\x11reptEnumValueList\x12_\n" +
+	"\x13m_string_string_map\x18g \x03(\v20.order.v1.EverythingProto2.MStringStringMapEntryR\x10mStringStringMap\x12Y\n" +
+	"\x11m_string_enum_map\x18h \x03(\v2..order.v1.EverythingProto2.MStringEnumMapEntryR\x0emStringEnumMap\x12C\n" +
+	"\vmsg_builder\x18i \x02(\v2\".order.v1.EverythingProto2.MessageR\n" +
+	"msgBuilder\x12H\n" +
+	"\x0emsg_or_builder\x18j \x02(\v2\".order.v1.EverythingProto2.MessageR\fmsgOrBuilder\x1aA\n" +
 	"\x13MapInt32StringEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aA\n" +
@@ -1378,6 +1710,15 @@ const file_order_v1_everything_proto2_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v2\".order.v1.EverythingProto2.MessageR\x05value:\x028\x01\x1aa\n" +
 	"\x12MapStringEnumEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x125\n" +
+	"\x05value\x18\x02 \x01(\x0e2\x1f.order.v1.EverythingProto2.EnumR\x05value:\x028\x01\x1aK\n" +
+	"\x1dDeprecatedMapStringInt32Entry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\x1aC\n" +
+	"\x15MStringStringMapEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1ab\n" +
+	"\x13MStringEnumMapEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x125\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x1f.order.v1.EverythingProto2.EnumR\x05value:\x028\x01\x1a-\n" +
 	"\aMessage\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
@@ -1390,7 +1731,7 @@ const file_order_v1_everything_proto2_proto_rawDesc = "" +
 	"\x17monorepo.proto.order.v1B\x15EverythingProto2ProtoP\x01ZBgithub.com/yourorg/monorepo/packages/proto-gen-go/order/v1;orderv1"
 
 var file_order_v1_everything_proto2_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_order_v1_everything_proto2_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_order_v1_everything_proto2_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_order_v1_everything_proto2_proto_goTypes = []any{
 	(EverythingProto2_Enum)(0),       // 0: order.v1.EverythingProto2.Enum
 	(*EverythingProto2)(nil),         // 1: order.v1.EverythingProto2
@@ -1401,56 +1742,68 @@ var file_order_v1_everything_proto2_proto_goTypes = []any{
 	nil,                              // 6: order.v1.EverythingProto2.MapStringBytesEntry
 	nil,                              // 7: order.v1.EverythingProto2.MapStringMessageEntry
 	nil,                              // 8: order.v1.EverythingProto2.MapStringEnumEntry
-	(*EverythingProto2_Message)(nil), // 9: order.v1.EverythingProto2.Message
-	(*wrapperspb.Int32Value)(nil),    // 10: google.protobuf.Int32Value
-	(*wrapperspb.Int64Value)(nil),    // 11: google.protobuf.Int64Value
-	(*wrapperspb.FloatValue)(nil),    // 12: google.protobuf.FloatValue
-	(*wrapperspb.DoubleValue)(nil),   // 13: google.protobuf.DoubleValue
-	(*wrapperspb.BoolValue)(nil),     // 14: google.protobuf.BoolValue
-	(*wrapperspb.StringValue)(nil),   // 15: google.protobuf.StringValue
-	(*wrapperspb.BytesValue)(nil),    // 16: google.protobuf.BytesValue
-	(*timestamppb.Timestamp)(nil),    // 17: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),      // 18: google.protobuf.Duration
-	(*timeofday.TimeOfDay)(nil),      // 19: google.type.TimeOfDay
-	(*date.Date)(nil),                // 20: google.type.Date
-	(dayofweek.DayOfWeek)(0),         // 21: google.type.DayOfWeek
-	(month.Month)(0),                 // 22: google.type.Month
+	nil,                              // 9: order.v1.EverythingProto2.DeprecatedMapStringInt32Entry
+	nil,                              // 10: order.v1.EverythingProto2.MStringStringMapEntry
+	nil,                              // 11: order.v1.EverythingProto2.MStringEnumMapEntry
+	(*EverythingProto2_Message)(nil), // 12: order.v1.EverythingProto2.Message
+	(*wrapperspb.Int32Value)(nil),    // 13: google.protobuf.Int32Value
+	(*wrapperspb.Int64Value)(nil),    // 14: google.protobuf.Int64Value
+	(*wrapperspb.FloatValue)(nil),    // 15: google.protobuf.FloatValue
+	(*wrapperspb.DoubleValue)(nil),   // 16: google.protobuf.DoubleValue
+	(*wrapperspb.BoolValue)(nil),     // 17: google.protobuf.BoolValue
+	(*wrapperspb.StringValue)(nil),   // 18: google.protobuf.StringValue
+	(*wrapperspb.BytesValue)(nil),    // 19: google.protobuf.BytesValue
+	(*timestamppb.Timestamp)(nil),    // 20: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),      // 21: google.protobuf.Duration
+	(*timeofday.TimeOfDay)(nil),      // 22: google.type.TimeOfDay
+	(*date.Date)(nil),                // 23: google.type.Date
+	(dayofweek.DayOfWeek)(0),         // 24: google.type.DayOfWeek
+	(month.Month)(0),                 // 25: google.type.Month
 }
 var file_order_v1_everything_proto2_proto_depIdxs = []int32{
-	10, // 0: order.v1.EverythingProto2.int32_value:type_name -> google.protobuf.Int32Value
-	11, // 1: order.v1.EverythingProto2.int64_value:type_name -> google.protobuf.Int64Value
-	12, // 2: order.v1.EverythingProto2.float_value:type_name -> google.protobuf.FloatValue
-	13, // 3: order.v1.EverythingProto2.double_value:type_name -> google.protobuf.DoubleValue
-	14, // 4: order.v1.EverythingProto2.bool_value:type_name -> google.protobuf.BoolValue
-	15, // 5: order.v1.EverythingProto2.string_value:type_name -> google.protobuf.StringValue
-	16, // 6: order.v1.EverythingProto2.bytes_value:type_name -> google.protobuf.BytesValue
+	13, // 0: order.v1.EverythingProto2.int32_value:type_name -> google.protobuf.Int32Value
+	14, // 1: order.v1.EverythingProto2.int64_value:type_name -> google.protobuf.Int64Value
+	15, // 2: order.v1.EverythingProto2.float_value:type_name -> google.protobuf.FloatValue
+	16, // 3: order.v1.EverythingProto2.double_value:type_name -> google.protobuf.DoubleValue
+	17, // 4: order.v1.EverythingProto2.bool_value:type_name -> google.protobuf.BoolValue
+	18, // 5: order.v1.EverythingProto2.string_value:type_name -> google.protobuf.StringValue
+	19, // 6: order.v1.EverythingProto2.bytes_value:type_name -> google.protobuf.BytesValue
 	2,  // 7: order.v1.EverythingProto2.map_int32_string:type_name -> order.v1.EverythingProto2.MapInt32StringEntry
 	3,  // 8: order.v1.EverythingProto2.map_int64_string:type_name -> order.v1.EverythingProto2.MapInt64StringEntry
 	4,  // 9: order.v1.EverythingProto2.map_bool_string:type_name -> order.v1.EverythingProto2.MapBoolStringEntry
 	5,  // 10: order.v1.EverythingProto2.map_string_string:type_name -> order.v1.EverythingProto2.MapStringStringEntry
 	6,  // 11: order.v1.EverythingProto2.map_string_bytes:type_name -> order.v1.EverythingProto2.MapStringBytesEntry
-	9,  // 12: order.v1.EverythingProto2.message:type_name -> order.v1.EverythingProto2.Message
-	9,  // 13: order.v1.EverythingProto2.repeated_message:type_name -> order.v1.EverythingProto2.Message
+	12, // 12: order.v1.EverythingProto2.message:type_name -> order.v1.EverythingProto2.Message
+	12, // 13: order.v1.EverythingProto2.repeated_message:type_name -> order.v1.EverythingProto2.Message
 	7,  // 14: order.v1.EverythingProto2.map_string_message:type_name -> order.v1.EverythingProto2.MapStringMessageEntry
 	0,  // 15: order.v1.EverythingProto2.enum:type_name -> order.v1.EverythingProto2.Enum
 	0,  // 16: order.v1.EverythingProto2.optional_enum:type_name -> order.v1.EverythingProto2.Enum
 	0,  // 17: order.v1.EverythingProto2.repeated_enum:type_name -> order.v1.EverythingProto2.Enum
 	8,  // 18: order.v1.EverythingProto2.map_string_enum:type_name -> order.v1.EverythingProto2.MapStringEnumEntry
-	17, // 19: order.v1.EverythingProto2.timestamp:type_name -> google.protobuf.Timestamp
-	18, // 20: order.v1.EverythingProto2.duration:type_name -> google.protobuf.Duration
-	19, // 21: order.v1.EverythingProto2.time_of_day:type_name -> google.type.TimeOfDay
-	20, // 22: order.v1.EverythingProto2.date:type_name -> google.type.Date
-	21, // 23: order.v1.EverythingProto2.day_of_week:type_name -> google.type.DayOfWeek
-	22, // 24: order.v1.EverythingProto2.month:type_name -> google.type.Month
+	20, // 19: order.v1.EverythingProto2.timestamp:type_name -> google.protobuf.Timestamp
+	21, // 20: order.v1.EverythingProto2.duration:type_name -> google.protobuf.Duration
+	22, // 21: order.v1.EverythingProto2.time_of_day:type_name -> google.type.TimeOfDay
+	23, // 22: order.v1.EverythingProto2.date:type_name -> google.type.Date
+	24, // 23: order.v1.EverythingProto2.day_of_week:type_name -> google.type.DayOfWeek
+	25, // 24: order.v1.EverythingProto2.month:type_name -> google.type.Month
 	0,  // 25: order.v1.EverythingProto2.oneof_enum:type_name -> order.v1.EverythingProto2.Enum
-	9,  // 26: order.v1.EverythingProto2.oneof_message:type_name -> order.v1.EverythingProto2.Message
-	9,  // 27: order.v1.EverythingProto2.MapStringMessageEntry.value:type_name -> order.v1.EverythingProto2.Message
-	0,  // 28: order.v1.EverythingProto2.MapStringEnumEntry.value:type_name -> order.v1.EverythingProto2.Enum
-	29, // [29:29] is the sub-list for method output_type
-	29, // [29:29] is the sub-list for method input_type
-	29, // [29:29] is the sub-list for extension type_name
-	29, // [29:29] is the sub-list for extension extendee
-	0,  // [0:29] is the sub-list for field type_name
+	12, // 26: order.v1.EverythingProto2.oneof_message:type_name -> order.v1.EverythingProto2.Message
+	9,  // 27: order.v1.EverythingProto2.deprecated_map_string_int32:type_name -> order.v1.EverythingProto2.DeprecatedMapStringInt32Entry
+	0,  // 28: order.v1.EverythingProto2.deprecated_enum:type_name -> order.v1.EverythingProto2.Enum
+	0,  // 29: order.v1.EverythingProto2.e_value:type_name -> order.v1.EverythingProto2.Enum
+	0,  // 30: order.v1.EverythingProto2.rept_enum_value_list:type_name -> order.v1.EverythingProto2.Enum
+	10, // 31: order.v1.EverythingProto2.m_string_string_map:type_name -> order.v1.EverythingProto2.MStringStringMapEntry
+	11, // 32: order.v1.EverythingProto2.m_string_enum_map:type_name -> order.v1.EverythingProto2.MStringEnumMapEntry
+	12, // 33: order.v1.EverythingProto2.msg_builder:type_name -> order.v1.EverythingProto2.Message
+	12, // 34: order.v1.EverythingProto2.msg_or_builder:type_name -> order.v1.EverythingProto2.Message
+	12, // 35: order.v1.EverythingProto2.MapStringMessageEntry.value:type_name -> order.v1.EverythingProto2.Message
+	0,  // 36: order.v1.EverythingProto2.MapStringEnumEntry.value:type_name -> order.v1.EverythingProto2.Enum
+	0,  // 37: order.v1.EverythingProto2.MStringEnumMapEntry.value:type_name -> order.v1.EverythingProto2.Enum
+	38, // [38:38] is the sub-list for method output_type
+	38, // [38:38] is the sub-list for method input_type
+	38, // [38:38] is the sub-list for extension type_name
+	38, // [38:38] is the sub-list for extension extendee
+	0,  // [0:38] is the sub-list for field type_name
 }
 
 func init() { file_order_v1_everything_proto2_proto_init() }
@@ -1470,7 +1823,7 @@ func file_order_v1_everything_proto2_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_order_v1_everything_proto2_proto_rawDesc), len(file_order_v1_everything_proto2_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   9,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

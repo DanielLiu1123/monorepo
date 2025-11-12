@@ -17,8 +17,6 @@ import com.google.protobuf.FloatValue;
 import com.google.protobuf.Int32Value;
 import com.google.protobuf.StringValue;
 import lombok.Data;
-import monorepo.proto.order.v1.EverythingProto3;
-//import monorepo.proto.order.v1.EverythingProto3;
 
 @Data
 public class Everything {
@@ -82,6 +80,28 @@ public class Everything {
     private StringValue oneofString;
     private Integer oneofEnum;
     private Message oneofMessage;
+
+    //  deprecated field
+    @Deprecated
+    private Integer deprecatedInt32;
+    @Deprecated
+    private String deprecatedString;
+    @Deprecated
+    private List<String> deprecatedRepeatedString;
+    @Deprecated
+    private Map<String, Integer> deprecatedMapStringInt32;
+    @Deprecated
+    private Integer deprecatedEnum;
+
+    //  special naming
+    private String strBytes;
+    private Integer eValue;
+    private List<String> reptStringList;
+    private List<Integer> reptEnumValueList;
+    private Map<String, String> mStringStringMap;
+    private Map<String, String> mStringEnumMap;
+    private Message msgBuilder;
+    private Message msgOrBuilder;
 
     @Data
     public static class Message {

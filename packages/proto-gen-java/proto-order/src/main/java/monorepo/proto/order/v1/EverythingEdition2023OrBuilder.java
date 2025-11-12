@@ -855,5 +855,357 @@ monorepo.proto.order.v1.EverythingEdition2023.Enum         defaultValue);
    */
   monorepo.proto.order.v1.EverythingEdition2023.MessageOrBuilder getOneofMessageOrBuilder();
 
+  /**
+   * <pre>
+   * deprecated field
+   * </pre>
+   *
+   * <code>int32 deprecated_int32 = 90 [json_name = "deprecatedInt32", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_int32 is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=76
+   * @return Whether the deprecatedInt32 field is set.
+   */
+  @java.lang.Deprecated boolean hasDeprecatedInt32();
+  /**
+   * <pre>
+   * deprecated field
+   * </pre>
+   *
+   * <code>int32 deprecated_int32 = 90 [json_name = "deprecatedInt32", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_int32 is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=76
+   * @return The deprecatedInt32.
+   */
+  @java.lang.Deprecated int getDeprecatedInt32();
+
+  /**
+   * <code>string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_string is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=77
+   * @return Whether the deprecatedString field is set.
+   */
+  @java.lang.Deprecated boolean hasDeprecatedString();
+  /**
+   * <code>string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_string is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=77
+   * @return The deprecatedString.
+   */
+  @java.lang.Deprecated java.lang.String getDeprecatedString();
+  /**
+   * <code>string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_string is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=77
+   * @return The bytes for deprecatedString.
+   */
+  @java.lang.Deprecated com.google.protobuf.ByteString
+      getDeprecatedStringBytes();
+
+  /**
+   * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_repeated_string is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=78
+   * @return A list containing the deprecatedRepeatedString.
+   */
+  @java.lang.Deprecated java.util.List<java.lang.String>
+      getDeprecatedRepeatedStringList();
+  /**
+   * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_repeated_string is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=78
+   * @return The count of deprecatedRepeatedString.
+   */
+  @java.lang.Deprecated int getDeprecatedRepeatedStringCount();
+  /**
+   * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_repeated_string is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=78
+   * @param index The index of the element to return.
+   * @return The deprecatedRepeatedString at the given index.
+   */
+  @java.lang.Deprecated java.lang.String getDeprecatedRepeatedString(int index);
+  /**
+   * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_repeated_string is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=78
+   * @param index The index of the value to return.
+   * @return The bytes of the deprecatedRepeatedString at the given index.
+   */
+  @java.lang.Deprecated com.google.protobuf.ByteString
+      getDeprecatedRepeatedStringBytes(int index);
+
+  /**
+   * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+   */
+  @java.lang.Deprecated int getDeprecatedMapStringInt32Count();
+  /**
+   * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+   */
+  @java.lang.Deprecated boolean containsDeprecatedMapStringInt32(
+      java.lang.String key);
+  /**
+   * Use {@link #getDeprecatedMapStringInt32Map()} instead.
+   */
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, java.lang.Integer>
+  getDeprecatedMapStringInt32();
+  /**
+   * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+   */
+  @java.lang.Deprecated java.util.Map<java.lang.String, java.lang.Integer>
+  getDeprecatedMapStringInt32Map();
+  /**
+   * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+   */
+  @java.lang.Deprecated int getDeprecatedMapStringInt32OrDefault(
+      java.lang.String key,
+      int defaultValue);
+  /**
+   * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+   */
+  @java.lang.Deprecated int getDeprecatedMapStringInt32OrThrow(
+      java.lang.String key);
+
+  /**
+   * <code>.order.v1.EverythingEdition2023.Enum deprecated_enum = 94 [json_name = "deprecatedEnum", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_enum is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=80
+   * @return Whether the deprecatedEnum field is set.
+   */
+  @java.lang.Deprecated boolean hasDeprecatedEnum();
+  /**
+   * <code>.order.v1.EverythingEdition2023.Enum deprecated_enum = 94 [json_name = "deprecatedEnum", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_enum is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=80
+   * @return The enum numeric value on the wire for deprecatedEnum.
+   */
+  @java.lang.Deprecated int getDeprecatedEnumValue();
+  /**
+   * <code>.order.v1.EverythingEdition2023.Enum deprecated_enum = 94 [json_name = "deprecatedEnum", deprecated = true];</code>
+   * @deprecated order.v1.EverythingEdition2023.deprecated_enum is deprecated.
+   *     See order/v1/everything_edition2023.proto;l=80
+   * @return The deprecatedEnum.
+   */
+  @java.lang.Deprecated monorepo.proto.order.v1.EverythingEdition2023.Enum getDeprecatedEnum();
+
+  /**
+   * <pre>
+   * special naming
+   * </pre>
+   *
+   * <code>string str_bytes = 100 [json_name = "strBytes"];</code>
+   * @return Whether the strBytes field is set.
+   */
+  boolean hasStrBytes();
+  /**
+   * <pre>
+   * special naming
+   * </pre>
+   *
+   * <code>string str_bytes = 100 [json_name = "strBytes"];</code>
+   * @return The strBytes.
+   */
+  java.lang.String getStrBytes();
+  /**
+   * <pre>
+   * special naming
+   * </pre>
+   *
+   * <code>string str_bytes = 100 [json_name = "strBytes"];</code>
+   * @return The bytes for strBytes.
+   */
+  com.google.protobuf.ByteString
+      getStrBytesBytes();
+
+  /**
+   * <code>.order.v1.EverythingEdition2023.Enum e_value = 101 [json_name = "eValue"];</code>
+   * @return Whether the eValue field is set.
+   */
+  boolean hasEValue();
+  /**
+   * <code>.order.v1.EverythingEdition2023.Enum e_value = 101 [json_name = "eValue"];</code>
+   * @return The enum numeric value on the wire for eValue.
+   */
+  int getEValueValue();
+  /**
+   * <code>.order.v1.EverythingEdition2023.Enum e_value = 101 [json_name = "eValue"];</code>
+   * @return The eValue.
+   */
+  monorepo.proto.order.v1.EverythingEdition2023.Enum getEValue();
+
+  /**
+   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * @return A list containing the reptStringList.
+   */
+  java.util.List<java.lang.String>
+      getReptStringListList();
+  /**
+   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * @return The count of reptStringList.
+   */
+  int getReptStringListCount();
+  /**
+   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * @param index The index of the element to return.
+   * @return The reptStringList at the given index.
+   */
+  java.lang.String getReptStringList(int index);
+  /**
+   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the reptStringList at the given index.
+   */
+  com.google.protobuf.ByteString
+      getReptStringListBytes(int index);
+
+  /**
+   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * @return A list containing the reptEnumValueList.
+   */
+  java.util.List<monorepo.proto.order.v1.EverythingEdition2023.Enum> getReptEnumValueListList();
+  /**
+   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * @return The count of reptEnumValueList.
+   */
+  int getReptEnumValueListCount();
+  /**
+   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * @param index The index of the element to return.
+   * @return The reptEnumValueList at the given index.
+   */
+  monorepo.proto.order.v1.EverythingEdition2023.Enum getReptEnumValueList(int index);
+  /**
+   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * @return A list containing the enum numeric values on the wire for reptEnumValueList.
+   */
+  java.util.List<java.lang.Integer>
+  getReptEnumValueListValueList();
+  /**
+   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * @param index The index of the value to return.
+   * @return The enum numeric value on the wire of reptEnumValueList at the given index.
+   */
+  int getReptEnumValueListValue(int index);
+
+  /**
+   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   */
+  int getMStringStringMapCount();
+  /**
+   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   */
+  boolean containsMStringStringMap(
+      java.lang.String key);
+  /**
+   * Use {@link #getMStringStringMapMap()} instead.
+   */
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, java.lang.String>
+  getMStringStringMap();
+  /**
+   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   */
+  java.util.Map<java.lang.String, java.lang.String>
+  getMStringStringMapMap();
+  /**
+   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   */
+  /* nullable */
+java.lang.String getMStringStringMapOrDefault(
+      java.lang.String key,
+      /* nullable */
+java.lang.String defaultValue);
+  /**
+   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   */
+  java.lang.String getMStringStringMapOrThrow(
+      java.lang.String key);
+
+  /**
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  int getMStringEnumMapCount();
+  /**
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  boolean containsMStringEnumMap(
+      java.lang.String key);
+  /**
+   * Use {@link #getMStringEnumMapMap()} instead.
+   */
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingEdition2023.Enum>
+  getMStringEnumMap();
+  /**
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingEdition2023.Enum>
+  getMStringEnumMapMap();
+  /**
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  /* nullable */
+monorepo.proto.order.v1.EverythingEdition2023.Enum getMStringEnumMapOrDefault(
+      java.lang.String key,
+      /* nullable */
+monorepo.proto.order.v1.EverythingEdition2023.Enum         defaultValue);
+  /**
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  monorepo.proto.order.v1.EverythingEdition2023.Enum getMStringEnumMapOrThrow(
+      java.lang.String key);
+  /**
+   * Use {@link #getMStringEnumMapValueMap()} instead.
+   */
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, java.lang.Integer>
+  getMStringEnumMapValue();
+  /**
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  java.util.Map<java.lang.String, java.lang.Integer>
+  getMStringEnumMapValueMap();
+  /**
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  int getMStringEnumMapValueOrDefault(
+      java.lang.String key,
+      int defaultValue);
+  /**
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  int getMStringEnumMapValueOrThrow(
+      java.lang.String key);
+
+  /**
+   * <code>.order.v1.EverythingEdition2023.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+   * @return Whether the msgBuilder field is set.
+   */
+  boolean hasMsgBuilder();
+  /**
+   * <code>.order.v1.EverythingEdition2023.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+   * @return The msgBuilder.
+   */
+  monorepo.proto.order.v1.EverythingEdition2023.Message getMsgBuilder();
+  /**
+   * <code>.order.v1.EverythingEdition2023.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+   */
+  monorepo.proto.order.v1.EverythingEdition2023.MessageOrBuilder getMsgBuilderOrBuilder();
+
+  /**
+   * <code>.order.v1.EverythingEdition2023.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+   * @return Whether the msgOrBuilder field is set.
+   */
+  boolean hasMsgOrBuilder();
+  /**
+   * <code>.order.v1.EverythingEdition2023.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+   * @return The msgOrBuilder.
+   */
+  monorepo.proto.order.v1.EverythingEdition2023.Message getMsgOrBuilder();
+  /**
+   * <code>.order.v1.EverythingEdition2023.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+   */
+  monorepo.proto.order.v1.EverythingEdition2023.MessageOrBuilder getMsgOrBuilderOrBuilder();
+
   monorepo.proto.order.v1.EverythingEdition2023.OneofCase getOneofCase();
 }

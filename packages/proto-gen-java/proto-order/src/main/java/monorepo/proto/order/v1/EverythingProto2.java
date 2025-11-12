@@ -44,6 +44,15 @@ private static final long serialVersionUID = 0L;
     repeatedEnum_ = emptyIntList();
     dayOfWeek_ = 0;
     month_ = 0;
+    deprecatedString_ = "";
+    deprecatedRepeatedString_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    deprecatedEnum_ = 0;
+    strBytes_ = "";
+    eValue_ = 0;
+    reptStringList_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    reptEnumValueList_ = emptyIntList();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -70,6 +79,12 @@ private static final long serialVersionUID = 0L;
         return internalGetMapStringMessage();
       case 63:
         return internalGetMapStringEnum();
+      case 93:
+        return internalGetDeprecatedMapStringInt32();
+      case 103:
+        return internalGetMStringStringMap();
+      case 104:
+        return internalGetMStringEnumMap();
       default:
         throw new RuntimeException(
             "Invalid map field number: " + number);
@@ -2444,6 +2459,619 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
     return monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance();
   }
 
+  public static final int DEPRECATED_INT32_FIELD_NUMBER = 90;
+  private int deprecatedInt32_ = 0;
+  /**
+   * <pre>
+   * deprecated field
+   * </pre>
+   *
+   * <code>required int32 deprecated_int32 = 90 [json_name = "deprecatedInt32", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_int32 is deprecated.
+   *     See order/v1/everything_proto2.proto;l=76
+   * @return Whether the deprecatedInt32 field is set.
+   */
+  @java.lang.Override
+  @java.lang.Deprecated public boolean hasDeprecatedInt32() {
+    return ((bitField0_ & 0x00800000) != 0);
+  }
+  /**
+   * <pre>
+   * deprecated field
+   * </pre>
+   *
+   * <code>required int32 deprecated_int32 = 90 [json_name = "deprecatedInt32", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_int32 is deprecated.
+   *     See order/v1/everything_proto2.proto;l=76
+   * @return The deprecatedInt32.
+   */
+  @java.lang.Override
+  @java.lang.Deprecated public int getDeprecatedInt32() {
+    return deprecatedInt32_;
+  }
+
+  public static final int DEPRECATED_STRING_FIELD_NUMBER = 91;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object deprecatedString_ = "";
+  /**
+   * <code>required string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_string is deprecated.
+   *     See order/v1/everything_proto2.proto;l=77
+   * @return Whether the deprecatedString field is set.
+   */
+  @java.lang.Override
+  @java.lang.Deprecated public boolean hasDeprecatedString() {
+    return ((bitField0_ & 0x01000000) != 0);
+  }
+  /**
+   * <code>required string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_string is deprecated.
+   *     See order/v1/everything_proto2.proto;l=77
+   * @return The deprecatedString.
+   */
+  @java.lang.Override
+  @java.lang.Deprecated public java.lang.String getDeprecatedString() {
+    java.lang.Object ref = deprecatedString_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      if (bs.isValidUtf8()) {
+        deprecatedString_ = s;
+      }
+      return s;
+    }
+  }
+  /**
+   * <code>required string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_string is deprecated.
+   *     See order/v1/everything_proto2.proto;l=77
+   * @return The bytes for deprecatedString.
+   */
+  @java.lang.Override
+  @java.lang.Deprecated public com.google.protobuf.ByteString
+      getDeprecatedStringBytes() {
+    java.lang.Object ref = deprecatedString_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      deprecatedString_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int DEPRECATED_REPEATED_STRING_FIELD_NUMBER = 92;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.LazyStringArrayList deprecatedRepeatedString_ =
+      com.google.protobuf.LazyStringArrayList.emptyList();
+  /**
+   * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+   *     See order/v1/everything_proto2.proto;l=78
+   * @return A list containing the deprecatedRepeatedString.
+   */
+  @java.lang.Deprecated public com.google.protobuf.ProtocolStringList
+      getDeprecatedRepeatedStringList() {
+    return deprecatedRepeatedString_;
+  }
+  /**
+   * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+   *     See order/v1/everything_proto2.proto;l=78
+   * @return The count of deprecatedRepeatedString.
+   */
+  @java.lang.Deprecated public int getDeprecatedRepeatedStringCount() {
+    return deprecatedRepeatedString_.size();
+  }
+  /**
+   * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+   *     See order/v1/everything_proto2.proto;l=78
+   * @param index The index of the element to return.
+   * @return The deprecatedRepeatedString at the given index.
+   */
+  @java.lang.Deprecated public java.lang.String getDeprecatedRepeatedString(int index) {
+    return deprecatedRepeatedString_.get(index);
+  }
+  /**
+   * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+   *     See order/v1/everything_proto2.proto;l=78
+   * @param index The index of the value to return.
+   * @return The bytes of the deprecatedRepeatedString at the given index.
+   */
+  @java.lang.Deprecated public com.google.protobuf.ByteString
+      getDeprecatedRepeatedStringBytes(int index) {
+    return deprecatedRepeatedString_.getByteString(index);
+  }
+
+  public static final int DEPRECATED_MAP_STRING_INT32_FIELD_NUMBER = 93;
+  private static final class DeprecatedMapStringInt32DefaultEntryHolder {
+    static final com.google.protobuf.MapEntry<
+        java.lang.String, java.lang.Integer> defaultEntry =
+            com.google.protobuf.MapEntry
+            .<java.lang.String, java.lang.Integer>newDefaultInstance(
+                monorepo.proto.order.v1.EverythingProto2Proto.internal_static_order_v1_EverythingProto2_DeprecatedMapStringInt32Entry_descriptor, 
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "",
+                com.google.protobuf.WireFormat.FieldType.INT32,
+                0);
+  }
+  @SuppressWarnings("serial")
+  private com.google.protobuf.MapField<
+      java.lang.String, java.lang.Integer> deprecatedMapStringInt32_;
+  private com.google.protobuf.MapField<java.lang.String, java.lang.Integer>
+  internalGetDeprecatedMapStringInt32() {
+    if (deprecatedMapStringInt32_ == null) {
+      return com.google.protobuf.MapField.emptyMapField(
+          DeprecatedMapStringInt32DefaultEntryHolder.defaultEntry);
+    }
+    return deprecatedMapStringInt32_;
+  }
+  @java.lang.Deprecated public int getDeprecatedMapStringInt32Count() {
+    return internalGetDeprecatedMapStringInt32().getMap().size();
+  }
+  /**
+   * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+   */
+  @java.lang.Override
+  @java.lang.Deprecated public boolean containsDeprecatedMapStringInt32(
+      java.lang.String key) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    return internalGetDeprecatedMapStringInt32().getMap().containsKey(key);
+  }
+  /**
+   * Use {@link #getDeprecatedMapStringInt32Map()} instead.
+   */
+  @java.lang.Override
+  @java.lang.Deprecated
+  public java.util.Map<java.lang.String, java.lang.Integer> getDeprecatedMapStringInt32() {
+    return getDeprecatedMapStringInt32Map();
+  }
+  /**
+   * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+   */
+  @java.lang.Override
+  @java.lang.Deprecated public java.util.Map<java.lang.String, java.lang.Integer> getDeprecatedMapStringInt32Map() {
+    return internalGetDeprecatedMapStringInt32().getMap();
+  }
+  /**
+   * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+   */
+  @java.lang.Override
+  @java.lang.Deprecated public int getDeprecatedMapStringInt32OrDefault(
+      java.lang.String key,
+      int defaultValue) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    java.util.Map<java.lang.String, java.lang.Integer> map =
+        internalGetDeprecatedMapStringInt32().getMap();
+    return map.containsKey(key) ? map.get(key) : defaultValue;
+  }
+  /**
+   * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+   */
+  @java.lang.Override
+  @java.lang.Deprecated public int getDeprecatedMapStringInt32OrThrow(
+      java.lang.String key) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    java.util.Map<java.lang.String, java.lang.Integer> map =
+        internalGetDeprecatedMapStringInt32().getMap();
+    if (!map.containsKey(key)) {
+      throw new java.lang.IllegalArgumentException();
+    }
+    return map.get(key);
+  }
+
+  public static final int DEPRECATED_ENUM_FIELD_NUMBER = 94;
+  private int deprecatedEnum_ = 0;
+  /**
+   * <code>required .order.v1.EverythingProto2.Enum deprecated_enum = 94 [json_name = "deprecatedEnum", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_enum is deprecated.
+   *     See order/v1/everything_proto2.proto;l=80
+   * @return Whether the deprecatedEnum field is set.
+   */
+  @java.lang.Override @java.lang.Deprecated public boolean hasDeprecatedEnum() {
+    return ((bitField0_ & 0x02000000) != 0);
+  }
+  /**
+   * <code>required .order.v1.EverythingProto2.Enum deprecated_enum = 94 [json_name = "deprecatedEnum", deprecated = true];</code>
+   * @deprecated order.v1.EverythingProto2.deprecated_enum is deprecated.
+   *     See order/v1/everything_proto2.proto;l=80
+   * @return The deprecatedEnum.
+   */
+  @java.lang.Override @java.lang.Deprecated public monorepo.proto.order.v1.EverythingProto2.Enum getDeprecatedEnum() {
+    monorepo.proto.order.v1.EverythingProto2.Enum result = monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(deprecatedEnum_);
+    return result == null ? monorepo.proto.order.v1.EverythingProto2.Enum.ENUM_UNSPECIFIED : result;
+  }
+
+  public static final int STR_BYTES_FIELD_NUMBER = 100;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object strBytes_ = "";
+  /**
+   * <pre>
+   * special naming
+   * </pre>
+   *
+   * <code>required string str_bytes = 100 [json_name = "strBytes"];</code>
+   * @return Whether the strBytes field is set.
+   */
+  @java.lang.Override
+  public boolean hasStrBytes() {
+    return ((bitField0_ & 0x04000000) != 0);
+  }
+  /**
+   * <pre>
+   * special naming
+   * </pre>
+   *
+   * <code>required string str_bytes = 100 [json_name = "strBytes"];</code>
+   * @return The strBytes.
+   */
+  @java.lang.Override
+  public java.lang.String getStrBytes() {
+    java.lang.Object ref = strBytes_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      if (bs.isValidUtf8()) {
+        strBytes_ = s;
+      }
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * special naming
+   * </pre>
+   *
+   * <code>required string str_bytes = 100 [json_name = "strBytes"];</code>
+   * @return The bytes for strBytes.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getStrBytesBytes() {
+    java.lang.Object ref = strBytes_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      strBytes_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int E_VALUE_FIELD_NUMBER = 101;
+  private int eValue_ = 0;
+  /**
+   * <code>required .order.v1.EverythingProto2.Enum e_value = 101 [json_name = "eValue"];</code>
+   * @return Whether the eValue field is set.
+   */
+  @java.lang.Override public boolean hasEValue() {
+    return ((bitField0_ & 0x08000000) != 0);
+  }
+  /**
+   * <code>required .order.v1.EverythingProto2.Enum e_value = 101 [json_name = "eValue"];</code>
+   * @return The eValue.
+   */
+  @java.lang.Override public monorepo.proto.order.v1.EverythingProto2.Enum getEValue() {
+    monorepo.proto.order.v1.EverythingProto2.Enum result = monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(eValue_);
+    return result == null ? monorepo.proto.order.v1.EverythingProto2.Enum.ENUM_UNSPECIFIED : result;
+  }
+
+  public static final int REPT_STRING_LIST_FIELD_NUMBER = 102;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.LazyStringArrayList reptStringList_ =
+      com.google.protobuf.LazyStringArrayList.emptyList();
+  /**
+   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * @return A list containing the reptStringList.
+   */
+  public com.google.protobuf.ProtocolStringList
+      getReptStringListList() {
+    return reptStringList_;
+  }
+  /**
+   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * @return The count of reptStringList.
+   */
+  public int getReptStringListCount() {
+    return reptStringList_.size();
+  }
+  /**
+   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * @param index The index of the element to return.
+   * @return The reptStringList at the given index.
+   */
+  public java.lang.String getReptStringList(int index) {
+    return reptStringList_.get(index);
+  }
+  /**
+   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the reptStringList at the given index.
+   */
+  public com.google.protobuf.ByteString
+      getReptStringListBytes(int index) {
+    return reptStringList_.getByteString(index);
+  }
+
+  public static final int REPT_ENUM_VALUE_LIST_FIELD_NUMBER = 107;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.Internal.IntList reptEnumValueList_ =
+      emptyIntList();
+  private static final     com.google.protobuf.Internal.IntListAdapter.IntConverter<
+      monorepo.proto.order.v1.EverythingProto2.Enum> reptEnumValueList_converter_ =
+          new com.google.protobuf.Internal.IntListAdapter.IntConverter<
+              monorepo.proto.order.v1.EverythingProto2.Enum>() {
+            public monorepo.proto.order.v1.EverythingProto2.Enum convert(int from) {
+              monorepo.proto.order.v1.EverythingProto2.Enum result = monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(from);
+              return result == null ? monorepo.proto.order.v1.EverythingProto2.Enum.ENUM_UNSPECIFIED : result;
+            }
+          };
+  /**
+   * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * @return A list containing the reptEnumValueList.
+   */
+  @java.lang.Override
+  public java.util.List<monorepo.proto.order.v1.EverythingProto2.Enum> getReptEnumValueListList() {
+    return new com.google.protobuf.Internal.IntListAdapter<
+        monorepo.proto.order.v1.EverythingProto2.Enum>(reptEnumValueList_, reptEnumValueList_converter_);
+  }
+  /**
+   * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * @return The count of reptEnumValueList.
+   */
+  @java.lang.Override
+  public int getReptEnumValueListCount() {
+    return reptEnumValueList_.size();
+  }
+  /**
+   * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * @param index The index of the element to return.
+   * @return The reptEnumValueList at the given index.
+   */
+  @java.lang.Override
+  public monorepo.proto.order.v1.EverythingProto2.Enum getReptEnumValueList(int index) {
+    return reptEnumValueList_converter_.convert(reptEnumValueList_.getInt(index));
+  }
+
+  public static final int M_STRING_STRING_MAP_FIELD_NUMBER = 103;
+  private static final class MStringStringMapDefaultEntryHolder {
+    static final com.google.protobuf.MapEntry<
+        java.lang.String, java.lang.String> defaultEntry =
+            com.google.protobuf.MapEntry
+            .<java.lang.String, java.lang.String>newDefaultInstance(
+                monorepo.proto.order.v1.EverythingProto2Proto.internal_static_order_v1_EverythingProto2_MStringStringMapEntry_descriptor, 
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "",
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "");
+  }
+  @SuppressWarnings("serial")
+  private com.google.protobuf.MapField<
+      java.lang.String, java.lang.String> mStringStringMap_;
+  private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+  internalGetMStringStringMap() {
+    if (mStringStringMap_ == null) {
+      return com.google.protobuf.MapField.emptyMapField(
+          MStringStringMapDefaultEntryHolder.defaultEntry);
+    }
+    return mStringStringMap_;
+  }
+  public int getMStringStringMapCount() {
+    return internalGetMStringStringMap().getMap().size();
+  }
+  /**
+   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   */
+  @java.lang.Override
+  public boolean containsMStringStringMap(
+      java.lang.String key) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    return internalGetMStringStringMap().getMap().containsKey(key);
+  }
+  /**
+   * Use {@link #getMStringStringMapMap()} instead.
+   */
+  @java.lang.Override
+  @java.lang.Deprecated
+  public java.util.Map<java.lang.String, java.lang.String> getMStringStringMap() {
+    return getMStringStringMapMap();
+  }
+  /**
+   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   */
+  @java.lang.Override
+  public java.util.Map<java.lang.String, java.lang.String> getMStringStringMapMap() {
+    return internalGetMStringStringMap().getMap();
+  }
+  /**
+   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   */
+  @java.lang.Override
+  public /* nullable */
+java.lang.String getMStringStringMapOrDefault(
+      java.lang.String key,
+      /* nullable */
+java.lang.String defaultValue) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    java.util.Map<java.lang.String, java.lang.String> map =
+        internalGetMStringStringMap().getMap();
+    return map.containsKey(key) ? map.get(key) : defaultValue;
+  }
+  /**
+   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   */
+  @java.lang.Override
+  public java.lang.String getMStringStringMapOrThrow(
+      java.lang.String key) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    java.util.Map<java.lang.String, java.lang.String> map =
+        internalGetMStringStringMap().getMap();
+    if (!map.containsKey(key)) {
+      throw new java.lang.IllegalArgumentException();
+    }
+    return map.get(key);
+  }
+
+  public static final int M_STRING_ENUM_MAP_FIELD_NUMBER = 104;
+  private static final class MStringEnumMapDefaultEntryHolder {
+    static final com.google.protobuf.MapEntry<
+        java.lang.String, java.lang.Integer> defaultEntry =
+            com.google.protobuf.MapEntry
+            .<java.lang.String, java.lang.Integer>newDefaultInstance(
+                monorepo.proto.order.v1.EverythingProto2Proto.internal_static_order_v1_EverythingProto2_MStringEnumMapEntry_descriptor, 
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "",
+                com.google.protobuf.WireFormat.FieldType.ENUM,
+                monorepo.proto.order.v1.EverythingProto2.Enum.ENUM_UNSPECIFIED.getNumber());
+  }
+  @SuppressWarnings("serial")
+  private com.google.protobuf.MapField<
+      java.lang.String, java.lang.Integer> mStringEnumMap_;
+  private com.google.protobuf.MapField<java.lang.String, java.lang.Integer>
+  internalGetMStringEnumMap() {
+    if (mStringEnumMap_ == null) {
+      return com.google.protobuf.MapField.emptyMapField(
+          MStringEnumMapDefaultEntryHolder.defaultEntry);
+    }
+    return mStringEnumMap_;
+  }
+  private static final
+  com.google.protobuf.Internal.MapAdapter.Converter<
+      java.lang.Integer, monorepo.proto.order.v1.EverythingProto2.Enum> mStringEnumMapValueConverter =
+          com.google.protobuf.Internal.MapAdapter.newEnumConverter(
+              monorepo.proto.order.v1.EverythingProto2.Enum.internalGetValueMap(),
+              monorepo.proto.order.v1.EverythingProto2.Enum.ENUM_UNSPECIFIED);
+  private static final java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingProto2.Enum>
+  internalGetAdaptedMStringEnumMapMap(
+      java.util.Map<java.lang.String, java.lang.Integer> map) {
+    return new com.google.protobuf.Internal.MapAdapter<
+        java.lang.String, monorepo.proto.order.v1.EverythingProto2.Enum, java.lang.Integer>(
+            map, mStringEnumMapValueConverter);
+  }
+  public int getMStringEnumMapCount() {
+    return internalGetMStringEnumMap().getMap().size();
+  }
+  /**
+   * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  @java.lang.Override
+  public boolean containsMStringEnumMap(
+      java.lang.String key) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    return internalGetMStringEnumMap().getMap().containsKey(key);
+  }
+  /**
+   * Use {@link #getMStringEnumMapMap()} instead.
+   */
+  @java.lang.Override
+  @java.lang.Deprecated
+  public java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingProto2.Enum>
+  getMStringEnumMap() {
+    return getMStringEnumMapMap();
+  }
+  /**
+   * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  @java.lang.Override
+  public java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingProto2.Enum>
+  getMStringEnumMapMap() {
+    return internalGetAdaptedMStringEnumMapMap(
+        internalGetMStringEnumMap().getMap());}
+  /**
+   * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  @java.lang.Override
+  public /* nullable */
+monorepo.proto.order.v1.EverythingProto2.Enum getMStringEnumMapOrDefault(
+      java.lang.String key,
+      /* nullable */
+monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    java.util.Map<java.lang.String, java.lang.Integer> map =
+        internalGetMStringEnumMap().getMap();
+    return map.containsKey(key)
+           ? mStringEnumMapValueConverter.doForward(map.get(key))
+           : defaultValue;
+  }
+  /**
+   * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   */
+  @java.lang.Override
+  public monorepo.proto.order.v1.EverythingProto2.Enum getMStringEnumMapOrThrow(
+      java.lang.String key) {
+    if (key == null) { throw new NullPointerException("map key"); }
+    java.util.Map<java.lang.String, java.lang.Integer> map =
+        internalGetMStringEnumMap().getMap();
+    if (!map.containsKey(key)) {
+      throw new java.lang.IllegalArgumentException();
+    }
+    return mStringEnumMapValueConverter.doForward(map.get(key));
+  }
+
+  public static final int MSG_BUILDER_FIELD_NUMBER = 105;
+  private monorepo.proto.order.v1.EverythingProto2.Message msgBuilder_;
+  /**
+   * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+   * @return Whether the msgBuilder field is set.
+   */
+  @java.lang.Override
+  public boolean hasMsgBuilder() {
+    return ((bitField0_ & 0x10000000) != 0);
+  }
+  /**
+   * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+   * @return The msgBuilder.
+   */
+  @java.lang.Override
+  public monorepo.proto.order.v1.EverythingProto2.Message getMsgBuilder() {
+    return msgBuilder_ == null ? monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance() : msgBuilder_;
+  }
+  /**
+   * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+   */
+  @java.lang.Override
+  public monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder getMsgBuilderOrBuilder() {
+    return msgBuilder_ == null ? monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance() : msgBuilder_;
+  }
+
+  public static final int MSG_OR_BUILDER_FIELD_NUMBER = 106;
+  private monorepo.proto.order.v1.EverythingProto2.Message msgOrBuilder_;
+  /**
+   * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+   * @return Whether the msgOrBuilder field is set.
+   */
+  @java.lang.Override
+  public boolean hasMsgOrBuilder() {
+    return ((bitField0_ & 0x20000000) != 0);
+  }
+  /**
+   * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+   * @return The msgOrBuilder.
+   */
+  @java.lang.Override
+  public monorepo.proto.order.v1.EverythingProto2.Message getMsgOrBuilder() {
+    return msgOrBuilder_ == null ? monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance() : msgOrBuilder_;
+  }
+  /**
+   * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+   */
+  @java.lang.Override
+  public monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder getMsgOrBuilderOrBuilder() {
+    return msgOrBuilder_ == null ? monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance() : msgOrBuilder_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -2536,6 +3164,34 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
       return false;
     }
     if (!hasMonth()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
+    if (!hasDeprecatedInt32()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
+    if (!hasDeprecatedString()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
+    if (!hasDeprecatedEnum()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
+    if (!hasStrBytes()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
+    if (!hasEValue()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
+    if (!hasMsgBuilder()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
+    if (!hasMsgOrBuilder()) {
       memoizedIsInitialized = 0;
       return false;
     }
@@ -2696,6 +3352,54 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
     }
     if (oneofCase_ == 83) {
       output.writeMessage(83, (monorepo.proto.order.v1.EverythingProto2.Message) oneof_);
+    }
+    if (((bitField0_ & 0x00800000) != 0)) {
+      output.writeInt32(90, deprecatedInt32_);
+    }
+    if (((bitField0_ & 0x01000000) != 0)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 91, deprecatedString_);
+    }
+    for (int i = 0; i < deprecatedRepeatedString_.size(); i++) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 92, deprecatedRepeatedString_.getRaw(i));
+    }
+    com.google.protobuf.GeneratedMessage
+      .serializeStringMapTo(
+        output,
+        internalGetDeprecatedMapStringInt32(),
+        DeprecatedMapStringInt32DefaultEntryHolder.defaultEntry,
+        93);
+    if (((bitField0_ & 0x02000000) != 0)) {
+      output.writeEnum(94, deprecatedEnum_);
+    }
+    if (((bitField0_ & 0x04000000) != 0)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 100, strBytes_);
+    }
+    if (((bitField0_ & 0x08000000) != 0)) {
+      output.writeEnum(101, eValue_);
+    }
+    for (int i = 0; i < reptStringList_.size(); i++) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 102, reptStringList_.getRaw(i));
+    }
+    com.google.protobuf.GeneratedMessage
+      .serializeStringMapTo(
+        output,
+        internalGetMStringStringMap(),
+        MStringStringMapDefaultEntryHolder.defaultEntry,
+        103);
+    com.google.protobuf.GeneratedMessage
+      .serializeStringMapTo(
+        output,
+        internalGetMStringEnumMap(),
+        MStringEnumMapDefaultEntryHolder.defaultEntry,
+        104);
+    if (((bitField0_ & 0x10000000) != 0)) {
+      output.writeMessage(105, getMsgBuilder());
+    }
+    if (((bitField0_ & 0x20000000) != 0)) {
+      output.writeMessage(106, getMsgOrBuilder());
+    }
+    for (int i = 0; i < reptEnumValueList_.size(); i++) {
+      output.writeEnum(107, reptEnumValueList_.getInt(i));
     }
     getUnknownFields().writeTo(output);
   }
@@ -2949,6 +3653,87 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(83, (monorepo.proto.order.v1.EverythingProto2.Message) oneof_);
     }
+    if (((bitField0_ & 0x00800000) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(90, deprecatedInt32_);
+    }
+    if (((bitField0_ & 0x01000000) != 0)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(91, deprecatedString_);
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < deprecatedRepeatedString_.size(); i++) {
+        dataSize += computeStringSizeNoTag(deprecatedRepeatedString_.getRaw(i));
+      }
+      size += dataSize;
+      size += 2 * getDeprecatedRepeatedStringList().size();
+    }
+    for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
+         : internalGetDeprecatedMapStringInt32().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.String, java.lang.Integer>
+      deprecatedMapStringInt32__ = DeprecatedMapStringInt32DefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
+      size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(93, deprecatedMapStringInt32__);
+    }
+    if (((bitField0_ & 0x02000000) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(94, deprecatedEnum_);
+    }
+    if (((bitField0_ & 0x04000000) != 0)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(100, strBytes_);
+    }
+    if (((bitField0_ & 0x08000000) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(101, eValue_);
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < reptStringList_.size(); i++) {
+        dataSize += computeStringSizeNoTag(reptStringList_.getRaw(i));
+      }
+      size += dataSize;
+      size += 2 * getReptStringListList().size();
+    }
+    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+         : internalGetMStringStringMap().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+      mStringStringMap__ = MStringStringMapDefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
+      size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(103, mStringStringMap__);
+    }
+    for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
+         : internalGetMStringEnumMap().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.String, java.lang.Integer>
+      mStringEnumMap__ = MStringEnumMapDefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
+      size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(104, mStringEnumMap__);
+    }
+    if (((bitField0_ & 0x10000000) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(105, getMsgBuilder());
+    }
+    if (((bitField0_ & 0x20000000) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(106, getMsgOrBuilder());
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < reptEnumValueList_.size(); i++) {
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeEnumSizeNoTag(reptEnumValueList_.getInt(i));
+      }
+      size += dataSize;
+      size += 2 * reptEnumValueList_.size();
+    }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
@@ -3107,6 +3892,50 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
     if (hasMonth() != other.hasMonth()) return false;
     if (hasMonth()) {
       if (month_ != other.month_) return false;
+    }
+    if (hasDeprecatedInt32() != other.hasDeprecatedInt32()) return false;
+    if (hasDeprecatedInt32()) {
+      if (getDeprecatedInt32()
+          != other.getDeprecatedInt32()) return false;
+    }
+    if (hasDeprecatedString() != other.hasDeprecatedString()) return false;
+    if (hasDeprecatedString()) {
+      if (!getDeprecatedString()
+          .equals(other.getDeprecatedString())) return false;
+    }
+    if (!getDeprecatedRepeatedStringList()
+        .equals(other.getDeprecatedRepeatedStringList())) return false;
+    if (!internalGetDeprecatedMapStringInt32().equals(
+        other.internalGetDeprecatedMapStringInt32())) return false;
+    if (hasDeprecatedEnum() != other.hasDeprecatedEnum()) return false;
+    if (hasDeprecatedEnum()) {
+      if (deprecatedEnum_ != other.deprecatedEnum_) return false;
+    }
+    if (hasStrBytes() != other.hasStrBytes()) return false;
+    if (hasStrBytes()) {
+      if (!getStrBytes()
+          .equals(other.getStrBytes())) return false;
+    }
+    if (hasEValue() != other.hasEValue()) return false;
+    if (hasEValue()) {
+      if (eValue_ != other.eValue_) return false;
+    }
+    if (!getReptStringListList()
+        .equals(other.getReptStringListList())) return false;
+    if (!reptEnumValueList_.equals(other.reptEnumValueList_)) return false;
+    if (!internalGetMStringStringMap().equals(
+        other.internalGetMStringStringMap())) return false;
+    if (!internalGetMStringEnumMap().equals(
+        other.internalGetMStringEnumMap())) return false;
+    if (hasMsgBuilder() != other.hasMsgBuilder()) return false;
+    if (hasMsgBuilder()) {
+      if (!getMsgBuilder()
+          .equals(other.getMsgBuilder())) return false;
+    }
+    if (hasMsgOrBuilder() != other.hasMsgOrBuilder()) return false;
+    if (hasMsgOrBuilder()) {
+      if (!getMsgOrBuilder()
+          .equals(other.getMsgOrBuilder())) return false;
     }
     if (!getOneofCase().equals(other.getOneofCase())) return false;
     switch (oneofCase_) {
@@ -3300,6 +4129,58 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
       hash = (37 * hash) + MONTH_FIELD_NUMBER;
       hash = (53 * hash) + month_;
     }
+    if (hasDeprecatedInt32()) {
+      hash = (37 * hash) + DEPRECATED_INT32_FIELD_NUMBER;
+      hash = (53 * hash) + getDeprecatedInt32();
+    }
+    if (hasDeprecatedString()) {
+      hash = (37 * hash) + DEPRECATED_STRING_FIELD_NUMBER;
+      hash = (53 * hash) + getDeprecatedString().hashCode();
+    }
+    if (getDeprecatedRepeatedStringCount() > 0) {
+      hash = (37 * hash) + DEPRECATED_REPEATED_STRING_FIELD_NUMBER;
+      hash = (53 * hash) + getDeprecatedRepeatedStringList().hashCode();
+    }
+    if (!internalGetDeprecatedMapStringInt32().getMap().isEmpty()) {
+      hash = (37 * hash) + DEPRECATED_MAP_STRING_INT32_FIELD_NUMBER;
+      hash = (53 * hash) + internalGetDeprecatedMapStringInt32().hashCode();
+    }
+    if (hasDeprecatedEnum()) {
+      hash = (37 * hash) + DEPRECATED_ENUM_FIELD_NUMBER;
+      hash = (53 * hash) + deprecatedEnum_;
+    }
+    if (hasStrBytes()) {
+      hash = (37 * hash) + STR_BYTES_FIELD_NUMBER;
+      hash = (53 * hash) + getStrBytes().hashCode();
+    }
+    if (hasEValue()) {
+      hash = (37 * hash) + E_VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + eValue_;
+    }
+    if (getReptStringListCount() > 0) {
+      hash = (37 * hash) + REPT_STRING_LIST_FIELD_NUMBER;
+      hash = (53 * hash) + getReptStringListList().hashCode();
+    }
+    if (getReptEnumValueListCount() > 0) {
+      hash = (37 * hash) + REPT_ENUM_VALUE_LIST_FIELD_NUMBER;
+      hash = (53 * hash) + reptEnumValueList_.hashCode();
+    }
+    if (!internalGetMStringStringMap().getMap().isEmpty()) {
+      hash = (37 * hash) + M_STRING_STRING_MAP_FIELD_NUMBER;
+      hash = (53 * hash) + internalGetMStringStringMap().hashCode();
+    }
+    if (!internalGetMStringEnumMap().getMap().isEmpty()) {
+      hash = (37 * hash) + M_STRING_ENUM_MAP_FIELD_NUMBER;
+      hash = (53 * hash) + internalGetMStringEnumMap().hashCode();
+    }
+    if (hasMsgBuilder()) {
+      hash = (37 * hash) + MSG_BUILDER_FIELD_NUMBER;
+      hash = (53 * hash) + getMsgBuilder().hashCode();
+    }
+    if (hasMsgOrBuilder()) {
+      hash = (37 * hash) + MSG_OR_BUILDER_FIELD_NUMBER;
+      hash = (53 * hash) + getMsgOrBuilder().hashCode();
+    }
     switch (oneofCase_) {
       case 80:
         hash = (37 * hash) + ONEOF_INT32_FIELD_NUMBER;
@@ -3447,6 +4328,12 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
           return internalGetMapStringMessage();
         case 63:
           return internalGetMapStringEnum();
+        case 93:
+          return internalGetDeprecatedMapStringInt32();
+        case 103:
+          return internalGetMStringStringMap();
+        case 104:
+          return internalGetMStringEnumMap();
         default:
           throw new RuntimeException(
               "Invalid map field number: " + number);
@@ -3470,6 +4357,12 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
           return internalGetMutableMapStringMessage();
         case 63:
           return internalGetMutableMapStringEnum();
+        case 93:
+          return internalGetMutableDeprecatedMapStringInt32();
+        case 103:
+          return internalGetMutableMStringStringMap();
+        case 104:
+          return internalGetMutableMStringEnumMap();
         default:
           throw new RuntimeException(
               "Invalid map field number: " + number);
@@ -3509,6 +4402,8 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
         internalGetDurationFieldBuilder();
         internalGetTimeOfDayFieldBuilder();
         internalGetDateFieldBuilder();
+        internalGetMsgBuilderFieldBuilder();
+        internalGetMsgOrBuilderFieldBuilder();
       }
     }
     @java.lang.Override
@@ -3612,6 +4507,29 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
       month_ = 0;
       if (oneofMessageBuilder_ != null) {
         oneofMessageBuilder_.clear();
+      }
+      deprecatedInt32_ = 0;
+      deprecatedString_ = "";
+      deprecatedRepeatedString_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      internalGetMutableDeprecatedMapStringInt32().clear();
+      deprecatedEnum_ = 0;
+      strBytes_ = "";
+      eValue_ = 0;
+      reptStringList_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      reptEnumValueList_ = emptyIntList();
+      internalGetMutableMStringStringMap().clear();
+      internalGetMutableMStringEnumMap().clear();
+      msgBuilder_ = null;
+      if (msgBuilderBuilder_ != null) {
+        msgBuilderBuilder_.dispose();
+        msgBuilderBuilder_ = null;
+      }
+      msgOrBuilder_ = null;
+      if (msgOrBuilderBuilder_ != null) {
+        msgOrBuilderBuilder_.dispose();
+        msgOrBuilderBuilder_ = null;
       }
       oneofCase_ = 0;
       oneof_ = null;
@@ -3845,6 +4763,62 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
         result.month_ = month_;
         to_bitField0_ |= 0x00400000;
       }
+      if (((from_bitField1_ & 0x00000800) != 0)) {
+        result.deprecatedInt32_ = deprecatedInt32_;
+        to_bitField0_ |= 0x00800000;
+      }
+      if (((from_bitField1_ & 0x00001000) != 0)) {
+        result.deprecatedString_ = deprecatedString_;
+        to_bitField0_ |= 0x01000000;
+      }
+      if (((from_bitField1_ & 0x00002000) != 0)) {
+        deprecatedRepeatedString_.makeImmutable();
+        result.deprecatedRepeatedString_ = deprecatedRepeatedString_;
+      }
+      if (((from_bitField1_ & 0x00004000) != 0)) {
+        result.deprecatedMapStringInt32_ = internalGetDeprecatedMapStringInt32();
+        result.deprecatedMapStringInt32_.makeImmutable();
+      }
+      if (((from_bitField1_ & 0x00008000) != 0)) {
+        result.deprecatedEnum_ = deprecatedEnum_;
+        to_bitField0_ |= 0x02000000;
+      }
+      if (((from_bitField1_ & 0x00010000) != 0)) {
+        result.strBytes_ = strBytes_;
+        to_bitField0_ |= 0x04000000;
+      }
+      if (((from_bitField1_ & 0x00020000) != 0)) {
+        result.eValue_ = eValue_;
+        to_bitField0_ |= 0x08000000;
+      }
+      if (((from_bitField1_ & 0x00040000) != 0)) {
+        reptStringList_.makeImmutable();
+        result.reptStringList_ = reptStringList_;
+      }
+      if (((from_bitField1_ & 0x00080000) != 0)) {
+        reptEnumValueList_.makeImmutable();
+        result.reptEnumValueList_ = reptEnumValueList_;
+      }
+      if (((from_bitField1_ & 0x00100000) != 0)) {
+        result.mStringStringMap_ = internalGetMStringStringMap();
+        result.mStringStringMap_.makeImmutable();
+      }
+      if (((from_bitField1_ & 0x00200000) != 0)) {
+        result.mStringEnumMap_ = internalGetMStringEnumMap();
+        result.mStringEnumMap_.makeImmutable();
+      }
+      if (((from_bitField1_ & 0x00400000) != 0)) {
+        result.msgBuilder_ = msgBuilderBuilder_ == null
+            ? msgBuilder_
+            : msgBuilderBuilder_.build();
+        to_bitField0_ |= 0x10000000;
+      }
+      if (((from_bitField1_ & 0x00800000) != 0)) {
+        result.msgOrBuilder_ = msgOrBuilderBuilder_ == null
+            ? msgOrBuilder_
+            : msgOrBuilderBuilder_.build();
+        to_bitField0_ |= 0x20000000;
+      }
       result.bitField0_ |= to_bitField0_;
     }
 
@@ -4074,6 +5048,71 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
       if (other.hasMonth()) {
         setMonth(other.getMonth());
       }
+      if (other.hasDeprecatedInt32()) {
+        setDeprecatedInt32(other.getDeprecatedInt32());
+      }
+      if (other.hasDeprecatedString()) {
+        deprecatedString_ = other.deprecatedString_;
+        bitField1_ |= 0x00001000;
+        onChanged();
+      }
+      if (!other.deprecatedRepeatedString_.isEmpty()) {
+        if (deprecatedRepeatedString_.isEmpty()) {
+          deprecatedRepeatedString_ = other.deprecatedRepeatedString_;
+          bitField1_ |= 0x00002000;
+        } else {
+          ensureDeprecatedRepeatedStringIsMutable();
+          deprecatedRepeatedString_.addAll(other.deprecatedRepeatedString_);
+        }
+        onChanged();
+      }
+      internalGetMutableDeprecatedMapStringInt32().mergeFrom(
+          other.internalGetDeprecatedMapStringInt32());
+      bitField1_ |= 0x00004000;
+      if (other.hasDeprecatedEnum()) {
+        setDeprecatedEnum(other.getDeprecatedEnum());
+      }
+      if (other.hasStrBytes()) {
+        strBytes_ = other.strBytes_;
+        bitField1_ |= 0x00010000;
+        onChanged();
+      }
+      if (other.hasEValue()) {
+        setEValue(other.getEValue());
+      }
+      if (!other.reptStringList_.isEmpty()) {
+        if (reptStringList_.isEmpty()) {
+          reptStringList_ = other.reptStringList_;
+          bitField1_ |= 0x00040000;
+        } else {
+          ensureReptStringListIsMutable();
+          reptStringList_.addAll(other.reptStringList_);
+        }
+        onChanged();
+      }
+      if (!other.reptEnumValueList_.isEmpty()) {
+        if (reptEnumValueList_.isEmpty()) {
+          reptEnumValueList_ = other.reptEnumValueList_;
+          reptEnumValueList_.makeImmutable();
+          bitField1_ |= 0x00080000;
+        } else {
+          ensureReptEnumValueListIsMutable();
+          reptEnumValueList_.addAll(other.reptEnumValueList_);
+        }
+        onChanged();
+      }
+      internalGetMutableMStringStringMap().mergeFrom(
+          other.internalGetMStringStringMap());
+      bitField1_ |= 0x00100000;
+      internalGetMutableMStringEnumMap().mergeFrom(
+          other.internalGetMStringEnumMap());
+      bitField1_ |= 0x00200000;
+      if (other.hasMsgBuilder()) {
+        mergeMsgBuilder(other.getMsgBuilder());
+      }
+      if (other.hasMsgOrBuilder()) {
+        mergeMsgOrBuilder(other.getMsgOrBuilder());
+      }
       switch (other.getOneofCase()) {
         case ONEOF_INT32: {
           setOneofInt32(other.getOneofInt32());
@@ -4168,6 +5207,27 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
         return false;
       }
       if (!hasMonth()) {
+        return false;
+      }
+      if (!hasDeprecatedInt32()) {
+        return false;
+      }
+      if (!hasDeprecatedString()) {
+        return false;
+      }
+      if (!hasDeprecatedEnum()) {
+        return false;
+      }
+      if (!hasStrBytes()) {
+        return false;
+      }
+      if (!hasEValue()) {
+        return false;
+      }
+      if (!hasMsgBuilder()) {
+        return false;
+      }
+      if (!hasMsgOrBuilder()) {
         return false;
       }
       return true;
@@ -4590,6 +5650,131 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
               oneofCase_ = 83;
               break;
             } // case 666
+            case 720: {
+              deprecatedInt32_ = input.readInt32();
+              bitField1_ |= 0x00000800;
+              break;
+            } // case 720
+            case 730: {
+              deprecatedString_ = input.readBytes();
+              bitField1_ |= 0x00001000;
+              break;
+            } // case 730
+            case 738: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              ensureDeprecatedRepeatedStringIsMutable();
+              deprecatedRepeatedString_.add(bs);
+              break;
+            } // case 738
+            case 746: {
+              com.google.protobuf.MapEntry<java.lang.String, java.lang.Integer>
+              deprecatedMapStringInt32__ = input.readMessage(
+                  DeprecatedMapStringInt32DefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              internalGetMutableDeprecatedMapStringInt32().getMutableMap().put(
+                  deprecatedMapStringInt32__.getKey(), deprecatedMapStringInt32__.getValue());
+              bitField1_ |= 0x00004000;
+              break;
+            } // case 746
+            case 752: {
+              int tmpRaw = input.readEnum();
+              monorepo.proto.order.v1.EverythingProto2.Enum tmpValue =
+                  monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(tmpRaw);
+              if (tmpValue == null) {
+                mergeUnknownVarintField(94, tmpRaw);
+              } else {
+                deprecatedEnum_ = tmpRaw;
+                bitField1_ |= 0x00008000;
+              }
+              break;
+            } // case 752
+            case 802: {
+              strBytes_ = input.readBytes();
+              bitField1_ |= 0x00010000;
+              break;
+            } // case 802
+            case 808: {
+              int tmpRaw = input.readEnum();
+              monorepo.proto.order.v1.EverythingProto2.Enum tmpValue =
+                  monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(tmpRaw);
+              if (tmpValue == null) {
+                mergeUnknownVarintField(101, tmpRaw);
+              } else {
+                eValue_ = tmpRaw;
+                bitField1_ |= 0x00020000;
+              }
+              break;
+            } // case 808
+            case 818: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              ensureReptStringListIsMutable();
+              reptStringList_.add(bs);
+              break;
+            } // case 818
+            case 826: {
+              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+              mStringStringMap__ = input.readMessage(
+                  MStringStringMapDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              internalGetMutableMStringStringMap().getMutableMap().put(
+                  mStringStringMap__.getKey(), mStringStringMap__.getValue());
+              bitField1_ |= 0x00100000;
+              break;
+            } // case 826
+            case 834: {
+              com.google.protobuf.ByteString bytes = input.readBytes();
+              com.google.protobuf.MapEntry<java.lang.String, java.lang.Integer>
+              mStringEnumMap__ = MStringEnumMapDefaultEntryHolder.defaultEntry.getParserForType().parseFrom(bytes);
+              if (monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(mStringEnumMap__.getValue()) == null) {
+                mergeUnknownLengthDelimitedField(104, bytes);
+              } else {
+                internalGetMutableMStringEnumMap().getMutableMap().put(
+                    mStringEnumMap__.getKey(), mStringEnumMap__.getValue());
+                bitField1_ |= 0x00200000;
+              }
+              break;
+            } // case 834
+            case 842: {
+              input.readMessage(
+                  internalGetMsgBuilderFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField1_ |= 0x00400000;
+              break;
+            } // case 842
+            case 850: {
+              input.readMessage(
+                  internalGetMsgOrBuilderFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField1_ |= 0x00800000;
+              break;
+            } // case 850
+            case 856: {
+              int tmpRaw = input.readEnum();
+              monorepo.proto.order.v1.EverythingProto2.Enum tmpValue =
+                  monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(tmpRaw);
+              if (tmpValue == null) {
+                mergeUnknownVarintField(107, tmpRaw);
+              } else {
+                ensureReptEnumValueListIsMutable();
+                reptEnumValueList_.addInt(tmpRaw);
+              }
+              break;
+            } // case 856
+            case 858: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              ensureReptEnumValueListIsMutable();
+              while (input.getBytesUntilLimit() > 0) {
+                int tmpRaw = input.readEnum();
+                monorepo.proto.order.v1.EverythingProto2.Enum tmpValue =
+                    monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(107, tmpRaw);
+                } else {
+                  reptEnumValueList_.addInt(tmpRaw);
+                }
+              }
+              input.popLimit(limit);
+              break;
+            } // case 858
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -8825,6 +10010,1300 @@ monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
       oneofCase_ = 83;
       onChanged();
       return oneofMessageBuilder_;
+    }
+
+    private int deprecatedInt32_ ;
+    /**
+     * <pre>
+     * deprecated field
+     * </pre>
+     *
+     * <code>required int32 deprecated_int32 = 90 [json_name = "deprecatedInt32", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_int32 is deprecated.
+     *     See order/v1/everything_proto2.proto;l=76
+     * @return Whether the deprecatedInt32 field is set.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated public boolean hasDeprecatedInt32() {
+      return ((bitField1_ & 0x00000800) != 0);
+    }
+    /**
+     * <pre>
+     * deprecated field
+     * </pre>
+     *
+     * <code>required int32 deprecated_int32 = 90 [json_name = "deprecatedInt32", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_int32 is deprecated.
+     *     See order/v1/everything_proto2.proto;l=76
+     * @return The deprecatedInt32.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated public int getDeprecatedInt32() {
+      return deprecatedInt32_;
+    }
+    /**
+     * <pre>
+     * deprecated field
+     * </pre>
+     *
+     * <code>required int32 deprecated_int32 = 90 [json_name = "deprecatedInt32", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_int32 is deprecated.
+     *     See order/v1/everything_proto2.proto;l=76
+     * @param value The deprecatedInt32 to set.
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder setDeprecatedInt32(int value) {
+
+      deprecatedInt32_ = value;
+      bitField1_ |= 0x00000800;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * deprecated field
+     * </pre>
+     *
+     * <code>required int32 deprecated_int32 = 90 [json_name = "deprecatedInt32", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_int32 is deprecated.
+     *     See order/v1/everything_proto2.proto;l=76
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder clearDeprecatedInt32() {
+      bitField1_ = (bitField1_ & ~0x00000800);
+      deprecatedInt32_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object deprecatedString_ = "";
+    /**
+     * <code>required string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=77
+     * @return Whether the deprecatedString field is set.
+     */
+    @java.lang.Deprecated public boolean hasDeprecatedString() {
+      return ((bitField1_ & 0x00001000) != 0);
+    }
+    /**
+     * <code>required string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=77
+     * @return The deprecatedString.
+     */
+    @java.lang.Deprecated public java.lang.String getDeprecatedString() {
+      java.lang.Object ref = deprecatedString_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          deprecatedString_ = s;
+        }
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>required string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=77
+     * @return The bytes for deprecatedString.
+     */
+    @java.lang.Deprecated public com.google.protobuf.ByteString
+        getDeprecatedStringBytes() {
+      java.lang.Object ref = deprecatedString_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        deprecatedString_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>required string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=77
+     * @param value The deprecatedString to set.
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder setDeprecatedString(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      deprecatedString_ = value;
+      bitField1_ |= 0x00001000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=77
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder clearDeprecatedString() {
+      deprecatedString_ = getDefaultInstance().getDeprecatedString();
+      bitField1_ = (bitField1_ & ~0x00001000);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required string deprecated_string = 91 [json_name = "deprecatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=77
+     * @param value The bytes for deprecatedString to set.
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder setDeprecatedStringBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      deprecatedString_ = value;
+      bitField1_ |= 0x00001000;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.LazyStringArrayList deprecatedRepeatedString_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    private void ensureDeprecatedRepeatedStringIsMutable() {
+      if (!deprecatedRepeatedString_.isModifiable()) {
+        deprecatedRepeatedString_ = new com.google.protobuf.LazyStringArrayList(deprecatedRepeatedString_);
+      }
+      bitField1_ |= 0x00002000;
+    }
+    /**
+     * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=78
+     * @return A list containing the deprecatedRepeatedString.
+     */
+    @java.lang.Deprecated public com.google.protobuf.ProtocolStringList
+        getDeprecatedRepeatedStringList() {
+      deprecatedRepeatedString_.makeImmutable();
+      return deprecatedRepeatedString_;
+    }
+    /**
+     * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=78
+     * @return The count of deprecatedRepeatedString.
+     */
+    @java.lang.Deprecated public int getDeprecatedRepeatedStringCount() {
+      return deprecatedRepeatedString_.size();
+    }
+    /**
+     * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=78
+     * @param index The index of the element to return.
+     * @return The deprecatedRepeatedString at the given index.
+     */
+    @java.lang.Deprecated public java.lang.String getDeprecatedRepeatedString(int index) {
+      return deprecatedRepeatedString_.get(index);
+    }
+    /**
+     * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=78
+     * @param index The index of the value to return.
+     * @return The bytes of the deprecatedRepeatedString at the given index.
+     */
+    @java.lang.Deprecated public com.google.protobuf.ByteString
+        getDeprecatedRepeatedStringBytes(int index) {
+      return deprecatedRepeatedString_.getByteString(index);
+    }
+    /**
+     * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=78
+     * @param index The index to set the value at.
+     * @param value The deprecatedRepeatedString to set.
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder setDeprecatedRepeatedString(
+        int index, java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureDeprecatedRepeatedStringIsMutable();
+      deprecatedRepeatedString_.set(index, value);
+      bitField1_ |= 0x00002000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=78
+     * @param value The deprecatedRepeatedString to add.
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder addDeprecatedRepeatedString(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureDeprecatedRepeatedStringIsMutable();
+      deprecatedRepeatedString_.add(value);
+      bitField1_ |= 0x00002000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=78
+     * @param values The deprecatedRepeatedString to add.
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder addAllDeprecatedRepeatedString(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureDeprecatedRepeatedStringIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, deprecatedRepeatedString_);
+      bitField1_ |= 0x00002000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=78
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder clearDeprecatedRepeatedString() {
+      deprecatedRepeatedString_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+      bitField1_ = (bitField1_ & ~0x00002000);;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string deprecated_repeated_string = 92 [json_name = "deprecatedRepeatedString", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_repeated_string is deprecated.
+     *     See order/v1/everything_proto2.proto;l=78
+     * @param value The bytes of the deprecatedRepeatedString to add.
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder addDeprecatedRepeatedStringBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureDeprecatedRepeatedStringIsMutable();
+      deprecatedRepeatedString_.add(value);
+      bitField1_ |= 0x00002000;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.Integer> deprecatedMapStringInt32_;
+    @java.lang.Deprecated private com.google.protobuf.MapField<java.lang.String, java.lang.Integer>
+        internalGetDeprecatedMapStringInt32() {
+      if (deprecatedMapStringInt32_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            DeprecatedMapStringInt32DefaultEntryHolder.defaultEntry);
+      }
+      return deprecatedMapStringInt32_;
+    }
+    @java.lang.Deprecated private com.google.protobuf.MapField<java.lang.String, java.lang.Integer>
+        internalGetMutableDeprecatedMapStringInt32() {
+      if (deprecatedMapStringInt32_ == null) {
+        deprecatedMapStringInt32_ = com.google.protobuf.MapField.newMapField(
+            DeprecatedMapStringInt32DefaultEntryHolder.defaultEntry);
+      }
+      if (!deprecatedMapStringInt32_.isMutable()) {
+        deprecatedMapStringInt32_ = deprecatedMapStringInt32_.copy();
+      }
+      bitField1_ |= 0x00004000;
+      onChanged();
+      return deprecatedMapStringInt32_;
+    }
+    @java.lang.Deprecated public int getDeprecatedMapStringInt32Count() {
+      return internalGetDeprecatedMapStringInt32().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+     */
+    @java.lang.Override
+    @java.lang.Deprecated public boolean containsDeprecatedMapStringInt32(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      return internalGetDeprecatedMapStringInt32().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getDeprecatedMapStringInt32Map()} instead.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.Integer> getDeprecatedMapStringInt32() {
+      return getDeprecatedMapStringInt32Map();
+    }
+    /**
+     * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+     */
+    @java.lang.Override
+    @java.lang.Deprecated public java.util.Map<java.lang.String, java.lang.Integer> getDeprecatedMapStringInt32Map() {
+      return internalGetDeprecatedMapStringInt32().getMap();
+    }
+    /**
+     * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+     */
+    @java.lang.Override
+    @java.lang.Deprecated public int getDeprecatedMapStringInt32OrDefault(
+        java.lang.String key,
+        int defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.Integer> map =
+          internalGetDeprecatedMapStringInt32().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+     */
+    @java.lang.Override
+    @java.lang.Deprecated public int getDeprecatedMapStringInt32OrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.Integer> map =
+          internalGetDeprecatedMapStringInt32().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+    @java.lang.Deprecated public Builder clearDeprecatedMapStringInt32() {
+      bitField1_ = (bitField1_ & ~0x00004000);
+      internalGetMutableDeprecatedMapStringInt32().getMutableMap()
+          .clear();
+      return this;
+    }
+    /**
+     * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+     */
+    @java.lang.Deprecated public Builder removeDeprecatedMapStringInt32(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      internalGetMutableDeprecatedMapStringInt32().getMutableMap()
+          .remove(key);
+      return this;
+    }
+    /**
+     * Use alternate mutation accessors instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.Integer>
+        getMutableDeprecatedMapStringInt32() {
+      bitField1_ |= 0x00004000;
+      return internalGetMutableDeprecatedMapStringInt32().getMutableMap();
+    }
+    /**
+     * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+     */
+    @java.lang.Deprecated public Builder putDeprecatedMapStringInt32(
+        java.lang.String key,
+        int value) {
+      if (key == null) { throw new NullPointerException("map key"); }
+
+      internalGetMutableDeprecatedMapStringInt32().getMutableMap()
+          .put(key, value);
+      bitField1_ |= 0x00004000;
+      return this;
+    }
+    /**
+     * <code>map&lt;string, int32&gt; deprecated_map_string_int32 = 93 [json_name = "deprecatedMapStringInt32", deprecated = true];</code>
+     */
+    @java.lang.Deprecated public Builder putAllDeprecatedMapStringInt32(
+        java.util.Map<java.lang.String, java.lang.Integer> values) {
+      internalGetMutableDeprecatedMapStringInt32().getMutableMap()
+          .putAll(values);
+      bitField1_ |= 0x00004000;
+      return this;
+    }
+
+    private int deprecatedEnum_ = 0;
+    /**
+     * <code>required .order.v1.EverythingProto2.Enum deprecated_enum = 94 [json_name = "deprecatedEnum", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_enum is deprecated.
+     *     See order/v1/everything_proto2.proto;l=80
+     * @return Whether the deprecatedEnum field is set.
+     */
+    @java.lang.Override @java.lang.Deprecated public boolean hasDeprecatedEnum() {
+      return ((bitField1_ & 0x00008000) != 0);
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Enum deprecated_enum = 94 [json_name = "deprecatedEnum", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_enum is deprecated.
+     *     See order/v1/everything_proto2.proto;l=80
+     * @return The deprecatedEnum.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated public monorepo.proto.order.v1.EverythingProto2.Enum getDeprecatedEnum() {
+      monorepo.proto.order.v1.EverythingProto2.Enum result = monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(deprecatedEnum_);
+      return result == null ? monorepo.proto.order.v1.EverythingProto2.Enum.ENUM_UNSPECIFIED : result;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Enum deprecated_enum = 94 [json_name = "deprecatedEnum", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_enum is deprecated.
+     *     See order/v1/everything_proto2.proto;l=80
+     * @param value The deprecatedEnum to set.
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder setDeprecatedEnum(monorepo.proto.order.v1.EverythingProto2.Enum value) {
+      if (value == null) { throw new NullPointerException(); }
+      bitField1_ |= 0x00008000;
+      deprecatedEnum_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Enum deprecated_enum = 94 [json_name = "deprecatedEnum", deprecated = true];</code>
+     * @deprecated order.v1.EverythingProto2.deprecated_enum is deprecated.
+     *     See order/v1/everything_proto2.proto;l=80
+     * @return This builder for chaining.
+     */
+    @java.lang.Deprecated public Builder clearDeprecatedEnum() {
+      bitField1_ = (bitField1_ & ~0x00008000);
+      deprecatedEnum_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object strBytes_ = "";
+    /**
+     * <pre>
+     * special naming
+     * </pre>
+     *
+     * <code>required string str_bytes = 100 [json_name = "strBytes"];</code>
+     * @return Whether the strBytes field is set.
+     */
+    public boolean hasStrBytes() {
+      return ((bitField1_ & 0x00010000) != 0);
+    }
+    /**
+     * <pre>
+     * special naming
+     * </pre>
+     *
+     * <code>required string str_bytes = 100 [json_name = "strBytes"];</code>
+     * @return The strBytes.
+     */
+    public java.lang.String getStrBytes() {
+      java.lang.Object ref = strBytes_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          strBytes_ = s;
+        }
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * special naming
+     * </pre>
+     *
+     * <code>required string str_bytes = 100 [json_name = "strBytes"];</code>
+     * @return The bytes for strBytes.
+     */
+    public com.google.protobuf.ByteString
+        getStrBytesBytes() {
+      java.lang.Object ref = strBytes_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        strBytes_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * special naming
+     * </pre>
+     *
+     * <code>required string str_bytes = 100 [json_name = "strBytes"];</code>
+     * @param value The strBytes to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStrBytes(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      strBytes_ = value;
+      bitField1_ |= 0x00010000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * special naming
+     * </pre>
+     *
+     * <code>required string str_bytes = 100 [json_name = "strBytes"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearStrBytes() {
+      strBytes_ = getDefaultInstance().getStrBytes();
+      bitField1_ = (bitField1_ & ~0x00010000);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * special naming
+     * </pre>
+     *
+     * <code>required string str_bytes = 100 [json_name = "strBytes"];</code>
+     * @param value The bytes for strBytes to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStrBytesBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      strBytes_ = value;
+      bitField1_ |= 0x00010000;
+      onChanged();
+      return this;
+    }
+
+    private int eValue_ = 0;
+    /**
+     * <code>required .order.v1.EverythingProto2.Enum e_value = 101 [json_name = "eValue"];</code>
+     * @return Whether the eValue field is set.
+     */
+    @java.lang.Override public boolean hasEValue() {
+      return ((bitField1_ & 0x00020000) != 0);
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Enum e_value = 101 [json_name = "eValue"];</code>
+     * @return The eValue.
+     */
+    @java.lang.Override
+    public monorepo.proto.order.v1.EverythingProto2.Enum getEValue() {
+      monorepo.proto.order.v1.EverythingProto2.Enum result = monorepo.proto.order.v1.EverythingProto2.Enum.forNumber(eValue_);
+      return result == null ? monorepo.proto.order.v1.EverythingProto2.Enum.ENUM_UNSPECIFIED : result;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Enum e_value = 101 [json_name = "eValue"];</code>
+     * @param value The eValue to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEValue(monorepo.proto.order.v1.EverythingProto2.Enum value) {
+      if (value == null) { throw new NullPointerException(); }
+      bitField1_ |= 0x00020000;
+      eValue_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Enum e_value = 101 [json_name = "eValue"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEValue() {
+      bitField1_ = (bitField1_ & ~0x00020000);
+      eValue_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.LazyStringArrayList reptStringList_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    private void ensureReptStringListIsMutable() {
+      if (!reptStringList_.isModifiable()) {
+        reptStringList_ = new com.google.protobuf.LazyStringArrayList(reptStringList_);
+      }
+      bitField1_ |= 0x00040000;
+    }
+    /**
+     * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+     * @return A list containing the reptStringList.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getReptStringListList() {
+      reptStringList_.makeImmutable();
+      return reptStringList_;
+    }
+    /**
+     * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+     * @return The count of reptStringList.
+     */
+    public int getReptStringListCount() {
+      return reptStringList_.size();
+    }
+    /**
+     * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+     * @param index The index of the element to return.
+     * @return The reptStringList at the given index.
+     */
+    public java.lang.String getReptStringList(int index) {
+      return reptStringList_.get(index);
+    }
+    /**
+     * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the reptStringList at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getReptStringListBytes(int index) {
+      return reptStringList_.getByteString(index);
+    }
+    /**
+     * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+     * @param index The index to set the value at.
+     * @param value The reptStringList to set.
+     * @return This builder for chaining.
+     */
+    public Builder setReptStringList(
+        int index, java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureReptStringListIsMutable();
+      reptStringList_.set(index, value);
+      bitField1_ |= 0x00040000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+     * @param value The reptStringList to add.
+     * @return This builder for chaining.
+     */
+    public Builder addReptStringList(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureReptStringListIsMutable();
+      reptStringList_.add(value);
+      bitField1_ |= 0x00040000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+     * @param values The reptStringList to add.
+     * @return This builder for chaining.
+     */
+    public Builder addAllReptStringList(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureReptStringListIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, reptStringList_);
+      bitField1_ |= 0x00040000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearReptStringList() {
+      reptStringList_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+      bitField1_ = (bitField1_ & ~0x00040000);;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+     * @param value The bytes of the reptStringList to add.
+     * @return This builder for chaining.
+     */
+    public Builder addReptStringListBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureReptStringListIsMutable();
+      reptStringList_.add(value);
+      bitField1_ |= 0x00040000;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.Internal.IntList reptEnumValueList_ = emptyIntList();
+    private void ensureReptEnumValueListIsMutable() {
+      if (!reptEnumValueList_.isModifiable()) {
+        reptEnumValueList_ = makeMutableCopy(reptEnumValueList_);
+      }
+      bitField1_ |= 0x00080000;
+    }
+    /**
+     * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+     * @return A list containing the reptEnumValueList.
+     */
+    public java.util.List<monorepo.proto.order.v1.EverythingProto2.Enum> getReptEnumValueListList() {
+      return new com.google.protobuf.Internal.IntListAdapter<
+          monorepo.proto.order.v1.EverythingProto2.Enum>(reptEnumValueList_, reptEnumValueList_converter_);
+    }
+    /**
+     * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+     * @return The count of reptEnumValueList.
+     */
+    public int getReptEnumValueListCount() {
+      return reptEnumValueList_.size();
+    }
+    /**
+     * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+     * @param index The index of the element to return.
+     * @return The reptEnumValueList at the given index.
+     */
+    public monorepo.proto.order.v1.EverythingProto2.Enum getReptEnumValueList(int index) {
+      return reptEnumValueList_converter_.convert(reptEnumValueList_.getInt(index));
+    }
+    /**
+     * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+     * @param index The index to set the value at.
+     * @param value The reptEnumValueList to set.
+     * @return This builder for chaining.
+     */
+    public Builder setReptEnumValueList(
+        int index, monorepo.proto.order.v1.EverythingProto2.Enum value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureReptEnumValueListIsMutable();
+      reptEnumValueList_.setInt(index, value.getNumber());
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+     * @param value The reptEnumValueList to add.
+     * @return This builder for chaining.
+     */
+    public Builder addReptEnumValueList(monorepo.proto.order.v1.EverythingProto2.Enum value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureReptEnumValueListIsMutable();
+      reptEnumValueList_.addInt(value.getNumber());
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+     * @param values The reptEnumValueList to add.
+     * @return This builder for chaining.
+     */
+    public Builder addAllReptEnumValueList(
+        java.lang.Iterable<? extends monorepo.proto.order.v1.EverythingProto2.Enum> values) {
+      ensureReptEnumValueListIsMutable();
+      for (monorepo.proto.order.v1.EverythingProto2.Enum value : values) {
+        reptEnumValueList_.addInt(value.getNumber());
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>repeated .order.v1.EverythingProto2.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearReptEnumValueList() {
+      reptEnumValueList_ = emptyIntList();
+      bitField1_ = (bitField1_ & ~0x00080000);
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.String> mStringStringMap_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+        internalGetMStringStringMap() {
+      if (mStringStringMap_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            MStringStringMapDefaultEntryHolder.defaultEntry);
+      }
+      return mStringStringMap_;
+    }
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+        internalGetMutableMStringStringMap() {
+      if (mStringStringMap_ == null) {
+        mStringStringMap_ = com.google.protobuf.MapField.newMapField(
+            MStringStringMapDefaultEntryHolder.defaultEntry);
+      }
+      if (!mStringStringMap_.isMutable()) {
+        mStringStringMap_ = mStringStringMap_.copy();
+      }
+      bitField1_ |= 0x00100000;
+      onChanged();
+      return mStringStringMap_;
+    }
+    public int getMStringStringMapCount() {
+      return internalGetMStringStringMap().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+     */
+    @java.lang.Override
+    public boolean containsMStringStringMap(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      return internalGetMStringStringMap().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getMStringStringMapMap()} instead.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getMStringStringMap() {
+      return getMStringStringMapMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+     */
+    @java.lang.Override
+    public java.util.Map<java.lang.String, java.lang.String> getMStringStringMapMap() {
+      return internalGetMStringStringMap().getMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+     */
+    @java.lang.Override
+    public /* nullable */
+java.lang.String getMStringStringMapOrDefault(
+        java.lang.String key,
+        /* nullable */
+java.lang.String defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetMStringStringMap().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+     */
+    @java.lang.Override
+    public java.lang.String getMStringStringMapOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetMStringStringMap().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+    public Builder clearMStringStringMap() {
+      bitField1_ = (bitField1_ & ~0x00100000);
+      internalGetMutableMStringStringMap().getMutableMap()
+          .clear();
+      return this;
+    }
+    /**
+     * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+     */
+    public Builder removeMStringStringMap(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      internalGetMutableMStringStringMap().getMutableMap()
+          .remove(key);
+      return this;
+    }
+    /**
+     * Use alternate mutation accessors instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String>
+        getMutableMStringStringMap() {
+      bitField1_ |= 0x00100000;
+      return internalGetMutableMStringStringMap().getMutableMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+     */
+    public Builder putMStringStringMap(
+        java.lang.String key,
+        java.lang.String value) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      if (value == null) { throw new NullPointerException("map value"); }
+      internalGetMutableMStringStringMap().getMutableMap()
+          .put(key, value);
+      bitField1_ |= 0x00100000;
+      return this;
+    }
+    /**
+     * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+     */
+    public Builder putAllMStringStringMap(
+        java.util.Map<java.lang.String, java.lang.String> values) {
+      internalGetMutableMStringStringMap().getMutableMap()
+          .putAll(values);
+      bitField1_ |= 0x00100000;
+      return this;
+    }
+
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.Integer> mStringEnumMap_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.Integer>
+        internalGetMStringEnumMap() {
+      if (mStringEnumMap_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            MStringEnumMapDefaultEntryHolder.defaultEntry);
+      }
+      return mStringEnumMap_;
+    }
+    private com.google.protobuf.MapField<java.lang.String, java.lang.Integer>
+        internalGetMutableMStringEnumMap() {
+      if (mStringEnumMap_ == null) {
+        mStringEnumMap_ = com.google.protobuf.MapField.newMapField(
+            MStringEnumMapDefaultEntryHolder.defaultEntry);
+      }
+      if (!mStringEnumMap_.isMutable()) {
+        mStringEnumMap_ = mStringEnumMap_.copy();
+      }
+      bitField1_ |= 0x00200000;
+      onChanged();
+      return mStringEnumMap_;
+    }
+    public int getMStringEnumMapCount() {
+      return internalGetMStringEnumMap().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+     */
+    @java.lang.Override
+    public boolean containsMStringEnumMap(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      return internalGetMStringEnumMap().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getMStringEnumMapMap()} instead.
+     */
+    @java.lang.Override
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingProto2.Enum>
+    getMStringEnumMap() {
+      return getMStringEnumMapMap();
+    }
+    /**
+     * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+     */
+    @java.lang.Override
+    public java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingProto2.Enum>
+    getMStringEnumMapMap() {
+      return internalGetAdaptedMStringEnumMapMap(
+          internalGetMStringEnumMap().getMap());}
+    /**
+     * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+     */
+    @java.lang.Override
+    public /* nullable */
+monorepo.proto.order.v1.EverythingProto2.Enum getMStringEnumMapOrDefault(
+        java.lang.String key,
+        /* nullable */
+monorepo.proto.order.v1.EverythingProto2.Enum defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.Integer> map =
+          internalGetMStringEnumMap().getMap();
+      return map.containsKey(key)
+             ? mStringEnumMapValueConverter.doForward(map.get(key))
+             : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+     */
+    @java.lang.Override
+    public monorepo.proto.order.v1.EverythingProto2.Enum getMStringEnumMapOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.Integer> map =
+          internalGetMStringEnumMap().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return mStringEnumMapValueConverter.doForward(map.get(key));
+    }
+    public Builder clearMStringEnumMap() {
+      bitField1_ = (bitField1_ & ~0x00200000);
+      internalGetMutableMStringEnumMap().getMutableMap()
+          .clear();
+      return this;
+    }
+    /**
+     * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+     */
+    public Builder removeMStringEnumMap(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      internalGetMutableMStringEnumMap().getMutableMap()
+          .remove(key);
+      return this;
+    }
+    /**
+     * Use alternate mutation accessors instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingProto2.Enum>
+        getMutableMStringEnumMap() {
+      bitField1_ |= 0x00200000;
+      return internalGetAdaptedMStringEnumMapMap(
+           internalGetMutableMStringEnumMap().getMutableMap());
+    }
+    /**
+     * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+     */
+    public Builder putMStringEnumMap(
+        java.lang.String key,
+        monorepo.proto.order.v1.EverythingProto2.Enum value) {
+      if (key == null) { throw new NullPointerException("map key"); }
+
+      internalGetMutableMStringEnumMap().getMutableMap()
+          .put(key, mStringEnumMapValueConverter.doBackward(value));
+      bitField1_ |= 0x00200000;
+      return this;
+    }
+    /**
+     * <code>map&lt;string, .order.v1.EverythingProto2.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+     */
+    public Builder putAllMStringEnumMap(
+        java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingProto2.Enum> values) {
+      internalGetAdaptedMStringEnumMapMap(
+          internalGetMutableMStringEnumMap().getMutableMap())
+              .putAll(values);
+      bitField1_ |= 0x00200000;
+      return this;
+    }
+
+    private monorepo.proto.order.v1.EverythingProto2.Message msgBuilder_;
+    private com.google.protobuf.SingleFieldBuilder<
+        monorepo.proto.order.v1.EverythingProto2.Message, monorepo.proto.order.v1.EverythingProto2.Message.Builder, monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder> msgBuilderBuilder_;
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+     * @return Whether the msgBuilder field is set.
+     */
+    public boolean hasMsgBuilder() {
+      return ((bitField1_ & 0x00400000) != 0);
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+     * @return The msgBuilder.
+     */
+    public monorepo.proto.order.v1.EverythingProto2.Message getMsgBuilder() {
+      if (msgBuilderBuilder_ == null) {
+        return msgBuilder_ == null ? monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance() : msgBuilder_;
+      } else {
+        return msgBuilderBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+     */
+    public Builder setMsgBuilder(monorepo.proto.order.v1.EverythingProto2.Message value) {
+      if (msgBuilderBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        msgBuilder_ = value;
+      } else {
+        msgBuilderBuilder_.setMessage(value);
+      }
+      bitField1_ |= 0x00400000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+     */
+    public Builder setMsgBuilder(
+        monorepo.proto.order.v1.EverythingProto2.Message.Builder builderForValue) {
+      if (msgBuilderBuilder_ == null) {
+        msgBuilder_ = builderForValue.build();
+      } else {
+        msgBuilderBuilder_.setMessage(builderForValue.build());
+      }
+      bitField1_ |= 0x00400000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+     */
+    public Builder mergeMsgBuilder(monorepo.proto.order.v1.EverythingProto2.Message value) {
+      if (msgBuilderBuilder_ == null) {
+        if (((bitField1_ & 0x00400000) != 0) &&
+          msgBuilder_ != null &&
+          msgBuilder_ != monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance()) {
+          getMsgBuilderBuilder().mergeFrom(value);
+        } else {
+          msgBuilder_ = value;
+        }
+      } else {
+        msgBuilderBuilder_.mergeFrom(value);
+      }
+      if (msgBuilder_ != null) {
+        bitField1_ |= 0x00400000;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+     */
+    public Builder clearMsgBuilder() {
+      bitField1_ = (bitField1_ & ~0x00400000);
+      msgBuilder_ = null;
+      if (msgBuilderBuilder_ != null) {
+        msgBuilderBuilder_.dispose();
+        msgBuilderBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+     */
+    public monorepo.proto.order.v1.EverythingProto2.Message.Builder getMsgBuilderBuilder() {
+      bitField1_ |= 0x00400000;
+      onChanged();
+      return internalGetMsgBuilderFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+     */
+    public monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder getMsgBuilderOrBuilder() {
+      if (msgBuilderBuilder_ != null) {
+        return msgBuilderBuilder_.getMessageOrBuilder();
+      } else {
+        return msgBuilder_ == null ?
+            monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance() : msgBuilder_;
+      }
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_builder = 105 [json_name = "msgBuilder"];</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        monorepo.proto.order.v1.EverythingProto2.Message, monorepo.proto.order.v1.EverythingProto2.Message.Builder, monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder> 
+        internalGetMsgBuilderFieldBuilder() {
+      if (msgBuilderBuilder_ == null) {
+        msgBuilderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            monorepo.proto.order.v1.EverythingProto2.Message, monorepo.proto.order.v1.EverythingProto2.Message.Builder, monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder>(
+                getMsgBuilder(),
+                getParentForChildren(),
+                isClean());
+        msgBuilder_ = null;
+      }
+      return msgBuilderBuilder_;
+    }
+
+    private monorepo.proto.order.v1.EverythingProto2.Message msgOrBuilder_;
+    private com.google.protobuf.SingleFieldBuilder<
+        monorepo.proto.order.v1.EverythingProto2.Message, monorepo.proto.order.v1.EverythingProto2.Message.Builder, monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder> msgOrBuilderBuilder_;
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+     * @return Whether the msgOrBuilder field is set.
+     */
+    public boolean hasMsgOrBuilder() {
+      return ((bitField1_ & 0x00800000) != 0);
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+     * @return The msgOrBuilder.
+     */
+    public monorepo.proto.order.v1.EverythingProto2.Message getMsgOrBuilder() {
+      if (msgOrBuilderBuilder_ == null) {
+        return msgOrBuilder_ == null ? monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance() : msgOrBuilder_;
+      } else {
+        return msgOrBuilderBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+     */
+    public Builder setMsgOrBuilder(monorepo.proto.order.v1.EverythingProto2.Message value) {
+      if (msgOrBuilderBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        msgOrBuilder_ = value;
+      } else {
+        msgOrBuilderBuilder_.setMessage(value);
+      }
+      bitField1_ |= 0x00800000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+     */
+    public Builder setMsgOrBuilder(
+        monorepo.proto.order.v1.EverythingProto2.Message.Builder builderForValue) {
+      if (msgOrBuilderBuilder_ == null) {
+        msgOrBuilder_ = builderForValue.build();
+      } else {
+        msgOrBuilderBuilder_.setMessage(builderForValue.build());
+      }
+      bitField1_ |= 0x00800000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+     */
+    public Builder mergeMsgOrBuilder(monorepo.proto.order.v1.EverythingProto2.Message value) {
+      if (msgOrBuilderBuilder_ == null) {
+        if (((bitField1_ & 0x00800000) != 0) &&
+          msgOrBuilder_ != null &&
+          msgOrBuilder_ != monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance()) {
+          getMsgOrBuilderBuilder().mergeFrom(value);
+        } else {
+          msgOrBuilder_ = value;
+        }
+      } else {
+        msgOrBuilderBuilder_.mergeFrom(value);
+      }
+      if (msgOrBuilder_ != null) {
+        bitField1_ |= 0x00800000;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+     */
+    public Builder clearMsgOrBuilder() {
+      bitField1_ = (bitField1_ & ~0x00800000);
+      msgOrBuilder_ = null;
+      if (msgOrBuilderBuilder_ != null) {
+        msgOrBuilderBuilder_.dispose();
+        msgOrBuilderBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+     */
+    public monorepo.proto.order.v1.EverythingProto2.Message.Builder getMsgOrBuilderBuilder() {
+      bitField1_ |= 0x00800000;
+      onChanged();
+      return internalGetMsgOrBuilderFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+     */
+    public monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder getMsgOrBuilderOrBuilder() {
+      if (msgOrBuilderBuilder_ != null) {
+        return msgOrBuilderBuilder_.getMessageOrBuilder();
+      } else {
+        return msgOrBuilder_ == null ?
+            monorepo.proto.order.v1.EverythingProto2.Message.getDefaultInstance() : msgOrBuilder_;
+      }
+    }
+    /**
+     * <code>required .order.v1.EverythingProto2.Message msg_or_builder = 106 [json_name = "msgOrBuilder"];</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        monorepo.proto.order.v1.EverythingProto2.Message, monorepo.proto.order.v1.EverythingProto2.Message.Builder, monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder> 
+        internalGetMsgOrBuilderFieldBuilder() {
+      if (msgOrBuilderBuilder_ == null) {
+        msgOrBuilderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            monorepo.proto.order.v1.EverythingProto2.Message, monorepo.proto.order.v1.EverythingProto2.Message.Builder, monorepo.proto.order.v1.EverythingProto2.MessageOrBuilder>(
+                getMsgOrBuilder(),
+                getParentForChildren(),
+                isClean());
+        msgOrBuilder_ = null;
+      }
+      return msgOrBuilderBuilder_;
     }
 
     // @@protoc_insertion_point(builder_scope:order.v1.EverythingProto2)
