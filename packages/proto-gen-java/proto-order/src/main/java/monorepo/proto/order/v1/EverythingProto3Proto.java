@@ -72,15 +72,15 @@ public final class EverythingProto3Proto extends com.google.protobuf.GeneratedFi
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_order_v1_EverythingProto3_DeprecatedMapStringInt32Entry_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_order_v1_EverythingProto3_MStringStringMapEntry_descriptor;
+    internal_static_order_v1_EverythingProto3_MaStringStringMapEntry_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_order_v1_EverythingProto3_MStringStringMapEntry_fieldAccessorTable;
+      internal_static_order_v1_EverythingProto3_MaStringStringMapEntry_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_order_v1_EverythingProto3_MStringEnumMapEntry_descriptor;
+    internal_static_order_v1_EverythingProto3_MaStringEnumMapEntry_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_order_v1_EverythingProto3_MStringEnumMapEntry_fieldAccessorTable;
+      internal_static_order_v1_EverythingProto3_MaStringEnumMapEntry_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_order_v1_EverythingProto3_Message_descriptor;
   static final 
@@ -101,7 +101,7 @@ public final class EverythingProto3Proto extends com.google.protobuf.GeneratedFi
       "otobuf/wrappers.proto\032\033google/type/timeo" +
       "fday.proto\032\026google/type/date.proto\032\033goog" +
       "le/type/dayofweek.proto\032\027google/type/mon" +
-      "th.proto\"\361 \n\020EverythingProto3\022\024\n\005int32\030\001" +
+      "th.proto\"\363 \n\020EverythingProto3\022\024\n\005int32\030\001" +
       " \001(\005R\005int32\022\024\n\005int64\030\003 \001(\003R\005int64\022\024\n\005flo" +
       "at\030\013 \001(\002R\005float\022\026\n\006double\030\014 \001(\001R\006double\022" +
       "\022\n\004bool\030\r \001(\010R\004bool\022\026\n\006string\030\016 \001(\tR\006str" +
@@ -170,16 +170,16 @@ public final class EverythingProto3Proto extends com.google.protobuf.GeneratedFi
       "EntryB\002\030\001R\030deprecatedMapStringInt32\022L\n\017d" +
       "eprecated_enum\030^ \001(\0162\037.order.v1.Everythi" +
       "ngProto3.EnumB\002\030\001R\016deprecatedEnum\022\033\n\tstr" +
-      "_bytes\030d \001(\tR\010strBytes\0228\n\007e_value\030e \001(\0162" +
-      "\037.order.v1.EverythingProto3.EnumR\006eValue" +
-      "\022(\n\020rept_string_list\030f \003(\tR\016reptStringLi" +
-      "st\022P\n\024rept_enum_value_list\030k \003(\0162\037.order" +
-      ".v1.EverythingProto3.EnumR\021reptEnumValue" +
-      "List\022_\n\023m_string_string_map\030g \003(\01320.orde" +
-      "r.v1.EverythingProto3.MStringStringMapEn" +
-      "tryR\020mStringStringMap\022Y\n\021m_string_enum_m" +
-      "ap\030h \003(\0132..order.v1.EverythingProto3.MSt" +
-      "ringEnumMapEntryR\016mStringEnumMap\022C\n\013msg_" +
+      "_bytes\030d \001(\tR\010strBytes\022:\n\010en_value\030e \001(\016" +
+      "2\037.order.v1.EverythingProto3.EnumR\007enVal" +
+      "ue\022$\n\016re_string_list\030f \003(\tR\014reStringList" +
+      "\022L\n\022re_enum_value_list\030k \003(\0162\037.order.v1." +
+      "EverythingProto3.EnumR\017reEnumValueList\022b" +
+      "\n\024ma_string_string_map\030g \003(\01321.order.v1." +
+      "EverythingProto3.MaStringStringMapEntryR" +
+      "\021maStringStringMap\022\\\n\022ma_string_enum_map" +
+      "\030h \003(\0132/.order.v1.EverythingProto3.MaStr" +
+      "ingEnumMapEntryR\017maStringEnumMap\022C\n\013msg_" +
       "builder\030i \001(\0132\".order.v1.EverythingProto" +
       "3.MessageR\nmsgBuilder\022H\n\016msg_or_builder\030" +
       "j \001(\0132\".order.v1.EverythingProto3.Messag" +
@@ -198,18 +198,18 @@ public final class EverythingProto3Proto extends com.google.protobuf.GeneratedFi
       "\003key\030\001 \001(\tR\003key\0225\n\005value\030\002 \001(\0162\037.order.v" +
       "1.EverythingProto3.EnumR\005value:\0028\001\032K\n\035De" +
       "precatedMapStringInt32Entry\022\020\n\003key\030\001 \001(\t" +
-      "R\003key\022\024\n\005value\030\002 \001(\005R\005value:\0028\001\032C\n\025MStri" +
-      "ngStringMapEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005va" +
-      "lue\030\002 \001(\tR\005value:\0028\001\032b\n\023MStringEnumMapEn" +
-      "try\022\020\n\003key\030\001 \001(\tR\003key\0225\n\005value\030\002 \001(\0162\037.o" +
-      "rder.v1.EverythingProto3.EnumR\005value:\0028\001" +
-      "\032-\n\007Message\022\016\n\002id\030\001 \001(\003R\002id\022\022\n\004name\030\002 \001(" +
-      "\tR\004name\"@\n\004Enum\022\024\n\020ENUM_UNSPECIFIED\020\000\022\020\n" +
-      "\014ENUM_VALUE_1\020\001\022\020\n\014ENUM_VALUE_2\020\002B\007\n\005one" +
-      "ofB\020\n\016_optional_enumBv\n\027monorepo.proto.o" +
-      "rder.v1B\025EverythingProto3ProtoP\001ZBgithub" +
-      ".com/yourorg/monorepo/packages/proto-gen" +
-      "-go/order/v1;orderv1b\006proto3"
+      "R\003key\022\024\n\005value\030\002 \001(\005R\005value:\0028\001\032D\n\026MaStr" +
+      "ingStringMapEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005v" +
+      "alue\030\002 \001(\tR\005value:\0028\001\032c\n\024MaStringEnumMap" +
+      "Entry\022\020\n\003key\030\001 \001(\tR\003key\0225\n\005value\030\002 \001(\0162\037" +
+      ".order.v1.EverythingProto3.EnumR\005value:\002" +
+      "8\001\032-\n\007Message\022\016\n\002id\030\001 \001(\003R\002id\022\022\n\004name\030\002 " +
+      "\001(\tR\004name\"@\n\004Enum\022\024\n\020ENUM_UNSPECIFIED\020\000\022" +
+      "\020\n\014ENUM_VALUE_1\020\001\022\020\n\014ENUM_VALUE_2\020\002B\007\n\005o" +
+      "neofB\020\n\016_optional_enumBv\n\027monorepo.proto" +
+      ".order.v1B\025EverythingProto3ProtoP\001ZBgith" +
+      "ub.com/yourorg/monorepo/packages/proto-g" +
+      "en-go/order/v1;orderv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -227,7 +227,7 @@ public final class EverythingProto3Proto extends com.google.protobuf.GeneratedFi
     internal_static_order_v1_EverythingProto3_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_order_v1_EverythingProto3_descriptor,
-        new java.lang.String[] { "Int32", "Int64", "Float", "Double", "Bool", "String", "Bytes", "RepeatedInt32", "RepeatedInt64", "RepeatedFloat", "RepeatedDouble", "RepeatedBool", "RepeatedString", "RepeatedBytes", "Int32Value", "Int64Value", "FloatValue", "DoubleValue", "BoolValue", "StringValue", "BytesValue", "MapInt32String", "MapInt64String", "MapBoolString", "MapStringString", "MapStringBytes", "Message", "RepeatedMessage", "MapStringMessage", "Enum", "OptionalEnum", "RepeatedEnum", "MapStringEnum", "Timestamp", "Duration", "TimeOfDay", "Date", "DayOfWeek", "Month", "OneofInt32", "OneofString", "OneofEnum", "OneofMessage", "DeprecatedInt32", "DeprecatedString", "DeprecatedRepeatedString", "DeprecatedMapStringInt32", "DeprecatedEnum", "StrBytes", "EValue", "ReptStringList", "ReptEnumValueList", "MStringStringMap", "MStringEnumMap", "MsgBuilder", "MsgOrBuilder", "Oneof", });
+        new java.lang.String[] { "Int32", "Int64", "Float", "Double", "Bool", "String", "Bytes", "RepeatedInt32", "RepeatedInt64", "RepeatedFloat", "RepeatedDouble", "RepeatedBool", "RepeatedString", "RepeatedBytes", "Int32Value", "Int64Value", "FloatValue", "DoubleValue", "BoolValue", "StringValue", "BytesValue", "MapInt32String", "MapInt64String", "MapBoolString", "MapStringString", "MapStringBytes", "Message", "RepeatedMessage", "MapStringMessage", "Enum", "OptionalEnum", "RepeatedEnum", "MapStringEnum", "Timestamp", "Duration", "TimeOfDay", "Date", "DayOfWeek", "Month", "OneofInt32", "OneofString", "OneofEnum", "OneofMessage", "DeprecatedInt32", "DeprecatedString", "DeprecatedRepeatedString", "DeprecatedMapStringInt32", "DeprecatedEnum", "StrBytes", "EnValue", "ReStringList", "ReEnumValueList", "MaStringStringMap", "MaStringEnumMap", "MsgBuilder", "MsgOrBuilder", "Oneof", });
     internal_static_order_v1_EverythingProto3_MapInt32StringEntry_descriptor =
       internal_static_order_v1_EverythingProto3_descriptor.getNestedType(0);
     internal_static_order_v1_EverythingProto3_MapInt32StringEntry_fieldAccessorTable = new
@@ -276,17 +276,17 @@ public final class EverythingProto3Proto extends com.google.protobuf.GeneratedFi
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_order_v1_EverythingProto3_DeprecatedMapStringInt32Entry_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_order_v1_EverythingProto3_MStringStringMapEntry_descriptor =
+    internal_static_order_v1_EverythingProto3_MaStringStringMapEntry_descriptor =
       internal_static_order_v1_EverythingProto3_descriptor.getNestedType(8);
-    internal_static_order_v1_EverythingProto3_MStringStringMapEntry_fieldAccessorTable = new
+    internal_static_order_v1_EverythingProto3_MaStringStringMapEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_order_v1_EverythingProto3_MStringStringMapEntry_descriptor,
+        internal_static_order_v1_EverythingProto3_MaStringStringMapEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_order_v1_EverythingProto3_MStringEnumMapEntry_descriptor =
+    internal_static_order_v1_EverythingProto3_MaStringEnumMapEntry_descriptor =
       internal_static_order_v1_EverythingProto3_descriptor.getNestedType(9);
-    internal_static_order_v1_EverythingProto3_MStringEnumMapEntry_fieldAccessorTable = new
+    internal_static_order_v1_EverythingProto3_MaStringEnumMapEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_order_v1_EverythingProto3_MStringEnumMapEntry_descriptor,
+        internal_static_order_v1_EverythingProto3_MaStringEnumMapEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_order_v1_EverythingProto3_Message_descriptor =
       internal_static_order_v1_EverythingProto3_descriptor.getNestedType(10);

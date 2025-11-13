@@ -72,15 +72,15 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_order_v1_EverythingEdition2023_DeprecatedMapStringInt32Entry_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_order_v1_EverythingEdition2023_MStringStringMapEntry_descriptor;
+    internal_static_order_v1_EverythingEdition2023_MaStringStringMapEntry_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_order_v1_EverythingEdition2023_MStringStringMapEntry_fieldAccessorTable;
+      internal_static_order_v1_EverythingEdition2023_MaStringStringMapEntry_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_order_v1_EverythingEdition2023_MStringEnumMapEntry_descriptor;
+    internal_static_order_v1_EverythingEdition2023_MaStringEnumMapEntry_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_order_v1_EverythingEdition2023_MStringEnumMapEntry_fieldAccessorTable;
+      internal_static_order_v1_EverythingEdition2023_MaStringEnumMapEntry_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_order_v1_EverythingEdition2023_Message_descriptor;
   static final 
@@ -101,7 +101,7 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
       "le/protobuf/wrappers.proto\032\033google/type/" +
       "timeofday.proto\032\026google/type/date.proto\032" +
       "\033google/type/dayofweek.proto\032\027google/typ" +
-      "e/month.proto\"\344!\n\025EverythingEdition2023\022" +
+      "e/month.proto\"\346!\n\025EverythingEdition2023\022" +
       "\024\n\005int32\030\001 \001(\005R\005int32\022\024\n\005int64\030\003 \001(\003R\005in" +
       "t64\022\024\n\005float\030\013 \001(\002R\005float\022\026\n\006double\030\014 \001(" +
       "\001R\006double\022\022\n\004bool\030\r \001(\010R\004bool\022\026\n\006string\030" +
@@ -172,17 +172,17 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
       "ingInt32EntryB\002\030\001R\030deprecatedMapStringIn" +
       "t32\022Q\n\017deprecated_enum\030^ \001(\0162$.order.v1." +
       "EverythingEdition2023.EnumB\002\030\001R\016deprecat" +
-      "edEnum\022\033\n\tstr_bytes\030d \001(\tR\010strBytes\022=\n\007e" +
-      "_value\030e \001(\0162$.order.v1.EverythingEditio" +
-      "n2023.EnumR\006eValue\022(\n\020rept_string_list\030f" +
-      " \003(\tR\016reptStringList\022U\n\024rept_enum_value_" +
-      "list\030k \003(\0162$.order.v1.EverythingEdition2" +
-      "023.EnumR\021reptEnumValueList\022d\n\023m_string_" +
-      "string_map\030g \003(\01325.order.v1.EverythingEd" +
-      "ition2023.MStringStringMapEntryR\020mString" +
-      "StringMap\022^\n\021m_string_enum_map\030h \003(\01323.o" +
-      "rder.v1.EverythingEdition2023.MStringEnu" +
-      "mMapEntryR\016mStringEnumMap\022H\n\013msg_builder" +
+      "edEnum\022\033\n\tstr_bytes\030d \001(\tR\010strBytes\022?\n\010e" +
+      "n_value\030e \001(\0162$.order.v1.EverythingEditi" +
+      "on2023.EnumR\007enValue\022$\n\016re_string_list\030f" +
+      " \003(\tR\014reStringList\022Q\n\022re_enum_value_list" +
+      "\030k \003(\0162$.order.v1.EverythingEdition2023." +
+      "EnumR\017reEnumValueList\022g\n\024ma_string_strin" +
+      "g_map\030g \003(\01326.order.v1.EverythingEdition" +
+      "2023.MaStringStringMapEntryR\021maStringStr" +
+      "ingMap\022a\n\022ma_string_enum_map\030h \003(\01324.ord" +
+      "er.v1.EverythingEdition2023.MaStringEnum" +
+      "MapEntryR\017maStringEnumMap\022H\n\013msg_builder" +
       "\030i \001(\0132\'.order.v1.EverythingEdition2023." +
       "MessageR\nmsgBuilder\022M\n\016msg_or_builder\030j " +
       "\001(\0132\'.order.v1.EverythingEdition2023.Mes" +
@@ -202,17 +202,17 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
       ".order.v1.EverythingEdition2023.EnumR\005va" +
       "lue:\0028\001\032K\n\035DeprecatedMapStringInt32Entry" +
       "\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\005R\005value" +
-      ":\0028\001\032C\n\025MStringStringMapEntry\022\020\n\003key\030\001 \001" +
-      "(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032g\n\023MSt" +
-      "ringEnumMapEntry\022\020\n\003key\030\001 \001(\tR\003key\022:\n\005va" +
-      "lue\030\002 \001(\0162$.order.v1.EverythingEdition20" +
-      "23.EnumR\005value:\0028\001\032-\n\007Message\022\016\n\002id\030\001 \001(" +
-      "\003R\002id\022\022\n\004name\030\002 \001(\tR\004name\"@\n\004Enum\022\024\n\020ENU" +
-      "M_UNSPECIFIED\020\000\022\020\n\014ENUM_VALUE_1\020\001\022\020\n\014ENU" +
-      "M_VALUE_2\020\002B\007\n\005oneofB{\n\027monorepo.proto.o" +
-      "rder.v1B\032EverythingEdition2023ProtoP\001ZBg" +
-      "ithub.com/yourorg/monorepo/packages/prot" +
-      "o-gen-go/order/v1;orderv1b\010editionsp\350\007"
+      ":\0028\001\032D\n\026MaStringStringMapEntry\022\020\n\003key\030\001 " +
+      "\001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032h\n\024Ma" +
+      "StringEnumMapEntry\022\020\n\003key\030\001 \001(\tR\003key\022:\n\005" +
+      "value\030\002 \001(\0162$.order.v1.EverythingEdition" +
+      "2023.EnumR\005value:\0028\001\032-\n\007Message\022\016\n\002id\030\001 " +
+      "\001(\003R\002id\022\022\n\004name\030\002 \001(\tR\004name\"@\n\004Enum\022\024\n\020E" +
+      "NUM_UNSPECIFIED\020\000\022\020\n\014ENUM_VALUE_1\020\001\022\020\n\014E" +
+      "NUM_VALUE_2\020\002B\007\n\005oneofB{\n\027monorepo.proto" +
+      ".order.v1B\032EverythingEdition2023ProtoP\001Z" +
+      "Bgithub.com/yourorg/monorepo/packages/pr" +
+      "oto-gen-go/order/v1;orderv1b\010editionsp\350\007"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -230,7 +230,7 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
     internal_static_order_v1_EverythingEdition2023_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_order_v1_EverythingEdition2023_descriptor,
-        new java.lang.String[] { "Int32", "Int64", "Float", "Double", "Bool", "String", "Bytes", "RepeatedInt32", "RepeatedInt64", "RepeatedFloat", "RepeatedDouble", "RepeatedBool", "RepeatedString", "RepeatedBytes", "Int32Value", "Int64Value", "FloatValue", "DoubleValue", "BoolValue", "StringValue", "BytesValue", "MapInt32String", "MapInt64String", "MapBoolString", "MapStringString", "MapStringBytes", "Message", "RepeatedMessage", "MapStringMessage", "Enum", "OptionalEnum", "RepeatedEnum", "MapStringEnum", "Timestamp", "Duration", "TimeOfDay", "Date", "DayOfWeek", "Month", "OneofInt32", "OneofString", "OneofEnum", "OneofMessage", "DeprecatedInt32", "DeprecatedString", "DeprecatedRepeatedString", "DeprecatedMapStringInt32", "DeprecatedEnum", "StrBytes", "EValue", "ReptStringList", "ReptEnumValueList", "MStringStringMap", "MStringEnumMap", "MsgBuilder", "MsgOrBuilder", "Oneof", });
+        new java.lang.String[] { "Int32", "Int64", "Float", "Double", "Bool", "String", "Bytes", "RepeatedInt32", "RepeatedInt64", "RepeatedFloat", "RepeatedDouble", "RepeatedBool", "RepeatedString", "RepeatedBytes", "Int32Value", "Int64Value", "FloatValue", "DoubleValue", "BoolValue", "StringValue", "BytesValue", "MapInt32String", "MapInt64String", "MapBoolString", "MapStringString", "MapStringBytes", "Message", "RepeatedMessage", "MapStringMessage", "Enum", "OptionalEnum", "RepeatedEnum", "MapStringEnum", "Timestamp", "Duration", "TimeOfDay", "Date", "DayOfWeek", "Month", "OneofInt32", "OneofString", "OneofEnum", "OneofMessage", "DeprecatedInt32", "DeprecatedString", "DeprecatedRepeatedString", "DeprecatedMapStringInt32", "DeprecatedEnum", "StrBytes", "EnValue", "ReStringList", "ReEnumValueList", "MaStringStringMap", "MaStringEnumMap", "MsgBuilder", "MsgOrBuilder", "Oneof", });
     internal_static_order_v1_EverythingEdition2023_MapInt32StringEntry_descriptor =
       internal_static_order_v1_EverythingEdition2023_descriptor.getNestedType(0);
     internal_static_order_v1_EverythingEdition2023_MapInt32StringEntry_fieldAccessorTable = new
@@ -279,17 +279,17 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_order_v1_EverythingEdition2023_DeprecatedMapStringInt32Entry_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_order_v1_EverythingEdition2023_MStringStringMapEntry_descriptor =
+    internal_static_order_v1_EverythingEdition2023_MaStringStringMapEntry_descriptor =
       internal_static_order_v1_EverythingEdition2023_descriptor.getNestedType(8);
-    internal_static_order_v1_EverythingEdition2023_MStringStringMapEntry_fieldAccessorTable = new
+    internal_static_order_v1_EverythingEdition2023_MaStringStringMapEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_order_v1_EverythingEdition2023_MStringStringMapEntry_descriptor,
+        internal_static_order_v1_EverythingEdition2023_MaStringStringMapEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_order_v1_EverythingEdition2023_MStringEnumMapEntry_descriptor =
+    internal_static_order_v1_EverythingEdition2023_MaStringEnumMapEntry_descriptor =
       internal_static_order_v1_EverythingEdition2023_descriptor.getNestedType(9);
-    internal_static_order_v1_EverythingEdition2023_MStringEnumMapEntry_fieldAccessorTable = new
+    internal_static_order_v1_EverythingEdition2023_MaStringEnumMapEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_order_v1_EverythingEdition2023_MStringEnumMapEntry_descriptor,
+        internal_static_order_v1_EverythingEdition2023_MaStringEnumMapEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_order_v1_EverythingEdition2023_Message_descriptor =
       internal_static_order_v1_EverythingEdition2023_descriptor.getNestedType(10);

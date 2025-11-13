@@ -182,6 +182,46 @@ class EverythingConverterTest {
         // Oneof
         original.setOneofInt32(Int32Value.of(12345));
 
+        // deprecated
+        //    @Deprecated
+        //    private Integer deprecatedInt32;
+        //    @Deprecated
+        //    private String deprecatedString;
+        //    @Deprecated
+        //    private List<String> deprecatedRepeatedString;
+        //    @Deprecated
+        //    private Map<String, Integer> deprecatedMapStringInt32;
+        //    @Deprecated
+        //    private Integer deprecatedEnum;
+        original.setDeprecatedInt32(111);
+        original.setDeprecatedString("deprecated");
+        original.setDeprecatedRepeatedString(Arrays.asList("dep1", "dep2"));
+        Map<String, Integer> deprecatedMap = new HashMap<>();
+        deprecatedMap.put("depKey1", 1);
+        deprecatedMap.put("depKey2", 2);
+        original.setDeprecatedMapStringInt32(deprecatedMap);
+        original.setDeprecatedEnum(1);
+
+        // special naming
+        original.setStrBytes("string bytes");
+        original.setEnValue(1);
+        original.setReStringList(Arrays.asList("reStr1", "reStr2"));
+        original.setReEnumValueList(Arrays.asList(1));
+        Map<String, String> maStringStringMap = new HashMap<>();
+        maStringStringMap.put("mapStrKey1", "mapStrValue1");
+        original.setMaStringStringMap(maStringStringMap);
+        Map<String, String> maStringEnumMap = new HashMap<>();
+        maStringEnumMap.put("mapEnumKey1", "ENUM_VALUE_1");
+        original.setMaStringEnumMap(maStringEnumMap);
+        Everything.Message msgBuilder = new Everything.Message();
+        msgBuilder.setId(555L);
+        msgBuilder.setName("msg builder");
+        original.setMsgBuilder(msgBuilder);
+        Everything.Message msgOrBuilder = new Everything.Message();
+        msgOrBuilder.setId(666L);
+        msgOrBuilder.setName("msg or builder");
+        original.setMsgOrBuilder(msgOrBuilder);
+
         // Convert to Proto3, Proto2, and Edition2023 and back
         EverythingProto3 proto3Message = EverythingConverter.INSTANCE.javaBeanToProto3(original);
         Everything proto3Result = EverythingConverter.INSTANCE.proto3ToJavaBean(proto3Message);

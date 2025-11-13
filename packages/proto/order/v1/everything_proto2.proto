@@ -82,11 +82,11 @@ message EverythingProto2 {
 
   // special naming
   required string str_bytes = 100;
-  required Enum e_value = 101;
-  repeated string rept_string_list = 102;
-  repeated Enum rept_enum_value_list = 107;
-  map<string, string> m_string_string_map = 103;
-  map<string, Enum> m_string_enum_map = 104;
+  required Enum en_value = 101;
+  repeated string re_string_list = 102;
+  repeated Enum re_enum_value_list = 107;
+  map<string, string> ma_string_string_map = 103;
+  map<string, Enum> ma_string_enum_map = 104;
   required Message msg_builder = 105;
   required Message msg_or_builder = 106;
 

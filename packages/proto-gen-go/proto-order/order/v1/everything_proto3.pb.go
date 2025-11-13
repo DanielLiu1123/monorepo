@@ -119,11 +119,11 @@ type EverythingProto3 struct {
 	xxx_hidden_DeprecatedMapStringInt32 map[string]int32                     `protobuf:"bytes,93,rep,name=deprecated_map_string_int32,json=deprecatedMapStringInt32,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	xxx_hidden_DeprecatedEnum           EverythingProto3_Enum                `protobuf:"varint,94,opt,name=deprecated_enum,json=deprecatedEnum,proto3,enum=order.v1.EverythingProto3_Enum"`
 	xxx_hidden_StrBytes                 string                               `protobuf:"bytes,100,opt,name=str_bytes,json=strBytes,proto3"`
-	xxx_hidden_EValue                   EverythingProto3_Enum                `protobuf:"varint,101,opt,name=e_value,json=eValue,proto3,enum=order.v1.EverythingProto3_Enum"`
-	xxx_hidden_ReptStringList           []string                             `protobuf:"bytes,102,rep,name=rept_string_list,json=reptStringList,proto3"`
-	xxx_hidden_ReptEnumValueList        []EverythingProto3_Enum              `protobuf:"varint,107,rep,packed,name=rept_enum_value_list,json=reptEnumValueList,proto3,enum=order.v1.EverythingProto3_Enum"`
-	xxx_hidden_MStringStringMap         map[string]string                    `protobuf:"bytes,103,rep,name=m_string_string_map,json=mStringStringMap,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_MStringEnumMap           map[string]EverythingProto3_Enum     `protobuf:"bytes,104,rep,name=m_string_enum_map,json=mStringEnumMap,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=order.v1.EverythingProto3_Enum"`
+	xxx_hidden_EnValue                  EverythingProto3_Enum                `protobuf:"varint,101,opt,name=en_value,json=enValue,proto3,enum=order.v1.EverythingProto3_Enum"`
+	xxx_hidden_ReStringList             []string                             `protobuf:"bytes,102,rep,name=re_string_list,json=reStringList,proto3"`
+	xxx_hidden_ReEnumValueList          []EverythingProto3_Enum              `protobuf:"varint,107,rep,packed,name=re_enum_value_list,json=reEnumValueList,proto3,enum=order.v1.EverythingProto3_Enum"`
+	xxx_hidden_MaStringStringMap        map[string]string                    `protobuf:"bytes,103,rep,name=ma_string_string_map,json=maStringStringMap,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_MaStringEnumMap          map[string]EverythingProto3_Enum     `protobuf:"bytes,104,rep,name=ma_string_enum_map,json=maStringEnumMap,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=order.v1.EverythingProto3_Enum"`
 	xxx_hidden_MsgBuilder               *EverythingProto3_Message            `protobuf:"bytes,105,opt,name=msg_builder,json=msgBuilder,proto3"`
 	xxx_hidden_MsgOrBuilder             *EverythingProto3_Message            `protobuf:"bytes,106,opt,name=msg_or_builder,json=msgOrBuilder,proto3"`
 	XXX_raceDetectHookData              protoimpl.RaceDetectHookData
@@ -517,37 +517,37 @@ func (x *EverythingProto3) GetStrBytes() string {
 	return ""
 }
 
-func (x *EverythingProto3) GetEValue() EverythingProto3_Enum {
+func (x *EverythingProto3) GetEnValue() EverythingProto3_Enum {
 	if x != nil {
-		return x.xxx_hidden_EValue
+		return x.xxx_hidden_EnValue
 	}
 	return EverythingProto3_ENUM_UNSPECIFIED
 }
 
-func (x *EverythingProto3) GetReptStringList() []string {
+func (x *EverythingProto3) GetReStringList() []string {
 	if x != nil {
-		return x.xxx_hidden_ReptStringList
+		return x.xxx_hidden_ReStringList
 	}
 	return nil
 }
 
-func (x *EverythingProto3) GetReptEnumValueList() []EverythingProto3_Enum {
+func (x *EverythingProto3) GetReEnumValueList() []EverythingProto3_Enum {
 	if x != nil {
-		return x.xxx_hidden_ReptEnumValueList
+		return x.xxx_hidden_ReEnumValueList
 	}
 	return nil
 }
 
-func (x *EverythingProto3) GetMStringStringMap() map[string]string {
+func (x *EverythingProto3) GetMaStringStringMap() map[string]string {
 	if x != nil {
-		return x.xxx_hidden_MStringStringMap
+		return x.xxx_hidden_MaStringStringMap
 	}
 	return nil
 }
 
-func (x *EverythingProto3) GetMStringEnumMap() map[string]EverythingProto3_Enum {
+func (x *EverythingProto3) GetMaStringEnumMap() map[string]EverythingProto3_Enum {
 	if x != nil {
-		return x.xxx_hidden_MStringEnumMap
+		return x.xxx_hidden_MaStringEnumMap
 	}
 	return nil
 }
@@ -775,24 +775,24 @@ func (x *EverythingProto3) SetStrBytes(v string) {
 	x.xxx_hidden_StrBytes = v
 }
 
-func (x *EverythingProto3) SetEValue(v EverythingProto3_Enum) {
-	x.xxx_hidden_EValue = v
+func (x *EverythingProto3) SetEnValue(v EverythingProto3_Enum) {
+	x.xxx_hidden_EnValue = v
 }
 
-func (x *EverythingProto3) SetReptStringList(v []string) {
-	x.xxx_hidden_ReptStringList = v
+func (x *EverythingProto3) SetReStringList(v []string) {
+	x.xxx_hidden_ReStringList = v
 }
 
-func (x *EverythingProto3) SetReptEnumValueList(v []EverythingProto3_Enum) {
-	x.xxx_hidden_ReptEnumValueList = v
+func (x *EverythingProto3) SetReEnumValueList(v []EverythingProto3_Enum) {
+	x.xxx_hidden_ReEnumValueList = v
 }
 
-func (x *EverythingProto3) SetMStringStringMap(v map[string]string) {
-	x.xxx_hidden_MStringStringMap = v
+func (x *EverythingProto3) SetMaStringStringMap(v map[string]string) {
+	x.xxx_hidden_MaStringStringMap = v
 }
 
-func (x *EverythingProto3) SetMStringEnumMap(v map[string]EverythingProto3_Enum) {
-	x.xxx_hidden_MStringEnumMap = v
+func (x *EverythingProto3) SetMaStringEnumMap(v map[string]EverythingProto3_Enum) {
+	x.xxx_hidden_MaStringEnumMap = v
 }
 
 func (x *EverythingProto3) SetMsgBuilder(v *EverythingProto3_Message) {
@@ -1126,11 +1126,11 @@ type EverythingProto3_builder struct {
 	DeprecatedEnum EverythingProto3_Enum
 	// special naming
 	StrBytes          string
-	EValue            EverythingProto3_Enum
-	ReptStringList    []string
-	ReptEnumValueList []EverythingProto3_Enum
-	MStringStringMap  map[string]string
-	MStringEnumMap    map[string]EverythingProto3_Enum
+	EnValue           EverythingProto3_Enum
+	ReStringList      []string
+	ReEnumValueList   []EverythingProto3_Enum
+	MaStringStringMap map[string]string
+	MaStringEnumMap   map[string]EverythingProto3_Enum
 	MsgBuilder        *EverythingProto3_Message
 	MsgOrBuilder      *EverythingProto3_Message
 }
@@ -1199,11 +1199,11 @@ func (b0 EverythingProto3_builder) Build() *EverythingProto3 {
 	x.xxx_hidden_DeprecatedMapStringInt32 = b.DeprecatedMapStringInt32
 	x.xxx_hidden_DeprecatedEnum = b.DeprecatedEnum
 	x.xxx_hidden_StrBytes = b.StrBytes
-	x.xxx_hidden_EValue = b.EValue
-	x.xxx_hidden_ReptStringList = b.ReptStringList
-	x.xxx_hidden_ReptEnumValueList = b.ReptEnumValueList
-	x.xxx_hidden_MStringStringMap = b.MStringStringMap
-	x.xxx_hidden_MStringEnumMap = b.MStringEnumMap
+	x.xxx_hidden_EnValue = b.EnValue
+	x.xxx_hidden_ReStringList = b.ReStringList
+	x.xxx_hidden_ReEnumValueList = b.ReEnumValueList
+	x.xxx_hidden_MaStringStringMap = b.MaStringStringMap
+	x.xxx_hidden_MaStringEnumMap = b.MaStringEnumMap
 	x.xxx_hidden_MsgBuilder = b.MsgBuilder
 	x.xxx_hidden_MsgOrBuilder = b.MsgOrBuilder
 	return m0
@@ -1322,7 +1322,7 @@ var File_order_v1_everything_proto3_proto protoreflect.FileDescriptor
 
 const file_order_v1_everything_proto3_proto_rawDesc = "" +
 	"\n" +
-	" order/v1/everything_proto3.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1bgoogle/type/timeofday.proto\x1a\x16google/type/date.proto\x1a\x1bgoogle/type/dayofweek.proto\x1a\x17google/type/month.proto\"\xf1 \n" +
+	" order/v1/everything_proto3.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1bgoogle/type/timeofday.proto\x1a\x16google/type/date.proto\x1a\x1bgoogle/type/dayofweek.proto\x1a\x17google/type/month.proto\"\xf3 \n" +
 	"\x10EverythingProto3\x12\x14\n" +
 	"\x05int32\x18\x01 \x01(\x05R\x05int32\x12\x14\n" +
 	"\x05int64\x18\x03 \x01(\x03R\x05int64\x12\x14\n" +
@@ -1379,12 +1379,12 @@ const file_order_v1_everything_proto3_proto_rawDesc = "" +
 	"\x1adeprecated_repeated_string\x18\\ \x03(\tB\x02\x18\x01R\x18deprecatedRepeatedString\x12{\n" +
 	"\x1bdeprecated_map_string_int32\x18] \x03(\v28.order.v1.EverythingProto3.DeprecatedMapStringInt32EntryB\x02\x18\x01R\x18deprecatedMapStringInt32\x12L\n" +
 	"\x0fdeprecated_enum\x18^ \x01(\x0e2\x1f.order.v1.EverythingProto3.EnumB\x02\x18\x01R\x0edeprecatedEnum\x12\x1b\n" +
-	"\tstr_bytes\x18d \x01(\tR\bstrBytes\x128\n" +
-	"\ae_value\x18e \x01(\x0e2\x1f.order.v1.EverythingProto3.EnumR\x06eValue\x12(\n" +
-	"\x10rept_string_list\x18f \x03(\tR\x0ereptStringList\x12P\n" +
-	"\x14rept_enum_value_list\x18k \x03(\x0e2\x1f.order.v1.EverythingProto3.EnumR\x11reptEnumValueList\x12_\n" +
-	"\x13m_string_string_map\x18g \x03(\v20.order.v1.EverythingProto3.MStringStringMapEntryR\x10mStringStringMap\x12Y\n" +
-	"\x11m_string_enum_map\x18h \x03(\v2..order.v1.EverythingProto3.MStringEnumMapEntryR\x0emStringEnumMap\x12C\n" +
+	"\tstr_bytes\x18d \x01(\tR\bstrBytes\x12:\n" +
+	"\ben_value\x18e \x01(\x0e2\x1f.order.v1.EverythingProto3.EnumR\aenValue\x12$\n" +
+	"\x0ere_string_list\x18f \x03(\tR\freStringList\x12L\n" +
+	"\x12re_enum_value_list\x18k \x03(\x0e2\x1f.order.v1.EverythingProto3.EnumR\x0freEnumValueList\x12b\n" +
+	"\x14ma_string_string_map\x18g \x03(\v21.order.v1.EverythingProto3.MaStringStringMapEntryR\x11maStringStringMap\x12\\\n" +
+	"\x12ma_string_enum_map\x18h \x03(\v2/.order.v1.EverythingProto3.MaStringEnumMapEntryR\x0fmaStringEnumMap\x12C\n" +
 	"\vmsg_builder\x18i \x01(\v2\".order.v1.EverythingProto3.MessageR\n" +
 	"msgBuilder\x12H\n" +
 	"\x0emsg_or_builder\x18j \x01(\v2\".order.v1.EverythingProto3.MessageR\fmsgOrBuilder\x1aA\n" +
@@ -1411,11 +1411,11 @@ const file_order_v1_everything_proto3_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\x0e2\x1f.order.v1.EverythingProto3.EnumR\x05value:\x028\x01\x1aK\n" +
 	"\x1dDeprecatedMapStringInt32Entry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\x1aC\n" +
-	"\x15MStringStringMapEntry\x12\x10\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\x1aD\n" +
+	"\x16MaStringStringMapEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1ab\n" +
-	"\x13MStringEnumMapEntry\x12\x10\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1ac\n" +
+	"\x14MaStringEnumMapEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x125\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x1f.order.v1.EverythingProto3.EnumR\x05value:\x028\x01\x1a-\n" +
 	"\aMessage\x12\x0e\n" +
@@ -1442,8 +1442,8 @@ var file_order_v1_everything_proto3_proto_goTypes = []any{
 	nil,                              // 7: order.v1.EverythingProto3.MapStringMessageEntry
 	nil,                              // 8: order.v1.EverythingProto3.MapStringEnumEntry
 	nil,                              // 9: order.v1.EverythingProto3.DeprecatedMapStringInt32Entry
-	nil,                              // 10: order.v1.EverythingProto3.MStringStringMapEntry
-	nil,                              // 11: order.v1.EverythingProto3.MStringEnumMapEntry
+	nil,                              // 10: order.v1.EverythingProto3.MaStringStringMapEntry
+	nil,                              // 11: order.v1.EverythingProto3.MaStringEnumMapEntry
 	(*EverythingProto3_Message)(nil), // 12: order.v1.EverythingProto3.Message
 	(*wrapperspb.Int32Value)(nil),    // 13: google.protobuf.Int32Value
 	(*wrapperspb.Int64Value)(nil),    // 14: google.protobuf.Int64Value
@@ -1489,15 +1489,15 @@ var file_order_v1_everything_proto3_proto_depIdxs = []int32{
 	12, // 26: order.v1.EverythingProto3.oneof_message:type_name -> order.v1.EverythingProto3.Message
 	9,  // 27: order.v1.EverythingProto3.deprecated_map_string_int32:type_name -> order.v1.EverythingProto3.DeprecatedMapStringInt32Entry
 	0,  // 28: order.v1.EverythingProto3.deprecated_enum:type_name -> order.v1.EverythingProto3.Enum
-	0,  // 29: order.v1.EverythingProto3.e_value:type_name -> order.v1.EverythingProto3.Enum
-	0,  // 30: order.v1.EverythingProto3.rept_enum_value_list:type_name -> order.v1.EverythingProto3.Enum
-	10, // 31: order.v1.EverythingProto3.m_string_string_map:type_name -> order.v1.EverythingProto3.MStringStringMapEntry
-	11, // 32: order.v1.EverythingProto3.m_string_enum_map:type_name -> order.v1.EverythingProto3.MStringEnumMapEntry
+	0,  // 29: order.v1.EverythingProto3.en_value:type_name -> order.v1.EverythingProto3.Enum
+	0,  // 30: order.v1.EverythingProto3.re_enum_value_list:type_name -> order.v1.EverythingProto3.Enum
+	10, // 31: order.v1.EverythingProto3.ma_string_string_map:type_name -> order.v1.EverythingProto3.MaStringStringMapEntry
+	11, // 32: order.v1.EverythingProto3.ma_string_enum_map:type_name -> order.v1.EverythingProto3.MaStringEnumMapEntry
 	12, // 33: order.v1.EverythingProto3.msg_builder:type_name -> order.v1.EverythingProto3.Message
 	12, // 34: order.v1.EverythingProto3.msg_or_builder:type_name -> order.v1.EverythingProto3.Message
 	12, // 35: order.v1.EverythingProto3.MapStringMessageEntry.value:type_name -> order.v1.EverythingProto3.Message
 	0,  // 36: order.v1.EverythingProto3.MapStringEnumEntry.value:type_name -> order.v1.EverythingProto3.Enum
-	0,  // 37: order.v1.EverythingProto3.MStringEnumMapEntry.value:type_name -> order.v1.EverythingProto3.Enum
+	0,  // 37: order.v1.EverythingProto3.MaStringEnumMapEntry.value:type_name -> order.v1.EverythingProto3.Enum
 	38, // [38:38] is the sub-list for method output_type
 	38, // [38:38] is the sub-list for method input_type
 	38, // [38:38] is the sub-list for extension type_name

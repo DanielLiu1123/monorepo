@@ -1018,163 +1018,163 @@ monorepo.proto.order.v1.EverythingEdition2023.Enum         defaultValue);
       getStrBytesBytes();
 
   /**
-   * <code>.order.v1.EverythingEdition2023.Enum e_value = 101 [json_name = "eValue"];</code>
-   * @return Whether the eValue field is set.
+   * <code>.order.v1.EverythingEdition2023.Enum en_value = 101 [json_name = "enValue"];</code>
+   * @return Whether the enValue field is set.
    */
-  boolean hasEValue();
+  boolean hasEnValue();
   /**
-   * <code>.order.v1.EverythingEdition2023.Enum e_value = 101 [json_name = "eValue"];</code>
-   * @return The enum numeric value on the wire for eValue.
+   * <code>.order.v1.EverythingEdition2023.Enum en_value = 101 [json_name = "enValue"];</code>
+   * @return The enum numeric value on the wire for enValue.
    */
-  int getEValueValue();
+  int getEnValueValue();
   /**
-   * <code>.order.v1.EverythingEdition2023.Enum e_value = 101 [json_name = "eValue"];</code>
-   * @return The eValue.
+   * <code>.order.v1.EverythingEdition2023.Enum en_value = 101 [json_name = "enValue"];</code>
+   * @return The enValue.
    */
-  monorepo.proto.order.v1.EverythingEdition2023.Enum getEValue();
+  monorepo.proto.order.v1.EverythingEdition2023.Enum getEnValue();
 
   /**
-   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
-   * @return A list containing the reptStringList.
+   * <code>repeated string re_string_list = 102 [json_name = "reStringList"];</code>
+   * @return A list containing the reStringList.
    */
   java.util.List<java.lang.String>
-      getReptStringListList();
+      getReStringListList();
   /**
-   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
-   * @return The count of reptStringList.
+   * <code>repeated string re_string_list = 102 [json_name = "reStringList"];</code>
+   * @return The count of reStringList.
    */
-  int getReptStringListCount();
+  int getReStringListCount();
   /**
-   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * <code>repeated string re_string_list = 102 [json_name = "reStringList"];</code>
    * @param index The index of the element to return.
-   * @return The reptStringList at the given index.
+   * @return The reStringList at the given index.
    */
-  java.lang.String getReptStringList(int index);
+  java.lang.String getReStringList(int index);
   /**
-   * <code>repeated string rept_string_list = 102 [json_name = "reptStringList"];</code>
+   * <code>repeated string re_string_list = 102 [json_name = "reStringList"];</code>
    * @param index The index of the value to return.
-   * @return The bytes of the reptStringList at the given index.
+   * @return The bytes of the reStringList at the given index.
    */
   com.google.protobuf.ByteString
-      getReptStringListBytes(int index);
+      getReStringListBytes(int index);
 
   /**
-   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
-   * @return A list containing the reptEnumValueList.
+   * <code>repeated .order.v1.EverythingEdition2023.Enum re_enum_value_list = 107 [json_name = "reEnumValueList"];</code>
+   * @return A list containing the reEnumValueList.
    */
-  java.util.List<monorepo.proto.order.v1.EverythingEdition2023.Enum> getReptEnumValueListList();
+  java.util.List<monorepo.proto.order.v1.EverythingEdition2023.Enum> getReEnumValueListList();
   /**
-   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
-   * @return The count of reptEnumValueList.
+   * <code>repeated .order.v1.EverythingEdition2023.Enum re_enum_value_list = 107 [json_name = "reEnumValueList"];</code>
+   * @return The count of reEnumValueList.
    */
-  int getReptEnumValueListCount();
+  int getReEnumValueListCount();
   /**
-   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * <code>repeated .order.v1.EverythingEdition2023.Enum re_enum_value_list = 107 [json_name = "reEnumValueList"];</code>
    * @param index The index of the element to return.
-   * @return The reptEnumValueList at the given index.
+   * @return The reEnumValueList at the given index.
    */
-  monorepo.proto.order.v1.EverythingEdition2023.Enum getReptEnumValueList(int index);
+  monorepo.proto.order.v1.EverythingEdition2023.Enum getReEnumValueList(int index);
   /**
-   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
-   * @return A list containing the enum numeric values on the wire for reptEnumValueList.
+   * <code>repeated .order.v1.EverythingEdition2023.Enum re_enum_value_list = 107 [json_name = "reEnumValueList"];</code>
+   * @return A list containing the enum numeric values on the wire for reEnumValueList.
    */
   java.util.List<java.lang.Integer>
-  getReptEnumValueListValueList();
+  getReEnumValueListValueList();
   /**
-   * <code>repeated .order.v1.EverythingEdition2023.Enum rept_enum_value_list = 107 [json_name = "reptEnumValueList"];</code>
+   * <code>repeated .order.v1.EverythingEdition2023.Enum re_enum_value_list = 107 [json_name = "reEnumValueList"];</code>
    * @param index The index of the value to return.
-   * @return The enum numeric value on the wire of reptEnumValueList at the given index.
+   * @return The enum numeric value on the wire of reEnumValueList at the given index.
    */
-  int getReptEnumValueListValue(int index);
+  int getReEnumValueListValue(int index);
 
   /**
-   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   * <code>map&lt;string, string&gt; ma_string_string_map = 103 [json_name = "maStringStringMap"];</code>
    */
-  int getMStringStringMapCount();
+  int getMaStringStringMapCount();
   /**
-   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   * <code>map&lt;string, string&gt; ma_string_string_map = 103 [json_name = "maStringStringMap"];</code>
    */
-  boolean containsMStringStringMap(
+  boolean containsMaStringStringMap(
       java.lang.String key);
   /**
-   * Use {@link #getMStringStringMapMap()} instead.
+   * Use {@link #getMaStringStringMapMap()} instead.
    */
   @java.lang.Deprecated
   java.util.Map<java.lang.String, java.lang.String>
-  getMStringStringMap();
+  getMaStringStringMap();
   /**
-   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   * <code>map&lt;string, string&gt; ma_string_string_map = 103 [json_name = "maStringStringMap"];</code>
    */
   java.util.Map<java.lang.String, java.lang.String>
-  getMStringStringMapMap();
+  getMaStringStringMapMap();
   /**
-   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   * <code>map&lt;string, string&gt; ma_string_string_map = 103 [json_name = "maStringStringMap"];</code>
    */
   /* nullable */
-java.lang.String getMStringStringMapOrDefault(
+java.lang.String getMaStringStringMapOrDefault(
       java.lang.String key,
       /* nullable */
 java.lang.String defaultValue);
   /**
-   * <code>map&lt;string, string&gt; m_string_string_map = 103 [json_name = "mStringStringMap"];</code>
+   * <code>map&lt;string, string&gt; ma_string_string_map = 103 [json_name = "maStringStringMap"];</code>
    */
-  java.lang.String getMStringStringMapOrThrow(
+  java.lang.String getMaStringStringMapOrThrow(
       java.lang.String key);
 
   /**
-   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; ma_string_enum_map = 104 [json_name = "maStringEnumMap"];</code>
    */
-  int getMStringEnumMapCount();
+  int getMaStringEnumMapCount();
   /**
-   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; ma_string_enum_map = 104 [json_name = "maStringEnumMap"];</code>
    */
-  boolean containsMStringEnumMap(
+  boolean containsMaStringEnumMap(
       java.lang.String key);
   /**
-   * Use {@link #getMStringEnumMapMap()} instead.
+   * Use {@link #getMaStringEnumMapMap()} instead.
    */
   @java.lang.Deprecated
   java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingEdition2023.Enum>
-  getMStringEnumMap();
+  getMaStringEnumMap();
   /**
-   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; ma_string_enum_map = 104 [json_name = "maStringEnumMap"];</code>
    */
   java.util.Map<java.lang.String, monorepo.proto.order.v1.EverythingEdition2023.Enum>
-  getMStringEnumMapMap();
+  getMaStringEnumMapMap();
   /**
-   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; ma_string_enum_map = 104 [json_name = "maStringEnumMap"];</code>
    */
   /* nullable */
-monorepo.proto.order.v1.EverythingEdition2023.Enum getMStringEnumMapOrDefault(
+monorepo.proto.order.v1.EverythingEdition2023.Enum getMaStringEnumMapOrDefault(
       java.lang.String key,
       /* nullable */
 monorepo.proto.order.v1.EverythingEdition2023.Enum         defaultValue);
   /**
-   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; ma_string_enum_map = 104 [json_name = "maStringEnumMap"];</code>
    */
-  monorepo.proto.order.v1.EverythingEdition2023.Enum getMStringEnumMapOrThrow(
+  monorepo.proto.order.v1.EverythingEdition2023.Enum getMaStringEnumMapOrThrow(
       java.lang.String key);
   /**
-   * Use {@link #getMStringEnumMapValueMap()} instead.
+   * Use {@link #getMaStringEnumMapValueMap()} instead.
    */
   @java.lang.Deprecated
   java.util.Map<java.lang.String, java.lang.Integer>
-  getMStringEnumMapValue();
+  getMaStringEnumMapValue();
   /**
-   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; ma_string_enum_map = 104 [json_name = "maStringEnumMap"];</code>
    */
   java.util.Map<java.lang.String, java.lang.Integer>
-  getMStringEnumMapValueMap();
+  getMaStringEnumMapValueMap();
   /**
-   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; ma_string_enum_map = 104 [json_name = "maStringEnumMap"];</code>
    */
-  int getMStringEnumMapValueOrDefault(
+  int getMaStringEnumMapValueOrDefault(
       java.lang.String key,
       int defaultValue);
   /**
-   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; m_string_enum_map = 104 [json_name = "mStringEnumMap"];</code>
+   * <code>map&lt;string, .order.v1.EverythingEdition2023.Enum&gt; ma_string_enum_map = 104 [json_name = "maStringEnumMap"];</code>
    */
-  int getMStringEnumMapValueOrThrow(
+  int getMaStringEnumMapValueOrThrow(
       java.lang.String key);
 
   /**

@@ -95,11 +95,11 @@ public class Everything {
 
     //  special naming
     private String strBytes;
-    private Integer eValue;
-    private List<String> reptStringList;
-    private List<Integer> reptEnumValueList;
-    private Map<String, String> mStringStringMap;
-    private Map<String, String> mStringEnumMap;
+    private Integer enValue;
+    private List<String> reStringList;
+    private List<Integer> reEnumValueList;
+    private Map<String, String> maStringStringMap;
+    private Map<String, String> maStringEnumMap;
     private Message msgBuilder;
     private Message msgOrBuilder;
 
