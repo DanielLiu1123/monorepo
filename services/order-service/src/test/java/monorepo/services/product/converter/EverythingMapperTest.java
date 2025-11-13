@@ -78,7 +78,6 @@ class EverythingMapperTest {
 
     @Test
     void testProtobufConvert() {
-        // Build an Everything Java bean
         Everything original = new Everything();
 
         // Primitive types
