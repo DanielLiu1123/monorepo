@@ -26,9 +26,9 @@ import org.mapstruct.factory.Mappers;
         collectionMappingStrategy = TARGET_IMMUTABLE,
         unmappedTargetPolicy = ERROR,
         unmappedSourcePolicy = ERROR)
-public abstract class EverythingConverter {
+public abstract class EverythingMapper {
 
-    public static final EverythingConverter INSTANCE = Mappers.getMapper(EverythingConverter.class);
+    public static final EverythingMapper INSTANCE = Mappers.getMapper( EverythingMapper.class);
 
     // proto2
     @Mapping(target = "float_", source = "float")

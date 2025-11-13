@@ -30,7 +30,7 @@ import monorepo.services.product.entity.Everything;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.ap.MappingProcessor;
 
-class EverythingConverterTest {
+class EverythingMapperTest {
 
     @Test
     void compile() {
@@ -183,16 +183,6 @@ class EverythingConverterTest {
         original.setOneofInt32(Int32Value.of(12345));
 
         // deprecated
-        //    @Deprecated
-        //    private Integer deprecatedInt32;
-        //    @Deprecated
-        //    private String deprecatedString;
-        //    @Deprecated
-        //    private List<String> deprecatedRepeatedString;
-        //    @Deprecated
-        //    private Map<String, Integer> deprecatedMapStringInt32;
-        //    @Deprecated
-        //    private Integer deprecatedEnum;
         original.setDeprecatedInt32(111);
         original.setDeprecatedString("deprecated");
         original.setDeprecatedRepeatedString(Arrays.asList("dep1", "dep2"));
@@ -223,27 +213,27 @@ class EverythingConverterTest {
         original.setMsgOrBuilder(msgOrBuilder);
 
         // Convert to Proto3, Proto2, and Edition2023 and back
-        EverythingProto3 proto3Message = EverythingConverter.INSTANCE.javaBeanToProto3(original);
-        Everything proto3Result = EverythingConverter.INSTANCE.proto3ToJavaBean(proto3Message);
+        EverythingProto3 proto3Message = EverythingMapper.INSTANCE.javaBeanToProto3(original);
+        Everything proto3Result = EverythingMapper.INSTANCE.proto3ToJavaBean(proto3Message);
 
-        EverythingProto2 proto2Message = EverythingConverter.INSTANCE.javaBeanToProto2(original);
-        Everything proto2Result = EverythingConverter.INSTANCE.proto2ToJavaBean(proto2Message);
+        EverythingProto2 proto2Message = EverythingMapper.INSTANCE.javaBeanToProto2(original);
+        Everything proto2Result = EverythingMapper.INSTANCE.proto2ToJavaBean(proto2Message);
 
-        EverythingEdition2023 edition2023Message = EverythingConverter.INSTANCE.javaBeanToEdition2023(original);
-        Everything edition2023Result = EverythingConverter.INSTANCE.edition2023ToJavaBean(edition2023Message);
+        EverythingEdition2023 edition2023Message = EverythingMapper.INSTANCE.javaBeanToEdition2023(original);
+        Everything edition2023Result = EverythingMapper.INSTANCE.edition2023ToJavaBean(edition2023Message);
 
         // Update existing Proto messages from Java bean and back
         EverythingProto2.Builder proto2Builder = EverythingProto2.newBuilder();
-        EverythingConverter.INSTANCE.updateProto2FromJavaBean(proto2Builder, original);
-        Everything proto2Updated = EverythingConverter.INSTANCE.proto2ToJavaBean(proto2Builder.build());
+        EverythingMapper.INSTANCE.updateProto2FromJavaBean(proto2Builder, original);
+        Everything proto2Updated = EverythingMapper.INSTANCE.proto2ToJavaBean(proto2Builder.build());
 
         EverythingProto3.Builder proto3Builder = EverythingProto3.newBuilder();
-        EverythingConverter.INSTANCE.updateProto3FromJavaBean(proto3Builder, original);
-        Everything proto3Updated = EverythingConverter.INSTANCE.proto3ToJavaBean(proto3Builder.build());
+        EverythingMapper.INSTANCE.updateProto3FromJavaBean(proto3Builder, original);
+        Everything proto3Updated = EverythingMapper.INSTANCE.proto3ToJavaBean(proto3Builder.build());
 
         EverythingEdition2023.Builder edition2023Builder = EverythingEdition2023.newBuilder();
-        EverythingConverter.INSTANCE.updateEdition2023FromJavaBean(edition2023Builder, original);
-        Everything edition2023Updated = EverythingConverter.INSTANCE.edition2023ToJavaBean(edition2023Builder.build());
+        EverythingMapper.INSTANCE.updateEdition2023FromJavaBean(edition2023Builder, original);
+        Everything edition2023Updated = EverythingMapper.INSTANCE.edition2023ToJavaBean(edition2023Builder.build());
 
         // Use AssertJ recursive comparison to verify equality
         assertThat(proto3Result).isEqualTo(original);
