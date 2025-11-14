@@ -28,7 +28,7 @@ import org.mapstruct.factory.Mappers;
         unmappedSourcePolicy = ERROR)
 public abstract class EverythingMapper {
 
-    public static final EverythingMapper INSTANCE = Mappers.getMapper( EverythingMapper.class);
+    public static final EverythingMapper INSTANCE = Mappers.getMapper(EverythingMapper.class);
 
     // proto2
     @Mapping(target = "float_", source = "float")

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-format() {
+fmt() {
   print_info "Skipping formatting for generated code"
   return 0
 }

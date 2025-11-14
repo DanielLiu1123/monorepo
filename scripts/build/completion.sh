@@ -83,7 +83,7 @@ _mono_completion() {
     cword=$COMP_CWORD
 
     # Available commands
-    local commands="init gen-proto list-projects clean install build test run lint format help"
+    local commands="init gen-proto list-projects clean install build test run lint fmt help"
 
     # Get root directory
     local root_dir=$(_mono_get_root_dir)
@@ -131,7 +131,7 @@ _mono_completion() {
                 fi
                 return 0
                 ;;
-            build|test|clean|install|lint|format)
+            build|test|clean|install|lint|fmt)
                 # Complete with project paths and directories
                 local projects=$(_mono_find_projects "$root_dir")
                 COMPREPLY=( $(compgen -W "$projects" -- "$cur") )
