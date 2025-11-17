@@ -14,9 +14,9 @@ import org.mapstruct.MapperConfig;
  * @since 2025/11/15
  */
 @MapperConfig(
-        uses = ProtobufWellKnownTypeMappers.class,
+        uses = ProtobufConverter.class,
         nullValueCheckStrategy = ALWAYS,
-        nullValuePropertyMappingStrategy = IGNORE,
-        collectionMappingStrategy = TARGET_IMMUTABLE,
+        nullValuePropertyMappingStrategy = IGNORE, // Ignore nulls when updating existing objects
+        collectionMappingStrategy = TARGET_IMMUTABLE, // Immutable first
         unmappedTargetPolicy = ERROR)
 public interface MapStructConfig {}

@@ -12,17 +12,15 @@ import com.google.protobuf.StringValue;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.UInt32Value;
 import com.google.protobuf.UInt64Value;
-import com.google.type.Month;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 /**
- * MapStruct type converters for Protobuf Well-Known Types.
+ * MapStruct type converters for Protobuf Well-Known and common types.
  */
-public final class ProtobufWellKnownTypeMappers {
+public final class ProtobufConverter {
 
     // ==================== Timestamp ====================
 
@@ -329,5 +327,4 @@ public final class ProtobufWellKnownTypeMappers {
         }
         return com.google.type.Month.forNumber(month.getValue());
     }
-
 }
