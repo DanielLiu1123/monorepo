@@ -1,8 +1,7 @@
 package monorepo.lib.msp;
 
-import static com.google.testing.compile.CompilationSubject.assertThat;
-
 import com.google.testing.compile.Compilation;
+import com.google.testing.compile.CompilationSubject;
 import com.google.testing.compile.Compiler;
 import com.google.testing.compile.JavaFileObjects;
 import java.nio.file.Files;
@@ -11,15 +10,8 @@ import javax.tools.JavaFileObject;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.ap.MappingProcessor;
 
-/**
- * Tests for ProtobufAccessorNamingStrategy using Google's compile-testing library
- * with proto-order package protobuf messages.
- */
 class ProtobufAccessorNamingStrategyTest {
 
-    /**
-     * Test that MapStruct correctly maps simple scalar fields from protobuf
-     */
     @Test
     void testSimpleScalarFieldMapping() throws Exception {
 
@@ -38,8 +30,8 @@ class ProtobufAccessorNamingStrategyTest {
         Compilation compilation =
                 Compiler.javac().withProcessors(new MappingProcessor()).compile(dto, mapper);
 
-        assertThat(compilation).succeeded();
-        assertThat(compilation)
+        CompilationSubject.assertThat(compilation).succeeded();
+        CompilationSubject.assertThat(compilation)
                 .generatedSourceFile("monorepo.lib.msp.EverythingMapperImpl")
                 .contentsAsUtf8String()
                 .contains("getString()");
