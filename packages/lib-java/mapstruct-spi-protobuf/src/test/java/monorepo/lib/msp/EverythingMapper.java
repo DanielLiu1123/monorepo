@@ -20,8 +20,6 @@ public abstract class EverythingMapper {
     @Mapping(target = "enum", source = "enum_")
     abstract Everything javaBeanToProto3(EverythingDTO javaBean);
 
-    public abstract Everything proto3ToProto3(Everything proto);
-
     Everything.Message javaBeanMessageToProtobufMessage(EverythingDTO.Message value) {
         if (value == null) {
             return null;
