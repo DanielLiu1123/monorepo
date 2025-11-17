@@ -16,12 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- *
- *
- * @author Freeman
- * @since 2025/11/17
- */
 record EverythingDTO(
         Integer int32,
         long int64,

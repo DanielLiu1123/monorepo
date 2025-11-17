@@ -11,6 +11,7 @@ dependencies {
     testImplementation "org.mapstruct:mapstruct:${mapstructVersion}"
     testImplementation "org.mapstruct:mapstruct-processor:${mapstructVersion}" // test with compile-testing
     testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    testAnnotationProcessor project(":packages:lib-java:mapstruct-spi-protobuf")
     testImplementation "com.google.protobuf:protobuf-java"
     testImplementation "com.google.api.grpc:proto-google-common-protos"
     testImplementation "com.google.testing.compile:compile-testing:+"

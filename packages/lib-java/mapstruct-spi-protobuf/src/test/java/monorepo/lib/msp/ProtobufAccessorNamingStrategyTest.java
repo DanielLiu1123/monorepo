@@ -4,6 +4,7 @@ import com.google.testing.compile.Compilation;
 import com.google.testing.compile.CompilationSubject;
 import com.google.testing.compile.Compiler;
 import com.google.testing.compile.JavaFileObjects;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.tools.JavaFileObject;
@@ -15,17 +16,8 @@ class ProtobufAccessorNamingStrategyTest {
     @Test
     void testSimpleScalarFieldMapping() throws Exception {
 
-        JavaFileObject dto = JavaFileObjects.forSourceString(
-                EverythingDTO.class.getCanonicalName(),
-                Files.readString(
-                        Path.of(
-                                "/Users/macbook/development/projects/idea/monorepo/packages/lib-java/mapstruct-spi-protobuf/src/test/java/monorepo/lib/msp/EverythingDTO.java")));
-
-        JavaFileObject mapper = JavaFileObjects.forSourceString(
-                EverythingMapper.class.getCanonicalName(),
-                Files.readString(
-                        Path.of(
-                                "/Users/macbook/development/projects/idea/monorepo/packages/lib-java/mapstruct-spi-protobuf/src/test/java/monorepo/lib/msp/EverythingMapper.java")));
+        JavaFileObject dto = loadTestSource(EverythingDTO.class);
+        JavaFileObject mapper = loadTestSource(EverythingMapper.class);
 
         Compilation compilation =
                 Compiler.javac().withProcessors(new MappingProcessor()).compile(dto, mapper);
@@ -35,5 +27,13 @@ class ProtobufAccessorNamingStrategyTest {
                 .generatedSourceFile("monorepo.lib.msp.EverythingMapperImpl")
                 .contentsAsUtf8String()
                 .contains("getString()");
+    }
+
+    private static JavaFileObject loadTestSource(Class<?> clazz) throws IOException {
+        Path projectDir = Path.of("").toAbsolutePath();
+        Path testSourceRoot = projectDir.resolve("src/test/java");
+        String relativePath = clazz.getName().replace('.', '/') + ".java";
+        return JavaFileObjects.forSourceString(
+                clazz.getCanonicalName(), Files.readString(testSourceRoot.resolve(relativePath)));
     }
 }

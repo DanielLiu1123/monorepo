@@ -1,11 +1,13 @@
 package monorepo.lib.msp;
 
+import static org.mapstruct.ReportingPolicy.ERROR;
+
 import everything.Everything;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = MapStructConfig.class)
+@Mapper(config = MapStructConfig.class, unmappedSourcePolicy = ERROR)
 public abstract class EverythingMapper {
 
     public static final EverythingMapper INSTANCE = Mappers.getMapper(EverythingMapper.class);
