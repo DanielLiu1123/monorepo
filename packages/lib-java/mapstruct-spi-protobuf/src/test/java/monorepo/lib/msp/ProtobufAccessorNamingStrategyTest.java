@@ -14,7 +14,7 @@ import org.mapstruct.ap.MappingProcessor;
 class ProtobufAccessorNamingStrategyTest {
 
     @Test
-    void testSimpleScalarFieldMapping() throws Exception {
+    void testMapStructAnnotationProcessor() throws Exception {
 
         JavaFileObject dto = loadTestSource(EverythingDTO.class);
         JavaFileObject mapper = loadTestSource(EverythingMapper.class);
