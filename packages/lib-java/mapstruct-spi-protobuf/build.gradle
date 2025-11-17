@@ -3,15 +3,16 @@ plugins{
 }
 
 dependencies {
-    api "org.mapstruct:mapstruct:+"
-    api "org.mapstruct:mapstruct-processor:+"
-    api "com.google.protobuf:protobuf-java"
+    compileOnly "org.mapstruct:mapstruct:+"
+    compileOnly "org.mapstruct:mapstruct-processor:+"
+    compileOnly "com.google.protobuf:protobuf-java"
     compileOnly "com.google.api.grpc:proto-google-common-protos"
 
-
+    testImplementation "org.mapstruct:mapstruct:+"
     testAnnotationProcessor "org.mapstruct:mapstruct-processor:+"
+    testImplementation "com.google.protobuf:protobuf-java"
+    testImplementation "com.google.api.grpc:proto-google-common-protos"
     testImplementation "com.google.testing.compile:compile-testing:+"
-    testImplementation project(":packages:proto-gen-java:proto-order")
 }
 
 protobuf {

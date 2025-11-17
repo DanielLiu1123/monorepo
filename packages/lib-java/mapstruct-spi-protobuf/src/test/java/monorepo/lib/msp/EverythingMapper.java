@@ -1,21 +1,11 @@
 package monorepo.lib.msp;
 
-import static org.mapstruct.CollectionMappingStrategy.TARGET_IMMUTABLE;
-import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
-import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
-import static org.mapstruct.ReportingPolicy.ERROR;
-
 import everything.Everything;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(
-        nullValueCheckStrategy = ALWAYS,
-        nullValuePropertyMappingStrategy = IGNORE,
-        collectionMappingStrategy = TARGET_IMMUTABLE,
-        unmappedTargetPolicy = ERROR,
-        unmappedSourcePolicy = ERROR)
+@Mapper(uses = MapStructConfig.class)
 public abstract class EverythingMapper {
 
     public static final EverythingMapper INSTANCE = Mappers.getMapper(EverythingMapper.class);
