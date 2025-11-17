@@ -8,7 +8,7 @@
 # You can define any of the following functions to override default behavior:
 #   - clean
 #   - build
-#   - format
+#   - fmt
 #   - install
 #   - lint
 #   - run
@@ -48,12 +48,12 @@
 #     return $?
 # }
 
-# Example: Custom format function
-# format() {
+# Example: Custom fmt function
+# fmt() {
 #     local project_path="$1"
-#     print_info "Running custom format for $project_path"
+#     print_info "Running custom fmt for $project_path"
 #
-#     # Your custom format logic here
+#     # Your custom fmt logic here
 #     execute_command "cd $project_path && prettier --write ."
 #
 #     return $?

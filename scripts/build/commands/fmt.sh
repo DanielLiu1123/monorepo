@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 
 # Format Go project
-format_go() {
+fmt_go() {
     local project_path="$1"
 
     execute_command "(cd $project_path && go fmt ./... && goimports -w . && go mod tidy)" || return 1
 }
 
 # Format Gradle project
-format_gradle() {
+fmt_gradle() {
     local project_path="$1"
 
     execute_command "(./gradlew spotlessApply --project-dir $project_path -S)" || return 1
 }
 
 # Format npm project
-format_npm() {
+fmt_npm() {
     local project_path="$1"
 
     # Check if prettier is available
@@ -29,7 +29,7 @@ format_npm() {
     fi
 }
 
-cmd_format() {
+cmd_fmt() {
     local project_path
     local project_type
     project_path=$(normalize_path "$1")
@@ -39,13 +39,13 @@ cmd_format() {
 
     case "$project_type" in
         go)
-            format_go "$project_path" || return 1
+            fmt_go "$project_path" || return 1
             ;;
         gradle)
-            format_gradle "$project_path" || return 1
+            fmt_gradle "$project_path" || return 1
             ;;
         npm)
-            format_npm "$project_path" || return 1
+            fmt_npm "$project_path" || return 1
             ;;
         *)
             print_error "Unknown project type in $project_path"

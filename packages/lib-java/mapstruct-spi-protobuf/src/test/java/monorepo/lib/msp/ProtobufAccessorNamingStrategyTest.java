@@ -1,0 +1,39 @@
+package monorepo.lib.msp;
+
+import com.google.testing.compile.Compilation;
+import com.google.testing.compile.CompilationSubject;
+import com.google.testing.compile.Compiler;
+import com.google.testing.compile.JavaFileObjects;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import javax.tools.JavaFileObject;
+import org.junit.jupiter.api.Test;
+import org.mapstruct.ap.MappingProcessor;
+
+class ProtobufAccessorNamingStrategyTest {
+
+    @Test
+    void testSimpleScalarFieldMapping() throws Exception {
+
+        JavaFileObject dto = JavaFileObjects.forSourceString(
+                EverythingDTO.class.getCanonicalName(),
+                Files.readString(
+                        Path.of(
+                                "/Users/macbook/development/projects/idea/monorepo/packages/lib-java/mapstruct-spi-protobuf/src/test/java/monorepo/lib/msp/EverythingDTO.java")));
+
+        JavaFileObject mapper = JavaFileObjects.forSourceString(
+                EverythingMapper.class.getCanonicalName(),
+                Files.readString(
+                        Path.of(
+                                "/Users/macbook/development/projects/idea/monorepo/packages/lib-java/mapstruct-spi-protobuf/src/test/java/monorepo/lib/msp/EverythingMapper.java")));
+
+        Compilation compilation =
+                Compiler.javac().withProcessors(new MappingProcessor()).compile(dto, mapper);
+
+        CompilationSubject.assertThat(compilation).succeeded();
+        CompilationSubject.assertThat(compilation)
+                .generatedSourceFile("monorepo.lib.msp.EverythingMapperImpl")
+                .contentsAsUtf8String()
+                .contains("getString()");
+    }
+}

@@ -253,7 +253,7 @@ execute_for_projects() {
 
 source "$SCRIPT_DIR/commands/build.sh"
 source "$SCRIPT_DIR/commands/clean.sh"
-source "$SCRIPT_DIR/commands/format.sh"
+source "$SCRIPT_DIR/commands/fmt.sh"
 source "$SCRIPT_DIR/commands/gen-proto.sh"
 source "$SCRIPT_DIR/commands/init.sh"
 source "$SCRIPT_DIR/commands/install.sh"
@@ -280,7 +280,7 @@ show_usage() {
     echo "  test <path>       - Run tests"
     echo "  run <path>        - Run project (single project only)"
     echo "  lint <path>       - Run linter"
-    echo "  format <path>     - Format code (go fmt, spotlessApply, prettier)"
+    echo "  fmt <path>        - Format code (go fmt, spotlessApply, prettier)"
     echo ""
     echo "Examples:"
     echo "  $script_name init"
@@ -314,7 +314,7 @@ main() {
         list-projects)
             cmd_list_projects "${path:-.}"
             ;;
-        clean|install|build|test|lint|format)
+        clean|install|build|test|lint|fmt)
             validate_project "$path"
 
             # Check if path is a project directory or a parent directory

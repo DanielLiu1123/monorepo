@@ -1,0 +1,23 @@
+plugins{
+    id "com.google.protobuf"
+}
+
+dependencies {
+    compileOnly "org.mapstruct:mapstruct:${mapstructVersion}"
+    compileOnly "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    compileOnly "com.google.protobuf:protobuf-java"
+    compileOnly "com.google.api.grpc:proto-google-common-protos"
+
+    testImplementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    testImplementation "org.mapstruct:mapstruct-processor:${mapstructVersion}" // test with compile-testing
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    testImplementation "com.google.protobuf:protobuf-java"
+    testImplementation "com.google.api.grpc:proto-google-common-protos"
+    testImplementation "com.google.testing.compile:compile-testing:+"
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+    }
+}

@@ -1,14 +1,11 @@
 rootProject.name = "monorepo"
 
+include ":packages:lib-java:mapstruct-spi-protobuf"
+
 include ":packages:proto-gen-java"
 include ":packages:proto-gen-java:proto-product"
 include ":packages:proto-gen-java:proto-user"
 include ":packages:proto-gen-java:proto-order"
-
-include ":packages:lib-java:logger"
-include ":packages:lib-java:tracer"
-include ":packages:lib-java:metrics"
-include ":packages:lib-java:config"
 
 include ":services:product-service"
 include ":services:order-service"
