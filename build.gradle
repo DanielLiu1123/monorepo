@@ -31,8 +31,8 @@ allprojects {
     dependencyManagement {
         imports {
             mavenBom "io.github.danielliu1123:grpc-starter-dependencies:${grpcStarterVersion}"
-            mavenBom "com.google.protobuf:protobuf-bom:${protobufVersion}"
             mavenBom "io.grpc:grpc-bom:${grpcVersion}"
+            mavenBom "com.google.protobuf:protobuf-bom:${protobufVersion}"
             mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
         }
     }
@@ -64,9 +64,9 @@ allprojects {
 
             targetExclude(
                     "build/generated/**",
-                    "**/entity/*.java",
-                    "**/mapper/*Mapper.java",
-                    "**/mapper/*DynamicSqlSupport.java"
+                    "**/entity/*.java", // MyBatis generated entities
+                    "**/mapper/*Mapper.java", // MyBatis generated mappers
+                    "**/mapper/*DynamicSqlSupport.java" // mybatis-dynamic-sql generated classes
             )
 
             custom("Refuse wildcard imports", {
