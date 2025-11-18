@@ -1,6 +1,9 @@
 package monorepo.lib.common.util;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jacksonmodule.protobuf.v3.ProtobufModule;
+import monorepo.lib.common.json.BigNumberModule;
+import org.springframework.core.ParameterizedTypeReference;
 import tools.jackson.databind.json.JsonMapper;
 
 /**
@@ -11,16 +14,23 @@ import tools.jackson.databind.json.JsonMapper;
  */
 public final class JsonUtil {
 
-    private static final JsonMapper json =
-            JsonMapper.builder().addModule(new ProtobufModule()).build();
+    private static final JsonMapper jsonMapper = JsonMapper.builder()
+            .addModule(new ProtobufModule())
+            .addModule(new BigNumberModule())
+            .changeDefaultPropertyInclusion(value -> value.withValueInclusion(JsonInclude.Include.NON_NULL))
+            .build();
 
     private JsonUtil() {}
 
-    public static <T> T fromJson(String jsonStr, Class<T> clazz) {
-        return json.readValue(jsonStr, clazz);
+    public static <T> T fromJson(String json, Class<T> clazz) {
+        return jsonMapper.readValue(json, clazz);
+    }
+
+    public static <T> T fromJson(String json, ParameterizedTypeReference<T> typeRef) {
+        return jsonMapper.readValue(json, jsonMapper.getTypeFactory().constructType(typeRef.getType()));
     }
 
     public static String toJson(Object obj) {
-        return json.writeValueAsString(obj);
+        return jsonMapper.writeValueAsString(obj);
     }
 }
