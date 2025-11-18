@@ -9,6 +9,4 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
  * @since 2025/11/18
  */
 @AutoConfiguration
-public class MonoAutoConfiguration {
-
-}
+public class MonoAutoConfiguration {}
