@@ -6,4 +6,6 @@ dependencies {
     api("io.github.danielliu1123:jackson-module-protobuf:${springdocBridgeVersion}") {
         exclude group: "com.google.protobuf", module: "protobuf-java-util"
     }
+
+    compileOnly "org.springframework.boot:spring-boot-starter-web"
 }

@@ -61,7 +61,7 @@ class JsonUtilTest {
         for (var row : table) {
             var input = (String) row[0];
             var expected = (Anything) row[1];
-            var actual = JsonUtil.fromJson(input, Anything.class);
+            var actual = JsonUtil.toObject(input, Anything.class);
             assertThat(actual).isEqualTo(expected);
         }
     }

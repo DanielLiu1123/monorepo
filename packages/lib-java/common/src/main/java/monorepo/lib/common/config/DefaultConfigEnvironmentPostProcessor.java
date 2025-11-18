@@ -2,7 +2,7 @@ package monorepo.lib.common.config;
 
 import jakarta.annotation.Nullable;
 import java.util.Optional;
-import monorepo.lib.common.Profile;
+import monorepo.lib.common.profile.Profile;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.EnvironmentPostProcessor;

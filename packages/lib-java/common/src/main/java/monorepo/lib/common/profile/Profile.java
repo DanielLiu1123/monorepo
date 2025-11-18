@@ -1,4 +1,4 @@
-package monorepo.lib.common;
+package monorepo.lib.common.profile;
 
 /**
  *
