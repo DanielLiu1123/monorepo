@@ -9,18 +9,23 @@ import java.util.Set;
  * @since 2025/11/20
  */
 public final class ContextConsts {
-    private ContextConsts() {
-    }
-
+    private ContextConsts() {}
 
     public static final Set<String> blockedHeaders = Set.of(
             // Hop-by-hop headers
-            "connection", "keep-alive", "transfer-encoding",
-            "upgrade", "proxy-connection", "proxy-authenticate",
-            "proxy-authorization", "te", "trailer",
+            "connection",
+            "keep-alive",
+            "transfer-encoding",
+            "upgrade",
+            "proxy-connection",
+            "proxy-authenticate",
+            "proxy-authorization",
+            "te",
+            "trailer",
             // sensitive headers
-            "cookie", "set-cookie",
+            "cookie",
+            "set-cookie",
             // fundamental headers
-            "host", "content-length"
-    );
+            "host",
+            "content-length");
 }
