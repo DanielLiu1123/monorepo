@@ -15,8 +15,8 @@ subprojects {
     apply plugin: "com.github.spotbugs"
 
     java {
-        sourceCompatibility = "25"
-        targetCompatibility = "25"
+        sourceCompatibility = 25
+        targetCompatibility = 25
     }
 
     tasks.withType(JavaCompile).configureEach {
