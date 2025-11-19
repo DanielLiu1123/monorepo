@@ -6,6 +6,7 @@ plugins {
     id "com.google.protobuf" version "${protobufPluginVersion}" apply false
 }
 
+//allprojects { // uncomment this if you want to get IDE support, only for debugging purpose!
 subprojects {
     apply plugin: "java"
     apply plugin: "java-library"
