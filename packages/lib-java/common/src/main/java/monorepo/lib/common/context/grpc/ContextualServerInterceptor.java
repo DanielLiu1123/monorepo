@@ -6,6 +6,9 @@ import io.grpc.ServerCall;
 import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import monorepo.lib.common.context.Context;
 import monorepo.lib.common.context.ContextHolder;
 
@@ -30,19 +33,22 @@ public final class ContextualServerInterceptor implements ServerInterceptor {
         }
     }
 
-    private static Context buildContext(Metadata headers) {
-        var context = new Context();
+    private static Context buildContext(Metadata metadata) {
+        var headers = getHeaders(metadata);
+        return new Context(headers);
+    }
+
+    private static Map<String, List<String>> getHeaders(Metadata headers) {
+        var result = new HashMap<String, List<String>>();
         for (var key : headers.keys()) {
             var values = headers.getAll(Metadata.Key.of(key, Metadata.ASCII_STRING_MARSHALLER));
             if (values != null) {
-                var v = new ArrayList<String>();
                 for (var value : values) {
-                    v.add(value);
+                    result.computeIfAbsent(key, _ -> new ArrayList<>()).add(value);
                 }
-                context.addHeader(key, v);
             }
         }
-        return context;
+        return result;
     }
 
     private static final class ContextualListener<Req>
