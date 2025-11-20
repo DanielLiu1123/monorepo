@@ -42,7 +42,7 @@ public final class ContextualClientInterceptor implements ClientInterceptor {
 
         @Override
         public void start(Listener<Resp> responseListener, Metadata headers) {
-            for (var entry : context.getHeaders().entrySet()) {
+            for (var entry : context.getPropagatedHeaders().entrySet()) {
                 var key = Metadata.Key.of(entry.getKey(), Metadata.ASCII_STRING_MARSHALLER);
                 if (!headers.containsKey(key)) {
                     for (var value : entry.getValue()) {

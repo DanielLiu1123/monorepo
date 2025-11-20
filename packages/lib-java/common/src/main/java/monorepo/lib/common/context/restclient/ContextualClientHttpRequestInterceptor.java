@@ -22,12 +22,11 @@ public final class ContextualClientHttpRequestInterceptor implements ClientHttpR
             return execution.execute(request, body);
         }
 
-        for (var en : context.getHeaders().entrySet()) {
+        for (var en : context.getPropagatedHeaders().entrySet()) {
             var name = en.getKey();
-            var values = en.getValue();
             var headers = request.getHeaders();
             if (!headers.containsHeader(name)) {
-                headers.put(name, values);
+                headers.put(name, en.getValue());
             }
         }
         return execution.execute(request, body);
