@@ -23,8 +23,7 @@ public final class ContextConsts {
     );
 
     public static final Set<BiPredicate<String, List<String>>> propagatedHeaders = Set.of(
-            (key, _) -> "Authorization".equalsIgnoreCase(key),
-            // opentelemetry traces headers
+            // OpenTelemetry traces headers
             (key, _) -> opentelemetryHeaders.contains(key)
     );
 }
