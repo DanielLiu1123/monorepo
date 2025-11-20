@@ -1,6 +1,7 @@
 package monorepo.lib.common.context;
 
 import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -11,21 +12,5 @@ import java.util.Set;
 public final class ContextConsts {
     private ContextConsts() {}
 
-    public static final Set<String> blockedHeaders = Set.of(
-            // Hop-by-hop headers
-            "connection",
-            "keep-alive",
-            "transfer-encoding",
-            "upgrade",
-            "proxy-connection",
-            "proxy-authenticate",
-            "proxy-authorization",
-            "te",
-            "trailer",
-            // sensitive headers
-            "cookie",
-            "set-cookie",
-            // fundamental headers
-            "host",
-            "content-length");
+    public static final Set<Pattern> propagatedHeaders = Set.of();
 }
