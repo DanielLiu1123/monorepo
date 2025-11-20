@@ -35,9 +35,7 @@ class EverythingMapperTest {
     @Test
     void compile() {
         // add java file objects
-        var mapper = JavaFileObjects.forSourceString(
-                "test.EverythingConverter",
-                """
+        var mapper = JavaFileObjects.forSourceString("test.EverythingConverter", """
                 package test;
 
                 import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
