@@ -1,10 +1,6 @@
 package monorepo.services.product.converter;
 
-import static org.mapstruct.CollectionMappingStrategy.TARGET_IMMUTABLE;
-import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
-import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
-import static org.mapstruct.ReportingPolicy.ERROR;
-
+import monorepo.lib.msp.MapStructConfig;
 import monorepo.proto.order.v1.EverythingEdition2023;
 import monorepo.proto.order.v1.EverythingProto2;
 import monorepo.proto.order.v1.EverythingProto3;
@@ -20,12 +16,7 @@ import org.mapstruct.factory.Mappers;
  * @author Freeman
  * @since 2025/11/8
  */
-@Mapper(
-        nullValueCheckStrategy = ALWAYS,
-        nullValuePropertyMappingStrategy = IGNORE,
-        collectionMappingStrategy = TARGET_IMMUTABLE,
-        unmappedTargetPolicy = ERROR,
-        unmappedSourcePolicy = ERROR)
+@Mapper(config = MapStructConfig.class)
 public abstract class EverythingMapper {
 
     public static final EverythingMapper INSTANCE = Mappers.getMapper(EverythingMapper.class);

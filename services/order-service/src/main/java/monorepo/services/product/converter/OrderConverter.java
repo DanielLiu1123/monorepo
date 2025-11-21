@@ -1,8 +1,6 @@
 package monorepo.services.product.converter;
 
-import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
-import static org.mapstruct.ReportingPolicy.WARN;
-
+import monorepo.lib.msp.MapStructConfig;
 import monorepo.proto.order.v1.OrderModel;
 import monorepo.services.product.dto.OrderDTO;
 import monorepo.services.product.entity.Order;
@@ -15,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  * @author Freeman
  * @since 2025/11/6
  */
-@Mapper(nullValueCheckStrategy = ALWAYS, unmappedTargetPolicy = WARN)
+@Mapper(config = MapStructConfig.class)
 public interface OrderConverter {
     OrderConverter INSTANCE = Mappers.getMapper(OrderConverter.class);
 
