@@ -13,6 +13,7 @@ import com.google.protobuf.StringValue;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.UInt32Value;
 import com.google.protobuf.UInt64Value;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -249,6 +250,7 @@ public final class ProtobufConverter {
         return DoubleValue.of(value);
     }
 
+    @SuppressFBWarnings("NP_BOOLEAN_RETURN_NULL")
     public static Boolean boolValueToBoolean(BoolValue value) {
         if (value == null) {
             return null;
