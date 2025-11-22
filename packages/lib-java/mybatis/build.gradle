@@ -1,0 +1,13 @@
+dependencies {
+    api(project(":packages:lib-java:common"))
+    api("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisBootStarterVersion}")
+    api("org.mybatis.dynamic-sql:mybatis-dynamic-sql:${mybatisDynamicSqlVersion}")
+
+    compileOnly("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisBootStarterVersion}")
+
+    // mybatis generator plugins
+    compileOnly("org.mybatis.generator:mybatis-generator-core:${mybatisGeneratorVersion}")
+
+    // typeHandlers
+    compileOnly("org.postgresql:postgresql")
+}

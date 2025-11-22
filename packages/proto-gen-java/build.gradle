@@ -1,6 +1,7 @@
 dependencies {
     api project(":packages:proto-gen-java:proto-common")
     api project(":packages:proto-gen-java:proto-order")
-    api project(":packages:proto-gen-java:proto-user")
     api project(":packages:proto-gen-java:proto-product")
+    api project(":packages:proto-gen-java:proto-todo")
+    api project(":packages:proto-gen-java:proto-user")
 }

@@ -23,20 +23,20 @@ public final class JsonUtil {
             .changeDefaultPropertyInclusion(value -> value.withValueInclusion(JsonInclude.Include.NON_NULL))
             .build();
 
-    public static <T> T toObject(String json, Class<T> clazz) {
+    public static <T> T parse(String json, Class<T> clazz) {
         return jsonMapper.readValue(json, clazz);
     }
 
-    public static <T> T toObject(String json, ParameterizedTypeReference<T> typeRef) {
+    public static <T> T parse(String json, ParameterizedTypeReference<T> typeRef) {
         return jsonMapper.readValue(json, jsonMapper.getTypeFactory().constructType(typeRef.getType()));
     }
 
-    public static <T> List<T> toList(String json, Class<T> elementClazz) {
+    public static <T> List<T> parseList(String json, Class<T> elementClazz) {
         return jsonMapper.readValue(
                 json, jsonMapper.getTypeFactory().constructCollectionType(List.class, elementClazz));
     }
 
-    public static String toJson(Object obj) {
+    public static String stringify(Object obj) {
         return jsonMapper.writeValueAsString(obj);
     }
 }

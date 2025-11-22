@@ -13,34 +13,96 @@ public final class UserServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<monorepo.proto.user.v1.GetUserRequest,
-      monorepo.proto.user.v1.GetUserResponse> getGetUserMethod;
+      monorepo.proto.user.v1.User> getGetUserMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "GetUser",
       requestType = monorepo.proto.user.v1.GetUserRequest.class,
-      responseType = monorepo.proto.user.v1.GetUserResponse.class,
+      responseType = monorepo.proto.user.v1.User.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<monorepo.proto.user.v1.GetUserRequest,
-      monorepo.proto.user.v1.GetUserResponse> getGetUserMethod() {
-    io.grpc.MethodDescriptor<monorepo.proto.user.v1.GetUserRequest, monorepo.proto.user.v1.GetUserResponse> getGetUserMethod;
+      monorepo.proto.user.v1.User> getGetUserMethod() {
+    io.grpc.MethodDescriptor<monorepo.proto.user.v1.GetUserRequest, monorepo.proto.user.v1.User> getGetUserMethod;
     if ((getGetUserMethod = UserServiceGrpc.getGetUserMethod) == null) {
       synchronized (UserServiceGrpc.class) {
         if ((getGetUserMethod = UserServiceGrpc.getGetUserMethod) == null) {
           UserServiceGrpc.getGetUserMethod = getGetUserMethod =
-              io.grpc.MethodDescriptor.<monorepo.proto.user.v1.GetUserRequest, monorepo.proto.user.v1.GetUserResponse>newBuilder()
+              io.grpc.MethodDescriptor.<monorepo.proto.user.v1.GetUserRequest, monorepo.proto.user.v1.User>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetUser"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   monorepo.proto.user.v1.GetUserRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.user.v1.GetUserResponse.getDefaultInstance()))
+                  monorepo.proto.user.v1.User.getDefaultInstance()))
               .setSchemaDescriptor(new UserServiceMethodDescriptorSupplier("GetUser"))
               .build();
         }
       }
     }
     return getGetUserMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<monorepo.proto.user.v1.BatchGetUsersRequest,
+      monorepo.proto.user.v1.BatchGetUsersResponse> getBatchGetUsersMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "BatchGetUsers",
+      requestType = monorepo.proto.user.v1.BatchGetUsersRequest.class,
+      responseType = monorepo.proto.user.v1.BatchGetUsersResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<monorepo.proto.user.v1.BatchGetUsersRequest,
+      monorepo.proto.user.v1.BatchGetUsersResponse> getBatchGetUsersMethod() {
+    io.grpc.MethodDescriptor<monorepo.proto.user.v1.BatchGetUsersRequest, monorepo.proto.user.v1.BatchGetUsersResponse> getBatchGetUsersMethod;
+    if ((getBatchGetUsersMethod = UserServiceGrpc.getBatchGetUsersMethod) == null) {
+      synchronized (UserServiceGrpc.class) {
+        if ((getBatchGetUsersMethod = UserServiceGrpc.getBatchGetUsersMethod) == null) {
+          UserServiceGrpc.getBatchGetUsersMethod = getBatchGetUsersMethod =
+              io.grpc.MethodDescriptor.<monorepo.proto.user.v1.BatchGetUsersRequest, monorepo.proto.user.v1.BatchGetUsersResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "BatchGetUsers"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  monorepo.proto.user.v1.BatchGetUsersRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  monorepo.proto.user.v1.BatchGetUsersResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new UserServiceMethodDescriptorSupplier("BatchGetUsers"))
+              .build();
+        }
+      }
+    }
+    return getBatchGetUsersMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<monorepo.proto.user.v1.ListUsersRequest,
+      monorepo.proto.user.v1.ListUsersResponse> getListUsersMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ListUsers",
+      requestType = monorepo.proto.user.v1.ListUsersRequest.class,
+      responseType = monorepo.proto.user.v1.ListUsersResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<monorepo.proto.user.v1.ListUsersRequest,
+      monorepo.proto.user.v1.ListUsersResponse> getListUsersMethod() {
+    io.grpc.MethodDescriptor<monorepo.proto.user.v1.ListUsersRequest, monorepo.proto.user.v1.ListUsersResponse> getListUsersMethod;
+    if ((getListUsersMethod = UserServiceGrpc.getListUsersMethod) == null) {
+      synchronized (UserServiceGrpc.class) {
+        if ((getListUsersMethod = UserServiceGrpc.getListUsersMethod) == null) {
+          UserServiceGrpc.getListUsersMethod = getListUsersMethod =
+              io.grpc.MethodDescriptor.<monorepo.proto.user.v1.ListUsersRequest, monorepo.proto.user.v1.ListUsersResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ListUsers"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  monorepo.proto.user.v1.ListUsersRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  monorepo.proto.user.v1.ListUsersResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new UserServiceMethodDescriptorSupplier("ListUsers"))
+              .build();
+        }
+      }
+    }
+    return getListUsersMethod;
   }
 
   /**
@@ -109,8 +171,22 @@ public final class UserServiceGrpc {
     /**
      */
     default void getUser(monorepo.proto.user.v1.GetUserRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.user.v1.GetUserResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.user.v1.User> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetUserMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void batchGetUsers(monorepo.proto.user.v1.BatchGetUsersRequest request,
+        io.grpc.stub.StreamObserver<monorepo.proto.user.v1.BatchGetUsersResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getBatchGetUsersMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void listUsers(monorepo.proto.user.v1.ListUsersRequest request,
+        io.grpc.stub.StreamObserver<monorepo.proto.user.v1.ListUsersResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getListUsersMethod(), responseObserver);
     }
   }
 
@@ -144,9 +220,25 @@ public final class UserServiceGrpc {
     /**
      */
     public void getUser(monorepo.proto.user.v1.GetUserRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.user.v1.GetUserResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.user.v1.User> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetUserMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void batchGetUsers(monorepo.proto.user.v1.BatchGetUsersRequest request,
+        io.grpc.stub.StreamObserver<monorepo.proto.user.v1.BatchGetUsersResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getBatchGetUsersMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void listUsers(monorepo.proto.user.v1.ListUsersRequest request,
+        io.grpc.stub.StreamObserver<monorepo.proto.user.v1.ListUsersResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getListUsersMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -168,9 +260,23 @@ public final class UserServiceGrpc {
 
     /**
      */
-    public monorepo.proto.user.v1.GetUserResponse getUser(monorepo.proto.user.v1.GetUserRequest request) throws io.grpc.StatusException {
+    public monorepo.proto.user.v1.User getUser(monorepo.proto.user.v1.GetUserRequest request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetUserMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public monorepo.proto.user.v1.BatchGetUsersResponse batchGetUsers(monorepo.proto.user.v1.BatchGetUsersRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getBatchGetUsersMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public monorepo.proto.user.v1.ListUsersResponse listUsers(monorepo.proto.user.v1.ListUsersRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getListUsersMethod(), getCallOptions(), request);
     }
   }
 
@@ -192,9 +298,23 @@ public final class UserServiceGrpc {
 
     /**
      */
-    public monorepo.proto.user.v1.GetUserResponse getUser(monorepo.proto.user.v1.GetUserRequest request) {
+    public monorepo.proto.user.v1.User getUser(monorepo.proto.user.v1.GetUserRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetUserMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public monorepo.proto.user.v1.BatchGetUsersResponse batchGetUsers(monorepo.proto.user.v1.BatchGetUsersRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getBatchGetUsersMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public monorepo.proto.user.v1.ListUsersResponse listUsers(monorepo.proto.user.v1.ListUsersRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getListUsersMethod(), getCallOptions(), request);
     }
   }
 
@@ -216,14 +336,32 @@ public final class UserServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.user.v1.GetUserResponse> getUser(
+    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.user.v1.User> getUser(
         monorepo.proto.user.v1.GetUserRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetUserMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.user.v1.BatchGetUsersResponse> batchGetUsers(
+        monorepo.proto.user.v1.BatchGetUsersRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getBatchGetUsersMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.user.v1.ListUsersResponse> listUsers(
+        monorepo.proto.user.v1.ListUsersRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getListUsersMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_GET_USER = 0;
+  private static final int METHODID_BATCH_GET_USERS = 1;
+  private static final int METHODID_LIST_USERS = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -244,7 +382,15 @@ public final class UserServiceGrpc {
       switch (methodId) {
         case METHODID_GET_USER:
           serviceImpl.getUser((monorepo.proto.user.v1.GetUserRequest) request,
-              (io.grpc.stub.StreamObserver<monorepo.proto.user.v1.GetUserResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<monorepo.proto.user.v1.User>) responseObserver);
+          break;
+        case METHODID_BATCH_GET_USERS:
+          serviceImpl.batchGetUsers((monorepo.proto.user.v1.BatchGetUsersRequest) request,
+              (io.grpc.stub.StreamObserver<monorepo.proto.user.v1.BatchGetUsersResponse>) responseObserver);
+          break;
+        case METHODID_LIST_USERS:
+          serviceImpl.listUsers((monorepo.proto.user.v1.ListUsersRequest) request,
+              (io.grpc.stub.StreamObserver<monorepo.proto.user.v1.ListUsersResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -269,8 +415,22 @@ public final class UserServiceGrpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               monorepo.proto.user.v1.GetUserRequest,
-              monorepo.proto.user.v1.GetUserResponse>(
+              monorepo.proto.user.v1.User>(
                 service, METHODID_GET_USER)))
+        .addMethod(
+          getBatchGetUsersMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              monorepo.proto.user.v1.BatchGetUsersRequest,
+              monorepo.proto.user.v1.BatchGetUsersResponse>(
+                service, METHODID_BATCH_GET_USERS)))
+        .addMethod(
+          getListUsersMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              monorepo.proto.user.v1.ListUsersRequest,
+              monorepo.proto.user.v1.ListUsersResponse>(
+                service, METHODID_LIST_USERS)))
         .build();
   }
 
@@ -320,6 +480,8 @@ public final class UserServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new UserServiceFileDescriptorSupplier())
               .addMethod(getGetUserMethod())
+              .addMethod(getBatchGetUsersMethod())
+              .addMethod(getListUsersMethod())
               .build();
         }
       }

@@ -1,14 +1,17 @@
 rootProject.name = "monorepo"
 
 include ":packages:lib-java:common"
+include ":packages:lib-java:mybatis"
 include ":packages:lib-java:mapstruct-spi-protobuf"
 
 include ":packages:proto-gen-java"
 include ":packages:proto-gen-java:proto-common"
-include ":packages:proto-gen-java:proto-product"
-include ":packages:proto-gen-java:proto-user"
 include ":packages:proto-gen-java:proto-order"
+include ":packages:proto-gen-java:proto-product"
+include ":packages:proto-gen-java:proto-todo"
+include ":packages:proto-gen-java:proto-user"
 
 include ":services:product-service"
 include ":services:order-service"
 include ":services:search-service"
+include ":services:todo-service"

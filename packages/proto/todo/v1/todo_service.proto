@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+package todo.v1;
+
+import "todo/v1/todo.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/todo/v1;todov1";
+option java_package = "monorepo.proto.todo.v1";
+option java_multiple_files = true;
+
+// TodoService provides CRUD operations for todos following AIP standards
+service TodoService {
+  // Creates a new todo (AIP-133)
+  rpc CreateTodo(CreateTodoRequest) returns (Todo) {}
+
+  // Gets a todo by ID (AIP-131)
+  rpc GetTodo(GetTodoRequest) returns (Todo) {}
+
+  // Lists todos with pagination (AIP-132)
+  rpc ListTodos(ListTodosRequest) returns (ListTodosResponse) {}
+
+  // Updates a todo (AIP-134)
+  rpc UpdateTodo(UpdateTodoRequest) returns (Todo) {}
+
+  // Deletes a todo (AIP-135)
+  rpc DeleteTodo(DeleteTodoRequest) returns (google.protobuf.Empty) {}
+
+  // Batch gets multiple todos by IDs (AIP-231)
+  rpc BatchGetTodos(BatchGetTodosRequest) returns (BatchGetTodosResponse) {}
+}
+
+// Request message for CreateTodo
+message CreateTodoRequest {
+  // The todo to create
+  Todo todo = 1;
+}
+
+// Request message for GetTodo
+message GetTodoRequest {
+  // The ID of the todo to retrieve
+  string id = 1;
+}
+
+// Request message for ListTodos
+message ListTodosRequest {
+  // The maximum number of todos to return
+  // The service may return fewer than this value
+  // If unspecified, defaults to 50
+  // Maximum value is 1000
+  int32 page_size = 1;
+
+  // Page token received from a previous ListTodos call
+  // Provide this to retrieve the next page
+  string page_token = 2;
+
+  // Filter expression for todos
+  // Examples: "status=PENDING", "assignee=user123"
+  string filter = 3;
+
+  // Field to sort by
+  // Examples: "created_at", "due_date", "priority"
+  string order_by = 4;
+}
+
+// Response message for ListTodos
+message ListTodosResponse {
+  // The list of todos
+  repeated Todo todos = 1;
+
+  // Token to retrieve the next page of results
+  // Empty if there are no more results
+  string next_page_token = 2;
+
+  // Total count of todos matching the filter
+  int32 total_size = 3;
+}
+
+// Request message for UpdateTodo
+message UpdateTodoRequest {
+  // The todo to update
+  // The todo's ID field identifies which todo to update
+  Todo todo = 1;
+
+  // The list of fields to update
+  // If empty, all fields will be updated
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+// Request message for DeleteTodo
+message DeleteTodoRequest {
+  // The ID of the todo to delete
+  string id = 1;
+}
+
+// Request message for BatchGetTodos
+message BatchGetTodosRequest {
+  // The IDs of the todos to retrieve
+  repeated string ids = 1;
+}
+
+// Response message for BatchGetTodos
+message BatchGetTodosResponse {
+  // The list of todos
+  // Todos are returned in the same order as requested
+  // If a todo is not found, it will not be included in the response
+  repeated Todo todos = 1;
+}

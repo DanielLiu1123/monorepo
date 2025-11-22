@@ -32,10 +32,25 @@ public final class UserServiceOuterClass extends com.google.protobuf.GeneratedFi
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_user_v1_GetUserRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_user_v1_GetUserResponse_descriptor;
+    internal_static_user_v1_BatchGetUsersRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_user_v1_GetUserResponse_fieldAccessorTable;
+      internal_static_user_v1_BatchGetUsersRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_user_v1_BatchGetUsersResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_user_v1_BatchGetUsersResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_user_v1_ListUsersRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_user_v1_ListUsersRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_user_v1_ListUsersResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_user_v1_ListUsersResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -46,19 +61,30 @@ public final class UserServiceOuterClass extends com.google.protobuf.GeneratedFi
   static {
     java.lang.String[] descriptorData = {
       "\n\032user/v1/user_service.proto\022\007user.v1\032\022u" +
-      "ser/v1/user.proto\" \n\016GetUserRequest\022\016\n\002i" +
-      "d\030\001 \001(\tR\002id\"4\n\017GetUserResponse\022!\n\004user\030\001" +
-      " \001(\0132\r.user.v1.UserR\004user2M\n\013UserService" +
-      "\022>\n\007GetUser\022\027.user.v1.GetUserRequest\032\030.u" +
-      "ser.v1.GetUserResponse\"\000B\\\n\026monorepo.pro" +
-      "to.user.v1P\001Z@github.com/yourorg/monorep" +
-      "o/packages/proto-gen-go/user/v1;userv1b\006" +
-      "proto3"
+      "ser/v1/user.proto\032\024common/v1/page.proto\"" +
+      " \n\016GetUserRequest\022\016\n\002id\030\001 \001(\tR\002id\"(\n\024Bat" +
+      "chGetUsersRequest\022\020\n\003ids\030\001 \003(\tR\003ids\"<\n\025B" +
+      "atchGetUsersResponse\022#\n\005users\030\001 \003(\0132\r.us" +
+      "er.v1.UserR\005users\"k\n\020ListUsersRequest\022\033\n" +
+      "\ttenant_id\030\001 \001(\tR\010tenantId\022\033\n\tpage_size\030" +
+      "\002 \001(\005R\010pageSize\022\035\n\npage_token\030\003 \001(\tR\tpag" +
+      "eToken\"`\n\021ListUsersResponse\022#\n\005users\030\001 \003" +
+      "(\0132\r.user.v1.UserR\005users\022&\n\017next_page_to" +
+      "ken\030\002 \001(\tR\rnextPageToken2\332\001\n\013UserService" +
+      "\0223\n\007GetUser\022\027.user.v1.GetUserRequest\032\r.u" +
+      "ser.v1.User\"\000\022P\n\rBatchGetUsers\022\035.user.v1" +
+      ".BatchGetUsersRequest\032\036.user.v1.BatchGet" +
+      "UsersResponse\"\000\022D\n\tListUsers\022\031.user.v1.L" +
+      "istUsersRequest\032\032.user.v1.ListUsersRespo" +
+      "nse\"\000B\\\n\026monorepo.proto.user.v1P\001Z@githu" +
+      "b.com/yourorg/monorepo/packages/proto-ge" +
+      "n-go/user/v1;userv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           monorepo.proto.user.v1.UserOuterClass.getDescriptor(),
+          monorepo.proto.common.v1.PageProto.getDescriptor(),
         });
     internal_static_user_v1_GetUserRequest_descriptor =
       getDescriptor().getMessageType(0);
@@ -66,14 +92,33 @@ public final class UserServiceOuterClass extends com.google.protobuf.GeneratedFi
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_user_v1_GetUserRequest_descriptor,
         new java.lang.String[] { "Id", });
-    internal_static_user_v1_GetUserResponse_descriptor =
+    internal_static_user_v1_BatchGetUsersRequest_descriptor =
       getDescriptor().getMessageType(1);
-    internal_static_user_v1_GetUserResponse_fieldAccessorTable = new
+    internal_static_user_v1_BatchGetUsersRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_user_v1_GetUserResponse_descriptor,
-        new java.lang.String[] { "User", });
+        internal_static_user_v1_BatchGetUsersRequest_descriptor,
+        new java.lang.String[] { "Ids", });
+    internal_static_user_v1_BatchGetUsersResponse_descriptor =
+      getDescriptor().getMessageType(2);
+    internal_static_user_v1_BatchGetUsersResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_user_v1_BatchGetUsersResponse_descriptor,
+        new java.lang.String[] { "Users", });
+    internal_static_user_v1_ListUsersRequest_descriptor =
+      getDescriptor().getMessageType(3);
+    internal_static_user_v1_ListUsersRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_user_v1_ListUsersRequest_descriptor,
+        new java.lang.String[] { "TenantId", "PageSize", "PageToken", });
+    internal_static_user_v1_ListUsersResponse_descriptor =
+      getDescriptor().getMessageType(4);
+    internal_static_user_v1_ListUsersResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_user_v1_ListUsersResponse_descriptor,
+        new java.lang.String[] { "Users", "NextPageToken", });
     descriptor.resolveAllFeaturesImmutable();
     monorepo.proto.user.v1.UserOuterClass.getDescriptor();
+    monorepo.proto.common.v1.PageProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

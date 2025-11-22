@@ -7,6 +7,7 @@
 package userv1
 
 import (
+	_ "github.com/yourorg/monorepo/packages/proto-gen-go/common/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -77,27 +78,27 @@ func (b0 GetUserRequest_builder) Build() *GetUserRequest {
 	return m0
 }
 
-type GetUserResponse struct {
-	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_User *User                  `protobuf:"bytes,1,opt,name=user,proto3"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+type BatchGetUsersRequest struct {
+	state          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Ids []string               `protobuf:"bytes,1,rep,name=ids,proto3"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
-func (x *GetUserResponse) Reset() {
-	*x = GetUserResponse{}
+func (x *BatchGetUsersRequest) Reset() {
+	*x = BatchGetUsersRequest{}
 	mi := &file_user_v1_user_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetUserResponse) String() string {
+func (x *BatchGetUsersRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserResponse) ProtoMessage() {}
+func (*BatchGetUsersRequest) ProtoMessage() {}
 
-func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
+func (x *BatchGetUsersRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_user_v1_user_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -109,39 +110,245 @@ func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *GetUserResponse) GetUser() *User {
+func (x *BatchGetUsersRequest) GetIds() []string {
 	if x != nil {
-		return x.xxx_hidden_User
+		return x.xxx_hidden_Ids
 	}
 	return nil
 }
 
-func (x *GetUserResponse) SetUser(v *User) {
-	x.xxx_hidden_User = v
+func (x *BatchGetUsersRequest) SetIds(v []string) {
+	x.xxx_hidden_Ids = v
 }
 
-func (x *GetUserResponse) HasUser() bool {
-	if x == nil {
-		return false
-	}
-	return x.xxx_hidden_User != nil
-}
-
-func (x *GetUserResponse) ClearUser() {
-	x.xxx_hidden_User = nil
-}
-
-type GetUserResponse_builder struct {
+type BatchGetUsersRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	User *User
+	Ids []string
 }
 
-func (b0 GetUserResponse_builder) Build() *GetUserResponse {
-	m0 := &GetUserResponse{}
+func (b0 BatchGetUsersRequest_builder) Build() *BatchGetUsersRequest {
+	m0 := &BatchGetUsersRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_User = b.User
+	x.xxx_hidden_Ids = b.Ids
+	return m0
+}
+
+type BatchGetUsersResponse struct {
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Users *[]*User               `protobuf:"bytes,1,rep,name=users,proto3"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *BatchGetUsersResponse) Reset() {
+	*x = BatchGetUsersResponse{}
+	mi := &file_user_v1_user_service_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BatchGetUsersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BatchGetUsersResponse) ProtoMessage() {}
+
+func (x *BatchGetUsersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_service_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *BatchGetUsersResponse) GetUsers() []*User {
+	if x != nil {
+		if x.xxx_hidden_Users != nil {
+			return *x.xxx_hidden_Users
+		}
+	}
+	return nil
+}
+
+func (x *BatchGetUsersResponse) SetUsers(v []*User) {
+	x.xxx_hidden_Users = &v
+}
+
+type BatchGetUsersResponse_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Users []*User
+}
+
+func (b0 BatchGetUsersResponse_builder) Build() *BatchGetUsersResponse {
+	m0 := &BatchGetUsersResponse{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Users = &b.Users
+	return m0
+}
+
+type ListUsersRequest struct {
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_TenantId  string                 `protobuf:"bytes,1,opt,name=tenant_id,json=tenantId,proto3"`
+	xxx_hidden_PageSize  int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3"`
+	xxx_hidden_PageToken string                 `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *ListUsersRequest) Reset() {
+	*x = ListUsersRequest{}
+	mi := &file_user_v1_user_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListUsersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListUsersRequest) ProtoMessage() {}
+
+func (x *ListUsersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListUsersRequest) GetTenantId() string {
+	if x != nil {
+		return x.xxx_hidden_TenantId
+	}
+	return ""
+}
+
+func (x *ListUsersRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.xxx_hidden_PageSize
+	}
+	return 0
+}
+
+func (x *ListUsersRequest) GetPageToken() string {
+	if x != nil {
+		return x.xxx_hidden_PageToken
+	}
+	return ""
+}
+
+func (x *ListUsersRequest) SetTenantId(v string) {
+	x.xxx_hidden_TenantId = v
+}
+
+func (x *ListUsersRequest) SetPageSize(v int32) {
+	x.xxx_hidden_PageSize = v
+}
+
+func (x *ListUsersRequest) SetPageToken(v string) {
+	x.xxx_hidden_PageToken = v
+}
+
+type ListUsersRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	TenantId  string
+	PageSize  int32
+	PageToken string
+}
+
+func (b0 ListUsersRequest_builder) Build() *ListUsersRequest {
+	m0 := &ListUsersRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_TenantId = b.TenantId
+	x.xxx_hidden_PageSize = b.PageSize
+	x.xxx_hidden_PageToken = b.PageToken
+	return m0
+}
+
+type ListUsersResponse struct {
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Users         *[]*User               `protobuf:"bytes,1,rep,name=users,proto3"`
+	xxx_hidden_NextPageToken string                 `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
+}
+
+func (x *ListUsersResponse) Reset() {
+	*x = ListUsersResponse{}
+	mi := &file_user_v1_user_service_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListUsersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListUsersResponse) ProtoMessage() {}
+
+func (x *ListUsersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_user_service_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListUsersResponse) GetUsers() []*User {
+	if x != nil {
+		if x.xxx_hidden_Users != nil {
+			return *x.xxx_hidden_Users
+		}
+	}
+	return nil
+}
+
+func (x *ListUsersResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.xxx_hidden_NextPageToken
+	}
+	return ""
+}
+
+func (x *ListUsersResponse) SetUsers(v []*User) {
+	x.xxx_hidden_Users = &v
+}
+
+func (x *ListUsersResponse) SetNextPageToken(v string) {
+	x.xxx_hidden_NextPageToken = v
+}
+
+type ListUsersResponse_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Users         []*User
+	NextPageToken string
+}
+
+func (b0 ListUsersResponse_builder) Build() *ListUsersResponse {
+	m0 := &ListUsersResponse{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Users = &b.Users
+	x.xxx_hidden_NextPageToken = b.NextPageToken
 	return m0
 }
 
@@ -149,30 +356,50 @@ var File_user_v1_user_service_proto protoreflect.FileDescriptor
 
 const file_user_v1_user_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1auser/v1/user_service.proto\x12\auser.v1\x1a\x12user/v1/user.proto\" \n" +
+	"\x1auser/v1/user_service.proto\x12\auser.v1\x1a\x12user/v1/user.proto\x1a\x14common/v1/page.proto\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"4\n" +
-	"\x0fGetUserResponse\x12!\n" +
-	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user2M\n" +
-	"\vUserService\x12>\n" +
-	"\aGetUser\x12\x17.user.v1.GetUserRequest\x1a\x18.user.v1.GetUserResponse\"\x00B\\\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"(\n" +
+	"\x14BatchGetUsersRequest\x12\x10\n" +
+	"\x03ids\x18\x01 \x03(\tR\x03ids\"<\n" +
+	"\x15BatchGetUsersResponse\x12#\n" +
+	"\x05users\x18\x01 \x03(\v2\r.user.v1.UserR\x05users\"k\n" +
+	"\x10ListUsersRequest\x12\x1b\n" +
+	"\ttenant_id\x18\x01 \x01(\tR\btenantId\x12\x1b\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x1d\n" +
+	"\n" +
+	"page_token\x18\x03 \x01(\tR\tpageToken\"`\n" +
+	"\x11ListUsersResponse\x12#\n" +
+	"\x05users\x18\x01 \x03(\v2\r.user.v1.UserR\x05users\x12&\n" +
+	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken2\xda\x01\n" +
+	"\vUserService\x123\n" +
+	"\aGetUser\x12\x17.user.v1.GetUserRequest\x1a\r.user.v1.User\"\x00\x12P\n" +
+	"\rBatchGetUsers\x12\x1d.user.v1.BatchGetUsersRequest\x1a\x1e.user.v1.BatchGetUsersResponse\"\x00\x12D\n" +
+	"\tListUsers\x12\x19.user.v1.ListUsersRequest\x1a\x1a.user.v1.ListUsersResponse\"\x00B\\\n" +
 	"\x16monorepo.proto.user.v1P\x01Z@github.com/yourorg/monorepo/packages/proto-gen-go/user/v1;userv1b\x06proto3"
 
-var file_user_v1_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_user_v1_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_user_v1_user_service_proto_goTypes = []any{
-	(*GetUserRequest)(nil),  // 0: user.v1.GetUserRequest
-	(*GetUserResponse)(nil), // 1: user.v1.GetUserResponse
-	(*User)(nil),            // 2: user.v1.User
+	(*GetUserRequest)(nil),        // 0: user.v1.GetUserRequest
+	(*BatchGetUsersRequest)(nil),  // 1: user.v1.BatchGetUsersRequest
+	(*BatchGetUsersResponse)(nil), // 2: user.v1.BatchGetUsersResponse
+	(*ListUsersRequest)(nil),      // 3: user.v1.ListUsersRequest
+	(*ListUsersResponse)(nil),     // 4: user.v1.ListUsersResponse
+	(*User)(nil),                  // 5: user.v1.User
 }
 var file_user_v1_user_service_proto_depIdxs = []int32{
-	2, // 0: user.v1.GetUserResponse.user:type_name -> user.v1.User
-	0, // 1: user.v1.UserService.GetUser:input_type -> user.v1.GetUserRequest
-	1, // 2: user.v1.UserService.GetUser:output_type -> user.v1.GetUserResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	5, // 0: user.v1.BatchGetUsersResponse.users:type_name -> user.v1.User
+	5, // 1: user.v1.ListUsersResponse.users:type_name -> user.v1.User
+	0, // 2: user.v1.UserService.GetUser:input_type -> user.v1.GetUserRequest
+	1, // 3: user.v1.UserService.BatchGetUsers:input_type -> user.v1.BatchGetUsersRequest
+	3, // 4: user.v1.UserService.ListUsers:input_type -> user.v1.ListUsersRequest
+	5, // 5: user.v1.UserService.GetUser:output_type -> user.v1.User
+	2, // 6: user.v1.UserService.BatchGetUsers:output_type -> user.v1.BatchGetUsersResponse
+	4, // 7: user.v1.UserService.ListUsers:output_type -> user.v1.ListUsersResponse
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_user_v1_user_service_proto_init() }
@@ -187,7 +414,7 @@ func file_user_v1_user_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_v1_user_service_proto_rawDesc), len(file_user_v1_user_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

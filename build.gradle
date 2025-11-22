@@ -4,6 +4,7 @@ plugins {
     id "com.diffplug.spotless" version "${spotlessPluginVersion}" apply false
     id "com.github.spotbugs" version "${spotbugsPluginVersion}" apply false
     id "com.google.protobuf" version "${protobufPluginVersion}" apply false
+    id "com.qqviaja.gradle.MybatisGenerator" version "${mybatisGeneratorPluginVersion}" apply false
 }
 
 //allprojects { // uncomment this if you want to get IDE support, only for debugging purpose!

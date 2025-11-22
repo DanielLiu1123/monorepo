@@ -8,6 +8,7 @@ dependencies {
     }
 
     compileOnly "org.springframework.boot:spring-boot-starter-web"
+    compileOnly "org.springframework.boot:spring-boot-starter-jdbc"
     compileOnly "org.springframework.boot:spring-boot-starter-restclient"
     compileOnly "io.github.danielliu1123:grpc-boot-starter"
 }
