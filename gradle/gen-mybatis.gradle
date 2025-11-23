@@ -1,7 +1,7 @@
 // Usage:
 // 1. Add 'apply from: "${rootDir}/gradle/gen-mybatis.gradle"' in the module's build.gradle
 // 2. Add a 'generatorConfig.xml' in the module's root directory
-// 3. Run `./gradlew genMyBatis`
+// 3. Run `./gradlew genMyBatis --project-dir <module-path>`, e.g. `./gradlew genMyBatis --project-dir services/todo-service`
 
 configurations {
     generator
