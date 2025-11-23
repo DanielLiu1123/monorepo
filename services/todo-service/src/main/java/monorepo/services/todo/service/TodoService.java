@@ -1,5 +1,6 @@
 package monorepo.services.todo.service;
 
+import static monorepo.lib.common.util.SpringUtil.withTransaction;
 import static monorepo.services.todo.mapper.TodoDynamicSqlSupport.todo;
 import static monorepo.services.todo.mapper.TodoSubtaskDynamicSqlSupport.todoSubtask;
 import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
@@ -41,14 +42,15 @@ public class TodoService {
      * @return created todo id
      */
     public long create(CreateTodoRequest request) {
+        return withTransaction(() -> {
+            var todoId = createTodo(request.getTodo());
 
-        var todoId = createTodo(request.getTodo());
+            for (var subtaskRequest : request.getSubTasksList()) {
+                createTodoSubtask(subtaskRequest, todoId);
+            }
 
-        for (var subtaskRequest : request.getSubTasksList()) {
-            createTodoSubtask(subtaskRequest, todoId);
-        }
-
-        return todoId;
+            return todoId;
+        });
     }
 
     /**
@@ -58,10 +60,9 @@ public class TodoService {
      * @return whether update succeeded
      */
     public boolean update(UpdateTodoRequest request) {
+        return withTransaction(() -> {
+            var result = updateTodo(request.getTodo());
 
-        var result = updateTodo(request.getTodo());
-
-        if (result) {
             var todoId = request.getTodo().getId();
             for (var subtask : request.getSubTasksList()) {
                 switch (subtask.getOperationCase()) {
@@ -71,9 +72,9 @@ public class TodoService {
                     case OPERATION_NOT_SET -> {}
                 }
             }
-        }
 
-        return result;
+            return result;
+        });
     }
 
     /**
