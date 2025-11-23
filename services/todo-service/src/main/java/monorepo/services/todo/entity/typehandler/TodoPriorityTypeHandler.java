@@ -9,5 +9,4 @@ import monorepo.proto.todo.v1.TodoModel;
  * @author Freeman
  * @since 2025/11/23
  */
-public class TodoPriorityTypeHandler extends BaseProtobufEnumTypeHandler<TodoModel.Priority, String> {
-}
+public class TodoPriorityTypeHandler extends BaseProtobufEnumTypeHandler<TodoModel.Priority, String> {}
