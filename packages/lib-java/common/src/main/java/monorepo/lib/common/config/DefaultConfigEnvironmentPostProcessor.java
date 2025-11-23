@@ -1,6 +1,7 @@
 package monorepo.lib.common.config;
 
 import jakarta.annotation.Nullable;
+import java.util.Optional;
 import monorepo.lib.common.profile.Profile;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
@@ -12,8 +13,6 @@ import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-
-import java.util.Optional;
 
 /**
  * Load default configurations.

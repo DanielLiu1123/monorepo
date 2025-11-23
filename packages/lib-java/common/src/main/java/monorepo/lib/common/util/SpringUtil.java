@@ -1,11 +1,10 @@
 package monorepo.lib.common.util;
 
+import java.util.function.Supplier;
 import org.jspecify.annotations.Nullable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.support.TransactionOperations;
 import org.springframework.util.function.SingletonSupplier;
-
-import java.util.function.Supplier;
 
 /**
  * @author Freeman
@@ -17,8 +16,9 @@ public final class SpringUtil {
 
     @Nullable
     private static ApplicationContext ctx;
-    private static final SingletonSupplier<TransactionOperations> transactionOperations = SingletonSupplier.of(() ->
-            getContext().getBeanProvider(TransactionOperations.class).getIfUnique());
+
+    private static final SingletonSupplier<TransactionOperations> transactionOperations = SingletonSupplier.of(
+            () -> getContext().getBeanProvider(TransactionOperations.class).getIfUnique());
 
     static void setContext(ApplicationContext applicationContext) {
         SpringUtil.ctx = applicationContext;
