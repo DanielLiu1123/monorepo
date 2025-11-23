@@ -1,11 +1,13 @@
 package monorepo.services.todo;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("monorepo.services.todo.mapper")
 public class TodoApp {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(TodoApp.class, args);
     }
 }

@@ -16,28 +16,28 @@ public final class TodoServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<monorepo.proto.todo.v1.CreateTodoRequest,
-      monorepo.proto.todo.v1.Todo> getCreateTodoMethod;
+      monorepo.proto.todo.v1.TodoModel> getCreateTodoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "CreateTodo",
       requestType = monorepo.proto.todo.v1.CreateTodoRequest.class,
-      responseType = monorepo.proto.todo.v1.Todo.class,
+      responseType = monorepo.proto.todo.v1.TodoModel.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<monorepo.proto.todo.v1.CreateTodoRequest,
-      monorepo.proto.todo.v1.Todo> getCreateTodoMethod() {
-    io.grpc.MethodDescriptor<monorepo.proto.todo.v1.CreateTodoRequest, monorepo.proto.todo.v1.Todo> getCreateTodoMethod;
+      monorepo.proto.todo.v1.TodoModel> getCreateTodoMethod() {
+    io.grpc.MethodDescriptor<monorepo.proto.todo.v1.CreateTodoRequest, monorepo.proto.todo.v1.TodoModel> getCreateTodoMethod;
     if ((getCreateTodoMethod = TodoServiceGrpc.getCreateTodoMethod) == null) {
       synchronized (TodoServiceGrpc.class) {
         if ((getCreateTodoMethod = TodoServiceGrpc.getCreateTodoMethod) == null) {
           TodoServiceGrpc.getCreateTodoMethod = getCreateTodoMethod =
-              io.grpc.MethodDescriptor.<monorepo.proto.todo.v1.CreateTodoRequest, monorepo.proto.todo.v1.Todo>newBuilder()
+              io.grpc.MethodDescriptor.<monorepo.proto.todo.v1.CreateTodoRequest, monorepo.proto.todo.v1.TodoModel>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CreateTodo"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   monorepo.proto.todo.v1.CreateTodoRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.todo.v1.Todo.getDefaultInstance()))
+                  monorepo.proto.todo.v1.TodoModel.getDefaultInstance()))
               .setSchemaDescriptor(new TodoServiceMethodDescriptorSupplier("CreateTodo"))
               .build();
         }
@@ -47,28 +47,28 @@ public final class TodoServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<monorepo.proto.todo.v1.GetTodoRequest,
-      monorepo.proto.todo.v1.Todo> getGetTodoMethod;
+      monorepo.proto.todo.v1.TodoModel> getGetTodoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "GetTodo",
       requestType = monorepo.proto.todo.v1.GetTodoRequest.class,
-      responseType = monorepo.proto.todo.v1.Todo.class,
+      responseType = monorepo.proto.todo.v1.TodoModel.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<monorepo.proto.todo.v1.GetTodoRequest,
-      monorepo.proto.todo.v1.Todo> getGetTodoMethod() {
-    io.grpc.MethodDescriptor<monorepo.proto.todo.v1.GetTodoRequest, monorepo.proto.todo.v1.Todo> getGetTodoMethod;
+      monorepo.proto.todo.v1.TodoModel> getGetTodoMethod() {
+    io.grpc.MethodDescriptor<monorepo.proto.todo.v1.GetTodoRequest, monorepo.proto.todo.v1.TodoModel> getGetTodoMethod;
     if ((getGetTodoMethod = TodoServiceGrpc.getGetTodoMethod) == null) {
       synchronized (TodoServiceGrpc.class) {
         if ((getGetTodoMethod = TodoServiceGrpc.getGetTodoMethod) == null) {
           TodoServiceGrpc.getGetTodoMethod = getGetTodoMethod =
-              io.grpc.MethodDescriptor.<monorepo.proto.todo.v1.GetTodoRequest, monorepo.proto.todo.v1.Todo>newBuilder()
+              io.grpc.MethodDescriptor.<monorepo.proto.todo.v1.GetTodoRequest, monorepo.proto.todo.v1.TodoModel>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetTodo"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   monorepo.proto.todo.v1.GetTodoRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.todo.v1.Todo.getDefaultInstance()))
+                  monorepo.proto.todo.v1.TodoModel.getDefaultInstance()))
               .setSchemaDescriptor(new TodoServiceMethodDescriptorSupplier("GetTodo"))
               .build();
         }
@@ -109,28 +109,28 @@ public final class TodoServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<monorepo.proto.todo.v1.UpdateTodoRequest,
-      monorepo.proto.todo.v1.Todo> getUpdateTodoMethod;
+      monorepo.proto.todo.v1.TodoModel> getUpdateTodoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "UpdateTodo",
       requestType = monorepo.proto.todo.v1.UpdateTodoRequest.class,
-      responseType = monorepo.proto.todo.v1.Todo.class,
+      responseType = monorepo.proto.todo.v1.TodoModel.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<monorepo.proto.todo.v1.UpdateTodoRequest,
-      monorepo.proto.todo.v1.Todo> getUpdateTodoMethod() {
-    io.grpc.MethodDescriptor<monorepo.proto.todo.v1.UpdateTodoRequest, monorepo.proto.todo.v1.Todo> getUpdateTodoMethod;
+      monorepo.proto.todo.v1.TodoModel> getUpdateTodoMethod() {
+    io.grpc.MethodDescriptor<monorepo.proto.todo.v1.UpdateTodoRequest, monorepo.proto.todo.v1.TodoModel> getUpdateTodoMethod;
     if ((getUpdateTodoMethod = TodoServiceGrpc.getUpdateTodoMethod) == null) {
       synchronized (TodoServiceGrpc.class) {
         if ((getUpdateTodoMethod = TodoServiceGrpc.getUpdateTodoMethod) == null) {
           TodoServiceGrpc.getUpdateTodoMethod = getUpdateTodoMethod =
-              io.grpc.MethodDescriptor.<monorepo.proto.todo.v1.UpdateTodoRequest, monorepo.proto.todo.v1.Todo>newBuilder()
+              io.grpc.MethodDescriptor.<monorepo.proto.todo.v1.UpdateTodoRequest, monorepo.proto.todo.v1.TodoModel>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateTodo"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   monorepo.proto.todo.v1.UpdateTodoRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  monorepo.proto.todo.v1.Todo.getDefaultInstance()))
+                  monorepo.proto.todo.v1.TodoModel.getDefaultInstance()))
               .setSchemaDescriptor(new TodoServiceMethodDescriptorSupplier("UpdateTodo"))
               .build();
         }
@@ -273,7 +273,7 @@ public final class TodoServiceGrpc {
      * </pre>
      */
     default void createTodo(monorepo.proto.todo.v1.CreateTodoRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.Todo> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateTodoMethod(), responseObserver);
     }
 
@@ -283,7 +283,7 @@ public final class TodoServiceGrpc {
      * </pre>
      */
     default void getTodo(monorepo.proto.todo.v1.GetTodoRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.Todo> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetTodoMethod(), responseObserver);
     }
 
@@ -303,7 +303,7 @@ public final class TodoServiceGrpc {
      * </pre>
      */
     default void updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.Todo> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateTodoMethod(), responseObserver);
     }
 
@@ -367,7 +367,7 @@ public final class TodoServiceGrpc {
      * </pre>
      */
     public void createTodo(monorepo.proto.todo.v1.CreateTodoRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.Todo> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCreateTodoMethod(), getCallOptions()), request, responseObserver);
     }
@@ -378,7 +378,7 @@ public final class TodoServiceGrpc {
      * </pre>
      */
     public void getTodo(monorepo.proto.todo.v1.GetTodoRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.Todo> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetTodoMethod(), getCallOptions()), request, responseObserver);
     }
@@ -400,7 +400,7 @@ public final class TodoServiceGrpc {
      * </pre>
      */
     public void updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request,
-        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.Todo> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getUpdateTodoMethod(), getCallOptions()), request, responseObserver);
     }
@@ -452,7 +452,7 @@ public final class TodoServiceGrpc {
      * Creates a new todo (AIP-133)
      * </pre>
      */
-    public monorepo.proto.todo.v1.Todo createTodo(monorepo.proto.todo.v1.CreateTodoRequest request) throws io.grpc.StatusException {
+    public monorepo.proto.todo.v1.TodoModel createTodo(monorepo.proto.todo.v1.CreateTodoRequest request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCreateTodoMethod(), getCallOptions(), request);
     }
@@ -462,7 +462,7 @@ public final class TodoServiceGrpc {
      * Gets a todo by ID (AIP-131)
      * </pre>
      */
-    public monorepo.proto.todo.v1.Todo getTodo(monorepo.proto.todo.v1.GetTodoRequest request) throws io.grpc.StatusException {
+    public monorepo.proto.todo.v1.TodoModel getTodo(monorepo.proto.todo.v1.GetTodoRequest request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getGetTodoMethod(), getCallOptions(), request);
     }
@@ -482,7 +482,7 @@ public final class TodoServiceGrpc {
      * Updates a todo (AIP-134)
      * </pre>
      */
-    public monorepo.proto.todo.v1.Todo updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request) throws io.grpc.StatusException {
+    public monorepo.proto.todo.v1.TodoModel updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getUpdateTodoMethod(), getCallOptions(), request);
     }
@@ -532,7 +532,7 @@ public final class TodoServiceGrpc {
      * Creates a new todo (AIP-133)
      * </pre>
      */
-    public monorepo.proto.todo.v1.Todo createTodo(monorepo.proto.todo.v1.CreateTodoRequest request) {
+    public monorepo.proto.todo.v1.TodoModel createTodo(monorepo.proto.todo.v1.CreateTodoRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCreateTodoMethod(), getCallOptions(), request);
     }
@@ -542,7 +542,7 @@ public final class TodoServiceGrpc {
      * Gets a todo by ID (AIP-131)
      * </pre>
      */
-    public monorepo.proto.todo.v1.Todo getTodo(monorepo.proto.todo.v1.GetTodoRequest request) {
+    public monorepo.proto.todo.v1.TodoModel getTodo(monorepo.proto.todo.v1.GetTodoRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetTodoMethod(), getCallOptions(), request);
     }
@@ -562,7 +562,7 @@ public final class TodoServiceGrpc {
      * Updates a todo (AIP-134)
      * </pre>
      */
-    public monorepo.proto.todo.v1.Todo updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request) {
+    public monorepo.proto.todo.v1.TodoModel updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getUpdateTodoMethod(), getCallOptions(), request);
     }
@@ -612,7 +612,7 @@ public final class TodoServiceGrpc {
      * Creates a new todo (AIP-133)
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.Todo> createTodo(
+    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.TodoModel> createTodo(
         monorepo.proto.todo.v1.CreateTodoRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCreateTodoMethod(), getCallOptions()), request);
@@ -623,7 +623,7 @@ public final class TodoServiceGrpc {
      * Gets a todo by ID (AIP-131)
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.Todo> getTodo(
+    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.TodoModel> getTodo(
         monorepo.proto.todo.v1.GetTodoRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetTodoMethod(), getCallOptions()), request);
@@ -645,7 +645,7 @@ public final class TodoServiceGrpc {
      * Updates a todo (AIP-134)
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.Todo> updateTodo(
+    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.TodoModel> updateTodo(
         monorepo.proto.todo.v1.UpdateTodoRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getUpdateTodoMethod(), getCallOptions()), request);
@@ -700,11 +700,11 @@ public final class TodoServiceGrpc {
       switch (methodId) {
         case METHODID_CREATE_TODO:
           serviceImpl.createTodo((monorepo.proto.todo.v1.CreateTodoRequest) request,
-              (io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.Todo>) responseObserver);
+              (io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel>) responseObserver);
           break;
         case METHODID_GET_TODO:
           serviceImpl.getTodo((monorepo.proto.todo.v1.GetTodoRequest) request,
-              (io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.Todo>) responseObserver);
+              (io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel>) responseObserver);
           break;
         case METHODID_LIST_TODOS:
           serviceImpl.listTodos((monorepo.proto.todo.v1.ListTodosRequest) request,
@@ -712,7 +712,7 @@ public final class TodoServiceGrpc {
           break;
         case METHODID_UPDATE_TODO:
           serviceImpl.updateTodo((monorepo.proto.todo.v1.UpdateTodoRequest) request,
-              (io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.Todo>) responseObserver);
+              (io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel>) responseObserver);
           break;
         case METHODID_DELETE_TODO:
           serviceImpl.deleteTodo((monorepo.proto.todo.v1.DeleteTodoRequest) request,
@@ -745,14 +745,14 @@ public final class TodoServiceGrpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               monorepo.proto.todo.v1.CreateTodoRequest,
-              monorepo.proto.todo.v1.Todo>(
+              monorepo.proto.todo.v1.TodoModel>(
                 service, METHODID_CREATE_TODO)))
         .addMethod(
           getGetTodoMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               monorepo.proto.todo.v1.GetTodoRequest,
-              monorepo.proto.todo.v1.Todo>(
+              monorepo.proto.todo.v1.TodoModel>(
                 service, METHODID_GET_TODO)))
         .addMethod(
           getListTodosMethod(),
@@ -766,7 +766,7 @@ public final class TodoServiceGrpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               monorepo.proto.todo.v1.UpdateTodoRequest,
-              monorepo.proto.todo.v1.Todo>(
+              monorepo.proto.todo.v1.TodoModel>(
                 service, METHODID_UPDATE_TODO)))
         .addMethod(
           getDeleteTodoMethod(),

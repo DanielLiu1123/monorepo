@@ -35,13 +35,13 @@ const (
 // TodoService provides CRUD operations for todos following AIP standards
 type TodoServiceClient interface {
 	// Creates a new todo (AIP-133)
-	CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*Todo, error)
+	CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
 	// Gets a todo by ID (AIP-131)
-	GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*Todo, error)
+	GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
 	// Lists todos with pagination (AIP-132)
 	ListTodos(ctx context.Context, in *ListTodosRequest, opts ...grpc.CallOption) (*ListTodosResponse, error)
 	// Updates a todo (AIP-134)
-	UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*Todo, error)
+	UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
 	// Deletes a todo (AIP-135)
 	DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Batch gets multiple todos by IDs (AIP-231)
@@ -56,9 +56,9 @@ func NewTodoServiceClient(cc grpc.ClientConnInterface) TodoServiceClient {
 	return &todoServiceClient{cc}
 }
 
-func (c *todoServiceClient) CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*Todo, error) {
+func (c *todoServiceClient) CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Todo)
+	out := new(TodoModel)
 	err := c.cc.Invoke(ctx, TodoService_CreateTodo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -66,9 +66,9 @@ func (c *todoServiceClient) CreateTodo(ctx context.Context, in *CreateTodoReques
 	return out, nil
 }
 
-func (c *todoServiceClient) GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*Todo, error) {
+func (c *todoServiceClient) GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*TodoModel, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Todo)
+	out := new(TodoModel)
 	err := c.cc.Invoke(ctx, TodoService_GetTodo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -86,9 +86,9 @@ func (c *todoServiceClient) ListTodos(ctx context.Context, in *ListTodosRequest,
 	return out, nil
 }
 
-func (c *todoServiceClient) UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*Todo, error) {
+func (c *todoServiceClient) UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Todo)
+	out := new(TodoModel)
 	err := c.cc.Invoke(ctx, TodoService_UpdateTodo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -123,13 +123,13 @@ func (c *todoServiceClient) BatchGetTodos(ctx context.Context, in *BatchGetTodos
 // TodoService provides CRUD operations for todos following AIP standards
 type TodoServiceServer interface {
 	// Creates a new todo (AIP-133)
-	CreateTodo(context.Context, *CreateTodoRequest) (*Todo, error)
+	CreateTodo(context.Context, *CreateTodoRequest) (*TodoModel, error)
 	// Gets a todo by ID (AIP-131)
-	GetTodo(context.Context, *GetTodoRequest) (*Todo, error)
+	GetTodo(context.Context, *GetTodoRequest) (*TodoModel, error)
 	// Lists todos with pagination (AIP-132)
 	ListTodos(context.Context, *ListTodosRequest) (*ListTodosResponse, error)
 	// Updates a todo (AIP-134)
-	UpdateTodo(context.Context, *UpdateTodoRequest) (*Todo, error)
+	UpdateTodo(context.Context, *UpdateTodoRequest) (*TodoModel, error)
 	// Deletes a todo (AIP-135)
 	DeleteTodo(context.Context, *DeleteTodoRequest) (*emptypb.Empty, error)
 	// Batch gets multiple todos by IDs (AIP-231)
@@ -144,16 +144,16 @@ type TodoServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTodoServiceServer struct{}
 
-func (UnimplementedTodoServiceServer) CreateTodo(context.Context, *CreateTodoRequest) (*Todo, error) {
+func (UnimplementedTodoServiceServer) CreateTodo(context.Context, *CreateTodoRequest) (*TodoModel, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTodo not implemented")
 }
-func (UnimplementedTodoServiceServer) GetTodo(context.Context, *GetTodoRequest) (*Todo, error) {
+func (UnimplementedTodoServiceServer) GetTodo(context.Context, *GetTodoRequest) (*TodoModel, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTodo not implemented")
 }
 func (UnimplementedTodoServiceServer) ListTodos(context.Context, *ListTodosRequest) (*ListTodosResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTodos not implemented")
 }
-func (UnimplementedTodoServiceServer) UpdateTodo(context.Context, *UpdateTodoRequest) (*Todo, error) {
+func (UnimplementedTodoServiceServer) UpdateTodo(context.Context, *UpdateTodoRequest) (*TodoModel, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTodo not implemented")
 }
 func (UnimplementedTodoServiceServer) DeleteTodo(context.Context, *DeleteTodoRequest) (*emptypb.Empty, error) {

@@ -78,39 +78,40 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
       "\n\032todo/v1/todo_service.proto\022\007todo.v1\032\022t" +
       "odo/v1/todo.proto\032 google/protobuf/field" +
       "_mask.proto\032\033google/protobuf/empty.proto" +
-      "\"6\n\021CreateTodoRequest\022!\n\004todo\030\001 \001(\0132\r.to" +
-      "do.v1.TodoR\004todo\" \n\016GetTodoRequest\022\016\n\002id" +
-      "\030\001 \001(\tR\002id\"\201\001\n\020ListTodosRequest\022\033\n\tpage_" +
-      "size\030\001 \001(\005R\010pageSize\022\035\n\npage_token\030\002 \001(\t" +
-      "R\tpageToken\022\026\n\006filter\030\003 \001(\tR\006filter\022\031\n\010o" +
-      "rder_by\030\004 \001(\tR\007orderBy\"\177\n\021ListTodosRespo" +
-      "nse\022#\n\005todos\030\001 \003(\0132\r.todo.v1.TodoR\005todos" +
-      "\022&\n\017next_page_token\030\002 \001(\tR\rnextPageToken" +
-      "\022\035\n\ntotal_size\030\003 \001(\005R\ttotalSize\"s\n\021Updat" +
-      "eTodoRequest\022!\n\004todo\030\001 \001(\0132\r.todo.v1.Tod" +
-      "oR\004todo\022;\n\013update_mask\030\002 \001(\0132\032.google.pr" +
-      "otobuf.FieldMaskR\nupdateMask\"#\n\021DeleteTo" +
-      "doRequest\022\016\n\002id\030\001 \001(\tR\002id\"(\n\024BatchGetTod" +
-      "osRequest\022\020\n\003ids\030\001 \003(\tR\003ids\"<\n\025BatchGetT" +
-      "odosResponse\022#\n\005todos\030\001 \003(\0132\r.todo.v1.To" +
-      "doR\005todos2\224\003\n\013TodoService\0229\n\nCreateTodo\022" +
-      "\032.todo.v1.CreateTodoRequest\032\r.todo.v1.To" +
-      "do\"\000\0223\n\007GetTodo\022\027.todo.v1.GetTodoRequest" +
-      "\032\r.todo.v1.Todo\"\000\022D\n\tListTodos\022\031.todo.v1" +
-      ".ListTodosRequest\032\032.todo.v1.ListTodosRes" +
-      "ponse\"\000\0229\n\nUpdateTodo\022\032.todo.v1.UpdateTo" +
-      "doRequest\032\r.todo.v1.Todo\"\000\022B\n\nDeleteTodo" +
-      "\022\032.todo.v1.DeleteTodoRequest\032\026.google.pr" +
-      "otobuf.Empty\"\000\022P\n\rBatchGetTodos\022\035.todo.v" +
-      "1.BatchGetTodosRequest\032\036.todo.v1.BatchGe" +
-      "tTodosResponse\"\000B\\\n\026monorepo.proto.todo." +
-      "v1P\001Z@github.com/yourorg/monorepo/packag" +
-      "es/proto-gen-go/todo/v1;todov1b\006proto3"
+      "\";\n\021CreateTodoRequest\022&\n\004todo\030\001 \001(\0132\022.to" +
+      "do.v1.TodoModelR\004todo\" \n\016GetTodoRequest\022" +
+      "\016\n\002id\030\001 \001(\tR\002id\"\201\001\n\020ListTodosRequest\022\033\n\t" +
+      "page_size\030\001 \001(\005R\010pageSize\022\035\n\npage_token\030" +
+      "\002 \001(\tR\tpageToken\022\026\n\006filter\030\003 \001(\tR\006filter" +
+      "\022\031\n\010order_by\030\004 \001(\tR\007orderBy\"\204\001\n\021ListTodo" +
+      "sResponse\022(\n\005todos\030\001 \003(\0132\022.todo.v1.TodoM" +
+      "odelR\005todos\022&\n\017next_page_token\030\002 \001(\tR\rne" +
+      "xtPageToken\022\035\n\ntotal_size\030\003 \001(\005R\ttotalSi" +
+      "ze\"x\n\021UpdateTodoRequest\022&\n\004todo\030\001 \001(\0132\022." +
+      "todo.v1.TodoModelR\004todo\022;\n\013update_mask\030\002" +
+      " \001(\0132\032.google.protobuf.FieldMaskR\nupdate" +
+      "Mask\"#\n\021DeleteTodoRequest\022\016\n\002id\030\001 \001(\tR\002i" +
+      "d\"(\n\024BatchGetTodosRequest\022\020\n\003ids\030\001 \003(\tR\003" +
+      "ids\"A\n\025BatchGetTodosResponse\022(\n\005todos\030\001 " +
+      "\003(\0132\022.todo.v1.TodoModelR\005todos2\243\003\n\013TodoS" +
+      "ervice\022>\n\nCreateTodo\022\032.todo.v1.CreateTod" +
+      "oRequest\032\022.todo.v1.TodoModel\"\000\0228\n\007GetTod" +
+      "o\022\027.todo.v1.GetTodoRequest\032\022.todo.v1.Tod" +
+      "oModel\"\000\022D\n\tListTodos\022\031.todo.v1.ListTodo" +
+      "sRequest\032\032.todo.v1.ListTodosResponse\"\000\022>" +
+      "\n\nUpdateTodo\022\032.todo.v1.UpdateTodoRequest" +
+      "\032\022.todo.v1.TodoModel\"\000\022B\n\nDeleteTodo\022\032.t" +
+      "odo.v1.DeleteTodoRequest\032\026.google.protob" +
+      "uf.Empty\"\000\022P\n\rBatchGetTodos\022\035.todo.v1.Ba" +
+      "tchGetTodosRequest\032\036.todo.v1.BatchGetTod" +
+      "osResponse\"\000B\\\n\026monorepo.proto.todo.v1P\001" +
+      "Z@github.com/yourorg/monorepo/packages/p" +
+      "roto-gen-go/todo/v1;todov1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          monorepo.proto.todo.v1.TodoOuterClass.getDescriptor(),
+          monorepo.proto.todo.v1.TodoProto.getDescriptor(),
           com.google.protobuf.FieldMaskProto.getDescriptor(),
           com.google.protobuf.EmptyProto.getDescriptor(),
         });
@@ -163,7 +164,7 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
         internal_static_todo_v1_BatchGetTodosResponse_descriptor,
         new java.lang.String[] { "Todos", });
     descriptor.resolveAllFeaturesImmutable();
-    monorepo.proto.todo.v1.TodoOuterClass.getDescriptor();
+    monorepo.proto.todo.v1.TodoProto.getDescriptor();
     com.google.protobuf.FieldMaskProto.getDescriptor();
     com.google.protobuf.EmptyProto.getDescriptor();
   }

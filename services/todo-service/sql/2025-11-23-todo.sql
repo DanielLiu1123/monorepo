@@ -1,15 +1,18 @@
-CREATE TABLE todo
+drop table if exists todo;
+
+CREATE TABLE if not exists todo
 (
     id          bigserial PRIMARY KEY,
     user_id     bigint      NOT NULL,
     title       VARCHAR(500)         default '' NOT NULL,
     description TEXT                 default '' NOT NULL,
-    status      VARCHAR(50) NOT NULL,
+    state       smallint NOT NULL,
     priority    VARCHAR(50) NOT NULL,
     assignee    bigint,
     due_date    date,
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
+    updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    deleted_at  TIMESTAMP
 );
 
 ALTER SEQUENCE todo_id_seq RESTART WITH 10000;
@@ -49,7 +52,7 @@ COMMENT
 COMMENT
     ON COLUMN todo.description IS 'Todo detailed description';
 COMMENT
-    ON COLUMN todo.status IS 'Todo status';
+    ON COLUMN todo.state IS 'Todo state';
 COMMENT
     ON COLUMN todo.priority IS 'Priority level';
 COMMENT
@@ -60,3 +63,5 @@ COMMENT
     ON COLUMN todo.created_at IS 'Creation timestamp';
 COMMENT
     ON COLUMN todo.updated_at IS 'Last update timestamp';
+COMMENT
+    ON COLUMN todo.deleted_at IS 'Deletion timestamp for soft deletes';

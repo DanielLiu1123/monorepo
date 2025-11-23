@@ -51,16 +51,16 @@ private static final long serialVersionUID = 0L;
 
   public static final int TODOS_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
-  private java.util.List<monorepo.proto.todo.v1.Todo> todos_;
+  private java.util.List<monorepo.proto.todo.v1.TodoModel> todos_;
   /**
    * <pre>
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
-  public java.util.List<monorepo.proto.todo.v1.Todo> getTodosList() {
+  public java.util.List<monorepo.proto.todo.v1.TodoModel> getTodosList() {
     return todos_;
   }
   /**
@@ -68,10 +68,10 @@ private static final long serialVersionUID = 0L;
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
-  public java.util.List<? extends monorepo.proto.todo.v1.TodoOrBuilder> 
+  public java.util.List<? extends monorepo.proto.todo.v1.TodoModelOrBuilder> 
       getTodosOrBuilderList() {
     return todos_;
   }
@@ -80,7 +80,7 @@ private static final long serialVersionUID = 0L;
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
   public int getTodosCount() {
@@ -91,10 +91,10 @@ private static final long serialVersionUID = 0L;
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
-  public monorepo.proto.todo.v1.Todo getTodos(int index) {
+  public monorepo.proto.todo.v1.TodoModel getTodos(int index) {
     return todos_.get(index);
   }
   /**
@@ -102,10 +102,10 @@ private static final long serialVersionUID = 0L;
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
-  public monorepo.proto.todo.v1.TodoOrBuilder getTodosOrBuilder(
+  public monorepo.proto.todo.v1.TodoModelOrBuilder getTodosOrBuilder(
       int index) {
     return todos_.get(index);
   }
@@ -528,9 +528,9 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              monorepo.proto.todo.v1.Todo m =
+              monorepo.proto.todo.v1.TodoModel m =
                   input.readMessage(
-                      monorepo.proto.todo.v1.Todo.parser(),
+                      monorepo.proto.todo.v1.TodoModel.parser(),
                       extensionRegistry);
               if (todosBuilder_ == null) {
                 ensureTodosIsMutable();
@@ -567,26 +567,26 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.util.List<monorepo.proto.todo.v1.Todo> todos_ =
+    private java.util.List<monorepo.proto.todo.v1.TodoModel> todos_ =
       java.util.Collections.emptyList();
     private void ensureTodosIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        todos_ = new java.util.ArrayList<monorepo.proto.todo.v1.Todo>(todos_);
+        todos_ = new java.util.ArrayList<monorepo.proto.todo.v1.TodoModel>(todos_);
         bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilder<
-        monorepo.proto.todo.v1.Todo, monorepo.proto.todo.v1.Todo.Builder, monorepo.proto.todo.v1.TodoOrBuilder> todosBuilder_;
+        monorepo.proto.todo.v1.TodoModel, monorepo.proto.todo.v1.TodoModel.Builder, monorepo.proto.todo.v1.TodoModelOrBuilder> todosBuilder_;
 
     /**
      * <pre>
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
-    public java.util.List<monorepo.proto.todo.v1.Todo> getTodosList() {
+    public java.util.List<monorepo.proto.todo.v1.TodoModel> getTodosList() {
       if (todosBuilder_ == null) {
         return java.util.Collections.unmodifiableList(todos_);
       } else {
@@ -598,7 +598,7 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public int getTodosCount() {
       if (todosBuilder_ == null) {
@@ -612,9 +612,9 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
-    public monorepo.proto.todo.v1.Todo getTodos(int index) {
+    public monorepo.proto.todo.v1.TodoModel getTodos(int index) {
       if (todosBuilder_ == null) {
         return todos_.get(index);
       } else {
@@ -626,10 +626,10 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder setTodos(
-        int index, monorepo.proto.todo.v1.Todo value) {
+        int index, monorepo.proto.todo.v1.TodoModel value) {
       if (todosBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -647,10 +647,10 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder setTodos(
-        int index, monorepo.proto.todo.v1.Todo.Builder builderForValue) {
+        int index, monorepo.proto.todo.v1.TodoModel.Builder builderForValue) {
       if (todosBuilder_ == null) {
         ensureTodosIsMutable();
         todos_.set(index, builderForValue.build());
@@ -665,9 +665,9 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
-    public Builder addTodos(monorepo.proto.todo.v1.Todo value) {
+    public Builder addTodos(monorepo.proto.todo.v1.TodoModel value) {
       if (todosBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -685,10 +685,10 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder addTodos(
-        int index, monorepo.proto.todo.v1.Todo value) {
+        int index, monorepo.proto.todo.v1.TodoModel value) {
       if (todosBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -706,10 +706,10 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder addTodos(
-        monorepo.proto.todo.v1.Todo.Builder builderForValue) {
+        monorepo.proto.todo.v1.TodoModel.Builder builderForValue) {
       if (todosBuilder_ == null) {
         ensureTodosIsMutable();
         todos_.add(builderForValue.build());
@@ -724,10 +724,10 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder addTodos(
-        int index, monorepo.proto.todo.v1.Todo.Builder builderForValue) {
+        int index, monorepo.proto.todo.v1.TodoModel.Builder builderForValue) {
       if (todosBuilder_ == null) {
         ensureTodosIsMutable();
         todos_.add(index, builderForValue.build());
@@ -742,10 +742,10 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder addAllTodos(
-        java.lang.Iterable<? extends monorepo.proto.todo.v1.Todo> values) {
+        java.lang.Iterable<? extends monorepo.proto.todo.v1.TodoModel> values) {
       if (todosBuilder_ == null) {
         ensureTodosIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -761,7 +761,7 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder clearTodos() {
       if (todosBuilder_ == null) {
@@ -778,7 +778,7 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder removeTodos(int index) {
       if (todosBuilder_ == null) {
@@ -795,9 +795,9 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
-    public monorepo.proto.todo.v1.Todo.Builder getTodosBuilder(
+    public monorepo.proto.todo.v1.TodoModel.Builder getTodosBuilder(
         int index) {
       return internalGetTodosFieldBuilder().getBuilder(index);
     }
@@ -806,9 +806,9 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
-    public monorepo.proto.todo.v1.TodoOrBuilder getTodosOrBuilder(
+    public monorepo.proto.todo.v1.TodoModelOrBuilder getTodosOrBuilder(
         int index) {
       if (todosBuilder_ == null) {
         return todos_.get(index);  } else {
@@ -820,9 +820,9 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
-    public java.util.List<? extends monorepo.proto.todo.v1.TodoOrBuilder> 
+    public java.util.List<? extends monorepo.proto.todo.v1.TodoModelOrBuilder> 
          getTodosOrBuilderList() {
       if (todosBuilder_ != null) {
         return todosBuilder_.getMessageOrBuilderList();
@@ -835,41 +835,41 @@ private static final long serialVersionUID = 0L;
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
-    public monorepo.proto.todo.v1.Todo.Builder addTodosBuilder() {
+    public monorepo.proto.todo.v1.TodoModel.Builder addTodosBuilder() {
       return internalGetTodosFieldBuilder().addBuilder(
-          monorepo.proto.todo.v1.Todo.getDefaultInstance());
+          monorepo.proto.todo.v1.TodoModel.getDefaultInstance());
     }
     /**
      * <pre>
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
-    public monorepo.proto.todo.v1.Todo.Builder addTodosBuilder(
+    public monorepo.proto.todo.v1.TodoModel.Builder addTodosBuilder(
         int index) {
       return internalGetTodosFieldBuilder().addBuilder(
-          index, monorepo.proto.todo.v1.Todo.getDefaultInstance());
+          index, monorepo.proto.todo.v1.TodoModel.getDefaultInstance());
     }
     /**
      * <pre>
      * The list of todos
      * </pre>
      *
-     * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
+     * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
-    public java.util.List<monorepo.proto.todo.v1.Todo.Builder> 
+    public java.util.List<monorepo.proto.todo.v1.TodoModel.Builder> 
          getTodosBuilderList() {
       return internalGetTodosFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilder<
-        monorepo.proto.todo.v1.Todo, monorepo.proto.todo.v1.Todo.Builder, monorepo.proto.todo.v1.TodoOrBuilder> 
+        monorepo.proto.todo.v1.TodoModel, monorepo.proto.todo.v1.TodoModel.Builder, monorepo.proto.todo.v1.TodoModelOrBuilder> 
         internalGetTodosFieldBuilder() {
       if (todosBuilder_ == null) {
         todosBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-            monorepo.proto.todo.v1.Todo, monorepo.proto.todo.v1.Todo.Builder, monorepo.proto.todo.v1.TodoOrBuilder>(
+            monorepo.proto.todo.v1.TodoModel, monorepo.proto.todo.v1.TodoModel.Builder, monorepo.proto.todo.v1.TodoModelOrBuilder>(
                 todos_,
                 ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),

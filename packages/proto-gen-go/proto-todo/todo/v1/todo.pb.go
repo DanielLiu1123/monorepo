@@ -7,8 +7,10 @@
 package todov1
 
 import (
+	date "google.golang.org/genproto/googleapis/type/date"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -20,133 +22,133 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// TodoStatus represents the status of a todo item
-type TodoStatus int32
+type TodoModel_State int32
 
 const (
-	TodoStatus_TODO_STATUS_UNSPECIFIED TodoStatus = 0
-	TodoStatus_TODO_STATUS_PENDING     TodoStatus = 1
-	TodoStatus_TODO_STATUS_COMPLETED   TodoStatus = 2
+	TodoModel_STATE_UNSPECIFIED TodoModel_State = 0
+	TodoModel_PENDING           TodoModel_State = 1
+	TodoModel_COMPLETED         TodoModel_State = 2
 )
 
-// Enum value maps for TodoStatus.
+// Enum value maps for TodoModel_State.
 var (
-	TodoStatus_name = map[int32]string{
-		0: "TODO_STATUS_UNSPECIFIED",
-		1: "TODO_STATUS_PENDING",
-		2: "TODO_STATUS_COMPLETED",
+	TodoModel_State_name = map[int32]string{
+		0: "STATE_UNSPECIFIED",
+		1: "PENDING",
+		2: "COMPLETED",
 	}
-	TodoStatus_value = map[string]int32{
-		"TODO_STATUS_UNSPECIFIED": 0,
-		"TODO_STATUS_PENDING":     1,
-		"TODO_STATUS_COMPLETED":   2,
+	TodoModel_State_value = map[string]int32{
+		"STATE_UNSPECIFIED": 0,
+		"PENDING":           1,
+		"COMPLETED":         2,
 	}
 )
 
-func (x TodoStatus) Enum() *TodoStatus {
-	p := new(TodoStatus)
+func (x TodoModel_State) Enum() *TodoModel_State {
+	p := new(TodoModel_State)
 	*p = x
 	return p
 }
 
-func (x TodoStatus) String() string {
+func (x TodoModel_State) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (TodoStatus) Descriptor() protoreflect.EnumDescriptor {
+func (TodoModel_State) Descriptor() protoreflect.EnumDescriptor {
 	return file_todo_v1_todo_proto_enumTypes[0].Descriptor()
 }
 
-func (TodoStatus) Type() protoreflect.EnumType {
+func (TodoModel_State) Type() protoreflect.EnumType {
 	return &file_todo_v1_todo_proto_enumTypes[0]
 }
 
-func (x TodoStatus) Number() protoreflect.EnumNumber {
+func (x TodoModel_State) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Priority represents the priority level of a todo
-type Priority int32
+type TodoModel_Priority int32
 
 const (
-	Priority_PRIORITY_UNSPECIFIED Priority = 0
-	Priority_PRIORITY_LOW         Priority = 1
-	Priority_PRIORITY_MEDIUM      Priority = 2
-	Priority_PRIORITY_HIGH        Priority = 3
-	Priority_PRIORITY_URGENT      Priority = 4
+	TodoModel_PRIORITY_UNSPECIFIED TodoModel_Priority = 0
+	TodoModel_LOW                  TodoModel_Priority = 1
+	TodoModel_MEDIUM               TodoModel_Priority = 2
+	TodoModel_HIGH                 TodoModel_Priority = 3
+	TodoModel_URGENT               TodoModel_Priority = 4
 )
 
-// Enum value maps for Priority.
+// Enum value maps for TodoModel_Priority.
 var (
-	Priority_name = map[int32]string{
+	TodoModel_Priority_name = map[int32]string{
 		0: "PRIORITY_UNSPECIFIED",
-		1: "PRIORITY_LOW",
-		2: "PRIORITY_MEDIUM",
-		3: "PRIORITY_HIGH",
-		4: "PRIORITY_URGENT",
+		1: "LOW",
+		2: "MEDIUM",
+		3: "HIGH",
+		4: "URGENT",
 	}
-	Priority_value = map[string]int32{
+	TodoModel_Priority_value = map[string]int32{
 		"PRIORITY_UNSPECIFIED": 0,
-		"PRIORITY_LOW":         1,
-		"PRIORITY_MEDIUM":      2,
-		"PRIORITY_HIGH":        3,
-		"PRIORITY_URGENT":      4,
+		"LOW":                  1,
+		"MEDIUM":               2,
+		"HIGH":                 3,
+		"URGENT":               4,
 	}
 )
 
-func (x Priority) Enum() *Priority {
-	p := new(Priority)
+func (x TodoModel_Priority) Enum() *TodoModel_Priority {
+	p := new(TodoModel_Priority)
 	*p = x
 	return p
 }
 
-func (x Priority) String() string {
+func (x TodoModel_Priority) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (Priority) Descriptor() protoreflect.EnumDescriptor {
+func (TodoModel_Priority) Descriptor() protoreflect.EnumDescriptor {
 	return file_todo_v1_todo_proto_enumTypes[1].Descriptor()
 }
 
-func (Priority) Type() protoreflect.EnumType {
+func (TodoModel_Priority) Type() protoreflect.EnumType {
 	return &file_todo_v1_todo_proto_enumTypes[1]
 }
 
-func (x Priority) Number() protoreflect.EnumNumber {
+func (x TodoModel_Priority) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Todo represents a task item
-type Todo struct {
+type TodoModel struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id          string                 `protobuf:"bytes,1,opt,name=id,proto3"`
-	xxx_hidden_UserId      string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3"`
+	xxx_hidden_Id          int64                  `protobuf:"varint,1,opt,name=id,proto3"`
+	xxx_hidden_UserId      int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3"`
 	xxx_hidden_Title       string                 `protobuf:"bytes,3,opt,name=title,proto3"`
 	xxx_hidden_Description string                 `protobuf:"bytes,4,opt,name=description,proto3"`
-	xxx_hidden_Status      TodoStatus             `protobuf:"varint,5,opt,name=status,proto3,enum=todo.v1.TodoStatus"`
-	xxx_hidden_Priority    Priority               `protobuf:"varint,6,opt,name=priority,proto3,enum=todo.v1.Priority"`
-	xxx_hidden_Assignee    string                 `protobuf:"bytes,7,opt,name=assignee,proto3"`
-	xxx_hidden_DueDate     int64                  `protobuf:"varint,8,opt,name=due_date,json=dueDate,proto3"`
-	xxx_hidden_CreatedAt   int64                  `protobuf:"varint,9,opt,name=created_at,json=createdAt,proto3"`
-	xxx_hidden_UpdatedAt   int64                  `protobuf:"varint,10,opt,name=updated_at,json=updatedAt,proto3"`
+	xxx_hidden_State       TodoModel_State        `protobuf:"varint,5,opt,name=state,proto3,enum=todo.v1.TodoModel_State"`
+	xxx_hidden_Priority    TodoModel_Priority     `protobuf:"varint,6,opt,name=priority,proto3,enum=todo.v1.TodoModel_Priority"`
+	xxx_hidden_Assignee    int64                  `protobuf:"varint,7,opt,name=assignee,proto3,oneof"`
+	xxx_hidden_DueDate     *date.Date             `protobuf:"bytes,8,opt,name=due_date,json=dueDate,proto3"`
+	xxx_hidden_CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3"`
+	xxx_hidden_UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3"`
+	xxx_hidden_DeletedAt   *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=deleted_at,json=deletedAt,proto3,oneof"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *Todo) Reset() {
-	*x = Todo{}
+func (x *TodoModel) Reset() {
+	*x = TodoModel{}
 	mi := &file_todo_v1_todo_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Todo) String() string {
+func (x *TodoModel) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Todo) ProtoMessage() {}
+func (*TodoModel) ProtoMessage() {}
 
-func (x *Todo) ProtoReflect() protoreflect.Message {
+func (x *TodoModel) ProtoReflect() protoreflect.Message {
 	mi := &file_todo_v1_todo_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -158,155 +160,218 @@ func (x *Todo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *Todo) GetId() string {
+func (x *TodoModel) GetId() int64 {
 	if x != nil {
 		return x.xxx_hidden_Id
 	}
-	return ""
+	return 0
 }
 
-func (x *Todo) GetUserId() string {
+func (x *TodoModel) GetUserId() int64 {
 	if x != nil {
 		return x.xxx_hidden_UserId
 	}
-	return ""
+	return 0
 }
 
-func (x *Todo) GetTitle() string {
+func (x *TodoModel) GetTitle() string {
 	if x != nil {
 		return x.xxx_hidden_Title
 	}
 	return ""
 }
 
-func (x *Todo) GetDescription() string {
+func (x *TodoModel) GetDescription() string {
 	if x != nil {
 		return x.xxx_hidden_Description
 	}
 	return ""
 }
 
-func (x *Todo) GetStatus() TodoStatus {
+func (x *TodoModel) GetState() TodoModel_State {
 	if x != nil {
-		return x.xxx_hidden_Status
+		return x.xxx_hidden_State
 	}
-	return TodoStatus_TODO_STATUS_UNSPECIFIED
+	return TodoModel_STATE_UNSPECIFIED
 }
 
-func (x *Todo) GetPriority() Priority {
+func (x *TodoModel) GetPriority() TodoModel_Priority {
 	if x != nil {
 		return x.xxx_hidden_Priority
 	}
-	return Priority_PRIORITY_UNSPECIFIED
+	return TodoModel_PRIORITY_UNSPECIFIED
 }
 
-func (x *Todo) GetAssignee() string {
+func (x *TodoModel) GetAssignee() int64 {
 	if x != nil {
 		return x.xxx_hidden_Assignee
 	}
-	return ""
+	return 0
 }
 
-func (x *Todo) GetDueDate() int64 {
+func (x *TodoModel) GetDueDate() *date.Date {
 	if x != nil {
 		return x.xxx_hidden_DueDate
 	}
-	return 0
+	return nil
 }
 
-func (x *Todo) GetCreatedAt() int64 {
+func (x *TodoModel) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_CreatedAt
 	}
-	return 0
+	return nil
 }
 
-func (x *Todo) GetUpdatedAt() int64 {
+func (x *TodoModel) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_UpdatedAt
 	}
-	return 0
+	return nil
 }
 
-func (x *Todo) SetId(v string) {
+func (x *TodoModel) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_DeletedAt
+	}
+	return nil
+}
+
+func (x *TodoModel) SetId(v int64) {
 	x.xxx_hidden_Id = v
 }
 
-func (x *Todo) SetUserId(v string) {
+func (x *TodoModel) SetUserId(v int64) {
 	x.xxx_hidden_UserId = v
 }
 
-func (x *Todo) SetTitle(v string) {
+func (x *TodoModel) SetTitle(v string) {
 	x.xxx_hidden_Title = v
 }
 
-func (x *Todo) SetDescription(v string) {
+func (x *TodoModel) SetDescription(v string) {
 	x.xxx_hidden_Description = v
 }
 
-func (x *Todo) SetStatus(v TodoStatus) {
-	x.xxx_hidden_Status = v
+func (x *TodoModel) SetState(v TodoModel_State) {
+	x.xxx_hidden_State = v
 }
 
-func (x *Todo) SetPriority(v Priority) {
+func (x *TodoModel) SetPriority(v TodoModel_Priority) {
 	x.xxx_hidden_Priority = v
 }
 
-func (x *Todo) SetAssignee(v string) {
+func (x *TodoModel) SetAssignee(v int64) {
 	x.xxx_hidden_Assignee = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 11)
 }
 
-func (x *Todo) SetDueDate(v int64) {
+func (x *TodoModel) SetDueDate(v *date.Date) {
 	x.xxx_hidden_DueDate = v
 }
 
-func (x *Todo) SetCreatedAt(v int64) {
+func (x *TodoModel) SetCreatedAt(v *timestamppb.Timestamp) {
 	x.xxx_hidden_CreatedAt = v
 }
 
-func (x *Todo) SetUpdatedAt(v int64) {
+func (x *TodoModel) SetUpdatedAt(v *timestamppb.Timestamp) {
 	x.xxx_hidden_UpdatedAt = v
 }
 
-type Todo_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	// Unique identifier for the todo
-	Id string
-	// User ID - owner/tenant of this todo
-	UserId string
-	// Title of the todo
-	Title string
-	// Detailed description of the todo
-	Description string
-	// Status of the todo
-	Status TodoStatus
-	// Priority level of the todo
-	Priority Priority
-	// User ID of the assignee
-	Assignee string
-	// Due date in Unix timestamp (seconds)
-	DueDate int64
-	// Creation timestamp in Unix timestamp (seconds)
-	CreatedAt int64
-	// Last update timestamp in Unix timestamp (seconds)
-	UpdatedAt int64
+func (x *TodoModel) SetDeletedAt(v *timestamppb.Timestamp) {
+	x.xxx_hidden_DeletedAt = v
 }
 
-func (b0 Todo_builder) Build() *Todo {
-	m0 := &Todo{}
+func (x *TodoModel) HasAssignee() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
+}
+
+func (x *TodoModel) HasDueDate() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_DueDate != nil
+}
+
+func (x *TodoModel) HasCreatedAt() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_CreatedAt != nil
+}
+
+func (x *TodoModel) HasUpdatedAt() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_UpdatedAt != nil
+}
+
+func (x *TodoModel) HasDeletedAt() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_DeletedAt != nil
+}
+
+func (x *TodoModel) ClearAssignee() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	x.xxx_hidden_Assignee = 0
+}
+
+func (x *TodoModel) ClearDueDate() {
+	x.xxx_hidden_DueDate = nil
+}
+
+func (x *TodoModel) ClearCreatedAt() {
+	x.xxx_hidden_CreatedAt = nil
+}
+
+func (x *TodoModel) ClearUpdatedAt() {
+	x.xxx_hidden_UpdatedAt = nil
+}
+
+func (x *TodoModel) ClearDeletedAt() {
+	x.xxx_hidden_DeletedAt = nil
+}
+
+type TodoModel_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id          int64
+	UserId      int64
+	Title       string
+	Description string
+	State       TodoModel_State
+	Priority    TodoModel_Priority
+	Assignee    *int64
+	DueDate     *date.Date
+	CreatedAt   *timestamppb.Timestamp
+	UpdatedAt   *timestamppb.Timestamp
+	DeletedAt   *timestamppb.Timestamp
+}
+
+func (b0 TodoModel_builder) Build() *TodoModel {
+	m0 := &TodoModel{}
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Id = b.Id
 	x.xxx_hidden_UserId = b.UserId
 	x.xxx_hidden_Title = b.Title
 	x.xxx_hidden_Description = b.Description
-	x.xxx_hidden_Status = b.Status
+	x.xxx_hidden_State = b.State
 	x.xxx_hidden_Priority = b.Priority
-	x.xxx_hidden_Assignee = b.Assignee
+	if b.Assignee != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 11)
+		x.xxx_hidden_Assignee = *b.Assignee
+	}
 	x.xxx_hidden_DueDate = b.DueDate
 	x.xxx_hidden_CreatedAt = b.CreatedAt
 	x.xxx_hidden_UpdatedAt = b.UpdatedAt
+	x.xxx_hidden_DeletedAt = b.DeletedAt
 	return m0
 }
 
@@ -314,49 +379,60 @@ var File_todo_v1_todo_proto protoreflect.FileDescriptor
 
 const file_todo_v1_todo_proto_rawDesc = "" +
 	"\n" +
-	"\x12todo/v1/todo.proto\x12\atodo.v1\"\xb8\x02\n" +
-	"\x04Todo\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x14\n" +
+	"\x12todo/v1/todo.proto\x12\atodo.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x16google/type/date.proto\"\x83\x05\n" +
+	"\tTodoModel\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\x12+\n" +
-	"\x06status\x18\x05 \x01(\x0e2\x13.todo.v1.TodoStatusR\x06status\x12-\n" +
-	"\bpriority\x18\x06 \x01(\x0e2\x11.todo.v1.PriorityR\bpriority\x12\x1a\n" +
-	"\bassignee\x18\a \x01(\tR\bassignee\x12\x19\n" +
-	"\bdue_date\x18\b \x01(\x03R\adueDate\x12\x1d\n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12.\n" +
+	"\x05state\x18\x05 \x01(\x0e2\x18.todo.v1.TodoModel.StateR\x05state\x127\n" +
+	"\bpriority\x18\x06 \x01(\x0e2\x1b.todo.v1.TodoModel.PriorityR\bpriority\x12\x1f\n" +
+	"\bassignee\x18\a \x01(\x03H\x00R\bassignee\x88\x01\x01\x12,\n" +
+	"\bdue_date\x18\b \x01(\v2\x11.google.type.DateR\adueDate\x129\n" +
 	"\n" +
-	"created_at\x18\t \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\n" +
-	" \x01(\x03R\tupdatedAt*]\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
 	"\n" +
-	"TodoStatus\x12\x1b\n" +
-	"\x17TODO_STATUS_UNSPECIFIED\x10\x00\x12\x17\n" +
-	"\x13TODO_STATUS_PENDING\x10\x01\x12\x19\n" +
-	"\x15TODO_STATUS_COMPLETED\x10\x02*s\n" +
+	"deleted_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampH\x01R\tdeletedAt\x88\x01\x01\":\n" +
+	"\x05State\x12\x15\n" +
+	"\x11STATE_UNSPECIFIED\x10\x00\x12\v\n" +
+	"\aPENDING\x10\x01\x12\r\n" +
+	"\tCOMPLETED\x10\x02\"O\n" +
 	"\bPriority\x12\x18\n" +
-	"\x14PRIORITY_UNSPECIFIED\x10\x00\x12\x10\n" +
-	"\fPRIORITY_LOW\x10\x01\x12\x13\n" +
-	"\x0fPRIORITY_MEDIUM\x10\x02\x12\x11\n" +
-	"\rPRIORITY_HIGH\x10\x03\x12\x13\n" +
-	"\x0fPRIORITY_URGENT\x10\x04B\\\n" +
-	"\x16monorepo.proto.todo.v1P\x01Z@github.com/yourorg/monorepo/packages/proto-gen-go/todo/v1;todov1b\x06proto3"
+	"\x14PRIORITY_UNSPECIFIED\x10\x00\x12\a\n" +
+	"\x03LOW\x10\x01\x12\n" +
+	"\n" +
+	"\x06MEDIUM\x10\x02\x12\b\n" +
+	"\x04HIGH\x10\x03\x12\n" +
+	"\n" +
+	"\x06URGENT\x10\x04B\v\n" +
+	"\t_assigneeB\r\n" +
+	"\v_deleted_atBg\n" +
+	"\x16monorepo.proto.todo.v1B\tTodoProtoP\x01Z@github.com/yourorg/monorepo/packages/proto-gen-go/todo/v1;todov1b\x06proto3"
 
 var file_todo_v1_todo_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_todo_v1_todo_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_todo_v1_todo_proto_goTypes = []any{
-	(TodoStatus)(0), // 0: todo.v1.TodoStatus
-	(Priority)(0),   // 1: todo.v1.Priority
-	(*Todo)(nil),    // 2: todo.v1.Todo
+	(TodoModel_State)(0),          // 0: todo.v1.TodoModel.State
+	(TodoModel_Priority)(0),       // 1: todo.v1.TodoModel.Priority
+	(*TodoModel)(nil),             // 2: todo.v1.TodoModel
+	(*date.Date)(nil),             // 3: google.type.Date
+	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
 }
 var file_todo_v1_todo_proto_depIdxs = []int32{
-	0, // 0: todo.v1.Todo.status:type_name -> todo.v1.TodoStatus
-	1, // 1: todo.v1.Todo.priority:type_name -> todo.v1.Priority
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0, // 0: todo.v1.TodoModel.state:type_name -> todo.v1.TodoModel.State
+	1, // 1: todo.v1.TodoModel.priority:type_name -> todo.v1.TodoModel.Priority
+	3, // 2: todo.v1.TodoModel.due_date:type_name -> google.type.Date
+	4, // 3: todo.v1.TodoModel.created_at:type_name -> google.protobuf.Timestamp
+	4, // 4: todo.v1.TodoModel.updated_at:type_name -> google.protobuf.Timestamp
+	4, // 5: todo.v1.TodoModel.deleted_at:type_name -> google.protobuf.Timestamp
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_todo_v1_todo_proto_init() }
@@ -364,6 +440,7 @@ func file_todo_v1_todo_proto_init() {
 	if File_todo_v1_todo_proto != nil {
 		return
 	}
+	file_todo_v1_todo_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

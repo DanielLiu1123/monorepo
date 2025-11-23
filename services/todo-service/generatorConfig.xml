@@ -22,7 +22,8 @@
 
         <jdbcConnection driverClass="org.postgresql.Driver"
                         connectionURL="jdbc:postgresql://localhost:5432/todo"
-                        userId="root" password="root"/>
+                        userId="root" password="root">
+        </jdbcConnection>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="true"/>
@@ -31,19 +32,23 @@
         </javaTypeResolver>
 
         <javaModelGenerator
-                targetPackage="monorepo.services.todo.entity"
-                targetProject="src/main/java"/>
+                targetProject="services/todo-service/src/main/java"
+                targetPackage="monorepo.services.todo.entity">
+        </javaModelGenerator>
 
         <javaClientGenerator
-                targetPackage="monorepo.services.todo.mapper"
-                targetProject="src/main/java">
-            <property name="rootInterface"
-                      value="org.mybatis.dynamic.sql.util.mybatis3.CommonSelectMapper"/>
+                targetProject="services/todo-service/src/main/java"
+                targetPackage="monorepo.services.todo.mapper">
+            <property name="rootInterface" value="org.mybatis.dynamic.sql.util.mybatis3.CommonSelectMapper"/>
         </javaClientGenerator>
 
         <!-- Don't comment on the table below!! Generate every time to ensure that the code and table structure are synchronized -->
         <table tableName="todo">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="state" javaType="monorepo.proto.todo.v1.TodoModel.State"
+                            typeHandler="monorepo.services.todo.entity.typehandler.TodoStateTypeHandler"/>
+            <columnOverride column="priority" javaType="monorepo.proto.todo.v1.TodoModel.Priority"
+                            typeHandler="monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler"/>
         </table>
 
     </context>

@@ -25,7 +25,7 @@ const (
 // Request message for CreateTodo
 type CreateTodoRequest struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Todo *Todo                  `protobuf:"bytes,1,opt,name=todo,proto3"`
+	xxx_hidden_Todo *TodoModel             `protobuf:"bytes,1,opt,name=todo,proto3"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -55,14 +55,14 @@ func (x *CreateTodoRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *CreateTodoRequest) GetTodo() *Todo {
+func (x *CreateTodoRequest) GetTodo() *TodoModel {
 	if x != nil {
 		return x.xxx_hidden_Todo
 	}
 	return nil
 }
 
-func (x *CreateTodoRequest) SetTodo(v *Todo) {
+func (x *CreateTodoRequest) SetTodo(v *TodoModel) {
 	x.xxx_hidden_Todo = v
 }
 
@@ -81,7 +81,7 @@ type CreateTodoRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	// The todo to create
-	Todo *Todo
+	Todo *TodoModel
 }
 
 func (b0 CreateTodoRequest_builder) Build() *CreateTodoRequest {
@@ -264,7 +264,7 @@ func (b0 ListTodosRequest_builder) Build() *ListTodosRequest {
 // Response message for ListTodos
 type ListTodosResponse struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Todos         *[]*Todo               `protobuf:"bytes,1,rep,name=todos,proto3"`
+	xxx_hidden_Todos         *[]*TodoModel          `protobuf:"bytes,1,rep,name=todos,proto3"`
 	xxx_hidden_NextPageToken string                 `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3"`
 	xxx_hidden_TotalSize     int32                  `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3"`
 	unknownFields            protoimpl.UnknownFields
@@ -296,7 +296,7 @@ func (x *ListTodosResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ListTodosResponse) GetTodos() []*Todo {
+func (x *ListTodosResponse) GetTodos() []*TodoModel {
 	if x != nil {
 		if x.xxx_hidden_Todos != nil {
 			return *x.xxx_hidden_Todos
@@ -319,7 +319,7 @@ func (x *ListTodosResponse) GetTotalSize() int32 {
 	return 0
 }
 
-func (x *ListTodosResponse) SetTodos(v []*Todo) {
+func (x *ListTodosResponse) SetTodos(v []*TodoModel) {
 	x.xxx_hidden_Todos = &v
 }
 
@@ -335,7 +335,7 @@ type ListTodosResponse_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	// The list of todos
-	Todos []*Todo
+	Todos []*TodoModel
 	// Token to retrieve the next page of results
 	// Empty if there are no more results
 	NextPageToken string
@@ -356,7 +356,7 @@ func (b0 ListTodosResponse_builder) Build() *ListTodosResponse {
 // Request message for UpdateTodo
 type UpdateTodoRequest struct {
 	state                 protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Todo       *Todo                  `protobuf:"bytes,1,opt,name=todo,proto3"`
+	xxx_hidden_Todo       *TodoModel             `protobuf:"bytes,1,opt,name=todo,proto3"`
 	xxx_hidden_UpdateMask *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
@@ -387,7 +387,7 @@ func (x *UpdateTodoRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *UpdateTodoRequest) GetTodo() *Todo {
+func (x *UpdateTodoRequest) GetTodo() *TodoModel {
 	if x != nil {
 		return x.xxx_hidden_Todo
 	}
@@ -401,7 +401,7 @@ func (x *UpdateTodoRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 	return nil
 }
 
-func (x *UpdateTodoRequest) SetTodo(v *Todo) {
+func (x *UpdateTodoRequest) SetTodo(v *TodoModel) {
 	x.xxx_hidden_Todo = v
 }
 
@@ -436,7 +436,7 @@ type UpdateTodoRequest_builder struct {
 
 	// The todo to update
 	// The todo's ID field identifies which todo to update
-	Todo *Todo
+	Todo *TodoModel
 	// The list of fields to update
 	// If empty, all fields will be updated
 	UpdateMask *fieldmaskpb.FieldMask
@@ -572,7 +572,7 @@ func (b0 BatchGetTodosRequest_builder) Build() *BatchGetTodosRequest {
 // Response message for BatchGetTodos
 type BatchGetTodosResponse struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Todos *[]*Todo               `protobuf:"bytes,1,rep,name=todos,proto3"`
+	xxx_hidden_Todos *[]*TodoModel          `protobuf:"bytes,1,rep,name=todos,proto3"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -602,7 +602,7 @@ func (x *BatchGetTodosResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *BatchGetTodosResponse) GetTodos() []*Todo {
+func (x *BatchGetTodosResponse) GetTodos() []*TodoModel {
 	if x != nil {
 		if x.xxx_hidden_Todos != nil {
 			return *x.xxx_hidden_Todos
@@ -611,7 +611,7 @@ func (x *BatchGetTodosResponse) GetTodos() []*Todo {
 	return nil
 }
 
-func (x *BatchGetTodosResponse) SetTodos(v []*Todo) {
+func (x *BatchGetTodosResponse) SetTodos(v []*TodoModel) {
 	x.xxx_hidden_Todos = &v
 }
 
@@ -621,7 +621,7 @@ type BatchGetTodosResponse_builder struct {
 	// The list of todos
 	// Todos are returned in the same order as requested
 	// If a todo is not found, it will not be included in the response
-	Todos []*Todo
+	Todos []*TodoModel
 }
 
 func (b0 BatchGetTodosResponse_builder) Build() *BatchGetTodosResponse {
@@ -636,9 +636,9 @@ var File_todo_v1_todo_service_proto protoreflect.FileDescriptor
 
 const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1atodo/v1/todo_service.proto\x12\atodo.v1\x1a\x12todo/v1/todo.proto\x1a google/protobuf/field_mask.proto\x1a\x1bgoogle/protobuf/empty.proto\"6\n" +
-	"\x11CreateTodoRequest\x12!\n" +
-	"\x04todo\x18\x01 \x01(\v2\r.todo.v1.TodoR\x04todo\" \n" +
+	"\x1atodo/v1/todo_service.proto\x12\atodo.v1\x1a\x12todo/v1/todo.proto\x1a google/protobuf/field_mask.proto\x1a\x1bgoogle/protobuf/empty.proto\";\n" +
+	"\x11CreateTodoRequest\x12&\n" +
+	"\x04todo\x18\x01 \x01(\v2\x12.todo.v1.TodoModelR\x04todo\" \n" +
 	"\x0eGetTodoRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x81\x01\n" +
 	"\x10ListTodosRequest\x12\x1b\n" +
@@ -646,29 +646,29 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\n" +
 	"page_token\x18\x02 \x01(\tR\tpageToken\x12\x16\n" +
 	"\x06filter\x18\x03 \x01(\tR\x06filter\x12\x19\n" +
-	"\border_by\x18\x04 \x01(\tR\aorderBy\"\x7f\n" +
-	"\x11ListTodosResponse\x12#\n" +
-	"\x05todos\x18\x01 \x03(\v2\r.todo.v1.TodoR\x05todos\x12&\n" +
+	"\border_by\x18\x04 \x01(\tR\aorderBy\"\x84\x01\n" +
+	"\x11ListTodosResponse\x12(\n" +
+	"\x05todos\x18\x01 \x03(\v2\x12.todo.v1.TodoModelR\x05todos\x12&\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1d\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05R\ttotalSize\"s\n" +
-	"\x11UpdateTodoRequest\x12!\n" +
-	"\x04todo\x18\x01 \x01(\v2\r.todo.v1.TodoR\x04todo\x12;\n" +
+	"total_size\x18\x03 \x01(\x05R\ttotalSize\"x\n" +
+	"\x11UpdateTodoRequest\x12&\n" +
+	"\x04todo\x18\x01 \x01(\v2\x12.todo.v1.TodoModelR\x04todo\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"#\n" +
 	"\x11DeleteTodoRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"(\n" +
 	"\x14BatchGetTodosRequest\x12\x10\n" +
-	"\x03ids\x18\x01 \x03(\tR\x03ids\"<\n" +
-	"\x15BatchGetTodosResponse\x12#\n" +
-	"\x05todos\x18\x01 \x03(\v2\r.todo.v1.TodoR\x05todos2\x94\x03\n" +
-	"\vTodoService\x129\n" +
+	"\x03ids\x18\x01 \x03(\tR\x03ids\"A\n" +
+	"\x15BatchGetTodosResponse\x12(\n" +
+	"\x05todos\x18\x01 \x03(\v2\x12.todo.v1.TodoModelR\x05todos2\xa3\x03\n" +
+	"\vTodoService\x12>\n" +
 	"\n" +
-	"CreateTodo\x12\x1a.todo.v1.CreateTodoRequest\x1a\r.todo.v1.Todo\"\x00\x123\n" +
-	"\aGetTodo\x12\x17.todo.v1.GetTodoRequest\x1a\r.todo.v1.Todo\"\x00\x12D\n" +
-	"\tListTodos\x12\x19.todo.v1.ListTodosRequest\x1a\x1a.todo.v1.ListTodosResponse\"\x00\x129\n" +
+	"CreateTodo\x12\x1a.todo.v1.CreateTodoRequest\x1a\x12.todo.v1.TodoModel\"\x00\x128\n" +
+	"\aGetTodo\x12\x17.todo.v1.GetTodoRequest\x1a\x12.todo.v1.TodoModel\"\x00\x12D\n" +
+	"\tListTodos\x12\x19.todo.v1.ListTodosRequest\x1a\x1a.todo.v1.ListTodosResponse\"\x00\x12>\n" +
 	"\n" +
-	"UpdateTodo\x12\x1a.todo.v1.UpdateTodoRequest\x1a\r.todo.v1.Todo\"\x00\x12B\n" +
+	"UpdateTodo\x12\x1a.todo.v1.UpdateTodoRequest\x1a\x12.todo.v1.TodoModel\"\x00\x12B\n" +
 	"\n" +
 	"DeleteTodo\x12\x1a.todo.v1.DeleteTodoRequest\x1a\x16.google.protobuf.Empty\"\x00\x12P\n" +
 	"\rBatchGetTodos\x12\x1d.todo.v1.BatchGetTodosRequest\x1a\x1e.todo.v1.BatchGetTodosResponse\"\x00B\\\n" +
@@ -684,26 +684,26 @@ var file_todo_v1_todo_service_proto_goTypes = []any{
 	(*DeleteTodoRequest)(nil),     // 5: todo.v1.DeleteTodoRequest
 	(*BatchGetTodosRequest)(nil),  // 6: todo.v1.BatchGetTodosRequest
 	(*BatchGetTodosResponse)(nil), // 7: todo.v1.BatchGetTodosResponse
-	(*Todo)(nil),                  // 8: todo.v1.Todo
+	(*TodoModel)(nil),             // 8: todo.v1.TodoModel
 	(*fieldmaskpb.FieldMask)(nil), // 9: google.protobuf.FieldMask
 	(*emptypb.Empty)(nil),         // 10: google.protobuf.Empty
 }
 var file_todo_v1_todo_service_proto_depIdxs = []int32{
-	8,  // 0: todo.v1.CreateTodoRequest.todo:type_name -> todo.v1.Todo
-	8,  // 1: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.Todo
-	8,  // 2: todo.v1.UpdateTodoRequest.todo:type_name -> todo.v1.Todo
+	8,  // 0: todo.v1.CreateTodoRequest.todo:type_name -> todo.v1.TodoModel
+	8,  // 1: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.TodoModel
+	8,  // 2: todo.v1.UpdateTodoRequest.todo:type_name -> todo.v1.TodoModel
 	9,  // 3: todo.v1.UpdateTodoRequest.update_mask:type_name -> google.protobuf.FieldMask
-	8,  // 4: todo.v1.BatchGetTodosResponse.todos:type_name -> todo.v1.Todo
+	8,  // 4: todo.v1.BatchGetTodosResponse.todos:type_name -> todo.v1.TodoModel
 	0,  // 5: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
 	1,  // 6: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
 	2,  // 7: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
 	4,  // 8: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
 	5,  // 9: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
 	6,  // 10: todo.v1.TodoService.BatchGetTodos:input_type -> todo.v1.BatchGetTodosRequest
-	8,  // 11: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.Todo
-	8,  // 12: todo.v1.TodoService.GetTodo:output_type -> todo.v1.Todo
+	8,  // 11: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.TodoModel
+	8,  // 12: todo.v1.TodoService.GetTodo:output_type -> todo.v1.TodoModel
 	3,  // 13: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
-	8,  // 14: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.Todo
+	8,  // 14: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.TodoModel
 	10, // 15: todo.v1.TodoService.DeleteTodo:output_type -> google.protobuf.Empty
 	7,  // 16: todo.v1.TodoService.BatchGetTodos:output_type -> todo.v1.BatchGetTodosResponse
 	11, // [11:17] is the sub-list for method output_type

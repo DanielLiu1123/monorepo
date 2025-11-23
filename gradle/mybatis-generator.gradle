@@ -7,11 +7,12 @@ apply plugin: "com.qqviaja.gradle.MybatisGenerator"
 
 mybatisGenerator {
     verbose = true
-    configFile = "${projectDir}/MyBatisGeneratorConfig.xml"
+    configFile = "${projectDir}/generatorConfig.xml"
 
     dependencies {
         mybatisGenerator "org.mybatis.generator:mybatis-generator-core:${mybatisGeneratorVersion}"
         mybatisGenerator "org.postgresql:postgresql"
+        mybatisGenerator project(":packages:lib-java:common")
         mybatisGenerator project(":packages:lib-java:mybatis")
     }
 }

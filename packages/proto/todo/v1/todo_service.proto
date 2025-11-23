@@ -13,16 +13,16 @@ option java_multiple_files = true;
 // TodoService provides CRUD operations for todos following AIP standards
 service TodoService {
   // Creates a new todo (AIP-133)
-  rpc CreateTodo(CreateTodoRequest) returns (Todo) {}
+  rpc CreateTodo(CreateTodoRequest) returns (TodoModel) {}
 
   // Gets a todo by ID (AIP-131)
-  rpc GetTodo(GetTodoRequest) returns (Todo) {}
+  rpc GetTodo(GetTodoRequest) returns (TodoModel) {}
 
   // Lists todos with pagination (AIP-132)
   rpc ListTodos(ListTodosRequest) returns (ListTodosResponse) {}
 
   // Updates a todo (AIP-134)
-  rpc UpdateTodo(UpdateTodoRequest) returns (Todo) {}
+  rpc UpdateTodo(UpdateTodoRequest) returns (TodoModel) {}
 
   // Deletes a todo (AIP-135)
   rpc DeleteTodo(DeleteTodoRequest) returns (google.protobuf.Empty) {}
@@ -34,7 +34,7 @@ service TodoService {
 // Request message for CreateTodo
 message CreateTodoRequest {
   // The todo to create
-  Todo todo = 1;
+  TodoModel todo = 1;
 }
 
 // Request message for GetTodo
@@ -67,7 +67,7 @@ message ListTodosRequest {
 // Response message for ListTodos
 message ListTodosResponse {
   // The list of todos
-  repeated Todo todos = 1;
+  repeated TodoModel todos = 1;
 
   // Token to retrieve the next page of results
   // Empty if there are no more results
@@ -81,7 +81,7 @@ message ListTodosResponse {
 message UpdateTodoRequest {
   // The todo to update
   // The todo's ID field identifies which todo to update
-  Todo todo = 1;
+  TodoModel todo = 1;
 
   // The list of fields to update
   // If empty, all fields will be updated
@@ -105,5 +105,5 @@ message BatchGetTodosResponse {
   // The list of todos
   // Todos are returned in the same order as requested
   // If a todo is not found, it will not be included in the response
-  repeated Todo todos = 1;
+  repeated TodoModel todos = 1;
 }

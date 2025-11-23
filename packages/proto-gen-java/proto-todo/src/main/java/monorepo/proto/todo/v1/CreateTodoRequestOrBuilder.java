@@ -15,7 +15,7 @@ public interface CreateTodoRequestOrBuilder extends
    * The todo to create
    * </pre>
    *
-   * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
    * @return Whether the todo field is set.
    */
   boolean hasTodo();
@@ -24,16 +24,16 @@ public interface CreateTodoRequestOrBuilder extends
    * The todo to create
    * </pre>
    *
-   * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
    * @return The todo.
    */
-  monorepo.proto.todo.v1.Todo getTodo();
+  monorepo.proto.todo.v1.TodoModel getTodo();
   /**
    * <pre>
    * The todo to create
    * </pre>
    *
-   * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
    */
-  monorepo.proto.todo.v1.TodoOrBuilder getTodoOrBuilder();
+  monorepo.proto.todo.v1.TodoModelOrBuilder getTodoOrBuilder();
 }

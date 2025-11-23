@@ -49,14 +49,14 @@ private static final long serialVersionUID = 0L;
 
   private int bitField0_;
   public static final int TODO_FIELD_NUMBER = 1;
-  private monorepo.proto.todo.v1.Todo todo_;
+  private monorepo.proto.todo.v1.TodoModel todo_;
   /**
    * <pre>
    * The todo to update
    * The todo's ID field identifies which todo to update
    * </pre>
    *
-   * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
    * @return Whether the todo field is set.
    */
   @java.lang.Override
@@ -69,12 +69,12 @@ private static final long serialVersionUID = 0L;
    * The todo's ID field identifies which todo to update
    * </pre>
    *
-   * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
    * @return The todo.
    */
   @java.lang.Override
-  public monorepo.proto.todo.v1.Todo getTodo() {
-    return todo_ == null ? monorepo.proto.todo.v1.Todo.getDefaultInstance() : todo_;
+  public monorepo.proto.todo.v1.TodoModel getTodo() {
+    return todo_ == null ? monorepo.proto.todo.v1.TodoModel.getDefaultInstance() : todo_;
   }
   /**
    * <pre>
@@ -82,11 +82,11 @@ private static final long serialVersionUID = 0L;
    * The todo's ID field identifies which todo to update
    * </pre>
    *
-   * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
    */
   @java.lang.Override
-  public monorepo.proto.todo.v1.TodoOrBuilder getTodoOrBuilder() {
-    return todo_ == null ? monorepo.proto.todo.v1.Todo.getDefaultInstance() : todo_;
+  public monorepo.proto.todo.v1.TodoModelOrBuilder getTodoOrBuilder() {
+    return todo_ == null ? monorepo.proto.todo.v1.TodoModel.getDefaultInstance() : todo_;
   }
 
   public static final int UPDATE_MASK_FIELD_NUMBER = 2;
@@ -487,16 +487,16 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private monorepo.proto.todo.v1.Todo todo_;
+    private monorepo.proto.todo.v1.TodoModel todo_;
     private com.google.protobuf.SingleFieldBuilder<
-        monorepo.proto.todo.v1.Todo, monorepo.proto.todo.v1.Todo.Builder, monorepo.proto.todo.v1.TodoOrBuilder> todoBuilder_;
+        monorepo.proto.todo.v1.TodoModel, monorepo.proto.todo.v1.TodoModel.Builder, monorepo.proto.todo.v1.TodoModelOrBuilder> todoBuilder_;
     /**
      * <pre>
      * The todo to update
      * The todo's ID field identifies which todo to update
      * </pre>
      *
-     * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+     * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
      * @return Whether the todo field is set.
      */
     public boolean hasTodo() {
@@ -508,12 +508,12 @@ private static final long serialVersionUID = 0L;
      * The todo's ID field identifies which todo to update
      * </pre>
      *
-     * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+     * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
      * @return The todo.
      */
-    public monorepo.proto.todo.v1.Todo getTodo() {
+    public monorepo.proto.todo.v1.TodoModel getTodo() {
       if (todoBuilder_ == null) {
-        return todo_ == null ? monorepo.proto.todo.v1.Todo.getDefaultInstance() : todo_;
+        return todo_ == null ? monorepo.proto.todo.v1.TodoModel.getDefaultInstance() : todo_;
       } else {
         return todoBuilder_.getMessage();
       }
@@ -524,9 +524,9 @@ private static final long serialVersionUID = 0L;
      * The todo's ID field identifies which todo to update
      * </pre>
      *
-     * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+     * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
      */
-    public Builder setTodo(monorepo.proto.todo.v1.Todo value) {
+    public Builder setTodo(monorepo.proto.todo.v1.TodoModel value) {
       if (todoBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -545,10 +545,10 @@ private static final long serialVersionUID = 0L;
      * The todo's ID field identifies which todo to update
      * </pre>
      *
-     * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+     * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
      */
     public Builder setTodo(
-        monorepo.proto.todo.v1.Todo.Builder builderForValue) {
+        monorepo.proto.todo.v1.TodoModel.Builder builderForValue) {
       if (todoBuilder_ == null) {
         todo_ = builderForValue.build();
       } else {
@@ -564,13 +564,13 @@ private static final long serialVersionUID = 0L;
      * The todo's ID field identifies which todo to update
      * </pre>
      *
-     * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+     * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
      */
-    public Builder mergeTodo(monorepo.proto.todo.v1.Todo value) {
+    public Builder mergeTodo(monorepo.proto.todo.v1.TodoModel value) {
       if (todoBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0) &&
           todo_ != null &&
-          todo_ != monorepo.proto.todo.v1.Todo.getDefaultInstance()) {
+          todo_ != monorepo.proto.todo.v1.TodoModel.getDefaultInstance()) {
           getTodoBuilder().mergeFrom(value);
         } else {
           todo_ = value;
@@ -590,7 +590,7 @@ private static final long serialVersionUID = 0L;
      * The todo's ID field identifies which todo to update
      * </pre>
      *
-     * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+     * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
      */
     public Builder clearTodo() {
       bitField0_ = (bitField0_ & ~0x00000001);
@@ -608,9 +608,9 @@ private static final long serialVersionUID = 0L;
      * The todo's ID field identifies which todo to update
      * </pre>
      *
-     * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+     * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
      */
-    public monorepo.proto.todo.v1.Todo.Builder getTodoBuilder() {
+    public monorepo.proto.todo.v1.TodoModel.Builder getTodoBuilder() {
       bitField0_ |= 0x00000001;
       onChanged();
       return internalGetTodoFieldBuilder().getBuilder();
@@ -621,14 +621,14 @@ private static final long serialVersionUID = 0L;
      * The todo's ID field identifies which todo to update
      * </pre>
      *
-     * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+     * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
      */
-    public monorepo.proto.todo.v1.TodoOrBuilder getTodoOrBuilder() {
+    public monorepo.proto.todo.v1.TodoModelOrBuilder getTodoOrBuilder() {
       if (todoBuilder_ != null) {
         return todoBuilder_.getMessageOrBuilder();
       } else {
         return todo_ == null ?
-            monorepo.proto.todo.v1.Todo.getDefaultInstance() : todo_;
+            monorepo.proto.todo.v1.TodoModel.getDefaultInstance() : todo_;
       }
     }
     /**
@@ -637,14 +637,14 @@ private static final long serialVersionUID = 0L;
      * The todo's ID field identifies which todo to update
      * </pre>
      *
-     * <code>.todo.v1.Todo todo = 1 [json_name = "todo"];</code>
+     * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
      */
     private com.google.protobuf.SingleFieldBuilder<
-        monorepo.proto.todo.v1.Todo, monorepo.proto.todo.v1.Todo.Builder, monorepo.proto.todo.v1.TodoOrBuilder> 
+        monorepo.proto.todo.v1.TodoModel, monorepo.proto.todo.v1.TodoModel.Builder, monorepo.proto.todo.v1.TodoModelOrBuilder> 
         internalGetTodoFieldBuilder() {
       if (todoBuilder_ == null) {
         todoBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-            monorepo.proto.todo.v1.Todo, monorepo.proto.todo.v1.Todo.Builder, monorepo.proto.todo.v1.TodoOrBuilder>(
+            monorepo.proto.todo.v1.TodoModel, monorepo.proto.todo.v1.TodoModel.Builder, monorepo.proto.todo.v1.TodoModelOrBuilder>(
                 getTodo(),
                 getParentForChildren(),
                 isClean());
