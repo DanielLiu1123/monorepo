@@ -44,9 +44,9 @@ public class TodoServer extends TodoServiceGrpc.TodoServiceImplBase {
 
     @Override
     public void listTodos(ListTodosRequest request, StreamObserver<ListTodosResponse> responseObserver) {
-
-        //        responseObserver.onNext(response);
-        //        responseObserver.onCompleted();
+        var result = todoService.list(request);
+        responseObserver.onNext(result);
+        responseObserver.onCompleted();
     }
 
     @Override

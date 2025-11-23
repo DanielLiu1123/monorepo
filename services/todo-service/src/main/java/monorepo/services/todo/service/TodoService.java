@@ -150,6 +150,12 @@ public class TodoService {
         return buildModels(todos);
     }
 
+    /**
+     * List todos with pagination and filtering.
+     *
+     * @param request list todos request
+     * @return list todos response
+     */
     public ListTodosResponse list(ListTodosRequest request) {
         int pageSize;
         if (request.getPageSize() <= 0) {
