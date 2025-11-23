@@ -30,19 +30,4 @@ bootJar {
     version = ""
 }
 
-sourceSets {
-    "mybatis-gen" {
-        java {
-            srcDir "src/mybatis-gen/java"
-        }
-    }
-}
-
-dependencies {
-    mybatisGenImplementation project(":packages:lib-java:common")
-    mybatisGenImplementation project(":packages:lib-java:mybatis")
-    mybatisGenImplementation "org.mybatis.generator:mybatis-generator-core:${mybatisGeneratorVersion}"
-    mybatisGenImplementation "org.postgresql:postgresql"
-}
-
-apply from: "${rootDir}/gradle/mybatis-generator.gradle"
+apply from: "${rootDir}/gradle/gen-mybatis.gradle"

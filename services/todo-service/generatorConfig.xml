@@ -32,12 +32,12 @@
         </javaTypeResolver>
 
         <javaModelGenerator
-                targetProject="services/todo-service/src/main/java"
+                targetProject="src/main/java"
                 targetPackage="monorepo.services.todo.entity">
         </javaModelGenerator>
 
         <javaClientGenerator
-                targetProject="services/todo-service/src/main/java"
+                targetProject="src/main/java"
                 targetPackage="monorepo.services.todo.mapper">
             <property name="rootInterface" value="org.mybatis.dynamic.sql.util.mybatis3.CommonSelectMapper"/>
         </javaClientGenerator>
