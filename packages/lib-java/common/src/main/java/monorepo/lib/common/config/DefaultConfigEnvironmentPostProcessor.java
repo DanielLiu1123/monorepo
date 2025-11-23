@@ -1,7 +1,11 @@
 package monorepo.lib.common.config;
 
 import jakarta.annotation.Nullable;
+
+import java.time.ZoneOffset;
 import java.util.Optional;
+import java.util.TimeZone;
+
 import monorepo.lib.common.profile.Profile;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
@@ -30,6 +34,9 @@ public final class DefaultConfigEnvironmentPostProcessor implements EnvironmentP
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
+
+        // we always use UTC time zone for less confusion
+        TimeZone.setDefault(TimeZone.getTimeZone(ZoneOffset.UTC));
 
         // profile-based configuration should be loaded before default configuration
         var profile = getProfileOrNull(environment);
