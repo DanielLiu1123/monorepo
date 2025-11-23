@@ -30,15 +30,13 @@ public class TodoServer extends TodoServiceGrpc.TodoServiceImplBase {
     @Override
     public void createTodo(CreateTodoRequest request, StreamObserver<TodoModel> responseObserver) {
         var todoId = todoService.create(request);
-        var todo = todoService.get(GetTodoRequest.newBuilder().setId(todoId).build());
-        responseObserver.onNext(todo);
+        responseObserver.onNext(getTodo(todoId));
         responseObserver.onCompleted();
     }
 
     @Override
     public void getTodo(GetTodoRequest request, StreamObserver<TodoModel> responseObserver) {
-        var todo = todoService.get(request);
-        responseObserver.onNext(todo);
+        responseObserver.onNext(todoService.get(request));
         responseObserver.onCompleted();
     }
 
@@ -52,18 +50,14 @@ public class TodoServer extends TodoServiceGrpc.TodoServiceImplBase {
     @Override
     public void updateTodo(UpdateTodoRequest request, StreamObserver<TodoModel> responseObserver) {
         todoService.update(request);
-        var todo = todoService.get(
-                GetTodoRequest.newBuilder().setId(request.getTodo().getId()).build());
-        responseObserver.onNext(todo);
+        responseObserver.onNext(getTodo(request.getTodo().getId()));
         responseObserver.onCompleted();
     }
 
     @Override
     public void deleteTodo(DeleteTodoRequest request, StreamObserver<TodoModel> responseObserver) {
         todoService.delete(request);
-        var todo = todoService.get(
-                GetTodoRequest.newBuilder().setId(request.getId()).build());
-        responseObserver.onNext(todo);
+        responseObserver.onNext(getTodo(request.getId()));
         responseObserver.onCompleted();
     }
 
@@ -73,5 +67,9 @@ public class TodoServer extends TodoServiceGrpc.TodoServiceImplBase {
         var response = BatchGetTodosResponse.newBuilder().addAllTodos(todos).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
+    }
+
+    private TodoModel getTodo(long todoId) {
+        return todoService.get(GetTodoRequest.newBuilder().setId(todoId).build());
     }
 }
