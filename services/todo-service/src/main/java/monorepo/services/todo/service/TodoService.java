@@ -3,8 +3,10 @@ package monorepo.services.todo.service;
 import static monorepo.lib.common.util.SpringUtil.withTransaction;
 import static monorepo.services.todo.mapper.TodoDynamicSqlSupport.todo;
 import static monorepo.services.todo.mapper.TodoSubtaskDynamicSqlSupport.todoSubtask;
+import static org.mybatis.dynamic.sql.SqlBuilder.and;
 import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 import static org.mybatis.dynamic.sql.SqlBuilder.isIn;
+import static org.mybatis.dynamic.sql.SqlBuilder.isInWhenPresent;
 import static org.mybatis.dynamic.sql.SqlBuilder.isNull;
 
 import io.grpc.Status;
@@ -23,17 +25,22 @@ import monorepo.proto.todo.v1.ListTodosResponse;
 import monorepo.proto.todo.v1.TodoModel;
 import monorepo.proto.todo.v1.UpdateTodoRequest;
 import monorepo.services.todo.converter.TodoConverter;
+import monorepo.services.todo.entity.Todo;
 import monorepo.services.todo.entity.TodoSubtask;
 import monorepo.services.todo.mapper.TodoMapper;
 import monorepo.services.todo.mapper.TodoSubtaskMapper;
 import org.jspecify.annotations.Nullable;
-import org.mybatis.dynamic.sql.select.SelectDSLCompleter;
+import org.mybatis.dynamic.sql.AndOrCriteriaGroup;
+import org.mybatis.dynamic.sql.SqlColumn;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class TodoService {
 
+    private static final Logger log = LoggerFactory.getLogger(TodoService.class);
     private final TodoMapper todoMapper;
     private final TodoSubtaskMapper todoSubtaskMapper;
 
@@ -131,41 +138,129 @@ public class TodoService {
             return List.of();
         }
 
-        SelectDSLCompleter dsl = c -> {
+        var todos = todoMapper.select(c -> {
             var sql = c.where(todo.id, isIn(ids));
             var showDeleted = !request.hasShowDeleted() || request.getShowDeleted();
             if (!showDeleted) {
                 sql.and(todo.deletedAt, isNull());
             }
             return sql;
-        };
-        var todos = todoMapper.select(dsl);
+        });
+
+        return buildModels(todos);
+    }
+
+    public ListTodosResponse list(ListTodosRequest request) {
+        int pageSize;
+        if (request.getPageSize() <= 0) {
+            pageSize = 50;
+        } else if (request.getPageSize() > 1000) {
+            pageSize = 1000;
+        } else {
+            pageSize = request.getPageSize();
+        }
+
+        // Parse page_token to get offset
+        long offsetTemp = 0;
+        if (!request.getPageToken().isEmpty()) {
+            try {
+                offsetTemp = Long.parseLong(request.getPageToken());
+            } catch (NumberFormatException e) {
+                // Invalid token, use default offset 0
+            }
+        }
+        long offset = offsetTemp;
+
+        // Query total count
+        var totalSize = todoMapper.count(c -> c.where(buildConditions(request)));
+
+        var todos = todoMapper.select(c -> {
+            var sql = c.where(buildConditions(request));
+
+            for (var orderBy : request.getOrderByList()) {
+                var column = mapFieldToColumn(orderBy.getField());
+                if (column != null) {
+                    if (orderBy.getIsDesc()) sql.orderBy(column.descending());
+                    else sql.orderBy(column);
+                }
+            }
+            sql.orderBy(todo.id);
+
+            sql.limit(pageSize).offset(offset);
+            return sql;
+        });
+
+        var todoModels = buildModels(todos);
+
+        // Calculate next page token
+        var responseBuilder = ListTodosResponse.newBuilder();
+        responseBuilder.addAllTodos(todoModels);
+        responseBuilder.setTotalSize((int) totalSize);
+
+        long nextOffset = offset + pageSize;
+        if (nextOffset < totalSize) {
+            responseBuilder.setNextPageToken(String.valueOf(nextOffset));
+        }
+
+        return responseBuilder.build();
+    }
+
+    private List<TodoModel> buildModels(List<Todo> todos) {
         if (todos.isEmpty()) {
             return List.of();
         }
 
+        var todoIds = todos.stream().map(Todo::getId).toList();
         var todoIdToTodoSubtasks =
                 todoSubtaskMapper
-                        .select(c -> c.where(todoSubtask.todoId, isIn(ids)).and(todoSubtask.deletedAt, isNull()))
+                        .select(c -> c.where(todoSubtask.todoId, isIn(todoIds)).and(todoSubtask.deletedAt, isNull()))
                         .stream()
                         .collect(Collectors.groupingBy(TodoSubtask::getTodoId));
 
         var result = new ArrayList<TodoModel>();
+
         for (var entity : todos) {
-            var builder = TodoModel.newBuilder();
             var todo = TodoConverter.INSTANCE.toTodoModel(entity);
             var subtasks = todoIdToTodoSubtasks.getOrDefault(entity.getId(), List.of()).stream()
                     .map(TodoConverter.INSTANCE::toTodoSubtaskModel)
                     .toList();
+            var builder = TodoModel.newBuilder();
             builder.setTodo(todo);
             builder.addAllSubTasks(subtasks);
             result.add(builder.build());
         }
+
         return result;
     }
 
-    public ListTodosResponse list(ListTodosRequest request) {
+    private static List<AndOrCriteriaGroup> buildConditions(ListTodosRequest request) {
+        var result = new ArrayList<AndOrCriteriaGroup>();
+        result.add(and(todo.userId, isEqualTo(request.getUserId())));
+        if (!request.getShowDeleted()) {
+            result.add(and(todo.deletedAt, isNull()));
+        }
+        if (request.hasFilter()) {
+            var filter = request.getFilter();
+            result.add(and(todo.state, isInWhenPresent(filter.getStatesList())));
+            result.add(and(todo.priority, isInWhenPresent(filter.getPrioritiesList())));
+        }
+        return result;
+    }
 
+    @Nullable
+    private static SqlColumn<?> mapFieldToColumn(String field) {
+        return switch (field) {
+            case "created_at" -> todo.createdAt;
+            case "updated_at" -> todo.updatedAt;
+            case "due_date" -> todo.dueDate;
+            case "priority" -> todo.priority;
+            case "state" -> todo.state;
+            case "title" -> todo.title;
+            default -> {
+                log.warn("Unknown order by field: {}", field);
+                yield null;
+            }
+        };
     }
 
     private long createTodo(CreateTodoRequest.Todo request) {
