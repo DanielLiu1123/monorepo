@@ -200,12 +200,13 @@ func (b0 GetTodoRequest_builder) Build() *GetTodoRequest {
 
 // Request message for ListTodos
 type ListTodosRequest struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_PageSize    int32                  `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3"`
-	xxx_hidden_PageToken   string                 `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3"`
-	xxx_hidden_Filter      string                 `protobuf:"bytes,3,opt,name=filter,proto3"`
-	xxx_hidden_OrderBy     string                 `protobuf:"bytes,4,opt,name=order_by,json=orderBy,proto3"`
-	xxx_hidden_ShowDeleted bool                   `protobuf:"varint,5,opt,name=show_deleted,json=showDeleted,proto3,oneof"`
+	state                  protoimpl.MessageState       `protogen:"opaque.v1"`
+	xxx_hidden_PageSize    int32                        `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3"`
+	xxx_hidden_PageToken   string                       `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3"`
+	xxx_hidden_UserId      int64                        `protobuf:"varint,3,opt,name=user_id,json=userId,proto3"`
+	xxx_hidden_Filter      *ListTodosRequest_Filter     `protobuf:"bytes,4,opt,name=filter,proto3,oneof"`
+	xxx_hidden_OrderBy     *[]*ListTodosRequest_OrderBy `protobuf:"bytes,5,rep,name=order_by,json=orderBy,proto3"`
+	xxx_hidden_ShowDeleted bool                         `protobuf:"varint,6,opt,name=show_deleted,json=showDeleted,proto3,oneof"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -251,18 +252,27 @@ func (x *ListTodosRequest) GetPageToken() string {
 	return ""
 }
 
-func (x *ListTodosRequest) GetFilter() string {
+func (x *ListTodosRequest) GetUserId() int64 {
+	if x != nil {
+		return x.xxx_hidden_UserId
+	}
+	return 0
+}
+
+func (x *ListTodosRequest) GetFilter() *ListTodosRequest_Filter {
 	if x != nil {
 		return x.xxx_hidden_Filter
 	}
-	return ""
+	return nil
 }
 
-func (x *ListTodosRequest) GetOrderBy() string {
+func (x *ListTodosRequest) GetOrderBy() []*ListTodosRequest_OrderBy {
 	if x != nil {
-		return x.xxx_hidden_OrderBy
+		if x.xxx_hidden_OrderBy != nil {
+			return *x.xxx_hidden_OrderBy
+		}
 	}
-	return ""
+	return nil
 }
 
 func (x *ListTodosRequest) GetShowDeleted() bool {
@@ -280,28 +290,43 @@ func (x *ListTodosRequest) SetPageToken(v string) {
 	x.xxx_hidden_PageToken = v
 }
 
-func (x *ListTodosRequest) SetFilter(v string) {
+func (x *ListTodosRequest) SetUserId(v int64) {
+	x.xxx_hidden_UserId = v
+}
+
+func (x *ListTodosRequest) SetFilter(v *ListTodosRequest_Filter) {
 	x.xxx_hidden_Filter = v
 }
 
-func (x *ListTodosRequest) SetOrderBy(v string) {
-	x.xxx_hidden_OrderBy = v
+func (x *ListTodosRequest) SetOrderBy(v []*ListTodosRequest_OrderBy) {
+	x.xxx_hidden_OrderBy = &v
 }
 
 func (x *ListTodosRequest) SetShowDeleted(v bool) {
 	x.xxx_hidden_ShowDeleted = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
+}
+
+func (x *ListTodosRequest) HasFilter() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Filter != nil
 }
 
 func (x *ListTodosRequest) HasShowDeleted() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
+}
+
+func (x *ListTodosRequest) ClearFilter() {
+	x.xxx_hidden_Filter = nil
 }
 
 func (x *ListTodosRequest) ClearShowDeleted() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
 	x.xxx_hidden_ShowDeleted = false
 }
 
@@ -316,12 +341,14 @@ type ListTodosRequest_builder struct {
 	// Page token received from a previous ListTodos call
 	// Provide this to retrieve the next page
 	PageToken string
+	// parent
+	UserId int64
 	// Filter expression for todos
 	// Examples: "status=PENDING", "assignee=user123"
-	Filter string
+	Filter *ListTodosRequest_Filter
 	// Field to sort by
 	// Examples: "created_at", "due_date", "priority"
-	OrderBy string
+	OrderBy []*ListTodosRequest_OrderBy
 	// default to false if not set
 	ShowDeleted *bool
 }
@@ -332,10 +359,11 @@ func (b0 ListTodosRequest_builder) Build() *ListTodosRequest {
 	_, _ = b, x
 	x.xxx_hidden_PageSize = b.PageSize
 	x.xxx_hidden_PageToken = b.PageToken
+	x.xxx_hidden_UserId = b.UserId
 	x.xxx_hidden_Filter = b.Filter
-	x.xxx_hidden_OrderBy = b.OrderBy
+	x.xxx_hidden_OrderBy = &b.OrderBy
 	if b.ShowDeleted != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
 		x.xxx_hidden_ShowDeleted = *b.ShowDeleted
 	}
 	return m0
@@ -1006,6 +1034,148 @@ func (b0 CreateTodoRequest_SubTask_builder) Build() *CreateTodoRequest_SubTask {
 	return m0
 }
 
+type ListTodosRequest_Filter struct {
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_States     []TodoModel_State      `protobuf:"varint,1,rep,packed,name=states,proto3,enum=todo.v1.TodoModel_State"`
+	xxx_hidden_Priorities []TodoModel_Priority   `protobuf:"varint,2,rep,packed,name=priorities,proto3,enum=todo.v1.TodoModel_Priority"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *ListTodosRequest_Filter) Reset() {
+	*x = ListTodosRequest_Filter{}
+	mi := &file_todo_v1_todo_service_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListTodosRequest_Filter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTodosRequest_Filter) ProtoMessage() {}
+
+func (x *ListTodosRequest_Filter) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_service_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListTodosRequest_Filter) GetStates() []TodoModel_State {
+	if x != nil {
+		return x.xxx_hidden_States
+	}
+	return nil
+}
+
+func (x *ListTodosRequest_Filter) GetPriorities() []TodoModel_Priority {
+	if x != nil {
+		return x.xxx_hidden_Priorities
+	}
+	return nil
+}
+
+func (x *ListTodosRequest_Filter) SetStates(v []TodoModel_State) {
+	x.xxx_hidden_States = v
+}
+
+func (x *ListTodosRequest_Filter) SetPriorities(v []TodoModel_Priority) {
+	x.xxx_hidden_Priorities = v
+}
+
+type ListTodosRequest_Filter_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	States     []TodoModel_State
+	Priorities []TodoModel_Priority
+}
+
+func (b0 ListTodosRequest_Filter_builder) Build() *ListTodosRequest_Filter {
+	m0 := &ListTodosRequest_Filter{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_States = b.States
+	x.xxx_hidden_Priorities = b.Priorities
+	return m0
+}
+
+type ListTodosRequest_OrderBy struct {
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Field  string                 `protobuf:"bytes,1,opt,name=field,proto3"`
+	xxx_hidden_IsDesc bool                   `protobuf:"varint,2,opt,name=is_desc,json=isDesc,proto3"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *ListTodosRequest_OrderBy) Reset() {
+	*x = ListTodosRequest_OrderBy{}
+	mi := &file_todo_v1_todo_service_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListTodosRequest_OrderBy) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTodosRequest_OrderBy) ProtoMessage() {}
+
+func (x *ListTodosRequest_OrderBy) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_service_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListTodosRequest_OrderBy) GetField() string {
+	if x != nil {
+		return x.xxx_hidden_Field
+	}
+	return ""
+}
+
+func (x *ListTodosRequest_OrderBy) GetIsDesc() bool {
+	if x != nil {
+		return x.xxx_hidden_IsDesc
+	}
+	return false
+}
+
+func (x *ListTodosRequest_OrderBy) SetField(v string) {
+	x.xxx_hidden_Field = v
+}
+
+func (x *ListTodosRequest_OrderBy) SetIsDesc(v bool) {
+	x.xxx_hidden_IsDesc = v
+}
+
+type ListTodosRequest_OrderBy_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Field  string
+	IsDesc bool
+}
+
+func (b0 ListTodosRequest_OrderBy_builder) Build() *ListTodosRequest_OrderBy {
+	m0 := &ListTodosRequest_OrderBy{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Field = b.Field
+	x.xxx_hidden_IsDesc = b.IsDesc
+	return m0
+}
+
 type UpdateTodoRequest_Todo struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id          int64                  `protobuf:"varint,1,opt,name=id,proto3"`
@@ -1023,7 +1193,7 @@ type UpdateTodoRequest_Todo struct {
 
 func (x *UpdateTodoRequest_Todo) Reset() {
 	*x = UpdateTodoRequest_Todo{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[10]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1035,7 +1205,7 @@ func (x *UpdateTodoRequest_Todo) String() string {
 func (*UpdateTodoRequest_Todo) ProtoMessage() {}
 
 func (x *UpdateTodoRequest_Todo) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[10]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1259,7 +1429,7 @@ type UpdateTodoRequest_SubTask struct {
 
 func (x *UpdateTodoRequest_SubTask) Reset() {
 	*x = UpdateTodoRequest_SubTask{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[11]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1271,7 +1441,7 @@ func (x *UpdateTodoRequest_SubTask) String() string {
 func (*UpdateTodoRequest_SubTask) ProtoMessage() {}
 
 func (x *UpdateTodoRequest_SubTask) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[11]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1432,7 +1602,7 @@ func (b0 UpdateTodoRequest_SubTask_builder) Build() *UpdateTodoRequest_SubTask {
 type case_UpdateTodoRequest_SubTask_Operation protoreflect.FieldNumber
 
 func (x case_UpdateTodoRequest_SubTask_Operation) String() string {
-	md := file_todo_v1_todo_service_proto_msgTypes[11].Descriptor()
+	md := file_todo_v1_todo_service_proto_msgTypes[13].Descriptor()
 	if x == 0 {
 		return "not set"
 	}
@@ -1473,7 +1643,7 @@ type UpdateTodoRequest_SubTask_Update struct {
 
 func (x *UpdateTodoRequest_SubTask_Update) Reset() {
 	*x = UpdateTodoRequest_SubTask_Update{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[12]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1485,7 +1655,7 @@ func (x *UpdateTodoRequest_SubTask_Update) String() string {
 func (*UpdateTodoRequest_SubTask_Update) ProtoMessage() {}
 
 func (x *UpdateTodoRequest_SubTask_Update) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[12]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1579,14 +1749,24 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x0eGetTodoRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12&\n" +
 	"\fshow_deleted\x18\x02 \x01(\bH\x00R\vshowDeleted\x88\x01\x01B\x0f\n" +
-	"\r_show_deleted\"\xba\x01\n" +
+	"\r_show_deleted\"\xdb\x03\n" +
 	"\x10ListTodosRequest\x12\x1b\n" +
 	"\tpage_size\x18\x01 \x01(\x05R\bpageSize\x12\x1d\n" +
 	"\n" +
-	"page_token\x18\x02 \x01(\tR\tpageToken\x12\x16\n" +
-	"\x06filter\x18\x03 \x01(\tR\x06filter\x12\x19\n" +
-	"\border_by\x18\x04 \x01(\tR\aorderBy\x12&\n" +
-	"\fshow_deleted\x18\x05 \x01(\bH\x00R\vshowDeleted\x88\x01\x01B\x0f\n" +
+	"page_token\x18\x02 \x01(\tR\tpageToken\x12\x17\n" +
+	"\auser_id\x18\x03 \x01(\x03R\x06userId\x12=\n" +
+	"\x06filter\x18\x04 \x01(\v2 .todo.v1.ListTodosRequest.FilterH\x00R\x06filter\x88\x01\x01\x12<\n" +
+	"\border_by\x18\x05 \x03(\v2!.todo.v1.ListTodosRequest.OrderByR\aorderBy\x12&\n" +
+	"\fshow_deleted\x18\x06 \x01(\bH\x01R\vshowDeleted\x88\x01\x01\x1aw\n" +
+	"\x06Filter\x120\n" +
+	"\x06states\x18\x01 \x03(\x0e2\x18.todo.v1.TodoModel.StateR\x06states\x12;\n" +
+	"\n" +
+	"priorities\x18\x02 \x03(\x0e2\x1b.todo.v1.TodoModel.PriorityR\n" +
+	"priorities\x1a8\n" +
+	"\aOrderBy\x12\x14\n" +
+	"\x05field\x18\x01 \x01(\tR\x05field\x12\x17\n" +
+	"\ais_desc\x18\x02 \x01(\bR\x06isDescB\t\n" +
+	"\a_filterB\x0f\n" +
 	"\r_show_deleted\"\x84\x01\n" +
 	"\x11ListTodosResponse\x12(\n" +
 	"\x05todos\x18\x01 \x03(\v2\x12.todo.v1.TodoModelR\x05todos\x12&\n" +
@@ -1639,7 +1819,7 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\rBatchGetTodos\x12\x1d.todo.v1.BatchGetTodosRequest\x1a\x1e.todo.v1.BatchGetTodosResponse\"\x00B\\\n" +
 	"\x16monorepo.proto.todo.v1P\x01Z@github.com/yourorg/monorepo/packages/proto-gen-go/todo/v1;todov1b\x06proto3"
 
-var file_todo_v1_todo_service_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_todo_v1_todo_service_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_todo_v1_todo_service_proto_goTypes = []any{
 	(*CreateTodoRequest)(nil),                // 0: todo.v1.CreateTodoRequest
 	(*GetTodoRequest)(nil),                   // 1: todo.v1.GetTodoRequest
@@ -1651,46 +1831,52 @@ var file_todo_v1_todo_service_proto_goTypes = []any{
 	(*BatchGetTodosResponse)(nil),            // 7: todo.v1.BatchGetTodosResponse
 	(*CreateTodoRequest_Todo)(nil),           // 8: todo.v1.CreateTodoRequest.Todo
 	(*CreateTodoRequest_SubTask)(nil),        // 9: todo.v1.CreateTodoRequest.SubTask
-	(*UpdateTodoRequest_Todo)(nil),           // 10: todo.v1.UpdateTodoRequest.Todo
-	(*UpdateTodoRequest_SubTask)(nil),        // 11: todo.v1.UpdateTodoRequest.SubTask
-	(*UpdateTodoRequest_SubTask_Update)(nil), // 12: todo.v1.UpdateTodoRequest.SubTask.Update
-	(*TodoModel)(nil),                        // 13: todo.v1.TodoModel
-	(TodoModel_State)(0),                     // 14: todo.v1.TodoModel.State
-	(TodoModel_Priority)(0),                  // 15: todo.v1.TodoModel.Priority
-	(*date.Date)(nil),                        // 16: google.type.Date
+	(*ListTodosRequest_Filter)(nil),          // 10: todo.v1.ListTodosRequest.Filter
+	(*ListTodosRequest_OrderBy)(nil),         // 11: todo.v1.ListTodosRequest.OrderBy
+	(*UpdateTodoRequest_Todo)(nil),           // 12: todo.v1.UpdateTodoRequest.Todo
+	(*UpdateTodoRequest_SubTask)(nil),        // 13: todo.v1.UpdateTodoRequest.SubTask
+	(*UpdateTodoRequest_SubTask_Update)(nil), // 14: todo.v1.UpdateTodoRequest.SubTask.Update
+	(*TodoModel)(nil),                        // 15: todo.v1.TodoModel
+	(TodoModel_State)(0),                     // 16: todo.v1.TodoModel.State
+	(TodoModel_Priority)(0),                  // 17: todo.v1.TodoModel.Priority
+	(*date.Date)(nil),                        // 18: google.type.Date
 }
 var file_todo_v1_todo_service_proto_depIdxs = []int32{
 	8,  // 0: todo.v1.CreateTodoRequest.todo:type_name -> todo.v1.CreateTodoRequest.Todo
 	9,  // 1: todo.v1.CreateTodoRequest.sub_tasks:type_name -> todo.v1.CreateTodoRequest.SubTask
-	13, // 2: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.TodoModel
-	10, // 3: todo.v1.UpdateTodoRequest.todo:type_name -> todo.v1.UpdateTodoRequest.Todo
-	11, // 4: todo.v1.UpdateTodoRequest.sub_tasks:type_name -> todo.v1.UpdateTodoRequest.SubTask
-	13, // 5: todo.v1.BatchGetTodosResponse.todos:type_name -> todo.v1.TodoModel
-	14, // 6: todo.v1.CreateTodoRequest.Todo.state:type_name -> todo.v1.TodoModel.State
-	15, // 7: todo.v1.CreateTodoRequest.Todo.priority:type_name -> todo.v1.TodoModel.Priority
-	16, // 8: todo.v1.CreateTodoRequest.Todo.due_date:type_name -> google.type.Date
-	14, // 9: todo.v1.UpdateTodoRequest.Todo.state:type_name -> todo.v1.TodoModel.State
-	15, // 10: todo.v1.UpdateTodoRequest.Todo.priority:type_name -> todo.v1.TodoModel.Priority
-	16, // 11: todo.v1.UpdateTodoRequest.Todo.due_date:type_name -> google.type.Date
-	9,  // 12: todo.v1.UpdateTodoRequest.SubTask.create:type_name -> todo.v1.CreateTodoRequest.SubTask
-	12, // 13: todo.v1.UpdateTodoRequest.SubTask.update:type_name -> todo.v1.UpdateTodoRequest.SubTask.Update
-	0,  // 14: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
-	1,  // 15: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
-	2,  // 16: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
-	4,  // 17: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
-	5,  // 18: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
-	6,  // 19: todo.v1.TodoService.BatchGetTodos:input_type -> todo.v1.BatchGetTodosRequest
-	13, // 20: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.TodoModel
-	13, // 21: todo.v1.TodoService.GetTodo:output_type -> todo.v1.TodoModel
-	3,  // 22: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
-	13, // 23: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.TodoModel
-	13, // 24: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.TodoModel
-	7,  // 25: todo.v1.TodoService.BatchGetTodos:output_type -> todo.v1.BatchGetTodosResponse
-	20, // [20:26] is the sub-list for method output_type
-	14, // [14:20] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	10, // 2: todo.v1.ListTodosRequest.filter:type_name -> todo.v1.ListTodosRequest.Filter
+	11, // 3: todo.v1.ListTodosRequest.order_by:type_name -> todo.v1.ListTodosRequest.OrderBy
+	15, // 4: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.TodoModel
+	12, // 5: todo.v1.UpdateTodoRequest.todo:type_name -> todo.v1.UpdateTodoRequest.Todo
+	13, // 6: todo.v1.UpdateTodoRequest.sub_tasks:type_name -> todo.v1.UpdateTodoRequest.SubTask
+	15, // 7: todo.v1.BatchGetTodosResponse.todos:type_name -> todo.v1.TodoModel
+	16, // 8: todo.v1.CreateTodoRequest.Todo.state:type_name -> todo.v1.TodoModel.State
+	17, // 9: todo.v1.CreateTodoRequest.Todo.priority:type_name -> todo.v1.TodoModel.Priority
+	18, // 10: todo.v1.CreateTodoRequest.Todo.due_date:type_name -> google.type.Date
+	16, // 11: todo.v1.ListTodosRequest.Filter.states:type_name -> todo.v1.TodoModel.State
+	17, // 12: todo.v1.ListTodosRequest.Filter.priorities:type_name -> todo.v1.TodoModel.Priority
+	16, // 13: todo.v1.UpdateTodoRequest.Todo.state:type_name -> todo.v1.TodoModel.State
+	17, // 14: todo.v1.UpdateTodoRequest.Todo.priority:type_name -> todo.v1.TodoModel.Priority
+	18, // 15: todo.v1.UpdateTodoRequest.Todo.due_date:type_name -> google.type.Date
+	9,  // 16: todo.v1.UpdateTodoRequest.SubTask.create:type_name -> todo.v1.CreateTodoRequest.SubTask
+	14, // 17: todo.v1.UpdateTodoRequest.SubTask.update:type_name -> todo.v1.UpdateTodoRequest.SubTask.Update
+	0,  // 18: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
+	1,  // 19: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
+	2,  // 20: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
+	4,  // 21: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
+	5,  // 22: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
+	6,  // 23: todo.v1.TodoService.BatchGetTodos:input_type -> todo.v1.BatchGetTodosRequest
+	15, // 24: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.TodoModel
+	15, // 25: todo.v1.TodoService.GetTodo:output_type -> todo.v1.TodoModel
+	3,  // 26: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
+	15, // 27: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.TodoModel
+	15, // 28: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.TodoModel
+	7,  // 29: todo.v1.TodoService.BatchGetTodos:output_type -> todo.v1.BatchGetTodosResponse
+	24, // [24:30] is the sub-list for method output_type
+	18, // [18:24] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_todo_v1_todo_service_proto_init() }
@@ -1703,20 +1889,20 @@ func file_todo_v1_todo_service_proto_init() {
 	file_todo_v1_todo_service_proto_msgTypes[2].OneofWrappers = []any{}
 	file_todo_v1_todo_service_proto_msgTypes[6].OneofWrappers = []any{}
 	file_todo_v1_todo_service_proto_msgTypes[8].OneofWrappers = []any{}
-	file_todo_v1_todo_service_proto_msgTypes[10].OneofWrappers = []any{}
-	file_todo_v1_todo_service_proto_msgTypes[11].OneofWrappers = []any{
+	file_todo_v1_todo_service_proto_msgTypes[12].OneofWrappers = []any{}
+	file_todo_v1_todo_service_proto_msgTypes[13].OneofWrappers = []any{
 		(*updateTodoRequest_SubTask_Create)(nil),
 		(*updateTodoRequest_SubTask_Update_)(nil),
 		(*updateTodoRequest_SubTask_Delete)(nil),
 	}
-	file_todo_v1_todo_service_proto_msgTypes[12].OneofWrappers = []any{}
+	file_todo_v1_todo_service_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_todo_v1_todo_service_proto_rawDesc), len(file_todo_v1_todo_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

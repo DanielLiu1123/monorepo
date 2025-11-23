@@ -47,25 +47,43 @@ public interface ListTodosRequestOrBuilder extends
 
   /**
    * <pre>
-   * Filter expression for todos
-   * Examples: "status=PENDING", "assignee=user123"
+   * parent
    * </pre>
    *
-   * <code>string filter = 3 [json_name = "filter"];</code>
-   * @return The filter.
+   * <code>int64 user_id = 3 [json_name = "userId"];</code>
+   * @return The userId.
    */
-  java.lang.String getFilter();
+  long getUserId();
+
   /**
    * <pre>
    * Filter expression for todos
    * Examples: "status=PENDING", "assignee=user123"
    * </pre>
    *
-   * <code>string filter = 3 [json_name = "filter"];</code>
-   * @return The bytes for filter.
+   * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+   * @return Whether the filter field is set.
    */
-  com.google.protobuf.ByteString
-      getFilterBytes();
+  boolean hasFilter();
+  /**
+   * <pre>
+   * Filter expression for todos
+   * Examples: "status=PENDING", "assignee=user123"
+   * </pre>
+   *
+   * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+   * @return The filter.
+   */
+  monorepo.proto.todo.v1.ListTodosRequest.Filter getFilter();
+  /**
+   * <pre>
+   * Filter expression for todos
+   * Examples: "status=PENDING", "assignee=user123"
+   * </pre>
+   *
+   * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+   */
+  monorepo.proto.todo.v1.ListTodosRequest.FilterOrBuilder getFilterOrBuilder();
 
   /**
    * <pre>
@@ -73,28 +91,55 @@ public interface ListTodosRequestOrBuilder extends
    * Examples: "created_at", "due_date", "priority"
    * </pre>
    *
-   * <code>string order_by = 4 [json_name = "orderBy"];</code>
-   * @return The orderBy.
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
    */
-  java.lang.String getOrderBy();
+  java.util.List<monorepo.proto.todo.v1.ListTodosRequest.OrderBy> 
+      getOrderByList();
   /**
    * <pre>
    * Field to sort by
    * Examples: "created_at", "due_date", "priority"
    * </pre>
    *
-   * <code>string order_by = 4 [json_name = "orderBy"];</code>
-   * @return The bytes for orderBy.
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
    */
-  com.google.protobuf.ByteString
-      getOrderByBytes();
+  monorepo.proto.todo.v1.ListTodosRequest.OrderBy getOrderBy(int index);
+  /**
+   * <pre>
+   * Field to sort by
+   * Examples: "created_at", "due_date", "priority"
+   * </pre>
+   *
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+   */
+  int getOrderByCount();
+  /**
+   * <pre>
+   * Field to sort by
+   * Examples: "created_at", "due_date", "priority"
+   * </pre>
+   *
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+   */
+  java.util.List<? extends monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder> 
+      getOrderByOrBuilderList();
+  /**
+   * <pre>
+   * Field to sort by
+   * Examples: "created_at", "due_date", "priority"
+   * </pre>
+   *
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+   */
+  monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder getOrderByOrBuilder(
+      int index);
 
   /**
    * <pre>
    * default to false if not set
    * </pre>
    *
-   * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+   * <code>optional bool show_deleted = 6 [json_name = "showDeleted"];</code>
    * @return Whether the showDeleted field is set.
    */
   boolean hasShowDeleted();
@@ -103,7 +148,7 @@ public interface ListTodosRequestOrBuilder extends
    * default to false if not set
    * </pre>
    *
-   * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+   * <code>optional bool show_deleted = 6 [json_name = "showDeleted"];</code>
    * @return The showDeleted.
    */
   boolean getShowDeleted();

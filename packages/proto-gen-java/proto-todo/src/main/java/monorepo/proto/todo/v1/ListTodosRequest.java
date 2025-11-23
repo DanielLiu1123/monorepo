@@ -33,8 +33,7 @@ private static final long serialVersionUID = 0L;
   }
   private ListTodosRequest() {
     pageToken_ = "";
-    filter_ = "";
-    orderBy_ = "";
+    orderBy_ = java.util.Collections.emptyList();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -48,6 +47,1514 @@ private static final long serialVersionUID = 0L;
     return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             monorepo.proto.todo.v1.ListTodosRequest.class, monorepo.proto.todo.v1.ListTodosRequest.Builder.class);
+  }
+
+  public interface FilterOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:todo.v1.ListTodosRequest.Filter)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @return A list containing the states.
+     */
+    java.util.List<monorepo.proto.todo.v1.TodoModel.State> getStatesList();
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @return The count of states.
+     */
+    int getStatesCount();
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @param index The index of the element to return.
+     * @return The states at the given index.
+     */
+    monorepo.proto.todo.v1.TodoModel.State getStates(int index);
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @return A list containing the enum numeric values on the wire for states.
+     */
+    java.util.List<java.lang.Integer>
+    getStatesValueList();
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @param index The index of the value to return.
+     * @return The enum numeric value on the wire of states at the given index.
+     */
+    int getStatesValue(int index);
+
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @return A list containing the priorities.
+     */
+    java.util.List<monorepo.proto.todo.v1.TodoModel.Priority> getPrioritiesList();
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @return The count of priorities.
+     */
+    int getPrioritiesCount();
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @param index The index of the element to return.
+     * @return The priorities at the given index.
+     */
+    monorepo.proto.todo.v1.TodoModel.Priority getPriorities(int index);
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @return A list containing the enum numeric values on the wire for priorities.
+     */
+    java.util.List<java.lang.Integer>
+    getPrioritiesValueList();
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @param index The index of the value to return.
+     * @return The enum numeric value on the wire of priorities at the given index.
+     */
+    int getPrioritiesValue(int index);
+  }
+  /**
+   * Protobuf type {@code todo.v1.ListTodosRequest.Filter}
+   */
+  public static final class Filter extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:todo.v1.ListTodosRequest.Filter)
+      FilterOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 33,
+        /* patch= */ 1,
+        /* suffix= */ "",
+        "Filter");
+    }
+    // Use Filter.newBuilder() to construct.
+    private Filter(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private Filter() {
+      states_ = emptyIntList();
+      priorities_ = emptyIntList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_Filter_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_Filter_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              monorepo.proto.todo.v1.ListTodosRequest.Filter.class, monorepo.proto.todo.v1.ListTodosRequest.Filter.Builder.class);
+    }
+
+    public static final int STATES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.Internal.IntList states_ =
+        emptyIntList();
+    private static final     com.google.protobuf.Internal.IntListAdapter.IntConverter<
+        monorepo.proto.todo.v1.TodoModel.State> states_converter_ =
+            new com.google.protobuf.Internal.IntListAdapter.IntConverter<
+                monorepo.proto.todo.v1.TodoModel.State>() {
+              public monorepo.proto.todo.v1.TodoModel.State convert(int from) {
+                monorepo.proto.todo.v1.TodoModel.State result = monorepo.proto.todo.v1.TodoModel.State.forNumber(from);
+                return result == null ? monorepo.proto.todo.v1.TodoModel.State.UNRECOGNIZED : result;
+              }
+            };
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @return A list containing the states.
+     */
+    @java.lang.Override
+    public java.util.List<monorepo.proto.todo.v1.TodoModel.State> getStatesList() {
+      return new com.google.protobuf.Internal.IntListAdapter<
+          monorepo.proto.todo.v1.TodoModel.State>(states_, states_converter_);
+    }
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @return The count of states.
+     */
+    @java.lang.Override
+    public int getStatesCount() {
+      return states_.size();
+    }
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @param index The index of the element to return.
+     * @return The states at the given index.
+     */
+    @java.lang.Override
+    public monorepo.proto.todo.v1.TodoModel.State getStates(int index) {
+      return states_converter_.convert(states_.getInt(index));
+    }
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @return A list containing the enum numeric values on the wire for states.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Integer>
+    getStatesValueList() {
+      return states_;
+    }
+    /**
+     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * @param index The index of the value to return.
+     * @return The enum numeric value on the wire of states at the given index.
+     */
+    @java.lang.Override
+    public int getStatesValue(int index) {
+      return states_.getInt(index);
+    }
+    private int statesMemoizedSerializedSize;
+
+    public static final int PRIORITIES_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.Internal.IntList priorities_ =
+        emptyIntList();
+    private static final     com.google.protobuf.Internal.IntListAdapter.IntConverter<
+        monorepo.proto.todo.v1.TodoModel.Priority> priorities_converter_ =
+            new com.google.protobuf.Internal.IntListAdapter.IntConverter<
+                monorepo.proto.todo.v1.TodoModel.Priority>() {
+              public monorepo.proto.todo.v1.TodoModel.Priority convert(int from) {
+                monorepo.proto.todo.v1.TodoModel.Priority result = monorepo.proto.todo.v1.TodoModel.Priority.forNumber(from);
+                return result == null ? monorepo.proto.todo.v1.TodoModel.Priority.UNRECOGNIZED : result;
+              }
+            };
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @return A list containing the priorities.
+     */
+    @java.lang.Override
+    public java.util.List<monorepo.proto.todo.v1.TodoModel.Priority> getPrioritiesList() {
+      return new com.google.protobuf.Internal.IntListAdapter<
+          monorepo.proto.todo.v1.TodoModel.Priority>(priorities_, priorities_converter_);
+    }
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @return The count of priorities.
+     */
+    @java.lang.Override
+    public int getPrioritiesCount() {
+      return priorities_.size();
+    }
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @param index The index of the element to return.
+     * @return The priorities at the given index.
+     */
+    @java.lang.Override
+    public monorepo.proto.todo.v1.TodoModel.Priority getPriorities(int index) {
+      return priorities_converter_.convert(priorities_.getInt(index));
+    }
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @return A list containing the enum numeric values on the wire for priorities.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Integer>
+    getPrioritiesValueList() {
+      return priorities_;
+    }
+    /**
+     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * @param index The index of the value to return.
+     * @return The enum numeric value on the wire of priorities at the given index.
+     */
+    @java.lang.Override
+    public int getPrioritiesValue(int index) {
+      return priorities_.getInt(index);
+    }
+    private int prioritiesMemoizedSerializedSize;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (getStatesList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(statesMemoizedSerializedSize);
+      }
+      for (int i = 0; i < states_.size(); i++) {
+        output.writeEnumNoTag(states_.getInt(i));
+      }
+      if (getPrioritiesList().size() > 0) {
+        output.writeUInt32NoTag(18);
+        output.writeUInt32NoTag(prioritiesMemoizedSerializedSize);
+      }
+      for (int i = 0; i < priorities_.size(); i++) {
+        output.writeEnumNoTag(priorities_.getInt(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < states_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeEnumSizeNoTag(states_.getInt(i));
+        }
+        size += dataSize;
+        if (!getStatesList().isEmpty()) {  size += 1;
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(dataSize);
+        }statesMemoizedSerializedSize = dataSize;
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < priorities_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeEnumSizeNoTag(priorities_.getInt(i));
+        }
+        size += dataSize;
+        if (!getPrioritiesList().isEmpty()) {  size += 1;
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(dataSize);
+        }prioritiesMemoizedSerializedSize = dataSize;
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof monorepo.proto.todo.v1.ListTodosRequest.Filter)) {
+        return super.equals(obj);
+      }
+      monorepo.proto.todo.v1.ListTodosRequest.Filter other = (monorepo.proto.todo.v1.ListTodosRequest.Filter) obj;
+
+      if (!states_.equals(other.states_)) return false;
+      if (!priorities_.equals(other.priorities_)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getStatesCount() > 0) {
+        hash = (37 * hash) + STATES_FIELD_NUMBER;
+        hash = (53 * hash) + states_.hashCode();
+      }
+      if (getPrioritiesCount() > 0) {
+        hash = (37 * hash) + PRIORITIES_FIELD_NUMBER;
+        hash = (53 * hash) + priorities_.hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(monorepo.proto.todo.v1.ListTodosRequest.Filter prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code todo.v1.ListTodosRequest.Filter}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:todo.v1.ListTodosRequest.Filter)
+        monorepo.proto.todo.v1.ListTodosRequest.FilterOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_Filter_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_Filter_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                monorepo.proto.todo.v1.ListTodosRequest.Filter.class, monorepo.proto.todo.v1.ListTodosRequest.Filter.Builder.class);
+      }
+
+      // Construct using monorepo.proto.todo.v1.ListTodosRequest.Filter.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        states_ = emptyIntList();
+        priorities_ = emptyIntList();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_Filter_descriptor;
+      }
+
+      @java.lang.Override
+      public monorepo.proto.todo.v1.ListTodosRequest.Filter getDefaultInstanceForType() {
+        return monorepo.proto.todo.v1.ListTodosRequest.Filter.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public monorepo.proto.todo.v1.ListTodosRequest.Filter build() {
+        monorepo.proto.todo.v1.ListTodosRequest.Filter result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public monorepo.proto.todo.v1.ListTodosRequest.Filter buildPartial() {
+        monorepo.proto.todo.v1.ListTodosRequest.Filter result = new monorepo.proto.todo.v1.ListTodosRequest.Filter(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(monorepo.proto.todo.v1.ListTodosRequest.Filter result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          states_.makeImmutable();
+          result.states_ = states_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          priorities_.makeImmutable();
+          result.priorities_ = priorities_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof monorepo.proto.todo.v1.ListTodosRequest.Filter) {
+          return mergeFrom((monorepo.proto.todo.v1.ListTodosRequest.Filter)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(monorepo.proto.todo.v1.ListTodosRequest.Filter other) {
+        if (other == monorepo.proto.todo.v1.ListTodosRequest.Filter.getDefaultInstance()) return this;
+        if (!other.states_.isEmpty()) {
+          if (states_.isEmpty()) {
+            states_ = other.states_;
+            states_.makeImmutable();
+            bitField0_ |= 0x00000001;
+          } else {
+            ensureStatesIsMutable();
+            states_.addAll(other.states_);
+          }
+          onChanged();
+        }
+        if (!other.priorities_.isEmpty()) {
+          if (priorities_.isEmpty()) {
+            priorities_ = other.priorities_;
+            priorities_.makeImmutable();
+            bitField0_ |= 0x00000002;
+          } else {
+            ensurePrioritiesIsMutable();
+            priorities_.addAll(other.priorities_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                int tmpRaw = input.readEnum();
+                ensureStatesIsMutable();
+                states_.addInt(tmpRaw);
+                break;
+              } // case 8
+              case 10: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureStatesIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  states_.addInt(input.readEnum());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 10
+              case 16: {
+                int tmpRaw = input.readEnum();
+                ensurePrioritiesIsMutable();
+                priorities_.addInt(tmpRaw);
+                break;
+              } // case 16
+              case 18: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensurePrioritiesIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  priorities_.addInt(input.readEnum());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.Internal.IntList states_ = emptyIntList();
+      private void ensureStatesIsMutable() {
+        if (!states_.isModifiable()) {
+          states_ = makeMutableCopy(states_);
+        }
+        bitField0_ |= 0x00000001;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @return A list containing the states.
+       */
+      public java.util.List<monorepo.proto.todo.v1.TodoModel.State> getStatesList() {
+        return new com.google.protobuf.Internal.IntListAdapter<
+            monorepo.proto.todo.v1.TodoModel.State>(states_, states_converter_);
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @return The count of states.
+       */
+      public int getStatesCount() {
+        return states_.size();
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @param index The index of the element to return.
+       * @return The states at the given index.
+       */
+      public monorepo.proto.todo.v1.TodoModel.State getStates(int index) {
+        return states_converter_.convert(states_.getInt(index));
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @param index The index to set the value at.
+       * @param value The states to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStates(
+          int index, monorepo.proto.todo.v1.TodoModel.State value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureStatesIsMutable();
+        states_.setInt(index, value.getNumber());
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @param value The states to add.
+       * @return This builder for chaining.
+       */
+      public Builder addStates(monorepo.proto.todo.v1.TodoModel.State value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureStatesIsMutable();
+        states_.addInt(value.getNumber());
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @param values The states to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllStates(
+          java.lang.Iterable<? extends monorepo.proto.todo.v1.TodoModel.State> values) {
+        ensureStatesIsMutable();
+        for (monorepo.proto.todo.v1.TodoModel.State value : values) {
+          states_.addInt(value.getNumber());
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStates() {
+        states_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @return A list containing the enum numeric values on the wire for states.
+       */
+      public java.util.List<java.lang.Integer>
+      getStatesValueList() {
+        states_.makeImmutable();
+        return states_;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @param index The index of the value to return.
+       * @return The enum numeric value on the wire of states at the given index.
+       */
+      public int getStatesValue(int index) {
+        return states_.getInt(index);
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @param index The index to set the value at.
+       * @param value The enum numeric value on the wire for states to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatesValue(
+          int index, int value) {
+        ensureStatesIsMutable();
+        states_.setInt(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @param value The enum numeric value on the wire for states to add.
+       * @return This builder for chaining.
+       */
+      public Builder addStatesValue(int value) {
+        ensureStatesIsMutable();
+        states_.addInt(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * @param values The enum numeric values on the wire for states to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllStatesValue(
+          java.lang.Iterable<java.lang.Integer> values) {
+        ensureStatesIsMutable();
+        for (int value : values) {
+          states_.addInt(value);
+        }
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Internal.IntList priorities_ = emptyIntList();
+      private void ensurePrioritiesIsMutable() {
+        if (!priorities_.isModifiable()) {
+          priorities_ = makeMutableCopy(priorities_);
+        }
+        bitField0_ |= 0x00000002;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @return A list containing the priorities.
+       */
+      public java.util.List<monorepo.proto.todo.v1.TodoModel.Priority> getPrioritiesList() {
+        return new com.google.protobuf.Internal.IntListAdapter<
+            monorepo.proto.todo.v1.TodoModel.Priority>(priorities_, priorities_converter_);
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @return The count of priorities.
+       */
+      public int getPrioritiesCount() {
+        return priorities_.size();
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @param index The index of the element to return.
+       * @return The priorities at the given index.
+       */
+      public monorepo.proto.todo.v1.TodoModel.Priority getPriorities(int index) {
+        return priorities_converter_.convert(priorities_.getInt(index));
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @param index The index to set the value at.
+       * @param value The priorities to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPriorities(
+          int index, monorepo.proto.todo.v1.TodoModel.Priority value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensurePrioritiesIsMutable();
+        priorities_.setInt(index, value.getNumber());
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @param value The priorities to add.
+       * @return This builder for chaining.
+       */
+      public Builder addPriorities(monorepo.proto.todo.v1.TodoModel.Priority value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensurePrioritiesIsMutable();
+        priorities_.addInt(value.getNumber());
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @param values The priorities to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllPriorities(
+          java.lang.Iterable<? extends monorepo.proto.todo.v1.TodoModel.Priority> values) {
+        ensurePrioritiesIsMutable();
+        for (monorepo.proto.todo.v1.TodoModel.Priority value : values) {
+          priorities_.addInt(value.getNumber());
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPriorities() {
+        priorities_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @return A list containing the enum numeric values on the wire for priorities.
+       */
+      public java.util.List<java.lang.Integer>
+      getPrioritiesValueList() {
+        priorities_.makeImmutable();
+        return priorities_;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @param index The index of the value to return.
+       * @return The enum numeric value on the wire of priorities at the given index.
+       */
+      public int getPrioritiesValue(int index) {
+        return priorities_.getInt(index);
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @param index The index to set the value at.
+       * @param value The enum numeric value on the wire for priorities to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPrioritiesValue(
+          int index, int value) {
+        ensurePrioritiesIsMutable();
+        priorities_.setInt(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @param value The enum numeric value on the wire for priorities to add.
+       * @return This builder for chaining.
+       */
+      public Builder addPrioritiesValue(int value) {
+        ensurePrioritiesIsMutable();
+        priorities_.addInt(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * @param values The enum numeric values on the wire for priorities to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllPrioritiesValue(
+          java.lang.Iterable<java.lang.Integer> values) {
+        ensurePrioritiesIsMutable();
+        for (int value : values) {
+          priorities_.addInt(value);
+        }
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:todo.v1.ListTodosRequest.Filter)
+    }
+
+    // @@protoc_insertion_point(class_scope:todo.v1.ListTodosRequest.Filter)
+    private static final monorepo.proto.todo.v1.ListTodosRequest.Filter DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new monorepo.proto.todo.v1.ListTodosRequest.Filter();
+    }
+
+    public static monorepo.proto.todo.v1.ListTodosRequest.Filter getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Filter>
+        PARSER = new com.google.protobuf.AbstractParser<Filter>() {
+      @java.lang.Override
+      public Filter parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Filter> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Filter> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public monorepo.proto.todo.v1.ListTodosRequest.Filter getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface OrderByOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:todo.v1.ListTodosRequest.OrderBy)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string field = 1 [json_name = "field"];</code>
+     * @return The field.
+     */
+    java.lang.String getField();
+    /**
+     * <code>string field = 1 [json_name = "field"];</code>
+     * @return The bytes for field.
+     */
+    com.google.protobuf.ByteString
+        getFieldBytes();
+
+    /**
+     * <code>bool is_desc = 2 [json_name = "isDesc"];</code>
+     * @return The isDesc.
+     */
+    boolean getIsDesc();
+  }
+  /**
+   * Protobuf type {@code todo.v1.ListTodosRequest.OrderBy}
+   */
+  public static final class OrderBy extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:todo.v1.ListTodosRequest.OrderBy)
+      OrderByOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 33,
+        /* patch= */ 1,
+        /* suffix= */ "",
+        "OrderBy");
+    }
+    // Use OrderBy.newBuilder() to construct.
+    private OrderBy(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private OrderBy() {
+      field_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_OrderBy_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_OrderBy_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              monorepo.proto.todo.v1.ListTodosRequest.OrderBy.class, monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder.class);
+    }
+
+    public static final int FIELD_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object field_ = "";
+    /**
+     * <code>string field = 1 [json_name = "field"];</code>
+     * @return The field.
+     */
+    @java.lang.Override
+    public java.lang.String getField() {
+      java.lang.Object ref = field_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        field_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string field = 1 [json_name = "field"];</code>
+     * @return The bytes for field.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getFieldBytes() {
+      java.lang.Object ref = field_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        field_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int IS_DESC_FIELD_NUMBER = 2;
+    private boolean isDesc_ = false;
+    /**
+     * <code>bool is_desc = 2 [json_name = "isDesc"];</code>
+     * @return The isDesc.
+     */
+    @java.lang.Override
+    public boolean getIsDesc() {
+      return isDesc_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(field_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, field_);
+      }
+      if (isDesc_ != false) {
+        output.writeBool(2, isDesc_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(field_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, field_);
+      }
+      if (isDesc_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, isDesc_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof monorepo.proto.todo.v1.ListTodosRequest.OrderBy)) {
+        return super.equals(obj);
+      }
+      monorepo.proto.todo.v1.ListTodosRequest.OrderBy other = (monorepo.proto.todo.v1.ListTodosRequest.OrderBy) obj;
+
+      if (!getField()
+          .equals(other.getField())) return false;
+      if (getIsDesc()
+          != other.getIsDesc()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + FIELD_FIELD_NUMBER;
+      hash = (53 * hash) + getField().hashCode();
+      hash = (37 * hash) + IS_DESC_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsDesc());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(monorepo.proto.todo.v1.ListTodosRequest.OrderBy prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code todo.v1.ListTodosRequest.OrderBy}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:todo.v1.ListTodosRequest.OrderBy)
+        monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_OrderBy_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_OrderBy_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                monorepo.proto.todo.v1.ListTodosRequest.OrderBy.class, monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder.class);
+      }
+
+      // Construct using monorepo.proto.todo.v1.ListTodosRequest.OrderBy.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        field_ = "";
+        isDesc_ = false;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_ListTodosRequest_OrderBy_descriptor;
+      }
+
+      @java.lang.Override
+      public monorepo.proto.todo.v1.ListTodosRequest.OrderBy getDefaultInstanceForType() {
+        return monorepo.proto.todo.v1.ListTodosRequest.OrderBy.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public monorepo.proto.todo.v1.ListTodosRequest.OrderBy build() {
+        monorepo.proto.todo.v1.ListTodosRequest.OrderBy result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public monorepo.proto.todo.v1.ListTodosRequest.OrderBy buildPartial() {
+        monorepo.proto.todo.v1.ListTodosRequest.OrderBy result = new monorepo.proto.todo.v1.ListTodosRequest.OrderBy(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(monorepo.proto.todo.v1.ListTodosRequest.OrderBy result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.field_ = field_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.isDesc_ = isDesc_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof monorepo.proto.todo.v1.ListTodosRequest.OrderBy) {
+          return mergeFrom((monorepo.proto.todo.v1.ListTodosRequest.OrderBy)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(monorepo.proto.todo.v1.ListTodosRequest.OrderBy other) {
+        if (other == monorepo.proto.todo.v1.ListTodosRequest.OrderBy.getDefaultInstance()) return this;
+        if (!other.getField().isEmpty()) {
+          field_ = other.field_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (other.getIsDesc() != false) {
+          setIsDesc(other.getIsDesc());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                field_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                isDesc_ = input.readBool();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object field_ = "";
+      /**
+       * <code>string field = 1 [json_name = "field"];</code>
+       * @return The field.
+       */
+      public java.lang.String getField() {
+        java.lang.Object ref = field_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          field_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string field = 1 [json_name = "field"];</code>
+       * @return The bytes for field.
+       */
+      public com.google.protobuf.ByteString
+          getFieldBytes() {
+        java.lang.Object ref = field_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          field_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string field = 1 [json_name = "field"];</code>
+       * @param value The field to set.
+       * @return This builder for chaining.
+       */
+      public Builder setField(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        field_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string field = 1 [json_name = "field"];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearField() {
+        field_ = getDefaultInstance().getField();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string field = 1 [json_name = "field"];</code>
+       * @param value The bytes for field to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFieldBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        field_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private boolean isDesc_ ;
+      /**
+       * <code>bool is_desc = 2 [json_name = "isDesc"];</code>
+       * @return The isDesc.
+       */
+      @java.lang.Override
+      public boolean getIsDesc() {
+        return isDesc_;
+      }
+      /**
+       * <code>bool is_desc = 2 [json_name = "isDesc"];</code>
+       * @param value The isDesc to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIsDesc(boolean value) {
+
+        isDesc_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool is_desc = 2 [json_name = "isDesc"];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIsDesc() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        isDesc_ = false;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:todo.v1.ListTodosRequest.OrderBy)
+    }
+
+    // @@protoc_insertion_point(class_scope:todo.v1.ListTodosRequest.OrderBy)
+    private static final monorepo.proto.todo.v1.ListTodosRequest.OrderBy DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new monorepo.proto.todo.v1.ListTodosRequest.OrderBy();
+    }
+
+    public static monorepo.proto.todo.v1.ListTodosRequest.OrderBy getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<OrderBy>
+        PARSER = new com.google.protobuf.AbstractParser<OrderBy>() {
+      @java.lang.Override
+      public OrderBy parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<OrderBy> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<OrderBy> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public monorepo.proto.todo.v1.ListTodosRequest.OrderBy getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   private int bitField0_;
@@ -118,30 +1625,48 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int FILTER_FIELD_NUMBER = 3;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object filter_ = "";
+  public static final int USER_ID_FIELD_NUMBER = 3;
+  private long userId_ = 0L;
+  /**
+   * <pre>
+   * parent
+   * </pre>
+   *
+   * <code>int64 user_id = 3 [json_name = "userId"];</code>
+   * @return The userId.
+   */
+  @java.lang.Override
+  public long getUserId() {
+    return userId_;
+  }
+
+  public static final int FILTER_FIELD_NUMBER = 4;
+  private monorepo.proto.todo.v1.ListTodosRequest.Filter filter_;
   /**
    * <pre>
    * Filter expression for todos
    * Examples: "status=PENDING", "assignee=user123"
    * </pre>
    *
-   * <code>string filter = 3 [json_name = "filter"];</code>
+   * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+   * @return Whether the filter field is set.
+   */
+  @java.lang.Override
+  public boolean hasFilter() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <pre>
+   * Filter expression for todos
+   * Examples: "status=PENDING", "assignee=user123"
+   * </pre>
+   *
+   * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
    * @return The filter.
    */
   @java.lang.Override
-  public java.lang.String getFilter() {
-    java.lang.Object ref = filter_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      filter_ = s;
-      return s;
-    }
+  public monorepo.proto.todo.v1.ListTodosRequest.Filter getFilter() {
+    return filter_ == null ? monorepo.proto.todo.v1.ListTodosRequest.Filter.getDefaultInstance() : filter_;
   }
   /**
    * <pre>
@@ -149,48 +1674,27 @@ private static final long serialVersionUID = 0L;
    * Examples: "status=PENDING", "assignee=user123"
    * </pre>
    *
-   * <code>string filter = 3 [json_name = "filter"];</code>
-   * @return The bytes for filter.
+   * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getFilterBytes() {
-    java.lang.Object ref = filter_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      filter_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public monorepo.proto.todo.v1.ListTodosRequest.FilterOrBuilder getFilterOrBuilder() {
+    return filter_ == null ? monorepo.proto.todo.v1.ListTodosRequest.Filter.getDefaultInstance() : filter_;
   }
 
-  public static final int ORDER_BY_FIELD_NUMBER = 4;
+  public static final int ORDER_BY_FIELD_NUMBER = 5;
   @SuppressWarnings("serial")
-  private volatile java.lang.Object orderBy_ = "";
+  private java.util.List<monorepo.proto.todo.v1.ListTodosRequest.OrderBy> orderBy_;
   /**
    * <pre>
    * Field to sort by
    * Examples: "created_at", "due_date", "priority"
    * </pre>
    *
-   * <code>string order_by = 4 [json_name = "orderBy"];</code>
-   * @return The orderBy.
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
    */
   @java.lang.Override
-  public java.lang.String getOrderBy() {
-    java.lang.Object ref = orderBy_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      orderBy_ = s;
-      return s;
-    }
+  public java.util.List<monorepo.proto.todo.v1.ListTodosRequest.OrderBy> getOrderByList() {
+    return orderBy_;
   }
   /**
    * <pre>
@@ -198,44 +1702,71 @@ private static final long serialVersionUID = 0L;
    * Examples: "created_at", "due_date", "priority"
    * </pre>
    *
-   * <code>string order_by = 4 [json_name = "orderBy"];</code>
-   * @return The bytes for orderBy.
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getOrderByBytes() {
-    java.lang.Object ref = orderBy_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      orderBy_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public java.util.List<? extends monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder> 
+      getOrderByOrBuilderList() {
+    return orderBy_;
+  }
+  /**
+   * <pre>
+   * Field to sort by
+   * Examples: "created_at", "due_date", "priority"
+   * </pre>
+   *
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+   */
+  @java.lang.Override
+  public int getOrderByCount() {
+    return orderBy_.size();
+  }
+  /**
+   * <pre>
+   * Field to sort by
+   * Examples: "created_at", "due_date", "priority"
+   * </pre>
+   *
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+   */
+  @java.lang.Override
+  public monorepo.proto.todo.v1.ListTodosRequest.OrderBy getOrderBy(int index) {
+    return orderBy_.get(index);
+  }
+  /**
+   * <pre>
+   * Field to sort by
+   * Examples: "created_at", "due_date", "priority"
+   * </pre>
+   *
+   * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+   */
+  @java.lang.Override
+  public monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder getOrderByOrBuilder(
+      int index) {
+    return orderBy_.get(index);
   }
 
-  public static final int SHOW_DELETED_FIELD_NUMBER = 5;
+  public static final int SHOW_DELETED_FIELD_NUMBER = 6;
   private boolean showDeleted_ = false;
   /**
    * <pre>
    * default to false if not set
    * </pre>
    *
-   * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+   * <code>optional bool show_deleted = 6 [json_name = "showDeleted"];</code>
    * @return Whether the showDeleted field is set.
    */
   @java.lang.Override
   public boolean hasShowDeleted() {
-    return ((bitField0_ & 0x00000001) != 0);
+    return ((bitField0_ & 0x00000002) != 0);
   }
   /**
    * <pre>
    * default to false if not set
    * </pre>
    *
-   * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+   * <code>optional bool show_deleted = 6 [json_name = "showDeleted"];</code>
    * @return The showDeleted.
    */
   @java.lang.Override
@@ -263,14 +1794,17 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(pageToken_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 2, pageToken_);
     }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(filter_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 3, filter_);
-    }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(orderBy_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 4, orderBy_);
+    if (userId_ != 0L) {
+      output.writeInt64(3, userId_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeBool(5, showDeleted_);
+      output.writeMessage(4, getFilter());
+    }
+    for (int i = 0; i < orderBy_.size(); i++) {
+      output.writeMessage(5, orderBy_.get(i));
+    }
+    if (((bitField0_ & 0x00000002) != 0)) {
+      output.writeBool(6, showDeleted_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -288,15 +1822,21 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(pageToken_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(2, pageToken_);
     }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(filter_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(3, filter_);
-    }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(orderBy_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(4, orderBy_);
+    if (userId_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(3, userId_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(5, showDeleted_);
+        .computeMessageSize(4, getFilter());
+    }
+    for (int i = 0; i < orderBy_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(5, orderBy_.get(i));
+    }
+    if (((bitField0_ & 0x00000002) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(6, showDeleted_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -317,10 +1857,15 @@ private static final long serialVersionUID = 0L;
         != other.getPageSize()) return false;
     if (!getPageToken()
         .equals(other.getPageToken())) return false;
-    if (!getFilter()
-        .equals(other.getFilter())) return false;
-    if (!getOrderBy()
-        .equals(other.getOrderBy())) return false;
+    if (getUserId()
+        != other.getUserId()) return false;
+    if (hasFilter() != other.hasFilter()) return false;
+    if (hasFilter()) {
+      if (!getFilter()
+          .equals(other.getFilter())) return false;
+    }
+    if (!getOrderByList()
+        .equals(other.getOrderByList())) return false;
     if (hasShowDeleted() != other.hasShowDeleted()) return false;
     if (hasShowDeleted()) {
       if (getShowDeleted()
@@ -341,10 +1886,17 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getPageSize();
     hash = (37 * hash) + PAGE_TOKEN_FIELD_NUMBER;
     hash = (53 * hash) + getPageToken().hashCode();
-    hash = (37 * hash) + FILTER_FIELD_NUMBER;
-    hash = (53 * hash) + getFilter().hashCode();
-    hash = (37 * hash) + ORDER_BY_FIELD_NUMBER;
-    hash = (53 * hash) + getOrderBy().hashCode();
+    hash = (37 * hash) + USER_ID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getUserId());
+    if (hasFilter()) {
+      hash = (37 * hash) + FILTER_FIELD_NUMBER;
+      hash = (53 * hash) + getFilter().hashCode();
+    }
+    if (getOrderByCount() > 0) {
+      hash = (37 * hash) + ORDER_BY_FIELD_NUMBER;
+      hash = (53 * hash) + getOrderByList().hashCode();
+    }
     if (hasShowDeleted()) {
       hash = (37 * hash) + SHOW_DELETED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
@@ -473,13 +2025,20 @@ private static final long serialVersionUID = 0L;
 
     // Construct using monorepo.proto.todo.v1.ListTodosRequest.newBuilder()
     private Builder() {
-
+      maybeForceBuilderInitialization();
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       super(parent);
-
+      maybeForceBuilderInitialization();
+    }
+    private void maybeForceBuilderInitialization() {
+      if (com.google.protobuf.GeneratedMessage
+              .alwaysUseFieldBuilders) {
+        internalGetFilterFieldBuilder();
+        internalGetOrderByFieldBuilder();
+      }
     }
     @java.lang.Override
     public Builder clear() {
@@ -487,8 +2046,19 @@ private static final long serialVersionUID = 0L;
       bitField0_ = 0;
       pageSize_ = 0;
       pageToken_ = "";
-      filter_ = "";
-      orderBy_ = "";
+      userId_ = 0L;
+      filter_ = null;
+      if (filterBuilder_ != null) {
+        filterBuilder_.dispose();
+        filterBuilder_ = null;
+      }
+      if (orderByBuilder_ == null) {
+        orderBy_ = java.util.Collections.emptyList();
+      } else {
+        orderBy_ = null;
+        orderByBuilder_.clear();
+      }
+      bitField0_ = (bitField0_ & ~0x00000010);
       showDeleted_ = false;
       return this;
     }
@@ -516,9 +2086,22 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public monorepo.proto.todo.v1.ListTodosRequest buildPartial() {
       monorepo.proto.todo.v1.ListTodosRequest result = new monorepo.proto.todo.v1.ListTodosRequest(this);
+      buildPartialRepeatedFields(result);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartialRepeatedFields(monorepo.proto.todo.v1.ListTodosRequest result) {
+      if (orderByBuilder_ == null) {
+        if (((bitField0_ & 0x00000010) != 0)) {
+          orderBy_ = java.util.Collections.unmodifiableList(orderBy_);
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.orderBy_ = orderBy_;
+      } else {
+        result.orderBy_ = orderByBuilder_.build();
+      }
     }
 
     private void buildPartial0(monorepo.proto.todo.v1.ListTodosRequest result) {
@@ -530,15 +2113,18 @@ private static final long serialVersionUID = 0L;
         result.pageToken_ = pageToken_;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.filter_ = filter_;
-      }
-      if (((from_bitField0_ & 0x00000008) != 0)) {
-        result.orderBy_ = orderBy_;
+        result.userId_ = userId_;
       }
       int to_bitField0_ = 0;
-      if (((from_bitField0_ & 0x00000010) != 0)) {
-        result.showDeleted_ = showDeleted_;
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.filter_ = filterBuilder_ == null
+            ? filter_
+            : filterBuilder_.build();
         to_bitField0_ |= 0x00000001;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.showDeleted_ = showDeleted_;
+        to_bitField0_ |= 0x00000002;
       }
       result.bitField0_ |= to_bitField0_;
     }
@@ -563,15 +2149,37 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000002;
         onChanged();
       }
-      if (!other.getFilter().isEmpty()) {
-        filter_ = other.filter_;
-        bitField0_ |= 0x00000004;
-        onChanged();
+      if (other.getUserId() != 0L) {
+        setUserId(other.getUserId());
       }
-      if (!other.getOrderBy().isEmpty()) {
-        orderBy_ = other.orderBy_;
-        bitField0_ |= 0x00000008;
-        onChanged();
+      if (other.hasFilter()) {
+        mergeFilter(other.getFilter());
+      }
+      if (orderByBuilder_ == null) {
+        if (!other.orderBy_.isEmpty()) {
+          if (orderBy_.isEmpty()) {
+            orderBy_ = other.orderBy_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensureOrderByIsMutable();
+            orderBy_.addAll(other.orderBy_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.orderBy_.isEmpty()) {
+          if (orderByBuilder_.isEmpty()) {
+            orderByBuilder_.dispose();
+            orderByBuilder_ = null;
+            orderBy_ = other.orderBy_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+            orderByBuilder_ = 
+              com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                 internalGetOrderByFieldBuilder() : null;
+          } else {
+            orderByBuilder_.addAllMessages(other.orderBy_);
+          }
+        }
       }
       if (other.hasShowDeleted()) {
         setShowDeleted(other.getShowDeleted());
@@ -612,21 +2220,36 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000002;
               break;
             } // case 18
-            case 26: {
-              filter_ = input.readStringRequireUtf8();
+            case 24: {
+              userId_ = input.readInt64();
               bitField0_ |= 0x00000004;
               break;
-            } // case 26
+            } // case 24
             case 34: {
-              orderBy_ = input.readStringRequireUtf8();
+              input.readMessage(
+                  internalGetFilterFieldBuilder().getBuilder(),
+                  extensionRegistry);
               bitField0_ |= 0x00000008;
               break;
             } // case 34
-            case 40: {
-              showDeleted_ = input.readBool();
-              bitField0_ |= 0x00000010;
+            case 42: {
+              monorepo.proto.todo.v1.ListTodosRequest.OrderBy m =
+                  input.readMessage(
+                      monorepo.proto.todo.v1.ListTodosRequest.OrderBy.parser(),
+                      extensionRegistry);
+              if (orderByBuilder_ == null) {
+                ensureOrderByIsMutable();
+                orderBy_.add(m);
+              } else {
+                orderByBuilder_.addMessage(m);
+              }
               break;
-            } // case 40
+            } // case 42
+            case 48: {
+              showDeleted_ = input.readBool();
+              bitField0_ |= 0x00000020;
+              break;
+            } // case 48
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -794,123 +2417,241 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object filter_ = "";
+    private long userId_ ;
     /**
      * <pre>
-     * Filter expression for todos
-     * Examples: "status=PENDING", "assignee=user123"
+     * parent
      * </pre>
      *
-     * <code>string filter = 3 [json_name = "filter"];</code>
-     * @return The filter.
+     * <code>int64 user_id = 3 [json_name = "userId"];</code>
+     * @return The userId.
      */
-    public java.lang.String getFilter() {
-      java.lang.Object ref = filter_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        filter_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    @java.lang.Override
+    public long getUserId() {
+      return userId_;
     }
     /**
      * <pre>
-     * Filter expression for todos
-     * Examples: "status=PENDING", "assignee=user123"
+     * parent
      * </pre>
      *
-     * <code>string filter = 3 [json_name = "filter"];</code>
-     * @return The bytes for filter.
-     */
-    public com.google.protobuf.ByteString
-        getFilterBytes() {
-      java.lang.Object ref = filter_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        filter_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <pre>
-     * Filter expression for todos
-     * Examples: "status=PENDING", "assignee=user123"
-     * </pre>
-     *
-     * <code>string filter = 3 [json_name = "filter"];</code>
-     * @param value The filter to set.
+     * <code>int64 user_id = 3 [json_name = "userId"];</code>
+     * @param value The userId to set.
      * @return This builder for chaining.
      */
-    public Builder setFilter(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      filter_ = value;
+    public Builder setUserId(long value) {
+
+      userId_ = value;
       bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * Filter expression for todos
-     * Examples: "status=PENDING", "assignee=user123"
+     * parent
      * </pre>
      *
-     * <code>string filter = 3 [json_name = "filter"];</code>
+     * <code>int64 user_id = 3 [json_name = "userId"];</code>
      * @return This builder for chaining.
      */
-    public Builder clearFilter() {
-      filter_ = getDefaultInstance().getFilter();
+    public Builder clearUserId() {
       bitField0_ = (bitField0_ & ~0x00000004);
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Filter expression for todos
-     * Examples: "status=PENDING", "assignee=user123"
-     * </pre>
-     *
-     * <code>string filter = 3 [json_name = "filter"];</code>
-     * @param value The bytes for filter to set.
-     * @return This builder for chaining.
-     */
-    public Builder setFilterBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      filter_ = value;
-      bitField0_ |= 0x00000004;
+      userId_ = 0L;
       onChanged();
       return this;
     }
 
-    private java.lang.Object orderBy_ = "";
+    private monorepo.proto.todo.v1.ListTodosRequest.Filter filter_;
+    private com.google.protobuf.SingleFieldBuilder<
+        monorepo.proto.todo.v1.ListTodosRequest.Filter, monorepo.proto.todo.v1.ListTodosRequest.Filter.Builder, monorepo.proto.todo.v1.ListTodosRequest.FilterOrBuilder> filterBuilder_;
+    /**
+     * <pre>
+     * Filter expression for todos
+     * Examples: "status=PENDING", "assignee=user123"
+     * </pre>
+     *
+     * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+     * @return Whether the filter field is set.
+     */
+    public boolean hasFilter() {
+      return ((bitField0_ & 0x00000008) != 0);
+    }
+    /**
+     * <pre>
+     * Filter expression for todos
+     * Examples: "status=PENDING", "assignee=user123"
+     * </pre>
+     *
+     * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+     * @return The filter.
+     */
+    public monorepo.proto.todo.v1.ListTodosRequest.Filter getFilter() {
+      if (filterBuilder_ == null) {
+        return filter_ == null ? monorepo.proto.todo.v1.ListTodosRequest.Filter.getDefaultInstance() : filter_;
+      } else {
+        return filterBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Filter expression for todos
+     * Examples: "status=PENDING", "assignee=user123"
+     * </pre>
+     *
+     * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+     */
+    public Builder setFilter(monorepo.proto.todo.v1.ListTodosRequest.Filter value) {
+      if (filterBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        filter_ = value;
+      } else {
+        filterBuilder_.setMessage(value);
+      }
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Filter expression for todos
+     * Examples: "status=PENDING", "assignee=user123"
+     * </pre>
+     *
+     * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+     */
+    public Builder setFilter(
+        monorepo.proto.todo.v1.ListTodosRequest.Filter.Builder builderForValue) {
+      if (filterBuilder_ == null) {
+        filter_ = builderForValue.build();
+      } else {
+        filterBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Filter expression for todos
+     * Examples: "status=PENDING", "assignee=user123"
+     * </pre>
+     *
+     * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+     */
+    public Builder mergeFilter(monorepo.proto.todo.v1.ListTodosRequest.Filter value) {
+      if (filterBuilder_ == null) {
+        if (((bitField0_ & 0x00000008) != 0) &&
+          filter_ != null &&
+          filter_ != monorepo.proto.todo.v1.ListTodosRequest.Filter.getDefaultInstance()) {
+          getFilterBuilder().mergeFrom(value);
+        } else {
+          filter_ = value;
+        }
+      } else {
+        filterBuilder_.mergeFrom(value);
+      }
+      if (filter_ != null) {
+        bitField0_ |= 0x00000008;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Filter expression for todos
+     * Examples: "status=PENDING", "assignee=user123"
+     * </pre>
+     *
+     * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+     */
+    public Builder clearFilter() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      filter_ = null;
+      if (filterBuilder_ != null) {
+        filterBuilder_.dispose();
+        filterBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Filter expression for todos
+     * Examples: "status=PENDING", "assignee=user123"
+     * </pre>
+     *
+     * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+     */
+    public monorepo.proto.todo.v1.ListTodosRequest.Filter.Builder getFilterBuilder() {
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return internalGetFilterFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Filter expression for todos
+     * Examples: "status=PENDING", "assignee=user123"
+     * </pre>
+     *
+     * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+     */
+    public monorepo.proto.todo.v1.ListTodosRequest.FilterOrBuilder getFilterOrBuilder() {
+      if (filterBuilder_ != null) {
+        return filterBuilder_.getMessageOrBuilder();
+      } else {
+        return filter_ == null ?
+            monorepo.proto.todo.v1.ListTodosRequest.Filter.getDefaultInstance() : filter_;
+      }
+    }
+    /**
+     * <pre>
+     * Filter expression for todos
+     * Examples: "status=PENDING", "assignee=user123"
+     * </pre>
+     *
+     * <code>optional .todo.v1.ListTodosRequest.Filter filter = 4 [json_name = "filter"];</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        monorepo.proto.todo.v1.ListTodosRequest.Filter, monorepo.proto.todo.v1.ListTodosRequest.Filter.Builder, monorepo.proto.todo.v1.ListTodosRequest.FilterOrBuilder> 
+        internalGetFilterFieldBuilder() {
+      if (filterBuilder_ == null) {
+        filterBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            monorepo.proto.todo.v1.ListTodosRequest.Filter, monorepo.proto.todo.v1.ListTodosRequest.Filter.Builder, monorepo.proto.todo.v1.ListTodosRequest.FilterOrBuilder>(
+                getFilter(),
+                getParentForChildren(),
+                isClean());
+        filter_ = null;
+      }
+      return filterBuilder_;
+    }
+
+    private java.util.List<monorepo.proto.todo.v1.ListTodosRequest.OrderBy> orderBy_ =
+      java.util.Collections.emptyList();
+    private void ensureOrderByIsMutable() {
+      if (!((bitField0_ & 0x00000010) != 0)) {
+        orderBy_ = new java.util.ArrayList<monorepo.proto.todo.v1.ListTodosRequest.OrderBy>(orderBy_);
+        bitField0_ |= 0x00000010;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilder<
+        monorepo.proto.todo.v1.ListTodosRequest.OrderBy, monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder, monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder> orderByBuilder_;
+
     /**
      * <pre>
      * Field to sort by
      * Examples: "created_at", "due_date", "priority"
      * </pre>
      *
-     * <code>string order_by = 4 [json_name = "orderBy"];</code>
-     * @return The orderBy.
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
      */
-    public java.lang.String getOrderBy() {
-      java.lang.Object ref = orderBy_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        orderBy_ = s;
-        return s;
+    public java.util.List<monorepo.proto.todo.v1.ListTodosRequest.OrderBy> getOrderByList() {
+      if (orderByBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(orderBy_);
       } else {
-        return (java.lang.String) ref;
+        return orderByBuilder_.getMessageList();
       }
     }
     /**
@@ -919,20 +2660,13 @@ private static final long serialVersionUID = 0L;
      * Examples: "created_at", "due_date", "priority"
      * </pre>
      *
-     * <code>string order_by = 4 [json_name = "orderBy"];</code>
-     * @return The bytes for orderBy.
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
      */
-    public com.google.protobuf.ByteString
-        getOrderByBytes() {
-      java.lang.Object ref = orderBy_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        orderBy_ = b;
-        return b;
+    public int getOrderByCount() {
+      if (orderByBuilder_ == null) {
+        return orderBy_.size();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        return orderByBuilder_.getCount();
       }
     }
     /**
@@ -941,16 +2675,35 @@ private static final long serialVersionUID = 0L;
      * Examples: "created_at", "due_date", "priority"
      * </pre>
      *
-     * <code>string order_by = 4 [json_name = "orderBy"];</code>
-     * @param value The orderBy to set.
-     * @return This builder for chaining.
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public monorepo.proto.todo.v1.ListTodosRequest.OrderBy getOrderBy(int index) {
+      if (orderByBuilder_ == null) {
+        return orderBy_.get(index);
+      } else {
+        return orderByBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
      */
     public Builder setOrderBy(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      orderBy_ = value;
-      bitField0_ |= 0x00000008;
-      onChanged();
+        int index, monorepo.proto.todo.v1.ListTodosRequest.OrderBy value) {
+      if (orderByBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureOrderByIsMutable();
+        orderBy_.set(index, value);
+        onChanged();
+      } else {
+        orderByBuilder_.setMessage(index, value);
+      }
       return this;
     }
     /**
@@ -959,13 +2712,136 @@ private static final long serialVersionUID = 0L;
      * Examples: "created_at", "due_date", "priority"
      * </pre>
      *
-     * <code>string order_by = 4 [json_name = "orderBy"];</code>
-     * @return This builder for chaining.
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public Builder setOrderBy(
+        int index, monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder builderForValue) {
+      if (orderByBuilder_ == null) {
+        ensureOrderByIsMutable();
+        orderBy_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        orderByBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public Builder addOrderBy(monorepo.proto.todo.v1.ListTodosRequest.OrderBy value) {
+      if (orderByBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureOrderByIsMutable();
+        orderBy_.add(value);
+        onChanged();
+      } else {
+        orderByBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public Builder addOrderBy(
+        int index, monorepo.proto.todo.v1.ListTodosRequest.OrderBy value) {
+      if (orderByBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureOrderByIsMutable();
+        orderBy_.add(index, value);
+        onChanged();
+      } else {
+        orderByBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public Builder addOrderBy(
+        monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder builderForValue) {
+      if (orderByBuilder_ == null) {
+        ensureOrderByIsMutable();
+        orderBy_.add(builderForValue.build());
+        onChanged();
+      } else {
+        orderByBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public Builder addOrderBy(
+        int index, monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder builderForValue) {
+      if (orderByBuilder_ == null) {
+        ensureOrderByIsMutable();
+        orderBy_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        orderByBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public Builder addAllOrderBy(
+        java.lang.Iterable<? extends monorepo.proto.todo.v1.ListTodosRequest.OrderBy> values) {
+      if (orderByBuilder_ == null) {
+        ensureOrderByIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, orderBy_);
+        onChanged();
+      } else {
+        orderByBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
      */
     public Builder clearOrderBy() {
-      orderBy_ = getDefaultInstance().getOrderBy();
-      bitField0_ = (bitField0_ & ~0x00000008);
-      onChanged();
+      if (orderByBuilder_ == null) {
+        orderBy_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+      } else {
+        orderByBuilder_.clear();
+      }
       return this;
     }
     /**
@@ -974,18 +2850,111 @@ private static final long serialVersionUID = 0L;
      * Examples: "created_at", "due_date", "priority"
      * </pre>
      *
-     * <code>string order_by = 4 [json_name = "orderBy"];</code>
-     * @param value The bytes for orderBy to set.
-     * @return This builder for chaining.
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
      */
-    public Builder setOrderByBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      orderBy_ = value;
-      bitField0_ |= 0x00000008;
-      onChanged();
+    public Builder removeOrderBy(int index) {
+      if (orderByBuilder_ == null) {
+        ensureOrderByIsMutable();
+        orderBy_.remove(index);
+        onChanged();
+      } else {
+        orderByBuilder_.remove(index);
+      }
       return this;
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder getOrderByBuilder(
+        int index) {
+      return internalGetOrderByFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder getOrderByOrBuilder(
+        int index) {
+      if (orderByBuilder_ == null) {
+        return orderBy_.get(index);  } else {
+        return orderByBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public java.util.List<? extends monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder> 
+         getOrderByOrBuilderList() {
+      if (orderByBuilder_ != null) {
+        return orderByBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(orderBy_);
+      }
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder addOrderByBuilder() {
+      return internalGetOrderByFieldBuilder().addBuilder(
+          monorepo.proto.todo.v1.ListTodosRequest.OrderBy.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder addOrderByBuilder(
+        int index) {
+      return internalGetOrderByFieldBuilder().addBuilder(
+          index, monorepo.proto.todo.v1.ListTodosRequest.OrderBy.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Field to sort by
+     * Examples: "created_at", "due_date", "priority"
+     * </pre>
+     *
+     * <code>repeated .todo.v1.ListTodosRequest.OrderBy order_by = 5 [json_name = "orderBy"];</code>
+     */
+    public java.util.List<monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder> 
+         getOrderByBuilderList() {
+      return internalGetOrderByFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilder<
+        monorepo.proto.todo.v1.ListTodosRequest.OrderBy, monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder, monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder> 
+        internalGetOrderByFieldBuilder() {
+      if (orderByBuilder_ == null) {
+        orderByBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+            monorepo.proto.todo.v1.ListTodosRequest.OrderBy, monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder, monorepo.proto.todo.v1.ListTodosRequest.OrderByOrBuilder>(
+                orderBy_,
+                ((bitField0_ & 0x00000010) != 0),
+                getParentForChildren(),
+                isClean());
+        orderBy_ = null;
+      }
+      return orderByBuilder_;
     }
 
     private boolean showDeleted_ ;
@@ -994,19 +2963,19 @@ private static final long serialVersionUID = 0L;
      * default to false if not set
      * </pre>
      *
-     * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+     * <code>optional bool show_deleted = 6 [json_name = "showDeleted"];</code>
      * @return Whether the showDeleted field is set.
      */
     @java.lang.Override
     public boolean hasShowDeleted() {
-      return ((bitField0_ & 0x00000010) != 0);
+      return ((bitField0_ & 0x00000020) != 0);
     }
     /**
      * <pre>
      * default to false if not set
      * </pre>
      *
-     * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+     * <code>optional bool show_deleted = 6 [json_name = "showDeleted"];</code>
      * @return The showDeleted.
      */
     @java.lang.Override
@@ -1018,14 +2987,14 @@ private static final long serialVersionUID = 0L;
      * default to false if not set
      * </pre>
      *
-     * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+     * <code>optional bool show_deleted = 6 [json_name = "showDeleted"];</code>
      * @param value The showDeleted to set.
      * @return This builder for chaining.
      */
     public Builder setShowDeleted(boolean value) {
 
       showDeleted_ = value;
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1034,11 +3003,11 @@ private static final long serialVersionUID = 0L;
      * default to false if not set
      * </pre>
      *
-     * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+     * <code>optional bool show_deleted = 6 [json_name = "showDeleted"];</code>
      * @return This builder for chaining.
      */
     public Builder clearShowDeleted() {
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000020);
       showDeleted_ = false;
       onChanged();
       return this;

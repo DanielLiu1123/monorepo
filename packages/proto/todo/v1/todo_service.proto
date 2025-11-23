@@ -75,16 +75,29 @@ message ListTodosRequest {
   // Provide this to retrieve the next page
   string page_token = 2;
 
+  // parent
+  int64 user_id = 3;
+
   // Filter expression for todos
   // Examples: "status=PENDING", "assignee=user123"
-  string filter = 3;
+  optional Filter filter = 4;
 
   // Field to sort by
   // Examples: "created_at", "due_date", "priority"
-  string order_by = 4;
+  repeated OrderBy order_by = 5;
 
   // default to false if not set
-  optional bool show_deleted = 5;
+  optional bool show_deleted = 6;
+
+  message Filter {
+    repeated TodoModel.State states = 1;
+    repeated TodoModel.Priority priorities = 2;
+  }
+
+  message OrderBy {
+    string field = 1;
+    bool is_desc = 2;
+  }
 }
 
 // Response message for ListTodos

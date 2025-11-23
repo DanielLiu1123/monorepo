@@ -18,6 +18,8 @@ import monorepo.proto.todo.v1.BatchGetTodosRequest;
 import monorepo.proto.todo.v1.CreateTodoRequest;
 import monorepo.proto.todo.v1.DeleteTodoRequest;
 import monorepo.proto.todo.v1.GetTodoRequest;
+import monorepo.proto.todo.v1.ListTodosRequest;
+import monorepo.proto.todo.v1.ListTodosResponse;
 import monorepo.proto.todo.v1.TodoModel;
 import monorepo.proto.todo.v1.UpdateTodoRequest;
 import monorepo.services.todo.converter.TodoConverter;
@@ -160,6 +162,10 @@ public class TodoService {
             result.add(builder.build());
         }
         return result;
+    }
+
+    public ListTodosResponse list(ListTodosRequest request) {
+
     }
 
     private long createTodo(CreateTodoRequest.Todo request) {
