@@ -11,62 +11,41 @@ public interface UpdateTodoRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * The todo to update
-   * The todo's ID field identifies which todo to update
-   * </pre>
-   *
-   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.UpdateTodoRequest.Todo todo = 1 [json_name = "todo"];</code>
    * @return Whether the todo field is set.
    */
   boolean hasTodo();
   /**
-   * <pre>
-   * The todo to update
-   * The todo's ID field identifies which todo to update
-   * </pre>
-   *
-   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.UpdateTodoRequest.Todo todo = 1 [json_name = "todo"];</code>
    * @return The todo.
    */
-  monorepo.proto.todo.v1.TodoModel getTodo();
+  monorepo.proto.todo.v1.UpdateTodoRequest.Todo getTodo();
   /**
-   * <pre>
-   * The todo to update
-   * The todo's ID field identifies which todo to update
-   * </pre>
-   *
-   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.UpdateTodoRequest.Todo todo = 1 [json_name = "todo"];</code>
    */
-  monorepo.proto.todo.v1.TodoModelOrBuilder getTodoOrBuilder();
+  monorepo.proto.todo.v1.UpdateTodoRequest.TodoOrBuilder getTodoOrBuilder();
 
   /**
-   * <pre>
-   * The list of fields to update
-   * If empty, all fields will be updated
-   * </pre>
-   *
-   * <code>.google.protobuf.FieldMask update_mask = 2 [json_name = "updateMask"];</code>
-   * @return Whether the updateMask field is set.
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
    */
-  boolean hasUpdateMask();
+  java.util.List<monorepo.proto.todo.v1.UpdateTodoRequest.SubTask> 
+      getSubTasksList();
   /**
-   * <pre>
-   * The list of fields to update
-   * If empty, all fields will be updated
-   * </pre>
-   *
-   * <code>.google.protobuf.FieldMask update_mask = 2 [json_name = "updateMask"];</code>
-   * @return The updateMask.
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
    */
-  com.google.protobuf.FieldMask getUpdateMask();
+  monorepo.proto.todo.v1.UpdateTodoRequest.SubTask getSubTasks(int index);
   /**
-   * <pre>
-   * The list of fields to update
-   * If empty, all fields will be updated
-   * </pre>
-   *
-   * <code>.google.protobuf.FieldMask update_mask = 2 [json_name = "updateMask"];</code>
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
    */
-  com.google.protobuf.FieldMaskOrBuilder getUpdateMaskOrBuilder();
+  int getSubTasksCount();
+  /**
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   */
+  java.util.List<? extends monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder> 
+      getSubTasksOrBuilderList();
+  /**
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   */
+  monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder getSubTasksOrBuilder(
+      int index);
 }

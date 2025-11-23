@@ -32,7 +32,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private GetTodoRequest() {
-    id_ = "";
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -48,51 +47,43 @@ private static final long serialVersionUID = 0L;
             monorepo.proto.todo.v1.GetTodoRequest.class, monorepo.proto.todo.v1.GetTodoRequest.Builder.class);
   }
 
+  private int bitField0_;
   public static final int ID_FIELD_NUMBER = 1;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object id_ = "";
+  private long id_ = 0L;
   /**
-   * <pre>
-   * The ID of the todo to retrieve
-   * </pre>
-   *
-   * <code>string id = 1 [json_name = "id"];</code>
+   * <code>int64 id = 1 [json_name = "id"];</code>
    * @return The id.
    */
   @java.lang.Override
-  public java.lang.String getId() {
-    java.lang.Object ref = id_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      id_ = s;
-      return s;
-    }
+  public long getId() {
+    return id_;
+  }
+
+  public static final int SHOW_DELETED_FIELD_NUMBER = 2;
+  private boolean showDeleted_ = false;
+  /**
+   * <pre>
+   * default to true if not set
+   * </pre>
+   *
+   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * @return Whether the showDeleted field is set.
+   */
+  @java.lang.Override
+  public boolean hasShowDeleted() {
+    return ((bitField0_ & 0x00000001) != 0);
   }
   /**
    * <pre>
-   * The ID of the todo to retrieve
+   * default to true if not set
    * </pre>
    *
-   * <code>string id = 1 [json_name = "id"];</code>
-   * @return The bytes for id.
+   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * @return The showDeleted.
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getIdBytes() {
-    java.lang.Object ref = id_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      id_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public boolean getShowDeleted() {
+    return showDeleted_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -109,8 +100,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(id_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 1, id_);
+    if (id_ != 0L) {
+      output.writeInt64(1, id_);
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeBool(2, showDeleted_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -121,8 +115,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(id_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, id_);
+    if (id_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(1, id_);
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(2, showDeleted_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -139,8 +138,13 @@ private static final long serialVersionUID = 0L;
     }
     monorepo.proto.todo.v1.GetTodoRequest other = (monorepo.proto.todo.v1.GetTodoRequest) obj;
 
-    if (!getId()
-        .equals(other.getId())) return false;
+    if (getId()
+        != other.getId()) return false;
+    if (hasShowDeleted() != other.hasShowDeleted()) return false;
+    if (hasShowDeleted()) {
+      if (getShowDeleted()
+          != other.getShowDeleted()) return false;
+    }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -153,7 +157,13 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
-    hash = (53 * hash) + getId().hashCode();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getId());
+    if (hasShowDeleted()) {
+      hash = (37 * hash) + SHOW_DELETED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getShowDeleted());
+    }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -289,7 +299,8 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      id_ = "";
+      id_ = 0L;
+      showDeleted_ = false;
       return this;
     }
 
@@ -326,6 +337,12 @@ private static final long serialVersionUID = 0L;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.id_ = id_;
       }
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.showDeleted_ = showDeleted_;
+        to_bitField0_ |= 0x00000001;
+      }
+      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -340,10 +357,11 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(monorepo.proto.todo.v1.GetTodoRequest other) {
       if (other == monorepo.proto.todo.v1.GetTodoRequest.getDefaultInstance()) return this;
-      if (!other.getId().isEmpty()) {
-        id_ = other.id_;
-        bitField0_ |= 0x00000001;
-        onChanged();
+      if (other.getId() != 0L) {
+        setId(other.getId());
+      }
+      if (other.hasShowDeleted()) {
+        setShowDeleted(other.getShowDeleted());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -371,11 +389,16 @@ private static final long serialVersionUID = 0L;
             case 0:
               done = true;
               break;
-            case 10: {
-              id_ = input.readStringRequireUtf8();
+            case 8: {
+              id_ = input.readInt64();
               bitField0_ |= 0x00000001;
               break;
-            } // case 10
+            } // case 8
+            case 16: {
+              showDeleted_ = input.readBool();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 16
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -393,94 +416,90 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object id_ = "";
+    private long id_ ;
     /**
-     * <pre>
-     * The ID of the todo to retrieve
-     * </pre>
-     *
-     * <code>string id = 1 [json_name = "id"];</code>
+     * <code>int64 id = 1 [json_name = "id"];</code>
      * @return The id.
      */
-    public java.lang.String getId() {
-      java.lang.Object ref = id_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        id_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    @java.lang.Override
+    public long getId() {
+      return id_;
     }
     /**
-     * <pre>
-     * The ID of the todo to retrieve
-     * </pre>
-     *
-     * <code>string id = 1 [json_name = "id"];</code>
-     * @return The bytes for id.
-     */
-    public com.google.protobuf.ByteString
-        getIdBytes() {
-      java.lang.Object ref = id_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        id_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <pre>
-     * The ID of the todo to retrieve
-     * </pre>
-     *
-     * <code>string id = 1 [json_name = "id"];</code>
+     * <code>int64 id = 1 [json_name = "id"];</code>
      * @param value The id to set.
      * @return This builder for chaining.
      */
-    public Builder setId(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
+    public Builder setId(long value) {
+
       id_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * The ID of the todo to retrieve
-     * </pre>
-     *
-     * <code>string id = 1 [json_name = "id"];</code>
+     * <code>int64 id = 1 [json_name = "id"];</code>
      * @return This builder for chaining.
      */
     public Builder clearId() {
-      id_ = getDefaultInstance().getId();
       bitField0_ = (bitField0_ & ~0x00000001);
+      id_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private boolean showDeleted_ ;
+    /**
+     * <pre>
+     * default to true if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * @return Whether the showDeleted field is set.
+     */
+    @java.lang.Override
+    public boolean hasShowDeleted() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * default to true if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * @return The showDeleted.
+     */
+    @java.lang.Override
+    public boolean getShowDeleted() {
+      return showDeleted_;
+    }
+    /**
+     * <pre>
+     * default to true if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * @param value The showDeleted to set.
+     * @return This builder for chaining.
+     */
+    public Builder setShowDeleted(boolean value) {
+
+      showDeleted_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The ID of the todo to retrieve
+     * default to true if not set
      * </pre>
      *
-     * <code>string id = 1 [json_name = "id"];</code>
-     * @param value The bytes for id to set.
+     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
      * @return This builder for chaining.
      */
-    public Builder setIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      id_ = value;
-      bitField0_ |= 0x00000001;
+    public Builder clearShowDeleted() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      showDeleted_ = false;
       onChanged();
       return this;
     }

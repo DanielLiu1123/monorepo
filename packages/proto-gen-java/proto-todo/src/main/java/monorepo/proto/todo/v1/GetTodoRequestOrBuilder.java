@@ -11,22 +11,27 @@ public interface GetTodoRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * The ID of the todo to retrieve
-   * </pre>
-   *
-   * <code>string id = 1 [json_name = "id"];</code>
+   * <code>int64 id = 1 [json_name = "id"];</code>
    * @return The id.
    */
-  java.lang.String getId();
+  long getId();
+
   /**
    * <pre>
-   * The ID of the todo to retrieve
+   * default to true if not set
    * </pre>
    *
-   * <code>string id = 1 [json_name = "id"];</code>
-   * @return The bytes for id.
+   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * @return Whether the showDeleted field is set.
    */
-  com.google.protobuf.ByteString
-      getIdBytes();
+  boolean hasShowDeleted();
+  /**
+   * <pre>
+   * default to true if not set
+   * </pre>
+   *
+   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * @return The showDeleted.
+   */
+  boolean getShowDeleted();
 }

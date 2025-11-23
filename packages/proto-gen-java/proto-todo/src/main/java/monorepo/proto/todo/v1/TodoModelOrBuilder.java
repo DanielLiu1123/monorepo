@@ -11,131 +11,41 @@ public interface TodoModelOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int64 id = 1 [json_name = "id"];</code>
-   * @return The id.
+   * <code>.todo.v1.TodoModel.Todo todo = 1 [json_name = "todo"];</code>
+   * @return Whether the todo field is set.
    */
-  long getId();
+  boolean hasTodo();
+  /**
+   * <code>.todo.v1.TodoModel.Todo todo = 1 [json_name = "todo"];</code>
+   * @return The todo.
+   */
+  monorepo.proto.todo.v1.TodoModel.Todo getTodo();
+  /**
+   * <code>.todo.v1.TodoModel.Todo todo = 1 [json_name = "todo"];</code>
+   */
+  monorepo.proto.todo.v1.TodoModel.TodoOrBuilder getTodoOrBuilder();
 
   /**
-   * <code>int64 user_id = 2 [json_name = "userId"];</code>
-   * @return The userId.
+   * <code>repeated .todo.v1.TodoModel.SubTask sub_tasks = 3 [json_name = "subTasks"];</code>
    */
-  long getUserId();
-
+  java.util.List<monorepo.proto.todo.v1.TodoModel.SubTask> 
+      getSubTasksList();
   /**
-   * <code>string title = 3 [json_name = "title"];</code>
-   * @return The title.
+   * <code>repeated .todo.v1.TodoModel.SubTask sub_tasks = 3 [json_name = "subTasks"];</code>
    */
-  java.lang.String getTitle();
+  monorepo.proto.todo.v1.TodoModel.SubTask getSubTasks(int index);
   /**
-   * <code>string title = 3 [json_name = "title"];</code>
-   * @return The bytes for title.
+   * <code>repeated .todo.v1.TodoModel.SubTask sub_tasks = 3 [json_name = "subTasks"];</code>
    */
-  com.google.protobuf.ByteString
-      getTitleBytes();
-
+  int getSubTasksCount();
   /**
-   * <code>string description = 4 [json_name = "description"];</code>
-   * @return The description.
+   * <code>repeated .todo.v1.TodoModel.SubTask sub_tasks = 3 [json_name = "subTasks"];</code>
    */
-  java.lang.String getDescription();
+  java.util.List<? extends monorepo.proto.todo.v1.TodoModel.SubTaskOrBuilder> 
+      getSubTasksOrBuilderList();
   /**
-   * <code>string description = 4 [json_name = "description"];</code>
-   * @return The bytes for description.
+   * <code>repeated .todo.v1.TodoModel.SubTask sub_tasks = 3 [json_name = "subTasks"];</code>
    */
-  com.google.protobuf.ByteString
-      getDescriptionBytes();
-
-  /**
-   * <code>.todo.v1.TodoModel.State state = 5 [json_name = "state"];</code>
-   * @return The enum numeric value on the wire for state.
-   */
-  int getStateValue();
-  /**
-   * <code>.todo.v1.TodoModel.State state = 5 [json_name = "state"];</code>
-   * @return The state.
-   */
-  monorepo.proto.todo.v1.TodoModel.State getState();
-
-  /**
-   * <code>.todo.v1.TodoModel.Priority priority = 6 [json_name = "priority"];</code>
-   * @return The enum numeric value on the wire for priority.
-   */
-  int getPriorityValue();
-  /**
-   * <code>.todo.v1.TodoModel.Priority priority = 6 [json_name = "priority"];</code>
-   * @return The priority.
-   */
-  monorepo.proto.todo.v1.TodoModel.Priority getPriority();
-
-  /**
-   * <code>optional int64 assignee = 7 [json_name = "assignee"];</code>
-   * @return Whether the assignee field is set.
-   */
-  boolean hasAssignee();
-  /**
-   * <code>optional int64 assignee = 7 [json_name = "assignee"];</code>
-   * @return The assignee.
-   */
-  long getAssignee();
-
-  /**
-   * <code>.google.type.Date due_date = 8 [json_name = "dueDate"];</code>
-   * @return Whether the dueDate field is set.
-   */
-  boolean hasDueDate();
-  /**
-   * <code>.google.type.Date due_date = 8 [json_name = "dueDate"];</code>
-   * @return The dueDate.
-   */
-  com.google.type.Date getDueDate();
-  /**
-   * <code>.google.type.Date due_date = 8 [json_name = "dueDate"];</code>
-   */
-  com.google.type.DateOrBuilder getDueDateOrBuilder();
-
-  /**
-   * <code>.google.protobuf.Timestamp created_at = 9 [json_name = "createdAt"];</code>
-   * @return Whether the createdAt field is set.
-   */
-  boolean hasCreatedAt();
-  /**
-   * <code>.google.protobuf.Timestamp created_at = 9 [json_name = "createdAt"];</code>
-   * @return The createdAt.
-   */
-  com.google.protobuf.Timestamp getCreatedAt();
-  /**
-   * <code>.google.protobuf.Timestamp created_at = 9 [json_name = "createdAt"];</code>
-   */
-  com.google.protobuf.TimestampOrBuilder getCreatedAtOrBuilder();
-
-  /**
-   * <code>.google.protobuf.Timestamp updated_at = 10 [json_name = "updatedAt"];</code>
-   * @return Whether the updatedAt field is set.
-   */
-  boolean hasUpdatedAt();
-  /**
-   * <code>.google.protobuf.Timestamp updated_at = 10 [json_name = "updatedAt"];</code>
-   * @return The updatedAt.
-   */
-  com.google.protobuf.Timestamp getUpdatedAt();
-  /**
-   * <code>.google.protobuf.Timestamp updated_at = 10 [json_name = "updatedAt"];</code>
-   */
-  com.google.protobuf.TimestampOrBuilder getUpdatedAtOrBuilder();
-
-  /**
-   * <code>optional .google.protobuf.Timestamp deleted_at = 11 [json_name = "deletedAt"];</code>
-   * @return Whether the deletedAt field is set.
-   */
-  boolean hasDeletedAt();
-  /**
-   * <code>optional .google.protobuf.Timestamp deleted_at = 11 [json_name = "deletedAt"];</code>
-   * @return The deletedAt.
-   */
-  com.google.protobuf.Timestamp getDeletedAt();
-  /**
-   * <code>optional .google.protobuf.Timestamp deleted_at = 11 [json_name = "deletedAt"];</code>
-   */
-  com.google.protobuf.TimestampOrBuilder getDeletedAtOrBuilder();
+  monorepo.proto.todo.v1.TodoModel.SubTaskOrBuilder getSubTasksOrBuilder(
+      int index);
 }

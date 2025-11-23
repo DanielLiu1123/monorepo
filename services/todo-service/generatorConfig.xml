@@ -50,6 +50,9 @@
             <columnOverride column="priority" javaType="monorepo.proto.todo.v1.TodoModel.Priority"
                             typeHandler="monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler"/>
         </table>
+        <table tableName="todo_subtask">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>

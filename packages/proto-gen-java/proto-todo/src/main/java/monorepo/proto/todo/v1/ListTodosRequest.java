@@ -50,6 +50,7 @@ private static final long serialVersionUID = 0L;
             monorepo.proto.todo.v1.ListTodosRequest.class, monorepo.proto.todo.v1.ListTodosRequest.Builder.class);
   }
 
+  private int bitField0_;
   public static final int PAGE_SIZE_FIELD_NUMBER = 1;
   private int pageSize_ = 0;
   /**
@@ -215,6 +216,33 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int SHOW_DELETED_FIELD_NUMBER = 5;
+  private boolean showDeleted_ = false;
+  /**
+   * <pre>
+   * default to false if not set
+   * </pre>
+   *
+   * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+   * @return Whether the showDeleted field is set.
+   */
+  @java.lang.Override
+  public boolean hasShowDeleted() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <pre>
+   * default to false if not set
+   * </pre>
+   *
+   * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+   * @return The showDeleted.
+   */
+  @java.lang.Override
+  public boolean getShowDeleted() {
+    return showDeleted_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -241,6 +269,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(orderBy_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 4, orderBy_);
     }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeBool(5, showDeleted_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -262,6 +293,10 @@ private static final long serialVersionUID = 0L;
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(orderBy_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(4, orderBy_);
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(5, showDeleted_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -286,6 +321,11 @@ private static final long serialVersionUID = 0L;
         .equals(other.getFilter())) return false;
     if (!getOrderBy()
         .equals(other.getOrderBy())) return false;
+    if (hasShowDeleted() != other.hasShowDeleted()) return false;
+    if (hasShowDeleted()) {
+      if (getShowDeleted()
+          != other.getShowDeleted()) return false;
+    }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -305,6 +345,11 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getFilter().hashCode();
     hash = (37 * hash) + ORDER_BY_FIELD_NUMBER;
     hash = (53 * hash) + getOrderBy().hashCode();
+    if (hasShowDeleted()) {
+      hash = (37 * hash) + SHOW_DELETED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getShowDeleted());
+    }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -444,6 +489,7 @@ private static final long serialVersionUID = 0L;
       pageToken_ = "";
       filter_ = "";
       orderBy_ = "";
+      showDeleted_ = false;
       return this;
     }
 
@@ -489,6 +535,12 @@ private static final long serialVersionUID = 0L;
       if (((from_bitField0_ & 0x00000008) != 0)) {
         result.orderBy_ = orderBy_;
       }
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.showDeleted_ = showDeleted_;
+        to_bitField0_ |= 0x00000001;
+      }
+      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -520,6 +572,9 @@ private static final long serialVersionUID = 0L;
         orderBy_ = other.orderBy_;
         bitField0_ |= 0x00000008;
         onChanged();
+      }
+      if (other.hasShowDeleted()) {
+        setShowDeleted(other.getShowDeleted());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -567,6 +622,11 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000008;
               break;
             } // case 34
+            case 40: {
+              showDeleted_ = input.readBool();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 40
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -924,6 +984,62 @@ private static final long serialVersionUID = 0L;
       checkByteStringIsUtf8(value);
       orderBy_ = value;
       bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+
+    private boolean showDeleted_ ;
+    /**
+     * <pre>
+     * default to false if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+     * @return Whether the showDeleted field is set.
+     */
+    @java.lang.Override
+    public boolean hasShowDeleted() {
+      return ((bitField0_ & 0x00000010) != 0);
+    }
+    /**
+     * <pre>
+     * default to false if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+     * @return The showDeleted.
+     */
+    @java.lang.Override
+    public boolean getShowDeleted() {
+      return showDeleted_;
+    }
+    /**
+     * <pre>
+     * default to false if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+     * @param value The showDeleted to set.
+     * @return This builder for chaining.
+     */
+    public Builder setShowDeleted(boolean value) {
+
+      showDeleted_ = value;
+      bitField0_ |= 0x00000010;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * default to false if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearShowDeleted() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      showDeleted_ = false;
       onChanged();
       return this;
     }

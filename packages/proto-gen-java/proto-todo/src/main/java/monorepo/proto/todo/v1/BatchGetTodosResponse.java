@@ -6,10 +6,6 @@
 package monorepo.proto.todo.v1;
 
 /**
- * <pre>
- * Response message for BatchGetTodos
- * </pre>
- *
  * Protobuf type {@code todo.v1.BatchGetTodosResponse}
  */
 @com.google.protobuf.Generated
@@ -52,12 +48,6 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings("serial")
   private java.util.List<monorepo.proto.todo.v1.TodoModel> todos_;
   /**
-   * <pre>
-   * The list of todos
-   * Todos are returned in the same order as requested
-   * If a todo is not found, it will not be included in the response
-   * </pre>
-   *
    * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
@@ -65,12 +55,6 @@ private static final long serialVersionUID = 0L;
     return todos_;
   }
   /**
-   * <pre>
-   * The list of todos
-   * Todos are returned in the same order as requested
-   * If a todo is not found, it will not be included in the response
-   * </pre>
-   *
    * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
@@ -79,12 +63,6 @@ private static final long serialVersionUID = 0L;
     return todos_;
   }
   /**
-   * <pre>
-   * The list of todos
-   * Todos are returned in the same order as requested
-   * If a todo is not found, it will not be included in the response
-   * </pre>
-   *
    * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
@@ -92,12 +70,6 @@ private static final long serialVersionUID = 0L;
     return todos_.size();
   }
   /**
-   * <pre>
-   * The list of todos
-   * Todos are returned in the same order as requested
-   * If a todo is not found, it will not be included in the response
-   * </pre>
-   *
    * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
@@ -105,12 +77,6 @@ private static final long serialVersionUID = 0L;
     return todos_.get(index);
   }
   /**
-   * <pre>
-   * The list of todos
-   * Todos are returned in the same order as requested
-   * If a todo is not found, it will not be included in the response
-   * </pre>
-   *
    * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
    */
   @java.lang.Override
@@ -279,10 +245,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * Response message for BatchGetTodos
-   * </pre>
-   *
    * Protobuf type {@code todo.v1.BatchGetTodosResponse}
    */
   public static final class Builder extends
@@ -478,12 +440,6 @@ private static final long serialVersionUID = 0L;
         monorepo.proto.todo.v1.TodoModel, monorepo.proto.todo.v1.TodoModel.Builder, monorepo.proto.todo.v1.TodoModelOrBuilder> todosBuilder_;
 
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public java.util.List<monorepo.proto.todo.v1.TodoModel> getTodosList() {
@@ -494,12 +450,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public int getTodosCount() {
@@ -510,12 +460,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public monorepo.proto.todo.v1.TodoModel getTodos(int index) {
@@ -526,12 +470,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder setTodos(
@@ -549,12 +487,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder setTodos(
@@ -569,12 +501,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder addTodos(monorepo.proto.todo.v1.TodoModel value) {
@@ -591,12 +517,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder addTodos(
@@ -614,12 +534,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder addTodos(
@@ -634,12 +548,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder addTodos(
@@ -654,12 +562,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder addAllTodos(
@@ -675,12 +577,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder clearTodos() {
@@ -694,12 +590,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public Builder removeTodos(int index) {
@@ -713,12 +603,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public monorepo.proto.todo.v1.TodoModel.Builder getTodosBuilder(
@@ -726,12 +610,6 @@ private static final long serialVersionUID = 0L;
       return internalGetTodosFieldBuilder().getBuilder(index);
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public monorepo.proto.todo.v1.TodoModelOrBuilder getTodosOrBuilder(
@@ -742,12 +620,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public java.util.List<? extends monorepo.proto.todo.v1.TodoModelOrBuilder> 
@@ -759,12 +631,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public monorepo.proto.todo.v1.TodoModel.Builder addTodosBuilder() {
@@ -772,12 +638,6 @@ private static final long serialVersionUID = 0L;
           monorepo.proto.todo.v1.TodoModel.getDefaultInstance());
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public monorepo.proto.todo.v1.TodoModel.Builder addTodosBuilder(
@@ -786,12 +646,6 @@ private static final long serialVersionUID = 0L;
           index, monorepo.proto.todo.v1.TodoModel.getDefaultInstance());
     }
     /**
-     * <pre>
-     * The list of todos
-     * Todos are returned in the same order as requested
-     * If a todo is not found, it will not be included in the response
-     * </pre>
-     *
      * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
      */
     public java.util.List<monorepo.proto.todo.v1.TodoModel.Builder> 

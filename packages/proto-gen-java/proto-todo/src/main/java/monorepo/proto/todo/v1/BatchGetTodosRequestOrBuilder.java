@@ -11,43 +11,38 @@ public interface BatchGetTodosRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * The IDs of the todos to retrieve
-   * </pre>
-   *
-   * <code>repeated string ids = 1 [json_name = "ids"];</code>
+   * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
    * @return A list containing the ids.
    */
-  java.util.List<java.lang.String>
-      getIdsList();
+  java.util.List<java.lang.Long> getIdsList();
   /**
-   * <pre>
-   * The IDs of the todos to retrieve
-   * </pre>
-   *
-   * <code>repeated string ids = 1 [json_name = "ids"];</code>
+   * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
    * @return The count of ids.
    */
   int getIdsCount();
   /**
-   * <pre>
-   * The IDs of the todos to retrieve
-   * </pre>
-   *
-   * <code>repeated string ids = 1 [json_name = "ids"];</code>
+   * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
    * @param index The index of the element to return.
    * @return The ids at the given index.
    */
-  java.lang.String getIds(int index);
+  long getIds(int index);
+
   /**
    * <pre>
-   * The IDs of the todos to retrieve
+   * default to true if not set
    * </pre>
    *
-   * <code>repeated string ids = 1 [json_name = "ids"];</code>
-   * @param index The index of the value to return.
-   * @return The bytes of the ids at the given index.
+   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * @return Whether the showDeleted field is set.
    */
-  com.google.protobuf.ByteString
-      getIdsBytes(int index);
+  boolean hasShowDeleted();
+  /**
+   * <pre>
+   * default to true if not set
+   * </pre>
+   *
+   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * @return The showDeleted.
+   */
+  boolean getShowDeleted();
 }

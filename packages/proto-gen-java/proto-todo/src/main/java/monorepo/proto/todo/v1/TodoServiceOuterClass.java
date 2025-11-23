@@ -32,6 +32,16 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_todo_v1_CreateTodoRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_todo_v1_CreateTodoRequest_Todo_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_todo_v1_CreateTodoRequest_Todo_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_todo_v1_CreateTodoRequest_SubTask_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_todo_v1_CreateTodoRequest_SubTask_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_todo_v1_GetTodoRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -51,6 +61,21 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_todo_v1_UpdateTodoRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_todo_v1_UpdateTodoRequest_Todo_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_todo_v1_UpdateTodoRequest_Todo_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_todo_v1_UpdateTodoRequest_SubTask_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_todo_v1_UpdateTodoRequest_SubTask_Update_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_todo_v1_UpdateTodoRequest_SubTask_Update_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_todo_v1_DeleteTodoRequest_descriptor;
   static final 
@@ -78,35 +103,68 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
       "\n\032todo/v1/todo_service.proto\022\007todo.v1\032\022t" +
       "odo/v1/todo.proto\032 google/protobuf/field" +
       "_mask.proto\032\033google/protobuf/empty.proto" +
-      "\";\n\021CreateTodoRequest\022&\n\004todo\030\001 \001(\0132\022.to" +
-      "do.v1.TodoModelR\004todo\" \n\016GetTodoRequest\022" +
-      "\016\n\002id\030\001 \001(\tR\002id\"\201\001\n\020ListTodosRequest\022\033\n\t" +
-      "page_size\030\001 \001(\005R\010pageSize\022\035\n\npage_token\030" +
-      "\002 \001(\tR\tpageToken\022\026\n\006filter\030\003 \001(\tR\006filter" +
-      "\022\031\n\010order_by\030\004 \001(\tR\007orderBy\"\204\001\n\021ListTodo" +
-      "sResponse\022(\n\005todos\030\001 \003(\0132\022.todo.v1.TodoM" +
-      "odelR\005todos\022&\n\017next_page_token\030\002 \001(\tR\rne" +
-      "xtPageToken\022\035\n\ntotal_size\030\003 \001(\005R\ttotalSi" +
-      "ze\"x\n\021UpdateTodoRequest\022&\n\004todo\030\001 \001(\0132\022." +
-      "todo.v1.TodoModelR\004todo\022;\n\013update_mask\030\002" +
-      " \001(\0132\032.google.protobuf.FieldMaskR\nupdate" +
-      "Mask\"#\n\021DeleteTodoRequest\022\016\n\002id\030\001 \001(\tR\002i" +
-      "d\"(\n\024BatchGetTodosRequest\022\020\n\003ids\030\001 \003(\tR\003" +
-      "ids\"A\n\025BatchGetTodosResponse\022(\n\005todos\030\001 " +
-      "\003(\0132\022.todo.v1.TodoModelR\005todos2\243\003\n\013TodoS" +
-      "ervice\022>\n\nCreateTodo\022\032.todo.v1.CreateTod" +
-      "oRequest\032\022.todo.v1.TodoModel\"\000\0228\n\007GetTod" +
-      "o\022\027.todo.v1.GetTodoRequest\032\022.todo.v1.Tod" +
-      "oModel\"\000\022D\n\tListTodos\022\031.todo.v1.ListTodo" +
-      "sRequest\032\032.todo.v1.ListTodosResponse\"\000\022>" +
-      "\n\nUpdateTodo\022\032.todo.v1.UpdateTodoRequest" +
-      "\032\022.todo.v1.TodoModel\"\000\022B\n\nDeleteTodo\022\032.t" +
-      "odo.v1.DeleteTodoRequest\032\026.google.protob" +
-      "uf.Empty\"\000\022P\n\rBatchGetTodos\022\035.todo.v1.Ba" +
-      "tchGetTodosRequest\032\036.todo.v1.BatchGetTod" +
-      "osResponse\"\000B\\\n\026monorepo.proto.todo.v1P\001" +
-      "Z@github.com/yourorg/monorepo/packages/p" +
-      "roto-gen-go/todo/v1;todov1b\006proto3"
+      "\032\026google/type/date.proto\"\221\004\n\021CreateTodoR" +
+      "equest\0223\n\004todo\030\001 \001(\0132\037.todo.v1.CreateTod" +
+      "oRequest.TodoR\004todo\022?\n\tsub_tasks\030\002 \003(\0132\"" +
+      ".todo.v1.CreateTodoRequest.SubTaskR\010subT" +
+      "asks\032\344\002\n\004Todo\022\027\n\007user_id\030\001 \001(\003R\006userId\022\024" +
+      "\n\005title\030\002 \001(\tR\005title\022%\n\013description\030\003 \001(" +
+      "\tH\000R\013description\210\001\001\0223\n\005state\030\004 \001(\0162\030.tod" +
+      "o.v1.TodoModel.StateH\001R\005state\210\001\001\022<\n\010prio" +
+      "rity\030\005 \001(\0162\033.todo.v1.TodoModel.PriorityH" +
+      "\002R\010priority\210\001\001\022\037\n\010assignee\030\006 \001(\003H\003R\010assi" +
+      "gnee\210\001\001\0221\n\010due_date\030\007 \001(\0132\021.google.type." +
+      "DateH\004R\007dueDate\210\001\001B\016\n\014_descriptionB\010\n\006_s" +
+      "tateB\013\n\t_priorityB\013\n\t_assigneeB\013\n\t_due_d" +
+      "ate\032\037\n\007SubTask\022\024\n\005title\030\001 \001(\tR\005title\"Y\n\016" +
+      "GetTodoRequest\022\016\n\002id\030\001 \001(\003R\002id\022&\n\014show_d" +
+      "eleted\030\002 \001(\010H\000R\013showDeleted\210\001\001B\017\n\r_show_" +
+      "deleted\"\272\001\n\020ListTodosRequest\022\033\n\tpage_siz" +
+      "e\030\001 \001(\005R\010pageSize\022\035\n\npage_token\030\002 \001(\tR\tp" +
+      "ageToken\022\026\n\006filter\030\003 \001(\tR\006filter\022\031\n\010orde" +
+      "r_by\030\004 \001(\tR\007orderBy\022&\n\014show_deleted\030\005 \001(" +
+      "\010H\000R\013showDeleted\210\001\001B\017\n\r_show_deleted\"\204\001\n" +
+      "\021ListTodosResponse\022(\n\005todos\030\001 \003(\0132\022.todo" +
+      ".v1.TodoModelR\005todos\022&\n\017next_page_token\030" +
+      "\002 \001(\tR\rnextPageToken\022\035\n\ntotal_size\030\003 \001(\005" +
+      "R\ttotalSize\"\353\005\n\021UpdateTodoRequest\0223\n\004tod" +
+      "o\030\001 \001(\0132\037.todo.v1.UpdateTodoRequest.Todo" +
+      "R\004todo\022?\n\tsub_tasks\030\002 \003(\0132\".todo.v1.Upda" +
+      "teTodoRequest.SubTaskR\010subTasks\032\352\002\n\004Todo" +
+      "\022\016\n\002id\030\001 \001(\003R\002id\022\031\n\005title\030\002 \001(\tH\000R\005title" +
+      "\210\001\001\022%\n\013description\030\003 \001(\tH\001R\013description\210" +
+      "\001\001\0223\n\005state\030\004 \001(\0162\030.todo.v1.TodoModel.St" +
+      "ateH\002R\005state\210\001\001\022<\n\010priority\030\005 \001(\0162\033.todo" +
+      ".v1.TodoModel.PriorityH\003R\010priority\210\001\001\022\037\n" +
+      "\010assignee\030\006 \001(\003H\004R\010assignee\210\001\001\0221\n\010due_da" +
+      "te\030\007 \001(\0132\021.google.type.DateH\005R\007dueDate\210\001" +
+      "\001B\010\n\006_titleB\016\n\014_descriptionB\010\n\006_stateB\013\n" +
+      "\t_priorityB\013\n\t_assigneeB\013\n\t_due_date\032\362\001\n" +
+      "\007SubTask\022<\n\006create\030\001 \001(\0132\".todo.v1.Creat" +
+      "eTodoRequest.SubTaskH\000R\006create\022C\n\006update" +
+      "\030\002 \001(\0132).todo.v1.UpdateTodoRequest.SubTa" +
+      "sk.UpdateH\000R\006update\022\030\n\006delete\030\003 \001(\003H\000R\006d" +
+      "elete\032=\n\006Update\022\016\n\002id\030\001 \001(\003R\002id\022\031\n\005title" +
+      "\030\002 \001(\tH\000R\005title\210\001\001B\010\n\006_titleB\013\n\toperatio" +
+      "n\"#\n\021DeleteTodoRequest\022\016\n\002id\030\001 \001(\003R\002id\"a" +
+      "\n\024BatchGetTodosRequest\022\020\n\003ids\030\001 \003(\003R\003ids" +
+      "\022&\n\014show_deleted\030\002 \001(\010H\000R\013showDeleted\210\001\001" +
+      "B\017\n\r_show_deleted\"A\n\025BatchGetTodosRespon" +
+      "se\022(\n\005todos\030\001 \003(\0132\022.todo.v1.TodoModelR\005t" +
+      "odos2\237\003\n\013TodoService\022>\n\nCreateTodo\022\032.tod" +
+      "o.v1.CreateTodoRequest\032\022.todo.v1.TodoMod" +
+      "el\"\000\0228\n\007GetTodo\022\027.todo.v1.GetTodoRequest" +
+      "\032\022.todo.v1.TodoModel\"\000\022D\n\tListTodos\022\031.to" +
+      "do.v1.ListTodosRequest\032\032.todo.v1.ListTod" +
+      "osResponse\"\000\022>\n\nUpdateTodo\022\032.todo.v1.Upd" +
+      "ateTodoRequest\032\022.todo.v1.TodoModel\"\000\022>\n\n" +
+      "DeleteTodo\022\032.todo.v1.DeleteTodoRequest\032\022" +
+      ".todo.v1.TodoModel\"\000\022P\n\rBatchGetTodos\022\035." +
+      "todo.v1.BatchGetTodosRequest\032\036.todo.v1.B" +
+      "atchGetTodosResponse\"\000B\\\n\026monorepo.proto" +
+      ".todo.v1P\001Z@github.com/yourorg/monorepo/" +
+      "packages/proto-gen-go/todo/v1;todov1b\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -114,25 +172,38 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
           monorepo.proto.todo.v1.TodoProto.getDescriptor(),
           com.google.protobuf.FieldMaskProto.getDescriptor(),
           com.google.protobuf.EmptyProto.getDescriptor(),
+          com.google.type.DateProto.getDescriptor(),
         });
     internal_static_todo_v1_CreateTodoRequest_descriptor =
       getDescriptor().getMessageType(0);
     internal_static_todo_v1_CreateTodoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_CreateTodoRequest_descriptor,
-        new java.lang.String[] { "Todo", });
+        new java.lang.String[] { "Todo", "SubTasks", });
+    internal_static_todo_v1_CreateTodoRequest_Todo_descriptor =
+      internal_static_todo_v1_CreateTodoRequest_descriptor.getNestedType(0);
+    internal_static_todo_v1_CreateTodoRequest_Todo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_todo_v1_CreateTodoRequest_Todo_descriptor,
+        new java.lang.String[] { "UserId", "Title", "Description", "State", "Priority", "Assignee", "DueDate", });
+    internal_static_todo_v1_CreateTodoRequest_SubTask_descriptor =
+      internal_static_todo_v1_CreateTodoRequest_descriptor.getNestedType(1);
+    internal_static_todo_v1_CreateTodoRequest_SubTask_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_todo_v1_CreateTodoRequest_SubTask_descriptor,
+        new java.lang.String[] { "Title", });
     internal_static_todo_v1_GetTodoRequest_descriptor =
       getDescriptor().getMessageType(1);
     internal_static_todo_v1_GetTodoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_GetTodoRequest_descriptor,
-        new java.lang.String[] { "Id", });
+        new java.lang.String[] { "Id", "ShowDeleted", });
     internal_static_todo_v1_ListTodosRequest_descriptor =
       getDescriptor().getMessageType(2);
     internal_static_todo_v1_ListTodosRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_ListTodosRequest_descriptor,
-        new java.lang.String[] { "PageSize", "PageToken", "Filter", "OrderBy", });
+        new java.lang.String[] { "PageSize", "PageToken", "Filter", "OrderBy", "ShowDeleted", });
     internal_static_todo_v1_ListTodosResponse_descriptor =
       getDescriptor().getMessageType(3);
     internal_static_todo_v1_ListTodosResponse_fieldAccessorTable = new
@@ -144,7 +215,25 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     internal_static_todo_v1_UpdateTodoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_UpdateTodoRequest_descriptor,
-        new java.lang.String[] { "Todo", "UpdateMask", });
+        new java.lang.String[] { "Todo", "SubTasks", });
+    internal_static_todo_v1_UpdateTodoRequest_Todo_descriptor =
+      internal_static_todo_v1_UpdateTodoRequest_descriptor.getNestedType(0);
+    internal_static_todo_v1_UpdateTodoRequest_Todo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_todo_v1_UpdateTodoRequest_Todo_descriptor,
+        new java.lang.String[] { "Id", "Title", "Description", "State", "Priority", "Assignee", "DueDate", });
+    internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor =
+      internal_static_todo_v1_UpdateTodoRequest_descriptor.getNestedType(1);
+    internal_static_todo_v1_UpdateTodoRequest_SubTask_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor,
+        new java.lang.String[] { "Create", "Update", "Delete", "Operation", });
+    internal_static_todo_v1_UpdateTodoRequest_SubTask_Update_descriptor =
+      internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor.getNestedType(0);
+    internal_static_todo_v1_UpdateTodoRequest_SubTask_Update_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_todo_v1_UpdateTodoRequest_SubTask_Update_descriptor,
+        new java.lang.String[] { "Id", "Title", });
     internal_static_todo_v1_DeleteTodoRequest_descriptor =
       getDescriptor().getMessageType(5);
     internal_static_todo_v1_DeleteTodoRequest_fieldAccessorTable = new
@@ -156,7 +245,7 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     internal_static_todo_v1_BatchGetTodosRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_BatchGetTodosRequest_descriptor,
-        new java.lang.String[] { "Ids", });
+        new java.lang.String[] { "Ids", "ShowDeleted", });
     internal_static_todo_v1_BatchGetTodosResponse_descriptor =
       getDescriptor().getMessageType(7);
     internal_static_todo_v1_BatchGetTodosResponse_fieldAccessorTable = new
@@ -167,6 +256,7 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     monorepo.proto.todo.v1.TodoProto.getDescriptor();
     com.google.protobuf.FieldMaskProto.getDescriptor();
     com.google.protobuf.EmptyProto.getDescriptor();
+    com.google.type.DateProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

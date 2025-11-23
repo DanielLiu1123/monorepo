@@ -11,22 +11,8 @@ public interface DeleteTodoRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * The ID of the todo to delete
-   * </pre>
-   *
-   * <code>string id = 1 [json_name = "id"];</code>
+   * <code>int64 id = 1 [json_name = "id"];</code>
    * @return The id.
    */
-  java.lang.String getId();
-  /**
-   * <pre>
-   * The ID of the todo to delete
-   * </pre>
-   *
-   * <code>string id = 1 [json_name = "id"];</code>
-   * @return The bytes for id.
-   */
-  com.google.protobuf.ByteString
-      getIdBytes();
+  long getId();
 }

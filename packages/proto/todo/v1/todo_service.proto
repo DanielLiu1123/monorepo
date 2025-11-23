@@ -5,6 +5,7 @@ package todo.v1;
 import "todo/v1/todo.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/empty.proto";
+import "google/type/date.proto";
 
 option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/todo/v1;todov1";
 option java_package = "monorepo.proto.todo.v1";
@@ -12,35 +13,54 @@ option java_multiple_files = true;
 
 // TodoService provides CRUD operations for todos following AIP standards
 service TodoService {
-  // Creates a new todo (AIP-133)
+  // === standard APIs ===
+
+  // Create a new todo
   rpc CreateTodo(CreateTodoRequest) returns (TodoModel) {}
 
-  // Gets a todo by ID (AIP-131)
+  // Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
   rpc GetTodo(GetTodoRequest) returns (TodoModel) {}
 
-  // Lists todos with pagination (AIP-132)
+  // List todos with pagination, filtering, and sorting
   rpc ListTodos(ListTodosRequest) returns (ListTodosResponse) {}
 
-  // Updates a todo (AIP-134)
+  // Update an existing todo
   rpc UpdateTodo(UpdateTodoRequest) returns (TodoModel) {}
 
-  // Deletes a todo (AIP-135)
-  rpc DeleteTodo(DeleteTodoRequest) returns (google.protobuf.Empty) {}
+  // Delete a todo by ID (soft delete)
+  rpc DeleteTodo(DeleteTodoRequest) returns (TodoModel) {}
 
-  // Batch gets multiple todos by IDs (AIP-231)
+  // === additional APIs ===
+
+  // Batch get todos by IDs (including soft-deleted)
   rpc BatchGetTodos(BatchGetTodosRequest) returns (BatchGetTodosResponse) {}
 }
 
-// Request message for CreateTodo
 message CreateTodoRequest {
-  // The todo to create
-  TodoModel todo = 1;
+
+  Todo todo = 1;
+  repeated SubTask sub_tasks = 2;
+
+  message Todo{
+    int64 user_id = 1;
+    string title = 2;
+    optional string description = 3;
+    optional TodoModel.State state = 4;
+    optional TodoModel.Priority priority = 5;
+    optional int64 assignee = 6;
+    optional google.type.Date due_date = 7;
+  }
+
+  message SubTask{
+    string title = 1;
+  }
 }
 
 // Request message for GetTodo
 message GetTodoRequest {
-  // The ID of the todo to retrieve
-  string id = 1;
+  int64 id = 1;
+  // default to true if not set
+  optional bool show_deleted = 2;
 }
 
 // Request message for ListTodos
@@ -62,6 +82,9 @@ message ListTodosRequest {
   // Field to sort by
   // Examples: "created_at", "due_date", "priority"
   string order_by = 4;
+
+  // default to false if not set
+  optional bool show_deleted = 5;
 }
 
 // Response message for ListTodos
@@ -79,31 +102,43 @@ message ListTodosResponse {
 
 // Request message for UpdateTodo
 message UpdateTodoRequest {
-  // The todo to update
-  // The todo's ID field identifies which todo to update
-  TodoModel todo = 1;
+  Todo todo = 1;
+  repeated SubTask sub_tasks = 2;
 
-  // The list of fields to update
-  // If empty, all fields will be updated
-  google.protobuf.FieldMask update_mask = 2;
+  message Todo {
+    int64 id = 1;
+    optional string title = 2;
+    optional string description = 3;
+    optional TodoModel.State state = 4;
+    optional TodoModel.Priority priority = 5;
+    optional int64 assignee = 6;
+    optional google.type.Date due_date = 7;
+  }
+
+  message SubTask {
+    oneof operation {
+      CreateTodoRequest.SubTask create = 1;
+      Update update = 2;
+      int64 delete = 3;
+    }
+
+    message Update {
+      int64 id = 1;
+      optional string title = 2;
+    }
+  }
 }
 
-// Request message for DeleteTodo
 message DeleteTodoRequest {
-  // The ID of the todo to delete
-  string id = 1;
+  int64 id = 1;
 }
 
-// Request message for BatchGetTodos
 message BatchGetTodosRequest {
-  // The IDs of the todos to retrieve
-  repeated string ids = 1;
+  repeated int64 ids = 1;
+  // default to true if not set
+  optional bool show_deleted = 2;
 }
 
-// Response message for BatchGetTodos
 message BatchGetTodosResponse {
-  // The list of todos
-  // Todos are returned in the same order as requested
-  // If a todo is not found, it will not be included in the response
   repeated TodoModel todos = 1;
 }

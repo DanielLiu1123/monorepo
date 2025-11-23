@@ -88,4 +88,23 @@ public interface ListTodosRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getOrderByBytes();
+
+  /**
+   * <pre>
+   * default to false if not set
+   * </pre>
+   *
+   * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+   * @return Whether the showDeleted field is set.
+   */
+  boolean hasShowDeleted();
+  /**
+   * <pre>
+   * default to false if not set
+   * </pre>
+   *
+   * <code>optional bool show_deleted = 5 [json_name = "showDeleted"];</code>
+   * @return The showDeleted.
+   */
+  boolean getShowDeleted();
 }

@@ -140,28 +140,28 @@ public final class TodoServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<monorepo.proto.todo.v1.DeleteTodoRequest,
-      com.google.protobuf.Empty> getDeleteTodoMethod;
+      monorepo.proto.todo.v1.TodoModel> getDeleteTodoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "DeleteTodo",
       requestType = monorepo.proto.todo.v1.DeleteTodoRequest.class,
-      responseType = com.google.protobuf.Empty.class,
+      responseType = monorepo.proto.todo.v1.TodoModel.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<monorepo.proto.todo.v1.DeleteTodoRequest,
-      com.google.protobuf.Empty> getDeleteTodoMethod() {
-    io.grpc.MethodDescriptor<monorepo.proto.todo.v1.DeleteTodoRequest, com.google.protobuf.Empty> getDeleteTodoMethod;
+      monorepo.proto.todo.v1.TodoModel> getDeleteTodoMethod() {
+    io.grpc.MethodDescriptor<monorepo.proto.todo.v1.DeleteTodoRequest, monorepo.proto.todo.v1.TodoModel> getDeleteTodoMethod;
     if ((getDeleteTodoMethod = TodoServiceGrpc.getDeleteTodoMethod) == null) {
       synchronized (TodoServiceGrpc.class) {
         if ((getDeleteTodoMethod = TodoServiceGrpc.getDeleteTodoMethod) == null) {
           TodoServiceGrpc.getDeleteTodoMethod = getDeleteTodoMethod =
-              io.grpc.MethodDescriptor.<monorepo.proto.todo.v1.DeleteTodoRequest, com.google.protobuf.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<monorepo.proto.todo.v1.DeleteTodoRequest, monorepo.proto.todo.v1.TodoModel>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeleteTodo"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   monorepo.proto.todo.v1.DeleteTodoRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  monorepo.proto.todo.v1.TodoModel.getDefaultInstance()))
               .setSchemaDescriptor(new TodoServiceMethodDescriptorSupplier("DeleteTodo"))
               .build();
         }
@@ -269,7 +269,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new todo (AIP-133)
+     * Create a new todo
      * </pre>
      */
     default void createTodo(monorepo.proto.todo.v1.CreateTodoRequest request,
@@ -279,7 +279,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Gets a todo by ID (AIP-131)
+     * Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
      * </pre>
      */
     default void getTodo(monorepo.proto.todo.v1.GetTodoRequest request,
@@ -289,7 +289,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Lists todos with pagination (AIP-132)
+     * List todos with pagination, filtering, and sorting
      * </pre>
      */
     default void listTodos(monorepo.proto.todo.v1.ListTodosRequest request,
@@ -299,7 +299,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Updates a todo (AIP-134)
+     * Update an existing todo
      * </pre>
      */
     default void updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request,
@@ -309,17 +309,17 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Deletes a todo (AIP-135)
+     * Delete a todo by ID (soft delete)
      * </pre>
      */
     default void deleteTodo(monorepo.proto.todo.v1.DeleteTodoRequest request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteTodoMethod(), responseObserver);
     }
 
     /**
      * <pre>
-     * Batch gets multiple todos by IDs (AIP-231)
+     * Batch get todos by IDs (including soft-deleted)
      * </pre>
      */
     default void batchGetTodos(monorepo.proto.todo.v1.BatchGetTodosRequest request,
@@ -363,7 +363,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new todo (AIP-133)
+     * Create a new todo
      * </pre>
      */
     public void createTodo(monorepo.proto.todo.v1.CreateTodoRequest request,
@@ -374,7 +374,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Gets a todo by ID (AIP-131)
+     * Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
      * </pre>
      */
     public void getTodo(monorepo.proto.todo.v1.GetTodoRequest request,
@@ -385,7 +385,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Lists todos with pagination (AIP-132)
+     * List todos with pagination, filtering, and sorting
      * </pre>
      */
     public void listTodos(monorepo.proto.todo.v1.ListTodosRequest request,
@@ -396,7 +396,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Updates a todo (AIP-134)
+     * Update an existing todo
      * </pre>
      */
     public void updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request,
@@ -407,18 +407,18 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Deletes a todo (AIP-135)
+     * Delete a todo by ID (soft delete)
      * </pre>
      */
     public void deleteTodo(monorepo.proto.todo.v1.DeleteTodoRequest request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+        io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDeleteTodoMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      * <pre>
-     * Batch gets multiple todos by IDs (AIP-231)
+     * Batch get todos by IDs (including soft-deleted)
      * </pre>
      */
     public void batchGetTodos(monorepo.proto.todo.v1.BatchGetTodosRequest request,
@@ -449,7 +449,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new todo (AIP-133)
+     * Create a new todo
      * </pre>
      */
     public monorepo.proto.todo.v1.TodoModel createTodo(monorepo.proto.todo.v1.CreateTodoRequest request) throws io.grpc.StatusException {
@@ -459,7 +459,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Gets a todo by ID (AIP-131)
+     * Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
      * </pre>
      */
     public monorepo.proto.todo.v1.TodoModel getTodo(monorepo.proto.todo.v1.GetTodoRequest request) throws io.grpc.StatusException {
@@ -469,7 +469,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Lists todos with pagination (AIP-132)
+     * List todos with pagination, filtering, and sorting
      * </pre>
      */
     public monorepo.proto.todo.v1.ListTodosResponse listTodos(monorepo.proto.todo.v1.ListTodosRequest request) throws io.grpc.StatusException {
@@ -479,7 +479,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Updates a todo (AIP-134)
+     * Update an existing todo
      * </pre>
      */
     public monorepo.proto.todo.v1.TodoModel updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request) throws io.grpc.StatusException {
@@ -489,17 +489,17 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Deletes a todo (AIP-135)
+     * Delete a todo by ID (soft delete)
      * </pre>
      */
-    public com.google.protobuf.Empty deleteTodo(monorepo.proto.todo.v1.DeleteTodoRequest request) throws io.grpc.StatusException {
+    public monorepo.proto.todo.v1.TodoModel deleteTodo(monorepo.proto.todo.v1.DeleteTodoRequest request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteTodoMethod(), getCallOptions(), request);
     }
 
     /**
      * <pre>
-     * Batch gets multiple todos by IDs (AIP-231)
+     * Batch get todos by IDs (including soft-deleted)
      * </pre>
      */
     public monorepo.proto.todo.v1.BatchGetTodosResponse batchGetTodos(monorepo.proto.todo.v1.BatchGetTodosRequest request) throws io.grpc.StatusException {
@@ -529,7 +529,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new todo (AIP-133)
+     * Create a new todo
      * </pre>
      */
     public monorepo.proto.todo.v1.TodoModel createTodo(monorepo.proto.todo.v1.CreateTodoRequest request) {
@@ -539,7 +539,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Gets a todo by ID (AIP-131)
+     * Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
      * </pre>
      */
     public monorepo.proto.todo.v1.TodoModel getTodo(monorepo.proto.todo.v1.GetTodoRequest request) {
@@ -549,7 +549,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Lists todos with pagination (AIP-132)
+     * List todos with pagination, filtering, and sorting
      * </pre>
      */
     public monorepo.proto.todo.v1.ListTodosResponse listTodos(monorepo.proto.todo.v1.ListTodosRequest request) {
@@ -559,7 +559,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Updates a todo (AIP-134)
+     * Update an existing todo
      * </pre>
      */
     public monorepo.proto.todo.v1.TodoModel updateTodo(monorepo.proto.todo.v1.UpdateTodoRequest request) {
@@ -569,17 +569,17 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Deletes a todo (AIP-135)
+     * Delete a todo by ID (soft delete)
      * </pre>
      */
-    public com.google.protobuf.Empty deleteTodo(monorepo.proto.todo.v1.DeleteTodoRequest request) {
+    public monorepo.proto.todo.v1.TodoModel deleteTodo(monorepo.proto.todo.v1.DeleteTodoRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDeleteTodoMethod(), getCallOptions(), request);
     }
 
     /**
      * <pre>
-     * Batch gets multiple todos by IDs (AIP-231)
+     * Batch get todos by IDs (including soft-deleted)
      * </pre>
      */
     public monorepo.proto.todo.v1.BatchGetTodosResponse batchGetTodos(monorepo.proto.todo.v1.BatchGetTodosRequest request) {
@@ -609,7 +609,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new todo (AIP-133)
+     * Create a new todo
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.TodoModel> createTodo(
@@ -620,7 +620,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Gets a todo by ID (AIP-131)
+     * Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.TodoModel> getTodo(
@@ -631,7 +631,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Lists todos with pagination (AIP-132)
+     * List todos with pagination, filtering, and sorting
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.ListTodosResponse> listTodos(
@@ -642,7 +642,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Updates a todo (AIP-134)
+     * Update an existing todo
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.TodoModel> updateTodo(
@@ -653,10 +653,10 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Deletes a todo (AIP-135)
+     * Delete a todo by ID (soft delete)
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteTodo(
+    public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.TodoModel> deleteTodo(
         monorepo.proto.todo.v1.DeleteTodoRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDeleteTodoMethod(), getCallOptions()), request);
@@ -664,7 +664,7 @@ public final class TodoServiceGrpc {
 
     /**
      * <pre>
-     * Batch gets multiple todos by IDs (AIP-231)
+     * Batch get todos by IDs (including soft-deleted)
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<monorepo.proto.todo.v1.BatchGetTodosResponse> batchGetTodos(
@@ -716,7 +716,7 @@ public final class TodoServiceGrpc {
           break;
         case METHODID_DELETE_TODO:
           serviceImpl.deleteTodo((monorepo.proto.todo.v1.DeleteTodoRequest) request,
-              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+              (io.grpc.stub.StreamObserver<monorepo.proto.todo.v1.TodoModel>) responseObserver);
           break;
         case METHODID_BATCH_GET_TODOS:
           serviceImpl.batchGetTodos((monorepo.proto.todo.v1.BatchGetTodosRequest) request,
@@ -773,7 +773,7 @@ public final class TodoServiceGrpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               monorepo.proto.todo.v1.DeleteTodoRequest,
-              com.google.protobuf.Empty>(
+              monorepo.proto.todo.v1.TodoModel>(
                 service, METHODID_DELETE_TODO)))
         .addMethod(
           getBatchGetTodosMethod(),

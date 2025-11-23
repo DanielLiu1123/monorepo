@@ -11,29 +11,41 @@ public interface CreateTodoRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * The todo to create
-   * </pre>
-   *
-   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.CreateTodoRequest.Todo todo = 1 [json_name = "todo"];</code>
    * @return Whether the todo field is set.
    */
   boolean hasTodo();
   /**
-   * <pre>
-   * The todo to create
-   * </pre>
-   *
-   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.CreateTodoRequest.Todo todo = 1 [json_name = "todo"];</code>
    * @return The todo.
    */
-  monorepo.proto.todo.v1.TodoModel getTodo();
+  monorepo.proto.todo.v1.CreateTodoRequest.Todo getTodo();
   /**
-   * <pre>
-   * The todo to create
-   * </pre>
-   *
-   * <code>.todo.v1.TodoModel todo = 1 [json_name = "todo"];</code>
+   * <code>.todo.v1.CreateTodoRequest.Todo todo = 1 [json_name = "todo"];</code>
    */
-  monorepo.proto.todo.v1.TodoModelOrBuilder getTodoOrBuilder();
+  monorepo.proto.todo.v1.CreateTodoRequest.TodoOrBuilder getTodoOrBuilder();
+
+  /**
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   */
+  java.util.List<monorepo.proto.todo.v1.CreateTodoRequest.SubTask> 
+      getSubTasksList();
+  /**
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   */
+  monorepo.proto.todo.v1.CreateTodoRequest.SubTask getSubTasks(int index);
+  /**
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   */
+  int getSubTasksCount();
+  /**
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   */
+  java.util.List<? extends monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder> 
+      getSubTasksOrBuilderList();
+  /**
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   */
+  monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder getSubTasksOrBuilder(
+      int index);
 }

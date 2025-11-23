@@ -6,10 +6,6 @@
 package monorepo.proto.todo.v1;
 
 /**
- * <pre>
- * Request message for BatchGetTodos
- * </pre>
- *
  * Protobuf type {@code todo.v1.BatchGetTodosRequest}
  */
 @com.google.protobuf.Generated
@@ -32,8 +28,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private BatchGetTodosRequest() {
-    ids_ =
-        com.google.protobuf.LazyStringArrayList.emptyList();
+    ids_ = emptyLongList();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -49,57 +44,62 @@ private static final long serialVersionUID = 0L;
             monorepo.proto.todo.v1.BatchGetTodosRequest.class, monorepo.proto.todo.v1.BatchGetTodosRequest.Builder.class);
   }
 
+  private int bitField0_;
   public static final int IDS_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
-  private com.google.protobuf.LazyStringArrayList ids_ =
-      com.google.protobuf.LazyStringArrayList.emptyList();
+  private com.google.protobuf.Internal.LongList ids_ =
+      emptyLongList();
   /**
-   * <pre>
-   * The IDs of the todos to retrieve
-   * </pre>
-   *
-   * <code>repeated string ids = 1 [json_name = "ids"];</code>
+   * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
    * @return A list containing the ids.
    */
-  public com.google.protobuf.ProtocolStringList
+  @java.lang.Override
+  public java.util.List<java.lang.Long>
       getIdsList() {
     return ids_;
   }
   /**
-   * <pre>
-   * The IDs of the todos to retrieve
-   * </pre>
-   *
-   * <code>repeated string ids = 1 [json_name = "ids"];</code>
+   * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
    * @return The count of ids.
    */
   public int getIdsCount() {
     return ids_.size();
   }
   /**
-   * <pre>
-   * The IDs of the todos to retrieve
-   * </pre>
-   *
-   * <code>repeated string ids = 1 [json_name = "ids"];</code>
+   * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
    * @param index The index of the element to return.
    * @return The ids at the given index.
    */
-  public java.lang.String getIds(int index) {
-    return ids_.get(index);
+  public long getIds(int index) {
+    return ids_.getLong(index);
+  }
+  private int idsMemoizedSerializedSize = -1;
+
+  public static final int SHOW_DELETED_FIELD_NUMBER = 2;
+  private boolean showDeleted_ = false;
+  /**
+   * <pre>
+   * default to true if not set
+   * </pre>
+   *
+   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * @return Whether the showDeleted field is set.
+   */
+  @java.lang.Override
+  public boolean hasShowDeleted() {
+    return ((bitField0_ & 0x00000001) != 0);
   }
   /**
    * <pre>
-   * The IDs of the todos to retrieve
+   * default to true if not set
    * </pre>
    *
-   * <code>repeated string ids = 1 [json_name = "ids"];</code>
-   * @param index The index of the value to return.
-   * @return The bytes of the ids at the given index.
+   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * @return The showDeleted.
    */
-  public com.google.protobuf.ByteString
-      getIdsBytes(int index) {
-    return ids_.getByteString(index);
+  @java.lang.Override
+  public boolean getShowDeleted() {
+    return showDeleted_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -116,8 +116,16 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    getSerializedSize();
+    if (getIdsList().size() > 0) {
+      output.writeUInt32NoTag(10);
+      output.writeUInt32NoTag(idsMemoizedSerializedSize);
+    }
     for (int i = 0; i < ids_.size(); i++) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 1, ids_.getRaw(i));
+      output.writeInt64NoTag(ids_.getLong(i));
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeBool(2, showDeleted_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -131,10 +139,20 @@ private static final long serialVersionUID = 0L;
     {
       int dataSize = 0;
       for (int i = 0; i < ids_.size(); i++) {
-        dataSize += computeStringSizeNoTag(ids_.getRaw(i));
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeInt64SizeNoTag(ids_.getLong(i));
       }
       size += dataSize;
-      size += 1 * getIdsList().size();
+      if (!getIdsList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      idsMemoizedSerializedSize = dataSize;
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(2, showDeleted_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -153,6 +171,11 @@ private static final long serialVersionUID = 0L;
 
     if (!getIdsList()
         .equals(other.getIdsList())) return false;
+    if (hasShowDeleted() != other.hasShowDeleted()) return false;
+    if (hasShowDeleted()) {
+      if (getShowDeleted()
+          != other.getShowDeleted()) return false;
+    }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -167,6 +190,11 @@ private static final long serialVersionUID = 0L;
     if (getIdsCount() > 0) {
       hash = (37 * hash) + IDS_FIELD_NUMBER;
       hash = (53 * hash) + getIdsList().hashCode();
+    }
+    if (hasShowDeleted()) {
+      hash = (37 * hash) + SHOW_DELETED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getShowDeleted());
     }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
@@ -266,10 +294,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * Request message for BatchGetTodos
-   * </pre>
-   *
    * Protobuf type {@code todo.v1.BatchGetTodosRequest}
    */
   public static final class Builder extends
@@ -303,8 +327,8 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      ids_ =
-          com.google.protobuf.LazyStringArrayList.emptyList();
+      ids_ = emptyLongList();
+      showDeleted_ = false;
       return this;
     }
 
@@ -342,6 +366,12 @@ private static final long serialVersionUID = 0L;
         ids_.makeImmutable();
         result.ids_ = ids_;
       }
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.showDeleted_ = showDeleted_;
+        to_bitField0_ |= 0x00000001;
+      }
+      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -359,12 +389,16 @@ private static final long serialVersionUID = 0L;
       if (!other.ids_.isEmpty()) {
         if (ids_.isEmpty()) {
           ids_ = other.ids_;
+          ids_.makeImmutable();
           bitField0_ |= 0x00000001;
         } else {
           ensureIdsIsMutable();
           ids_.addAll(other.ids_);
         }
         onChanged();
+      }
+      if (other.hasShowDeleted()) {
+        setShowDeleted(other.getShowDeleted());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -392,12 +426,27 @@ private static final long serialVersionUID = 0L;
             case 0:
               done = true;
               break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 8: {
+              long v = input.readInt64();
               ensureIdsIsMutable();
-              ids_.add(s);
+              ids_.addLong(v);
+              break;
+            } // case 8
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              ensureIdsIsMutable();
+              while (input.getBytesUntilLimit() > 0) {
+                ids_.addLong(input.readInt64());
+              }
+              input.popLimit(limit);
               break;
             } // case 10
+            case 16: {
+              showDeleted_ = input.readBool();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 16
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -415,111 +464,72 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private com.google.protobuf.LazyStringArrayList ids_ =
-        com.google.protobuf.LazyStringArrayList.emptyList();
+    private com.google.protobuf.Internal.LongList ids_ = emptyLongList();
     private void ensureIdsIsMutable() {
       if (!ids_.isModifiable()) {
-        ids_ = new com.google.protobuf.LazyStringArrayList(ids_);
+        ids_ = makeMutableCopy(ids_);
       }
       bitField0_ |= 0x00000001;
     }
     /**
-     * <pre>
-     * The IDs of the todos to retrieve
-     * </pre>
-     *
-     * <code>repeated string ids = 1 [json_name = "ids"];</code>
+     * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
      * @return A list containing the ids.
      */
-    public com.google.protobuf.ProtocolStringList
+    public java.util.List<java.lang.Long>
         getIdsList() {
       ids_.makeImmutable();
       return ids_;
     }
     /**
-     * <pre>
-     * The IDs of the todos to retrieve
-     * </pre>
-     *
-     * <code>repeated string ids = 1 [json_name = "ids"];</code>
+     * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
      * @return The count of ids.
      */
     public int getIdsCount() {
       return ids_.size();
     }
     /**
-     * <pre>
-     * The IDs of the todos to retrieve
-     * </pre>
-     *
-     * <code>repeated string ids = 1 [json_name = "ids"];</code>
+     * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
      * @param index The index of the element to return.
      * @return The ids at the given index.
      */
-    public java.lang.String getIds(int index) {
-      return ids_.get(index);
+    public long getIds(int index) {
+      return ids_.getLong(index);
     }
     /**
-     * <pre>
-     * The IDs of the todos to retrieve
-     * </pre>
-     *
-     * <code>repeated string ids = 1 [json_name = "ids"];</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the ids at the given index.
-     */
-    public com.google.protobuf.ByteString
-        getIdsBytes(int index) {
-      return ids_.getByteString(index);
-    }
-    /**
-     * <pre>
-     * The IDs of the todos to retrieve
-     * </pre>
-     *
-     * <code>repeated string ids = 1 [json_name = "ids"];</code>
+     * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
      * @param index The index to set the value at.
      * @param value The ids to set.
      * @return This builder for chaining.
      */
     public Builder setIds(
-        int index, java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
+        int index, long value) {
+
       ensureIdsIsMutable();
-      ids_.set(index, value);
+      ids_.setLong(index, value);
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * The IDs of the todos to retrieve
-     * </pre>
-     *
-     * <code>repeated string ids = 1 [json_name = "ids"];</code>
+     * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
      * @param value The ids to add.
      * @return This builder for chaining.
      */
-    public Builder addIds(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
+    public Builder addIds(long value) {
+
       ensureIdsIsMutable();
-      ids_.add(value);
+      ids_.addLong(value);
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * The IDs of the todos to retrieve
-     * </pre>
-     *
-     * <code>repeated string ids = 1 [json_name = "ids"];</code>
+     * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
      * @param values The ids to add.
      * @return This builder for chaining.
      */
     public Builder addAllIds(
-        java.lang.Iterable<java.lang.String> values) {
+        java.lang.Iterable<? extends java.lang.Long> values) {
       ensureIdsIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
           values, ids_);
@@ -528,36 +538,68 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * The IDs of the todos to retrieve
-     * </pre>
-     *
-     * <code>repeated string ids = 1 [json_name = "ids"];</code>
+     * <code>repeated int64 ids = 1 [json_name = "ids"];</code>
      * @return This builder for chaining.
      */
     public Builder clearIds() {
-      ids_ =
-        com.google.protobuf.LazyStringArrayList.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000001);;
+      ids_ = emptyLongList();
+      bitField0_ = (bitField0_ & ~0x00000001);
+      onChanged();
+      return this;
+    }
+
+    private boolean showDeleted_ ;
+    /**
+     * <pre>
+     * default to true if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * @return Whether the showDeleted field is set.
+     */
+    @java.lang.Override
+    public boolean hasShowDeleted() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * default to true if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * @return The showDeleted.
+     */
+    @java.lang.Override
+    public boolean getShowDeleted() {
+      return showDeleted_;
+    }
+    /**
+     * <pre>
+     * default to true if not set
+     * </pre>
+     *
+     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * @param value The showDeleted to set.
+     * @return This builder for chaining.
+     */
+    public Builder setShowDeleted(boolean value) {
+
+      showDeleted_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The IDs of the todos to retrieve
+     * default to true if not set
      * </pre>
      *
-     * <code>repeated string ids = 1 [json_name = "ids"];</code>
-     * @param value The bytes of the ids to add.
+     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
      * @return This builder for chaining.
      */
-    public Builder addIdsBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      ensureIdsIsMutable();
-      ids_.add(value);
-      bitField0_ |= 0x00000001;
+    public Builder clearShowDeleted() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      showDeleted_ = false;
       onChanged();
       return this;
     }

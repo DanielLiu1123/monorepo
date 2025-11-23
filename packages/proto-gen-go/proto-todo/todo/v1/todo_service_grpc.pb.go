@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -34,17 +33,17 @@ const (
 //
 // TodoService provides CRUD operations for todos following AIP standards
 type TodoServiceClient interface {
-	// Creates a new todo (AIP-133)
+	// Create a new todo
 	CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
-	// Gets a todo by ID (AIP-131)
+	// Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
 	GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
-	// Lists todos with pagination (AIP-132)
+	// List todos with pagination, filtering, and sorting
 	ListTodos(ctx context.Context, in *ListTodosRequest, opts ...grpc.CallOption) (*ListTodosResponse, error)
-	// Updates a todo (AIP-134)
+	// Update an existing todo
 	UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
-	// Deletes a todo (AIP-135)
-	DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Batch gets multiple todos by IDs (AIP-231)
+	// Delete a todo by ID (soft delete)
+	DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
+	// Batch get todos by IDs (including soft-deleted)
 	BatchGetTodos(ctx context.Context, in *BatchGetTodosRequest, opts ...grpc.CallOption) (*BatchGetTodosResponse, error)
 }
 
@@ -96,9 +95,9 @@ func (c *todoServiceClient) UpdateTodo(ctx context.Context, in *UpdateTodoReques
 	return out, nil
 }
 
-func (c *todoServiceClient) DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *todoServiceClient) DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*TodoModel, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(TodoModel)
 	err := c.cc.Invoke(ctx, TodoService_DeleteTodo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -122,17 +121,17 @@ func (c *todoServiceClient) BatchGetTodos(ctx context.Context, in *BatchGetTodos
 //
 // TodoService provides CRUD operations for todos following AIP standards
 type TodoServiceServer interface {
-	// Creates a new todo (AIP-133)
+	// Create a new todo
 	CreateTodo(context.Context, *CreateTodoRequest) (*TodoModel, error)
-	// Gets a todo by ID (AIP-131)
+	// Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
 	GetTodo(context.Context, *GetTodoRequest) (*TodoModel, error)
-	// Lists todos with pagination (AIP-132)
+	// List todos with pagination, filtering, and sorting
 	ListTodos(context.Context, *ListTodosRequest) (*ListTodosResponse, error)
-	// Updates a todo (AIP-134)
+	// Update an existing todo
 	UpdateTodo(context.Context, *UpdateTodoRequest) (*TodoModel, error)
-	// Deletes a todo (AIP-135)
-	DeleteTodo(context.Context, *DeleteTodoRequest) (*emptypb.Empty, error)
-	// Batch gets multiple todos by IDs (AIP-231)
+	// Delete a todo by ID (soft delete)
+	DeleteTodo(context.Context, *DeleteTodoRequest) (*TodoModel, error)
+	// Batch get todos by IDs (including soft-deleted)
 	BatchGetTodos(context.Context, *BatchGetTodosRequest) (*BatchGetTodosResponse, error)
 	mustEmbedUnimplementedTodoServiceServer()
 }
@@ -156,7 +155,7 @@ func (UnimplementedTodoServiceServer) ListTodos(context.Context, *ListTodosReque
 func (UnimplementedTodoServiceServer) UpdateTodo(context.Context, *UpdateTodoRequest) (*TodoModel, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTodo not implemented")
 }
-func (UnimplementedTodoServiceServer) DeleteTodo(context.Context, *DeleteTodoRequest) (*emptypb.Empty, error) {
+func (UnimplementedTodoServiceServer) DeleteTodo(context.Context, *DeleteTodoRequest) (*TodoModel, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTodo not implemented")
 }
 func (UnimplementedTodoServiceServer) BatchGetTodos(context.Context, *BatchGetTodosRequest) (*BatchGetTodosResponse, error) {
