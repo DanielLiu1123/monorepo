@@ -73,7 +73,7 @@ public class TodoService {
             var result = updateTodo(request.getTodo());
 
             var todoId = request.getTodo().getId();
-            for (var subtask : request.getSubTasksList()) {
+            for (var subtask : request.getSubTaskOperationsList()) {
                 switch (subtask.getOperationCase()) {
                     case CREATE -> createTodoSubtask(subtask.getCreate(), todoId);
                     case UPDATE -> updateTodoSubtask(subtask.getUpdate(), todoId);
@@ -301,7 +301,7 @@ public class TodoService {
         return subtask.getId();
     }
 
-    private boolean updateTodoSubtask(UpdateTodoRequest.SubTask.Update request, long todoId) {
+    private boolean updateTodoSubtask(UpdateTodoRequest.SubTask request, long todoId) {
         var subtask = TodoConverter.INSTANCE.toTodoSubtask(request);
         return todoSubtaskMapper.update(c -> TodoSubtaskMapper.updateSelectiveColumns(subtask, c)
                         .where(todoSubtask.id, isEqualTo(request.getId()))

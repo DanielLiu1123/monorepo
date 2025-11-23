@@ -48,5 +48,5 @@ public abstract class TodoConverter {
     @Mapping(target = "todoId", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    public abstract TodoSubtask toTodoSubtask(UpdateTodoRequest.SubTask.Update request);
+    public abstract TodoSubtask toTodoSubtask(UpdateTodoRequest.SubTask request);
 }

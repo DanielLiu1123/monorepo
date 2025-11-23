@@ -26,26 +26,26 @@ public interface UpdateTodoRequestOrBuilder extends
   monorepo.proto.todo.v1.UpdateTodoRequest.TodoOrBuilder getTodoOrBuilder();
 
   /**
-   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 2 [json_name = "subTaskOperations"];</code>
    */
-  java.util.List<monorepo.proto.todo.v1.UpdateTodoRequest.SubTask> 
-      getSubTasksList();
+  java.util.List<monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation> 
+      getSubTaskOperationsList();
   /**
-   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 2 [json_name = "subTaskOperations"];</code>
    */
-  monorepo.proto.todo.v1.UpdateTodoRequest.SubTask getSubTasks(int index);
+  monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation getSubTaskOperations(int index);
   /**
-   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 2 [json_name = "subTaskOperations"];</code>
    */
-  int getSubTasksCount();
+  int getSubTaskOperationsCount();
   /**
-   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 2 [json_name = "subTaskOperations"];</code>
    */
-  java.util.List<? extends monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder> 
-      getSubTasksOrBuilderList();
+  java.util.List<? extends monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperationOrBuilder> 
+      getSubTaskOperationsOrBuilderList();
   /**
-   * <code>repeated .todo.v1.UpdateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 2 [json_name = "subTaskOperations"];</code>
    */
-  monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder getSubTasksOrBuilder(
+  monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperationOrBuilder getSubTaskOperationsOrBuilder(
       int index);
 }

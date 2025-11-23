@@ -116,7 +116,7 @@ message ListTodosResponse {
 // Request message for UpdateTodo
 message UpdateTodoRequest {
   Todo todo = 1;
-  repeated SubTask sub_tasks = 2;
+  repeated SubTaskOperation sub_task_operations = 2;
 
   message Todo {
     int64 id = 1;
@@ -129,15 +129,15 @@ message UpdateTodoRequest {
   }
 
   message SubTask {
+    int64 id = 1;
+    optional string title = 2;
+  }
+
+  message SubTaskOperation {
     oneof operation {
       CreateTodoRequest.SubTask create = 1;
-      Update update = 2;
+      UpdateTodoRequest.SubTask update = 2;
       int64 delete = 3;
-    }
-
-    message Update {
-      int64 id = 1;
-      optional string title = 2;
     }
   }
 }
