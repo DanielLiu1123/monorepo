@@ -1,7 +1,6 @@
 package monorepo.lib.common.config;
 
 import jakarta.annotation.Nullable;
-import java.util.Optional;
 import monorepo.lib.common.profile.Profile;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
@@ -13,6 +12,8 @@ import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+
+import java.util.Optional;
 
 /**
  * Load default configurations.
@@ -28,16 +29,11 @@ public final class DefaultConfigEnvironmentPostProcessor implements EnvironmentP
         this.log = logFactory.getLog(getClass());
     }
 
-    /**
-     * Configurations to be loaded.
-     */
-    private static final String[] FILES = {"application-default-config.yaml"};
-
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
 
         // profile-based configuration should be loaded before default configuration
-        var profile = getProfile(environment);
+        var profile = getProfileOrNull(environment);
         if (profile != null) {
             var configName =
                     switch (profile) {
@@ -54,15 +50,13 @@ public final class DefaultConfigEnvironmentPostProcessor implements EnvironmentP
         }
 
         // load default configuration, which has the lowest priority than profile-based configuration
-        for (String location : FILES) {
-            ClassPathResource resource = new ClassPathResource(location);
-            environment.getPropertySources().addLast(loadProperties(resource));
-            log.info("Loaded default configuration: " + resource.getFilename());
-        }
+        ClassPathResource resource = new ClassPathResource("application-default-config.yaml");
+        environment.getPropertySources().addLast(loadProperties(resource));
+        log.info("Loaded default configuration: " + resource.getFilename());
     }
 
     @Nullable
-    private static Profile getProfile(ConfigurableEnvironment environment) {
+    private static Profile getProfileOrNull(ConfigurableEnvironment environment) {
         for (var activeProfile : environment.getActiveProfiles()) {
             for (var profile : Profile.values()) {
                 if (profile.name().equalsIgnoreCase(activeProfile)) {
