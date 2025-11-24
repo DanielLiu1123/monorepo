@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 install() {
-    cd $PROJECT_DIR && buf dep update
+    execute_cmd "cd $PROJECT_DIR && buf dep update"
 }
 
 build() {
@@ -13,11 +13,11 @@ test() {
 }
 
 lint() {
-    cd $PROJECT_DIR && buf lint
+    execute_cmd "cd $PROJECT_DIR && buf lint"
 }
 
 fmt() {
-    cd $PROJECT_DIR && buf format --write
+    execute_cmd "cd $PROJECT_DIR && buf format --write"
 }
 
 clean() {

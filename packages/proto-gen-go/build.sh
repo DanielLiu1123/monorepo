@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 install() {
-    cd $PROJECT_DIR && go mod download
-    go work sync
+    execute_cmd "cd $PROJECT_DIR && go mod download"
+    execute_cmd "go work sync"
 }
 
 build() {
-    cd $PROJECT_DIR && go build ./...
+    execute_cmd "cd $PROJECT_DIR && go build ./..."
 }
 
 test() {

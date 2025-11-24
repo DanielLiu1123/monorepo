@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 install() {
-    cd $PROJECT_DIR && npm install
+    execute_cmd "cd $PROJECT_DIR && npm install"
 }
 
 build() {
     if grep -q '"build"[[:space:]]*:' "$PROJECT_DIR/package.json" 2>/dev/null; then
-        cd $PROJECT_DIR && npm run build
+        execute_cmd "cd $PROJECT_DIR && npm run build"
     else
         print_warning "No build script found in package.json, skipping build"
     fi
@@ -14,7 +14,7 @@ build() {
 
 test() {
     if grep -q '"test"[[:space:]]*:' "$PROJECT_DIR/package.json" 2>/dev/null; then
-        cd $PROJECT_DIR && npm test
+        execute_cmd "cd $PROJECT_DIR && npm test"
     else
         print_warning "No test script found in package.json, skipping tests"
     fi
@@ -22,7 +22,7 @@ test() {
 
 lint() {
     if grep -q '"lint"[[:space:]]*:' "$PROJECT_DIR/package.json" 2>/dev/null; then
-        cd $PROJECT_DIR && npm run lint
+        execute_cmd "cd $PROJECT_DIR && npm run lint"
     else
         print_warning "No lint script found in package.json, skipping linting"
     fi
@@ -30,23 +30,23 @@ lint() {
 
 fmt() {
     if command -v prettier &> /dev/null; then
-        cd $PROJECT_DIR && prettier --write .
+        execute_cmd "cd $PROJECT_DIR && prettier --write ."
     elif [ -f "$PROJECT_DIR/node_modules/.bin/prettier" ]; then
-        cd $PROJECT_DIR && npx prettier --write .
+        execute_cmd "cd $PROJECT_DIR && npx prettier --write ."
     else
         print_warning "Prettier not found, skipping formatting"
     fi
 }
 
 clean() {
-    rm -rf $PROJECT_DIR/build/ $PROJECT_DIR/.next/ $PROJECT_DIR/dist/
+    execute_cmd "rm -rf $PROJECT_DIR/build/ $PROJECT_DIR/.next/ $PROJECT_DIR/dist/"
 }
 
 run() {
     if grep -q '"dev"[[:space:]]*:' "$PROJECT_DIR/package.json" 2>/dev/null; then
-        cd $PROJECT_DIR && npm run dev
+        execute_cmd "cd $PROJECT_DIR && npm run dev"
     elif grep -q '"start"[[:space:]]*:' "$PROJECT_DIR/package.json" 2>/dev/null; then
-        cd $PROJECT_DIR && npm run start
+        execute_cmd "cd $PROJECT_DIR && npm run start"
     else
         print_error "No dev or start script found in package.json"
         return 1

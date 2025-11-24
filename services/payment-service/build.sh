@@ -1,32 +1,32 @@
 #!/usr/bin/env bash
 
 install() {
-    cd $PROJECT_DIR && go mod download
-    go work sync
+    execute_cmd "cd $PROJECT_DIR && go mod download"
+    execute_cmd "go work sync"
 }
 
 build() {
-    mkdir -p $PROJECT_DIR/build
-    cd $PROJECT_DIR && go build -o ./build/app ./cmd/app/
+    execute_cmd "mkdir -p $PROJECT_DIR/build"
+    execute_cmd "cd $PROJECT_DIR && go build -o ./build/app ./cmd/app/"
 }
 
 test() {
-    cd $PROJECT_DIR && go test ./... -v
+    execute_cmd "cd $PROJECT_DIR && go test ./... -v"
 }
 
 lint() {
-    cd $PROJECT_DIR && golangci-lint run ./...
+    execute_cmd "cd $PROJECT_DIR && golangci-lint run ./..."
 }
 
 fmt() {
-    cd $PROJECT_DIR && go fmt ./... && goimports -w . && go mod tidy
-    go work sync
+    execute_cmd "cd $PROJECT_DIR && go fmt ./... && goimports -w . && go mod tidy"
+    execute_cmd "go work sync"
 }
 
 clean() {
-    rm -rf $PROJECT_DIR/build/
+    execute_cmd "rm -rf $PROJECT_DIR/build/"
 }
 
 run() {
-    cd $PROJECT_DIR && go run ./cmd/app/
+    execute_cmd "cd $PROJECT_DIR && go run ./cmd/app/"
 }

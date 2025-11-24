@@ -36,13 +36,13 @@ print_warning() {
     echo -e "${YELLOW}$1${NC}"
 }
 
-execute_command() {
+execute_cmd() {
     echo -e "${BLUE}→ $*${NC}"
     eval "$@"
 }
 
 # Execute project command
-execute_project_command() {
+execute_project_cmd() {
     local command="$1"
     local project_path="$2"
 

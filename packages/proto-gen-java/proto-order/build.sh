@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 install() {
-    ./gradlew compileJava --project-dir $PROJECT_DIR
+    execute_cmd "./gradlew compileJava --project-dir $PROJECT_DIR"
 }
 
 build() {
-    ./gradlew jar --project-dir $PROJECT_DIR
+    execute_cmd "./gradlew jar --project-dir $PROJECT_DIR"
 }
 
 test() {
@@ -21,7 +21,7 @@ fmt() {
 }
 
 clean() {
-    ./gradlew clean --project-dir $PROJECT_DIR
+    execute_cmd "./gradlew clean --project-dir $PROJECT_DIR"
 }
 
 run() {
