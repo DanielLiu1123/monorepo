@@ -16,19 +16,19 @@ service TodoService {
   // === standard APIs ===
 
   // Create a new todo
-  rpc CreateTodo(CreateTodoRequest) returns (TodoModel) {}
+  rpc CreateTodo(CreateTodoRequest) returns (Todo) {}
 
   // Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
-  rpc GetTodo(GetTodoRequest) returns (TodoModel) {}
+  rpc GetTodo(GetTodoRequest) returns (Todo) {}
 
   // List todos with pagination, filtering, and sorting
   rpc ListTodos(ListTodosRequest) returns (ListTodosResponse) {}
 
   // Update an existing todo
-  rpc UpdateTodo(UpdateTodoRequest) returns (TodoModel) {}
+  rpc UpdateTodo(UpdateTodoRequest) returns (Todo) {}
 
   // Delete a todo by ID (soft delete)
-  rpc DeleteTodo(DeleteTodoRequest) returns (TodoModel) {}
+  rpc DeleteTodo(DeleteTodoRequest) returns (Todo) {}
 
   // === additional APIs ===
 
@@ -38,20 +38,16 @@ service TodoService {
 
 message CreateTodoRequest {
 
-  Todo todo = 1;
-  repeated SubTask sub_tasks = 2;
+  int64 user_id = 1;
+  string title = 2;
+  optional string description = 3;
+  optional Todo.State state = 4;
+  optional Todo.Priority priority = 5;
+  optional int64 assignee = 6;
+  optional google.type.Date due_date = 7;
+  repeated SubTask sub_tasks = 8;
 
-  message Todo{
-    int64 user_id = 1;
-    string title = 2;
-    optional string description = 3;
-    optional TodoModel.State state = 4;
-    optional TodoModel.Priority priority = 5;
-    optional int64 assignee = 6;
-    optional google.type.Date due_date = 7;
-  }
-
-  message SubTask{
+  message SubTask {
     string title = 1;
   }
 }
@@ -90,8 +86,8 @@ message ListTodosRequest {
   optional bool show_deleted = 6;
 
   message Filter {
-    repeated TodoModel.State states = 1;
-    repeated TodoModel.Priority priorities = 2;
+    repeated Todo.State states = 1;
+    repeated Todo.Priority priorities = 2;
   }
 
   message OrderBy {
@@ -103,7 +99,7 @@ message ListTodosRequest {
 // Response message for ListTodos
 message ListTodosResponse {
   // The list of todos
-  repeated TodoModel todos = 1;
+  repeated Todo todos = 1;
 
   // Token to retrieve the next page of results
   // Empty if there are no more results
@@ -115,23 +111,14 @@ message ListTodosResponse {
 
 // Request message for UpdateTodo
 message UpdateTodoRequest {
-  Todo todo = 1;
-  repeated SubTaskOperation sub_task_operations = 2;
-
-  message Todo {
-    int64 id = 1;
-    optional string title = 2;
-    optional string description = 3;
-    optional TodoModel.State state = 4;
-    optional TodoModel.Priority priority = 5;
-    optional int64 assignee = 6;
-    optional google.type.Date due_date = 7;
-  }
-
-  message SubTask {
-    int64 id = 1;
-    optional string title = 2;
-  }
+  int64 id = 1;
+  optional string title = 2;
+  optional string description = 3;
+  optional Todo.State state = 4;
+  optional Todo.Priority priority = 5;
+  optional int64 assignee = 6;
+  optional google.type.Date due_date = 7;
+  repeated SubTaskOperation sub_task_operations = 8;
 
   message SubTaskOperation {
     oneof operation {
@@ -139,6 +126,11 @@ message UpdateTodoRequest {
       UpdateTodoRequest.SubTask update = 2;
       int64 delete = 3;
     }
+  }
+
+  message SubTask {
+    int64 id = 1;
+    optional string title = 2;
   }
 }
 
@@ -153,5 +145,5 @@ message BatchGetTodosRequest {
 }
 
 message BatchGetTodosResponse {
-  repeated TodoModel todos = 1;
+  repeated Todo todos = 1;
 }

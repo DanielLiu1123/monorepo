@@ -34,15 +34,15 @@ const (
 // TodoService provides CRUD operations for todos following AIP standards
 type TodoServiceClient interface {
 	// Create a new todo
-	CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
+	CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*Todo, error)
 	// Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
-	GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
+	GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*Todo, error)
 	// List todos with pagination, filtering, and sorting
 	ListTodos(ctx context.Context, in *ListTodosRequest, opts ...grpc.CallOption) (*ListTodosResponse, error)
 	// Update an existing todo
-	UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
+	UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*Todo, error)
 	// Delete a todo by ID (soft delete)
-	DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*TodoModel, error)
+	DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*Todo, error)
 	// Batch get todos by IDs (including soft-deleted)
 	BatchGetTodos(ctx context.Context, in *BatchGetTodosRequest, opts ...grpc.CallOption) (*BatchGetTodosResponse, error)
 }
@@ -55,9 +55,9 @@ func NewTodoServiceClient(cc grpc.ClientConnInterface) TodoServiceClient {
 	return &todoServiceClient{cc}
 }
 
-func (c *todoServiceClient) CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error) {
+func (c *todoServiceClient) CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*Todo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TodoModel)
+	out := new(Todo)
 	err := c.cc.Invoke(ctx, TodoService_CreateTodo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -65,9 +65,9 @@ func (c *todoServiceClient) CreateTodo(ctx context.Context, in *CreateTodoReques
 	return out, nil
 }
 
-func (c *todoServiceClient) GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*TodoModel, error) {
+func (c *todoServiceClient) GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*Todo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TodoModel)
+	out := new(Todo)
 	err := c.cc.Invoke(ctx, TodoService_GetTodo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -85,9 +85,9 @@ func (c *todoServiceClient) ListTodos(ctx context.Context, in *ListTodosRequest,
 	return out, nil
 }
 
-func (c *todoServiceClient) UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*TodoModel, error) {
+func (c *todoServiceClient) UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*Todo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TodoModel)
+	out := new(Todo)
 	err := c.cc.Invoke(ctx, TodoService_UpdateTodo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -95,9 +95,9 @@ func (c *todoServiceClient) UpdateTodo(ctx context.Context, in *UpdateTodoReques
 	return out, nil
 }
 
-func (c *todoServiceClient) DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*TodoModel, error) {
+func (c *todoServiceClient) DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*Todo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TodoModel)
+	out := new(Todo)
 	err := c.cc.Invoke(ctx, TodoService_DeleteTodo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -122,15 +122,15 @@ func (c *todoServiceClient) BatchGetTodos(ctx context.Context, in *BatchGetTodos
 // TodoService provides CRUD operations for todos following AIP standards
 type TodoServiceServer interface {
 	// Create a new todo
-	CreateTodo(context.Context, *CreateTodoRequest) (*TodoModel, error)
+	CreateTodo(context.Context, *CreateTodoRequest) (*Todo, error)
 	// Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
-	GetTodo(context.Context, *GetTodoRequest) (*TodoModel, error)
+	GetTodo(context.Context, *GetTodoRequest) (*Todo, error)
 	// List todos with pagination, filtering, and sorting
 	ListTodos(context.Context, *ListTodosRequest) (*ListTodosResponse, error)
 	// Update an existing todo
-	UpdateTodo(context.Context, *UpdateTodoRequest) (*TodoModel, error)
+	UpdateTodo(context.Context, *UpdateTodoRequest) (*Todo, error)
 	// Delete a todo by ID (soft delete)
-	DeleteTodo(context.Context, *DeleteTodoRequest) (*TodoModel, error)
+	DeleteTodo(context.Context, *DeleteTodoRequest) (*Todo, error)
 	// Batch get todos by IDs (including soft-deleted)
 	BatchGetTodos(context.Context, *BatchGetTodosRequest) (*BatchGetTodosResponse, error)
 	mustEmbedUnimplementedTodoServiceServer()
@@ -143,19 +143,19 @@ type TodoServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTodoServiceServer struct{}
 
-func (UnimplementedTodoServiceServer) CreateTodo(context.Context, *CreateTodoRequest) (*TodoModel, error) {
+func (UnimplementedTodoServiceServer) CreateTodo(context.Context, *CreateTodoRequest) (*Todo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTodo not implemented")
 }
-func (UnimplementedTodoServiceServer) GetTodo(context.Context, *GetTodoRequest) (*TodoModel, error) {
+func (UnimplementedTodoServiceServer) GetTodo(context.Context, *GetTodoRequest) (*Todo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTodo not implemented")
 }
 func (UnimplementedTodoServiceServer) ListTodos(context.Context, *ListTodosRequest) (*ListTodosResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTodos not implemented")
 }
-func (UnimplementedTodoServiceServer) UpdateTodo(context.Context, *UpdateTodoRequest) (*TodoModel, error) {
+func (UnimplementedTodoServiceServer) UpdateTodo(context.Context, *UpdateTodoRequest) (*Todo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTodo not implemented")
 }
-func (UnimplementedTodoServiceServer) DeleteTodo(context.Context, *DeleteTodoRequest) (*TodoModel, error) {
+func (UnimplementedTodoServiceServer) DeleteTodo(context.Context, *DeleteTodoRequest) (*Todo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTodo not implemented")
 }
 func (UnimplementedTodoServiceServer) BatchGetTodos(context.Context, *BatchGetTodosRequest) (*BatchGetTodosResponse, error) {

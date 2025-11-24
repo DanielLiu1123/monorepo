@@ -1,8 +1,8 @@
 package monorepo.services.todo.converter;
 
+import java.util.Collection;
 import monorepo.lib.msp.MapStructConfig;
 import monorepo.proto.todo.v1.CreateTodoRequest;
-import monorepo.proto.todo.v1.TodoModel;
 import monorepo.proto.todo.v1.UpdateTodoRequest;
 import monorepo.services.todo.entity.Todo;
 import monorepo.services.todo.entity.TodoSubtask;
@@ -21,32 +21,41 @@ public abstract class TodoConverter {
 
     public static final TodoConverter INSTANCE = Mappers.getMapper(TodoConverter.class);
 
-    public abstract TodoModel.Todo toTodoModel(Todo entity);
+    public monorepo.proto.todo.v1.Todo buildTodo(Todo todo, Collection<TodoSubtask> subTasks) {
+        var builder = toTodo(todo).toBuilder();
+        for (var subTask : subTasks) {
+            builder.addSubTasks(toTodoSubtask(subTask));
+        }
+        return builder.build();
+    }
 
-    public abstract TodoModel.SubTask toTodoSubtaskModel(TodoSubtask entity);
+    @Mapping(target = "subTasks", ignore = true)
+    abstract monorepo.proto.todo.v1.Todo toTodo(Todo entity);
+
+    abstract monorepo.proto.todo.v1.SubTask toTodoSubtask(TodoSubtask entity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    public abstract Todo toTodo(CreateTodoRequest.Todo request);
+    public abstract Todo toTodoEntity(CreateTodoRequest request);
 
     @Mapping(target = "userId", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    public abstract Todo toTodo(UpdateTodoRequest.Todo request);
+    public abstract Todo toTodoEntity(UpdateTodoRequest request);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "todoId", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    public abstract TodoSubtask toTodoSubtask(CreateTodoRequest.SubTask request);
+    public abstract TodoSubtask toTodoSubtaskEntity(CreateTodoRequest.SubTask request);
 
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "todoId", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    public abstract TodoSubtask toTodoSubtask(UpdateTodoRequest.SubTask request);
+    public abstract TodoSubtask toTodoSubtaskEntity(UpdateTodoRequest.SubTask request);
 }

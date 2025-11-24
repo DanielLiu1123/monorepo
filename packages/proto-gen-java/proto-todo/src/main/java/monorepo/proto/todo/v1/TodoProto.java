@@ -27,20 +27,15 @@ public final class TodoProto extends com.google.protobuf.GeneratedFile {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_todo_v1_TodoModel_descriptor;
+    internal_static_todo_v1_Todo_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_todo_v1_TodoModel_fieldAccessorTable;
+      internal_static_todo_v1_Todo_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_todo_v1_TodoModel_Todo_descriptor;
+    internal_static_todo_v1_SubTask_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_todo_v1_TodoModel_Todo_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_todo_v1_TodoModel_SubTask_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_todo_v1_TodoModel_SubTask_fieldAccessorTable;
+      internal_static_todo_v1_SubTask_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -52,33 +47,31 @@ public final class TodoProto extends com.google.protobuf.GeneratedFile {
     java.lang.String[] descriptorData = {
       "\n\022todo/v1/todo.proto\022\007todo.v1\032\037google/pr" +
       "otobuf/timestamp.proto\032\026google/type/date" +
-      ".proto\"\263\007\n\tTodoModel\022+\n\004todo\030\001 \001(\0132\027.tod" +
-      "o.v1.TodoModel.TodoR\004todo\0227\n\tsub_tasks\030\003" +
-      " \003(\0132\032.todo.v1.TodoModel.SubTaskR\010subTas" +
-      "ks\032\361\003\n\004Todo\022\016\n\002id\030\001 \001(\003R\002id\022\027\n\007user_id\030\002" +
-      " \001(\003R\006userId\022\024\n\005title\030\003 \001(\tR\005title\022 \n\013de" +
-      "scription\030\004 \001(\tR\013description\022.\n\005state\030\005 " +
-      "\001(\0162\030.todo.v1.TodoModel.StateR\005state\0227\n\010" +
-      "priority\030\006 \001(\0162\033.todo.v1.TodoModel.Prior" +
-      "ityR\010priority\022\037\n\010assignee\030\007 \001(\003H\000R\010assig" +
-      "nee\210\001\001\022,\n\010due_date\030\010 \001(\0132\021.google.type.D" +
-      "ateR\007dueDate\0229\n\ncreated_at\030\t \001(\0132\032.googl" +
-      "e.protobuf.TimestampR\tcreatedAt\0229\n\nupdat" +
-      "ed_at\030\n \001(\0132\032.google.protobuf.TimestampR" +
-      "\tupdatedAt\022>\n\ndeleted_at\030\013 \001(\0132\032.google." +
-      "protobuf.TimestampH\001R\tdeletedAt\210\001\001B\013\n\t_a" +
-      "ssigneeB\r\n\013_deleted_at\032\276\001\n\007SubTask\022\016\n\002id" +
-      "\030\001 \001(\003R\002id\022\027\n\007todo_id\030\002 \001(\003R\006todoId\022\024\n\005t" +
-      "itle\030\003 \001(\tR\005title\0229\n\ncreated_at\030\005 \001(\0132\032." +
-      "google.protobuf.TimestampR\tcreatedAt\0229\n\n" +
-      "updated_at\030\006 \001(\0132\032.google.protobuf.Times" +
-      "tampR\tupdatedAt\":\n\005State\022\025\n\021STATE_UNSPEC" +
-      "IFIED\020\000\022\013\n\007PENDING\020\001\022\r\n\tCOMPLETED\020\002\"O\n\010P" +
-      "riority\022\030\n\024PRIORITY_UNSPECIFIED\020\000\022\007\n\003LOW" +
-      "\020\001\022\n\n\006MEDIUM\020\002\022\010\n\004HIGH\020\003\022\n\n\006URGENT\020\004Bg\n\026" +
-      "monorepo.proto.todo.v1B\tTodoProtoP\001Z@git" +
-      "hub.com/yourorg/monorepo/packages/proto-" +
-      "gen-go/todo/v1;todov1b\006proto3"
+      ".proto\"\243\005\n\004Todo\022\016\n\002id\030\001 \001(\003R\002id\022\027\n\007user_" +
+      "id\030\002 \001(\003R\006userId\022\024\n\005title\030\003 \001(\tR\005title\022 " +
+      "\n\013description\030\004 \001(\tR\013description\022)\n\005stat" +
+      "e\030\005 \001(\0162\023.todo.v1.Todo.StateR\005state\0222\n\010p" +
+      "riority\030\006 \001(\0162\026.todo.v1.Todo.PriorityR\010p" +
+      "riority\022\037\n\010assignee\030\007 \001(\003H\000R\010assignee\210\001\001" +
+      "\022,\n\010due_date\030\010 \001(\0132\021.google.type.DateR\007d" +
+      "ueDate\022-\n\tsub_tasks\030\t \003(\0132\020.todo.v1.SubT" +
+      "askR\010subTasks\0229\n\ncreated_at\030\n \001(\0132\032.goog" +
+      "le.protobuf.TimestampR\tcreatedAt\0229\n\nupda" +
+      "ted_at\030\013 \001(\0132\032.google.protobuf.Timestamp" +
+      "R\tupdatedAt\022>\n\ndeleted_at\030\014 \001(\0132\032.google" +
+      ".protobuf.TimestampH\001R\tdeletedAt\210\001\001\":\n\005S" +
+      "tate\022\025\n\021STATE_UNSPECIFIED\020\000\022\013\n\007PENDING\020\001" +
+      "\022\r\n\tCOMPLETED\020\002\"O\n\010Priority\022\030\n\024PRIORITY_" +
+      "UNSPECIFIED\020\000\022\007\n\003LOW\020\001\022\n\n\006MEDIUM\020\002\022\010\n\004HI" +
+      "GH\020\003\022\n\n\006URGENT\020\004B\013\n\t_assigneeB\r\n\013_delete" +
+      "d_at\"\245\001\n\007SubTask\022\016\n\002id\030\001 \001(\003R\002id\022\024\n\005titl" +
+      "e\030\003 \001(\tR\005title\0229\n\ncreated_at\030\005 \001(\0132\032.goo" +
+      "gle.protobuf.TimestampR\tcreatedAt\0229\n\nupd" +
+      "ated_at\030\006 \001(\0132\032.google.protobuf.Timestam" +
+      "pR\tupdatedAtBg\n\026monorepo.proto.todo.v1B\t" +
+      "TodoProtoP\001Z@github.com/yourorg/monorepo" +
+      "/packages/proto-gen-go/todo/v1;todov1b\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -86,24 +79,18 @@ public final class TodoProto extends com.google.protobuf.GeneratedFile {
           com.google.protobuf.TimestampProto.getDescriptor(),
           com.google.type.DateProto.getDescriptor(),
         });
-    internal_static_todo_v1_TodoModel_descriptor =
+    internal_static_todo_v1_Todo_descriptor =
       getDescriptor().getMessageType(0);
-    internal_static_todo_v1_TodoModel_fieldAccessorTable = new
+    internal_static_todo_v1_Todo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_todo_v1_TodoModel_descriptor,
-        new java.lang.String[] { "Todo", "SubTasks", });
-    internal_static_todo_v1_TodoModel_Todo_descriptor =
-      internal_static_todo_v1_TodoModel_descriptor.getNestedType(0);
-    internal_static_todo_v1_TodoModel_Todo_fieldAccessorTable = new
+        internal_static_todo_v1_Todo_descriptor,
+        new java.lang.String[] { "Id", "UserId", "Title", "Description", "State", "Priority", "Assignee", "DueDate", "SubTasks", "CreatedAt", "UpdatedAt", "DeletedAt", });
+    internal_static_todo_v1_SubTask_descriptor =
+      getDescriptor().getMessageType(1);
+    internal_static_todo_v1_SubTask_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_todo_v1_TodoModel_Todo_descriptor,
-        new java.lang.String[] { "Id", "UserId", "Title", "Description", "State", "Priority", "Assignee", "DueDate", "CreatedAt", "UpdatedAt", "DeletedAt", });
-    internal_static_todo_v1_TodoModel_SubTask_descriptor =
-      internal_static_todo_v1_TodoModel_descriptor.getNestedType(1);
-    internal_static_todo_v1_TodoModel_SubTask_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_todo_v1_TodoModel_SubTask_descriptor,
-        new java.lang.String[] { "Id", "TodoId", "Title", "CreatedAt", "UpdatedAt", });
+        internal_static_todo_v1_SubTask_descriptor,
+        new java.lang.String[] { "Id", "Title", "CreatedAt", "UpdatedAt", });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.TimestampProto.getDescriptor();
     com.google.type.DateProto.getDescriptor();

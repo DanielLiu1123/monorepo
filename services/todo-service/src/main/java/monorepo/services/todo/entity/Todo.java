@@ -3,8 +3,8 @@ package monorepo.services.todo.entity;
 import jakarta.annotation.Generated;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import monorepo.proto.todo.v1.TodoModel.Priority;
-import monorepo.proto.todo.v1.TodoModel.State;
+import monorepo.proto.todo.v1.Todo.Priority;
+import monorepo.proto.todo.v1.Todo.State;
 import org.jspecify.annotations.Nullable;
 
 /**

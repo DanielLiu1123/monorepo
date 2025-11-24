@@ -11,26 +11,26 @@ public interface BatchGetTodosResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
-  java.util.List<monorepo.proto.todo.v1.TodoModel> 
+  java.util.List<monorepo.proto.todo.v1.Todo> 
       getTodosList();
   /**
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
-  monorepo.proto.todo.v1.TodoModel getTodos(int index);
+  monorepo.proto.todo.v1.Todo getTodos(int index);
   /**
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
   int getTodosCount();
   /**
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
-  java.util.List<? extends monorepo.proto.todo.v1.TodoModelOrBuilder> 
+  java.util.List<? extends monorepo.proto.todo.v1.TodoOrBuilder> 
       getTodosOrBuilderList();
   /**
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
-  monorepo.proto.todo.v1.TodoModelOrBuilder getTodosOrBuilder(
+  monorepo.proto.todo.v1.TodoOrBuilder getTodosOrBuilder(
       int index);
 }

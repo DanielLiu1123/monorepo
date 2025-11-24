@@ -11,40 +11,118 @@ public interface CreateTodoRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.todo.v1.CreateTodoRequest.Todo todo = 1 [json_name = "todo"];</code>
-   * @return Whether the todo field is set.
+   * <code>int64 user_id = 1 [json_name = "userId"];</code>
+   * @return The userId.
    */
-  boolean hasTodo();
-  /**
-   * <code>.todo.v1.CreateTodoRequest.Todo todo = 1 [json_name = "todo"];</code>
-   * @return The todo.
-   */
-  monorepo.proto.todo.v1.CreateTodoRequest.Todo getTodo();
-  /**
-   * <code>.todo.v1.CreateTodoRequest.Todo todo = 1 [json_name = "todo"];</code>
-   */
-  monorepo.proto.todo.v1.CreateTodoRequest.TodoOrBuilder getTodoOrBuilder();
+  long getUserId();
 
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>string title = 2 [json_name = "title"];</code>
+   * @return The title.
+   */
+  java.lang.String getTitle();
+  /**
+   * <code>string title = 2 [json_name = "title"];</code>
+   * @return The bytes for title.
+   */
+  com.google.protobuf.ByteString
+      getTitleBytes();
+
+  /**
+   * <code>optional string description = 3 [json_name = "description"];</code>
+   * @return Whether the description field is set.
+   */
+  boolean hasDescription();
+  /**
+   * <code>optional string description = 3 [json_name = "description"];</code>
+   * @return The description.
+   */
+  java.lang.String getDescription();
+  /**
+   * <code>optional string description = 3 [json_name = "description"];</code>
+   * @return The bytes for description.
+   */
+  com.google.protobuf.ByteString
+      getDescriptionBytes();
+
+  /**
+   * <code>optional .todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+   * @return Whether the state field is set.
+   */
+  boolean hasState();
+  /**
+   * <code>optional .todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+   * @return The enum numeric value on the wire for state.
+   */
+  int getStateValue();
+  /**
+   * <code>optional .todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+   * @return The state.
+   */
+  monorepo.proto.todo.v1.Todo.State getState();
+
+  /**
+   * <code>optional .todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+   * @return Whether the priority field is set.
+   */
+  boolean hasPriority();
+  /**
+   * <code>optional .todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+   * @return The enum numeric value on the wire for priority.
+   */
+  int getPriorityValue();
+  /**
+   * <code>optional .todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+   * @return The priority.
+   */
+  monorepo.proto.todo.v1.Todo.Priority getPriority();
+
+  /**
+   * <code>optional int64 assignee = 6 [json_name = "assignee"];</code>
+   * @return Whether the assignee field is set.
+   */
+  boolean hasAssignee();
+  /**
+   * <code>optional int64 assignee = 6 [json_name = "assignee"];</code>
+   * @return The assignee.
+   */
+  long getAssignee();
+
+  /**
+   * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+   * @return Whether the dueDate field is set.
+   */
+  boolean hasDueDate();
+  /**
+   * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+   * @return The dueDate.
+   */
+  com.google.type.Date getDueDate();
+  /**
+   * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+   */
+  com.google.type.DateOrBuilder getDueDateOrBuilder();
+
+  /**
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
    */
   java.util.List<monorepo.proto.todo.v1.CreateTodoRequest.SubTask> 
       getSubTasksList();
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
    */
   monorepo.proto.todo.v1.CreateTodoRequest.SubTask getSubTasks(int index);
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
    */
   int getSubTasksCount();
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
    */
   java.util.List<? extends monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder> 
       getSubTasksOrBuilderList();
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 2 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
    */
   monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder getSubTasksOrBuilder(
       int index);

@@ -54,58 +54,58 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @return A list containing the states.
      */
-    java.util.List<monorepo.proto.todo.v1.TodoModel.State> getStatesList();
+    java.util.List<monorepo.proto.todo.v1.Todo.State> getStatesList();
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @return The count of states.
      */
     int getStatesCount();
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @param index The index of the element to return.
      * @return The states at the given index.
      */
-    monorepo.proto.todo.v1.TodoModel.State getStates(int index);
+    monorepo.proto.todo.v1.Todo.State getStates(int index);
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @return A list containing the enum numeric values on the wire for states.
      */
     java.util.List<java.lang.Integer>
     getStatesValueList();
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @param index The index of the value to return.
      * @return The enum numeric value on the wire of states at the given index.
      */
     int getStatesValue(int index);
 
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @return A list containing the priorities.
      */
-    java.util.List<monorepo.proto.todo.v1.TodoModel.Priority> getPrioritiesList();
+    java.util.List<monorepo.proto.todo.v1.Todo.Priority> getPrioritiesList();
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @return The count of priorities.
      */
     int getPrioritiesCount();
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @param index The index of the element to return.
      * @return The priorities at the given index.
      */
-    monorepo.proto.todo.v1.TodoModel.Priority getPriorities(int index);
+    monorepo.proto.todo.v1.Todo.Priority getPriorities(int index);
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @return A list containing the enum numeric values on the wire for priorities.
      */
     java.util.List<java.lang.Integer>
     getPrioritiesValueList();
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @param index The index of the value to return.
      * @return The enum numeric value on the wire of priorities at the given index.
      */
@@ -155,25 +155,25 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.Internal.IntList states_ =
         emptyIntList();
     private static final     com.google.protobuf.Internal.IntListAdapter.IntConverter<
-        monorepo.proto.todo.v1.TodoModel.State> states_converter_ =
+        monorepo.proto.todo.v1.Todo.State> states_converter_ =
             new com.google.protobuf.Internal.IntListAdapter.IntConverter<
-                monorepo.proto.todo.v1.TodoModel.State>() {
-              public monorepo.proto.todo.v1.TodoModel.State convert(int from) {
-                monorepo.proto.todo.v1.TodoModel.State result = monorepo.proto.todo.v1.TodoModel.State.forNumber(from);
-                return result == null ? monorepo.proto.todo.v1.TodoModel.State.UNRECOGNIZED : result;
+                monorepo.proto.todo.v1.Todo.State>() {
+              public monorepo.proto.todo.v1.Todo.State convert(int from) {
+                monorepo.proto.todo.v1.Todo.State result = monorepo.proto.todo.v1.Todo.State.forNumber(from);
+                return result == null ? monorepo.proto.todo.v1.Todo.State.UNRECOGNIZED : result;
               }
             };
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @return A list containing the states.
      */
     @java.lang.Override
-    public java.util.List<monorepo.proto.todo.v1.TodoModel.State> getStatesList() {
+    public java.util.List<monorepo.proto.todo.v1.Todo.State> getStatesList() {
       return new com.google.protobuf.Internal.IntListAdapter<
-          monorepo.proto.todo.v1.TodoModel.State>(states_, states_converter_);
+          monorepo.proto.todo.v1.Todo.State>(states_, states_converter_);
     }
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @return The count of states.
      */
     @java.lang.Override
@@ -181,16 +181,16 @@ private static final long serialVersionUID = 0L;
       return states_.size();
     }
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @param index The index of the element to return.
      * @return The states at the given index.
      */
     @java.lang.Override
-    public monorepo.proto.todo.v1.TodoModel.State getStates(int index) {
+    public monorepo.proto.todo.v1.Todo.State getStates(int index) {
       return states_converter_.convert(states_.getInt(index));
     }
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @return A list containing the enum numeric values on the wire for states.
      */
     @java.lang.Override
@@ -199,7 +199,7 @@ private static final long serialVersionUID = 0L;
       return states_;
     }
     /**
-     * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+     * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
      * @param index The index of the value to return.
      * @return The enum numeric value on the wire of states at the given index.
      */
@@ -214,25 +214,25 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.Internal.IntList priorities_ =
         emptyIntList();
     private static final     com.google.protobuf.Internal.IntListAdapter.IntConverter<
-        monorepo.proto.todo.v1.TodoModel.Priority> priorities_converter_ =
+        monorepo.proto.todo.v1.Todo.Priority> priorities_converter_ =
             new com.google.protobuf.Internal.IntListAdapter.IntConverter<
-                monorepo.proto.todo.v1.TodoModel.Priority>() {
-              public monorepo.proto.todo.v1.TodoModel.Priority convert(int from) {
-                monorepo.proto.todo.v1.TodoModel.Priority result = monorepo.proto.todo.v1.TodoModel.Priority.forNumber(from);
-                return result == null ? monorepo.proto.todo.v1.TodoModel.Priority.UNRECOGNIZED : result;
+                monorepo.proto.todo.v1.Todo.Priority>() {
+              public monorepo.proto.todo.v1.Todo.Priority convert(int from) {
+                monorepo.proto.todo.v1.Todo.Priority result = monorepo.proto.todo.v1.Todo.Priority.forNumber(from);
+                return result == null ? monorepo.proto.todo.v1.Todo.Priority.UNRECOGNIZED : result;
               }
             };
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @return A list containing the priorities.
      */
     @java.lang.Override
-    public java.util.List<monorepo.proto.todo.v1.TodoModel.Priority> getPrioritiesList() {
+    public java.util.List<monorepo.proto.todo.v1.Todo.Priority> getPrioritiesList() {
       return new com.google.protobuf.Internal.IntListAdapter<
-          monorepo.proto.todo.v1.TodoModel.Priority>(priorities_, priorities_converter_);
+          monorepo.proto.todo.v1.Todo.Priority>(priorities_, priorities_converter_);
     }
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @return The count of priorities.
      */
     @java.lang.Override
@@ -240,16 +240,16 @@ private static final long serialVersionUID = 0L;
       return priorities_.size();
     }
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @param index The index of the element to return.
      * @return The priorities at the given index.
      */
     @java.lang.Override
-    public monorepo.proto.todo.v1.TodoModel.Priority getPriorities(int index) {
+    public monorepo.proto.todo.v1.Todo.Priority getPriorities(int index) {
       return priorities_converter_.convert(priorities_.getInt(index));
     }
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @return A list containing the enum numeric values on the wire for priorities.
      */
     @java.lang.Override
@@ -258,7 +258,7 @@ private static final long serialVersionUID = 0L;
       return priorities_;
     }
     /**
-     * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+     * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
      * @param index The index of the value to return.
      * @return The enum numeric value on the wire of priorities at the given index.
      */
@@ -659,36 +659,36 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000001;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @return A list containing the states.
        */
-      public java.util.List<monorepo.proto.todo.v1.TodoModel.State> getStatesList() {
+      public java.util.List<monorepo.proto.todo.v1.Todo.State> getStatesList() {
         return new com.google.protobuf.Internal.IntListAdapter<
-            monorepo.proto.todo.v1.TodoModel.State>(states_, states_converter_);
+            monorepo.proto.todo.v1.Todo.State>(states_, states_converter_);
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @return The count of states.
        */
       public int getStatesCount() {
         return states_.size();
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @param index The index of the element to return.
        * @return The states at the given index.
        */
-      public monorepo.proto.todo.v1.TodoModel.State getStates(int index) {
+      public monorepo.proto.todo.v1.Todo.State getStates(int index) {
         return states_converter_.convert(states_.getInt(index));
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @param index The index to set the value at.
        * @param value The states to set.
        * @return This builder for chaining.
        */
       public Builder setStates(
-          int index, monorepo.proto.todo.v1.TodoModel.State value) {
+          int index, monorepo.proto.todo.v1.Todo.State value) {
         if (value == null) { throw new NullPointerException(); }
         ensureStatesIsMutable();
         states_.setInt(index, value.getNumber());
@@ -696,11 +696,11 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @param value The states to add.
        * @return This builder for chaining.
        */
-      public Builder addStates(monorepo.proto.todo.v1.TodoModel.State value) {
+      public Builder addStates(monorepo.proto.todo.v1.Todo.State value) {
         if (value == null) { throw new NullPointerException(); }
         ensureStatesIsMutable();
         states_.addInt(value.getNumber());
@@ -708,21 +708,21 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @param values The states to add.
        * @return This builder for chaining.
        */
       public Builder addAllStates(
-          java.lang.Iterable<? extends monorepo.proto.todo.v1.TodoModel.State> values) {
+          java.lang.Iterable<? extends monorepo.proto.todo.v1.Todo.State> values) {
         ensureStatesIsMutable();
-        for (monorepo.proto.todo.v1.TodoModel.State value : values) {
+        for (monorepo.proto.todo.v1.Todo.State value : values) {
           states_.addInt(value.getNumber());
         }
         onChanged();
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @return This builder for chaining.
        */
       public Builder clearStates() {
@@ -732,7 +732,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @return A list containing the enum numeric values on the wire for states.
        */
       public java.util.List<java.lang.Integer>
@@ -741,7 +741,7 @@ private static final long serialVersionUID = 0L;
         return states_;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @param index The index of the value to return.
        * @return The enum numeric value on the wire of states at the given index.
        */
@@ -749,7 +749,7 @@ private static final long serialVersionUID = 0L;
         return states_.getInt(index);
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @param index The index to set the value at.
        * @param value The enum numeric value on the wire for states to set.
        * @return This builder for chaining.
@@ -762,7 +762,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @param value The enum numeric value on the wire for states to add.
        * @return This builder for chaining.
        */
@@ -773,7 +773,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.State states = 1 [json_name = "states"];</code>
+       * <code>repeated .todo.v1.Todo.State states = 1 [json_name = "states"];</code>
        * @param values The enum numeric values on the wire for states to add.
        * @return This builder for chaining.
        */
@@ -795,36 +795,36 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000002;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @return A list containing the priorities.
        */
-      public java.util.List<monorepo.proto.todo.v1.TodoModel.Priority> getPrioritiesList() {
+      public java.util.List<monorepo.proto.todo.v1.Todo.Priority> getPrioritiesList() {
         return new com.google.protobuf.Internal.IntListAdapter<
-            monorepo.proto.todo.v1.TodoModel.Priority>(priorities_, priorities_converter_);
+            monorepo.proto.todo.v1.Todo.Priority>(priorities_, priorities_converter_);
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @return The count of priorities.
        */
       public int getPrioritiesCount() {
         return priorities_.size();
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @param index The index of the element to return.
        * @return The priorities at the given index.
        */
-      public monorepo.proto.todo.v1.TodoModel.Priority getPriorities(int index) {
+      public monorepo.proto.todo.v1.Todo.Priority getPriorities(int index) {
         return priorities_converter_.convert(priorities_.getInt(index));
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @param index The index to set the value at.
        * @param value The priorities to set.
        * @return This builder for chaining.
        */
       public Builder setPriorities(
-          int index, monorepo.proto.todo.v1.TodoModel.Priority value) {
+          int index, monorepo.proto.todo.v1.Todo.Priority value) {
         if (value == null) { throw new NullPointerException(); }
         ensurePrioritiesIsMutable();
         priorities_.setInt(index, value.getNumber());
@@ -832,11 +832,11 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @param value The priorities to add.
        * @return This builder for chaining.
        */
-      public Builder addPriorities(monorepo.proto.todo.v1.TodoModel.Priority value) {
+      public Builder addPriorities(monorepo.proto.todo.v1.Todo.Priority value) {
         if (value == null) { throw new NullPointerException(); }
         ensurePrioritiesIsMutable();
         priorities_.addInt(value.getNumber());
@@ -844,21 +844,21 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @param values The priorities to add.
        * @return This builder for chaining.
        */
       public Builder addAllPriorities(
-          java.lang.Iterable<? extends monorepo.proto.todo.v1.TodoModel.Priority> values) {
+          java.lang.Iterable<? extends monorepo.proto.todo.v1.Todo.Priority> values) {
         ensurePrioritiesIsMutable();
-        for (monorepo.proto.todo.v1.TodoModel.Priority value : values) {
+        for (monorepo.proto.todo.v1.Todo.Priority value : values) {
           priorities_.addInt(value.getNumber());
         }
         onChanged();
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @return This builder for chaining.
        */
       public Builder clearPriorities() {
@@ -868,7 +868,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @return A list containing the enum numeric values on the wire for priorities.
        */
       public java.util.List<java.lang.Integer>
@@ -877,7 +877,7 @@ private static final long serialVersionUID = 0L;
         return priorities_;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @param index The index of the value to return.
        * @return The enum numeric value on the wire of priorities at the given index.
        */
@@ -885,7 +885,7 @@ private static final long serialVersionUID = 0L;
         return priorities_.getInt(index);
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @param index The index to set the value at.
        * @param value The enum numeric value on the wire for priorities to set.
        * @return This builder for chaining.
@@ -898,7 +898,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @param value The enum numeric value on the wire for priorities to add.
        * @return This builder for chaining.
        */
@@ -909,7 +909,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>repeated .todo.v1.TodoModel.Priority priorities = 2 [json_name = "priorities"];</code>
+       * <code>repeated .todo.v1.Todo.Priority priorities = 2 [json_name = "priorities"];</code>
        * @param values The enum numeric values on the wire for priorities to add.
        * @return This builder for chaining.
        */

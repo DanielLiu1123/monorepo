@@ -15,24 +15,24 @@ public interface ListTodosResponseOrBuilder extends
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
-  java.util.List<monorepo.proto.todo.v1.TodoModel> 
+  java.util.List<monorepo.proto.todo.v1.Todo> 
       getTodosList();
   /**
    * <pre>
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
-  monorepo.proto.todo.v1.TodoModel getTodos(int index);
+  monorepo.proto.todo.v1.Todo getTodos(int index);
   /**
    * <pre>
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
   int getTodosCount();
   /**
@@ -40,18 +40,18 @@ public interface ListTodosResponseOrBuilder extends
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
-  java.util.List<? extends monorepo.proto.todo.v1.TodoModelOrBuilder> 
+  java.util.List<? extends monorepo.proto.todo.v1.TodoOrBuilder> 
       getTodosOrBuilderList();
   /**
    * <pre>
    * The list of todos
    * </pre>
    *
-   * <code>repeated .todo.v1.TodoModel todos = 1 [json_name = "todos"];</code>
+   * <code>repeated .todo.v1.Todo todos = 1 [json_name = "todos"];</code>
    */
-  monorepo.proto.todo.v1.TodoModelOrBuilder getTodosOrBuilder(
+  monorepo.proto.todo.v1.TodoOrBuilder getTodosOrBuilder(
       int index);
 
   /**

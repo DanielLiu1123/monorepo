@@ -45,9 +45,9 @@
         <!-- Don't comment on the table below!! Generate every time to ensure that the code and table structure are synchronized -->
         <table tableName="todo">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
-            <columnOverride column="state" javaType="monorepo.proto.todo.v1.TodoModel.State"
+            <columnOverride column="state" javaType="monorepo.proto.todo.v1.Todo.State"
                             typeHandler="monorepo.services.todo.entity.typehandler.TodoStateTypeHandler"/>
-            <columnOverride column="priority" javaType="monorepo.proto.todo.v1.TodoModel.Priority"
+            <columnOverride column="priority" javaType="monorepo.proto.todo.v1.Todo.Priority"
                             typeHandler="monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler"/>
         </table>
         <table tableName="todo_subtask">

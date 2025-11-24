@@ -22,7 +22,6 @@ import monorepo.proto.todo.v1.DeleteTodoRequest;
 import monorepo.proto.todo.v1.GetTodoRequest;
 import monorepo.proto.todo.v1.ListTodosRequest;
 import monorepo.proto.todo.v1.ListTodosResponse;
-import monorepo.proto.todo.v1.TodoModel;
 import monorepo.proto.todo.v1.UpdateTodoRequest;
 import monorepo.services.todo.converter.TodoConverter;
 import monorepo.services.todo.entity.Todo;
@@ -52,7 +51,7 @@ public class TodoService {
      */
     public long create(CreateTodoRequest request) {
         return withTransaction(() -> {
-            var todoId = createTodo(request.getTodo());
+            var todoId = createTodo(request);
 
             for (var subtaskRequest : request.getSubTasksList()) {
                 createTodoSubtask(subtaskRequest, todoId);
@@ -70,9 +69,9 @@ public class TodoService {
      */
     public boolean update(UpdateTodoRequest request) {
         return withTransaction(() -> {
-            var result = updateTodo(request.getTodo());
+            var result = updateTodo(request);
 
-            var todoId = request.getTodo().getId();
+            var todoId = request.getId();
             for (var subtask : request.getSubTaskOperationsList()) {
                 switch (subtask.getOperationCase()) {
                     case CREATE -> createTodoSubtask(subtask.getCreate(), todoId);
@@ -102,8 +101,7 @@ public class TodoService {
      * @param request get todo request
      * @return the todo model or null if not found
      */
-    @Nullable
-    public TodoModel getOrNull(GetTodoRequest request) {
+    public monorepo.proto.todo.v1.@Nullable Todo getOrNull(GetTodoRequest request) {
         var todos = batchGet(toBatchGetTodosRequest(request));
         if (todos.isEmpty()) {
             return null;
@@ -117,7 +115,7 @@ public class TodoService {
      * @param request get todo request
      * @return the todo model
      */
-    public TodoModel get(GetTodoRequest request) {
+    public monorepo.proto.todo.v1.Todo get(GetTodoRequest request) {
         var todo = getOrNull(request);
         if (todo == null) {
             throw new StatusRuntimeException(
@@ -132,13 +130,13 @@ public class TodoService {
      * @param request batch get todos request
      * @return list of todo models
      */
-    public List<TodoModel> batchGet(BatchGetTodosRequest request) {
+    public List<monorepo.proto.todo.v1.Todo> batchGet(BatchGetTodosRequest request) {
         var ids = request.getIdsList();
         if (ids.isEmpty()) {
             return List.of();
         }
 
-        var todos = todoMapper.select(c -> {
+        var entities = todoMapper.select(c -> {
             var sql = c.where(todo.id, isIn(ids));
             var showDeleted = !request.hasShowDeleted() || request.getShowDeleted();
             if (!showDeleted) {
@@ -147,7 +145,7 @@ public class TodoService {
             return sql;
         });
 
-        return buildModels(todos);
+        return buildTodos(entities);
     }
 
     /**
@@ -196,7 +194,7 @@ public class TodoService {
             return sql;
         });
 
-        var todoModels = buildModels(todos);
+        var todoModels = buildTodos(todos);
 
         // Calculate next page token
         var responseBuilder = ListTodosResponse.newBuilder();
@@ -211,7 +209,7 @@ public class TodoService {
         return responseBuilder.build();
     }
 
-    private List<TodoModel> buildModels(List<Todo> todos) {
+    private List<monorepo.proto.todo.v1.Todo> buildTodos(List<Todo> todos) {
         if (todos.isEmpty()) {
             return List.of();
         }
@@ -223,17 +221,12 @@ public class TodoService {
                         .stream()
                         .collect(Collectors.groupingBy(TodoSubtask::getTodoId));
 
-        var result = new ArrayList<TodoModel>();
+        var result = new ArrayList<monorepo.proto.todo.v1.Todo>(todos.size());
 
-        for (var entity : todos) {
-            var todo = TodoConverter.INSTANCE.toTodoModel(entity);
-            var subtasks = todoIdToTodoSubtasks.getOrDefault(entity.getId(), List.of()).stream()
-                    .map(TodoConverter.INSTANCE::toTodoSubtaskModel)
-                    .toList();
-            var builder = TodoModel.newBuilder();
-            builder.setTodo(todo);
-            builder.addAllSubTasks(subtasks);
-            result.add(builder.build());
+        for (var todoEntity : todos) {
+            var subtasks = todoIdToTodoSubtasks.getOrDefault(todoEntity.getId(), List.of());
+            var todo = TodoConverter.INSTANCE.buildTodo(todoEntity, subtasks);
+            result.add(todo);
         }
 
         return result;
@@ -269,14 +262,14 @@ public class TodoService {
         };
     }
 
-    private long createTodo(CreateTodoRequest.Todo request) {
-        var todo = TodoConverter.INSTANCE.toTodo(request);
+    private long createTodo(CreateTodoRequest request) {
+        var todo = TodoConverter.INSTANCE.toTodoEntity(request);
         todoMapper.insertSelective(todo);
         return todo.getId();
     }
 
-    private boolean updateTodo(UpdateTodoRequest.Todo request) {
-        var entity = TodoConverter.INSTANCE.toTodo(request);
+    private boolean updateTodo(UpdateTodoRequest request) {
+        var entity = TodoConverter.INSTANCE.toTodoEntity(request);
         if (entity.getUpdatedAt() == null) {
             entity.setUpdatedAt(LocalDateTime.now());
         }
@@ -295,14 +288,14 @@ public class TodoService {
     }
 
     private long createTodoSubtask(CreateTodoRequest.SubTask request, long todoId) {
-        var subtask = TodoConverter.INSTANCE.toTodoSubtask(request);
+        var subtask = TodoConverter.INSTANCE.toTodoSubtaskEntity(request);
         subtask.setTodoId(todoId);
         todoSubtaskMapper.insertSelective(subtask);
         return subtask.getId();
     }
 
     private boolean updateTodoSubtask(UpdateTodoRequest.SubTask request, long todoId) {
-        var subtask = TodoConverter.INSTANCE.toTodoSubtask(request);
+        var subtask = TodoConverter.INSTANCE.toTodoSubtaskEntity(request);
         return todoSubtaskMapper.update(c -> TodoSubtaskMapper.updateSelectiveColumns(subtask, c)
                         .where(todoSubtask.id, isEqualTo(request.getId()))
                         .and(todoSubtask.todoId, isEqualTo(todoId))
