@@ -1,59 +1,23 @@
 #!/usr/bin/env bash
 
-# Test Go project
-test_go() {
-    local project_path="$1"
-
-    # Run tests only if test files exist
-    if find "$project_path" -name "*_test.go" -type f | grep -q .; then
-        execute_command "(go test -v ./$project_path/...)" || return 1
-    else
-        print_info "No test files found, skipping tests"
-    fi
-}
-
-# Test Gradle project
-test_gradle() {
-    local project_path="$1"
-
-    execute_command "(./gradlew test --project-dir $project_path -S)" || return 1
-}
-
-# Test npm project
-test_npm() {
-    local project_path="$1"
-
-    # Check if test script exists
-    if grep -q '"test"[[:space:]]*:' "$project_path/package.json" 2>/dev/null; then
-        execute_command "(cd $project_path && npm test)" || return 1
-    else
-        print_warning "No test script found in package.json, skipping tests"
-    fi
-}
-
 cmd_test() {
-    local project_path
-    local project_type
-    project_path=$(normalize_path "$1")
-    project_type=$(detect_project_type "$project_path")
+    if [ ! -f "$PROJECT_DIR/build.sh" ]; then
+        print_error "No build.sh found in $PROJECT_DIR"
+        return 1
+    fi
 
-    print_info "Testing $project_path (type: $project_type)..."
+    print_info "Testing $PROJECT_DIR..."
 
-    case "$project_type" in
-        go)
-            test_go "$project_path" || return 1
-            ;;
-        gradle)
-            test_gradle "$project_path" || return 1
-            ;;
-        npm)
-            test_npm "$project_path" || return 1
-            ;;
-        *)
-            print_error "Unknown project type in $project_path"
-            return 1
-            ;;
-    esac
+    # Source the project's build.sh and call the test function
+    # shellcheck disable=SC1090
+    source "$PROJECT_DIR/build.sh"
 
-    print_success "Tests passed for $project_path"
+    if declare -f test > /dev/null 2>&1; then
+        test || return 1
+    else
+        print_error "No 'test' function found in $PROJECT_DIR/build.sh"
+        return 1
+    fi
+
+    print_success "Tests passed for $PROJECT_DIR"
 }

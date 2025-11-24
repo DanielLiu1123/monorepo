@@ -1,49 +1,23 @@
 #!/usr/bin/env bash
 
-# Clean Go project
-clean_go() {
-    local project_path="$1"
-
-    execute_command "(go clean ./$project_path/... && rm -rf $project_path/build/)" || return 1
-}
-
-# Clean Gradle project
-clean_gradle() {
-    local project_path="$1"
-
-    execute_command "(./gradlew clean --project-dir $project_path -S)" || return 1
-}
-
-# Clean npm project
-clean_npm() {
-    local project_path="$1"
-
-    execute_command "(cd $project_path && rm -rf build/ .next/)" || return 1
-}
-
 cmd_clean() {
-    local project_path
-    local project_type
-    project_path=$(normalize_path "$1")
-    project_type=$(detect_project_type "$project_path")
+    if [ ! -f "$PROJECT_DIR/build.sh" ]; then
+        print_error "No build.sh found in $PROJECT_DIR"
+        return 1
+    fi
 
-    print_info "Cleaning $project_path (type: $project_type)..."
+    print_info "Cleaning $PROJECT_DIR..."
 
-    case "$project_type" in
-        go)
-            clean_go "$project_path" || return 1
-            ;;
-        gradle)
-            clean_gradle "$project_path" || return 1
-            ;;
-        npm)
-            clean_npm "$project_path" || return 1
-            ;;
-        *)
-            print_error "Unknown project type in $project_path"
-            return 1
-            ;;
-    esac
+    # Source the project's build.sh and call the clean function
+    # shellcheck disable=SC1090
+    source "$PROJECT_DIR/build.sh"
 
-    print_success "$project_path cleaned successfully"
+    if declare -f clean > /dev/null 2>&1; then
+        clean || return 1
+    else
+        print_error "No 'clean' function found in $PROJECT_DIR/build.sh"
+        return 1
+    fi
+
+    print_success "$PROJECT_DIR cleaned successfully"
 }

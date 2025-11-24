@@ -1,54 +1,23 @@
 #!/usr/bin/env bash
 
-# Lint Go project
-lint_go() {
-    local project_path="$1"
-
-    execute_command "(golangci-lint run ./$project_path/...)" || return 1
-}
-
-# Lint Gradle project
-lint_gradle() {
-    local project_path="$1"
-
-    execute_command "(./gradlew spotlessCheck spotbugsMain --project-dir $project_path -S)" || return 1
-}
-
-# Lint npm project
-lint_npm() {
-    local project_path="$1"
-
-    # Check if lint script exists
-    if grep -q '"lint"[[:space:]]*:' "$project_path/package.json" 2>/dev/null; then
-        execute_command "(cd $project_path && npm run lint)" || return 1
-    else
-        print_warning "No lint script found in package.json, skipping linting"
-    fi
-}
-
 cmd_lint() {
-    local project_path
-    local project_type
-    project_path=$(normalize_path "$1")
-    project_type=$(detect_project_type "$project_path")
+    if [ ! -f "$PROJECT_DIR/build.sh" ]; then
+        print_error "No build.sh found in $PROJECT_DIR"
+        return 1
+    fi
 
-    print_info "Linting $project_path (type: $project_type)..."
+    print_info "Linting $PROJECT_DIR..."
 
-    case "$project_type" in
-        go)
-            lint_go "$project_path" || return 1
-            ;;
-        gradle)
-            lint_gradle "$project_path" || return 1
-            ;;
-        npm)
-            lint_npm "$project_path" || return 1
-            ;;
-        *)
-            print_error "Unknown project type in $project_path"
-            return 1
-            ;;
-    esac
+    # Source the project's build.sh and call the lint function
+    # shellcheck disable=SC1090
+    source "$PROJECT_DIR/build.sh"
 
-    print_success "Linting completed successfully for $project_path"
+    if declare -f lint > /dev/null 2>&1; then
+        lint || return 1
+    else
+        print_error "No 'lint' function found in $PROJECT_DIR/build.sh"
+        return 1
+    fi
+
+    print_success "Linting completed successfully for $PROJECT_DIR"
 }

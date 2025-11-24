@@ -14,7 +14,9 @@
 #   - run
 #   - test
 #
-# Each function receives the project path as the first argument: $1
+# Available environment variables:
+#   - ROOT_DIR     - The root directory of the monorepo
+#   - PROJECT_DIR  - The directory of the current project (absolute path)
 #
 # You have access to all utility functions from main.sh:
 #   - print_info "message"    - Print info message in blue
@@ -22,103 +24,93 @@
 #   - print_error "message"   - Print error message in red
 #   - print_warning "message" - Print warning message in yellow
 #   - execute_command "cmd"   - Execute and print command
-#   - detect_project_type     - Returns: go, gradle, npm, or unknown
-#   - detect_project_category - Returns: app or lib
 
 # Example: Custom build function
 # Uncomment and modify as needed
 # build() {
-#     local project_path="$1"
-#     print_info "Running custom build for $project_path"
+#     print_info "Running custom build for $PROJECT_DIR"
 #
 #     # Your custom build logic here
-#     execute_command "cd $project_path && npm run build:custom"
+#     execute_command "cd $PROJECT_DIR && npm run build:custom"
 #
 #     return $?
 # }
 
 # Example: Custom clean function
 # clean() {
-#     local project_path="$1"
-#     print_info "Running custom clean for $project_path"
+#     print_info "Running custom clean for $PROJECT_DIR"
 #
 #     # Your custom clean logic here
-#     execute_command "rm -rf $project_path/dist $project_path/build"
+#     execute_command "rm -rf $PROJECT_DIR/dist $PROJECT_DIR/build"
 #
 #     return $?
 # }
 
 # Example: Custom fmt function
 # fmt() {
-#     local project_path="$1"
-#     print_info "Running custom fmt for $project_path"
+#     print_info "Running custom fmt for $PROJECT_DIR"
 #
 #     # Your custom fmt logic here
-#     execute_command "cd $project_path && prettier --write ."
+#     execute_command "cd $PROJECT_DIR && prettier --write ."
 #
 #     return $?
 # }
 
 # Example: Custom install function
 # install() {
-#     local project_path="$1"
-#     print_info "Running custom install for $project_path"
+#     print_info "Running custom install for $PROJECT_DIR"
 #
 #     # Your custom install logic here
-#     execute_command "cd $project_path && pnpm install"
+#     execute_command "cd $PROJECT_DIR && pnpm install"
 #
 #     return $?
 # }
 
 # Example: Custom lint function
 # lint() {
-#     local project_path="$1"
-#     print_info "Running custom lint for $project_path"
+#     print_info "Running custom lint for $PROJECT_DIR"
 #
 #     # Your custom lint logic here
-#     execute_command "cd $project_path && npm run lint:custom"
+#     execute_command "cd $PROJECT_DIR && npm run lint:custom"
 #
 #     return $?
 # }
 
 # Example: Custom run function
 # run() {
-#     local project_path="$1"
-#     print_info "Running custom run for $project_path"
+#     print_info "Running custom run for $PROJECT_DIR"
 #
 #     # Your custom run logic here
-#     execute_command "cd $project_path && npm run dev:custom"
+#     execute_command "cd $PROJECT_DIR && npm run dev:custom"
 #
 #     return $?
 # }
 
 # Example: Custom test function
 # test() {
-#     local project_path="$1"
-#     print_info "Running custom test for $project_path"
+#     print_info "Running custom test for $PROJECT_DIR"
 #
 #     # Your custom test logic here
-#     execute_command "cd $project_path && npm run test:e2e"
+#     execute_command "cd $PROJECT_DIR && npm run test:e2e"
 #
 #     return $?
 # }
 
 # Example: Complex custom build with multiple steps
 # build() {
-#     local project_path="$1"
-#     print_info "Running multi-step custom build for $project_path"
+#     print_info "Running multi-step custom build for $PROJECT_DIR"
 #
 #     # Step 1: Generate code
 #     print_info "Step 1: Generating code..."
-#     execute_command "cd $project_path && npm run codegen" || return 1
+#     execute_command "cd $PROJECT_DIR && npm run codegen" || return 1
 #
 #     # Step 2: Build
 #     print_info "Step 2: Building..."
-#     execute_command "cd $project_path && npm run build" || return 1
+#     execute_command "cd $PROJECT_DIR && npm run build" || return 1
 #
 #     # Step 3: Post-build processing
 #     print_info "Step 3: Post-build processing..."
-#     execute_command "cd $project_path && npm run postbuild" || return 1
+#     execute_command "cd $PROJECT_DIR && npm run postbuild" || return 1
 #
 #     print_success "Custom build completed successfully"
 #     return 0

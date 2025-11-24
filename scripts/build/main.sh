@@ -71,18 +71,22 @@ execute_project_command() {
     local project_path="$2"
     local default_function="cmd_${command}"
 
+    # Set environment variables for the project
+    export ROOT_DIR
+    export PROJECT_DIR="$ROOT_DIR/$project_path"
+
     # Try to load project-level build.sh
     if load_project_build_script "$project_path"; then
         # Check if custom function exists
         if has_custom_command "$command"; then
             print_info "Using custom $command implementation from $project_path/build.sh"
-            $command "$project_path"
+            $command
             return $?
         fi
     fi
 
     # Use default implementation
-    $default_function "$project_path"
+    $default_function
     return $?
 }
 
@@ -97,75 +101,11 @@ normalize_path() {
 detect_project_type() {
     local project_path="$1"
 
-    if [ -f "$project_path/go.mod" ]; then
-        echo "go"
-    elif [ -f "$project_path/build.gradle" ] || [ -f "$project_path/build.gradle.kts" ]; then
-        echo "gradle"
-    elif [ -f "$project_path/package.json" ]; then
-        echo "npm"
+    if [ -f "$project_path/build.sh" ]; then
+        echo "custom"
     else
         echo "unknown"
     fi
-}
-
-detect_project_category() {
-    local project_path="$1"
-
-    # Gradle projects: check for Spring Boot plugin
-    if [ -f "$project_path/build.gradle" ] || [ -f "$project_path/build.gradle.kts" ]; then
-        local gradle_file
-        [ -f "$project_path/build.gradle" ] && gradle_file="$project_path/build.gradle" || gradle_file="$project_path/build.gradle.kts"
-
-        # Check for org.springframework.boot plugin (apply, id, or plugin DSL)
-        if grep -qE '.*id .*org\.springframework\.boot.*' "$gradle_file" 2>/dev/null; then
-            echo "app"
-            return
-        else
-            echo "lib"
-            return
-        fi
-    fi
-
-    # Go projects: check for cmd directory
-    if [ -f "$project_path/go.mod" ]; then
-        if [ -d "$project_path/cmd" ]; then
-            echo "app"
-            return
-        else
-            echo "lib"
-            return
-        fi
-    fi
-
-    # npm projects: use best practices to determine category
-    if [ -f "$project_path/package.json" ]; then
-        local pkg_json="$project_path/package.json"
-
-        # Check if it's a library (has main, exports, or types field)
-        if grep -qE '"(main|exports|types)"[[:space:]]*:' "$pkg_json" 2>/dev/null; then
-            echo "lib"
-            return
-        fi
-
-        # Check if it's an app (has private: true or start/dev scripts without main/exports)
-        if grep -q '"private"[[:space:]]*:[[:space:]]*true' "$pkg_json" 2>/dev/null; then
-            echo "app"
-            return
-        fi
-
-        # Check for app-like scripts (start, dev, serve)
-        if grep -qE '"(start|dev|serve)"[[:space:]]*:' "$pkg_json" 2>/dev/null; then
-            echo "app"
-            return
-        fi
-
-        # Default to lib for npm if uncertain
-        echo "lib"
-        return
-    fi
-
-    # Default to lib if uncertain
-    echo "lib"
 }
 
 find_projects() {
@@ -176,21 +116,14 @@ find_projects() {
         return 1
     fi
 
-    find "$search_path" -type f \( \
-        -name "go.mod" \
-        -o -name "build.gradle" \
-        -o -name "build.gradle.kts" \
-        -o -name "package.json" \
-    \) -print0 2>/dev/null \
+    find "$search_path" -type f -name "build.sh" -print0 2>/dev/null \
     | xargs -0 -n1 dirname \
     | sort -u
 }
 
 is_project_dir() {
     local path="$1"
-    local project_type
-    project_type=$(detect_project_type "$path")
-    [ "$project_type" != "unknown" ]
+    [ -f "$path/build.sh" ]
 }
 
 validate_project() {
@@ -280,7 +213,7 @@ show_usage() {
     echo "  test <path>       - Run tests"
     echo "  run <path>        - Run project (single project only)"
     echo "  lint <path>       - Run linter"
-    echo "  fmt <path>        - Format code (go fmt, spotlessApply, prettier)"
+    echo "  fmt <path>        - Format code"
     echo ""
     echo "Examples:"
     echo "  $script_name init"

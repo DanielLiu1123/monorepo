@@ -1,49 +1,23 @@
 #!/usr/bin/env bash
 
-# Install Go dependencies
-install_go() {
-    local project_path="$1"
-
-    execute_command "(cd $project_path && go mod download)" || return 1
-    execute_command "(go work sync)" || return 1
-}
-
-# Install Gradle dependencies
-install_gradle() {
-    local project_path="$1"
-
-    execute_command "(./gradlew compileJava --project-dir $project_path -S)" || return 1
-}
-
-# Install npm dependencies
-install_npm() {
-    local project_path="$1"
-
-    execute_command "(cd $project_path && npm install)" || return 1
-}
-
 cmd_install() {
-    local project_path="$1"
-    local project_type
-    project_type=$(detect_project_type "$project_path")
+    if [ ! -f "$PROJECT_DIR/build.sh" ]; then
+        print_error "No build.sh found in $PROJECT_DIR"
+        return 1
+    fi
 
-    print_info "Installing dependencies for $project_path (type: $project_type)..."
+    print_info "Installing dependencies for $PROJECT_DIR..."
 
-    case "$project_type" in
-        go)
-            install_go "$project_path" || return 1
-            ;;
-        gradle)
-            install_gradle "$project_path" || return 1
-            ;;
-        npm)
-            install_npm "$project_path" || return 1
-            ;;
-        *)
-            print_error "Unknown project type in $project_path"
-            return 1
-            ;;
-    esac
+    # Source the project's build.sh and call the install function
+    # shellcheck disable=SC1090
+    source "$PROJECT_DIR/build.sh"
 
-    print_success "Dependencies installed successfully for $project_path"
+    if declare -f install > /dev/null 2>&1; then
+        install || return 1
+    else
+        print_error "No 'install' function found in $PROJECT_DIR/build.sh"
+        return 1
+    fi
+
+    print_success "Dependencies installed successfully for $PROJECT_DIR"
 }

@@ -16,36 +16,16 @@ cmd_list_projects() {
     fi
 
     # Print header
-    printf "${BLUE}%-50s %-15s${NC}\n" "PROJECT PATH" "BUILD TOOL"
-    printf "%-50s %-15s\n" "$(printf '=%.0s' {1..50})" "$(printf '=%.0s' {1..15})"
+    printf "${BLUE}%-60s${NC}\n" "PROJECT PATH"
+    printf "%-60s\n" "$(printf '=%.0s' {1..60})"
 
     # Print each project
     local count=0
     while IFS= read -r project; do
-        local project_type
-        project_type=$(detect_project_type "$project")
-        local tool_name=""
-
-        case "$project_type" in
-            go)
-                tool_name="Go"
-                ;;
-            gradle)
-                tool_name="Gradle"
-                ;;
-            npm)
-                tool_name="Node"
-                ;;
-            *)
-                tool_name="Unknown"
-                ;;
-        esac
-
-        printf "%-50s " "$project"
-        echo -e "$tool_name"
+        printf "%-60s\n" "$project"
         ((count++))
     done <<< "$projects"
 
     echo ""
-    print_success "Found $count project(s)"
+    print_success "Found $count project(s) with build.sh"
 }
