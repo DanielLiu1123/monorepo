@@ -7,4 +7,13 @@
     <Match>
         <Source name="~.*/generated/.*"/>
     </Match>
+
+    <!-- MyBatis generated code -->
+    <Match>
+        <Or>
+            <Source name="~.*/entity/.*\.java"/>
+            <Source name="~.*/mapper/.*Mapper\.java"/>
+            <Source name="~.*/mapper/.*DynamicSqlSupport\.java"/>
+        </Or>
+    </Match>
 </FindBugsFilter>

@@ -38,7 +38,7 @@ print_warning() {
 
 execute_cmd() {
     echo -e "${BLUE}→ $*${NC}"
-    eval "$@"
+    ( eval "$@" )
 }
 
 # Execute project command
@@ -133,7 +133,7 @@ execute_for_projects() {
         ((total++))
         echo ""
         print_info "[$total] Processing: $project"
-        if execute_project_command "$command" "$project"; then
+        if execute_project_cmd "$command" "$project"; then
             ((success++))
         else
             ((failed++))
@@ -216,7 +216,7 @@ main() {
             # Check if path is a project directory or a parent directory
             if is_project_dir "$path"; then
                 # Single project: execute command with custom support
-                execute_project_command "${command}" "$path"
+                execute_project_cmd "${command}" "$path"
             else
                 # Parent directory: find and execute for all projects
                 execute_for_projects "${command}" "$path"
@@ -230,7 +230,7 @@ main() {
                 print_info "Please specify a project path"
                 exit 1
             fi
-            execute_project_command "run" "$path"
+            execute_project_cmd "run" "$path"
             ;;
         help|--help|-h)
             show_usage
