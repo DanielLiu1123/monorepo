@@ -9,11 +9,15 @@
 # Usage:
 #   ./mono <command> [path]
 #
+# Most commands accept an optional [path] parameter (defaults to current directory).
+# Only 'run' command requires a specific project path.
+#
 # Examples:
-#   ./mono build services/
-#   ./mono run services/order-service
-#   ./mono gen-proto
-#   ./mono test .
+#   ./mono build                        # Build all projects
+#   ./mono build services/              # Build all projects in services/
+#   ./mono run services/order-service   # Run specific service
+#   ./mono gen-proto                    # Generate proto files
+#   ./mono test .                       # Test all projects
 
 set -e
 

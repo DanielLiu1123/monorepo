@@ -44,7 +44,8 @@ execute_cmd() {
 # Execute project command
 execute_project_cmd() {
     local command="$1"
-    local project_path="$2"
+    local project_path
+    project_path=$(normalize_path "$2")
 
     # Set environment variables for the project
     export ROOT_DIR
@@ -116,7 +117,7 @@ execute_for_projects() {
     local command="$1"
     local path="$2"
 
-    print_info "Scanning for projects in $path..."
+    print_info "Scanning for projects in $path"
     local projects
     projects=$(find_projects "$path")
 
@@ -174,16 +175,16 @@ show_usage() {
     echo "Usage: $script_name <command> [path]"
     echo ""
     echo "Commands:"
-    echo "  init              - Initialize development environment"
-    echo "  gen-proto [path]  - Generate code from proto files"
-    echo "  list-projects     - List all projects in monorepo (or in specified path)"
-    echo "  clean <path>      - Clean build artifacts"
-    echo "  install <path>    - Install dependencies"
-    echo "  build <path>      - Build project(s)"
-    echo "  test <path>       - Run tests"
-    echo "  run <path>        - Run project (single project only)"
-    echo "  lint <path>       - Run linter"
-    echo "  fmt <path>        - Format code"
+    echo "  init                - Initialize development environment"
+    echo "  gen-proto [path]    - Generate code from proto files"
+    echo "  list-projects [path] - List all projects in monorepo (or in specified path)"
+    echo "  clean [path]        - Clean build artifacts (defaults to current directory)"
+    echo "  install [path]      - Install dependencies (defaults to current directory)"
+    echo "  build [path]        - Build project(s) (defaults to current directory)"
+    echo "  test [path]         - Run tests (defaults to current directory)"
+    echo "  run <path>          - Run project (single project only, path required)"
+    echo "  lint [path]         - Run linter (defaults to current directory)"
+    echo "  fmt [path]          - Format code (defaults to current directory)"
     echo ""
     echo "Examples:"
     echo "  $script_name init"
@@ -204,7 +205,7 @@ main() {
 
     if [ -z "$command" ]; then
         show_usage
-        exit 1
+        exit 0
     fi
 
     case "$command" in
@@ -218,6 +219,8 @@ main() {
             cmd_list_projects "${path:-.}"
             ;;
         clean|install|build|test|lint|fmt)
+            # Default to current directory if no path specified
+            path="${path:-.}"
             validate_project "$path"
 
             # Check if path is a project directory or a parent directory
@@ -237,7 +240,7 @@ main() {
                 print_info "Please specify a project path"
                 exit 1
             fi
-            execute_project_cmd "run" "$path"
+            execute_project_cmd "${command}" "$path"
             ;;
         help|--help|-h)
             show_usage

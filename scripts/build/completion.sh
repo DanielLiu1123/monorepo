@@ -33,15 +33,10 @@ _mono_find_projects() {
 
     # Find all projects directly
     find "$root_dir" -type f \( \
-        -name "go.mod" \
-        -o -name "build.gradle" \
-        -o -name "build.gradle.kts" \
-        -o -name "package.json" \
+        -name "build.sh" \
     \) 2>/dev/null \
     | xargs -n1 dirname 2>/dev/null \
     | sed "s|^$root_dir/||" \
-    | grep -v "node_modules" \
-    | grep -v ".gradle" \
     | sort -u
 }
 
