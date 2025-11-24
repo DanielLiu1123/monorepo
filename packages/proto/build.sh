@@ -23,3 +23,7 @@ fmt() {
 clean() {
     print_info "Please manually remove generated code if needed"
 }
+
+run() {
+    print_info "No thing to run for proto definitions"
+}
