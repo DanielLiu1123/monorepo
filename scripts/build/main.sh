@@ -132,6 +132,7 @@ execute_for_projects() {
     local failed_projects=()
 
     while IFS= read -r project; do
+        project="$(normalize_path "$project")"
         ((total++))
         echo ""
         print_info "[$total] Processing: $project"
