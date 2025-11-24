@@ -128,7 +128,7 @@ public class TodoService {
      * Batch get todos by ids.
      *
      * @param request batch get todos request
-     * @return list of todo models
+     * @return list of todo
      */
     public List<monorepo.proto.todo.v1.Todo> batchGet(BatchGetTodosRequest request) {
         var ids = request.getIdsList();
@@ -178,7 +178,7 @@ public class TodoService {
         // Query total count
         var totalSize = todoMapper.count(c -> c.where(buildConditions(request)));
 
-        var todos = todoMapper.select(c -> {
+        var entities = todoMapper.select(c -> {
             var sql = c.where(buildConditions(request));
 
             for (var orderBy : request.getOrderByList()) {
@@ -194,11 +194,11 @@ public class TodoService {
             return sql;
         });
 
-        var todoModels = buildTodos(todos);
+        var todos = buildTodos(entities);
 
         // Calculate next page token
         var responseBuilder = ListTodosResponse.newBuilder();
-        responseBuilder.addAllTodos(todoModels);
+        responseBuilder.addAllTodos(todos);
         responseBuilder.setTotalSize((int) totalSize);
 
         long nextOffset = offset + pageSize;
