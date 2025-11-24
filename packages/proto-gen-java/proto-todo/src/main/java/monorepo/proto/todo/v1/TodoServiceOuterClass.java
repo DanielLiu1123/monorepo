@@ -100,10 +100,10 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032todo/v1/todo_service.proto\022\007todo.v1\032\022t" +
-      "odo/v1/todo.proto\032 google/protobuf/field" +
-      "_mask.proto\032\033google/protobuf/empty.proto" +
-      "\032\026google/type/date.proto\"\311\003\n\021CreateTodoR" +
+      "\n\032todo/v1/todo_service.proto\022\007todo.v1\032\033g" +
+      "oogle/protobuf/empty.proto\032 google/proto" +
+      "buf/field_mask.proto\032\026google/type/date.p" +
+      "roto\032\022todo/v1/todo.proto\"\311\003\n\021CreateTodoR" +
       "equest\022\027\n\007user_id\030\001 \001(\003R\006userId\022\024\n\005title" +
       "\030\002 \001(\tR\005title\022%\n\013description\030\003 \001(\tH\000R\013de" +
       "scription\210\001\001\022.\n\005state\030\004 \001(\0162\023.todo.v1.To" +
@@ -172,10 +172,10 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          monorepo.proto.todo.v1.TodoProto.getDescriptor(),
-          com.google.protobuf.FieldMaskProto.getDescriptor(),
           com.google.protobuf.EmptyProto.getDescriptor(),
+          com.google.protobuf.FieldMaskProto.getDescriptor(),
           com.google.type.DateProto.getDescriptor(),
+          monorepo.proto.todo.v1.TodoProto.getDescriptor(),
         });
     internal_static_todo_v1_CreateTodoRequest_descriptor =
       getDescriptor().getMessageType(0);
@@ -256,10 +256,10 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
         internal_static_todo_v1_BatchGetTodosResponse_descriptor,
         new java.lang.String[] { "Todos", });
     descriptor.resolveAllFeaturesImmutable();
-    monorepo.proto.todo.v1.TodoProto.getDescriptor();
-    com.google.protobuf.FieldMaskProto.getDescriptor();
     com.google.protobuf.EmptyProto.getDescriptor();
+    com.google.protobuf.FieldMaskProto.getDescriptor();
     com.google.type.DateProto.getDescriptor();
+    monorepo.proto.todo.v1.TodoProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

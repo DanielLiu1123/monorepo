@@ -6,9 +6,9 @@ import "google/protobuf/timestamp.proto";
 import "google/type/date.proto";
 
 option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/todo/v1;todov1";
-option java_package = "monorepo.proto.todo.v1";
 option java_multiple_files = true;
 option java_outer_classname = "TodoProto";
+option java_package = "monorepo.proto.todo.v1";
 
 message Todo {
   int64 id = 1;
@@ -24,7 +24,7 @@ message Todo {
   google.protobuf.Timestamp updated_at = 11;
   optional google.protobuf.Timestamp deleted_at = 12;
 
-  enum State{
+  enum State {
     STATE_UNSPECIFIED = 0;
     PENDING = 1;
     COMPLETED = 2;

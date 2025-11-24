@@ -356,7 +356,7 @@ var File_user_v1_user_service_proto protoreflect.FileDescriptor
 
 const file_user_v1_user_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1auser/v1/user_service.proto\x12\auser.v1\x1a\x12user/v1/user.proto\x1a\x14common/v1/page.proto\" \n" +
+	"\x1auser/v1/user_service.proto\x12\auser.v1\x1a\x14common/v1/page.proto\x1a\x12user/v1/user.proto\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"(\n" +
 	"\x14BatchGetUsersRequest\x12\x10\n" +

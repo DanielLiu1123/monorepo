@@ -1591,7 +1591,7 @@ var File_todo_v1_todo_service_proto protoreflect.FileDescriptor
 
 const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1atodo/v1/todo_service.proto\x12\atodo.v1\x1a\x12todo/v1/todo.proto\x1a google/protobuf/field_mask.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x16google/type/date.proto\"\xc9\x03\n" +
+	"\x1atodo/v1/todo_service.proto\x12\atodo.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x16google/type/date.proto\x1a\x12todo/v1/todo.proto\"\xc9\x03\n" +
 	"\x11CreateTodoRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12%\n" +

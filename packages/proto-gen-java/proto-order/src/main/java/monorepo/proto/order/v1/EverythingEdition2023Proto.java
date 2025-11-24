@@ -96,12 +96,12 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
   static {
     java.lang.String[] descriptorData = {
       "\n%order/v1/everything_edition2023.proto\022" +
-      "\010order.v1\032\037google/protobuf/timestamp.pro" +
-      "to\032\036google/protobuf/duration.proto\032\036goog" +
-      "le/protobuf/wrappers.proto\032\033google/type/" +
-      "timeofday.proto\032\026google/type/date.proto\032" +
-      "\033google/type/dayofweek.proto\032\027google/typ" +
-      "e/month.proto\"\346!\n\025EverythingEdition2023\022" +
+      "\010order.v1\032\036google/protobuf/duration.prot" +
+      "o\032\037google/protobuf/timestamp.proto\032\036goog" +
+      "le/protobuf/wrappers.proto\032\026google/type/" +
+      "date.proto\032\033google/type/dayofweek.proto\032" +
+      "\027google/type/month.proto\032\033google/type/ti" +
+      "meofday.proto\"\346!\n\025EverythingEdition2023\022" +
       "\024\n\005int32\030\001 \001(\005R\005int32\022\024\n\005int64\030\003 \001(\003R\005in" +
       "t64\022\024\n\005float\030\013 \001(\002R\005float\022\026\n\006double\030\014 \001(" +
       "\001R\006double\022\022\n\004bool\030\r \001(\010R\004bool\022\026\n\006string\030" +
@@ -217,13 +217,13 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf.TimestampProto.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
+          com.google.protobuf.TimestampProto.getDescriptor(),
           com.google.protobuf.WrappersProto.getDescriptor(),
-          com.google.type.TimeOfDayProto.getDescriptor(),
           com.google.type.DateProto.getDescriptor(),
           com.google.type.DayOfWeekProto.getDescriptor(),
           com.google.type.MonthProto.getDescriptor(),
+          com.google.type.TimeOfDayProto.getDescriptor(),
         });
     internal_static_order_v1_EverythingEdition2023_descriptor =
       getDescriptor().getMessageType(0);
@@ -298,13 +298,13 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
         internal_static_order_v1_EverythingEdition2023_Message_descriptor,
         new java.lang.String[] { "Id", "Name", });
     descriptor.resolveAllFeaturesImmutable();
-    com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
+    com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.WrappersProto.getDescriptor();
-    com.google.type.TimeOfDayProto.getDescriptor();
     com.google.type.DateProto.getDescriptor();
     com.google.type.DayOfWeekProto.getDescriptor();
     com.google.type.MonthProto.getDescriptor();
+    com.google.type.TimeOfDayProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

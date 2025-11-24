@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package todo.v1;
 
-import "todo/v1/todo.proto";
-import "google/protobuf/field_mask.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
 import "google/type/date.proto";
+import "todo/v1/todo.proto";
 
 option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/todo/v1;todov1";
-option java_package = "monorepo.proto.todo.v1";
 option java_multiple_files = true;
+option java_package = "monorepo.proto.todo.v1";
 
 // TodoService provides CRUD operations for todos following AIP standards
 service TodoService {
@@ -37,7 +37,6 @@ service TodoService {
 }
 
 message CreateTodoRequest {
-
   int64 user_id = 1;
   string title = 2;
   optional string description = 3;

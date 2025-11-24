@@ -23,95 +23,54 @@
 #   - print_success "message" - Print success message in green
 #   - print_error "message"   - Print error message in red
 #   - print_warning "message" - Print warning message in yellow
-#   - execute_command "cmd"   - Execute and print command
+#
+# Note: Commands should be called directly, no need for execute_command wrapper
 
-# Example: Custom build function
-# Uncomment and modify as needed
+# Example: Custom build function for npm project
 # build() {
-#     print_info "Running custom build for $PROJECT_DIR"
-#
-#     # Your custom build logic here
-#     execute_command "cd $PROJECT_DIR && npm run build:custom"
-#
-#     return $?
+#     cd $PROJECT_DIR && npm run build
 # }
 
 # Example: Custom clean function
 # clean() {
-#     print_info "Running custom clean for $PROJECT_DIR"
-#
-#     # Your custom clean logic here
-#     execute_command "rm -rf $PROJECT_DIR/dist $PROJECT_DIR/build"
-#
-#     return $?
+#     rm -rf $PROJECT_DIR/dist $PROJECT_DIR/build
 # }
 
 # Example: Custom fmt function
 # fmt() {
-#     print_info "Running custom fmt for $PROJECT_DIR"
-#
-#     # Your custom fmt logic here
-#     execute_command "cd $PROJECT_DIR && prettier --write ."
-#
-#     return $?
+#     cd $PROJECT_DIR && prettier --write .
 # }
 
 # Example: Custom install function
 # install() {
-#     print_info "Running custom install for $PROJECT_DIR"
-#
-#     # Your custom install logic here
-#     execute_command "cd $PROJECT_DIR && pnpm install"
-#
-#     return $?
+#     cd $PROJECT_DIR && pnpm install
 # }
 
 # Example: Custom lint function
 # lint() {
-#     print_info "Running custom lint for $PROJECT_DIR"
-#
-#     # Your custom lint logic here
-#     execute_command "cd $PROJECT_DIR && npm run lint:custom"
-#
-#     return $?
+#     cd $PROJECT_DIR && npm run lint
 # }
 
 # Example: Custom run function
 # run() {
-#     print_info "Running custom run for $PROJECT_DIR"
-#
-#     # Your custom run logic here
-#     execute_command "cd $PROJECT_DIR && npm run dev:custom"
-#
-#     return $?
+#     cd $PROJECT_DIR && npm run dev
 # }
 
 # Example: Custom test function
 # test() {
-#     print_info "Running custom test for $PROJECT_DIR"
-#
-#     # Your custom test logic here
-#     execute_command "cd $PROJECT_DIR && npm run test:e2e"
-#
-#     return $?
+#     cd $PROJECT_DIR && npm run test:e2e
 # }
 
 # Example: Complex custom build with multiple steps
 # build() {
-#     print_info "Running multi-step custom build for $PROJECT_DIR"
-#
-#     # Step 1: Generate code
 #     print_info "Step 1: Generating code..."
-#     execute_command "cd $PROJECT_DIR && npm run codegen" || return 1
+#     cd $PROJECT_DIR && npm run codegen
 #
-#     # Step 2: Build
 #     print_info "Step 2: Building..."
-#     execute_command "cd $PROJECT_DIR && npm run build" || return 1
+#     cd $PROJECT_DIR && npm run build
 #
-#     # Step 3: Post-build processing
 #     print_info "Step 3: Post-build processing..."
-#     execute_command "cd $PROJECT_DIR && npm run postbuild" || return 1
+#     cd $PROJECT_DIR && npm run postbuild
 #
 #     print_success "Custom build completed successfully"
-#     return 0
 # }

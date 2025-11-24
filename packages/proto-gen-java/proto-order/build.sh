@@ -1,16 +1,29 @@
 #!/usr/bin/env bash
 
-fmt() {
-  print_info "Skipping formatting for generated code"
-  return 0
+install() {
+    ./gradlew compileJava --project-dir $PROJECT_DIR
 }
 
-lint() {
-  print_info "Skipping linting for generated code"
-  return 0
+build() {
+    ./gradlew jar --project-dir $PROJECT_DIR
 }
 
 test() {
-  print_info "Skipping tests for generated code"
-  return 0
+    print_info "Skipping tests for generated code"
+}
+
+lint() {
+    print_info "Skipping lint for generated code"
+}
+
+fmt() {
+    print_info "Skipping fmt for generated code"
+}
+
+clean() {
+    ./gradlew clean --project-dir $PROJECT_DIR
+}
+
+run() {
+    print_info "No thing to run for generated code"
 }

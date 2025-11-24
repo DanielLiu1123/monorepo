@@ -1,26 +1,25 @@
 #!/usr/bin/env bash
 
 install() {
-    execute_command "./gradlew compileJava --project-dir $PROJECT_DIR -S" || return 1
+    ./gradlew compileJava --project-dir $PROJECT_DIR
 }
 
 build() {
-    # Build lib: create library jar
-    execute_command "./gradlew jar --project-dir $PROJECT_DIR -S" || return 1
+    ./gradlew jar --project-dir $PROJECT_DIR
 }
 
 test() {
-    execute_command "./gradlew test --project-dir $PROJECT_DIR -S" || return 1
+    ./gradlew test --project-dir $PROJECT_DIR
 }
 
 lint() {
-    execute_command "./gradlew spotlessCheck spotbugsMain --project-dir $PROJECT_DIR -S" || return 1
+    ./gradlew spotlessCheck spotbugsMain --project-dir $PROJECT_DIR
 }
 
 fmt() {
-    execute_command "./gradlew spotlessApply --project-dir $PROJECT_DIR -S" || return 1
+    ./gradlew spotlessApply --project-dir $PROJECT_DIR
 }
 
 clean() {
-    execute_command "./gradlew clean --project-dir $PROJECT_DIR -S" || return 1
+    ./gradlew clean --project-dir $PROJECT_DIR
 }

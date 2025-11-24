@@ -1322,7 +1322,7 @@ var File_order_v1_everything_proto3_proto protoreflect.FileDescriptor
 
 const file_order_v1_everything_proto3_proto_rawDesc = "" +
 	"\n" +
-	" order/v1/everything_proto3.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1bgoogle/type/timeofday.proto\x1a\x16google/type/date.proto\x1a\x1bgoogle/type/dayofweek.proto\x1a\x17google/type/month.proto\"\xf3 \n" +
+	" order/v1/everything_proto3.proto\x12\border.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16google/type/date.proto\x1a\x1bgoogle/type/dayofweek.proto\x1a\x17google/type/month.proto\x1a\x1bgoogle/type/timeofday.proto\"\xf3 \n" +
 	"\x10EverythingProto3\x12\x14\n" +
 	"\x05int32\x18\x01 \x01(\x05R\x05int32\x12\x14\n" +
 	"\x05int64\x18\x03 \x01(\x03R\x05int64\x12\x14\n" +

@@ -60,8 +60,8 @@ public final class UserServiceOuterClass extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032user/v1/user_service.proto\022\007user.v1\032\022u" +
-      "ser/v1/user.proto\032\024common/v1/page.proto\"" +
+      "\n\032user/v1/user_service.proto\022\007user.v1\032\024c" +
+      "ommon/v1/page.proto\032\022user/v1/user.proto\"" +
       " \n\016GetUserRequest\022\016\n\002id\030\001 \001(\tR\002id\"(\n\024Bat" +
       "chGetUsersRequest\022\020\n\003ids\030\001 \003(\tR\003ids\"<\n\025B" +
       "atchGetUsersResponse\022#\n\005users\030\001 \003(\0132\r.us" +
@@ -83,8 +83,8 @@ public final class UserServiceOuterClass extends com.google.protobuf.GeneratedFi
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          monorepo.proto.user.v1.UserOuterClass.getDescriptor(),
           monorepo.proto.common.v1.PageProto.getDescriptor(),
+          monorepo.proto.user.v1.UserOuterClass.getDescriptor(),
         });
     internal_static_user_v1_GetUserRequest_descriptor =
       getDescriptor().getMessageType(0);
@@ -117,8 +117,8 @@ public final class UserServiceOuterClass extends com.google.protobuf.GeneratedFi
         internal_static_user_v1_ListUsersResponse_descriptor,
         new java.lang.String[] { "Users", "NextPageToken", });
     descriptor.resolveAllFeaturesImmutable();
-    monorepo.proto.user.v1.UserOuterClass.getDescriptor();
     monorepo.proto.common.v1.PageProto.getDescriptor();
+    monorepo.proto.user.v1.UserOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

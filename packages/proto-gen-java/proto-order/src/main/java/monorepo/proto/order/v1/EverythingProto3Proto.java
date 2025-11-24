@@ -96,12 +96,12 @@ public final class EverythingProto3Proto extends com.google.protobuf.GeneratedFi
   static {
     java.lang.String[] descriptorData = {
       "\n order/v1/everything_proto3.proto\022\010orde" +
-      "r.v1\032\037google/protobuf/timestamp.proto\032\036g" +
-      "oogle/protobuf/duration.proto\032\036google/pr" +
-      "otobuf/wrappers.proto\032\033google/type/timeo" +
-      "fday.proto\032\026google/type/date.proto\032\033goog" +
-      "le/type/dayofweek.proto\032\027google/type/mon" +
-      "th.proto\"\363 \n\020EverythingProto3\022\024\n\005int32\030\001" +
+      "r.v1\032\036google/protobuf/duration.proto\032\037go" +
+      "ogle/protobuf/timestamp.proto\032\036google/pr" +
+      "otobuf/wrappers.proto\032\026google/type/date." +
+      "proto\032\033google/type/dayofweek.proto\032\027goog" +
+      "le/type/month.proto\032\033google/type/timeofd" +
+      "ay.proto\"\363 \n\020EverythingProto3\022\024\n\005int32\030\001" +
       " \001(\005R\005int32\022\024\n\005int64\030\003 \001(\003R\005int64\022\024\n\005flo" +
       "at\030\013 \001(\002R\005float\022\026\n\006double\030\014 \001(\001R\006double\022" +
       "\022\n\004bool\030\r \001(\010R\004bool\022\026\n\006string\030\016 \001(\tR\006str" +
@@ -214,13 +214,13 @@ public final class EverythingProto3Proto extends com.google.protobuf.GeneratedFi
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf.TimestampProto.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
+          com.google.protobuf.TimestampProto.getDescriptor(),
           com.google.protobuf.WrappersProto.getDescriptor(),
-          com.google.type.TimeOfDayProto.getDescriptor(),
           com.google.type.DateProto.getDescriptor(),
           com.google.type.DayOfWeekProto.getDescriptor(),
           com.google.type.MonthProto.getDescriptor(),
+          com.google.type.TimeOfDayProto.getDescriptor(),
         });
     internal_static_order_v1_EverythingProto3_descriptor =
       getDescriptor().getMessageType(0);
@@ -295,13 +295,13 @@ public final class EverythingProto3Proto extends com.google.protobuf.GeneratedFi
         internal_static_order_v1_EverythingProto3_Message_descriptor,
         new java.lang.String[] { "Id", "Name", });
     descriptor.resolveAllFeaturesImmutable();
-    com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
+    com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.WrappersProto.getDescriptor();
-    com.google.type.TimeOfDayProto.getDescriptor();
     com.google.type.DateProto.getDescriptor();
     com.google.type.DayOfWeekProto.getDescriptor();
     com.google.type.MonthProto.getDescriptor();
+    com.google.type.TimeOfDayProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

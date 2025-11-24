@@ -41,53 +41,33 @@ execute_command() {
     eval "$@"
 }
 
-# Load project-level build.sh if exists
-load_project_build_script() {
-    local project_path="$1"
-    local build_script="$project_path/build.sh"
-
-    if [ -f "$build_script" ]; then
-        print_info "Loading custom build script from $build_script"
-        # shellcheck disable=SC1090
-        source "$build_script"
-        return 0
-    fi
-    return 1
-}
-
-# Check if custom command function exists
-has_custom_command() {
-    local command="$1"
-
-    if declare -f "$command" > /dev/null 2>&1; then
-        return 0
-    fi
-    return 1
-}
-
-# Execute custom command if available, otherwise use default
+# Execute project command
 execute_project_command() {
     local command="$1"
     local project_path="$2"
-    local default_function="cmd_${command}"
 
     # Set environment variables for the project
     export ROOT_DIR
     export PROJECT_DIR="$ROOT_DIR/$project_path"
 
-    # Try to load project-level build.sh
-    if load_project_build_script "$project_path"; then
-        # Check if custom function exists
-        if has_custom_command "$command"; then
-            print_info "Using custom $command implementation from $project_path/build.sh"
-            $command
-            return $?
-        fi
+    # Check if build.sh exists
+    if [ ! -f "$PROJECT_DIR/build.sh" ]; then
+        print_error "No build.sh found in $project_path"
+        return 1
     fi
 
-    # Use default implementation
-    $default_function
-    return $?
+    # Load project's build.sh
+    # shellcheck disable=SC1090
+    source "$PROJECT_DIR/build.sh"
+
+    # Check if command function exists
+    if ! declare -f "$command" > /dev/null 2>&1; then
+        print_error "No '$command' function found in $project_path/build.sh"
+        return 1
+    fi
+
+    # Execute command
+    $command || return 1
 }
 
 # Normalize path: remove leading ./ and trailing /
@@ -96,16 +76,6 @@ normalize_path() {
     path="${path#./}"
     path="${path%/}"
     echo "$path"
-}
-
-detect_project_type() {
-    local project_path="$1"
-
-    if [ -f "$project_path/build.sh" ]; then
-        echo "custom"
-    else
-        echo "unknown"
-    fi
 }
 
 find_projects() {
@@ -184,16 +154,9 @@ execute_for_projects() {
 # Load Command Modules
 # ============================================================================
 
-source "$SCRIPT_DIR/commands/build.sh"
-source "$SCRIPT_DIR/commands/clean.sh"
-source "$SCRIPT_DIR/commands/fmt.sh"
 source "$SCRIPT_DIR/commands/gen-proto.sh"
 source "$SCRIPT_DIR/commands/init.sh"
-source "$SCRIPT_DIR/commands/install.sh"
-source "$SCRIPT_DIR/commands/lint.sh"
 source "$SCRIPT_DIR/commands/list-projects.sh"
-source "$SCRIPT_DIR/commands/run.sh"
-source "$SCRIPT_DIR/commands/test.sh"
 
 # ============================================================================
 # Main Functions
