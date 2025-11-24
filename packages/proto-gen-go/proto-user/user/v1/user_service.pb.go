@@ -7,7 +7,7 @@
 package userv1
 
 import (
-	_ "github.com/yourorg/monorepo/packages/proto-gen-go/common/v1"
+	_ "github.com/yourorg/monorepo/packages/proto-gen-go/proto-common/common/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -374,8 +374,8 @@ const file_user_v1_user_service_proto_rawDesc = "" +
 	"\vUserService\x123\n" +
 	"\aGetUser\x12\x17.user.v1.GetUserRequest\x1a\r.user.v1.User\"\x00\x12P\n" +
 	"\rBatchGetUsers\x12\x1d.user.v1.BatchGetUsersRequest\x1a\x1e.user.v1.BatchGetUsersResponse\"\x00\x12D\n" +
-	"\tListUsers\x12\x19.user.v1.ListUsersRequest\x1a\x1a.user.v1.ListUsersResponse\"\x00B\\\n" +
-	"\x16monorepo.proto.user.v1P\x01Z@github.com/yourorg/monorepo/packages/proto-gen-go/user/v1;userv1b\x06proto3"
+	"\tListUsers\x12\x19.user.v1.ListUsersRequest\x1a\x1a.user.v1.ListUsersResponse\"\x00Bg\n" +
+	"\x16monorepo.proto.user.v1P\x01ZKgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-user/user/v1;userv1b\x06proto3"
 
 var file_user_v1_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_user_v1_user_service_proto_goTypes = []any{

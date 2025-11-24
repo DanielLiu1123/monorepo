@@ -44,9 +44,9 @@ public final class UserOuterClass extends com.google.protobuf.GeneratedFile {
       "\n\002id\030\001 \001(\tR\002id\022\032\n\010username\030\002 \001(\tR\010userna" +
       "me\022\024\n\005email\030\003 \001(\tR\005email\022\035\n\ncreated_at\030\005" +
       " \001(\003R\tcreatedAt\022\035\n\nupdated_at\030\006 \001(\003R\tupd" +
-      "atedAtB\\\n\026monorepo.proto.user.v1P\001Z@gith" +
+      "atedAtBg\n\026monorepo.proto.user.v1P\001ZKgith" +
       "ub.com/yourorg/monorepo/packages/proto-g" +
-      "en-go/user/v1;userv1b\006proto3"
+      "en-go/proto-user/user/v1;userv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

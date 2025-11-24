@@ -1426,8 +1426,8 @@ const file_order_v1_everything_proto3_proto_rawDesc = "" +
 	"\fENUM_VALUE_1\x10\x01\x12\x10\n" +
 	"\fENUM_VALUE_2\x10\x02B\a\n" +
 	"\x05oneofB\x10\n" +
-	"\x0e_optional_enumBv\n" +
-	"\x17monorepo.proto.order.v1B\x15EverythingProto3ProtoP\x01ZBgithub.com/yourorg/monorepo/packages/proto-gen-go/order/v1;orderv1b\x06proto3"
+	"\x0e_optional_enumB\x82\x01\n" +
+	"\x17monorepo.proto.order.v1B\x15EverythingProto3ProtoP\x01ZNgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-order/order/v1;orderv1b\x06proto3"
 
 var file_order_v1_everything_proto3_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_order_v1_everything_proto3_proto_msgTypes = make([]protoimpl.MessageInfo, 12)

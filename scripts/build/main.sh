@@ -128,6 +128,7 @@ execute_for_projects() {
     local total=0
     local success=0
     local failed=0
+    local failed_projects=()
 
     while IFS= read -r project; do
         ((total++))
@@ -137,6 +138,7 @@ execute_for_projects() {
             ((success++))
         else
             ((failed++))
+            failed_projects+=("$project")
         fi
     done <<< "$projects"
 
@@ -146,6 +148,11 @@ execute_for_projects() {
     print_success "$success succeeded"
     if [ $failed -gt 0 ]; then
         print_error "$failed failed"
+        echo ""
+        print_error "Failed projects:"
+        for project in "${failed_projects[@]}"; do
+            echo "  - $project"
+        done
         return 1
     fi
 }

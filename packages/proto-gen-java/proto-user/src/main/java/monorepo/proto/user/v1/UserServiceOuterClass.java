@@ -76,9 +76,9 @@ public final class UserServiceOuterClass extends com.google.protobuf.GeneratedFi
       ".BatchGetUsersRequest\032\036.user.v1.BatchGet" +
       "UsersResponse\"\000\022D\n\tListUsers\022\031.user.v1.L" +
       "istUsersRequest\032\032.user.v1.ListUsersRespo" +
-      "nse\"\000B\\\n\026monorepo.proto.user.v1P\001Z@githu" +
+      "nse\"\000Bg\n\026monorepo.proto.user.v1P\001ZKgithu" +
       "b.com/yourorg/monorepo/packages/proto-ge" +
-      "n-go/user/v1;userv1b\006proto3"
+      "n-go/proto-user/user/v1;userv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

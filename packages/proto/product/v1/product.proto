@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package product.v1;
 
-option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/product/v1;productv1";
+option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/proto-product/product/v1;productv1";
 option java_multiple_files = true;
 option java_package = "monorepo.proto.product.v1";
 

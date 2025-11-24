@@ -209,10 +209,11 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
       "2023.EnumR\005value:\0028\001\032-\n\007Message\022\016\n\002id\030\001 " +
       "\001(\003R\002id\022\022\n\004name\030\002 \001(\tR\004name\"@\n\004Enum\022\024\n\020E" +
       "NUM_UNSPECIFIED\020\000\022\020\n\014ENUM_VALUE_1\020\001\022\020\n\014E" +
-      "NUM_VALUE_2\020\002B\007\n\005oneofB{\n\027monorepo.proto" +
-      ".order.v1B\032EverythingEdition2023ProtoP\001Z" +
-      "Bgithub.com/yourorg/monorepo/packages/pr" +
-      "oto-gen-go/order/v1;orderv1b\010editionsp\350\007"
+      "NUM_VALUE_2\020\002B\007\n\005oneofB\207\001\n\027monorepo.prot" +
+      "o.order.v1B\032EverythingEdition2023ProtoP\001" +
+      "ZNgithub.com/yourorg/monorepo/packages/p" +
+      "roto-gen-go/proto-order/order/v1;orderv1" +
+      "b\010editionsp\350\007"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

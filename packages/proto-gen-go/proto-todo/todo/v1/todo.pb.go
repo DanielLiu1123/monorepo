@@ -554,8 +554,8 @@ const file_todo_v1_todo_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtBg\n" +
-	"\x16monorepo.proto.todo.v1B\tTodoProtoP\x01Z@github.com/yourorg/monorepo/packages/proto-gen-go/todo/v1;todov1b\x06proto3"
+	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtBr\n" +
+	"\x16monorepo.proto.todo.v1B\tTodoProtoP\x01ZKgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-todo/todo/v1;todov1b\x06proto3"
 
 var file_todo_v1_todo_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_todo_v1_todo_proto_msgTypes = make([]protoimpl.MessageInfo, 2)

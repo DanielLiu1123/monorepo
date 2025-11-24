@@ -51,10 +51,10 @@ public final class ProductServiceOuterClass extends com.google.protobuf.Generate
       "uctResponse\022-\n\007product\030\001 \001(\0132\023.product.v" +
       "1.ProductR\007product2_\n\016ProductService\022M\n\n" +
       "GetProduct\022\035.product.v1.GetProductReques" +
-      "t\032\036.product.v1.GetProductResponse\"\000Be\n\031m" +
-      "onorepo.proto.product.v1P\001ZFgithub.com/y" +
+      "t\032\036.product.v1.GetProductResponse\"\000Bs\n\031m" +
+      "onorepo.proto.product.v1P\001ZTgithub.com/y" +
       "ourorg/monorepo/packages/proto-gen-go/pr" +
-      "oduct/v1;productv1b\006proto3"
+      "oto-product/product/v1;productv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

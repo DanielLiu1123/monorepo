@@ -191,8 +191,8 @@ const file_product_v1_product_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\x03R\tupdatedAtBe\n" +
-	"\x19monorepo.proto.product.v1P\x01ZFgithub.com/yourorg/monorepo/packages/proto-gen-go/product/v1;productv1b\x06proto3"
+	"updated_at\x18\b \x01(\x03R\tupdatedAtBs\n" +
+	"\x19monorepo.proto.product.v1P\x01ZTgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-product/product/v1;productv1b\x06proto3"
 
 var file_product_v1_product_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_product_v1_product_proto_goTypes = []any{

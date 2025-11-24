@@ -50,10 +50,10 @@ public final class PageProto extends com.google.protobuf.GeneratedFile {
       "\030\002 \001(\003R\004size\"\202\001\n\014PageResponse\022\026\n\006number\030" +
       "\001 \001(\003R\006number\022\022\n\004size\030\002 \001(\003R\004size\022%\n\016tot" +
       "al_elements\030\003 \001(\003R\rtotalElements\022\037\n\013tota" +
-      "l_pages\030\004 \001(\003R\ntotalPagesBm\n\030monorepo.pr" +
-      "oto.common.v1B\tPageProtoP\001ZDgithub.com/y" +
-      "ourorg/monorepo/packages/proto-gen-go/co" +
-      "mmon/v1;commonv1b\006proto3"
+      "l_pages\030\004 \001(\003R\ntotalPagesBz\n\030monorepo.pr" +
+      "oto.common.v1B\tPageProtoP\001ZQgithub.com/y" +
+      "ourorg/monorepo/packages/proto-gen-go/pr" +
+      "oto-common/common/v1;commonv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
