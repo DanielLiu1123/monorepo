@@ -15,7 +15,7 @@ public final class ContextualRunnable implements Runnable {
 
     private ContextualRunnable(Runnable delegate) {
         this.delegate = delegate;
-        this.context = ContextHolder.get();
+        this.context = ContextHolder.getOrNull();
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class ContextualRunnable implements Runnable {
 
         // 相同线程如果重复 set context 会导致执行 delegate 执行完之后清除 context
         // 造成 context 丢失
-        if (ContextHolder.get() == context) {
+        if (ContextHolder.getOrNull() == context) {
             delegate.run();
             return;
         }

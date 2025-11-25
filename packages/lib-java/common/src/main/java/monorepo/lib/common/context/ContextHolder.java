@@ -10,8 +10,8 @@ public final class ContextHolder {
 
     private static final InheritableThreadLocal<Context> CONTEXT = new InheritableThreadLocal<>();
 
-    public static Context mustGet() {
-        var ctx = get();
+    public static Context get() {
+        var ctx = getOrNull();
         if (ctx == null) {
             throw new IllegalStateException("Context is not initialized");
         }
@@ -19,7 +19,7 @@ public final class ContextHolder {
     }
 
     @Nullable
-    public static Context get() {
+    public static Context getOrNull() {
         return CONTEXT.get();
     }
 

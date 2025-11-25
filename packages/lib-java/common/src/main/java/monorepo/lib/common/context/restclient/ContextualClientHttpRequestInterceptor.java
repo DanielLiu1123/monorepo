@@ -17,7 +17,7 @@ public final class ContextualClientHttpRequestInterceptor implements ClientHttpR
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
             throws IOException {
-        var context = ContextHolder.get();
+        var context = ContextHolder.getOrNull();
         if (context == null) {
             return execution.execute(request, body);
         }

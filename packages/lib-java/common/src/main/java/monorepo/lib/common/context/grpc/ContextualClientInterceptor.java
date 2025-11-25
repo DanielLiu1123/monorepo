@@ -21,7 +21,7 @@ public final class ContextualClientInterceptor implements ClientInterceptor {
     @Override
     public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(
             MethodDescriptor<ReqT, RespT> method, CallOptions callOptions, Channel next) {
-        var context = ContextHolder.get();
+        var context = ContextHolder.getOrNull();
         if (context == null) {
             return next.newCall(method, callOptions);
         }

@@ -7,6 +7,8 @@ dependencies {
         exclude group: "com.google.protobuf", module: "protobuf-java-util"
     }
 
+    compileOnly "org.springframework.boot:spring-boot-starter-opentelemetry"
+
     compileOnly "org.springframework.boot:spring-boot-starter-web"
     compileOnly "org.springframework.boot:spring-boot-starter-jdbc"
     compileOnly "org.springframework.boot:spring-boot-starter-restclient"
