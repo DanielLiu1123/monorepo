@@ -25,5 +25,5 @@ clean() {
 }
 
 run() {
-    print_info "No thing to run for generated code"
+    print_info "Nothing to run for generated code"
 }

@@ -25,5 +25,5 @@ clean() {
 }
 
 run() {
-    print_info "No thing to run for proto definitions"
+    print_info "Nothing to run for proto definitions"
 }

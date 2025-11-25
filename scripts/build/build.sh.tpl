@@ -24,7 +24,6 @@
 #   - print_error "message"   - Print error message in red
 #   - print_warning "message" - Print warning message in yellow
 #
-# Note: Commands should be called directly, no need for execute_command wrapper
 
 # Example: Custom build function for npm project
 # build() {

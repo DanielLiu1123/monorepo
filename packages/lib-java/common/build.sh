@@ -23,3 +23,7 @@ fmt() {
 clean() {
     execute_cmd "./gradlew clean --project-dir $PROJECT_DIR"
 }
+
+run() {
+    print_info "Nothing to run"
+}
