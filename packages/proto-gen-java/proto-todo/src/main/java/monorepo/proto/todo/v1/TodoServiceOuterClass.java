@@ -32,11 +32,6 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_todo_v1_CreateTodoRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_todo_v1_CreateTodoRequest_SubTask_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_todo_v1_CreateTodoRequest_SubTask_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_todo_v1_GetTodoRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -72,15 +67,25 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_todo_v1_UpdateTodoRequest_SubTaskOperation_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_todo_v1_UpdateTodoRequest_SubTask_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_todo_v1_DeleteTodoRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_todo_v1_DeleteTodoRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_todo_v1_CreateSubtaskRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_todo_v1_CreateSubtaskRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_todo_v1_UpdateSubtaskRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_todo_v1_UpdateSubtaskRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_todo_v1_DeleteSubtaskRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_todo_v1_DeleteSubtaskRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_todo_v1_BatchGetTodosRequest_descriptor;
   static final 
@@ -103,7 +108,7 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
       "\n\032todo/v1/todo_service.proto\022\007todo.v1\032\033g" +
       "oogle/protobuf/empty.proto\032 google/proto" +
       "buf/field_mask.proto\032\026google/type/date.p" +
-      "roto\032\022todo/v1/todo.proto\"\311\003\n\021CreateTodoR" +
+      "roto\032\022todo/v1/todo.proto\"\243\003\n\021CreateTodoR" +
       "equest\022\027\n\007user_id\030\001 \001(\003R\006userId\022\024\n\005title" +
       "\030\002 \001(\tR\005title\022%\n\013description\030\003 \001(\tH\000R\013de" +
       "scription\210\001\001\022.\n\005state\030\004 \001(\0162\023.todo.v1.To" +
@@ -111,63 +116,65 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
       ".todo.v1.Todo.PriorityH\002R\010priority\210\001\001\022\037\n" +
       "\010assignee\030\006 \001(\003H\003R\010assignee\210\001\001\0221\n\010due_da" +
       "te\030\007 \001(\0132\021.google.type.DateH\004R\007dueDate\210\001" +
-      "\001\022?\n\tsub_tasks\030\010 \003(\0132\".todo.v1.CreateTod" +
-      "oRequest.SubTaskR\010subTasks\032\037\n\007SubTask\022\024\n" +
-      "\005title\030\001 \001(\tR\005titleB\016\n\014_descriptionB\010\n\006_" +
-      "stateB\013\n\t_priorityB\013\n\t_assigneeB\013\n\t_due_" +
-      "date\"Y\n\016GetTodoRequest\022\016\n\002id\030\001 \001(\003R\002id\022&" +
-      "\n\014show_deleted\030\002 \001(\010H\000R\013showDeleted\210\001\001B\017" +
-      "\n\r_show_deleted\"\321\003\n\020ListTodosRequest\022\033\n\t" +
-      "page_size\030\001 \001(\005R\010pageSize\022\035\n\npage_token\030" +
-      "\002 \001(\tR\tpageToken\022\027\n\007user_id\030\003 \001(\003R\006userI" +
-      "d\022=\n\006filter\030\004 \001(\0132 .todo.v1.ListTodosReq" +
-      "uest.FilterH\000R\006filter\210\001\001\022<\n\010order_by\030\005 \003" +
-      "(\0132!.todo.v1.ListTodosRequest.OrderByR\007o" +
-      "rderBy\022&\n\014show_deleted\030\006 \001(\010H\001R\013showDele" +
-      "ted\210\001\001\032m\n\006Filter\022+\n\006states\030\001 \003(\0162\023.todo." +
-      "v1.Todo.StateR\006states\0226\n\npriorities\030\002 \003(" +
-      "\0162\026.todo.v1.Todo.PriorityR\npriorities\0328\n" +
-      "\007OrderBy\022\024\n\005field\030\001 \001(\tR\005field\022\027\n\007is_des" +
-      "c\030\002 \001(\010R\006isDescB\t\n\007_filterB\017\n\r_show_dele" +
-      "ted\"\177\n\021ListTodosResponse\022#\n\005todos\030\001 \003(\0132" +
-      "\r.todo.v1.TodoR\005todos\022&\n\017next_page_token" +
-      "\030\002 \001(\tR\rnextPageToken\022\035\n\ntotal_size\030\003 \001(" +
-      "\005R\ttotalSize\"\302\005\n\021UpdateTodoRequest\022\016\n\002id" +
-      "\030\001 \001(\003R\002id\022\031\n\005title\030\002 \001(\tH\000R\005title\210\001\001\022%\n" +
-      "\013description\030\003 \001(\tH\001R\013description\210\001\001\022.\n\005" +
-      "state\030\004 \001(\0162\023.todo.v1.Todo.StateH\002R\005stat" +
-      "e\210\001\001\0227\n\010priority\030\005 \001(\0162\026.todo.v1.Todo.Pr" +
-      "iorityH\003R\010priority\210\001\001\022\037\n\010assignee\030\006 \001(\003H" +
-      "\004R\010assignee\210\001\001\0221\n\010due_date\030\007 \001(\0132\021.googl" +
-      "e.type.DateH\005R\007dueDate\210\001\001\022[\n\023sub_task_op" +
-      "erations\030\010 \003(\0132+.todo.v1.UpdateTodoReque" +
-      "st.SubTaskOperationR\021subTaskOperations\032\265" +
-      "\001\n\020SubTaskOperation\022<\n\006create\030\001 \001(\0132\".to" +
-      "do.v1.CreateTodoRequest.SubTaskH\000R\006creat" +
-      "e\022<\n\006update\030\002 \001(\0132\".todo.v1.UpdateTodoRe" +
-      "quest.SubTaskH\000R\006update\022\030\n\006delete\030\003 \001(\003H" +
-      "\000R\006deleteB\013\n\toperation\032>\n\007SubTask\022\016\n\002id\030" +
-      "\001 \001(\003R\002id\022\031\n\005title\030\002 \001(\tH\000R\005title\210\001\001B\010\n\006" +
-      "_titleB\010\n\006_titleB\016\n\014_descriptionB\010\n\006_sta" +
-      "teB\013\n\t_priorityB\013\n\t_assigneeB\013\n\t_due_dat" +
-      "e\"#\n\021DeleteTodoRequest\022\016\n\002id\030\001 \001(\003R\002id\"a" +
-      "\n\024BatchGetTodosRequest\022\020\n\003ids\030\001 \003(\003R\003ids" +
+      "\001\022:\n\tsub_tasks\030\010 \003(\0132\035.todo.v1.CreateSub" +
+      "taskRequestR\010subTasksB\016\n\014_descriptionB\010\n" +
+      "\006_stateB\013\n\t_priorityB\013\n\t_assigneeB\013\n\t_du" +
+      "e_date\"Y\n\016GetTodoRequest\022\016\n\002id\030\001 \001(\003R\002id" +
       "\022&\n\014show_deleted\030\002 \001(\010H\000R\013showDeleted\210\001\001" +
-      "B\017\n\r_show_deleted\"<\n\025BatchGetTodosRespon" +
-      "se\022#\n\005todos\030\001 \003(\0132\r.todo.v1.TodoR\005todos2" +
-      "\213\003\n\013TodoService\0229\n\nCreateTodo\022\032.todo.v1." +
-      "CreateTodoRequest\032\r.todo.v1.Todo\"\000\0223\n\007Ge" +
-      "tTodo\022\027.todo.v1.GetTodoRequest\032\r.todo.v1" +
-      ".Todo\"\000\022D\n\tListTodos\022\031.todo.v1.ListTodos" +
-      "Request\032\032.todo.v1.ListTodosResponse\"\000\0229\n" +
-      "\nUpdateTodo\022\032.todo.v1.UpdateTodoRequest\032" +
-      "\r.todo.v1.Todo\"\000\0229\n\nDeleteTodo\022\032.todo.v1" +
-      ".DeleteTodoRequest\032\r.todo.v1.Todo\"\000\022P\n\rB" +
-      "atchGetTodos\022\035.todo.v1.BatchGetTodosRequ" +
-      "est\032\036.todo.v1.BatchGetTodosResponse\"\000Bg\n" +
-      "\026monorepo.proto.todo.v1P\001ZKgithub.com/yo" +
-      "urorg/monorepo/packages/proto-gen-go/pro" +
-      "to-todo/todo/v1;todov1b\006proto3"
+      "B\017\n\r_show_deleted\"\321\003\n\020ListTodosRequest\022\033" +
+      "\n\tpage_size\030\001 \001(\005R\010pageSize\022\035\n\npage_toke" +
+      "n\030\002 \001(\tR\tpageToken\022\027\n\007user_id\030\003 \001(\003R\006use" +
+      "rId\022=\n\006filter\030\004 \001(\0132 .todo.v1.ListTodosR" +
+      "equest.FilterH\000R\006filter\210\001\001\022<\n\010order_by\030\005" +
+      " \003(\0132!.todo.v1.ListTodosRequest.OrderByR" +
+      "\007orderBy\022&\n\014show_deleted\030\006 \001(\010H\001R\013showDe" +
+      "leted\210\001\001\032m\n\006Filter\022+\n\006states\030\001 \003(\0162\023.tod" +
+      "o.v1.Todo.StateR\006states\0226\n\npriorities\030\002 " +
+      "\003(\0162\026.todo.v1.Todo.PriorityR\npriorities\032" +
+      "8\n\007OrderBy\022\024\n\005field\030\001 \001(\tR\005field\022\027\n\007is_d" +
+      "esc\030\002 \001(\010R\006isDescB\t\n\007_filterB\017\n\r_show_de" +
+      "leted\"\177\n\021ListTodosResponse\022#\n\005todos\030\001 \003(" +
+      "\0132\r.todo.v1.TodoR\005todos\022&\n\017next_page_tok" +
+      "en\030\002 \001(\tR\rnextPageToken\022\035\n\ntotal_size\030\003 " +
+      "\001(\005R\ttotalSize\"\227\005\n\021UpdateTodoRequest\022\016\n\002" +
+      "id\030\001 \001(\003R\002id\022\031\n\005title\030\002 \001(\tH\000R\005title\210\001\001\022" +
+      "%\n\013description\030\003 \001(\tH\001R\013description\210\001\001\022." +
+      "\n\005state\030\004 \001(\0162\023.todo.v1.Todo.StateH\002R\005st" +
+      "ate\210\001\001\0227\n\010priority\030\005 \001(\0162\026.todo.v1.Todo." +
+      "PriorityH\003R\010priority\210\001\001\022\037\n\010assignee\030\006 \001(" +
+      "\003H\004R\010assignee\210\001\001\0221\n\010due_date\030\007 \001(\0132\021.goo" +
+      "gle.type.DateH\005R\007dueDate\210\001\001\022[\n\023sub_task_" +
+      "operations\030\010 \003(\0132+.todo.v1.UpdateTodoReq" +
+      "uest.SubTaskOperationR\021subTaskOperations" +
+      "\032\312\001\n\020SubTaskOperation\0227\n\006create\030\001 \001(\0132\035." +
+      "todo.v1.CreateSubtaskRequestH\000R\006create\0227" +
+      "\n\006update\030\002 \001(\0132\035.todo.v1.UpdateSubtaskRe" +
+      "questH\000R\006update\0227\n\006delete\030\003 \001(\0132\035.todo.v" +
+      "1.DeleteSubtaskRequestH\000R\006deleteB\013\n\toper" +
+      "ationB\010\n\006_titleB\016\n\014_descriptionB\010\n\006_stat" +
+      "eB\013\n\t_priorityB\013\n\t_assigneeB\013\n\t_due_date" +
+      "\"#\n\021DeleteTodoRequest\022\016\n\002id\030\001 \001(\003R\002id\",\n" +
+      "\024CreateSubtaskRequest\022\024\n\005title\030\001 \001(\tR\005ti" +
+      "tle\"K\n\024UpdateSubtaskRequest\022\016\n\002id\030\001 \001(\003R" +
+      "\002id\022\031\n\005title\030\002 \001(\tH\000R\005title\210\001\001B\010\n\006_title" +
+      "\"&\n\024DeleteSubtaskRequest\022\016\n\002id\030\001 \001(\003R\002id" +
+      "\"a\n\024BatchGetTodosRequest\022\020\n\003ids\030\001 \003(\003R\003i" +
+      "ds\022&\n\014show_deleted\030\002 \001(\010H\000R\013showDeleted\210" +
+      "\001\001B\017\n\r_show_deleted\"<\n\025BatchGetTodosResp" +
+      "onse\022#\n\005todos\030\001 \003(\0132\r.todo.v1.TodoR\005todo" +
+      "s2\213\003\n\013TodoService\0229\n\nCreateTodo\022\032.todo.v" +
+      "1.CreateTodoRequest\032\r.todo.v1.Todo\"\000\0223\n\007" +
+      "GetTodo\022\027.todo.v1.GetTodoRequest\032\r.todo." +
+      "v1.Todo\"\000\022D\n\tListTodos\022\031.todo.v1.ListTod" +
+      "osRequest\032\032.todo.v1.ListTodosResponse\"\000\022" +
+      "9\n\nUpdateTodo\022\032.todo.v1.UpdateTodoReques" +
+      "t\032\r.todo.v1.Todo\"\000\0229\n\nDeleteTodo\022\032.todo." +
+      "v1.DeleteTodoRequest\032\r.todo.v1.Todo\"\000\022P\n" +
+      "\rBatchGetTodos\022\035.todo.v1.BatchGetTodosRe" +
+      "quest\032\036.todo.v1.BatchGetTodosResponse\"\000B" +
+      "g\n\026monorepo.proto.todo.v1P\001ZKgithub.com/" +
+      "yourorg/monorepo/packages/proto-gen-go/p" +
+      "roto-todo/todo/v1;todov1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -183,12 +190,6 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_CreateTodoRequest_descriptor,
         new java.lang.String[] { "UserId", "Title", "Description", "State", "Priority", "Assignee", "DueDate", "SubTasks", });
-    internal_static_todo_v1_CreateTodoRequest_SubTask_descriptor =
-      internal_static_todo_v1_CreateTodoRequest_descriptor.getNestedType(0);
-    internal_static_todo_v1_CreateTodoRequest_SubTask_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_todo_v1_CreateTodoRequest_SubTask_descriptor,
-        new java.lang.String[] { "Title", });
     internal_static_todo_v1_GetTodoRequest_descriptor =
       getDescriptor().getMessageType(1);
     internal_static_todo_v1_GetTodoRequest_fieldAccessorTable = new
@@ -231,26 +232,38 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_UpdateTodoRequest_SubTaskOperation_descriptor,
         new java.lang.String[] { "Create", "Update", "Delete", "Operation", });
-    internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor =
-      internal_static_todo_v1_UpdateTodoRequest_descriptor.getNestedType(1);
-    internal_static_todo_v1_UpdateTodoRequest_SubTask_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor,
-        new java.lang.String[] { "Id", "Title", });
     internal_static_todo_v1_DeleteTodoRequest_descriptor =
       getDescriptor().getMessageType(5);
     internal_static_todo_v1_DeleteTodoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_DeleteTodoRequest_descriptor,
         new java.lang.String[] { "Id", });
-    internal_static_todo_v1_BatchGetTodosRequest_descriptor =
+    internal_static_todo_v1_CreateSubtaskRequest_descriptor =
       getDescriptor().getMessageType(6);
+    internal_static_todo_v1_CreateSubtaskRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_todo_v1_CreateSubtaskRequest_descriptor,
+        new java.lang.String[] { "Title", });
+    internal_static_todo_v1_UpdateSubtaskRequest_descriptor =
+      getDescriptor().getMessageType(7);
+    internal_static_todo_v1_UpdateSubtaskRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_todo_v1_UpdateSubtaskRequest_descriptor,
+        new java.lang.String[] { "Id", "Title", });
+    internal_static_todo_v1_DeleteSubtaskRequest_descriptor =
+      getDescriptor().getMessageType(8);
+    internal_static_todo_v1_DeleteSubtaskRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_todo_v1_DeleteSubtaskRequest_descriptor,
+        new java.lang.String[] { "Id", });
+    internal_static_todo_v1_BatchGetTodosRequest_descriptor =
+      getDescriptor().getMessageType(9);
     internal_static_todo_v1_BatchGetTodosRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_BatchGetTodosRequest_descriptor,
         new java.lang.String[] { "Ids", "ShowDeleted", });
     internal_static_todo_v1_BatchGetTodosResponse_descriptor =
-      getDescriptor().getMessageType(7);
+      getDescriptor().getMessageType(10);
     internal_static_todo_v1_BatchGetTodosResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_todo_v1_BatchGetTodosResponse_descriptor,

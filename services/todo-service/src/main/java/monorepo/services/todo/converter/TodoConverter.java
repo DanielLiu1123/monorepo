@@ -2,7 +2,9 @@ package monorepo.services.todo.converter;
 
 import java.util.Collection;
 import monorepo.lib.msp.MapStructConfig;
+import monorepo.proto.todo.v1.CreateSubtaskRequest;
 import monorepo.proto.todo.v1.CreateTodoRequest;
+import monorepo.proto.todo.v1.UpdateSubtaskRequest;
 import monorepo.proto.todo.v1.UpdateTodoRequest;
 import monorepo.services.todo.entity.Todo;
 import monorepo.services.todo.entity.TodoSubtask;
@@ -51,11 +53,11 @@ public abstract class TodoConverter {
     @Mapping(target = "todoId", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    public abstract TodoSubtask toTodoSubtaskEntity(CreateTodoRequest.SubTask request);
+    public abstract TodoSubtask toTodoSubtaskEntity(CreateSubtaskRequest request);
 
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "todoId", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    public abstract TodoSubtask toTodoSubtaskEntity(UpdateTodoRequest.SubTask request);
+    public abstract TodoSubtask toTodoSubtaskEntity(UpdateSubtaskRequest request);
 }

@@ -17,11 +17,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import monorepo.proto.todo.v1.BatchGetTodosRequest;
+import monorepo.proto.todo.v1.CreateSubtaskRequest;
 import monorepo.proto.todo.v1.CreateTodoRequest;
+import monorepo.proto.todo.v1.DeleteSubtaskRequest;
 import monorepo.proto.todo.v1.DeleteTodoRequest;
 import monorepo.proto.todo.v1.GetTodoRequest;
 import monorepo.proto.todo.v1.ListTodosRequest;
 import monorepo.proto.todo.v1.ListTodosResponse;
+import monorepo.proto.todo.v1.UpdateSubtaskRequest;
 import monorepo.proto.todo.v1.UpdateTodoRequest;
 import monorepo.services.todo.converter.TodoConverter;
 import monorepo.services.todo.entity.Todo;
@@ -287,14 +290,14 @@ public class TodoService {
                 > 0;
     }
 
-    private long createTodoSubtask(CreateTodoRequest.SubTask request, long todoId) {
+    private long createTodoSubtask(CreateSubtaskRequest request, long todoId) {
         var subtask = TodoConverter.INSTANCE.toTodoSubtaskEntity(request);
         subtask.setTodoId(todoId);
         todoSubtaskMapper.insertSelective(subtask);
         return subtask.getId();
     }
 
-    private boolean updateTodoSubtask(UpdateTodoRequest.SubTask request, long todoId) {
+    private boolean updateTodoSubtask(UpdateSubtaskRequest request, long todoId) {
         var subtask = TodoConverter.INSTANCE.toTodoSubtaskEntity(request);
         return todoSubtaskMapper.update(c -> TodoSubtaskMapper.updateSelectiveColumns(subtask, c)
                         .where(todoSubtask.id, isEqualTo(request.getId()))
@@ -303,10 +306,10 @@ public class TodoService {
                 > 0;
     }
 
-    private boolean deleteTodoSubtask(long id, long todoId) {
+    private boolean deleteTodoSubtask(DeleteSubtaskRequest request, long todoId) {
         return todoSubtaskMapper.update(c -> c.set(todoSubtask.deletedAt)
                         .equalTo(LocalDateTime.now())
-                        .where(todoSubtask.id, isEqualTo(id))
+                        .where(todoSubtask.id, isEqualTo(request.getId()))
                         .and(todoSubtask.todoId, isEqualTo(todoId))
                         .and(todoSubtask.deletedAt, isNull()))
                 > 0;

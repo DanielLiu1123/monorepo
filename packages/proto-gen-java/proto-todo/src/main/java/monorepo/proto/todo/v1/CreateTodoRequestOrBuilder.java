@@ -104,26 +104,26 @@ public interface CreateTodoRequestOrBuilder extends
   com.google.type.DateOrBuilder getDueDateOrBuilder();
 
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.CreateSubtaskRequest sub_tasks = 8 [json_name = "subTasks"];</code>
    */
-  java.util.List<monorepo.proto.todo.v1.CreateTodoRequest.SubTask> 
+  java.util.List<monorepo.proto.todo.v1.CreateSubtaskRequest> 
       getSubTasksList();
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.CreateSubtaskRequest sub_tasks = 8 [json_name = "subTasks"];</code>
    */
-  monorepo.proto.todo.v1.CreateTodoRequest.SubTask getSubTasks(int index);
+  monorepo.proto.todo.v1.CreateSubtaskRequest getSubTasks(int index);
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.CreateSubtaskRequest sub_tasks = 8 [json_name = "subTasks"];</code>
    */
   int getSubTasksCount();
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.CreateSubtaskRequest sub_tasks = 8 [json_name = "subTasks"];</code>
    */
-  java.util.List<? extends monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder> 
+  java.util.List<? extends monorepo.proto.todo.v1.CreateSubtaskRequestOrBuilder> 
       getSubTasksOrBuilderList();
   /**
-   * <code>repeated .todo.v1.CreateTodoRequest.SubTask sub_tasks = 8 [json_name = "subTasks"];</code>
+   * <code>repeated .todo.v1.CreateSubtaskRequest sub_tasks = 8 [json_name = "subTasks"];</code>
    */
-  monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder getSubTasksOrBuilder(
+  monorepo.proto.todo.v1.CreateSubtaskRequestOrBuilder getSubTasksOrBuilder(
       int index);
 }

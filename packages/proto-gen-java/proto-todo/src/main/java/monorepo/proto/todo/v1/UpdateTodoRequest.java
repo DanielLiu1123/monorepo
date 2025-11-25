@@ -57,45 +57,49 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+     * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
      * @return Whether the create field is set.
      */
     boolean hasCreate();
     /**
-     * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+     * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
      * @return The create.
      */
-    monorepo.proto.todo.v1.CreateTodoRequest.SubTask getCreate();
+    monorepo.proto.todo.v1.CreateSubtaskRequest getCreate();
     /**
-     * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+     * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
      */
-    monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder getCreateOrBuilder();
+    monorepo.proto.todo.v1.CreateSubtaskRequestOrBuilder getCreateOrBuilder();
 
     /**
-     * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+     * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
      * @return Whether the update field is set.
      */
     boolean hasUpdate();
     /**
-     * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+     * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
      * @return The update.
      */
-    monorepo.proto.todo.v1.UpdateTodoRequest.SubTask getUpdate();
+    monorepo.proto.todo.v1.UpdateSubtaskRequest getUpdate();
     /**
-     * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+     * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
      */
-    monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder getUpdateOrBuilder();
+    monorepo.proto.todo.v1.UpdateSubtaskRequestOrBuilder getUpdateOrBuilder();
 
     /**
-     * <code>int64 delete = 3 [json_name = "delete"];</code>
+     * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
      * @return Whether the delete field is set.
      */
     boolean hasDelete();
     /**
-     * <code>int64 delete = 3 [json_name = "delete"];</code>
+     * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
      * @return The delete.
      */
-    long getDelete();
+    monorepo.proto.todo.v1.DeleteSubtaskRequest getDelete();
+    /**
+     * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
+     */
+    monorepo.proto.todo.v1.DeleteSubtaskRequestOrBuilder getDeleteOrBuilder();
 
     monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.OperationCase getOperationCase();
   }
@@ -182,7 +186,7 @@ private static final long serialVersionUID = 0L;
 
     public static final int CREATE_FIELD_NUMBER = 1;
     /**
-     * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+     * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
      * @return Whether the create field is set.
      */
     @java.lang.Override
@@ -190,30 +194,30 @@ private static final long serialVersionUID = 0L;
       return operationCase_ == 1;
     }
     /**
-     * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+     * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
      * @return The create.
      */
     @java.lang.Override
-    public monorepo.proto.todo.v1.CreateTodoRequest.SubTask getCreate() {
+    public monorepo.proto.todo.v1.CreateSubtaskRequest getCreate() {
       if (operationCase_ == 1) {
-         return (monorepo.proto.todo.v1.CreateTodoRequest.SubTask) operation_;
+         return (monorepo.proto.todo.v1.CreateSubtaskRequest) operation_;
       }
-      return monorepo.proto.todo.v1.CreateTodoRequest.SubTask.getDefaultInstance();
+      return monorepo.proto.todo.v1.CreateSubtaskRequest.getDefaultInstance();
     }
     /**
-     * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+     * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
      */
     @java.lang.Override
-    public monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder getCreateOrBuilder() {
+    public monorepo.proto.todo.v1.CreateSubtaskRequestOrBuilder getCreateOrBuilder() {
       if (operationCase_ == 1) {
-         return (monorepo.proto.todo.v1.CreateTodoRequest.SubTask) operation_;
+         return (monorepo.proto.todo.v1.CreateSubtaskRequest) operation_;
       }
-      return monorepo.proto.todo.v1.CreateTodoRequest.SubTask.getDefaultInstance();
+      return monorepo.proto.todo.v1.CreateSubtaskRequest.getDefaultInstance();
     }
 
     public static final int UPDATE_FIELD_NUMBER = 2;
     /**
-     * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+     * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
      * @return Whether the update field is set.
      */
     @java.lang.Override
@@ -221,30 +225,30 @@ private static final long serialVersionUID = 0L;
       return operationCase_ == 2;
     }
     /**
-     * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+     * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
      * @return The update.
      */
     @java.lang.Override
-    public monorepo.proto.todo.v1.UpdateTodoRequest.SubTask getUpdate() {
+    public monorepo.proto.todo.v1.UpdateSubtaskRequest getUpdate() {
       if (operationCase_ == 2) {
-         return (monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) operation_;
+         return (monorepo.proto.todo.v1.UpdateSubtaskRequest) operation_;
       }
-      return monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.getDefaultInstance();
+      return monorepo.proto.todo.v1.UpdateSubtaskRequest.getDefaultInstance();
     }
     /**
-     * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+     * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
      */
     @java.lang.Override
-    public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder getUpdateOrBuilder() {
+    public monorepo.proto.todo.v1.UpdateSubtaskRequestOrBuilder getUpdateOrBuilder() {
       if (operationCase_ == 2) {
-         return (monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) operation_;
+         return (monorepo.proto.todo.v1.UpdateSubtaskRequest) operation_;
       }
-      return monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.getDefaultInstance();
+      return monorepo.proto.todo.v1.UpdateSubtaskRequest.getDefaultInstance();
     }
 
     public static final int DELETE_FIELD_NUMBER = 3;
     /**
-     * <code>int64 delete = 3 [json_name = "delete"];</code>
+     * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
      * @return Whether the delete field is set.
      */
     @java.lang.Override
@@ -252,15 +256,25 @@ private static final long serialVersionUID = 0L;
       return operationCase_ == 3;
     }
     /**
-     * <code>int64 delete = 3 [json_name = "delete"];</code>
+     * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
      * @return The delete.
      */
     @java.lang.Override
-    public long getDelete() {
+    public monorepo.proto.todo.v1.DeleteSubtaskRequest getDelete() {
       if (operationCase_ == 3) {
-        return (java.lang.Long) operation_;
+         return (monorepo.proto.todo.v1.DeleteSubtaskRequest) operation_;
       }
-      return 0L;
+      return monorepo.proto.todo.v1.DeleteSubtaskRequest.getDefaultInstance();
+    }
+    /**
+     * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
+     */
+    @java.lang.Override
+    public monorepo.proto.todo.v1.DeleteSubtaskRequestOrBuilder getDeleteOrBuilder() {
+      if (operationCase_ == 3) {
+         return (monorepo.proto.todo.v1.DeleteSubtaskRequest) operation_;
+      }
+      return monorepo.proto.todo.v1.DeleteSubtaskRequest.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -278,14 +292,13 @@ private static final long serialVersionUID = 0L;
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (operationCase_ == 1) {
-        output.writeMessage(1, (monorepo.proto.todo.v1.CreateTodoRequest.SubTask) operation_);
+        output.writeMessage(1, (monorepo.proto.todo.v1.CreateSubtaskRequest) operation_);
       }
       if (operationCase_ == 2) {
-        output.writeMessage(2, (monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) operation_);
+        output.writeMessage(2, (monorepo.proto.todo.v1.UpdateSubtaskRequest) operation_);
       }
       if (operationCase_ == 3) {
-        output.writeInt64(
-            3, (long)((java.lang.Long) operation_));
+        output.writeMessage(3, (monorepo.proto.todo.v1.DeleteSubtaskRequest) operation_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -298,16 +311,15 @@ private static final long serialVersionUID = 0L;
       size = 0;
       if (operationCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, (monorepo.proto.todo.v1.CreateTodoRequest.SubTask) operation_);
+          .computeMessageSize(1, (monorepo.proto.todo.v1.CreateSubtaskRequest) operation_);
       }
       if (operationCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) operation_);
+          .computeMessageSize(2, (monorepo.proto.todo.v1.UpdateSubtaskRequest) operation_);
       }
       if (operationCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(
-              3, (long)((java.lang.Long) operation_));
+          .computeMessageSize(3, (monorepo.proto.todo.v1.DeleteSubtaskRequest) operation_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -335,8 +347,8 @@ private static final long serialVersionUID = 0L;
               .equals(other.getUpdate())) return false;
           break;
         case 3:
-          if (getDelete()
-              != other.getDelete()) return false;
+          if (!getDelete()
+              .equals(other.getDelete())) return false;
           break;
         case 0:
         default:
@@ -363,8 +375,7 @@ private static final long serialVersionUID = 0L;
           break;
         case 3:
           hash = (37 * hash) + DELETE_FIELD_NUMBER;
-          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getDelete());
+          hash = (53 * hash) + getDelete().hashCode();
           break;
         case 0:
         default:
@@ -506,6 +517,9 @@ private static final long serialVersionUID = 0L;
         if (updateBuilder_ != null) {
           updateBuilder_.clear();
         }
+        if (deleteBuilder_ != null) {
+          deleteBuilder_.clear();
+        }
         operationCase_ = 0;
         operation_ = null;
         return this;
@@ -555,6 +569,10 @@ private static final long serialVersionUID = 0L;
             updateBuilder_ != null) {
           result.operation_ = updateBuilder_.build();
         }
+        if (operationCase_ == 3 &&
+            deleteBuilder_ != null) {
+          result.operation_ = deleteBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -579,7 +597,7 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case DELETE: {
-            setDelete(other.getDelete());
+            mergeDelete(other.getDelete());
             break;
           }
           case OPERATION_NOT_SET: {
@@ -626,11 +644,13 @@ private static final long serialVersionUID = 0L;
                 operationCase_ = 2;
                 break;
               } // case 18
-              case 24: {
-                operation_ = input.readInt64();
+              case 26: {
+                input.readMessage(
+                    internalGetDeleteFieldBuilder().getBuilder(),
+                    extensionRegistry);
                 operationCase_ = 3;
                 break;
-              } // case 24
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -664,9 +684,9 @@ private static final long serialVersionUID = 0L;
       private int bitField0_;
 
       private com.google.protobuf.SingleFieldBuilder<
-          monorepo.proto.todo.v1.CreateTodoRequest.SubTask, monorepo.proto.todo.v1.CreateTodoRequest.SubTask.Builder, monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder> createBuilder_;
+          monorepo.proto.todo.v1.CreateSubtaskRequest, monorepo.proto.todo.v1.CreateSubtaskRequest.Builder, monorepo.proto.todo.v1.CreateSubtaskRequestOrBuilder> createBuilder_;
       /**
-       * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+       * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
        * @return Whether the create field is set.
        */
       @java.lang.Override
@@ -674,27 +694,27 @@ private static final long serialVersionUID = 0L;
         return operationCase_ == 1;
       }
       /**
-       * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+       * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
        * @return The create.
        */
       @java.lang.Override
-      public monorepo.proto.todo.v1.CreateTodoRequest.SubTask getCreate() {
+      public monorepo.proto.todo.v1.CreateSubtaskRequest getCreate() {
         if (createBuilder_ == null) {
           if (operationCase_ == 1) {
-            return (monorepo.proto.todo.v1.CreateTodoRequest.SubTask) operation_;
+            return (monorepo.proto.todo.v1.CreateSubtaskRequest) operation_;
           }
-          return monorepo.proto.todo.v1.CreateTodoRequest.SubTask.getDefaultInstance();
+          return monorepo.proto.todo.v1.CreateSubtaskRequest.getDefaultInstance();
         } else {
           if (operationCase_ == 1) {
             return createBuilder_.getMessage();
           }
-          return monorepo.proto.todo.v1.CreateTodoRequest.SubTask.getDefaultInstance();
+          return monorepo.proto.todo.v1.CreateSubtaskRequest.getDefaultInstance();
         }
       }
       /**
-       * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+       * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
        */
-      public Builder setCreate(monorepo.proto.todo.v1.CreateTodoRequest.SubTask value) {
+      public Builder setCreate(monorepo.proto.todo.v1.CreateSubtaskRequest value) {
         if (createBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -708,10 +728,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+       * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
        */
       public Builder setCreate(
-          monorepo.proto.todo.v1.CreateTodoRequest.SubTask.Builder builderForValue) {
+          monorepo.proto.todo.v1.CreateSubtaskRequest.Builder builderForValue) {
         if (createBuilder_ == null) {
           operation_ = builderForValue.build();
           onChanged();
@@ -722,13 +742,13 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+       * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
        */
-      public Builder mergeCreate(monorepo.proto.todo.v1.CreateTodoRequest.SubTask value) {
+      public Builder mergeCreate(monorepo.proto.todo.v1.CreateSubtaskRequest value) {
         if (createBuilder_ == null) {
           if (operationCase_ == 1 &&
-              operation_ != monorepo.proto.todo.v1.CreateTodoRequest.SubTask.getDefaultInstance()) {
-            operation_ = monorepo.proto.todo.v1.CreateTodoRequest.SubTask.newBuilder((monorepo.proto.todo.v1.CreateTodoRequest.SubTask) operation_)
+              operation_ != monorepo.proto.todo.v1.CreateSubtaskRequest.getDefaultInstance()) {
+            operation_ = monorepo.proto.todo.v1.CreateSubtaskRequest.newBuilder((monorepo.proto.todo.v1.CreateSubtaskRequest) operation_)
                 .mergeFrom(value).buildPartial();
           } else {
             operation_ = value;
@@ -745,7 +765,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+       * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
        */
       public Builder clearCreate() {
         if (createBuilder_ == null) {
@@ -764,38 +784,38 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+       * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
        */
-      public monorepo.proto.todo.v1.CreateTodoRequest.SubTask.Builder getCreateBuilder() {
+      public monorepo.proto.todo.v1.CreateSubtaskRequest.Builder getCreateBuilder() {
         return internalGetCreateFieldBuilder().getBuilder();
       }
       /**
-       * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+       * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
        */
       @java.lang.Override
-      public monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder getCreateOrBuilder() {
+      public monorepo.proto.todo.v1.CreateSubtaskRequestOrBuilder getCreateOrBuilder() {
         if ((operationCase_ == 1) && (createBuilder_ != null)) {
           return createBuilder_.getMessageOrBuilder();
         } else {
           if (operationCase_ == 1) {
-            return (monorepo.proto.todo.v1.CreateTodoRequest.SubTask) operation_;
+            return (monorepo.proto.todo.v1.CreateSubtaskRequest) operation_;
           }
-          return monorepo.proto.todo.v1.CreateTodoRequest.SubTask.getDefaultInstance();
+          return monorepo.proto.todo.v1.CreateSubtaskRequest.getDefaultInstance();
         }
       }
       /**
-       * <code>.todo.v1.CreateTodoRequest.SubTask create = 1 [json_name = "create"];</code>
+       * <code>.todo.v1.CreateSubtaskRequest create = 1 [json_name = "create"];</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          monorepo.proto.todo.v1.CreateTodoRequest.SubTask, monorepo.proto.todo.v1.CreateTodoRequest.SubTask.Builder, monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder> 
+          monorepo.proto.todo.v1.CreateSubtaskRequest, monorepo.proto.todo.v1.CreateSubtaskRequest.Builder, monorepo.proto.todo.v1.CreateSubtaskRequestOrBuilder> 
           internalGetCreateFieldBuilder() {
         if (createBuilder_ == null) {
           if (!(operationCase_ == 1)) {
-            operation_ = monorepo.proto.todo.v1.CreateTodoRequest.SubTask.getDefaultInstance();
+            operation_ = monorepo.proto.todo.v1.CreateSubtaskRequest.getDefaultInstance();
           }
           createBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              monorepo.proto.todo.v1.CreateTodoRequest.SubTask, monorepo.proto.todo.v1.CreateTodoRequest.SubTask.Builder, monorepo.proto.todo.v1.CreateTodoRequest.SubTaskOrBuilder>(
-                  (monorepo.proto.todo.v1.CreateTodoRequest.SubTask) operation_,
+              monorepo.proto.todo.v1.CreateSubtaskRequest, monorepo.proto.todo.v1.CreateSubtaskRequest.Builder, monorepo.proto.todo.v1.CreateSubtaskRequestOrBuilder>(
+                  (monorepo.proto.todo.v1.CreateSubtaskRequest) operation_,
                   getParentForChildren(),
                   isClean());
           operation_ = null;
@@ -806,9 +826,9 @@ private static final long serialVersionUID = 0L;
       }
 
       private com.google.protobuf.SingleFieldBuilder<
-          monorepo.proto.todo.v1.UpdateTodoRequest.SubTask, monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.Builder, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder> updateBuilder_;
+          monorepo.proto.todo.v1.UpdateSubtaskRequest, monorepo.proto.todo.v1.UpdateSubtaskRequest.Builder, monorepo.proto.todo.v1.UpdateSubtaskRequestOrBuilder> updateBuilder_;
       /**
-       * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+       * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
        * @return Whether the update field is set.
        */
       @java.lang.Override
@@ -816,27 +836,27 @@ private static final long serialVersionUID = 0L;
         return operationCase_ == 2;
       }
       /**
-       * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+       * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
        * @return The update.
        */
       @java.lang.Override
-      public monorepo.proto.todo.v1.UpdateTodoRequest.SubTask getUpdate() {
+      public monorepo.proto.todo.v1.UpdateSubtaskRequest getUpdate() {
         if (updateBuilder_ == null) {
           if (operationCase_ == 2) {
-            return (monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) operation_;
+            return (monorepo.proto.todo.v1.UpdateSubtaskRequest) operation_;
           }
-          return monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.getDefaultInstance();
+          return monorepo.proto.todo.v1.UpdateSubtaskRequest.getDefaultInstance();
         } else {
           if (operationCase_ == 2) {
             return updateBuilder_.getMessage();
           }
-          return monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.getDefaultInstance();
+          return monorepo.proto.todo.v1.UpdateSubtaskRequest.getDefaultInstance();
         }
       }
       /**
-       * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+       * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
        */
-      public Builder setUpdate(monorepo.proto.todo.v1.UpdateTodoRequest.SubTask value) {
+      public Builder setUpdate(monorepo.proto.todo.v1.UpdateSubtaskRequest value) {
         if (updateBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -850,10 +870,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+       * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
        */
       public Builder setUpdate(
-          monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.Builder builderForValue) {
+          monorepo.proto.todo.v1.UpdateSubtaskRequest.Builder builderForValue) {
         if (updateBuilder_ == null) {
           operation_ = builderForValue.build();
           onChanged();
@@ -864,13 +884,13 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+       * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
        */
-      public Builder mergeUpdate(monorepo.proto.todo.v1.UpdateTodoRequest.SubTask value) {
+      public Builder mergeUpdate(monorepo.proto.todo.v1.UpdateSubtaskRequest value) {
         if (updateBuilder_ == null) {
           if (operationCase_ == 2 &&
-              operation_ != monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.getDefaultInstance()) {
-            operation_ = monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.newBuilder((monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) operation_)
+              operation_ != monorepo.proto.todo.v1.UpdateSubtaskRequest.getDefaultInstance()) {
+            operation_ = monorepo.proto.todo.v1.UpdateSubtaskRequest.newBuilder((monorepo.proto.todo.v1.UpdateSubtaskRequest) operation_)
                 .mergeFrom(value).buildPartial();
           } else {
             operation_ = value;
@@ -887,7 +907,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+       * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
        */
       public Builder clearUpdate() {
         if (updateBuilder_ == null) {
@@ -906,38 +926,38 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+       * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
        */
-      public monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.Builder getUpdateBuilder() {
+      public monorepo.proto.todo.v1.UpdateSubtaskRequest.Builder getUpdateBuilder() {
         return internalGetUpdateFieldBuilder().getBuilder();
       }
       /**
-       * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+       * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
        */
       @java.lang.Override
-      public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder getUpdateOrBuilder() {
+      public monorepo.proto.todo.v1.UpdateSubtaskRequestOrBuilder getUpdateOrBuilder() {
         if ((operationCase_ == 2) && (updateBuilder_ != null)) {
           return updateBuilder_.getMessageOrBuilder();
         } else {
           if (operationCase_ == 2) {
-            return (monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) operation_;
+            return (monorepo.proto.todo.v1.UpdateSubtaskRequest) operation_;
           }
-          return monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.getDefaultInstance();
+          return monorepo.proto.todo.v1.UpdateSubtaskRequest.getDefaultInstance();
         }
       }
       /**
-       * <code>.todo.v1.UpdateTodoRequest.SubTask update = 2 [json_name = "update"];</code>
+       * <code>.todo.v1.UpdateSubtaskRequest update = 2 [json_name = "update"];</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          monorepo.proto.todo.v1.UpdateTodoRequest.SubTask, monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.Builder, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder> 
+          monorepo.proto.todo.v1.UpdateSubtaskRequest, monorepo.proto.todo.v1.UpdateSubtaskRequest.Builder, monorepo.proto.todo.v1.UpdateSubtaskRequestOrBuilder> 
           internalGetUpdateFieldBuilder() {
         if (updateBuilder_ == null) {
           if (!(operationCase_ == 2)) {
-            operation_ = monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.getDefaultInstance();
+            operation_ = monorepo.proto.todo.v1.UpdateSubtaskRequest.getDefaultInstance();
           }
           updateBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              monorepo.proto.todo.v1.UpdateTodoRequest.SubTask, monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.Builder, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder>(
-                  (monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) operation_,
+              monorepo.proto.todo.v1.UpdateSubtaskRequest, monorepo.proto.todo.v1.UpdateSubtaskRequest.Builder, monorepo.proto.todo.v1.UpdateSubtaskRequestOrBuilder>(
+                  (monorepo.proto.todo.v1.UpdateSubtaskRequest) operation_,
                   getParentForChildren(),
                   isClean());
           operation_ = null;
@@ -947,46 +967,146 @@ private static final long serialVersionUID = 0L;
         return updateBuilder_;
       }
 
+      private com.google.protobuf.SingleFieldBuilder<
+          monorepo.proto.todo.v1.DeleteSubtaskRequest, monorepo.proto.todo.v1.DeleteSubtaskRequest.Builder, monorepo.proto.todo.v1.DeleteSubtaskRequestOrBuilder> deleteBuilder_;
       /**
-       * <code>int64 delete = 3 [json_name = "delete"];</code>
+       * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
        * @return Whether the delete field is set.
        */
+      @java.lang.Override
       public boolean hasDelete() {
         return operationCase_ == 3;
       }
       /**
-       * <code>int64 delete = 3 [json_name = "delete"];</code>
+       * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
        * @return The delete.
        */
-      public long getDelete() {
-        if (operationCase_ == 3) {
-          return (java.lang.Long) operation_;
+      @java.lang.Override
+      public monorepo.proto.todo.v1.DeleteSubtaskRequest getDelete() {
+        if (deleteBuilder_ == null) {
+          if (operationCase_ == 3) {
+            return (monorepo.proto.todo.v1.DeleteSubtaskRequest) operation_;
+          }
+          return monorepo.proto.todo.v1.DeleteSubtaskRequest.getDefaultInstance();
+        } else {
+          if (operationCase_ == 3) {
+            return deleteBuilder_.getMessage();
+          }
+          return monorepo.proto.todo.v1.DeleteSubtaskRequest.getDefaultInstance();
         }
-        return 0L;
       }
       /**
-       * <code>int64 delete = 3 [json_name = "delete"];</code>
-       * @param value The delete to set.
-       * @return This builder for chaining.
+       * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
        */
-      public Builder setDelete(long value) {
-
+      public Builder setDelete(monorepo.proto.todo.v1.DeleteSubtaskRequest value) {
+        if (deleteBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          operation_ = value;
+          onChanged();
+        } else {
+          deleteBuilder_.setMessage(value);
+        }
         operationCase_ = 3;
-        operation_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>int64 delete = 3 [json_name = "delete"];</code>
-       * @return This builder for chaining.
+       * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
+       */
+      public Builder setDelete(
+          monorepo.proto.todo.v1.DeleteSubtaskRequest.Builder builderForValue) {
+        if (deleteBuilder_ == null) {
+          operation_ = builderForValue.build();
+          onChanged();
+        } else {
+          deleteBuilder_.setMessage(builderForValue.build());
+        }
+        operationCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
+       */
+      public Builder mergeDelete(monorepo.proto.todo.v1.DeleteSubtaskRequest value) {
+        if (deleteBuilder_ == null) {
+          if (operationCase_ == 3 &&
+              operation_ != monorepo.proto.todo.v1.DeleteSubtaskRequest.getDefaultInstance()) {
+            operation_ = monorepo.proto.todo.v1.DeleteSubtaskRequest.newBuilder((monorepo.proto.todo.v1.DeleteSubtaskRequest) operation_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            operation_ = value;
+          }
+          onChanged();
+        } else {
+          if (operationCase_ == 3) {
+            deleteBuilder_.mergeFrom(value);
+          } else {
+            deleteBuilder_.setMessage(value);
+          }
+        }
+        operationCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
        */
       public Builder clearDelete() {
-        if (operationCase_ == 3) {
-          operationCase_ = 0;
-          operation_ = null;
-          onChanged();
+        if (deleteBuilder_ == null) {
+          if (operationCase_ == 3) {
+            operationCase_ = 0;
+            operation_ = null;
+            onChanged();
+          }
+        } else {
+          if (operationCase_ == 3) {
+            operationCase_ = 0;
+            operation_ = null;
+          }
+          deleteBuilder_.clear();
         }
         return this;
+      }
+      /**
+       * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
+       */
+      public monorepo.proto.todo.v1.DeleteSubtaskRequest.Builder getDeleteBuilder() {
+        return internalGetDeleteFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
+       */
+      @java.lang.Override
+      public monorepo.proto.todo.v1.DeleteSubtaskRequestOrBuilder getDeleteOrBuilder() {
+        if ((operationCase_ == 3) && (deleteBuilder_ != null)) {
+          return deleteBuilder_.getMessageOrBuilder();
+        } else {
+          if (operationCase_ == 3) {
+            return (monorepo.proto.todo.v1.DeleteSubtaskRequest) operation_;
+          }
+          return monorepo.proto.todo.v1.DeleteSubtaskRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.todo.v1.DeleteSubtaskRequest delete = 3 [json_name = "delete"];</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          monorepo.proto.todo.v1.DeleteSubtaskRequest, monorepo.proto.todo.v1.DeleteSubtaskRequest.Builder, monorepo.proto.todo.v1.DeleteSubtaskRequestOrBuilder> 
+          internalGetDeleteFieldBuilder() {
+        if (deleteBuilder_ == null) {
+          if (!(operationCase_ == 3)) {
+            operation_ = monorepo.proto.todo.v1.DeleteSubtaskRequest.getDefaultInstance();
+          }
+          deleteBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              monorepo.proto.todo.v1.DeleteSubtaskRequest, monorepo.proto.todo.v1.DeleteSubtaskRequest.Builder, monorepo.proto.todo.v1.DeleteSubtaskRequestOrBuilder>(
+                  (monorepo.proto.todo.v1.DeleteSubtaskRequest) operation_,
+                  getParentForChildren(),
+                  isClean());
+          operation_ = null;
+        }
+        operationCase_ = 3;
+        onChanged();
+        return deleteBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:todo.v1.UpdateTodoRequest.SubTaskOperation)
@@ -1035,618 +1155,6 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface SubTaskOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:todo.v1.UpdateTodoRequest.SubTask)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int64 id = 1 [json_name = "id"];</code>
-     * @return The id.
-     */
-    long getId();
-
-    /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
-     * @return Whether the title field is set.
-     */
-    boolean hasTitle();
-    /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
-     * @return The title.
-     */
-    java.lang.String getTitle();
-    /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
-     * @return The bytes for title.
-     */
-    com.google.protobuf.ByteString
-        getTitleBytes();
-  }
-  /**
-   * Protobuf type {@code todo.v1.UpdateTodoRequest.SubTask}
-   */
-  public static final class SubTask extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:todo.v1.UpdateTodoRequest.SubTask)
-      SubTaskOrBuilder {
-  private static final long serialVersionUID = 0L;
-    static {
-      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 33,
-        /* patch= */ 1,
-        /* suffix= */ "",
-        "SubTask");
-    }
-    // Use SubTask.newBuilder() to construct.
-    private SubTask(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-    }
-    private SubTask() {
-      title_ = "";
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_UpdateTodoRequest_SubTask_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.class, monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int ID_FIELD_NUMBER = 1;
-    private long id_ = 0L;
-    /**
-     * <code>int64 id = 1 [json_name = "id"];</code>
-     * @return The id.
-     */
-    @java.lang.Override
-    public long getId() {
-      return id_;
-    }
-
-    public static final int TITLE_FIELD_NUMBER = 2;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object title_ = "";
-    /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
-     * @return Whether the title field is set.
-     */
-    @java.lang.Override
-    public boolean hasTitle() {
-      return ((bitField0_ & 0x00000001) != 0);
-    }
-    /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
-     * @return The title.
-     */
-    @java.lang.Override
-    public java.lang.String getTitle() {
-      java.lang.Object ref = title_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        title_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
-     * @return The bytes for title.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getTitleBytes() {
-      java.lang.Object ref = title_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        title_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (id_ != 0L) {
-        output.writeInt64(1, id_);
-      }
-      if (((bitField0_ & 0x00000001) != 0)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 2, title_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (id_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, id_);
-      }
-      if (((bitField0_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, title_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof monorepo.proto.todo.v1.UpdateTodoRequest.SubTask)) {
-        return super.equals(obj);
-      }
-      monorepo.proto.todo.v1.UpdateTodoRequest.SubTask other = (monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) obj;
-
-      if (getId()
-          != other.getId()) return false;
-      if (hasTitle() != other.hasTitle()) return false;
-      if (hasTitle()) {
-        if (!getTitle()
-            .equals(other.getTitle())) return false;
-      }
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getId());
-      if (hasTitle()) {
-        hash = (37 * hash) + TITLE_FIELD_NUMBER;
-        hash = (53 * hash) + getTitle().hashCode();
-      }
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(monorepo.proto.todo.v1.UpdateTodoRequest.SubTask prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code todo.v1.UpdateTodoRequest.SubTask}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:todo.v1.UpdateTodoRequest.SubTask)
-        monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_UpdateTodoRequest_SubTask_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.class, monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.Builder.class);
-      }
-
-      // Construct using monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        bitField0_ = 0;
-        id_ = 0L;
-        title_ = "";
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return monorepo.proto.todo.v1.TodoServiceOuterClass.internal_static_todo_v1_UpdateTodoRequest_SubTask_descriptor;
-      }
-
-      @java.lang.Override
-      public monorepo.proto.todo.v1.UpdateTodoRequest.SubTask getDefaultInstanceForType() {
-        return monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public monorepo.proto.todo.v1.UpdateTodoRequest.SubTask build() {
-        monorepo.proto.todo.v1.UpdateTodoRequest.SubTask result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public monorepo.proto.todo.v1.UpdateTodoRequest.SubTask buildPartial() {
-        monorepo.proto.todo.v1.UpdateTodoRequest.SubTask result = new monorepo.proto.todo.v1.UpdateTodoRequest.SubTask(this);
-        if (bitField0_ != 0) { buildPartial0(result); }
-        onBuilt();
-        return result;
-      }
-
-      private void buildPartial0(monorepo.proto.todo.v1.UpdateTodoRequest.SubTask result) {
-        int from_bitField0_ = bitField0_;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.id_ = id_;
-        }
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.title_ = title_;
-          to_bitField0_ |= 0x00000001;
-        }
-        result.bitField0_ |= to_bitField0_;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof monorepo.proto.todo.v1.UpdateTodoRequest.SubTask) {
-          return mergeFrom((monorepo.proto.todo.v1.UpdateTodoRequest.SubTask)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(monorepo.proto.todo.v1.UpdateTodoRequest.SubTask other) {
-        if (other == monorepo.proto.todo.v1.UpdateTodoRequest.SubTask.getDefaultInstance()) return this;
-        if (other.getId() != 0L) {
-          setId(other.getId());
-        }
-        if (other.hasTitle()) {
-          title_ = other.title_;
-          bitField0_ |= 0x00000002;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 8: {
-                id_ = input.readInt64();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 8
-              case 18: {
-                title_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 18
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-      private int bitField0_;
-
-      private long id_ ;
-      /**
-       * <code>int64 id = 1 [json_name = "id"];</code>
-       * @return The id.
-       */
-      @java.lang.Override
-      public long getId() {
-        return id_;
-      }
-      /**
-       * <code>int64 id = 1 [json_name = "id"];</code>
-       * @param value The id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setId(long value) {
-
-        id_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 id = 1 [json_name = "id"];</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        id_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object title_ = "";
-      /**
-       * <code>optional string title = 2 [json_name = "title"];</code>
-       * @return Whether the title field is set.
-       */
-      public boolean hasTitle() {
-        return ((bitField0_ & 0x00000002) != 0);
-      }
-      /**
-       * <code>optional string title = 2 [json_name = "title"];</code>
-       * @return The title.
-       */
-      public java.lang.String getTitle() {
-        java.lang.Object ref = title_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          title_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string title = 2 [json_name = "title"];</code>
-       * @return The bytes for title.
-       */
-      public com.google.protobuf.ByteString
-          getTitleBytes() {
-        java.lang.Object ref = title_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          title_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string title = 2 [json_name = "title"];</code>
-       * @param value The title to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTitle(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        title_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string title = 2 [json_name = "title"];</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTitle() {
-        title_ = getDefaultInstance().getTitle();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string title = 2 [json_name = "title"];</code>
-       * @param value The bytes for title to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTitleBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        title_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:todo.v1.UpdateTodoRequest.SubTask)
-    }
-
-    // @@protoc_insertion_point(class_scope:todo.v1.UpdateTodoRequest.SubTask)
-    private static final monorepo.proto.todo.v1.UpdateTodoRequest.SubTask DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new monorepo.proto.todo.v1.UpdateTodoRequest.SubTask();
-    }
-
-    public static monorepo.proto.todo.v1.UpdateTodoRequest.SubTask getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<SubTask>
-        PARSER = new com.google.protobuf.AbstractParser<SubTask>() {
-      @java.lang.Override
-      public SubTask parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<SubTask> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SubTask> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public monorepo.proto.todo.v1.UpdateTodoRequest.SubTask getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 

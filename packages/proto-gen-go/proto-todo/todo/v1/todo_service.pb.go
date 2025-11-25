@@ -24,15 +24,15 @@ const (
 )
 
 type CreateTodoRequest struct {
-	state                  protoimpl.MessageState        `protogen:"opaque.v1"`
-	xxx_hidden_UserId      int64                         `protobuf:"varint,1,opt,name=user_id,json=userId,proto3"`
-	xxx_hidden_Title       string                        `protobuf:"bytes,2,opt,name=title,proto3"`
-	xxx_hidden_Description *string                       `protobuf:"bytes,3,opt,name=description,proto3,oneof"`
-	xxx_hidden_State       Todo_State                    `protobuf:"varint,4,opt,name=state,proto3,enum=todo.v1.Todo_State,oneof"`
-	xxx_hidden_Priority    Todo_Priority                 `protobuf:"varint,5,opt,name=priority,proto3,enum=todo.v1.Todo_Priority,oneof"`
-	xxx_hidden_Assignee    int64                         `protobuf:"varint,6,opt,name=assignee,proto3,oneof"`
-	xxx_hidden_DueDate     *date.Date                    `protobuf:"bytes,7,opt,name=due_date,json=dueDate,proto3,oneof"`
-	xxx_hidden_SubTasks    *[]*CreateTodoRequest_SubTask `protobuf:"bytes,8,rep,name=sub_tasks,json=subTasks,proto3"`
+	state                  protoimpl.MessageState   `protogen:"opaque.v1"`
+	xxx_hidden_UserId      int64                    `protobuf:"varint,1,opt,name=user_id,json=userId,proto3"`
+	xxx_hidden_Title       string                   `protobuf:"bytes,2,opt,name=title,proto3"`
+	xxx_hidden_Description *string                  `protobuf:"bytes,3,opt,name=description,proto3,oneof"`
+	xxx_hidden_State       Todo_State               `protobuf:"varint,4,opt,name=state,proto3,enum=todo.v1.Todo_State,oneof"`
+	xxx_hidden_Priority    Todo_Priority            `protobuf:"varint,5,opt,name=priority,proto3,enum=todo.v1.Todo_Priority,oneof"`
+	xxx_hidden_Assignee    int64                    `protobuf:"varint,6,opt,name=assignee,proto3,oneof"`
+	xxx_hidden_DueDate     *date.Date               `protobuf:"bytes,7,opt,name=due_date,json=dueDate,proto3,oneof"`
+	xxx_hidden_SubTasks    *[]*CreateSubtaskRequest `protobuf:"bytes,8,rep,name=sub_tasks,json=subTasks,proto3"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -120,7 +120,7 @@ func (x *CreateTodoRequest) GetDueDate() *date.Date {
 	return nil
 }
 
-func (x *CreateTodoRequest) GetSubTasks() []*CreateTodoRequest_SubTask {
+func (x *CreateTodoRequest) GetSubTasks() []*CreateSubtaskRequest {
 	if x != nil {
 		if x.xxx_hidden_SubTasks != nil {
 			return *x.xxx_hidden_SubTasks
@@ -161,7 +161,7 @@ func (x *CreateTodoRequest) SetDueDate(v *date.Date) {
 	x.xxx_hidden_DueDate = v
 }
 
-func (x *CreateTodoRequest) SetSubTasks(v []*CreateTodoRequest_SubTask) {
+func (x *CreateTodoRequest) SetSubTasks(v []*CreateSubtaskRequest) {
 	x.xxx_hidden_SubTasks = &v
 }
 
@@ -234,7 +234,7 @@ type CreateTodoRequest_builder struct {
 	Priority    *Todo_Priority
 	Assignee    *int64
 	DueDate     *date.Date
-	SubTasks    []*CreateTodoRequest_SubTask
+	SubTasks    []*CreateSubtaskRequest
 }
 
 func (b0 CreateTodoRequest_builder) Build() *CreateTodoRequest {
@@ -936,6 +936,212 @@ func (b0 DeleteTodoRequest_builder) Build() *DeleteTodoRequest {
 	return m0
 }
 
+type CreateSubtaskRequest struct {
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Title string                 `protobuf:"bytes,1,opt,name=title,proto3"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *CreateSubtaskRequest) Reset() {
+	*x = CreateSubtaskRequest{}
+	mi := &file_todo_v1_todo_service_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateSubtaskRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateSubtaskRequest) ProtoMessage() {}
+
+func (x *CreateSubtaskRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_service_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *CreateSubtaskRequest) GetTitle() string {
+	if x != nil {
+		return x.xxx_hidden_Title
+	}
+	return ""
+}
+
+func (x *CreateSubtaskRequest) SetTitle(v string) {
+	x.xxx_hidden_Title = v
+}
+
+type CreateSubtaskRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Title string
+}
+
+func (b0 CreateSubtaskRequest_builder) Build() *CreateSubtaskRequest {
+	m0 := &CreateSubtaskRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Title = b.Title
+	return m0
+}
+
+type UpdateSubtaskRequest struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id          int64                  `protobuf:"varint,1,opt,name=id,proto3"`
+	xxx_hidden_Title       *string                `protobuf:"bytes,2,opt,name=title,proto3,oneof"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *UpdateSubtaskRequest) Reset() {
+	*x = UpdateSubtaskRequest{}
+	mi := &file_todo_v1_todo_service_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateSubtaskRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateSubtaskRequest) ProtoMessage() {}
+
+func (x *UpdateSubtaskRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_service_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *UpdateSubtaskRequest) GetId() int64 {
+	if x != nil {
+		return x.xxx_hidden_Id
+	}
+	return 0
+}
+
+func (x *UpdateSubtaskRequest) GetTitle() string {
+	if x != nil {
+		if x.xxx_hidden_Title != nil {
+			return *x.xxx_hidden_Title
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UpdateSubtaskRequest) SetId(v int64) {
+	x.xxx_hidden_Id = v
+}
+
+func (x *UpdateSubtaskRequest) SetTitle(v string) {
+	x.xxx_hidden_Title = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *UpdateSubtaskRequest) HasTitle() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *UpdateSubtaskRequest) ClearTitle() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Title = nil
+}
+
+type UpdateSubtaskRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id    int64
+	Title *string
+}
+
+func (b0 UpdateSubtaskRequest_builder) Build() *UpdateSubtaskRequest {
+	m0 := &UpdateSubtaskRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Id = b.Id
+	if b.Title != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Title = b.Title
+	}
+	return m0
+}
+
+type DeleteSubtaskRequest struct {
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id int64                  `protobuf:"varint,1,opt,name=id,proto3"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteSubtaskRequest) Reset() {
+	*x = DeleteSubtaskRequest{}
+	mi := &file_todo_v1_todo_service_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteSubtaskRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteSubtaskRequest) ProtoMessage() {}
+
+func (x *DeleteSubtaskRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_todo_v1_todo_service_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *DeleteSubtaskRequest) GetId() int64 {
+	if x != nil {
+		return x.xxx_hidden_Id
+	}
+	return 0
+}
+
+func (x *DeleteSubtaskRequest) SetId(v int64) {
+	x.xxx_hidden_Id = v
+}
+
+type DeleteSubtaskRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Id int64
+}
+
+func (b0 DeleteSubtaskRequest_builder) Build() *DeleteSubtaskRequest {
+	m0 := &DeleteSubtaskRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Id = b.Id
+	return m0
+}
+
 type BatchGetTodosRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Ids         []int64                `protobuf:"varint,1,rep,packed,name=ids,proto3"`
@@ -948,7 +1154,7 @@ type BatchGetTodosRequest struct {
 
 func (x *BatchGetTodosRequest) Reset() {
 	*x = BatchGetTodosRequest{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[6]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -960,7 +1166,7 @@ func (x *BatchGetTodosRequest) String() string {
 func (*BatchGetTodosRequest) ProtoMessage() {}
 
 func (x *BatchGetTodosRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[6]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1035,7 +1241,7 @@ type BatchGetTodosResponse struct {
 
 func (x *BatchGetTodosResponse) Reset() {
 	*x = BatchGetTodosResponse{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[7]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1047,7 +1253,7 @@ func (x *BatchGetTodosResponse) String() string {
 func (*BatchGetTodosResponse) ProtoMessage() {}
 
 func (x *BatchGetTodosResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[7]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1085,63 +1291,6 @@ func (b0 BatchGetTodosResponse_builder) Build() *BatchGetTodosResponse {
 	return m0
 }
 
-type CreateTodoRequest_SubTask struct {
-	state            protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Title string                 `protobuf:"bytes,1,opt,name=title,proto3"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
-}
-
-func (x *CreateTodoRequest_SubTask) Reset() {
-	*x = CreateTodoRequest_SubTask{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateTodoRequest_SubTask) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateTodoRequest_SubTask) ProtoMessage() {}
-
-func (x *CreateTodoRequest_SubTask) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-func (x *CreateTodoRequest_SubTask) GetTitle() string {
-	if x != nil {
-		return x.xxx_hidden_Title
-	}
-	return ""
-}
-
-func (x *CreateTodoRequest_SubTask) SetTitle(v string) {
-	x.xxx_hidden_Title = v
-}
-
-type CreateTodoRequest_SubTask_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	Title string
-}
-
-func (b0 CreateTodoRequest_SubTask_builder) Build() *CreateTodoRequest_SubTask {
-	m0 := &CreateTodoRequest_SubTask{}
-	b, x := &b0, m0
-	_, _ = b, x
-	x.xxx_hidden_Title = b.Title
-	return m0
-}
-
 type ListTodosRequest_Filter struct {
 	state                 protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_States     []Todo_State           `protobuf:"varint,1,rep,packed,name=states,proto3,enum=todo.v1.Todo_State"`
@@ -1152,7 +1301,7 @@ type ListTodosRequest_Filter struct {
 
 func (x *ListTodosRequest_Filter) Reset() {
 	*x = ListTodosRequest_Filter{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[9]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1164,7 +1313,7 @@ func (x *ListTodosRequest_Filter) String() string {
 func (*ListTodosRequest_Filter) ProtoMessage() {}
 
 func (x *ListTodosRequest_Filter) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[9]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1223,7 +1372,7 @@ type ListTodosRequest_OrderBy struct {
 
 func (x *ListTodosRequest_OrderBy) Reset() {
 	*x = ListTodosRequest_OrderBy{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[10]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1235,7 +1384,7 @@ func (x *ListTodosRequest_OrderBy) String() string {
 func (*ListTodosRequest_OrderBy) ProtoMessage() {}
 
 func (x *ListTodosRequest_OrderBy) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[10]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1293,7 +1442,7 @@ type UpdateTodoRequest_SubTaskOperation struct {
 
 func (x *UpdateTodoRequest_SubTaskOperation) Reset() {
 	*x = UpdateTodoRequest_SubTaskOperation{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[11]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1305,7 +1454,7 @@ func (x *UpdateTodoRequest_SubTaskOperation) String() string {
 func (*UpdateTodoRequest_SubTaskOperation) ProtoMessage() {}
 
 func (x *UpdateTodoRequest_SubTaskOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[11]
+	mi := &file_todo_v1_todo_service_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1316,7 +1465,7 @@ func (x *UpdateTodoRequest_SubTaskOperation) ProtoReflect() protoreflect.Message
 	return mi.MessageOf(x)
 }
 
-func (x *UpdateTodoRequest_SubTaskOperation) GetCreate() *CreateTodoRequest_SubTask {
+func (x *UpdateTodoRequest_SubTaskOperation) GetCreate() *CreateSubtaskRequest {
 	if x != nil {
 		if x, ok := x.xxx_hidden_Operation.(*updateTodoRequest_SubTaskOperation_Create); ok {
 			return x.Create
@@ -1325,7 +1474,7 @@ func (x *UpdateTodoRequest_SubTaskOperation) GetCreate() *CreateTodoRequest_SubT
 	return nil
 }
 
-func (x *UpdateTodoRequest_SubTaskOperation) GetUpdate() *UpdateTodoRequest_SubTask {
+func (x *UpdateTodoRequest_SubTaskOperation) GetUpdate() *UpdateSubtaskRequest {
 	if x != nil {
 		if x, ok := x.xxx_hidden_Operation.(*updateTodoRequest_SubTaskOperation_Update); ok {
 			return x.Update
@@ -1334,16 +1483,16 @@ func (x *UpdateTodoRequest_SubTaskOperation) GetUpdate() *UpdateTodoRequest_SubT
 	return nil
 }
 
-func (x *UpdateTodoRequest_SubTaskOperation) GetDelete() int64 {
+func (x *UpdateTodoRequest_SubTaskOperation) GetDelete() *DeleteSubtaskRequest {
 	if x != nil {
 		if x, ok := x.xxx_hidden_Operation.(*updateTodoRequest_SubTaskOperation_Delete); ok {
 			return x.Delete
 		}
 	}
-	return 0
+	return nil
 }
 
-func (x *UpdateTodoRequest_SubTaskOperation) SetCreate(v *CreateTodoRequest_SubTask) {
+func (x *UpdateTodoRequest_SubTaskOperation) SetCreate(v *CreateSubtaskRequest) {
 	if v == nil {
 		x.xxx_hidden_Operation = nil
 		return
@@ -1351,7 +1500,7 @@ func (x *UpdateTodoRequest_SubTaskOperation) SetCreate(v *CreateTodoRequest_SubT
 	x.xxx_hidden_Operation = &updateTodoRequest_SubTaskOperation_Create{v}
 }
 
-func (x *UpdateTodoRequest_SubTaskOperation) SetUpdate(v *UpdateTodoRequest_SubTask) {
+func (x *UpdateTodoRequest_SubTaskOperation) SetUpdate(v *UpdateSubtaskRequest) {
 	if v == nil {
 		x.xxx_hidden_Operation = nil
 		return
@@ -1359,7 +1508,11 @@ func (x *UpdateTodoRequest_SubTaskOperation) SetUpdate(v *UpdateTodoRequest_SubT
 	x.xxx_hidden_Operation = &updateTodoRequest_SubTaskOperation_Update{v}
 }
 
-func (x *UpdateTodoRequest_SubTaskOperation) SetDelete(v int64) {
+func (x *UpdateTodoRequest_SubTaskOperation) SetDelete(v *DeleteSubtaskRequest) {
+	if v == nil {
+		x.xxx_hidden_Operation = nil
+		return
+	}
 	x.xxx_hidden_Operation = &updateTodoRequest_SubTaskOperation_Delete{v}
 }
 
@@ -1441,9 +1594,9 @@ type UpdateTodoRequest_SubTaskOperation_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	// Fields of oneof xxx_hidden_Operation:
-	Create *CreateTodoRequest_SubTask
-	Update *UpdateTodoRequest_SubTask
-	Delete *int64
+	Create *CreateSubtaskRequest
+	Update *UpdateSubtaskRequest
+	Delete *DeleteSubtaskRequest
 	// -- end of xxx_hidden_Operation
 }
 
@@ -1458,7 +1611,7 @@ func (b0 UpdateTodoRequest_SubTaskOperation_builder) Build() *UpdateTodoRequest_
 		x.xxx_hidden_Operation = &updateTodoRequest_SubTaskOperation_Update{b.Update}
 	}
 	if b.Delete != nil {
-		x.xxx_hidden_Operation = &updateTodoRequest_SubTaskOperation_Delete{*b.Delete}
+		x.xxx_hidden_Operation = &updateTodoRequest_SubTaskOperation_Delete{b.Delete}
 	}
 	return m0
 }
@@ -1466,7 +1619,7 @@ func (b0 UpdateTodoRequest_SubTaskOperation_builder) Build() *UpdateTodoRequest_
 type case_UpdateTodoRequest_SubTaskOperation_Operation protoreflect.FieldNumber
 
 func (x case_UpdateTodoRequest_SubTaskOperation_Operation) String() string {
-	md := file_todo_v1_todo_service_proto_msgTypes[11].Descriptor()
+	md := file_todo_v1_todo_service_proto_msgTypes[13].Descriptor()
 	if x == 0 {
 		return "not set"
 	}
@@ -1478,15 +1631,15 @@ type isUpdateTodoRequest_SubTaskOperation_Operation interface {
 }
 
 type updateTodoRequest_SubTaskOperation_Create struct {
-	Create *CreateTodoRequest_SubTask `protobuf:"bytes,1,opt,name=create,proto3,oneof"`
+	Create *CreateSubtaskRequest `protobuf:"bytes,1,opt,name=create,proto3,oneof"`
 }
 
 type updateTodoRequest_SubTaskOperation_Update struct {
-	Update *UpdateTodoRequest_SubTask `protobuf:"bytes,2,opt,name=update,proto3,oneof"`
+	Update *UpdateSubtaskRequest `protobuf:"bytes,2,opt,name=update,proto3,oneof"`
 }
 
 type updateTodoRequest_SubTaskOperation_Delete struct {
-	Delete int64 `protobuf:"varint,3,opt,name=delete,proto3,oneof"`
+	Delete *DeleteSubtaskRequest `protobuf:"bytes,3,opt,name=delete,proto3,oneof"`
 }
 
 func (*updateTodoRequest_SubTaskOperation_Create) isUpdateTodoRequest_SubTaskOperation_Operation() {}
@@ -1495,103 +1648,11 @@ func (*updateTodoRequest_SubTaskOperation_Update) isUpdateTodoRequest_SubTaskOpe
 
 func (*updateTodoRequest_SubTaskOperation_Delete) isUpdateTodoRequest_SubTaskOperation_Operation() {}
 
-type UpdateTodoRequest_SubTask struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id          int64                  `protobuf:"varint,1,opt,name=id,proto3"`
-	xxx_hidden_Title       *string                `protobuf:"bytes,2,opt,name=title,proto3,oneof"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
-}
-
-func (x *UpdateTodoRequest_SubTask) Reset() {
-	*x = UpdateTodoRequest_SubTask{}
-	mi := &file_todo_v1_todo_service_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateTodoRequest_SubTask) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateTodoRequest_SubTask) ProtoMessage() {}
-
-func (x *UpdateTodoRequest_SubTask) ProtoReflect() protoreflect.Message {
-	mi := &file_todo_v1_todo_service_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-func (x *UpdateTodoRequest_SubTask) GetId() int64 {
-	if x != nil {
-		return x.xxx_hidden_Id
-	}
-	return 0
-}
-
-func (x *UpdateTodoRequest_SubTask) GetTitle() string {
-	if x != nil {
-		if x.xxx_hidden_Title != nil {
-			return *x.xxx_hidden_Title
-		}
-		return ""
-	}
-	return ""
-}
-
-func (x *UpdateTodoRequest_SubTask) SetId(v int64) {
-	x.xxx_hidden_Id = v
-}
-
-func (x *UpdateTodoRequest_SubTask) SetTitle(v string) {
-	x.xxx_hidden_Title = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
-}
-
-func (x *UpdateTodoRequest_SubTask) HasTitle() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
-}
-
-func (x *UpdateTodoRequest_SubTask) ClearTitle() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Title = nil
-}
-
-type UpdateTodoRequest_SubTask_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	Id    int64
-	Title *string
-}
-
-func (b0 UpdateTodoRequest_SubTask_builder) Build() *UpdateTodoRequest_SubTask {
-	m0 := &UpdateTodoRequest_SubTask{}
-	b, x := &b0, m0
-	_, _ = b, x
-	x.xxx_hidden_Id = b.Id
-	if b.Title != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
-		x.xxx_hidden_Title = b.Title
-	}
-	return m0
-}
-
 var File_todo_v1_todo_service_proto protoreflect.FileDescriptor
 
 const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1atodo/v1/todo_service.proto\x12\atodo.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x16google/type/date.proto\x1a\x12todo/v1/todo.proto\"\xc9\x03\n" +
+	"\x1atodo/v1/todo_service.proto\x12\atodo.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x16google/type/date.proto\x1a\x12todo/v1/todo.proto\"\xa3\x03\n" +
 	"\x11CreateTodoRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12%\n" +
@@ -1599,10 +1660,8 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x05state\x18\x04 \x01(\x0e2\x13.todo.v1.Todo.StateH\x01R\x05state\x88\x01\x01\x127\n" +
 	"\bpriority\x18\x05 \x01(\x0e2\x16.todo.v1.Todo.PriorityH\x02R\bpriority\x88\x01\x01\x12\x1f\n" +
 	"\bassignee\x18\x06 \x01(\x03H\x03R\bassignee\x88\x01\x01\x121\n" +
-	"\bdue_date\x18\a \x01(\v2\x11.google.type.DateH\x04R\adueDate\x88\x01\x01\x12?\n" +
-	"\tsub_tasks\x18\b \x03(\v2\".todo.v1.CreateTodoRequest.SubTaskR\bsubTasks\x1a\x1f\n" +
-	"\aSubTask\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05titleB\x0e\n" +
+	"\bdue_date\x18\a \x01(\v2\x11.google.type.DateH\x04R\adueDate\x88\x01\x01\x12:\n" +
+	"\tsub_tasks\x18\b \x03(\v2\x1d.todo.v1.CreateSubtaskRequestR\bsubTasksB\x0e\n" +
 	"\f_descriptionB\b\n" +
 	"\x06_stateB\v\n" +
 	"\t_priorityB\v\n" +
@@ -1634,7 +1693,7 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x05todos\x18\x01 \x03(\v2\r.todo.v1.TodoR\x05todos\x12&\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1d\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05R\ttotalSize\"\xc2\x05\n" +
+	"total_size\x18\x03 \x01(\x05R\ttotalSize\"\x97\x05\n" +
 	"\x11UpdateTodoRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
 	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01\x12%\n" +
@@ -1643,16 +1702,12 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\bpriority\x18\x05 \x01(\x0e2\x16.todo.v1.Todo.PriorityH\x03R\bpriority\x88\x01\x01\x12\x1f\n" +
 	"\bassignee\x18\x06 \x01(\x03H\x04R\bassignee\x88\x01\x01\x121\n" +
 	"\bdue_date\x18\a \x01(\v2\x11.google.type.DateH\x05R\adueDate\x88\x01\x01\x12[\n" +
-	"\x13sub_task_operations\x18\b \x03(\v2+.todo.v1.UpdateTodoRequest.SubTaskOperationR\x11subTaskOperations\x1a\xb5\x01\n" +
-	"\x10SubTaskOperation\x12<\n" +
-	"\x06create\x18\x01 \x01(\v2\".todo.v1.CreateTodoRequest.SubTaskH\x00R\x06create\x12<\n" +
-	"\x06update\x18\x02 \x01(\v2\".todo.v1.UpdateTodoRequest.SubTaskH\x00R\x06update\x12\x18\n" +
-	"\x06delete\x18\x03 \x01(\x03H\x00R\x06deleteB\v\n" +
-	"\toperation\x1a>\n" +
-	"\aSubTask\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
-	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01B\b\n" +
-	"\x06_titleB\b\n" +
+	"\x13sub_task_operations\x18\b \x03(\v2+.todo.v1.UpdateTodoRequest.SubTaskOperationR\x11subTaskOperations\x1a\xca\x01\n" +
+	"\x10SubTaskOperation\x127\n" +
+	"\x06create\x18\x01 \x01(\v2\x1d.todo.v1.CreateSubtaskRequestH\x00R\x06create\x127\n" +
+	"\x06update\x18\x02 \x01(\v2\x1d.todo.v1.UpdateSubtaskRequestH\x00R\x06update\x127\n" +
+	"\x06delete\x18\x03 \x01(\v2\x1d.todo.v1.DeleteSubtaskRequestH\x00R\x06deleteB\v\n" +
+	"\toperationB\b\n" +
 	"\x06_titleB\x0e\n" +
 	"\f_descriptionB\b\n" +
 	"\x06_stateB\v\n" +
@@ -1660,6 +1715,14 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\t_assigneeB\v\n" +
 	"\t_due_date\"#\n" +
 	"\x11DeleteTodoRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\",\n" +
+	"\x14CreateSubtaskRequest\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\"K\n" +
+	"\x14UpdateSubtaskRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
+	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01B\b\n" +
+	"\x06_title\"&\n" +
+	"\x14DeleteSubtaskRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"a\n" +
 	"\x14BatchGetTodosRequest\x12\x10\n" +
 	"\x03ids\x18\x01 \x03(\x03R\x03ids\x12&\n" +
@@ -1679,7 +1742,7 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\rBatchGetTodos\x12\x1d.todo.v1.BatchGetTodosRequest\x1a\x1e.todo.v1.BatchGetTodosResponse\"\x00Bg\n" +
 	"\x16monorepo.proto.todo.v1P\x01ZKgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-todo/todo/v1;todov1b\x06proto3"
 
-var file_todo_v1_todo_service_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_todo_v1_todo_service_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_todo_v1_todo_service_proto_goTypes = []any{
 	(*CreateTodoRequest)(nil),                  // 0: todo.v1.CreateTodoRequest
 	(*GetTodoRequest)(nil),                     // 1: todo.v1.GetTodoRequest
@@ -1687,52 +1750,54 @@ var file_todo_v1_todo_service_proto_goTypes = []any{
 	(*ListTodosResponse)(nil),                  // 3: todo.v1.ListTodosResponse
 	(*UpdateTodoRequest)(nil),                  // 4: todo.v1.UpdateTodoRequest
 	(*DeleteTodoRequest)(nil),                  // 5: todo.v1.DeleteTodoRequest
-	(*BatchGetTodosRequest)(nil),               // 6: todo.v1.BatchGetTodosRequest
-	(*BatchGetTodosResponse)(nil),              // 7: todo.v1.BatchGetTodosResponse
-	(*CreateTodoRequest_SubTask)(nil),          // 8: todo.v1.CreateTodoRequest.SubTask
-	(*ListTodosRequest_Filter)(nil),            // 9: todo.v1.ListTodosRequest.Filter
-	(*ListTodosRequest_OrderBy)(nil),           // 10: todo.v1.ListTodosRequest.OrderBy
-	(*UpdateTodoRequest_SubTaskOperation)(nil), // 11: todo.v1.UpdateTodoRequest.SubTaskOperation
-	(*UpdateTodoRequest_SubTask)(nil),          // 12: todo.v1.UpdateTodoRequest.SubTask
-	(Todo_State)(0),                            // 13: todo.v1.Todo.State
-	(Todo_Priority)(0),                         // 14: todo.v1.Todo.Priority
-	(*date.Date)(nil),                          // 15: google.type.Date
-	(*Todo)(nil),                               // 16: todo.v1.Todo
+	(*CreateSubtaskRequest)(nil),               // 6: todo.v1.CreateSubtaskRequest
+	(*UpdateSubtaskRequest)(nil),               // 7: todo.v1.UpdateSubtaskRequest
+	(*DeleteSubtaskRequest)(nil),               // 8: todo.v1.DeleteSubtaskRequest
+	(*BatchGetTodosRequest)(nil),               // 9: todo.v1.BatchGetTodosRequest
+	(*BatchGetTodosResponse)(nil),              // 10: todo.v1.BatchGetTodosResponse
+	(*ListTodosRequest_Filter)(nil),            // 11: todo.v1.ListTodosRequest.Filter
+	(*ListTodosRequest_OrderBy)(nil),           // 12: todo.v1.ListTodosRequest.OrderBy
+	(*UpdateTodoRequest_SubTaskOperation)(nil), // 13: todo.v1.UpdateTodoRequest.SubTaskOperation
+	(Todo_State)(0),                            // 14: todo.v1.Todo.State
+	(Todo_Priority)(0),                         // 15: todo.v1.Todo.Priority
+	(*date.Date)(nil),                          // 16: google.type.Date
+	(*Todo)(nil),                               // 17: todo.v1.Todo
 }
 var file_todo_v1_todo_service_proto_depIdxs = []int32{
-	13, // 0: todo.v1.CreateTodoRequest.state:type_name -> todo.v1.Todo.State
-	14, // 1: todo.v1.CreateTodoRequest.priority:type_name -> todo.v1.Todo.Priority
-	15, // 2: todo.v1.CreateTodoRequest.due_date:type_name -> google.type.Date
-	8,  // 3: todo.v1.CreateTodoRequest.sub_tasks:type_name -> todo.v1.CreateTodoRequest.SubTask
-	9,  // 4: todo.v1.ListTodosRequest.filter:type_name -> todo.v1.ListTodosRequest.Filter
-	10, // 5: todo.v1.ListTodosRequest.order_by:type_name -> todo.v1.ListTodosRequest.OrderBy
-	16, // 6: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.Todo
-	13, // 7: todo.v1.UpdateTodoRequest.state:type_name -> todo.v1.Todo.State
-	14, // 8: todo.v1.UpdateTodoRequest.priority:type_name -> todo.v1.Todo.Priority
-	15, // 9: todo.v1.UpdateTodoRequest.due_date:type_name -> google.type.Date
-	11, // 10: todo.v1.UpdateTodoRequest.sub_task_operations:type_name -> todo.v1.UpdateTodoRequest.SubTaskOperation
-	16, // 11: todo.v1.BatchGetTodosResponse.todos:type_name -> todo.v1.Todo
-	13, // 12: todo.v1.ListTodosRequest.Filter.states:type_name -> todo.v1.Todo.State
-	14, // 13: todo.v1.ListTodosRequest.Filter.priorities:type_name -> todo.v1.Todo.Priority
-	8,  // 14: todo.v1.UpdateTodoRequest.SubTaskOperation.create:type_name -> todo.v1.CreateTodoRequest.SubTask
-	12, // 15: todo.v1.UpdateTodoRequest.SubTaskOperation.update:type_name -> todo.v1.UpdateTodoRequest.SubTask
-	0,  // 16: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
-	1,  // 17: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
-	2,  // 18: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
-	4,  // 19: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
-	5,  // 20: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
-	6,  // 21: todo.v1.TodoService.BatchGetTodos:input_type -> todo.v1.BatchGetTodosRequest
-	16, // 22: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.Todo
-	16, // 23: todo.v1.TodoService.GetTodo:output_type -> todo.v1.Todo
-	3,  // 24: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
-	16, // 25: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.Todo
-	16, // 26: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.Todo
-	7,  // 27: todo.v1.TodoService.BatchGetTodos:output_type -> todo.v1.BatchGetTodosResponse
-	22, // [22:28] is the sub-list for method output_type
-	16, // [16:22] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	14, // 0: todo.v1.CreateTodoRequest.state:type_name -> todo.v1.Todo.State
+	15, // 1: todo.v1.CreateTodoRequest.priority:type_name -> todo.v1.Todo.Priority
+	16, // 2: todo.v1.CreateTodoRequest.due_date:type_name -> google.type.Date
+	6,  // 3: todo.v1.CreateTodoRequest.sub_tasks:type_name -> todo.v1.CreateSubtaskRequest
+	11, // 4: todo.v1.ListTodosRequest.filter:type_name -> todo.v1.ListTodosRequest.Filter
+	12, // 5: todo.v1.ListTodosRequest.order_by:type_name -> todo.v1.ListTodosRequest.OrderBy
+	17, // 6: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.Todo
+	14, // 7: todo.v1.UpdateTodoRequest.state:type_name -> todo.v1.Todo.State
+	15, // 8: todo.v1.UpdateTodoRequest.priority:type_name -> todo.v1.Todo.Priority
+	16, // 9: todo.v1.UpdateTodoRequest.due_date:type_name -> google.type.Date
+	13, // 10: todo.v1.UpdateTodoRequest.sub_task_operations:type_name -> todo.v1.UpdateTodoRequest.SubTaskOperation
+	17, // 11: todo.v1.BatchGetTodosResponse.todos:type_name -> todo.v1.Todo
+	14, // 12: todo.v1.ListTodosRequest.Filter.states:type_name -> todo.v1.Todo.State
+	15, // 13: todo.v1.ListTodosRequest.Filter.priorities:type_name -> todo.v1.Todo.Priority
+	6,  // 14: todo.v1.UpdateTodoRequest.SubTaskOperation.create:type_name -> todo.v1.CreateSubtaskRequest
+	7,  // 15: todo.v1.UpdateTodoRequest.SubTaskOperation.update:type_name -> todo.v1.UpdateSubtaskRequest
+	8,  // 16: todo.v1.UpdateTodoRequest.SubTaskOperation.delete:type_name -> todo.v1.DeleteSubtaskRequest
+	0,  // 17: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
+	1,  // 18: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
+	2,  // 19: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
+	4,  // 20: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
+	5,  // 21: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
+	9,  // 22: todo.v1.TodoService.BatchGetTodos:input_type -> todo.v1.BatchGetTodosRequest
+	17, // 23: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.Todo
+	17, // 24: todo.v1.TodoService.GetTodo:output_type -> todo.v1.Todo
+	3,  // 25: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
+	17, // 26: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.Todo
+	17, // 27: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.Todo
+	10, // 28: todo.v1.TodoService.BatchGetTodos:output_type -> todo.v1.BatchGetTodosResponse
+	23, // [23:29] is the sub-list for method output_type
+	17, // [17:23] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_todo_v1_todo_service_proto_init() }
@@ -1745,20 +1810,20 @@ func file_todo_v1_todo_service_proto_init() {
 	file_todo_v1_todo_service_proto_msgTypes[1].OneofWrappers = []any{}
 	file_todo_v1_todo_service_proto_msgTypes[2].OneofWrappers = []any{}
 	file_todo_v1_todo_service_proto_msgTypes[4].OneofWrappers = []any{}
-	file_todo_v1_todo_service_proto_msgTypes[6].OneofWrappers = []any{}
-	file_todo_v1_todo_service_proto_msgTypes[11].OneofWrappers = []any{
+	file_todo_v1_todo_service_proto_msgTypes[7].OneofWrappers = []any{}
+	file_todo_v1_todo_service_proto_msgTypes[9].OneofWrappers = []any{}
+	file_todo_v1_todo_service_proto_msgTypes[13].OneofWrappers = []any{
 		(*updateTodoRequest_SubTaskOperation_Create)(nil),
 		(*updateTodoRequest_SubTaskOperation_Update)(nil),
 		(*updateTodoRequest_SubTaskOperation_Delete)(nil),
 	}
-	file_todo_v1_todo_service_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_todo_v1_todo_service_proto_rawDesc), len(file_todo_v1_todo_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

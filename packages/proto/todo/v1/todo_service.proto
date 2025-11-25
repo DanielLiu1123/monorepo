@@ -44,11 +44,7 @@ message CreateTodoRequest {
   optional Todo.Priority priority = 5;
   optional int64 assignee = 6;
   optional google.type.Date due_date = 7;
-  repeated SubTask sub_tasks = 8;
-
-  message SubTask {
-    string title = 1;
-  }
+  repeated CreateSubtaskRequest sub_tasks = 8;
 }
 
 // Request message for GetTodo
@@ -121,19 +117,27 @@ message UpdateTodoRequest {
 
   message SubTaskOperation {
     oneof operation {
-      CreateTodoRequest.SubTask create = 1;
-      UpdateTodoRequest.SubTask update = 2;
-      int64 delete = 3;
+      CreateSubtaskRequest create = 1;
+      UpdateSubtaskRequest update = 2;
+      DeleteSubtaskRequest delete = 3;
     }
-  }
-
-  message SubTask {
-    int64 id = 1;
-    optional string title = 2;
   }
 }
 
 message DeleteTodoRequest {
+  int64 id = 1;
+}
+
+message CreateSubtaskRequest {
+  string title = 1;
+}
+
+message UpdateSubtaskRequest {
+  int64 id = 1;
+  optional string title = 2;
+}
+
+message DeleteSubtaskRequest {
   int64 id = 1;
 }
 
