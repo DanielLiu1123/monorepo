@@ -134,6 +134,7 @@ generate_package() {
 
   # Create temporary config file by replacing ${package} placeholder
   sed "s/\${package}/$package_name/g" "$proto_dir/$template_file" > "$proto_dir/$temp_config_file"
+  trap "rm -f $proto_dir/$temp_config_file" EXIT
 
   # Build buf generate command with package path filter
   local buf_cmd="buf generate --template \"$temp_config_file\" --path \"$package_path\""
@@ -151,9 +152,6 @@ generate_package() {
     print_error "Failed to generate package: $package_name"
     result=1
   fi
-
-  # Clean up temporary config file
-  rm -f "$proto_dir/$temp_config_file"
 
   return $result
 }
@@ -225,6 +223,7 @@ cmd_gen_proto() {
 
   # Create temporary directory for tracking results
   local tmp_dir=$(mktemp -d)
+  trap "rm -rf $tmp_dir" EXIT
   local pids=()
 
   # Launch parallel generation tasks
@@ -251,9 +250,6 @@ cmd_gen_proto() {
   # Count results
   local success=$(find "$tmp_dir" -name "*.success" 2>/dev/null | wc -l | tr -d ' ')
   local failed=$(find "$tmp_dir" -name "*.failed" 2>/dev/null | wc -l | tr -d ' ')
-
-  # Clean up temporary directory
-  rm -rf "$tmp_dir"
 
   echo ""
   echo "================================"
