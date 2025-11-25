@@ -4,7 +4,6 @@
 cmd_list_projects() {
     local search_path="${1:-.}"
 
-    print_info "Scanning for projects in $search_path..."
     echo ""
 
     local projects
@@ -15,13 +14,12 @@ cmd_list_projects() {
         return 0
     fi
 
-    # Print header
     printf "${BLUE}%-60s${NC}\n" "PROJECT PATH"
     printf "%-60s\n" "$(printf '=%.0s' {1..60})"
 
-    # Print each project
     local count=0
     while IFS= read -r project; do
+        project=$(normalize_path "$project")
         printf "%-60s\n" "$project"
         ((count++))
     done <<< "$projects"
