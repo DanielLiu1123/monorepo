@@ -21,8 +21,9 @@ public final class ContextualRunnable implements Runnable {
     @Override
     public void run() {
 
-        // 相同线程如果重复 set context 会导致执行 delegate 执行完之后清除 context
-        // 造成 context 丢失
+        // If the same thread repeatedly sets the context, it will cause the context to be cleared after the delegate
+        // executes,
+        // resulting in context loss. First set, last clear.
         if (ContextHolder.getOrNull() == context) {
             delegate.run();
             return;

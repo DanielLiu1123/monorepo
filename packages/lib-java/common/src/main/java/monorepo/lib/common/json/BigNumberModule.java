@@ -11,7 +11,7 @@ import tools.jackson.databind.ser.std.ToStringSerializer;
  * @author Freeman
  * @since 2025/11/18
  */
-public class BigNumberModule extends SimpleModule {
+public final class BigNumberModule extends SimpleModule {
     public BigNumberModule() {
         addSerializer(Long.class, ToStringSerializer.instance);
         addSerializer(Long.TYPE, ToStringSerializer.instance);
