@@ -1,6 +1,5 @@
 package monorepo.services.todo.server;
 
-import grpcstarter.server.GrpcService;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import monorepo.proto.todo.v1.BatchGetTodosRequest;
@@ -21,7 +20,7 @@ import monorepo.services.todo.service.TodoService;
  * @author Freeman
  * @since 2025/11/23
  */
-@GrpcService
+// @GrpcService
 @RequiredArgsConstructor
 public class TodoServer extends TodoServiceGrpc.TodoServiceImplBase {
 

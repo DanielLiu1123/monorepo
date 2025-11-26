@@ -12,6 +12,13 @@ dependencies {
 
     // grpc
     implementation "io.github.danielliu1123:grpc-boot-starter"
+    implementation "io.grpc:grpc-testing-proto"
+
+    // http client
+    implementation "org.springframework.boot:spring-boot-starter-restclient"
+
+    // observability
+    implementation "org.springframework.boot:spring-boot-starter-opentelemetry"
 
     // postgres
     implementation "org.postgresql:postgresql"

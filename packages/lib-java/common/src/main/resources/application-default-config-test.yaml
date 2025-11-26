@@ -3,3 +3,8 @@ spring:
     hikari:
       minimum-idle: 1
       maximum-pool-size: 3
+
+grpc:
+  server:
+    reflection:
+      enabled: true

@@ -5,6 +5,22 @@ spring:
     username: root
     password: root
 
+management:
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          transport: http
+          endpoint: http://localhost:4318/v1/traces
+  tracing:
+    sampling:
+      probability: 1
+  otlp:
+    metrics:
+      export:
+#        url: http://localhost:4318
+        enabled: false
+
 logging:
   level:
     monorepo.services.todo.mapper: debug
