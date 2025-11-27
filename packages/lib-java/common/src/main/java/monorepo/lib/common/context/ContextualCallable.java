@@ -20,39 +20,46 @@ public final class ContextualCallable<T> implements Callable<T> {
         this.context = ContextHolder.getOrNull();
     }
 
-    @Override
-    public T call() throws Exception {
-
-        if (context == null) {
-            return delegate.call();
-        }
-
-        var observation = Observation.createNotStarted("contextual.call", context.observationRegistry())
-                .start();
-        try {
-            // If the same thread repeatedly sets the context, it will cause the context to be cleared after the
-            // delegate
-            // executes,
-            // resulting in context loss. First set, last clear.
-            if (ContextHolder.getOrNull() == context) {
-                return delegate.call();
-            }
-
-            ContextHolder.set(context);
-            try {
-                return delegate.call();
-            } finally {
-                ContextHolder.remove();
-            }
-        } finally {
-            observation.stop();
-        }
-    }
-
     public static <T> ContextualCallable<T> of(Callable<T> delegate) {
         if (delegate instanceof ContextualCallable<T> cc) {
             return cc;
         }
         return new ContextualCallable<>(delegate);
+    }
+
+    @Override
+    public T call() throws Exception {
+        if (context == null) {
+            return delegate.call();
+        }
+
+        // If the same thread repeatedly sets the context, it will cause the context to be cleared after the
+        // delegate executes, resulting in context loss. First set, last clear.
+        if (ContextHolder.getOrNull() == context) {
+            return withObservation(delegate);
+        }
+
+        ContextHolder.set(context);
+        try {
+            return withObservation(delegate);
+        } finally {
+            ContextHolder.remove();
+        }
+    }
+
+    private T withObservation(Callable<T> callable) throws Exception {
+        if (context == null) {
+            return callable.call();
+        }
+        var observation = Observation.createNotStarted("contextual.call", context.observationRegistry())
+                .start();
+        try (var _ = observation.openScope()) {
+            return callable.call();
+        } catch (Throwable e) {
+            observation.error(e);
+            throw e;
+        } finally {
+            observation.stop();
+        }
     }
 }

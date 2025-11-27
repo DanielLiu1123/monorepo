@@ -19,41 +19,49 @@ public final class ContextualRunnable implements Runnable {
         this.context = ContextHolder.getOrNull();
     }
 
-    @Override
-    public void run() {
-
-        if (context == null) {
-            delegate.run();
-            return;
-        }
-
-        var observation = Observation.createNotStarted("contextual.run", context.observationRegistry())
-                .start();
-
-        try {
-            // If the same thread repeatedly sets the context, it will cause the context to be cleared after the
-            // delegate
-            // executes,
-            // resulting in context loss. First set, last clear.
-            if (ContextHolder.getOrNull() == context) {
-                delegate.run();
-            } else {
-                ContextHolder.set(context);
-                try {
-                    delegate.run();
-                } finally {
-                    ContextHolder.remove();
-                }
-            }
-        } finally {
-            observation.stop();
-        }
-    }
-
     public static ContextualRunnable of(Runnable delegate) {
         if (delegate instanceof ContextualRunnable cr) {
             return cr;
         }
         return new ContextualRunnable(delegate);
+    }
+
+    @Override
+    public void run() {
+        if (context == null) {
+            delegate.run();
+            return;
+        }
+
+        // If the same thread repeatedly sets the context, it will cause the context to be cleared after the
+        // delegate executes, resulting in context loss. First set, last clear.
+        if (ContextHolder.getOrNull() == context) {
+            withObservation(delegate);
+            return;
+        }
+
+        ContextHolder.set(context);
+        try {
+            withObservation(delegate);
+        } finally {
+            ContextHolder.remove();
+        }
+    }
+
+    private void withObservation(Runnable runnable) {
+        if (context == null) {
+            runnable.run();
+            return;
+        }
+        var observation = Observation.createNotStarted("contextual.run", context.observationRegistry())
+                .start();
+        try (var _ = observation.openScope()) {
+            runnable.run();
+        } catch (Throwable e) {
+            observation.error(e);
+            throw e;
+        } finally {
+            observation.stop();
+        }
     }
 }
