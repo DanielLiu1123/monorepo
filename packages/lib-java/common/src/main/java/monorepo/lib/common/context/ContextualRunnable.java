@@ -53,8 +53,7 @@ public final class ContextualRunnable implements Runnable {
             runnable.run();
             return;
         }
-        var observation = Observation.createNotStarted("contextual.run", context.observationRegistry())
-                .start();
+        var observation = Observation.createNotStarted("contextual.run", this.context.observationRegistry()).start();
         try (var _ = observation.openScope()) {
             runnable.run();
         } catch (Throwable e) {

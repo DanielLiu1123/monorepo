@@ -51,8 +51,7 @@ public final class ContextualCallable<T> implements Callable<T> {
         if (context == null) {
             return callable.call();
         }
-        var observation = Observation.createNotStarted("contextual.call", context.observationRegistry())
-                .start();
+        var observation = Observation.createNotStarted("contextual.call", context.observationRegistry()).start();
         try (var _ = observation.openScope()) {
             return callable.call();
         } catch (Throwable e) {

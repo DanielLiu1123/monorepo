@@ -26,7 +26,6 @@ public class ContextConfiguration implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        //        ContextRegistry.getInstance().registerThreadLocalAccessor(new ContextThreadLocalAccessor());
     }
 
     @Configuration(proxyBeanMethods = false)

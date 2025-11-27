@@ -8,7 +8,7 @@ import org.jspecify.annotations.Nullable;
  */
 public final class ContextHolder {
 
-    private static final InheritableThreadLocal<Context> CONTEXT = new InheritableThreadLocal<>();
+    private static final ThreadLocal<Context> CONTEXT = new ThreadLocal<>();
 
     public static Context get() {
         var ctx = getOrNull();
