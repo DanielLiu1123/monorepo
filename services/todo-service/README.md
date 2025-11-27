@@ -17,4 +17,6 @@ docker run -id --name jaeger \
   -p 5778:5778 \
   -p 9411:9411 \
   cr.jaegertracing.io/jaegertracing/jaeger:latest
+ 
+open http://localhost:16686
 ```

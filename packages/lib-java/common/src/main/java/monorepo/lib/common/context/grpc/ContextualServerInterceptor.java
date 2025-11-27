@@ -5,6 +5,7 @@ import io.grpc.Metadata;
 import io.grpc.ServerCall;
 import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
+import io.micrometer.observation.ObservationRegistry;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,13 @@ import monorepo.lib.common.context.ContextHolder;
  * @since 2025/11/19
  */
 public final class ContextualServerInterceptor implements ServerInterceptor {
+
+    private final ObservationRegistry observationRegistry;
+
+    public ContextualServerInterceptor(ObservationRegistry observationRegistry) {
+        this.observationRegistry = observationRegistry;
+    }
+
     @Override
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(
             ServerCall<ReqT, RespT> call, Metadata headers, ServerCallHandler<ReqT, RespT> next) {
@@ -33,9 +41,9 @@ public final class ContextualServerInterceptor implements ServerInterceptor {
         }
     }
 
-    private static Context buildContext(Metadata metadata) {
+    private Context buildContext(Metadata metadata) {
         var headers = getHeaders(metadata);
-        return new Context(headers);
+        return new Context(headers, observationRegistry);
     }
 
     private static Map<String, List<String>> getHeaders(Metadata headers) {

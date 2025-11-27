@@ -1,5 +1,6 @@
 package monorepo.lib.common.context;
 
+import io.micrometer.observation.Observation;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -21,19 +22,31 @@ public final class ContextualRunnable implements Runnable {
     @Override
     public void run() {
 
-        // If the same thread repeatedly sets the context, it will cause the context to be cleared after the delegate
-        // executes,
-        // resulting in context loss. First set, last clear.
-        if (ContextHolder.getOrNull() == context) {
+        if (context == null) {
             delegate.run();
             return;
         }
 
-        ContextHolder.set(context);
+        var observation = Observation.createNotStarted("contextual.run", context.observationRegistry())
+                .start();
+
         try {
-            delegate.run();
+            // If the same thread repeatedly sets the context, it will cause the context to be cleared after the
+            // delegate
+            // executes,
+            // resulting in context loss. First set, last clear.
+            if (ContextHolder.getOrNull() == context) {
+                delegate.run();
+            } else {
+                ContextHolder.set(context);
+                try {
+                    delegate.run();
+                } finally {
+                    ContextHolder.remove();
+                }
+            }
         } finally {
-            ContextHolder.remove();
+            observation.stop();
         }
     }
 

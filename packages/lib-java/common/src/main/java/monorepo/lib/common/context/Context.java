@@ -1,5 +1,6 @@
 package monorepo.lib.common.context;
 
+import io.micrometer.observation.ObservationRegistry;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
  * @author Freeman
  * @since 2025/5/1
  */
-public record Context(Map<String, List<String>> headers) {
+public record Context(Map<String, List<String>> headers, ObservationRegistry observationRegistry) {
     public Context {
         headers = Map.copyOf(headers);
     }

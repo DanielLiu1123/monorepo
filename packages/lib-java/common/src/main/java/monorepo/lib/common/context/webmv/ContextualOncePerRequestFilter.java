@@ -1,5 +1,6 @@
 package monorepo.lib.common.context.webmv;
 
+import io.micrometer.observation.ObservationRegistry;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +20,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 public final class ContextualOncePerRequestFilter extends OncePerRequestFilter {
 
+    private final ObservationRegistry observationRegistry;
+
+    public ContextualOncePerRequestFilter(ObservationRegistry observationRegistry) {
+        this.observationRegistry = observationRegistry;
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
@@ -31,9 +38,9 @@ public final class ContextualOncePerRequestFilter extends OncePerRequestFilter {
         }
     }
 
-    private static Context buildContext(HttpServletRequest request) {
+    private Context buildContext(HttpServletRequest request) {
         var headers = getHeaders(request);
-        return new Context(headers);
+        return new Context(headers, observationRegistry);
     }
 
     private static Map<String, List<String>> getHeaders(HttpServletRequest request) {

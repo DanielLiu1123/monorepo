@@ -2,13 +2,15 @@ package monorepo.lib.common.context;
 
 import io.grpc.ClientInterceptor;
 import io.grpc.ServerInterceptor;
-import io.micrometer.context.ContextRegistry;
+import io.micrometer.core.instrument.binder.grpc.ObservationGrpcServerInterceptor;
+import io.micrometer.observation.ObservationRegistry;
 import monorepo.lib.common.context.grpc.ContextualClientInterceptor;
 import monorepo.lib.common.context.grpc.ContextualServerInterceptor;
 import monorepo.lib.common.context.restclient.ContextualClientHttpRequestInterceptor;
 import monorepo.lib.common.context.webmv.ContextualOncePerRequestFilter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.restclient.RestClientCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +26,7 @@ public class ContextConfiguration implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        ContextRegistry.getInstance().registerThreadLocalAccessor(new ContextThreadLocalAccessor());
+        //        ContextRegistry.getInstance().registerThreadLocalAccessor(new ContextThreadLocalAccessor());
     }
 
     @Configuration(proxyBeanMethods = false)
@@ -32,8 +34,8 @@ public class ContextConfiguration implements InitializingBean {
     @ConditionalOnClass({OncePerRequestFilter.class})
     static class WebMvcServer {
         @Bean
-        public ContextualOncePerRequestFilter contextualOncePerRequestFilter() {
-            return new ContextualOncePerRequestFilter();
+        public ContextualOncePerRequestFilter contextualOncePerRequestFilter(ObservationRegistry observationRegistry) {
+            return new ContextualOncePerRequestFilter(observationRegistry);
         }
     }
 
@@ -50,8 +52,15 @@ public class ContextConfiguration implements InitializingBean {
     @ConditionalOnClass(ServerInterceptor.class)
     static class GrpcServer {
         @Bean
-        public ContextualServerInterceptor contextualServerInterceptor() {
-            return new ContextualServerInterceptor();
+        public ContextualServerInterceptor contextualServerInterceptor(ObservationRegistry observationRegistry) {
+            return new ContextualServerInterceptor(observationRegistry);
+        }
+
+        @Bean
+        @ConditionalOnMissingBean
+        public ObservationGrpcServerInterceptor observationGrpcServerInterceptor(
+                ObservationRegistry observationRegistry) {
+            return new ObservationGrpcServerInterceptor(observationRegistry);
         }
     }
 

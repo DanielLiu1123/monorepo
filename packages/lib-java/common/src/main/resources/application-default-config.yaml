@@ -3,4 +3,4 @@ spring:
     default-property-inclusion: non_null # not null by default
   threads:
     virtual:
-      enabled: true
+      enabled: false

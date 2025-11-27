@@ -1,5 +1,6 @@
 package monorepo.lib.common.context;
 
+import io.micrometer.observation.Observation;
 import java.util.concurrent.Callable;
 import org.jspecify.annotations.Nullable;
 
@@ -22,18 +23,29 @@ public final class ContextualCallable<T> implements Callable<T> {
     @Override
     public T call() throws Exception {
 
-        // If the same thread repeatedly sets the context, it will cause the context to be cleared after the delegate
-        // executes,
-        // resulting in context loss. First set, last clear.
-        if (ContextHolder.getOrNull() == context) {
+        if (context == null) {
             return delegate.call();
         }
 
-        ContextHolder.set(context);
+        var observation = Observation.createNotStarted("contextual.call", context.observationRegistry())
+                .start();
         try {
-            return delegate.call();
+            // If the same thread repeatedly sets the context, it will cause the context to be cleared after the
+            // delegate
+            // executes,
+            // resulting in context loss. First set, last clear.
+            if (ContextHolder.getOrNull() == context) {
+                return delegate.call();
+            }
+
+            ContextHolder.set(context);
+            try {
+                return delegate.call();
+            } finally {
+                ContextHolder.remove();
+            }
         } finally {
-            ContextHolder.remove();
+            observation.stop();
         }
     }
 
