@@ -8,7 +8,7 @@ import org.jspecify.annotations.Nullable;
  * @author Freeman
  * @since 2025/5/1
  */
-public final class ContextualCallable<T> implements Callable<T> {
+final class ContextualCallable<T> implements Callable<T> {
 
     private final Callable<T> delegate;
 
@@ -35,19 +35,8 @@ public final class ContextualCallable<T> implements Callable<T> {
     public T call() throws Exception {
         if (context == null) {
             return delegate.call();
-        }
-
-        // If the same thread repeatedly sets the context, it will cause the context to be cleared after the
-        // delegate executes, resulting in context loss. First set, last clear.
-        if (ContextHolder.getOrNull() == context) {
-            return withObservation(delegate);
-        }
-
-        ContextHolder.set(context);
-        try {
-            return withObservation(delegate);
-        } finally {
-            ContextHolder.remove();
+        } else {
+            return ContextHolder.callWithContext(context, () -> withObservation(delegate));
         }
     }
 

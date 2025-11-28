@@ -30,15 +30,8 @@ public final class ContextualServerInterceptor implements ServerInterceptor {
     @Override
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(
             ServerCall<ReqT, RespT> call, Metadata headers, ServerCallHandler<ReqT, RespT> next) {
-
         var ctx = buildContext(headers);
-
-        ContextHolder.set(ctx);
-        try {
-            return new ContextualListener<>(next.startCall(call, headers), ctx);
-        } finally {
-            ContextHolder.remove();
-        }
+        return ContextHolder.getWithContext(ctx, () -> new ContextualListener<>(next.startCall(call, headers), ctx));
     }
 
     private Context buildContext(Metadata metadata) {
@@ -95,12 +88,7 @@ public final class ContextualServerInterceptor implements ServerInterceptor {
         }
 
         private void doInContext(Runnable runnable) {
-            ContextHolder.set(context);
-            try {
-                runnable.run();
-            } finally {
-                ContextHolder.remove();
-            }
+            ContextHolder.runWithContext(context, runnable);
         }
     }
 }

@@ -7,7 +7,7 @@ import org.jspecify.annotations.Nullable;
  * @author Freeman
  * @since 2025/5/1
  */
-public final class ContextualRunnable implements Runnable {
+final class ContextualRunnable implements Runnable {
 
     private final Runnable delegate;
 
@@ -34,21 +34,8 @@ public final class ContextualRunnable implements Runnable {
     public void run() {
         if (context == null) {
             delegate.run();
-            return;
-        }
-
-        // If the same thread repeatedly sets the context, it will cause the context to be cleared after the
-        // delegate executes, resulting in context loss. First set, last clear.
-        if (ContextHolder.getOrNull() == context) {
-            withObservation(delegate);
-            return;
-        }
-
-        ContextHolder.set(context);
-        try {
-            withObservation(delegate);
-        } finally {
-            ContextHolder.remove();
+        } else {
+            ContextHolder.runWithContext(context, () -> withObservation(delegate));
         }
     }
 

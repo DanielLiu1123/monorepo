@@ -5,7 +5,6 @@ import io.grpc.stub.StreamObserver;
 import io.grpc.testing.protobuf.SimpleRequest;
 import io.grpc.testing.protobuf.SimpleResponse;
 import io.grpc.testing.protobuf.SimpleServiceGrpc;
-
 import java.util.ArrayList;
 import java.util.List;
 import monorepo.lib.common.util.ThreadUtil;
@@ -34,8 +33,7 @@ public class SimpleServer extends SimpleServiceGrpc.SimpleServiceImplBase {
                 .get()
                 .uri("https://my-json-server.typicode.com/typicode/demo/posts")
                 .retrieve()
-                .body(new ParameterizedTypeReference<List<Post>>() {
-                }));
+                .body(new ParameterizedTypeReference<List<Post>>() {}));
 
         var postsV1 = future.join();
 
@@ -43,8 +41,7 @@ public class SimpleServer extends SimpleServiceGrpc.SimpleServiceImplBase {
                 .get()
                 .uri("https://my-json-server.typicode.com/typicode/demo/posts/1")
                 .retrieve()
-                .body(new ParameterizedTypeReference<Post>() {
-                });
+                .body(new ParameterizedTypeReference<Post>() {});
 
         var posts = new ArrayList<Post>();
         posts.addAll(postsV1);

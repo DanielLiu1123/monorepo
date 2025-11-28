@@ -8,7 +8,6 @@ import monorepo.lib.common.context.grpc.ContextualClientInterceptor;
 import monorepo.lib.common.context.grpc.ContextualServerInterceptor;
 import monorepo.lib.common.context.restclient.ContextualClientHttpRequestInterceptor;
 import monorepo.lib.common.context.webmv.ContextualOncePerRequestFilter;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -22,11 +21,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * @since 2025/11/19
  */
 @Configuration(proxyBeanMethods = false)
-public class ContextConfiguration implements InitializingBean {
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-    }
+public class ContextConfiguration {
 
     @Configuration(proxyBeanMethods = false)
     @ConditionalOnWebApplication
