@@ -15,9 +15,13 @@ public final class ContextualCallable<T> implements Callable<T> {
     @Nullable
     private final Context context;
 
+    @Nullable
+    private final Observation parentObservation;
+
     private ContextualCallable(Callable<T> delegate) {
         this.delegate = delegate;
         this.context = ContextHolder.getOrNull();
+        this.parentObservation = context != null ? context.observationRegistry().getCurrentObservation() : null;
     }
 
     public static <T> ContextualCallable<T> of(Callable<T> delegate) {
@@ -51,14 +55,18 @@ public final class ContextualCallable<T> implements Callable<T> {
         if (context == null) {
             return callable.call();
         }
-        var observation = Observation.createNotStarted("contextual.call", context.observationRegistry()).start();
-        try (var _ = observation.openScope()) {
+        var ob = Observation.createNotStarted("async.callable", context.observationRegistry());
+        if (parentObservation != null) {
+            ob.parentObservation(parentObservation);
+        }
+        ob.start();
+        try (var _ = ob.openScope()) {
             return callable.call();
         } catch (Throwable e) {
-            observation.error(e);
+            ob.error(e);
             throw e;
         } finally {
-            observation.stop();
+            ob.stop();
         }
     }
 }

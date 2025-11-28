@@ -14,9 +14,13 @@ public final class ContextualRunnable implements Runnable {
     @Nullable
     private final Context context;
 
+    @Nullable
+    private final Observation parentObservation;
+
     private ContextualRunnable(Runnable delegate) {
         this.delegate = delegate;
         this.context = ContextHolder.getOrNull();
+        this.parentObservation = context != null ? context.observationRegistry().getCurrentObservation() : null;
     }
 
     public static ContextualRunnable of(Runnable delegate) {
@@ -53,14 +57,18 @@ public final class ContextualRunnable implements Runnable {
             runnable.run();
             return;
         }
-        var observation = Observation.createNotStarted("contextual.run", this.context.observationRegistry()).start();
-        try (var _ = observation.openScope()) {
+        var ob = Observation.createNotStarted("async.runnable", this.context.observationRegistry());
+        if (parentObservation != null) {
+            ob.parentObservation(parentObservation);
+        }
+        ob.start();
+        try (var _ = ob.openScope()) {
             runnable.run();
         } catch (Throwable e) {
-            observation.error(e);
+            ob.error(e);
             throw e;
         } finally {
-            observation.stop();
+            ob.stop();
         }
     }
 }
