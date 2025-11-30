@@ -27,22 +27,14 @@ public final class ContextHolder {
         return CONTEXT.get();
     }
 
-    public static void set(Context ctx) {
-        CONTEXT.set(ctx);
-    }
-
-    public static void remove() {
-        CONTEXT.remove();
-    }
-
     public static <T> T getWithContext(Context context, Supplier<T> supplier) {
-        var previousContext = getOrNull();
+        var previous = getOrNull();
         set(context);
         try {
             return supplier.get();
         } finally {
-            if (previousContext != null) {
-                set(previousContext);
+            if (previous != null) {
+                set(previous);
             } else {
                 remove();
             }
@@ -50,13 +42,13 @@ public final class ContextHolder {
     }
 
     public static <T> T callWithContext(Context context, Callable<T> callable) throws Exception {
-        var previousContext = getOrNull();
+        var previous = getOrNull();
         set(context);
         try {
             return callable.call();
         } finally {
-            if (previousContext != null) {
-                set(previousContext);
+            if (previous != null) {
+                set(previous);
             } else {
                 remove();
             }
@@ -64,16 +56,24 @@ public final class ContextHolder {
     }
 
     public static void runWithContext(Context context, Runnable runnable) {
-        var previousContext = getOrNull();
+        var previous = getOrNull();
         set(context);
         try {
             runnable.run();
         } finally {
-            if (previousContext != null) {
-                set(previousContext);
+            if (previous != null) {
+                set(previous);
             } else {
                 remove();
             }
         }
+    }
+
+    private static void set(Context ctx) {
+        CONTEXT.set(ctx);
+    }
+
+    private static void remove() {
+        CONTEXT.remove();
     }
 }

@@ -30,12 +30,14 @@ public final class ContextualOncePerRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        ContextHolder.set(buildContext(request));
-        try {
-            filterChain.doFilter(request, response);
-        } finally {
-            ContextHolder.remove();
-        }
+        var context = buildContext(request);
+        ContextHolder.runWithContext(context, () -> {
+            try {
+                filterChain.doFilter(request, response);
+            } catch (Throwable t) {
+                sneakyThrow(t);
+            }
+        });
     }
 
     private Context buildContext(HttpServletRequest request) {
@@ -60,5 +62,10 @@ public final class ContextualOncePerRequestFilter extends OncePerRequestFilter {
             result.add(values.nextElement());
         }
         return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T extends Throwable> void sneakyThrow(Throwable t) throws T {
+        throw (T) t;
     }
 }
