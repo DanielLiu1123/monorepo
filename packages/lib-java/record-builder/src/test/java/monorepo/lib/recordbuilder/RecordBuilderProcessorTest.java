@@ -7,6 +7,8 @@ import com.google.testing.compile.JavaFileObjects;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.List;
 import javax.tools.JavaFileObject;
 import org.junit.jupiter.api.Test;
 
@@ -39,5 +41,18 @@ class RecordBuilderProcessorTest {
         String relativePath = clazz.getName().replace('.', '/') + ".java";
         return JavaFileObjects.forSourceString(
                 clazz.getCanonicalName(), Files.readString(testSourceRoot.resolve(relativePath)));
+    }
+
+    @Test
+    void testEverything() {
+        EverythingBuilder builder = EverythingBuilder.of();
+        builder.setInt_(42);
+        builder.setDouble_(3.14);
+        builder.setBoolean_(true);
+        builder.setString("Test String");
+        builder.setLocalDate(LocalDate.now());
+        builder.setNullableString("Hello");
+        builder.addAllListString(List.of("A", "B", "C"));
+        Everything record = builder.build();
     }
 }

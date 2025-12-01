@@ -496,6 +496,11 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
                         unmodifiableMethod,
                         fieldName);
             } else {
+                methodBuilder.addStatement(
+                        "$T.requireNonNull(this.$L, \"$L has not been set a value yet\")",
+                        Objects.class,
+                        fieldName,
+                        fieldName);
                 ClassName interfaceClass = getCollectionInterfaceClass(component.asType());
                 String unmodifiableMethod =
                         interfaceClass.equals(ClassName.get(Set.class)) ? "unmodifiableSet" : "unmodifiableList";
@@ -515,6 +520,11 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
                         Collections.class,
                         fieldName);
             } else {
+                methodBuilder.addStatement(
+                        "$T.requireNonNull(this.$L, \"$L has not been set a value yet\")",
+                        Objects.class,
+                        fieldName,
+                        fieldName);
                 methodBuilder.addStatement(
                         "return this.$L != null ? $T.unmodifiableMap(this.$L) : $T.of()",
                         fieldName,
