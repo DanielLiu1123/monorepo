@@ -1,3 +1,16 @@
-dependencies {
+java {
+    sourceCompatibility = 17
+    targetCompatibility = 17
+}
 
+dependencies {
+    // For @Nullable annotation support
+    compileOnly("org.jspecify:jspecify:1.0.0")
+
+    // For code generation
+    implementation("com.squareup:javapoet:1.13.0")
+
+    // Apply annotation processor to test compilation
+    testAnnotationProcessor(files(compileJava))
+    testCompileOnly("org.jspecify:jspecify:1.0.0")
 }
