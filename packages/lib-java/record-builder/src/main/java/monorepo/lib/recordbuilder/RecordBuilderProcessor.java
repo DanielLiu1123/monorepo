@@ -11,7 +11,6 @@ import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -40,7 +39,6 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
-import javax.tools.JavaFileObject;
 
 /**
  * Annotation processor for generating builder classes for records annotated with {@link RecordBuilder}.
@@ -192,7 +190,8 @@ public class RecordBuilderProcessor extends AbstractProcessor {
         // See https://docs.gradle.org/current/userguide/java_plugin.html#isolating_annotation_processors
         builderClassBuilder.addOriginatingElement(recordElement);
 
-        JavaFile javaFile = JavaFile.builder(packageName, builderClassBuilder.build()).build();
+        JavaFile javaFile =
+                JavaFile.builder(packageName, builderClassBuilder.build()).build();
         javaFile.writeTo(filer);
     }
 
