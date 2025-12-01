@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationListener;
  * @author Freeman
  * @since 2025/5/19
  */
-public class CDSTrainingRunHandler implements ApplicationListener<ApplicationReadyEvent> {
+public final class CDSTrainingRunHandler implements ApplicationListener<ApplicationReadyEvent> {
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
