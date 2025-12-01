@@ -41,13 +41,14 @@ class EverythingMapperTest {
                 import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
                 import static org.mapstruct.ReportingPolicy.ERROR;
 
+                import monorepo.lib.msp.MapStructConfig;
                 import monorepo.proto.order.v1.EverythingProto3;
                 import monorepo.services.product.entity.Everything;
                 import org.mapstruct.Mapper;
                 import org.mapstruct.Mapping;
                 import org.mapstruct.factory.Mappers;
 
-                @Mapper(nullValueCheckStrategy = ALWAYS, unmappedTargetPolicy = ERROR, unmappedSourcePolicy =  ERROR)
+                @Mapper(config = MapStructConfig.class)
                 public interface EverythingConverter {
 
                     EverythingConverter INSTANCE = Mappers.getMapper(EverythingConverter.class);

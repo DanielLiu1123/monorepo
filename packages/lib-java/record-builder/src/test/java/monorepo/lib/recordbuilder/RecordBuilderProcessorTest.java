@@ -1,5 +1,7 @@
 package monorepo.lib.recordbuilder;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.google.testing.compile.Compilation;
 import com.google.testing.compile.CompilationSubject;
 import com.google.testing.compile.Compiler;
@@ -54,5 +56,8 @@ class RecordBuilderProcessorTest {
         builder.setNullableString("Hello");
         builder.addAllListString(List.of("A", "B", "C"));
         Everything record = builder.build();
+
+        assertThat(record).isNotSameAs(EverythingBuilder.from(record).build());
+        assertThat(record).isEqualTo(EverythingBuilder.from(record).build());
     }
 }

@@ -504,13 +504,7 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
                 ClassName interfaceClass = getCollectionInterfaceClass(component.asType());
                 String unmodifiableMethod =
                         interfaceClass.equals(ClassName.get(Set.class)) ? "unmodifiableSet" : "unmodifiableList";
-                methodBuilder.addStatement(
-                        "return this.$L != null ? $T.$L(this.$L) : $T.of()",
-                        fieldName,
-                        Collections.class,
-                        unmodifiableMethod,
-                        fieldName,
-                        interfaceClass);
+                methodBuilder.addStatement("return $T.$L(this.$L)", Collections.class, unmodifiableMethod, fieldName);
             }
         } else if (isMap(component)) {
             if (isNullable(component)) {
@@ -525,18 +519,16 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
                         Objects.class,
                         fieldName,
                         fieldName);
-                methodBuilder.addStatement(
-                        "return this.$L != null ? $T.unmodifiableMap(this.$L) : $T.of()",
-                        fieldName,
-                        Collections.class,
-                        fieldName,
-                        Map.class);
+                methodBuilder.addStatement("return $T.unmodifiableMap(this.$L)", Collections.class, fieldName);
             }
         } else if (isPrimitive(component) || isNullable(component)) {
             methodBuilder.addStatement("return this.$L", fieldName);
         } else {
             methodBuilder.addStatement(
-                    "return $T.requireNonNull(this.$L, \"$L cannot be null\")", Objects.class, fieldName, fieldName);
+                    "return $T.requireNonNull(this.$L, \"$L has not been set a value yet\")",
+                    Objects.class,
+                    fieldName,
+                    fieldName);
         }
 
         // Add @Nullable annotation if the field is nullable in the record
