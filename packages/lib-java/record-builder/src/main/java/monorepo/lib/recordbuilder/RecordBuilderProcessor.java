@@ -491,7 +491,10 @@ public class RecordBuilderProcessor extends AbstractProcessor {
                         fieldName);
             } else {
                 methodBuilder.addStatement(
-                        "$T.requireNonNull(this.$L, \"$L has not been set a value yet\")", Objects.class, fieldName, fieldName);
+                        "$T.requireNonNull(this.$L, \"$L has not been set a value yet\")",
+                        Objects.class,
+                        fieldName,
+                        fieldName);
                 ClassName interfaceClass = getCollectionInterfaceClass(component.asType());
                 String unmodifiableMethod =
                         interfaceClass.equals(ClassName.get(Set.class)) ? "unmodifiableSet" : "unmodifiableList";
