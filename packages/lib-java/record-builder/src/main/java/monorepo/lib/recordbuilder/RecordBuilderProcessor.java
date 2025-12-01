@@ -24,8 +24,6 @@ import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
@@ -46,14 +44,22 @@ import javax.tools.Diagnostic;
  * @author Freeman
  * @since 2025/11/30
  */
-@SupportedAnnotationTypes("monorepo.lib.recordbuilder.RecordBuilder")
-@SupportedSourceVersion(SourceVersion.RELEASE_17)
 public final class RecordBuilderProcessor extends AbstractProcessor {
 
     private Filer filer;
     private Messager messager;
     private Elements elementUtils;
     private Types typeUtils;
+
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.latestSupported();
+    }
+
+    @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        return Set.of(RecordBuilder.class.getCanonicalName());
+    }
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {

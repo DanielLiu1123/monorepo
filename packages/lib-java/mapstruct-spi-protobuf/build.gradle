@@ -14,7 +14,7 @@ dependencies {
     testAnnotationProcessor project(":packages:lib-java:mapstruct-spi-protobuf")
     testImplementation "com.google.protobuf:protobuf-java"
     testImplementation "com.google.api.grpc:proto-google-common-protos"
-    testImplementation "com.google.testing.compile:compile-testing:+"
+    testImplementation "com.google.testing.compile:compile-testing:${compileTestingVersion}"
 }
 
 protobuf {

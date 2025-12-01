@@ -1,8 +1,7 @@
 dependencies {
-    compileOnly "org.jspecify:jspecify"
     implementation "com.palantir.javapoet:javapoet:${javapoetVersion}"
 
-    // Apply annotation processor to test compilation
-    testAnnotationProcessor files(compileJava)
-    testCompileOnly "org.jspecify:jspecify"
+    testAnnotationProcessor project(":packages:lib-java:record-builder")
+    testImplementation "org.jspecify:jspecify"
+    testImplementation "com.google.testing.compile:compile-testing:${compileTestingVersion}"
 }
