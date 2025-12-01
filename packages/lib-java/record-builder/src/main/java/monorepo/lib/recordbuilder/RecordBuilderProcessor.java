@@ -48,7 +48,7 @@ import javax.tools.Diagnostic;
  */
 @SupportedAnnotationTypes("monorepo.lib.recordbuilder.RecordBuilder")
 @SupportedSourceVersion(SourceVersion.RELEASE_17)
-public class RecordBuilderProcessor extends AbstractProcessor {
+public final class RecordBuilderProcessor extends AbstractProcessor {
 
     private Filer filer;
     private Messager messager;
