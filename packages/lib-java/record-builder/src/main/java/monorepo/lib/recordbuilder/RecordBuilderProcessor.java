@@ -123,18 +123,15 @@ public class RecordBuilderProcessor extends AbstractProcessor {
         int fieldCount = components.size();
         if (fieldCount <= 32) {
             builderClassBuilder.addField(FieldSpec.builder(int.class, "_presenceMask0_", Modifier.PRIVATE)
-                    .addJavadoc("Bitmap to track which fields have been set. Each bit represents one field.\n")
                     .build());
         } else if (fieldCount <= 64) {
             builderClassBuilder.addField(FieldSpec.builder(long.class, "_presenceMask0_", Modifier.PRIVATE)
-                    .addJavadoc("Bitmap to track which fields have been set. Each bit represents one field.\n")
                     .build());
         } else {
             // For > 64 fields, use long array
             int arraySize = (fieldCount + 63) / 64; // ceil(fieldCount / 64)
             builderClassBuilder.addField(FieldSpec.builder(long[].class, "_presenceMask0_", Modifier.PRIVATE)
                     .initializer("new long[$L]", arraySize)
-                    .addJavadoc("Bitmap to track which fields have been set. Each bit represents one field.\n")
                     .build());
         }
 
@@ -494,7 +491,7 @@ public class RecordBuilderProcessor extends AbstractProcessor {
                         fieldName);
             } else {
                 methodBuilder.addStatement(
-                        "$T.requireNonNull(this.$L, \"$L cannot be null\")", Objects.class, fieldName, fieldName);
+                        "$T.requireNonNull(this.$L, \"$L has not been set a value yet\")", Objects.class, fieldName, fieldName);
                 ClassName interfaceClass = getCollectionInterfaceClass(component.asType());
                 String unmodifiableMethod =
                         interfaceClass.equals(ClassName.get(Set.class)) ? "unmodifiableSet" : "unmodifiableList";
@@ -821,45 +818,45 @@ public class RecordBuilderProcessor extends AbstractProcessor {
     private CodeBlock generateSetBitStatement(int bitIndex, int totalFields) {
         if (totalFields <= 32) {
             // Use int bitmap
-            return CodeBlock.of("this._presenceMask0_ |= $L", 1 << bitIndex);
+            return CodeBlock.of("this._presenceMask0_ |= $L", "(1 << " + bitIndex + ")");
         } else if (totalFields <= 64) {
             // Use long bitmap
-            return CodeBlock.of("this._presenceMask0_ |= $LL", 1L << bitIndex);
+            return CodeBlock.of("this._presenceMask0_ |= $L", "(1L << " + bitIndex + ")");
         } else {
             // Use long array bitmap
             int arrayIndex = bitIndex / 64;
             int bitOffset = bitIndex % 64;
-            return CodeBlock.of("this._presenceMask0_[$L] |= $LL", arrayIndex, 1L << bitOffset);
+            return CodeBlock.of("this._presenceMask0_[$L] |= $L", arrayIndex, "(1L << " + bitOffset + ")");
         }
     }
 
     private CodeBlock generateCheckBitExpression(int bitIndex, int totalFields) {
         if (totalFields <= 32) {
             // Use int bitmap
-            return CodeBlock.of("(this._presenceMask0_ & $L) != 0", 1 << bitIndex);
+            return CodeBlock.of("(this._presenceMask0_ & $L) != 0", "(1 << " + bitIndex + ")");
         } else if (totalFields <= 64) {
             // Use long bitmap
-            return CodeBlock.of("(this._presenceMask0_ & $LL) != 0", 1L << bitIndex);
+            return CodeBlock.of("(this._presenceMask0_ & $L) != 0", "(1L << " + bitIndex + ")");
         } else {
             // Use long array bitmap
             int arrayIndex = bitIndex / 64;
             int bitOffset = bitIndex % 64;
-            return CodeBlock.of("(this._presenceMask0_[$L] & $LL) != 0", arrayIndex, 1L << bitOffset);
+            return CodeBlock.of("(this._presenceMask0_[$L] & $L) != 0", arrayIndex, "(1L << " + bitOffset + ")");
         }
     }
 
     private CodeBlock generateClearBitStatement(int bitIndex, int totalFields) {
         if (totalFields <= 32) {
             // Use int bitmap
-            return CodeBlock.of("this._presenceMask0_ &= ~$L", 1 << bitIndex);
+            return CodeBlock.of("this._presenceMask0_ &= ~$L", "(1 << " + bitIndex + ")");
         } else if (totalFields <= 64) {
             // Use long bitmap
-            return CodeBlock.of("this._presenceMask0_ &= ~$LL", 1L << bitIndex);
+            return CodeBlock.of("this._presenceMask0_ &= ~$L", "(1L << " + bitIndex + ")");
         } else {
             // Use long array bitmap
             int arrayIndex = bitIndex / 64;
             int bitOffset = bitIndex % 64;
-            return CodeBlock.of("this._presenceMask0_[$L] &= ~$LL", arrayIndex, 1L << bitOffset);
+            return CodeBlock.of("this._presenceMask0_[$L] &= ~$L", arrayIndex, "(1L << " + bitOffset + ")");
         }
     }
 }
