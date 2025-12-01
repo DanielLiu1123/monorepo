@@ -1,9 +1,0 @@
-dependencies {
-    // Depend on the record-builder module
-    implementation project(":packages:lib-java:record-builder")
-    annotationProcessor project(":packages:lib-java:record-builder")
-
-    // For @Nullable annotation support
-    compileOnly "org.jspecify:jspecify"
-    compileOnly "javax.annotation:javax.annotation-api:1.3.2"
-}
