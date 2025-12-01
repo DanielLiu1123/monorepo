@@ -59,6 +59,7 @@ class RecordBuilderProcessorTest {
 
         assertThat(record).isNotSameAs(EverythingBuilder.from(record).build());
         assertThat(record).isEqualTo(EverythingBuilder.from(record).build());
-        assertThat(record).isNotEqualTo(EverythingBuilder.from(record).clearListString().build());
+        assertThat(record)
+                .isNotEqualTo(EverythingBuilder.from(record).clearListString().build());
     }
 }

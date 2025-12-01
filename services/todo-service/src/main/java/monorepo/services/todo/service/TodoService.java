@@ -36,8 +36,9 @@ import org.mybatis.dynamic.sql.AndOrCriteriaGroup;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-// @Service
+@Service
 @RequiredArgsConstructor
 public class TodoService {
 
