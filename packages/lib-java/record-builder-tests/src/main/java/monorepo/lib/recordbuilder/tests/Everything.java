@@ -1,12 +1,11 @@
 package monorepo.lib.recordbuilder.tests;
 
-import monorepo.lib.recordbuilder.RecordBuilder;
-import org.jspecify.annotations.Nullable;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import monorepo.lib.recordbuilder.RecordBuilder;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Test record for RecordBuilder annotation processor.
@@ -43,6 +42,4 @@ public record Everything(
         @Nullable Map<String, Integer> nullableMapStringInteger,
         Map<@Nullable String, Integer> mapNullableStringInteger,
         Map<String, @Nullable Integer> mapStringNullableInteger,
-        Map<@Nullable String, @Nullable Integer> mapNullableStringNullableInteger
-) {
-}
+        Map<@Nullable String, @Nullable Integer> mapNullableStringNullableInteger) {}
