@@ -490,15 +490,16 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
                         unmodifiableMethod,
                         fieldName);
             } else {
-                methodBuilder.addStatement(
-                        "$T.requireNonNull(this.$L, \"$L has not been set a value yet\")",
-                        Objects.class,
-                        fieldName,
-                        fieldName);
                 ClassName interfaceClass = getCollectionInterfaceClass(component.asType());
                 String unmodifiableMethod =
                         interfaceClass.equals(ClassName.get(Set.class)) ? "unmodifiableSet" : "unmodifiableList";
-                methodBuilder.addStatement("return $T.$L(this.$L)", Collections.class, unmodifiableMethod, fieldName);
+                methodBuilder.addStatement(
+                        "return this.$L != null ? $T.$L(this.$L) : $T.of()",
+                        fieldName,
+                        Collections.class,
+                        unmodifiableMethod,
+                        fieldName,
+                        interfaceClass);
             }
         } else if (isMap(component)) {
             if (isNullable(component)) {
@@ -509,8 +510,11 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
                         fieldName);
             } else {
                 methodBuilder.addStatement(
-                        "$T.requireNonNull(this.$L, \"$L cannot be null\")", Objects.class, fieldName, fieldName);
-                methodBuilder.addStatement("return $T.unmodifiableMap(this.$L)", Collections.class, fieldName);
+                        "return this.$L != null ? $T.unmodifiableMap(this.$L) : $T.of()",
+                        fieldName,
+                        Collections.class,
+                        fieldName,
+                        Map.class);
             }
         } else if (isPrimitive(component) || isNullable(component)) {
             methodBuilder.addStatement("return this.$L", fieldName);
@@ -572,7 +576,6 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
             // Use new collection + unmodifiable wrapper instead of copyOf() to support null elements
             if (isCollection(component)) {
                 ClassName interfaceClass = getCollectionInterfaceClass(component.asType());
-                Class<?> implClass = getCollectionImplClass(component.asType());
                 boolean isFieldNullable = isNullable(component);
                 String unmodifiableMethod =
                         interfaceClass.equals(ClassName.get(Set.class)) ? "unmodifiableSet" : "unmodifiableList";
@@ -580,20 +583,18 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
                 if (isFieldNullable) {
                     // For nullable fields, return null if field is null
                     returnStatement.add(
-                            "this.$L != null ? $T.$L(new $T<>(this.$L)) : null",
+                            "this.$L != null ? $T.$L(this.$L) : null",
                             fieldName,
                             Collections.class,
                             unmodifiableMethod,
-                            implClass,
                             fieldName);
                 } else {
                     // For non-nullable fields, return empty collection if field is null
                     returnStatement.add(
-                            "this.$L != null ? $T.$L(new $T<>(this.$L)) : $T.of()",
+                            "this.$L != null ? $T.$L(this.$L) : $T.of()",
                             fieldName,
                             Collections.class,
                             unmodifiableMethod,
-                            implClass,
                             fieldName,
                             interfaceClass);
                 }
@@ -603,18 +604,16 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
                 if (isFieldNullable) {
                     // For nullable fields, return null if field is null
                     returnStatement.add(
-                            "this.$L != null ? $T.unmodifiableMap(new $T<>(this.$L)) : null",
+                            "this.$L != null ? $T.unmodifiableMap(this.$L) : null",
                             fieldName,
                             Collections.class,
-                            HashMap.class,
                             fieldName);
                 } else {
                     // For non-nullable fields, return empty map if field is null
                     returnStatement.add(
-                            "this.$L != null ? $T.unmodifiableMap(new $T<>(this.$L)) : $T.of()",
+                            "this.$L != null ? $T.unmodifiableMap(this.$L) : $T.of()",
                             fieldName,
                             Collections.class,
-                            HashMap.class,
                             fieldName,
                             Map.class);
                 }
