@@ -41,4 +41,5 @@ public record Everything(
         @Nullable Map<String, Integer> nullableMapStringInteger,
         Map<@Nullable String, Integer> mapNullableStringInteger,
         Map<String, @Nullable Integer> mapStringNullableInteger,
-        Map<@Nullable String, @Nullable Integer> mapNullableStringNullableInteger) {}
+        Map<@Nullable String, @Nullable Integer> mapNullableStringNullableInteger,
+        Map<String, List<@Nullable String>> mapStringListNullableString) {}

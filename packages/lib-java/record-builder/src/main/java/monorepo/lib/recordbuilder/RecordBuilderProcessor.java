@@ -720,19 +720,16 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
         return hasElementAnnotation || hasTypeAnnotation;
     }
 
-    private boolean isNullableAnnotation(javax.lang.model.element.AnnotationMirror annotation) {
-        String simpleName =
-                annotation.getAnnotationType().asElement().getSimpleName().toString();
+    private boolean isNullableAnnotation(AnnotationMirror annotation) {
         String qualifiedName = ((TypeElement) annotation.getAnnotationType().asElement())
                 .getQualifiedName()
                 .toString();
-        // Support both simple name and common nullable annotations
-        return simpleName.equals("Nullable")
-                || qualifiedName.equals("org.jspecify.annotations.Nullable")
+        return qualifiedName.equals("org.jspecify.annotations.Nullable")
                 || qualifiedName.equals("javax.annotation.Nullable")
                 || qualifiedName.equals("jakarta.annotation.Nullable")
                 || qualifiedName.equals("org.jetbrains.annotations.Nullable")
                 || qualifiedName.equals("androidx.annotation.Nullable")
+                || qualifiedName.equals("org.checkerframework.checker.nullness.qual.Nullable")
                 || qualifiedName.equals("edu.umd.cs.findbugs.annotations.Nullable");
     }
 
@@ -747,10 +744,33 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
     private TypeName getTypeNameWithAnnotations(TypeMirror type) {
         TypeName typeName = TypeName.get(type);
 
-        // If the type has @Nullable annotation, ensure it's preserved
+        // Recursively handle parameterized types to preserve nested annotations
+        // For example: Map<String, List<@Nullable String>>
+        if (type.getKind() == TypeKind.DECLARED) {
+            DeclaredType declaredType = (DeclaredType) type;
+            List<? extends TypeMirror> typeArguments = declaredType.getTypeArguments();
+
+            if (!typeArguments.isEmpty()) {
+                // Recursively process each type argument to preserve nested annotations
+                TypeName[] typeArgumentNames = new TypeName[typeArguments.size()];
+                for (int i = 0; i < typeArguments.size(); i++) {
+                    typeArgumentNames[i] = getTypeNameWithAnnotations(typeArguments.get(i));
+                }
+
+                // Get the raw type
+                TypeElement typeElement = (TypeElement) declaredType.asElement();
+                ClassName rawType = ClassName.get(typeElement);
+
+                // Reconstruct the parameterized type with all nested annotations preserved
+                typeName = ParameterizedTypeName.get(rawType, typeArgumentNames);
+            }
+        }
+
+        // Add @Nullable annotation to the top-level type if present
         if (isTypeNullable(type)) {
             ClassName nullableAnnotation = getNullableAnnotationFromType(type);
-            return typeName.annotated(AnnotationSpec.builder(nullableAnnotation).build());
+            typeName = typeName.annotated(
+                    AnnotationSpec.builder(nullableAnnotation).build());
         }
 
         return typeName;
