@@ -7,7 +7,7 @@ import io.micrometer.observation.ObservationRegistry;
 import monorepo.lib.common.context.grpc.ContextualClientInterceptor;
 import monorepo.lib.common.context.grpc.ContextualServerInterceptor;
 import monorepo.lib.common.context.restclient.ContextualClientHttpRequestInterceptor;
-import monorepo.lib.common.context.webmv.ContextualOncePerRequestFilter;
+import monorepo.lib.common.context.webmvc.ContextualOncePerRequestFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;

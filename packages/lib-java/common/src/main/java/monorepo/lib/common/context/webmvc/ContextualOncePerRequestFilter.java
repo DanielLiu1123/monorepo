@@ -1,4 +1,4 @@
-package monorepo.lib.common.context.webmv;
+package monorepo.lib.common.context.webmvc;
 
 import io.micrometer.observation.ObservationRegistry;
 import jakarta.servlet.FilterChain;
