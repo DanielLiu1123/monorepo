@@ -21,3 +21,12 @@ docker run -id --name jaeger \
 ./gradlew :services:todo-service:bootRun
 open http://localhost:16686
 ```
+
+## Build
+
+```shell
+cd $(git rev-parse --show-toplevel)
+./gradlew :services:todo-service:bootJar
+cd $(git rev-parse --show-toplevel)/services/todo-service
+docker build -t todo-service:latest .
+```
