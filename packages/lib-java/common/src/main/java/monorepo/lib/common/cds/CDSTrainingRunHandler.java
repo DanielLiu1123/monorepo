@@ -24,6 +24,7 @@ public final class CDSTrainingRunHandler implements ApplicationRunner {
         for (var arg : jvmArgs) {
             if (arg.startsWith("-XX:AOTCacheOutput")) {
                 // In CDS training mode, we need to exit the application.
+                // see https://openjdk.org/jeps/514
                 // see org.springframework.context.support.DefaultLifecycleProcessor.onRefresh
                 log.info("CDS training run detected ({}), exiting application...", arg);
                 Runtime.getRuntime().halt(0);
