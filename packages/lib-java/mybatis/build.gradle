@@ -3,6 +3,8 @@ dependencies {
     api("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisBootStarterVersion}")
     api("org.mybatis.dynamic-sql:mybatis-dynamic-sql:${mybatisDynamicSqlVersion}")
 
+    compileOnly("io.micrometer:micrometer-core")
+
     compileOnly("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisBootStarterVersion}")
 
     // mybatis generator plugins

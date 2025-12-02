@@ -16,7 +16,7 @@ public final class ContextConsts {
     /**
      * @see <a href="https://www.w3.org/TR/2021/REC-trace-context-1-20211123/#design-overview">Trace Context</a>
      */
-    public static final Set<String> opentelemetryHeaders = Set.of("traceparent", "tracestate");
+    public static final Set<String> opentelemetryHeaders = Set.of(/*"traceparent", "tracestate"*/ );
 
     public static final Set<BiPredicate<String, List<String>>> propagatedHeaders = Set.of(
             // OpenTelemetry traces headers
