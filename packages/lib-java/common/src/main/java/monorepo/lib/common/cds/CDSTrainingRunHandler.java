@@ -1,24 +1,33 @@
 package monorepo.lib.common.cds;
 
-import java.util.Objects;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationListener;
+import java.lang.management.ManagementFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 
 /**
- * <p> {@code java -Dtraining=1 -jar app.jar} </p>
+ * Treat as training run when -XX:AOTCacheOutput is specified.
+ *
+ * <p> {@code java -XX:AOTCacheOutput=app.aot -jar app.jar}
  *
  * @author Freeman
  * @since 2025/5/19
  */
-public final class CDSTrainingRunHandler implements ApplicationListener<ApplicationReadyEvent> {
+public final class CDSTrainingRunHandler implements ApplicationRunner {
+    private static final Logger log = LoggerFactory.getLogger(CDSTrainingRunHandler.class);
 
     @Override
-    public void onApplicationEvent(ApplicationReadyEvent event) {
-        var ctx = event.getApplicationContext();
-        var training = ctx.getEnvironment().getProperty("training");
-        if (Objects.equals(training, "1") || Objects.equals(training, "true")) {
-            // see org.springframework.context.support.DefaultLifecycleProcessor.onRefresh
-            Runtime.getRuntime().halt(0);
+    public void run(ApplicationArguments args) {
+        var runtimeMxBean = ManagementFactory.getRuntimeMXBean();
+        var jvmArgs = runtimeMxBean.getInputArguments();
+        for (var arg : jvmArgs) {
+            if (arg.startsWith("-XX:AOTCacheOutput")) {
+                // In CDS training mode, we need to exit the application.
+                // see org.springframework.context.support.DefaultLifecycleProcessor.onRefresh
+                log.info("CDS training run detected ({}), exiting application...", arg);
+                Runtime.getRuntime().halt(0);
+            }
         }
     }
 }
