@@ -7,8 +7,11 @@ import io.grpc.ClientInterceptor;
 import io.grpc.ForwardingClientCall;
 import io.grpc.Metadata;
 import io.grpc.MethodDescriptor;
+import io.micrometer.observation.Observation;
 import monorepo.lib.common.context.Context;
 import monorepo.lib.common.context.ContextHolder;
+import monorepo.lib.common.util.JsonUtil;
+import org.jspecify.annotations.Nullable;
 
 /**
  *
@@ -35,9 +38,13 @@ public final class ContextualClientInterceptor implements ClientInterceptor {
 
         private final Context context;
 
+        @Nullable
+        private final Observation observation;
+
         public ContextualClientCall(ClientCall<Req, Resp> delegate, Context context) {
             super(delegate);
             this.context = context;
+            this.observation = context.observationRegistry().getCurrentObservation();
         }
 
         @Override
@@ -51,6 +58,20 @@ public final class ContextualClientInterceptor implements ClientInterceptor {
                 }
             }
             super.start(responseListener, headers);
+        }
+
+        @Override
+        public void sendMessage(Req message) {
+            if (observation != null && !observation.isNoop()) {
+                try {
+                    var requestBody = JsonUtil.stringify(message);
+                    observation.highCardinalityKeyValue("grpc.request.message", requestBody);
+                } catch (Exception e) {
+                    observation.highCardinalityKeyValue(
+                            "grpc.request.message", "(failed to serialize: " + e.getMessage() + ")");
+                }
+            }
+            super.sendMessage(message);
         }
     }
 }

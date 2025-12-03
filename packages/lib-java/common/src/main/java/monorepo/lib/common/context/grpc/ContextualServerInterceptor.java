@@ -5,13 +5,16 @@ import io.grpc.Metadata;
 import io.grpc.ServerCall;
 import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
+import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationRegistry;
+import jakarta.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import monorepo.lib.common.context.Context;
 import monorepo.lib.common.context.ContextHolder;
+import monorepo.lib.common.util.JsonUtil;
 
 /**
  *
@@ -57,14 +60,29 @@ public final class ContextualServerInterceptor implements ServerInterceptor {
 
         private final Context context;
 
+        @Nullable
+        private final Observation observation;
+
         private ContextualListener(ServerCall.Listener<Req> delegate, Context context) {
             super(delegate);
             this.context = context;
+            this.observation = context.observationRegistry().getCurrentObservation();
         }
 
         @Override
         public void onMessage(Req message) {
-            doInContext(() -> super.onMessage(message));
+            doInContext(() -> {
+                if (observation != null && !observation.isNoop()) {
+                    try {
+                        var requestBody = JsonUtil.stringify(message);
+                        observation.highCardinalityKeyValue("grpc.request.message", requestBody);
+                    } catch (Exception e) {
+                        observation.highCardinalityKeyValue(
+                                "grpc.request.message", "(failed to serialize: " + e.getMessage() + ")");
+                    }
+                }
+                super.onMessage(message);
+            });
         }
 
         @Override

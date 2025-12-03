@@ -6,13 +6,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import monorepo.lib.common.context.Context;
 import monorepo.lib.common.context.ContextHolder;
+import org.springframework.http.MediaType;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.util.ContentCachingRequestWrapper;
 
 /**
  * @author Freeman
@@ -30,14 +33,40 @@ public final class ContextualOncePerRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        var context = buildContext(request);
+        // Wrap request to cache the body for reading
+        var wrappedRequest = new ContentCachingRequestWrapper(request, 0);
+
+        var context = buildContext(wrappedRequest);
         ContextHolder.runWithContext(context, () -> {
             try {
-                filterChain.doFilter(request, response);
+                filterChain.doFilter(wrappedRequest, response);
+
+                // Read and record request body after the filter chain completes
+                var observation = observationRegistry.getCurrentObservation();
+                if (observation != null && !observation.isNoop()) {
+                    var requestBody = extractRequestBody(wrappedRequest);
+                    observation.highCardinalityKeyValue("http.request.body", requestBody);
+                }
             } catch (Throwable t) {
                 sneakyThrow(t);
             }
         });
+    }
+
+    private static String extractRequestBody(ContentCachingRequestWrapper request) {
+        try {
+            var mediaType = MediaType.parseMediaType(request.getContentType());
+            if (MediaType.APPLICATION_JSON.isCompatibleWith(mediaType)) {
+                var content = request.getContentAsByteArray();
+                if (content.length > 0) {
+                    return new String(content, StandardCharsets.UTF_8);
+                }
+                return "";
+            }
+            return "(request body is not JSON)";
+        } catch (Exception e) {
+            return "(failed to extract request body: " + e.getMessage() + ")";
+        }
     }
 
     private Context buildContext(HttpServletRequest request) {
