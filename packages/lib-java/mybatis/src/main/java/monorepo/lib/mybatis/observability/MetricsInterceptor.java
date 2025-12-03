@@ -1,8 +1,8 @@
-package monorepo.lib.mybatis.trace;
+package monorepo.lib.mybatis.observability;
 
-import io.micrometer.observation.Observation;
-import io.micrometer.observation.ObservationRegistry;
+import io.micrometer.core.instrument.MeterRegistry;
 import java.sql.Statement;
+import java.util.concurrent.TimeUnit;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.plugin.Interceptor;
@@ -32,12 +32,12 @@ import org.apache.ibatis.session.ResultHandler;
             method = "batch",
             args = {Statement.class})
 })
-public final class ObservationInterceptor implements Interceptor {
+public final class MetricsInterceptor implements Interceptor {
 
-    private final ObservationRegistry observationRegistry;
+    private final MeterRegistry meterRegistry;
 
-    public ObservationInterceptor(ObservationRegistry observationRegistry) {
-        this.observationRegistry = observationRegistry;
+    public MetricsInterceptor(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
     }
 
     @Override
@@ -46,18 +46,12 @@ public final class ObservationInterceptor implements Interceptor {
         BoundSql boundSql = statementHandler.getBoundSql();
         String sql = boundSql.getSql();
 
-        Observation observation = Observation.createNotStarted("db.sql", observationRegistry)
-                .highCardinalityKeyValue("db.statement", sql);
-
-        observation.start();
-
-        try (var _ = observation.openScope()) {
+        long startTime = System.nanoTime();
+        try {
             return invocation.proceed();
-        } catch (Throwable t) {
-            observation.error(t);
-            throw t;
         } finally {
-            observation.stop();
+            long duration = System.nanoTime() - startTime;
+            meterRegistry.timer("db.sql.execution", "db.statement", sql).record(duration, TimeUnit.NANOSECONDS);
         }
     }
 }
