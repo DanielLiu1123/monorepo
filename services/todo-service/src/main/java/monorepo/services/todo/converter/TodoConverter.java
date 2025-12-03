@@ -32,9 +32,9 @@ public abstract class TodoConverter {
     }
 
     @Mapping(target = "subTasks", ignore = true)
-    abstract monorepo.proto.todo.v1.Todo toTodo(Todo entity);
+    public abstract monorepo.proto.todo.v1.Todo toTodo(Todo entity);
 
-    abstract monorepo.proto.todo.v1.SubTask toTodoSubtask(TodoSubtask entity);
+    public abstract monorepo.proto.todo.v1.SubTask toTodoSubtask(TodoSubtask entity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
