@@ -62,9 +62,8 @@ public final class ContextualOncePerRequestFilter extends OncePerRequestFilter {
                 if (content.length > 0) {
                     return new String(content, StandardCharsets.UTF_8);
                 }
-                return "";
             }
-            return "(not JSON)";
+            return "";
         } catch (Exception e) {
             return "(failed to extract request body: " + e.getMessage() + ")";
         }

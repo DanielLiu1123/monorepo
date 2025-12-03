@@ -46,8 +46,7 @@ public final class ContextualClientHttpRequestInterceptor implements ClientHttpR
             if (body.length > 0) {
                 return new String(body, StandardCharsets.UTF_8);
             }
-            return "";
         }
-        return "(not JSON)";
+        return "";
     }
 }
