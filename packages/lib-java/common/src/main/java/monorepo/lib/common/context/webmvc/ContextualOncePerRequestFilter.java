@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import monorepo.lib.common.context.Context;
 import monorepo.lib.common.context.ContextHolder;
+import monorepo.lib.common.util.JsonUtil;
 import org.springframework.http.MediaType;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
@@ -44,8 +45,8 @@ public final class ContextualOncePerRequestFilter extends OncePerRequestFilter {
                 // Read and record request body after the filter chain completes
                 var observation = observationRegistry.getCurrentObservation();
                 if (observation != null && !observation.isNoop()) {
-                    var requestBody = extractRequestBody(wrappedRequest);
-                    observation.highCardinalityKeyValue("http.request.body", requestBody);
+                    observation.highCardinalityKeyValue("http.request.body", extractRequestBody(wrappedRequest));
+                    observation.highCardinalityKeyValue("http.request.headers", JsonUtil.stringify(context.headers()));
                 }
             } catch (Throwable t) {
                 sneakyThrow(t);

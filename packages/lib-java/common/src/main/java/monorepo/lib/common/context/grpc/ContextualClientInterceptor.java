@@ -30,7 +30,7 @@ public final class ContextualClientInterceptor implements ClientInterceptor {
         }
 
         var call = next.newCall(method, callOptions);
-        return new ContextualClientCall<>(call, context);
+        return new ContextualClientCall<>(call, context, method);
     }
 
     private static final class ContextualClientCall<Req, Resp>
@@ -41,10 +41,14 @@ public final class ContextualClientInterceptor implements ClientInterceptor {
         @Nullable
         private final Observation observation;
 
-        public ContextualClientCall(ClientCall<Req, Resp> delegate, Context context) {
+        private final MethodDescriptor<Req, Resp> method;
+
+        public ContextualClientCall(
+                ClientCall<Req, Resp> delegate, Context context, MethodDescriptor<Req, Resp> method) {
             super(delegate);
             this.context = context;
             this.observation = context.observationRegistry().getCurrentObservation();
+            this.method = method;
         }
 
         @Override
@@ -62,14 +66,8 @@ public final class ContextualClientInterceptor implements ClientInterceptor {
 
         @Override
         public void sendMessage(Req message) {
-            if (observation != null && !observation.isNoop()) {
-                try {
-                    var requestBody = JsonUtil.stringify(message);
-                    observation.highCardinalityKeyValue("grpc.request.message", requestBody);
-                } catch (Exception e) {
-                    observation.highCardinalityKeyValue(
-                            "grpc.request.message", "(failed to serialize: " + e.getMessage() + ")");
-                }
+            if (observation != null && !observation.isNoop() && method.getType() == MethodDescriptor.MethodType.UNARY) {
+                observation.highCardinalityKeyValue("grpc.request.message", JsonUtil.stringify(message));
             }
             super.sendMessage(message);
         }

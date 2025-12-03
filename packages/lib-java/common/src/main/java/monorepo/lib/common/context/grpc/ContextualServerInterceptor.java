@@ -2,6 +2,7 @@ package monorepo.lib.common.context.grpc;
 
 import io.grpc.ForwardingServerCallListener;
 import io.grpc.Metadata;
+import io.grpc.MethodDescriptor;
 import io.grpc.ServerCall;
 import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
@@ -34,7 +35,8 @@ public final class ContextualServerInterceptor implements ServerInterceptor {
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(
             ServerCall<ReqT, RespT> call, Metadata headers, ServerCallHandler<ReqT, RespT> next) {
         var ctx = buildContext(headers);
-        return ContextHolder.getWithContext(ctx, () -> new ContextualListener<>(next.startCall(call, headers), ctx));
+        return ContextHolder.getWithContext(
+                ctx, () -> new ContextualListener<>(next.startCall(call, headers), ctx, call.getMethodDescriptor()));
     }
 
     private Context buildContext(Metadata metadata) {
@@ -63,23 +65,24 @@ public final class ContextualServerInterceptor implements ServerInterceptor {
         @Nullable
         private final Observation observation;
 
-        private ContextualListener(ServerCall.Listener<Req> delegate, Context context) {
+        private final MethodDescriptor<?, ?> descriptor;
+
+        private ContextualListener(
+                ServerCall.Listener<Req> delegate, Context context, MethodDescriptor<?, ?> descriptor) {
             super(delegate);
             this.context = context;
             this.observation = context.observationRegistry().getCurrentObservation();
+            this.descriptor = descriptor;
         }
 
         @Override
         public void onMessage(Req message) {
             doInContext(() -> {
-                if (observation != null && !observation.isNoop()) {
-                    try {
-                        var requestBody = JsonUtil.stringify(message);
-                        observation.highCardinalityKeyValue("grpc.request.message", requestBody);
-                    } catch (Exception e) {
-                        observation.highCardinalityKeyValue(
-                                "grpc.request.message", "(failed to serialize: " + e.getMessage() + ")");
-                    }
+                if (observation != null
+                        && !observation.isNoop()
+                        && descriptor.getType() == MethodDescriptor.MethodType.UNARY) {
+                    observation.highCardinalityKeyValue("grpc.request.message", JsonUtil.stringify(message));
+                    observation.highCardinalityKeyValue("grpc.request.metadata", JsonUtil.stringify(context.headers()));
                 }
                 super.onMessage(message);
             });
