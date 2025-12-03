@@ -64,7 +64,7 @@ public final class ContextualOncePerRequestFilter extends OncePerRequestFilter {
                 }
                 return "";
             }
-            return "(request body is not JSON)";
+            return "(not JSON)";
         } catch (Exception e) {
             return "(failed to extract request body: " + e.getMessage() + ")";
         }

@@ -27,8 +27,7 @@ public final class ContextualClientHttpRequestInterceptor implements ClientHttpR
         // Record request body to observation
         var observation = context.observationRegistry().getCurrentObservation();
         if (observation != null && !observation.isNoop()) {
-            var requestBody = extractRequestBody(request, body);
-            observation.highCardinalityKeyValue("http.request.body", requestBody);
+            observation.highCardinalityKeyValue("http.request.body", extractRequestBody(request, body));
         }
 
         for (var en : context.getPropagatedHeaders().entrySet()) {
@@ -49,6 +48,6 @@ public final class ContextualClientHttpRequestInterceptor implements ClientHttpR
             }
             return "";
         }
-        return "(request body is not JSON)";
+        return "(not JSON)";
     }
 }
