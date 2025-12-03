@@ -5,6 +5,7 @@ import static monorepo.services.todo.mapper.TodoDynamicSqlSupport.todo;
 import static monorepo.services.todo.mapper.TodoSubtaskDynamicSqlSupport.todoSubtask;
 import static org.mybatis.dynamic.sql.SqlBuilder.and;
 import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
+import static org.mybatis.dynamic.sql.SqlBuilder.isGreaterThan;
 import static org.mybatis.dynamic.sql.SqlBuilder.isIn;
 import static org.mybatis.dynamic.sql.SqlBuilder.isInWhenPresent;
 import static org.mybatis.dynamic.sql.SqlBuilder.isNull;
@@ -14,8 +15,10 @@ import io.grpc.StatusRuntimeException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import monorepo.lib.common.pagination.PageTokenState;
 import monorepo.proto.todo.v1.BatchGetTodosRequest;
 import monorepo.proto.todo.v1.CreateSubtaskRequest;
 import monorepo.proto.todo.v1.CreateTodoRequest;
@@ -160,30 +163,36 @@ public class TodoService {
     public ListTodosResponse list(ListTodosRequest request) {
         int pageSize;
         if (request.getPageSize() <= 0) {
-            pageSize = 50;
+            pageSize = 100;
         } else if (request.getPageSize() > 1000) {
             pageSize = 1000;
         } else {
             pageSize = request.getPageSize();
         }
 
-        // Parse page_token to get offset
-        long offsetTemp = 0;
-        if (!request.getPageToken().isEmpty()) {
-            try {
-                offsetTemp = Long.parseLong(request.getPageToken());
-            } catch (NumberFormatException e) {
-                // Invalid token, use default offset 0
-            }
+        var pageTokenState = fromPageToken(request);
+        if (pageTokenState == null && !request.getPageToken().isEmpty()) {
+            throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("Invalid page token"));
         }
-        long offset = offsetTemp;
 
         // Query total count
         var totalSize = todoMapper.count(c -> c.where(buildConditions(request)));
+        if (totalSize == 0) {
+            return ListTodosResponse.newBuilder().setTotalSize(0).build();
+        }
 
+        // Build query with cursor-based pagination
         var entities = todoMapper.select(c -> {
-            var sql = c.where(buildConditions(request));
+            var conditions = buildConditions(request);
 
+            // Add cursor condition if we have a valid page token
+            if (pageTokenState != null && pageTokenState.lastId() != null) {
+                conditions.add(and(todo.id, isGreaterThan(Long.parseLong(pageTokenState.lastId()))));
+            }
+
+            var sql = c.where(conditions);
+
+            // Apply ordering
             for (var orderBy : request.getOrderByList()) {
                 var column = mapFieldToColumn(orderBy.getField());
                 if (column != null) {
@@ -191,25 +200,64 @@ public class TodoService {
                     else sql.orderBy(column);
                 }
             }
+            // Always order by id as a tie-breaker for consistent pagination
             sql.orderBy(todo.id);
 
-            sql.limit(pageSize).offset(offset);
+            sql.limit(pageSize);
             return sql;
         });
+        if (entities.isEmpty()) {
+            return ListTodosResponse.newBuilder().setTotalSize((int) totalSize).build();
+        }
 
         var todos = buildTodos(entities);
 
-        // Calculate next page token
-        var responseBuilder = ListTodosResponse.newBuilder();
-        responseBuilder.addAllTodos(todos);
-        responseBuilder.setTotalSize((int) totalSize);
+        // Build response with next page token
+        var builder = ListTodosResponse.newBuilder();
+        builder.addAllTodos(todos);
+        builder.setTotalSize((int) totalSize);
 
-        long nextOffset = offset + pageSize;
-        if (nextOffset < totalSize) {
-            responseBuilder.setNextPageToken(String.valueOf(nextOffset));
+        // Generate next page token if there are more results
+        if (todos.size() == pageSize) {
+            var last = entities.getLast();
+            var newOffset = (pageTokenState != null ? pageTokenState.offset() : 0) + pageSize;
+
+            var newPageTokenState = new PageTokenState(
+                    String.valueOf(last.getId()), newOffset, calculateFilterHash(request), calculateSortHash(request));
+            builder.setNextPageToken(newPageTokenState.toPageToken());
         }
 
-        return responseBuilder.build();
+        return builder.build();
+    }
+
+    @Nullable
+    private static PageTokenState fromPageToken(ListTodosRequest request) {
+        var pageToken = request.getPageToken();
+        if (pageToken.isEmpty()) {
+            return null;
+        }
+
+        PageTokenState result;
+        try {
+            result = PageTokenState.fromPageToken(pageToken);
+        } catch (Exception e) {
+            log.warn("Invalid page token format: {}", pageToken);
+            return null;
+        }
+
+        var currentFilterHash = calculateFilterHash(request);
+        if (!Objects.equals(result.filterHash(), currentFilterHash)) {
+            log.warn("Page token filter mismatch, ignoring token");
+            return null;
+        }
+
+        var currentSortHash = calculateSortHash(request);
+        if (!Objects.equals(result.sortHash(), currentSortHash)) {
+            log.warn("Page token sort mismatch, ignoring token");
+            return null;
+        }
+
+        return result;
     }
 
     private List<monorepo.proto.todo.v1.Todo> buildTodos(List<Todo> todos) {
@@ -263,6 +311,22 @@ public class TodoService {
                 yield null;
             }
         };
+    }
+
+    private static String calculateFilterHash(ListTodosRequest request) {
+        var builder = ListTodosRequest.newBuilder();
+        builder.setUserId(request.getUserId());
+        if (request.hasFilter()) {
+            builder.setFilter(request.getFilter());
+        }
+        if (request.hasShowDeleted()) {
+            builder.setShowDeleted(request.getShowDeleted());
+        }
+        return String.valueOf(Objects.hashCode(builder.build()));
+    }
+
+    private static String calculateSortHash(ListTodosRequest request) {
+        return String.valueOf(Objects.hashCode(request.getOrderByList()));
     }
 
     private long createTodo(CreateTodoRequest request) {
