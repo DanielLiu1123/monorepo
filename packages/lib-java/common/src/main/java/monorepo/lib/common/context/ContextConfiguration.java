@@ -15,7 +15,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.restclient.RestClientCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -49,28 +48,14 @@ public class ContextConfiguration {
     @Configuration(proxyBeanMethods = false)
     @ConditionalOnClass(ServerInterceptor.class)
     static class GrpcServer {
-
-        static class OrderedObservationGrpcServerInterceptor extends ObservationGrpcServerInterceptor
-                implements Ordered {
-            public OrderedObservationGrpcServerInterceptor(ObservationRegistry observationRegistry) {
-                super(observationRegistry);
-            }
-
-            @Override
-            public int getOrder() {
-                return 0;
-            }
+        @Bean
+        @Order(0)
+        public ServerInterceptor observationGrpcServerInterceptor(Optional<ObservationRegistry> observationRegistry) {
+            return new ObservationGrpcServerInterceptor(observationRegistry.orElse(ObservationRegistry.NOOP));
         }
 
         @Bean
-        public ObservationGrpcServerInterceptor observationGrpcServerInterceptor(
-                Optional<ObservationRegistry> observationRegistry) {
-            return new OrderedObservationGrpcServerInterceptor(observationRegistry.orElse(ObservationRegistry.NOOP));
-        }
-
-        @Bean
-        public ContextualServerInterceptor contextualServerInterceptor(
-                Optional<ObservationRegistry> observationRegistry) {
+        public ServerInterceptor contextualServerInterceptor(Optional<ObservationRegistry> observationRegistry) {
             return new ContextualServerInterceptor(observationRegistry.orElse(ObservationRegistry.NOOP));
         }
     }
