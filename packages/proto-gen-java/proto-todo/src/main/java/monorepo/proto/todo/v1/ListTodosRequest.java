@@ -979,16 +979,15 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string field = 1 [json_name = "field"];</code>
+     * <code>.todo.v1.ListTodosRequest.OrderBy.Field field = 1 [json_name = "field"];</code>
+     * @return The enum numeric value on the wire for field.
+     */
+    int getFieldValue();
+    /**
+     * <code>.todo.v1.ListTodosRequest.OrderBy.Field field = 1 [json_name = "field"];</code>
      * @return The field.
      */
-    java.lang.String getField();
-    /**
-     * <code>string field = 1 [json_name = "field"];</code>
-     * @return The bytes for field.
-     */
-    com.google.protobuf.ByteString
-        getFieldBytes();
+    monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field getField();
 
     /**
      * <code>bool is_desc = 2 [json_name = "isDesc"];</code>
@@ -1018,7 +1017,7 @@ private static final long serialVersionUID = 0L;
       super(builder);
     }
     private OrderBy() {
-      field_ = "";
+      field_ = 0;
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -1034,43 +1033,157 @@ private static final long serialVersionUID = 0L;
               monorepo.proto.todo.v1.ListTodosRequest.OrderBy.class, monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Builder.class);
     }
 
-    public static final int FIELD_FIELD_NUMBER = 1;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object field_ = "";
     /**
-     * <code>string field = 1 [json_name = "field"];</code>
-     * @return The field.
+     * Protobuf enum {@code todo.v1.ListTodosRequest.OrderBy.Field}
      */
-    @java.lang.Override
-    public java.lang.String getField() {
-      java.lang.Object ref = field_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        field_ = s;
-        return s;
+    public enum Field
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>FIELD_UNSPECIFIED = 0;</code>
+       */
+      FIELD_UNSPECIFIED(0),
+      /**
+       * <code>CREATED_AT = 1;</code>
+       */
+      CREATED_AT(1),
+      /**
+       * <code>DUE_DATE = 2;</code>
+       */
+      DUE_DATE(2),
+      /**
+       * <code>PRIORITY = 3;</code>
+       */
+      PRIORITY(3),
+      UNRECOGNIZED(-1),
+      ;
+
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 33,
+          /* patch= */ 1,
+          /* suffix= */ "",
+          "Field");
       }
+      /**
+       * <code>FIELD_UNSPECIFIED = 0;</code>
+       */
+      public static final int FIELD_UNSPECIFIED_VALUE = 0;
+      /**
+       * <code>CREATED_AT = 1;</code>
+       */
+      public static final int CREATED_AT_VALUE = 1;
+      /**
+       * <code>DUE_DATE = 2;</code>
+       */
+      public static final int DUE_DATE_VALUE = 2;
+      /**
+       * <code>PRIORITY = 3;</code>
+       */
+      public static final int PRIORITY_VALUE = 3;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Field valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static Field forNumber(int value) {
+        switch (value) {
+          case 0: return FIELD_UNSPECIFIED;
+          case 1: return CREATED_AT;
+          case 2: return DUE_DATE;
+          case 3: return PRIORITY;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Field>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Field> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Field>() {
+              public Field findValueByNumber(int number) {
+                return Field.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return monorepo.proto.todo.v1.ListTodosRequest.OrderBy.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Field[] VALUES = values();
+
+      public static Field valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Field(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:todo.v1.ListTodosRequest.OrderBy.Field)
+    }
+
+    public static final int FIELD_FIELD_NUMBER = 1;
+    private int field_ = 0;
+    /**
+     * <code>.todo.v1.ListTodosRequest.OrderBy.Field field = 1 [json_name = "field"];</code>
+     * @return The enum numeric value on the wire for field.
+     */
+    @java.lang.Override public int getFieldValue() {
+      return field_;
     }
     /**
-     * <code>string field = 1 [json_name = "field"];</code>
-     * @return The bytes for field.
+     * <code>.todo.v1.ListTodosRequest.OrderBy.Field field = 1 [json_name = "field"];</code>
+     * @return The field.
      */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getFieldBytes() {
-      java.lang.Object ref = field_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        field_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    @java.lang.Override public monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field getField() {
+      monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field result = monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field.forNumber(field_);
+      return result == null ? monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field.UNRECOGNIZED : result;
     }
 
     public static final int IS_DESC_FIELD_NUMBER = 2;
@@ -1098,8 +1211,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(field_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 1, field_);
+      if (field_ != monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field.FIELD_UNSPECIFIED.getNumber()) {
+        output.writeEnum(1, field_);
       }
       if (isDesc_ != false) {
         output.writeBool(2, isDesc_);
@@ -1113,8 +1226,9 @@ private static final long serialVersionUID = 0L;
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(field_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, field_);
+      if (field_ != monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field.FIELD_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, field_);
       }
       if (isDesc_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -1135,8 +1249,7 @@ private static final long serialVersionUID = 0L;
       }
       monorepo.proto.todo.v1.ListTodosRequest.OrderBy other = (monorepo.proto.todo.v1.ListTodosRequest.OrderBy) obj;
 
-      if (!getField()
-          .equals(other.getField())) return false;
+      if (field_ != other.field_) return false;
       if (getIsDesc()
           != other.getIsDesc()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -1151,7 +1264,7 @@ private static final long serialVersionUID = 0L;
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + FIELD_FIELD_NUMBER;
-      hash = (53 * hash) + getField().hashCode();
+      hash = (53 * hash) + field_;
       hash = (37 * hash) + IS_DESC_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsDesc());
@@ -1286,7 +1399,7 @@ private static final long serialVersionUID = 0L;
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        field_ = "";
+        field_ = 0;
         isDesc_ = false;
         return this;
       }
@@ -1341,10 +1454,8 @@ private static final long serialVersionUID = 0L;
 
       public Builder mergeFrom(monorepo.proto.todo.v1.ListTodosRequest.OrderBy other) {
         if (other == monorepo.proto.todo.v1.ListTodosRequest.OrderBy.getDefaultInstance()) return this;
-        if (!other.getField().isEmpty()) {
-          field_ = other.field_;
-          bitField0_ |= 0x00000001;
-          onChanged();
+        if (other.field_ != 0) {
+          setFieldValue(other.getFieldValue());
         }
         if (other.getIsDesc() != false) {
           setIsDesc(other.getIsDesc());
@@ -1375,11 +1486,11 @@ private static final long serialVersionUID = 0L;
               case 0:
                 done = true;
                 break;
-              case 10: {
-                field_ = input.readStringRequireUtf8();
+              case 8: {
+                field_ = input.readEnum();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 10
+              } // case 8
               case 16: {
                 isDesc_ = input.readBool();
                 bitField0_ |= 0x00000002;
@@ -1402,74 +1513,53 @@ private static final long serialVersionUID = 0L;
       }
       private int bitField0_;
 
-      private java.lang.Object field_ = "";
+      private int field_ = 0;
       /**
-       * <code>string field = 1 [json_name = "field"];</code>
+       * <code>.todo.v1.ListTodosRequest.OrderBy.Field field = 1 [json_name = "field"];</code>
+       * @return The enum numeric value on the wire for field.
+       */
+      @java.lang.Override public int getFieldValue() {
+        return field_;
+      }
+      /**
+       * <code>.todo.v1.ListTodosRequest.OrderBy.Field field = 1 [json_name = "field"];</code>
+       * @param value The enum numeric value on the wire for field to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFieldValue(int value) {
+        field_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.todo.v1.ListTodosRequest.OrderBy.Field field = 1 [json_name = "field"];</code>
        * @return The field.
        */
-      public java.lang.String getField() {
-        java.lang.Object ref = field_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          field_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field getField() {
+        monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field result = monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field.forNumber(field_);
+        return result == null ? monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field.UNRECOGNIZED : result;
       }
       /**
-       * <code>string field = 1 [json_name = "field"];</code>
-       * @return The bytes for field.
-       */
-      public com.google.protobuf.ByteString
-          getFieldBytes() {
-        java.lang.Object ref = field_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          field_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string field = 1 [json_name = "field"];</code>
+       * <code>.todo.v1.ListTodosRequest.OrderBy.Field field = 1 [json_name = "field"];</code>
        * @param value The field to set.
        * @return This builder for chaining.
        */
-      public Builder setField(
-          java.lang.String value) {
+      public Builder setField(monorepo.proto.todo.v1.ListTodosRequest.OrderBy.Field value) {
         if (value == null) { throw new NullPointerException(); }
-        field_ = value;
         bitField0_ |= 0x00000001;
+        field_ = value.getNumber();
         onChanged();
         return this;
       }
       /**
-       * <code>string field = 1 [json_name = "field"];</code>
+       * <code>.todo.v1.ListTodosRequest.OrderBy.Field field = 1 [json_name = "field"];</code>
        * @return This builder for chaining.
        */
       public Builder clearField() {
-        field_ = getDefaultInstance().getField();
         bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string field = 1 [json_name = "field"];</code>
-       * @param value The bytes for field to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFieldBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        field_ = value;
-        bitField0_ |= 0x00000001;
+        field_ = 0;
         onChanged();
         return this;
       }

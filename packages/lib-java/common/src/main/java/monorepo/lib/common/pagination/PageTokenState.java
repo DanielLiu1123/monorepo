@@ -2,15 +2,17 @@ package monorepo.lib.common.pagination;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Map;
 import monorepo.lib.common.util.JsonUtil;
 
 /**
- *
+ * Page token state for cursor-based pagination.
+ * Stores the last record's sorting field values to enable accurate pagination with custom sort orders.
  *
  * @author Freeman
  * @since 2025/12/4
  */
-public record PageTokenState(String lastId, long offset, String filterHash, String sortHash) {
+public record PageTokenState(Map<String, String> lastValues, String filterHash, String sortHash) {
 
     public String toPageToken() {
         var json = JsonUtil.stringify(this);

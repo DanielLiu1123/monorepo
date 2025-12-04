@@ -86,8 +86,15 @@ message ListTodosRequest {
   }
 
   message OrderBy {
-    string field = 1;
+    Field field = 1;
     bool is_desc = 2;
+
+    enum Field {
+      FIELD_UNSPECIFIED = 0;
+      CREATED_AT = 1;
+      DUE_DATE = 2;
+      PRIORITY = 3;
+    }
   }
 }
 

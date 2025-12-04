@@ -8,13 +8,18 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 import static org.mybatis.dynamic.sql.SqlBuilder.isGreaterThan;
 import static org.mybatis.dynamic.sql.SqlBuilder.isIn;
 import static org.mybatis.dynamic.sql.SqlBuilder.isInWhenPresent;
+import static org.mybatis.dynamic.sql.SqlBuilder.isLessThan;
 import static org.mybatis.dynamic.sql.SqlBuilder.isNull;
+import static org.mybatis.dynamic.sql.SqlBuilder.or;
 
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -182,29 +187,32 @@ public class TodoService {
             return ListTodosResponse.newBuilder().setTotalSize(0).build();
         }
 
+        // Build order specifications
+        var orderBys = new ArrayList<SortSpecification>();
+        for (var orderBy : request.getOrderByList()) {
+            var column = mapFieldToColumn(orderBy.getField());
+            if (column != null) {
+                if (orderBy.getIsDesc()) orderBys.add(column.descending());
+                else orderBys.add(column);
+            }
+        }
+        orderBys.add(todo.id);
+
         // Build query with cursor-based pagination
         var entities = todoMapper.select(c -> {
-            var conditions = buildConditions(request);
+            var conditions = new ArrayList<>(buildConditions(request));
 
             // Add cursor condition if we have a valid page token
-            if (pageTokenState != null && pageTokenState.lastId() != null) {
-                conditions.add(and(todo.id, isGreaterThan(Long.parseLong(pageTokenState.lastId()))));
-            }
-
-            var sql = c.where(conditions);
-
-            // Apply ordering
-            var orderBys = new ArrayList<SortSpecification>();
-            for (var orderBy : request.getOrderByList()) {
-                var column = mapFieldToColumn(orderBy.getField());
-                if (column != null) {
-                    if (orderBy.getIsDesc()) orderBys.add(column.descending());
-                    else orderBys.add(column);
+            if (pageTokenState != null
+                    && pageTokenState.lastValues() != null
+                    && !pageTokenState.lastValues().isEmpty()) {
+                var cursorCondition = buildCursorCondition(request.getOrderByList(), pageTokenState.lastValues());
+                if (cursorCondition != null) {
+                    conditions.add(cursorCondition);
                 }
             }
-            orderBys.add(todo.id);
 
-            return sql.orderBy(orderBys).limit(pageSize);
+            return c.where(conditions).orderBy(orderBys).limit(pageSize);
         });
         if (entities.isEmpty()) {
             return ListTodosResponse.newBuilder().setTotalSize((int) totalSize).build();
@@ -220,14 +228,135 @@ public class TodoService {
         // Generate next page token if there are more results
         if (todos.size() == pageSize) {
             var last = entities.getLast();
-            var newOffset = (pageTokenState != null ? pageTokenState.offset() : 0) + pageSize;
+            var lastValues = extractFieldValues(last, request.getOrderByList());
 
-            var newPageTokenState = new PageTokenState(
-                    String.valueOf(last.getId()), newOffset, calculateFilterHash(request), calculateSortHash(request));
+            var newPageTokenState =
+                    new PageTokenState(lastValues, calculateFilterHash(request), calculateSortHash(request));
             builder.setNextPageToken(newPageTokenState.toPageToken());
         }
 
         return builder.build();
+    }
+
+    /**
+     * Build cursor condition for multi-field pagination.
+     * For sort order [field1 DESC, field2 ASC, id ASC] with last values {field1: v1, field2: v2, id: v3},
+     * generates: (field1 < v1) OR (field1 = v1 AND field2 > v2) OR (field1 = v1 AND field2 = v2 AND id > v3)
+     */
+    @Nullable
+    private static AndOrCriteriaGroup buildCursorCondition(
+            List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues) {
+        if (orderBys.isEmpty()) {
+            return null;
+        }
+
+        var conditions = new ArrayList<AndOrCriteriaGroup>();
+
+        // Build composite cursor condition
+        for (int i = 0; i < orderBys.size(); i++) {
+            var column = mapFieldToColumn(orderBys.get(i).getField());
+            var lastValue = lastValues.get(column.name());
+            if (lastValue == null) continue;
+
+            // Build prefix: all previous fields must equal their last values
+            var prefixConditions = new ArrayList<AndOrCriteriaGroup>();
+            for (int j = 0; j < i; j++) {
+                var prevColumn = mapFieldToColumn(orderBys.get(j).getField());
+                var prevLastValue = lastValues.get(prevColumn.name());
+                if (prevLastValue == null) continue;
+                switch (orderBys.get(j).getField()) {
+                    case CREATED_AT ->
+                        prefixConditions.add(and(todo.createdAt, isEqualTo(LocalDateTime.parse(prevLastValue))));
+                    case DUE_DATE -> prefixConditions.add(and(todo.dueDate, isEqualTo(LocalDate.parse(prevLastValue))));
+                    case PRIORITY ->
+                        prefixConditions.add(and(
+                                todo.priority, isEqualTo(monorepo.proto.todo.v1.Todo.Priority.valueOf(prevLastValue))));
+                    case FIELD_UNSPECIFIED, UNRECOGNIZED -> {}
+                }
+            }
+
+            var orderBy = orderBys.get(i);
+            var comparison =
+                    switch (orderBy.getField()) {
+                        case CREATED_AT -> {
+                            if (orderBy.getIsDesc()) {
+                                yield and(todo.createdAt, isLessThan(LocalDateTime.parse(lastValue)));
+                            } else {
+                                yield and(todo.createdAt, isGreaterThan(LocalDateTime.parse(lastValue)));
+                            }
+                        }
+                        case DUE_DATE -> {
+                            if (orderBy.getIsDesc()) {
+                                yield and(todo.dueDate, isLessThan(LocalDate.parse(lastValue)));
+                            } else {
+                                yield and(todo.dueDate, isGreaterThan(LocalDate.parse(lastValue)));
+                            }
+                        }
+                        case PRIORITY -> {
+                            if (orderBy.getIsDesc()) {
+                                yield and(
+                                        todo.priority,
+                                        isLessThan(monorepo.proto.todo.v1.Todo.Priority.valueOf(lastValue)));
+                            } else {
+                                yield and(
+                                        todo.priority,
+                                        isGreaterThan(monorepo.proto.todo.v1.Todo.Priority.valueOf(lastValue)));
+                            }
+                        }
+                        case FIELD_UNSPECIFIED, UNRECOGNIZED ->
+                            throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription(
+                                    "Invalid order by field: " + orderBy.getField()));
+                    };
+
+            // Combine prefix + comparison
+            if (prefixConditions.isEmpty()) {
+                conditions.add(comparison);
+            } else {
+                prefixConditions.add(comparison);
+                // Create a composite AND condition
+                var compositeCondition = prefixConditions.getFirst();
+                for (int k = 1; k < prefixConditions.size(); k++) {
+                    compositeCondition = and(List.of(compositeCondition, prefixConditions.get(k)));
+                }
+                conditions.add(compositeCondition);
+            }
+        }
+
+        if (conditions.isEmpty()) {
+            return null;
+        }
+
+        // Combine all conditions with OR
+        var result = conditions.getFirst();
+        for (int i = 1; i < conditions.size(); i++) {
+            result = or(List.of(result, conditions.get(i)));
+        }
+
+        return result;
+    }
+
+    /**
+     * Extract field values from entity for all sort fields.
+     */
+    private static Map<String, String> extractFieldValues(Todo entity, List<ListTodosRequest.OrderBy> orderBys) {
+        var result = new HashMap<String, String>();
+
+        for (var spec : orderBys) {
+            switch (spec.getField()) {
+                case CREATED_AT ->
+                    result.put(todo.createdAt.name(), entity.getCreatedAt().toString());
+                case DUE_DATE -> {
+                    if (entity.getDueDate() != null) {
+                        result.put(todo.dueDate.name(), entity.getDueDate().toString());
+                    }
+                }
+                case PRIORITY ->
+                    result.put(todo.priority.name(), entity.getPriority().name());
+                case FIELD_UNSPECIFIED, UNRECOGNIZED -> {}
+            }
+        }
+
+        return result;
     }
 
     @Nullable
@@ -297,19 +426,14 @@ public class TodoService {
         return result;
     }
 
-    @Nullable
-    private static SqlColumn<?> mapFieldToColumn(String field) {
+    private static SqlColumn<?> mapFieldToColumn(ListTodosRequest.OrderBy.Field field) {
         return switch (field) {
-            case "created_at" -> todo.createdAt;
-            case "updated_at" -> todo.updatedAt;
-            case "due_date" -> todo.dueDate;
-            case "priority" -> todo.priority;
-            case "state" -> todo.state;
-            case "title" -> todo.title;
-            default -> {
-                log.warn("Unknown order by field: {}", field);
-                yield null;
-            }
+            case CREATED_AT -> todo.createdAt;
+            case DUE_DATE -> todo.dueDate;
+            case PRIORITY -> todo.priority;
+            case FIELD_UNSPECIFIED, UNRECOGNIZED ->
+                throw new StatusRuntimeException(
+                        Status.INVALID_ARGUMENT.withDescription("Invalid order by field: " + field));
         };
     }
 

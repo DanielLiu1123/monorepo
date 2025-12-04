@@ -23,6 +23,53 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type ListTodosRequest_OrderBy_Field int32
+
+const (
+	ListTodosRequest_OrderBy_FIELD_UNSPECIFIED ListTodosRequest_OrderBy_Field = 0
+	ListTodosRequest_OrderBy_CREATED_AT        ListTodosRequest_OrderBy_Field = 1
+	ListTodosRequest_OrderBy_DUE_DATE          ListTodosRequest_OrderBy_Field = 2
+	ListTodosRequest_OrderBy_PRIORITY          ListTodosRequest_OrderBy_Field = 3
+)
+
+// Enum value maps for ListTodosRequest_OrderBy_Field.
+var (
+	ListTodosRequest_OrderBy_Field_name = map[int32]string{
+		0: "FIELD_UNSPECIFIED",
+		1: "CREATED_AT",
+		2: "DUE_DATE",
+		3: "PRIORITY",
+	}
+	ListTodosRequest_OrderBy_Field_value = map[string]int32{
+		"FIELD_UNSPECIFIED": 0,
+		"CREATED_AT":        1,
+		"DUE_DATE":          2,
+		"PRIORITY":          3,
+	}
+)
+
+func (x ListTodosRequest_OrderBy_Field) Enum() *ListTodosRequest_OrderBy_Field {
+	p := new(ListTodosRequest_OrderBy_Field)
+	*p = x
+	return p
+}
+
+func (x ListTodosRequest_OrderBy_Field) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ListTodosRequest_OrderBy_Field) Descriptor() protoreflect.EnumDescriptor {
+	return file_todo_v1_todo_service_proto_enumTypes[0].Descriptor()
+}
+
+func (ListTodosRequest_OrderBy_Field) Type() protoreflect.EnumType {
+	return &file_todo_v1_todo_service_proto_enumTypes[0]
+}
+
+func (x ListTodosRequest_OrderBy_Field) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
 type CreateTodoRequest struct {
 	state                  protoimpl.MessageState   `protogen:"opaque.v1"`
 	xxx_hidden_UserId      int64                    `protobuf:"varint,1,opt,name=user_id,json=userId,proto3"`
@@ -1363,9 +1410,9 @@ func (b0 ListTodosRequest_Filter_builder) Build() *ListTodosRequest_Filter {
 }
 
 type ListTodosRequest_OrderBy struct {
-	state             protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Field  string                 `protobuf:"bytes,1,opt,name=field,proto3"`
-	xxx_hidden_IsDesc bool                   `protobuf:"varint,2,opt,name=is_desc,json=isDesc,proto3"`
+	state             protoimpl.MessageState         `protogen:"opaque.v1"`
+	xxx_hidden_Field  ListTodosRequest_OrderBy_Field `protobuf:"varint,1,opt,name=field,proto3,enum=todo.v1.ListTodosRequest_OrderBy_Field"`
+	xxx_hidden_IsDesc bool                           `protobuf:"varint,2,opt,name=is_desc,json=isDesc,proto3"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -1395,11 +1442,11 @@ func (x *ListTodosRequest_OrderBy) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ListTodosRequest_OrderBy) GetField() string {
+func (x *ListTodosRequest_OrderBy) GetField() ListTodosRequest_OrderBy_Field {
 	if x != nil {
 		return x.xxx_hidden_Field
 	}
-	return ""
+	return ListTodosRequest_OrderBy_FIELD_UNSPECIFIED
 }
 
 func (x *ListTodosRequest_OrderBy) GetIsDesc() bool {
@@ -1409,7 +1456,7 @@ func (x *ListTodosRequest_OrderBy) GetIsDesc() bool {
 	return false
 }
 
-func (x *ListTodosRequest_OrderBy) SetField(v string) {
+func (x *ListTodosRequest_OrderBy) SetField(v ListTodosRequest_OrderBy_Field) {
 	x.xxx_hidden_Field = v
 }
 
@@ -1420,7 +1467,7 @@ func (x *ListTodosRequest_OrderBy) SetIsDesc(v bool) {
 type ListTodosRequest_OrderBy_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Field  string
+	Field  ListTodosRequest_OrderBy_Field
 	IsDesc bool
 }
 
@@ -1670,7 +1717,7 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x0eGetTodoRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12&\n" +
 	"\fshow_deleted\x18\x02 \x01(\bH\x00R\vshowDeleted\x88\x01\x01B\x0f\n" +
-	"\r_show_deleted\"\xd1\x03\n" +
+	"\r_show_deleted\"\xc7\x04\n" +
 	"\x10ListTodosRequest\x12\x1b\n" +
 	"\tpage_size\x18\x01 \x01(\x05R\bpageSize\x12\x1d\n" +
 	"\n" +
@@ -1683,10 +1730,16 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x06states\x18\x01 \x03(\x0e2\x13.todo.v1.Todo.StateR\x06states\x126\n" +
 	"\n" +
 	"priorities\x18\x02 \x03(\x0e2\x16.todo.v1.Todo.PriorityR\n" +
-	"priorities\x1a8\n" +
-	"\aOrderBy\x12\x14\n" +
-	"\x05field\x18\x01 \x01(\tR\x05field\x12\x17\n" +
-	"\ais_desc\x18\x02 \x01(\bR\x06isDescB\t\n" +
+	"priorities\x1a\xad\x01\n" +
+	"\aOrderBy\x12=\n" +
+	"\x05field\x18\x01 \x01(\x0e2'.todo.v1.ListTodosRequest.OrderBy.FieldR\x05field\x12\x17\n" +
+	"\ais_desc\x18\x02 \x01(\bR\x06isDesc\"J\n" +
+	"\x05Field\x12\x15\n" +
+	"\x11FIELD_UNSPECIFIED\x10\x00\x12\x0e\n" +
+	"\n" +
+	"CREATED_AT\x10\x01\x12\f\n" +
+	"\bDUE_DATE\x10\x02\x12\f\n" +
+	"\bPRIORITY\x10\x03B\t\n" +
 	"\a_filterB\x0f\n" +
 	"\r_show_deleted\"\x7f\n" +
 	"\x11ListTodosResponse\x12#\n" +
@@ -1742,62 +1795,65 @@ const file_todo_v1_todo_service_proto_rawDesc = "" +
 	"\rBatchGetTodos\x12\x1d.todo.v1.BatchGetTodosRequest\x1a\x1e.todo.v1.BatchGetTodosResponse\"\x00Bg\n" +
 	"\x16monorepo.proto.todo.v1P\x01ZKgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-todo/todo/v1;todov1b\x06proto3"
 
+var file_todo_v1_todo_service_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_todo_v1_todo_service_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_todo_v1_todo_service_proto_goTypes = []any{
-	(*CreateTodoRequest)(nil),                  // 0: todo.v1.CreateTodoRequest
-	(*GetTodoRequest)(nil),                     // 1: todo.v1.GetTodoRequest
-	(*ListTodosRequest)(nil),                   // 2: todo.v1.ListTodosRequest
-	(*ListTodosResponse)(nil),                  // 3: todo.v1.ListTodosResponse
-	(*UpdateTodoRequest)(nil),                  // 4: todo.v1.UpdateTodoRequest
-	(*DeleteTodoRequest)(nil),                  // 5: todo.v1.DeleteTodoRequest
-	(*CreateSubtaskRequest)(nil),               // 6: todo.v1.CreateSubtaskRequest
-	(*UpdateSubtaskRequest)(nil),               // 7: todo.v1.UpdateSubtaskRequest
-	(*DeleteSubtaskRequest)(nil),               // 8: todo.v1.DeleteSubtaskRequest
-	(*BatchGetTodosRequest)(nil),               // 9: todo.v1.BatchGetTodosRequest
-	(*BatchGetTodosResponse)(nil),              // 10: todo.v1.BatchGetTodosResponse
-	(*ListTodosRequest_Filter)(nil),            // 11: todo.v1.ListTodosRequest.Filter
-	(*ListTodosRequest_OrderBy)(nil),           // 12: todo.v1.ListTodosRequest.OrderBy
-	(*UpdateTodoRequest_SubTaskOperation)(nil), // 13: todo.v1.UpdateTodoRequest.SubTaskOperation
-	(Todo_State)(0),                            // 14: todo.v1.Todo.State
-	(Todo_Priority)(0),                         // 15: todo.v1.Todo.Priority
-	(*date.Date)(nil),                          // 16: google.type.Date
-	(*Todo)(nil),                               // 17: todo.v1.Todo
+	(ListTodosRequest_OrderBy_Field)(0),        // 0: todo.v1.ListTodosRequest.OrderBy.Field
+	(*CreateTodoRequest)(nil),                  // 1: todo.v1.CreateTodoRequest
+	(*GetTodoRequest)(nil),                     // 2: todo.v1.GetTodoRequest
+	(*ListTodosRequest)(nil),                   // 3: todo.v1.ListTodosRequest
+	(*ListTodosResponse)(nil),                  // 4: todo.v1.ListTodosResponse
+	(*UpdateTodoRequest)(nil),                  // 5: todo.v1.UpdateTodoRequest
+	(*DeleteTodoRequest)(nil),                  // 6: todo.v1.DeleteTodoRequest
+	(*CreateSubtaskRequest)(nil),               // 7: todo.v1.CreateSubtaskRequest
+	(*UpdateSubtaskRequest)(nil),               // 8: todo.v1.UpdateSubtaskRequest
+	(*DeleteSubtaskRequest)(nil),               // 9: todo.v1.DeleteSubtaskRequest
+	(*BatchGetTodosRequest)(nil),               // 10: todo.v1.BatchGetTodosRequest
+	(*BatchGetTodosResponse)(nil),              // 11: todo.v1.BatchGetTodosResponse
+	(*ListTodosRequest_Filter)(nil),            // 12: todo.v1.ListTodosRequest.Filter
+	(*ListTodosRequest_OrderBy)(nil),           // 13: todo.v1.ListTodosRequest.OrderBy
+	(*UpdateTodoRequest_SubTaskOperation)(nil), // 14: todo.v1.UpdateTodoRequest.SubTaskOperation
+	(Todo_State)(0),                            // 15: todo.v1.Todo.State
+	(Todo_Priority)(0),                         // 16: todo.v1.Todo.Priority
+	(*date.Date)(nil),                          // 17: google.type.Date
+	(*Todo)(nil),                               // 18: todo.v1.Todo
 }
 var file_todo_v1_todo_service_proto_depIdxs = []int32{
-	14, // 0: todo.v1.CreateTodoRequest.state:type_name -> todo.v1.Todo.State
-	15, // 1: todo.v1.CreateTodoRequest.priority:type_name -> todo.v1.Todo.Priority
-	16, // 2: todo.v1.CreateTodoRequest.due_date:type_name -> google.type.Date
-	6,  // 3: todo.v1.CreateTodoRequest.sub_tasks:type_name -> todo.v1.CreateSubtaskRequest
-	11, // 4: todo.v1.ListTodosRequest.filter:type_name -> todo.v1.ListTodosRequest.Filter
-	12, // 5: todo.v1.ListTodosRequest.order_by:type_name -> todo.v1.ListTodosRequest.OrderBy
-	17, // 6: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.Todo
-	14, // 7: todo.v1.UpdateTodoRequest.state:type_name -> todo.v1.Todo.State
-	15, // 8: todo.v1.UpdateTodoRequest.priority:type_name -> todo.v1.Todo.Priority
-	16, // 9: todo.v1.UpdateTodoRequest.due_date:type_name -> google.type.Date
-	13, // 10: todo.v1.UpdateTodoRequest.sub_task_operations:type_name -> todo.v1.UpdateTodoRequest.SubTaskOperation
-	17, // 11: todo.v1.BatchGetTodosResponse.todos:type_name -> todo.v1.Todo
-	14, // 12: todo.v1.ListTodosRequest.Filter.states:type_name -> todo.v1.Todo.State
-	15, // 13: todo.v1.ListTodosRequest.Filter.priorities:type_name -> todo.v1.Todo.Priority
-	6,  // 14: todo.v1.UpdateTodoRequest.SubTaskOperation.create:type_name -> todo.v1.CreateSubtaskRequest
-	7,  // 15: todo.v1.UpdateTodoRequest.SubTaskOperation.update:type_name -> todo.v1.UpdateSubtaskRequest
-	8,  // 16: todo.v1.UpdateTodoRequest.SubTaskOperation.delete:type_name -> todo.v1.DeleteSubtaskRequest
-	0,  // 17: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
-	1,  // 18: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
-	2,  // 19: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
-	4,  // 20: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
-	5,  // 21: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
-	9,  // 22: todo.v1.TodoService.BatchGetTodos:input_type -> todo.v1.BatchGetTodosRequest
-	17, // 23: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.Todo
-	17, // 24: todo.v1.TodoService.GetTodo:output_type -> todo.v1.Todo
-	3,  // 25: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
-	17, // 26: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.Todo
-	17, // 27: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.Todo
-	10, // 28: todo.v1.TodoService.BatchGetTodos:output_type -> todo.v1.BatchGetTodosResponse
-	23, // [23:29] is the sub-list for method output_type
-	17, // [17:23] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	15, // 0: todo.v1.CreateTodoRequest.state:type_name -> todo.v1.Todo.State
+	16, // 1: todo.v1.CreateTodoRequest.priority:type_name -> todo.v1.Todo.Priority
+	17, // 2: todo.v1.CreateTodoRequest.due_date:type_name -> google.type.Date
+	7,  // 3: todo.v1.CreateTodoRequest.sub_tasks:type_name -> todo.v1.CreateSubtaskRequest
+	12, // 4: todo.v1.ListTodosRequest.filter:type_name -> todo.v1.ListTodosRequest.Filter
+	13, // 5: todo.v1.ListTodosRequest.order_by:type_name -> todo.v1.ListTodosRequest.OrderBy
+	18, // 6: todo.v1.ListTodosResponse.todos:type_name -> todo.v1.Todo
+	15, // 7: todo.v1.UpdateTodoRequest.state:type_name -> todo.v1.Todo.State
+	16, // 8: todo.v1.UpdateTodoRequest.priority:type_name -> todo.v1.Todo.Priority
+	17, // 9: todo.v1.UpdateTodoRequest.due_date:type_name -> google.type.Date
+	14, // 10: todo.v1.UpdateTodoRequest.sub_task_operations:type_name -> todo.v1.UpdateTodoRequest.SubTaskOperation
+	18, // 11: todo.v1.BatchGetTodosResponse.todos:type_name -> todo.v1.Todo
+	15, // 12: todo.v1.ListTodosRequest.Filter.states:type_name -> todo.v1.Todo.State
+	16, // 13: todo.v1.ListTodosRequest.Filter.priorities:type_name -> todo.v1.Todo.Priority
+	0,  // 14: todo.v1.ListTodosRequest.OrderBy.field:type_name -> todo.v1.ListTodosRequest.OrderBy.Field
+	7,  // 15: todo.v1.UpdateTodoRequest.SubTaskOperation.create:type_name -> todo.v1.CreateSubtaskRequest
+	8,  // 16: todo.v1.UpdateTodoRequest.SubTaskOperation.update:type_name -> todo.v1.UpdateSubtaskRequest
+	9,  // 17: todo.v1.UpdateTodoRequest.SubTaskOperation.delete:type_name -> todo.v1.DeleteSubtaskRequest
+	1,  // 18: todo.v1.TodoService.CreateTodo:input_type -> todo.v1.CreateTodoRequest
+	2,  // 19: todo.v1.TodoService.GetTodo:input_type -> todo.v1.GetTodoRequest
+	3,  // 20: todo.v1.TodoService.ListTodos:input_type -> todo.v1.ListTodosRequest
+	5,  // 21: todo.v1.TodoService.UpdateTodo:input_type -> todo.v1.UpdateTodoRequest
+	6,  // 22: todo.v1.TodoService.DeleteTodo:input_type -> todo.v1.DeleteTodoRequest
+	10, // 23: todo.v1.TodoService.BatchGetTodos:input_type -> todo.v1.BatchGetTodosRequest
+	18, // 24: todo.v1.TodoService.CreateTodo:output_type -> todo.v1.Todo
+	18, // 25: todo.v1.TodoService.GetTodo:output_type -> todo.v1.Todo
+	4,  // 26: todo.v1.TodoService.ListTodos:output_type -> todo.v1.ListTodosResponse
+	18, // 27: todo.v1.TodoService.UpdateTodo:output_type -> todo.v1.Todo
+	18, // 28: todo.v1.TodoService.DeleteTodo:output_type -> todo.v1.Todo
+	11, // 29: todo.v1.TodoService.BatchGetTodos:output_type -> todo.v1.BatchGetTodosResponse
+	24, // [24:30] is the sub-list for method output_type
+	18, // [18:24] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_todo_v1_todo_service_proto_init() }
@@ -1822,13 +1878,14 @@ func file_todo_v1_todo_service_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_todo_v1_todo_service_proto_rawDesc), len(file_todo_v1_todo_service_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_todo_v1_todo_service_proto_goTypes,
 		DependencyIndexes: file_todo_v1_todo_service_proto_depIdxs,
+		EnumInfos:         file_todo_v1_todo_service_proto_enumTypes,
 		MessageInfos:      file_todo_v1_todo_service_proto_msgTypes,
 	}.Build()
 	File_todo_v1_todo_service_proto = out.File
