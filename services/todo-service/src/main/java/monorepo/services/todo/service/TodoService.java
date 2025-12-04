@@ -246,93 +246,156 @@ public class TodoService {
     @Nullable
     private static AndOrCriteriaGroup buildCursorCondition(
             List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues) {
-        if (orderBys.isEmpty()) {
+        var conditions = new ArrayList<AndOrCriteriaGroup>();
+
+        // Build condition for each orderBy field
+        for (int i = 0; i < orderBys.size(); i++) {
+            var condition = buildOrderByFieldCondition(orderBys, lastValues, i);
+            if (condition != null) {
+                conditions.add(condition);
+            }
+        }
+
+        // Build condition for stable sort field 'id'
+        var idCondition = buildIdFieldCondition(orderBys, lastValues);
+        if (idCondition != null) {
+            conditions.add(idCondition);
+        }
+
+        return and(conditions);
+    }
+
+    /**
+     * Build condition for a single orderBy field at the given index.
+     * Returns: (prefix conditions) AND (current field comparison)
+     */
+    @Nullable
+    private static AndOrCriteriaGroup buildOrderByFieldCondition(
+            List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues, int currentIndex) {
+        var orderBy = orderBys.get(currentIndex);
+        var column = mapFieldToColumn(orderBy.getField());
+        var lastValue = lastValues.get(column.name());
+        if (lastValue == null) {
             return null;
         }
 
-        var conditions = new ArrayList<AndOrCriteriaGroup>();
+        // Build prefix: all previous fields must equal their last values
+        var prefixConditions = buildPrefixEqualityConditions(orderBys, lastValues, 0, currentIndex);
 
-        // Build composite cursor condition
-        for (int i = 0; i < orderBys.size(); i++) {
-            var column = mapFieldToColumn(orderBys.get(i).getField());
-            var lastValue = lastValues.get(column.name());
-            if (lastValue == null) continue;
+        // Build comparison for current field
+        var comparison = buildFieldComparison(orderBy, lastValue);
 
-            // Build prefix: all previous fields must equal their last values
-            var prefixConditions = new ArrayList<AndOrCriteriaGroup>();
-            for (int j = 0; j < i; j++) {
-                var prevColumn = mapFieldToColumn(orderBys.get(j).getField());
-                var prevLastValue = lastValues.get(prevColumn.name());
-                if (prevLastValue == null) continue;
-                switch (orderBys.get(j).getField()) {
-                    case CREATED_AT ->
-                        prefixConditions.add(and(todo.createdAt, isEqualTo(LocalDateTime.parse(prevLastValue))));
-                    case DUE_DATE -> prefixConditions.add(and(todo.dueDate, isEqualTo(LocalDate.parse(prevLastValue))));
-                    case PRIORITY ->
-                        prefixConditions.add(and(
-                                todo.priority, isEqualTo(monorepo.proto.todo.v1.Todo.Priority.valueOf(prevLastValue))));
-                    case FIELD_UNSPECIFIED, UNRECOGNIZED -> {}
-                }
-            }
+        return combineWithAnd(prefixConditions, comparison);
+    }
 
-            var orderBy = orderBys.get(i);
-            var comparison =
-                    switch (orderBy.getField()) {
-                        case CREATED_AT -> {
-                            if (orderBy.getIsDesc()) {
-                                yield and(todo.createdAt, isLessThan(LocalDateTime.parse(lastValue)));
-                            } else {
-                                yield and(todo.createdAt, isGreaterThan(LocalDateTime.parse(lastValue)));
-                            }
-                        }
-                        case DUE_DATE -> {
-                            if (orderBy.getIsDesc()) {
-                                yield and(todo.dueDate, isLessThan(LocalDate.parse(lastValue)));
-                            } else {
-                                yield and(todo.dueDate, isGreaterThan(LocalDate.parse(lastValue)));
-                            }
-                        }
-                        case PRIORITY -> {
-                            if (orderBy.getIsDesc()) {
-                                yield and(
-                                        todo.priority,
-                                        isLessThan(monorepo.proto.todo.v1.Todo.Priority.valueOf(lastValue)));
-                            } else {
-                                yield and(
-                                        todo.priority,
-                                        isGreaterThan(monorepo.proto.todo.v1.Todo.Priority.valueOf(lastValue)));
-                            }
-                        }
-                        case FIELD_UNSPECIFIED, UNRECOGNIZED ->
-                            throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription(
-                                    "Invalid order by field: " + orderBy.getField()));
-                    };
-
-            // Combine prefix + comparison
-            if (prefixConditions.isEmpty()) {
-                conditions.add(comparison);
-            } else {
-                prefixConditions.add(comparison);
-                // Create a composite AND condition
-                var compositeCondition = prefixConditions.getFirst();
-                for (int k = 1; k < prefixConditions.size(); k++) {
-                    compositeCondition = and(List.of(compositeCondition, prefixConditions.get(k)));
-                }
-                conditions.add(compositeCondition);
-            }
+    /**
+     * Build condition for the stable sort field 'id'.
+     * Returns: (all orderBy fields equal) AND (id > lastId)
+     */
+    @Nullable
+    private static AndOrCriteriaGroup buildIdFieldCondition(
+            List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues) {
+        var idLastValue = lastValues.get(todo.id.name());
+        if (idLastValue == null) {
+            return null;
         }
 
+        // All orderBy fields must equal their last values
+        var prefixConditions = buildPrefixEqualityConditions(orderBys, lastValues, 0, orderBys.size());
+
+        // id is always sorted ASC, so use greater than
+        var idComparison = and(todo.id, isGreaterThan(Long.parseLong(idLastValue)));
+
+        return combineWithAnd(prefixConditions, idComparison);
+    }
+
+    /**
+     * Build equality conditions for fields in range [startIndex, endIndex).
+     */
+    private static List<AndOrCriteriaGroup> buildPrefixEqualityConditions(
+            List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues, int startIndex, int endIndex) {
+        var conditions = new ArrayList<AndOrCriteriaGroup>();
+
+        for (int i = startIndex; i < endIndex; i++) {
+            var orderBy = orderBys.get(i);
+            var column = mapFieldToColumn(orderBy.getField());
+            var lastValue = lastValues.get(column.name());
+            if (lastValue == null) {
+                continue;
+            }
+
+            conditions.add(buildFieldEquality(orderBy.getField(), lastValue));
+        }
+
+        return conditions;
+    }
+
+    /**
+     * Build equality condition for a field.
+     */
+    private static AndOrCriteriaGroup buildFieldEquality(ListTodosRequest.OrderBy.Field field, String value) {
+        return switch (field) {
+            case CREATED_AT -> and(todo.createdAt, isEqualTo(LocalDateTime.parse(value)));
+            case DUE_DATE -> and(todo.dueDate, isEqualTo(LocalDate.parse(value)));
+            case PRIORITY -> and(todo.priority, isEqualTo(monorepo.proto.todo.v1.Todo.Priority.valueOf(value)));
+            case FIELD_UNSPECIFIED, UNRECOGNIZED -> {
+                throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription(
+                        "Invalid order by field: " + field));
+            }
+        };
+    }
+
+    private static AndOrCriteriaGroup buildFieldComparison(ListTodosRequest.OrderBy orderBy, String value) {
+        var field = orderBy.getField();
+        var isDesc = orderBy.getIsDesc();
+        return switch (field) {
+            case CREATED_AT -> {
+                var parsedValue = LocalDateTime.parse(value);
+                yield isDesc ? and(todo.createdAt, isLessThan(parsedValue)) : and(todo.createdAt, isGreaterThan(parsedValue));
+            }
+            case DUE_DATE -> {
+                var parsedValue = LocalDate.parse(value);
+                yield isDesc ? and(todo.dueDate, isLessThan(parsedValue)) : and(todo.dueDate, isGreaterThan(parsedValue));
+            }
+            case PRIORITY -> {
+                var parsedValue = monorepo.proto.todo.v1.Todo.Priority.valueOf(value);
+                yield isDesc ? and(todo.priority, isLessThan(parsedValue)) : and(todo.priority, isGreaterThan(parsedValue));
+            }
+            case FIELD_UNSPECIFIED, UNRECOGNIZED ->
+                throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription(
+                        "Invalid order by field: " + field));
+        };
+    }
+
+    /**
+     * Combine prefix conditions and comparison with AND.
+     */
+    private static AndOrCriteriaGroup combineWithAnd(
+            List<AndOrCriteriaGroup> prefixConditions, AndOrCriteriaGroup comparison) {
+        if (prefixConditions.isEmpty()) {
+            return comparison;
+        }
+
+        var allConditions = new ArrayList<>(prefixConditions);
+        allConditions.add(comparison);
+
+        return and(allConditions);
+    }
+
+    /**
+     * Combine multiple conditions with OR.
+     */
+    @Nullable
+    private static AndOrCriteriaGroup combineWithOr(List<AndOrCriteriaGroup> conditions) {
         if (conditions.isEmpty()) {
             return null;
         }
 
-        // Combine all conditions with OR
-        var result = conditions.getFirst();
-        for (int i = 1; i < conditions.size(); i++) {
-            result = or(List.of(result, conditions.get(i)));
+        if (conditions.size() == 1) {
+            return conditions.getFirst();
         }
 
-        return result;
+        return or(conditions);
     }
 
     /**
@@ -355,6 +418,9 @@ public class TodoService {
                 case FIELD_UNSPECIFIED, UNRECOGNIZED -> {}
             }
         }
+
+        // Always include id for stable sorting
+        result.put(todo.id.name(), String.valueOf(entity.getId()));
 
         return result;
     }
