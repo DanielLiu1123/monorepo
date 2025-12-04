@@ -36,6 +36,7 @@ import monorepo.services.todo.mapper.TodoMapper;
 import monorepo.services.todo.mapper.TodoSubtaskMapper;
 import org.jspecify.annotations.Nullable;
 import org.mybatis.dynamic.sql.AndOrCriteriaGroup;
+import org.mybatis.dynamic.sql.SortSpecification;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -193,18 +194,17 @@ public class TodoService {
             var sql = c.where(conditions);
 
             // Apply ordering
+            var orderBys = new ArrayList<SortSpecification>();
             for (var orderBy : request.getOrderByList()) {
                 var column = mapFieldToColumn(orderBy.getField());
                 if (column != null) {
-                    if (orderBy.getIsDesc()) sql.orderBy(column.descending());
-                    else sql.orderBy(column);
+                    if (orderBy.getIsDesc()) orderBys.add(column.descending());
+                    else orderBys.add(column);
                 }
             }
-            // Always order by id as a tie-breaker for consistent pagination
-            sql.orderBy(todo.id);
+            orderBys.add(todo.id);
 
-            sql.limit(pageSize);
-            return sql;
+            return sql.orderBy(orderBys).limit(pageSize);
         });
         if (entities.isEmpty()) {
             return ListTodosResponse.newBuilder().setTotalSize((int) totalSize).build();
