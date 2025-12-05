@@ -37,7 +37,7 @@ print_warning() {
 }
 
 execute_cmd() {
-    echo -e "${BLUE}→ $*${NC}"
+    echo -e "${BLUE}$*${NC}"
     ( eval "$@" )
 }
 
@@ -192,7 +192,7 @@ execute_for_projects() {
         print_info ""
         print_info "Detected changed projects:"
         while IFS= read -r project; do
-            print_info " - $project"
+            print_info " - $(normalize_path "$project")"
         done <<< "$projects"
     else
         print_info "Scanning for projects in $path"
@@ -202,6 +202,12 @@ execute_for_projects() {
             print_warning "No projects found in $path"
             return 0
         fi
+
+        print_info ""
+        print_info "Found projects:"
+        while IFS= read -r project; do
+            print_info " - $(normalize_path "$project")"
+        done <<< "$projects"
     fi
 
     local total=0
