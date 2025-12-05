@@ -187,17 +187,6 @@ public class TodoService {
             return ListTodosResponse.newBuilder().setTotalSize(0).build();
         }
 
-        // Build order specifications
-        var orderBys = new ArrayList<SortSpecification>();
-        for (var orderBy : request.getOrderByList()) {
-            var column = mapFieldToColumn(orderBy.getField());
-            if (column != null) {
-                if (orderBy.getIsDesc()) orderBys.add(column.descending());
-                else orderBys.add(column);
-            }
-        }
-        orderBys.add(todo.id);
-
         // Build query with cursor-based pagination
         var entities = todoMapper.select(c -> {
             var conditions = new ArrayList<>(buildConditions(request));
@@ -211,6 +200,17 @@ public class TodoService {
                     conditions.add(and(cursorCondition));
                 }
             }
+
+            // Build order specifications
+            var orderBys = new ArrayList<SortSpecification>();
+            for (var orderBy : request.getOrderByList()) {
+                var column = mapFieldToColumn(orderBy.getField());
+                if (column != null) {
+                    if (orderBy.getIsDesc()) orderBys.add(column.descending());
+                    else orderBys.add(column);
+                }
+            }
+            orderBys.add(todo.id);
 
             return c.where(conditions).orderBy(orderBys).limit(pageSize);
         });
@@ -376,37 +376,6 @@ public class TodoService {
                 throw new StatusRuntimeException(
                         Status.INVALID_ARGUMENT.withDescription("Invalid order by field: " + field));
         };
-    }
-
-    /**
-     * Combine prefix conditions and comparison with AND.
-     */
-    private static AndOrCriteriaGroup combineWithAnd(
-            List<AndOrCriteriaGroup> prefixConditions, AndOrCriteriaGroup comparison) {
-        if (prefixConditions.isEmpty()) {
-            return comparison;
-        }
-
-        var allConditions = new ArrayList<>(prefixConditions);
-        allConditions.add(comparison);
-
-        return and(allConditions);
-    }
-
-    /**
-     * Combine multiple conditions with OR.
-     */
-    @Nullable
-    private static AndOrCriteriaGroup combineWithOr(List<AndOrCriteriaGroup> conditions) {
-        if (conditions.isEmpty()) {
-            return null;
-        }
-
-        if (conditions.size() == 1) {
-            return conditions.getFirst();
-        }
-
-        return or(conditions);
     }
 
     /**
