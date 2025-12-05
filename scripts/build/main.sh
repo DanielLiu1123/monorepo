@@ -189,7 +189,11 @@ execute_for_projects() {
             return 0
         fi
         
-        print_info "Detected affected projects based on git changes"
+        print_info ""
+        print_info "Detected changed projects:"
+        while IFS= read -r project; do
+            print_info " - $project"
+        done <<< "$projects"
     else
         print_info "Scanning for projects in $path"
         projects=$(find_projects "$path")
