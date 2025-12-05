@@ -79,6 +79,67 @@ normalize_path() {
     echo "$path"
 }
 
+# Get all changed files from git (including unstaged changes)
+get_git_changed_files() {
+    cd "$ROOT_DIR" || return 1
+    
+    # Get staged changes, unstaged changes, and untracked files
+    {
+        git diff --name-only HEAD 2>/dev/null || true
+        git diff --name-only --cached 2>/dev/null || true
+        git ls-files --others --exclude-standard 2>/dev/null || true
+    } | sort -u
+}
+
+# Find projects affected by git changes
+find_affected_projects() {
+    local changed_files
+    changed_files=$(get_git_changed_files)
+    
+    if [ -z "$changed_files" ]; then
+        return 0
+    fi
+    
+    local affected_projects=()
+    local seen_projects=()
+    
+    # For each changed file, find the project it belongs to
+    while IFS= read -r file; do
+        # Find the directory containing build.sh for this file
+        local dir
+        dir=$(dirname "$file")
+        
+        # Walk up the directory tree to find build.sh
+        while [ "$dir" != "." ] && [ -n "$dir" ]; do
+            if [ -f "$ROOT_DIR/$dir/build.sh" ]; then
+                # Check if we haven't already added this project
+                local already_seen=false
+                for seen in "${seen_projects[@]}"; do
+                    if [ "$seen" = "$dir" ]; then
+                        already_seen=true
+                        break
+                    fi
+                done
+                
+                if [ "$already_seen" = false ]; then
+                    affected_projects+=("$dir")
+                    seen_projects+=("$dir")
+                fi
+                break
+            fi
+            
+            # Move up one directory
+            dir=$(dirname "$dir")
+            if [ "$dir" = "/" ] || [ "$dir" = "." ]; then
+                break
+            fi
+        done
+    done <<< "$changed_files"
+    
+    # Sort and output
+    printf "%s\n" "${affected_projects[@]}" | sort -u
+}
+
 find_projects() {
     local search_path="$1"
 
@@ -116,14 +177,27 @@ validate_project() {
 execute_for_projects() {
     local command="$1"
     local path="$2"
-
-    print_info "Scanning for projects in $path"
     local projects
-    projects=$(find_projects "$path")
 
-    if [ -z "$projects" ]; then
-        print_warning "No projects found in $path"
-        return 0
+    # If no path specified, use git changes to determine affected projects
+    if [ -z "$path" ]; then
+        print_info "No path specified, detecting projects based on git changes..."
+        projects=$(find_affected_projects)
+        
+        if [ -z "$projects" ]; then
+            print_warning "No git changes detected, no projects to process"
+            return 0
+        fi
+        
+        print_info "Detected affected projects based on git changes"
+    else
+        print_info "Scanning for projects in $path"
+        projects=$(find_projects "$path")
+        
+        if [ -z "$projects" ]; then
+            print_warning "No projects found in $path"
+            return 0
+        fi
     fi
 
     local total=0
@@ -179,13 +253,18 @@ show_usage() {
     echo "  init                - Initialize development environment"
     echo "  gen-proto [path]    - Generate code from proto files"
     echo "  list-projects [path] - List all projects in monorepo (or in specified path)"
-    echo "  clean [path]        - Clean build artifacts (defaults to current directory)"
-    echo "  install [path]      - Install dependencies (defaults to current directory)"
-    echo "  build [path]        - Build project(s) (defaults to current directory)"
-    echo "  test [path]         - Run tests (defaults to current directory)"
+    echo "  clean [path]        - Clean build artifacts"
+    echo "  install [path]      - Install dependencies"
+    echo "  build [path]        - Build project(s)"
+    echo "  test [path]         - Run tests"
     echo "  run <path>          - Run project (single project only, path required)"
-    echo "  lint [path]         - Run linter (defaults to current directory)"
-    echo "  fmt [path]          - Format code (defaults to current directory)"
+    echo "  lint [path]         - Run linter"
+    echo "  fmt [path]          - Format code"
+    echo ""
+    echo "Path behavior:"
+    echo "  - If [path] is omitted: Auto-detect affected projects based on git changes"
+    echo "  - If [path] is a project directory: Execute command for that project only"
+    echo "  - If [path] is a parent directory: Execute command for all projects in it"
     echo ""
     echo "Examples:"
     echo "  $script_name init"
@@ -194,6 +273,8 @@ show_usage() {
     echo "  $script_name gen-proto user/v1              # Generate code for specific version"
     echo "  $script_name list-projects                  # List all projects"
     echo "  $script_name list-projects services         # List projects in services/"
+    echo "  $script_name fmt                            # Format only projects with git changes"
+    echo "  $script_name build                          # Build only projects with git changes"
     echo "  $script_name build services/user-service    # Build single project"
     echo "  $script_name build services                 # Build all projects in services/"
     echo "  $script_name build .                        # Build all projects in monorepo"
@@ -220,17 +301,22 @@ main() {
             cmd_list_projects "${path:-.}"
             ;;
         clean|install|build|test|lint|fmt)
-            # Default to current directory if no path specified
-            path="${path:-.}"
-            validate_project "$path"
-
-            # Check if path is a project directory or a parent directory
-            if is_project_dir "$path"; then
-                # Single project: execute command with custom support
-                execute_project_cmd "${command}" "$path"
+            # If path is specified, validate and use it
+            # If path is not specified, use git-based detection
+            if [ -n "$path" ]; then
+                validate_project "$path"
+                
+                # Check if path is a project directory or a parent directory
+                if is_project_dir "$path"; then
+                    # Single project: execute command with custom support
+                    execute_project_cmd "${command}" "$path"
+                else
+                    # Parent directory: find and execute for all projects
+                    execute_for_projects "${command}" "$path"
+                fi
             else
-                # Parent directory: find and execute for all projects
-                execute_for_projects "${command}" "$path"
+                # No path specified: use git-based detection
+                execute_for_projects "${command}" ""
             fi
             ;;
         run)
