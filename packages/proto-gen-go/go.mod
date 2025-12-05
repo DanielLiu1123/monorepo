@@ -1,6 +1,6 @@
 module github.com/yourorg/monorepo/packages/proto-gen-go
 
-go 1.25.4
+go 1.25.5
 
 require (
 	google.golang.org/genproto v0.0.0-20251111163417-95abcf5c77ba
