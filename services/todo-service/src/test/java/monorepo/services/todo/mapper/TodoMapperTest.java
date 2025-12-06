@@ -22,15 +22,21 @@ class TodoMapperTest {
 
     @Test
     void testComplexAndOrConditions() {
+        // @spotless:off
         var conditions = new ArrayList<AndOrCriteriaGroup>();
-        conditions.add(or(List.of(and(todo.createdAt, isLessThan(LocalDateTime.now())))));
+        conditions.add(or(List.of(
+                and(todo.createdAt, isLessThan(LocalDateTime.now()))))
+        );
         conditions.add(or(List.of(
                 and(todo.updatedAt, isEqualTo(LocalDateTime.now())),
-                and(todo.priority, isLessThan(Todo.Priority.HIGH)))));
+                and(todo.priority, isLessThan(Todo.Priority.HIGH))))
+        );
         conditions.add(or(List.of(
                 and(todo.updatedAt, isEqualTo(LocalDateTime.now())),
                 and(todo.priority, isEqualTo(Todo.Priority.HIGH)),
-                and(todo.id, isGreaterThan(1L)))));
+                and(todo.id, isGreaterThan(1L))))
+        );
+        // @spotless:on
 
         var actual = select(TodoMapper.selectList)
                 .from(todo)
