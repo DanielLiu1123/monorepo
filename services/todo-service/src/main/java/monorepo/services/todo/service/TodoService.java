@@ -43,15 +43,12 @@ import org.jspecify.annotations.Nullable;
 import org.mybatis.dynamic.sql.AndOrCriteriaGroup;
 import org.mybatis.dynamic.sql.SortSpecification;
 import org.mybatis.dynamic.sql.SqlColumn;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class TodoService {
 
-    private static final Logger log = LoggerFactory.getLogger(TodoService.class);
     private final TodoMapper todoMapper;
     private final TodoSubtaskMapper todoSubtaskMapper;
 
@@ -167,75 +164,81 @@ public class TodoService {
      * @return list todos response
      */
     public ListTodosResponse list(ListTodosRequest request) {
-        int pageSize;
-        if (request.getPageSize() <= 0) {
-            pageSize = 100;
-        } else if (request.getPageSize() > 1000) {
-            pageSize = 1000;
-        } else {
-            pageSize = request.getPageSize();
+        // Count total matching todos
+        var total = countTodos(request);
+        if (total == 0) {
+            return ListTodosResponse.getDefaultInstance();
         }
 
-        var pageTokenState = fromPageToken(request);
-        if (pageTokenState == null && !request.getPageToken().isEmpty()) {
-            throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("Invalid page token"));
+        // Get todos with pagination
+        var entities = getTodoEntities(request);
+        if (entities.isEmpty()) {
+            return ListTodosResponse.getDefaultInstance();
         }
 
-        // Query total count
-        var totalSize = todoMapper.count(c -> c.where(buildConditions(request)));
-        if (totalSize == 0) {
-            return ListTodosResponse.newBuilder().setTotalSize(0).build();
+        var todos = buildTodos(entities);
+
+        var builder = ListTodosResponse.newBuilder();
+        builder.addAllTodos(todos);
+        builder.setTotalSize((int) total);
+
+        // Generate next page token if there are more results
+        if (todos.size() == normalizePageSize(request.getPageSize())) {
+            builder.setNextPageToken(generatePageToken(request, entities.getLast()));
         }
 
+        return builder.build();
+    }
+
+    private long countTodos(ListTodosRequest request) {
+        return todoMapper.count(c -> c.where(buildConditions(request)));
+    }
+
+    private List<Todo> getTodoEntities(ListTodosRequest request) {
         // Build query with cursor-based pagination
-        var entities = todoMapper.select(c -> {
+        return todoMapper.select(c -> {
+            // where ...
             var conditions = new ArrayList<>(buildConditions(request));
 
-            // Add cursor condition if we have a valid page token
-            if (pageTokenState != null
-                    && pageTokenState.lastValues() != null
-                    && !pageTokenState.lastValues().isEmpty()) {
+            var pageTokenState = fromPageToken(request);
+            if (pageTokenState != null && !pageTokenState.lastValues().isEmpty()) {
                 var cursorCondition = buildCursorCondition(request.getOrderByList(), pageTokenState.lastValues());
                 if (!cursorCondition.isEmpty()) {
                     conditions.add(and(cursorCondition));
                 }
             }
 
-            // Build order specifications
+            // order by ...
             var orderBys = new ArrayList<SortSpecification>();
             for (var orderBy : request.getOrderByList()) {
-                var column = mapFieldToColumn(orderBy.getField());
-                if (column != null) {
-                    if (orderBy.getIsDesc()) orderBys.add(column.descending());
-                    else orderBys.add(column);
+                var column = getSqlColumn(orderBy.getField());
+                if (orderBy.getIsDesc()) {
+                    orderBys.add(column.descending());
+                } else {
+                    orderBys.add(column);
                 }
             }
             orderBys.add(todo.id);
 
-            return c.where(conditions).orderBy(orderBys).limit(pageSize);
+            return c.where(conditions).orderBy(orderBys).limit(normalizePageSize(request.getPageSize()));
         });
-        if (entities.isEmpty()) {
-            return ListTodosResponse.newBuilder().setTotalSize((int) totalSize).build();
+    }
+
+    private static String generatePageToken(ListTodosRequest request, Todo entity) {
+        var lastValues = extractFieldValues(entity, request.getOrderByList());
+        var newPageTokenState =
+                new PageTokenState(lastValues, calculateFilterHash(request), calculateSortHash(request));
+        return newPageTokenState.toPageToken();
+    }
+
+    private static int normalizePageSize(int pageSize) {
+        if (pageSize < 0) {
+            throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("Page size must be non-negative"));
+        } else if (pageSize == 0) {
+            return 100; // default page size
+        } else {
+            return Math.min(pageSize, 1000);
         }
-
-        var todos = buildTodos(entities);
-
-        // Build response with next page token
-        var builder = ListTodosResponse.newBuilder();
-        builder.addAllTodos(todos);
-        builder.setTotalSize((int) totalSize);
-
-        // Generate next page token if there are more results
-        if (todos.size() == pageSize) {
-            var last = entities.getLast();
-            var lastValues = extractFieldValues(last, request.getOrderByList());
-
-            var newPageTokenState =
-                    new PageTokenState(lastValues, calculateFilterHash(request), calculateSortHash(request));
-            builder.setNextPageToken(newPageTokenState.toPageToken());
-        }
-
-        return builder.build();
     }
 
     /**
@@ -271,7 +274,7 @@ public class TodoService {
     private static List<AndOrCriteriaGroup> buildOrderByFieldCondition(
             List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues, int currentIndex) {
         var orderBy = orderBys.get(currentIndex);
-        var column = mapFieldToColumn(orderBy.getField());
+        var column = getSqlColumn(orderBy.getField());
         var lastValue = lastValues.get(column.name());
         if (lastValue == null) {
             return List.of();
@@ -323,7 +326,7 @@ public class TodoService {
 
         for (int i = startIndex; i < endIndex; i++) {
             var orderBy = orderBys.get(i);
-            var column = mapFieldToColumn(orderBy.getField());
+            var column = getSqlColumn(orderBy.getField());
             var lastValue = lastValues.get(column.name());
             if (lastValue == null) {
                 continue;
@@ -408,7 +411,7 @@ public class TodoService {
     @Nullable
     private static PageTokenState fromPageToken(ListTodosRequest request) {
         var pageToken = request.getPageToken();
-        if (pageToken.isEmpty()) {
+        if (pageToken.isBlank()) {
             return null;
         }
 
@@ -416,20 +419,21 @@ public class TodoService {
         try {
             result = PageTokenState.fromPageToken(pageToken);
         } catch (Exception e) {
-            log.warn("Invalid page token format: {}", pageToken);
-            return null;
+            throw new StatusRuntimeException(Status.INVALID_ARGUMENT
+                    .withDescription("Invalid page token format.")
+                    .withCause(e));
         }
 
         var currentFilterHash = calculateFilterHash(request);
         if (!Objects.equals(result.filterHash(), currentFilterHash)) {
-            log.warn("Page token filter mismatch, ignoring token");
-            return null;
+            throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription(
+                    "Page token filter changed. You must reset pagination by not providing a page token."));
         }
 
         var currentSortHash = calculateSortHash(request);
         if (!Objects.equals(result.sortHash(), currentSortHash)) {
-            log.warn("Page token sort mismatch, ignoring token");
-            return null;
+            throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription(
+                    "Page token sortBy changed. You must reset pagination by not providing a page token."));
         }
 
         return result;
@@ -472,7 +476,7 @@ public class TodoService {
         return result;
     }
 
-    private static SqlColumn<?> mapFieldToColumn(ListTodosRequest.OrderBy.Field field) {
+    private static SqlColumn<?> getSqlColumn(ListTodosRequest.OrderBy.Field field) {
         return switch (field) {
             case CREATED_AT -> todo.createdAt;
             case DUE_DATE -> todo.dueDate;

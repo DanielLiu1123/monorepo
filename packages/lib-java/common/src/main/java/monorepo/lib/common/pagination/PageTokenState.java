@@ -14,6 +14,10 @@ import monorepo.lib.common.util.JsonUtil;
  */
 public record PageTokenState(Map<String, String> lastValues, String filterHash, String sortHash) {
 
+    public PageTokenState {
+        lastValues = lastValues == null ? Map.of() : lastValues;
+    }
+
     public String toPageToken() {
         var json = JsonUtil.stringify(this);
         var combined = Base64.getUrlEncoder().withoutPadding().encode(json.getBytes(StandardCharsets.UTF_8));
