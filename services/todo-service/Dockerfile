@@ -10,14 +10,13 @@ WORKDIR /builder/app
 
 RUN java -XX:+UseCompactObjectHeaders -XX:AOTCacheOutput=app.aot -jar app.jar
 
+# Final stage
 FROM eclipse-temurin:25-jdk
 
 WORKDIR /app
 
 COPY --from=builder /builder/app/ .
 
-ARG JAVA_OPTS="-XX:InitialRAMPercentage=75.0 -XX:MinRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
-
 ENV TZ=UTC
 
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -XX:+UseCompactObjectHeaders -XX:AOTCache=app.aot -jar app.jar"]
+ENTRYPOINT ["java", "-XX:InitialRAMPercentage=75.0", "-XX:MinRAMPercentage=75.0", "-XX:MaxRAMPercentage=75.0", "-XX:+UseCompactObjectHeaders", "-XX:AOTCache=app.aot", "-jar", "app.jar"]
