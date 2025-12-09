@@ -181,10 +181,11 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
       "orepo.todo.v1.DeleteTodoRequest\032\026.monore" +
       "po.todo.v1.Todo\"\000\022b\n\rBatchGetTodos\022&.mon" +
       "orepo.todo.v1.BatchGetTodosRequest\032\'.mon" +
-      "orepo.todo.v1.BatchGetTodosResponse\"\000Bg\n" +
-      "\026monorepo.proto.todo.v1P\001ZKgithub.com/yo" +
-      "urorg/monorepo/packages/proto-gen-go/pro" +
-      "to-todo/todo/v1;todov1b\006proto3"
+      "orepo.todo.v1.BatchGetTodosResponse\"\000Bs\n" +
+      "\026monorepo.proto.todo.v1P\001ZWgithub.com/yo" +
+      "urorg/monorepo/packages/proto-gen-go/mon" +
+      "orepo/todo/monorepo/todo/v1;todov1b\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

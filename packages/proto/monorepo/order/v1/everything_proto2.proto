@@ -10,7 +10,7 @@ import "google/type/dayofweek.proto";
 import "google/type/month.proto";
 import "google/type/timeofday.proto";
 
-option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/proto-order/order/v1;orderv1";
+option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/monorepo/order/monorepo/order/v1;orderv1";
 option java_multiple_files = true;
 option java_outer_classname = "EverythingProto2Proto";
 option java_package = "monorepo.proto.order.v1";

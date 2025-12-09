@@ -202,8 +202,8 @@ const file_monorepo_common_v1_list_proto_rawDesc = "" +
 	"\tInt32List\x12\x16\n" +
 	"\x06values\x18\x01 \x03(\x05R\x06values\"#\n" +
 	"\tInt64List\x12\x16\n" +
-	"\x06values\x18\x01 \x03(\x03R\x06valuesBz\n" +
-	"\x18monorepo.proto.common.v1B\tListProtoP\x01ZQgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-common/common/v1;commonv1b\x06proto3"
+	"\x06values\x18\x01 \x03(\x03R\x06valuesB\x86\x01\n" +
+	"\x18monorepo.proto.common.v1B\tListProtoP\x01Z]github.com/yourorg/monorepo/packages/proto-gen-go/monorepo/common/monorepo/common/v1;commonv1b\x06proto3"
 
 var file_monorepo_common_v1_list_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_monorepo_common_v1_list_proto_goTypes = []any{

@@ -163,8 +163,8 @@ const file_monorepo_order_v1_order_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x1a=\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01Bk\n" +
-	"\x17monorepo.proto.order.v1P\x01ZNgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-order/order/v1;orderv1b\x06proto3"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01Bw\n" +
+	"\x17monorepo.proto.order.v1P\x01ZZgithub.com/yourorg/monorepo/packages/proto-gen-go/monorepo/order/monorepo/order/v1;orderv1b\x06proto3"
 
 var file_monorepo_order_v1_order_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_monorepo_order_v1_order_proto_goTypes = []any{

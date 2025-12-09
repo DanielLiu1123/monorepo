@@ -145,8 +145,8 @@ const file_monorepo_user_v1_user_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x05 \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x06 \x01(\x03R\tupdatedAtBg\n" +
-	"\x16monorepo.proto.user.v1P\x01ZKgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-user/user/v1;userv1b\x06proto3"
+	"updated_at\x18\x06 \x01(\x03R\tupdatedAtBs\n" +
+	"\x16monorepo.proto.user.v1P\x01ZWgithub.com/yourorg/monorepo/packages/proto-gen-go/monorepo/user/monorepo/user/v1;userv1b\x06proto3"
 
 var file_monorepo_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_monorepo_user_v1_user_proto_goTypes = []any{

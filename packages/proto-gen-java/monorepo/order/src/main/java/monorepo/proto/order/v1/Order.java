@@ -54,10 +54,10 @@ public final class Order extends com.google.protobuf.GeneratedFile {
       "\nattributes\0229\n\ncreated_at\030\005 \001(\0132\032.google" +
       ".protobuf.TimestampR\tcreatedAt\032=\n\017Attrib" +
       "utesEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001" +
-      "(\tR\005value:\0028\001Bk\n\027monorepo.proto.order.v1" +
-      "P\001ZNgithub.com/yourorg/monorepo/packages" +
-      "/proto-gen-go/proto-order/order/v1;order" +
-      "v1b\006proto3"
+      "(\tR\005value:\0028\001Bw\n\027monorepo.proto.order.v1" +
+      "P\001ZZgithub.com/yourorg/monorepo/packages" +
+      "/proto-gen-go/monorepo/order/monorepo/or" +
+      "der/v1;orderv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

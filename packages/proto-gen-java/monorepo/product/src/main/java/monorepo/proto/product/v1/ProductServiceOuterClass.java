@@ -53,10 +53,10 @@ public final class ProductServiceOuterClass extends com.google.protobuf.Generate
       "oductR\007product2q\n\016ProductService\022_\n\nGetP" +
       "roduct\022&.monorepo.product.v1.GetProductR" +
       "equest\032\'.monorepo.product.v1.GetProductR" +
-      "esponse\"\000Bs\n\031monorepo.proto.product.v1P\001" +
-      "ZTgithub.com/yourorg/monorepo/packages/p" +
-      "roto-gen-go/proto-product/product/v1;pro" +
-      "ductv1b\006proto3"
+      "esponse\"\000B\177\n\031monorepo.proto.product.v1P\001" +
+      "Z`github.com/yourorg/monorepo/packages/p" +
+      "roto-gen-go/monorepo/product/monorepo/pr" +
+      "oduct/v1;productv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

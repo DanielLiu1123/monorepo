@@ -1792,8 +1792,8 @@ const file_monorepo_todo_v1_todo_service_proto_rawDesc = "" +
 	"UpdateTodo\x12#.monorepo.todo.v1.UpdateTodoRequest\x1a\x16.monorepo.todo.v1.Todo\"\x00\x12K\n" +
 	"\n" +
 	"DeleteTodo\x12#.monorepo.todo.v1.DeleteTodoRequest\x1a\x16.monorepo.todo.v1.Todo\"\x00\x12b\n" +
-	"\rBatchGetTodos\x12&.monorepo.todo.v1.BatchGetTodosRequest\x1a'.monorepo.todo.v1.BatchGetTodosResponse\"\x00Bg\n" +
-	"\x16monorepo.proto.todo.v1P\x01ZKgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-todo/todo/v1;todov1b\x06proto3"
+	"\rBatchGetTodos\x12&.monorepo.todo.v1.BatchGetTodosRequest\x1a'.monorepo.todo.v1.BatchGetTodosResponse\"\x00Bs\n" +
+	"\x16monorepo.proto.todo.v1P\x01ZWgithub.com/yourorg/monorepo/packages/proto-gen-go/monorepo/todo/monorepo/todo/v1;todov1b\x06proto3"
 
 var file_monorepo_todo_v1_todo_service_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_monorepo_todo_v1_todo_service_proto_msgTypes = make([]protoimpl.MessageInfo, 14)

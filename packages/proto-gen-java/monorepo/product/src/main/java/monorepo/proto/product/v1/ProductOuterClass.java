@@ -46,10 +46,11 @@ public final class ProductOuterClass extends com.google.protobuf.GeneratedFile {
       "\003 \001(\tR\013description\022\024\n\005price\030\004 \001(\001R\005price" +
       "\022\024\n\005stock\030\005 \001(\005R\005stock\022\032\n\010category\030\006 \001(\t" +
       "R\010category\022\035\n\ncreated_at\030\007 \001(\003R\tcreatedA" +
-      "t\022\035\n\nupdated_at\030\010 \001(\003R\tupdatedAtBs\n\031mono" +
-      "repo.proto.product.v1P\001ZTgithub.com/your" +
-      "org/monorepo/packages/proto-gen-go/proto" +
-      "-product/product/v1;productv1b\006proto3"
+      "t\022\035\n\nupdated_at\030\010 \001(\003R\tupdatedAtB\177\n\031mono" +
+      "repo.proto.product.v1P\001Z`github.com/your" +
+      "org/monorepo/packages/proto-gen-go/monor" +
+      "epo/product/monorepo/product/v1;productv" +
+      "1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

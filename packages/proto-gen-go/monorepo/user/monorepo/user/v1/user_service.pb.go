@@ -7,7 +7,7 @@
 package userv1
 
 import (
-	_ "github.com/yourorg/monorepo/packages/proto-gen-go/proto-common/common/v1"
+	_ "github.com/yourorg/monorepo/packages/proto-gen-go/monorepo/common/monorepo/common/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -374,8 +374,8 @@ const file_monorepo_user_v1_user_service_proto_rawDesc = "" +
 	"\vUserService\x12E\n" +
 	"\aGetUser\x12 .monorepo.user.v1.GetUserRequest\x1a\x16.monorepo.user.v1.User\"\x00\x12b\n" +
 	"\rBatchGetUsers\x12&.monorepo.user.v1.BatchGetUsersRequest\x1a'.monorepo.user.v1.BatchGetUsersResponse\"\x00\x12V\n" +
-	"\tListUsers\x12\".monorepo.user.v1.ListUsersRequest\x1a#.monorepo.user.v1.ListUsersResponse\"\x00Bg\n" +
-	"\x16monorepo.proto.user.v1P\x01ZKgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-user/user/v1;userv1b\x06proto3"
+	"\tListUsers\x12\".monorepo.user.v1.ListUsersRequest\x1a#.monorepo.user.v1.ListUsersResponse\"\x00Bs\n" +
+	"\x16monorepo.proto.user.v1P\x01ZWgithub.com/yourorg/monorepo/packages/proto-gen-go/monorepo/user/monorepo/user/v1;userv1b\x06proto3"
 
 var file_monorepo_user_v1_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_monorepo_user_v1_user_service_proto_goTypes = []any{

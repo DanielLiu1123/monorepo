@@ -6,7 +6,7 @@ use (
 	./apps/admin-bff
 	./apps/mobile-bff
 	./apps/web-bff
-	./packages/proto-gen-go
+	./packages/proto-gen-go/monorepo
 	./services/payment-service
 	./services/user-service
 )

@@ -69,10 +69,10 @@ public final class TodoProto extends com.google.protobuf.GeneratedFile {
       "\005title\030\003 \001(\tR\005title\0229\n\ncreated_at\030\005 \001(\0132" +
       "\032.google.protobuf.TimestampR\tcreatedAt\0229" +
       "\n\nupdated_at\030\006 \001(\0132\032.google.protobuf.Tim" +
-      "estampR\tupdatedAtBr\n\026monorepo.proto.todo" +
-      ".v1B\tTodoProtoP\001ZKgithub.com/yourorg/mon" +
-      "orepo/packages/proto-gen-go/proto-todo/t" +
-      "odo/v1;todov1b\006proto3"
+      "estampR\tupdatedAtB~\n\026monorepo.proto.todo" +
+      ".v1B\tTodoProtoP\001ZWgithub.com/yourorg/mon" +
+      "orepo/packages/proto-gen-go/monorepo/tod" +
+      "o/monorepo/todo/v1;todov1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -156,8 +156,8 @@ const file_monorepo_product_v1_product_service_proto_rawDesc = "" +
 	"\aproduct\x18\x01 \x01(\v2\x1c.monorepo.product.v1.ProductR\aproduct2q\n" +
 	"\x0eProductService\x12_\n" +
 	"\n" +
-	"GetProduct\x12&.monorepo.product.v1.GetProductRequest\x1a'.monorepo.product.v1.GetProductResponse\"\x00Bs\n" +
-	"\x19monorepo.proto.product.v1P\x01ZTgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-product/product/v1;productv1b\x06proto3"
+	"GetProduct\x12&.monorepo.product.v1.GetProductRequest\x1a'.monorepo.product.v1.GetProductResponse\"\x00B\x7f\n" +
+	"\x19monorepo.proto.product.v1P\x01Z`github.com/yourorg/monorepo/packages/proto-gen-go/monorepo/product/monorepo/product/v1;productv1b\x06proto3"
 
 var file_monorepo_product_v1_product_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_monorepo_product_v1_product_service_proto_goTypes = []any{

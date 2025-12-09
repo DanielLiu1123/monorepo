@@ -203,8 +203,8 @@ const file_monorepo_common_v1_page_proto_rawDesc = "" +
 	"\x04size\x18\x02 \x01(\x03R\x04size\x12%\n" +
 	"\x0etotal_elements\x18\x03 \x01(\x03R\rtotalElements\x12\x1f\n" +
 	"\vtotal_pages\x18\x04 \x01(\x03R\n" +
-	"totalPagesBz\n" +
-	"\x18monorepo.proto.common.v1B\tPageProtoP\x01ZQgithub.com/yourorg/monorepo/packages/proto-gen-go/proto-common/common/v1;commonv1b\x06proto3"
+	"totalPagesB\x86\x01\n" +
+	"\x18monorepo.proto.common.v1B\tPageProtoP\x01Z]github.com/yourorg/monorepo/packages/proto-gen-go/monorepo/common/monorepo/common/v1;commonv1b\x06proto3"
 
 var file_monorepo_common_v1_page_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_monorepo_common_v1_page_proto_goTypes = []any{
