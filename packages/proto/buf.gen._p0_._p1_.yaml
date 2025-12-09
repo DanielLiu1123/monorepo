@@ -1,0 +1,20 @@
+version: v2
+clean: true
+plugins:
+  - protoc_builtin: java
+    out: ../proto-gen-java/${p0}/${p1}/src/main/java
+  - local: protoc-gen-grpc-java
+    out: ../proto-gen-java/${p0}/${p1}/src/main/java
+
+  - local: protoc-gen-go
+    out: ../proto-gen-go/${p0}/${p1}
+    opt:
+      - paths=source_relative
+      - default_api_level=API_OPAQUE
+  - local: protoc-gen-go-grpc
+    out: ../proto-gen-go/${p0}/${p1}
+    opt:
+      - paths=source_relative
+
+inputs:
+  - directory: .

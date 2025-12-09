@@ -1,0 +1,159 @@
+syntax = "proto3";
+
+package monorepo.todo.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "google/type/date.proto";
+import "monorepo/todo/v1/todo.proto";
+
+option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/proto-todo/todo/v1;todov1";
+option java_multiple_files = true;
+option java_package = "monorepo.proto.todo.v1";
+
+// TodoService provides CRUD operations for todos following AIP standards
+service TodoService {
+  // === standard APIs ===
+
+  // Create a new todo
+  rpc CreateTodo(CreateTodoRequest) returns (Todo) {}
+
+  // Get a todo by ID (including soft-deleted), returns NOT_FOUND if not exists
+  rpc GetTodo(GetTodoRequest) returns (Todo) {}
+
+  // List todos with pagination, filtering, and sorting
+  rpc ListTodos(ListTodosRequest) returns (ListTodosResponse) {}
+
+  // Update an existing todo
+  rpc UpdateTodo(UpdateTodoRequest) returns (Todo) {}
+
+  // Delete a todo by ID (soft delete)
+  rpc DeleteTodo(DeleteTodoRequest) returns (Todo) {}
+
+  // === additional APIs ===
+
+  // Batch get todos by IDs (including soft-deleted)
+  rpc BatchGetTodos(BatchGetTodosRequest) returns (BatchGetTodosResponse) {}
+}
+
+message CreateTodoRequest {
+  int64 user_id = 1;
+  string title = 2;
+  optional string description = 3;
+  optional Todo.State state = 4;
+  optional Todo.Priority priority = 5;
+  optional int64 assignee = 6;
+  optional google.type.Date due_date = 7;
+  repeated CreateSubtaskRequest sub_tasks = 8;
+}
+
+// Request message for GetTodo
+message GetTodoRequest {
+  int64 id = 1;
+  // default to true if not set
+  optional bool show_deleted = 2;
+}
+
+// Request message for ListTodos
+message ListTodosRequest {
+  // The maximum number of todos to return
+  // The service may return fewer than this value
+  // If unspecified, defaults to 50
+  // Maximum value is 1000
+  int32 page_size = 1;
+
+  // Page token received from a previous ListTodos call
+  // Provide this to retrieve the next page
+  string page_token = 2;
+
+  // parent
+  int64 user_id = 3;
+
+  // Filter expression for todos
+  // Examples: "status=PENDING", "assignee=user123"
+  optional Filter filter = 4;
+
+  // Field to sort by
+  // Examples: "created_at", "due_date", "priority"
+  repeated OrderBy order_by = 5;
+
+  // default to false if not set
+  optional bool show_deleted = 6;
+
+  message Filter {
+    repeated Todo.State states = 1;
+    repeated Todo.Priority priorities = 2;
+  }
+
+  message OrderBy {
+    Field field = 1;
+    bool is_desc = 2;
+
+    enum Field {
+      FIELD_UNSPECIFIED = 0;
+      CREATED_AT = 1;
+      DUE_DATE = 2;
+      PRIORITY = 3;
+    }
+  }
+}
+
+// Response message for ListTodos
+message ListTodosResponse {
+  // The list of todos
+  repeated Todo todos = 1;
+
+  // Token to retrieve the next page of results
+  // Empty if there are no more results
+  string next_page_token = 2;
+
+  // Total count of todos matching the filter
+  int32 total_size = 3;
+}
+
+// Request message for UpdateTodo
+message UpdateTodoRequest {
+  int64 id = 1;
+  optional string title = 2;
+  optional string description = 3;
+  optional Todo.State state = 4;
+  optional Todo.Priority priority = 5;
+  optional int64 assignee = 6;
+  optional google.type.Date due_date = 7;
+  repeated SubTaskOperation sub_task_operations = 8;
+
+  message SubTaskOperation {
+    oneof operation {
+      CreateSubtaskRequest create = 1;
+      UpdateSubtaskRequest update = 2;
+      DeleteSubtaskRequest delete = 3;
+    }
+  }
+}
+
+message DeleteTodoRequest {
+  int64 id = 1;
+}
+
+message CreateSubtaskRequest {
+  string title = 1;
+}
+
+message UpdateSubtaskRequest {
+  int64 id = 1;
+  optional string title = 2;
+}
+
+message DeleteSubtaskRequest {
+  int64 id = 1;
+}
+
+message BatchGetTodosRequest {
+  repeated int64 ids = 1;
+  // default to true if not set
+  optional bool show_deleted = 2;
+}
+
+message BatchGetTodosResponse {
+  repeated Todo todos = 1;
+}

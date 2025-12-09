@@ -4,9 +4,10 @@
 get_proto_packages() {
   local proto_dir="$1"
 
-  # Find all .proto files and extract the first-level directory (package name)
-  find "$proto_dir" -name "*.proto" -type f | \
-    sed "s|^$proto_dir/||" | \
+  # Find all .proto files under monorepo/ and extract the second-level directory (package name)
+  # e.g., monorepo/user/v1/user.proto -> user
+  find "$proto_dir/monorepo" -name "*.proto" -type f 2>/dev/null | \
+    sed "s|^$proto_dir/monorepo/||" | \
     awk -F'/' '{print $1}' | \
     sort -u
 }
@@ -14,7 +15,7 @@ get_proto_packages() {
 # Setup Java module for a package (create build.gradle and build.sh if needed)
 setup_java_module() {
   local package_name="$1"
-  local java_module_dir="$ROOT_DIR/packages/proto-gen-java/proto-$package_name"
+  local java_module_dir="$ROOT_DIR/packages/proto-gen-java/monorepo/$package_name"
   local build_gradle_tpl="$ROOT_DIR/packages/proto-gen-java/build.gradle.tpl"
   local build_sh_tpl="$ROOT_DIR/packages/proto-gen-java/build.sh.tpl"
   local module_build_gradle="$java_module_dir/build.gradle"
@@ -23,7 +24,7 @@ setup_java_module() {
   # Create module directory if it doesn't exist
   if [ ! -d "$java_module_dir" ]; then
     mkdir -p "$java_module_dir"
-    print_info "Created Java module directory: proto-$package_name"
+    print_info "Created Java module directory: monorepo/$package_name"
   fi
 
   # Create build.gradle from template if it doesn't exist
@@ -34,7 +35,7 @@ setup_java_module() {
     fi
 
     cp "$build_gradle_tpl" "$module_build_gradle"
-    print_success "Created build.gradle for proto-$package_name from template"
+    print_success "Created build.gradle for monorepo/$package_name from template"
   fi
 
   # Create build.sh from template if it doesn't exist
@@ -46,7 +47,7 @@ setup_java_module() {
 
     cp "$build_sh_tpl" "$module_build_sh"
     chmod +x "$module_build_sh"
-    print_success "Created build.sh for proto-$package_name from template"
+    print_success "Created build.sh for monorepo/$package_name from template"
   fi
 
   return 0
@@ -56,10 +57,10 @@ setup_java_module() {
 update_parent_build_gradle() {
   local package_name="$1"
   local parent_build_gradle="$ROOT_DIR/packages/proto-gen-java/build.gradle"
-  local module_reference="api project(\":packages:proto-gen-java:proto-$package_name\")"
+  local module_reference="api project(\":packages:proto-gen-java:monorepo:$package_name\")"
 
   # Check if module is already in build.gradle
-  if grep -q "proto-$package_name" "$parent_build_gradle" 2>/dev/null; then
+  if grep -q "monorepo:$package_name" "$parent_build_gradle" 2>/dev/null; then
     return 0
   fi
 
@@ -69,7 +70,7 @@ update_parent_build_gradle() {
     sed -i '' "/^dependencies {/a\\
     $module_reference
 " "$parent_build_gradle"
-    print_success "Added proto-$package_name to proto-gen-java/build.gradle"
+    print_success "Added monorepo:$package_name to proto-gen-java/build.gradle"
   else
     print_warning "Parent build.gradle not found: $parent_build_gradle"
     return 1
@@ -82,10 +83,10 @@ update_parent_build_gradle() {
 update_settings_gradle() {
   local package_name="$1"
   local settings_gradle="$ROOT_DIR/settings.gradle"
-  local module_include="include \":packages:proto-gen-java:proto-$package_name\""
+  local module_include="include \":packages:proto-gen-java:monorepo:$package_name\""
 
   # Check if module is already in settings.gradle
-  if grep -q "proto-gen-java:proto-$package_name" "$settings_gradle" 2>/dev/null; then
+  if grep -q "proto-gen-java:monorepo:$package_name" "$settings_gradle" 2>/dev/null; then
     return 0
   fi
 
@@ -106,7 +107,7 @@ $module_include
 " "$settings_gradle"
     fi
 
-    print_success "Added proto-$package_name to settings.gradle"
+    print_success "Added monorepo:$package_name to settings.gradle"
   else
     print_warning "settings.gradle not found: $settings_gradle"
     return 1
@@ -121,7 +122,7 @@ generate_package() {
   local package_name="$2"
   local package_path="$3"
 
-  local template_file="buf.gen._pkg_.yaml"
+  local template_file="buf.gen._p0_._p1_.yaml"
   local temp_config_file=".buf.gen.${package_name}.tmp.yaml"
 
   # Check if template exists
@@ -132,12 +133,14 @@ generate_package() {
 
   print_info "Generating code for package: $package_name"
 
-  # Create temporary config file by replacing ${package} placeholder
-  sed "s/\${package}/$package_name/g" "$proto_dir/$template_file" > "$proto_dir/$temp_config_file"
+  # Create temporary config file by replacing ${p0} with "monorepo" and ${p1} with package name
+  sed -e "s/\${p0}/monorepo/g" -e "s/\${p1}/$package_name/g" "$proto_dir/$template_file" > "$proto_dir/$temp_config_file"
   trap "rm -f $proto_dir/$temp_config_file" EXIT
 
   # Build buf generate command with package path filter
-  local buf_cmd="buf generate --template \"$temp_config_file\" --path \"$package_path\""
+  # Path should be monorepo/package_name (e.g., monorepo/user)
+  local buf_path="monorepo/$package_path"
+  local buf_cmd="buf generate --template \"$temp_config_file\" --path \"$buf_path\""
 
   # Generate proto code
   local result=0
@@ -172,10 +175,12 @@ cmd_gen_proto() {
     target_path="."
   fi
 
-  # Validate the path exists
-  if [ ! -e "$proto_dir/$target_path" ]; then
-    print_error "Path not found: $target_path"
-    return 1
+  # Validate the path exists - check under monorepo/ directory
+  if [ "$target_path" != "." ]; then
+    if [ ! -e "$proto_dir/monorepo/$target_path" ]; then
+      print_error "Path not found: monorepo/$target_path"
+      return 1
+    fi
   fi
 
   # Determine which packages to generate based on path
@@ -203,7 +208,7 @@ cmd_gen_proto() {
     # Path explicitly provided (specific package or path within package)
     print_info "Generating code for specified path: $target_path"
 
-    # Extract package name from path (first directory component)
+    # Extract package name from path (first directory component under monorepo/)
     local package_name=$(echo "$target_path" | awk -F'/' '{print $1}')
 
     if [ -n "$package_name" ]; then

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package monorepo.product.v1;
+
+import "monorepo/product/v1/product.proto";
+
+option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/proto-product/product/v1;productv1";
+option java_multiple_files = true;
+option java_package = "monorepo.proto.product.v1";
+
+service ProductService {
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+}
+
+message GetProductRequest {
+  string id = 1;
+}
+
+message GetProductResponse {
+  monorepo.product.v1.Product product = 1;
+}
