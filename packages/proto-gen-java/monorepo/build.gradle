@@ -1,7 +1,7 @@
 dependencies {
     api project(":packages:proto-gen-java:monorepo:order")
     api project(":packages:proto-gen-java:monorepo:todo")
+    api project(":packages:proto-gen-java:monorepo:product")
     api project(":packages:proto-gen-java:monorepo:common")
     api project(":packages:proto-gen-java:monorepo:user")
-    api project(":packages:proto-gen-java:monorepo:product")
 }

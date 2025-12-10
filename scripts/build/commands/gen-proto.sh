@@ -53,10 +53,10 @@ setup_java_module() {
   return 0
 }
 
-# Update proto-gen-java/build.gradle to include the module
+# Update proto-gen-java/monorepo/build.gradle to include the module
 update_parent_build_gradle() {
   local package_name="$1"
-  local parent_build_gradle="$ROOT_DIR/packages/proto-gen-java/build.gradle"
+  local parent_build_gradle="$ROOT_DIR/packages/proto-gen-java/monorepo/build.gradle"
   local module_reference="api project(\":packages:proto-gen-java:monorepo:$package_name\")"
 
   # Check if module is already in build.gradle
@@ -70,7 +70,7 @@ update_parent_build_gradle() {
     sed -i '' "/^dependencies {/a\\
     $module_reference
 " "$parent_build_gradle"
-    print_success "Added monorepo:$package_name to proto-gen-java/build.gradle"
+    print_success "Added monorepo:$package_name to proto-gen-java/monorepo/build.gradle"
   else
     print_warning "Parent build.gradle not found: $parent_build_gradle"
     return 1
