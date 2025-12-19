@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation "io.github.danielliu1123:grpc-boot-starter"
-    implementation project(":packages:proto-gen-java:proto-order")
+    implementation project(":packages:proto-gen-java:monorepo:order")
 
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"

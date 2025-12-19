@@ -8,7 +8,7 @@ dependencies {
     implementation project(":packages:lib-java:mybatis")
 
     // proto
-    implementation project(":packages:proto-gen-java:proto-todo")
+    implementation project(":packages:proto-gen-java:monorepo:todo")
 
     // grpc
     implementation "io.github.danielliu1123:grpc-boot-starter"

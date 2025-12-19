@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package monorepo.common.v1;
+
+option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/monorepo/common/monorepo/common/v1;commonv1";
+option java_multiple_files = true;
+option java_outer_classname = "PageProto";
+option java_package = "monorepo.proto.common.v1";
+
+message PageRequest {
+  int64 number = 1;
+  int64 size = 2;
+}
+
+message PageResponse {
+  int64 number = 1;
+  int64 size = 2;
+  int64 total_elements = 3;
+  int64 total_pages = 4;
+}
