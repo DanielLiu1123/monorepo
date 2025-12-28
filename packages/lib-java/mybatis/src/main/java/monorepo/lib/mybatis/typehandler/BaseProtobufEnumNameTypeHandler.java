@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import org.apache.ibatis.type.JdbcType;
 import org.jspecify.annotations.Nullable;
 

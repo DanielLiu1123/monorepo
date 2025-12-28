@@ -3,7 +3,6 @@ package monorepo.lib.mybatis.typehandler;
 import com.google.protobuf.ProtocolMessageEnum;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Objects;
-
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.springframework.core.ResolvableType;
 
@@ -14,8 +13,7 @@ import org.springframework.core.ResolvableType;
  * @author Freeman
  * @since 2025/12/28
  */
-abstract class AbstractProtobufEnumTypeHandler<T extends Enum<T> & ProtocolMessageEnum>
-        extends BaseTypeHandler<T> {
+abstract class AbstractProtobufEnumTypeHandler<T extends Enum<T> & ProtocolMessageEnum> extends BaseTypeHandler<T> {
     protected static final String UNRECOGNIZED = "UNRECOGNIZED";
 
     protected final T defaultEnum;
