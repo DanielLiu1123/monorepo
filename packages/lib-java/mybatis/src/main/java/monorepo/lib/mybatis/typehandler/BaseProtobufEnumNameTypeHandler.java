@@ -9,11 +9,8 @@ import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
-import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.jspecify.annotations.Nullable;
-import org.springframework.core.ResolvableType;
 
 /**
  * Base TypeHandler for Protobuf enums that serializes to/from string (varchar) using the enum's name.
@@ -30,20 +27,13 @@ import org.springframework.core.ResolvableType;
  * @since 2025/12/4
  */
 public abstract class BaseProtobufEnumNameTypeHandler<T extends Enum<T> & ProtocolMessageEnum>
-        extends BaseTypeHandler<T> {
-    private static final String UNRECOGNIZED = "UNRECOGNIZED";
+        extends AbstractProtobufEnumTypeHandler<T> {
 
     private final Map<String, T> enumMap;
-    private final T defaultEnum;
-    private final T unrecognizedEnum;
 
     @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
     protected BaseProtobufEnumNameTypeHandler() {
-        T[] enumConstants =
-                Optional.ofNullable(resolveEnumType().getEnumConstants()).orElseThrow();
-        this.enumMap = buildNameToEnumMap(enumConstants);
-        this.defaultEnum = findDefaultEnum(enumConstants);
-        this.unrecognizedEnum = findUnrecognizedEnum(enumConstants);
+        this.enumMap = buildNameToEnumMap();
     }
 
     @Override
@@ -77,40 +67,13 @@ public abstract class BaseProtobufEnumNameTypeHandler<T extends Enum<T> & Protoc
         return enumMap.getOrDefault(name, unrecognizedEnum);
     }
 
-    @SuppressWarnings("unchecked")
-    private Class<T> resolveEnumType() {
-        Class<?> result = ResolvableType.forClass(getClass())
-                .as(BaseProtobufEnumNameTypeHandler.class)
-                .resolveGeneric(0);
-        Objects.requireNonNull(result, "Cannot resolve enum type");
-        return (Class<T>) result;
-    }
-
-    private Map<String, T> buildNameToEnumMap(T[] enumConstants) {
+    private Map<String, T> buildNameToEnumMap() {
         var result = new LinkedHashMap<String, T>();
-        for (var e : enumConstants) {
+        for (var e : getEnumConstants()) {
             if (!UNRECOGNIZED.equals(e.name())) {
                 result.put(e.name(), e);
             }
         }
         return result;
-    }
-
-    private T findDefaultEnum(T[] enumConstants) {
-        for (var e : enumConstants) {
-            if (e.getNumber() == 0) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException("Protobuf enum should have a default value with number 0");
-    }
-
-    private T findUnrecognizedEnum(T[] enumConstants) {
-        for (var e : enumConstants) {
-            if (UNRECOGNIZED.equals(e.name())) {
-                return e;
-            }
-        }
-        throw new IllegalArgumentException("Protobuf enum should have an UNRECOGNIZED value");
     }
 }
