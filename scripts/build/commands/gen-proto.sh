@@ -275,41 +275,50 @@ cmd_gen_proto() {
     # Path explicitly provided
     print_info "Generating code for specified path: $target_path"
 
-    # If target_path is a directory containing .proto files (or versions), 
-    # we need to find the "package_rel_path"
+    # Count levels in target_path
+    local levels=$(echo "$target_path" | tr -cd '/' | wc -c | tr -d ' ')
     
-    # Check if target_path points to a specific file or directory
-    if [ -f "$proto_dir/$target_path" ]; then
-      # It's a file, e.g., monorepo/user/v1/user.proto
-      local rel_dir=$(dirname "$target_path")
-      local package_rel_path=$(echo "$rel_dir" | rev | cut -d'/' -f2- | rev)
-      packages_to_generate+=("$package_rel_path:$target_path")
+    if [ "$levels" -eq 0 ]; then
+      # Only one level specified (e.g., "foo")
+      # Find all two-level packages under this directory
+      local sub_packages=$(find "$proto_dir/$target_path" -maxdepth 1 -mindepth 1 -type d 2>/dev/null)
+      if [ -n "$sub_packages" ]; then
+        while IFS= read -r sub_dir; do
+          local rel_sub_dir=${sub_dir#$proto_dir/}
+          # Only add if it contains proto files at any depth
+          if find "$sub_dir" -name "*.proto" -type f | grep -q .; then
+            packages_to_generate+=("$rel_sub_dir:$rel_sub_dir")
+          fi
+        done <<< "$sub_packages"
+      fi
+
+      if [ ${#packages_to_generate[@]} -eq 0 ]; then
+        print_error "No proto packages found under: $target_path"
+        return 1
+      fi
     else
-      # It's a directory
-      # Find all proto files under this directory and group them by package
-      local found_packages=$(get_proto_packages "$proto_dir/$target_path" | sed "s|^|$target_path/|")
+      # Two or more levels specified
+      # Always extract the package_rel_path as the first two levels of the path
+      # e.g., monorepo/user/v1 -> monorepo/user
+      # e.g., foo/bar/v1/api.proto -> foo/bar
+      local package_rel_path=$(echo "$target_path" | cut -d'/' -f1,2)
       
-      if [ -n "$found_packages" ]; then
-         while IFS= read -r pkg; do
-            packages_to_generate+=("$pkg:$pkg")
-         done <<< "$found_packages"
+      # Check if target_path points to a specific file or directory
+      if [ -f "$proto_dir/$target_path" ]; then
+        # It's a file, e.g., monorepo/user/v1/user.proto
+        packages_to_generate+=("$package_rel_path:$target_path")
+      elif [ -d "$proto_dir/$target_path" ]; then
+        # It's a directory, e.g., monorepo/user/v1
+        packages_to_generate+=("$package_rel_path:$target_path")
       else
-         # Maybe the target_path itself is (part of) a package path but doesn't have protos directly
-         # e.g., "monorepo/user" -> we want to find protos under it
-         # Use find to see if there are any protos
-         if find "$proto_dir/$target_path" -name "*.proto" -type f | grep -q .; then
-            # Protos exist, let's find the package paths
-            local sub_packages=$(find "$proto_dir/$target_path" -name "*.proto" -type f | \
-                sed "s|^$proto_dir/||" | \
-                rev | cut -d'/' -f3- | rev | \
-                sort -u)
-            while IFS= read -r pkg; do
-                packages_to_generate+=("$pkg:$pkg")
-            done <<< "$sub_packages"
-         else
-            print_error "No proto files found under: $target_path"
-            return 1
-         fi
+        # Maybe target_path is just a package name that doesn't exist as a directory directly 
+        # but contains proto files in subdirectories
+        if find "$proto_dir/$target_path" -name "*.proto" -type f | grep -q .; then
+           packages_to_generate+=("$package_rel_path:$target_path")
+        else
+           print_error "No proto files found under: $target_path"
+           return 1
+        fi
       fi
     fi
   fi
