@@ -186,6 +186,42 @@ generate_package() {
   return $result
 }
 
+# Find proto packages affected by git changes
+find_affected_proto_packages() {
+  local changed_files
+  changed_files=$(get_git_changed_files)
+  
+  if [ -z "$changed_files" ]; then
+    return 0
+  fi
+  
+  local proto_dir_rel="packages/proto"
+  local affected_packages=()
+  
+  # For each changed file, check if it's a proto file and find its package
+  while IFS= read -r file; do
+    # Check if file is under packages/proto and ends with .proto
+    if [[ "$file" == "$proto_dir_rel"/*.proto ]]; then
+       # It's a proto file in the root or some depth, but we need at least 2 levels for p0/p1
+       # However, get_proto_packages logic is:
+       # find "$proto_dir" -name "*.proto" -type f | sed "s|^$proto_dir/||" | rev | cut -d'/' -f3- | rev | sort -u
+       # This means for packages/proto/monorepo/user/v1/user.proto, it extracts "monorepo/user"
+       
+       local rel_to_proto=${file#$proto_dir_rel/}
+       local package_rel_path=$(echo "$rel_to_proto" | rev | cut -d'/' -f3- | rev)
+       
+       if [ -n "$package_rel_path" ]; then
+         affected_packages+=("$package_rel_path")
+       fi
+    fi
+  done <<< "$changed_files"
+  
+  # Sort and output unique packages
+  if [ ${#affected_packages[@]} -gt 0 ]; then
+    printf "%s\n" "${affected_packages[@]}" | sort -u
+  fi
+}
+
 cmd_gen_proto() {
   local target_path="$1" # Relative to packages/proto, e.g., "monorepo/user"
   local proto_dir="$ROOT_DIR/packages/proto"
@@ -197,21 +233,25 @@ cmd_gen_proto() {
 
   local packages_to_generate=()
 
-  # Normalize target_path: if empty, default to "." (all packages)
-  if [ -z "$target_path" ]; then
-    target_path="."
-  fi
-
-  # Validate the path exists
-  if [ "$target_path" != "." ]; then
-    if [ ! -e "$proto_dir/$target_path" ]; then
-      print_error "Path not found: $target_path"
-      return 1
-    fi
-  fi
-
   # Determine which packages to generate based on path
-  if [ "$target_path" = "." ]; then
+  if [ -z "$target_path" ]; then
+    # No path specified, detect projects based on git changes
+    print_info "No path specified, detecting proto packages based on git changes..."
+    local affected
+    affected=$(find_affected_proto_packages)
+    
+    if [ -z "$affected" ]; then
+      print_warning "No proto changes detected, nothing to generate"
+      return 0
+    fi
+    
+    print_info ""
+    print_info "Detected changed proto packages:"
+    while IFS= read -r pkg; do
+      print_info " - $pkg"
+      packages_to_generate+=("$pkg:$pkg")
+    done <<< "$affected"
+  elif [ "$target_path" = "." ]; then
     # Generate all packages
     local all_packages
     all_packages=$(get_proto_packages "$proto_dir")
