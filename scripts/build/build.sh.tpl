@@ -15,8 +15,9 @@
 #   - test
 #
 # Available environment variables:
-#   - ROOT_DIR     - The root directory of the monorepo
-#   - PROJECT_DIR  - The directory of the current project (absolute path)
+#   - ROOT_DIR         - The root directory of the monorepo
+#   - PROJECT_DIR      - The directory of the current project (absolute path)
+#   - PROJECT_REL_DIR  - The relative path of the project from ROOT_DIR
 #
 # You have access to all utility functions from main.sh:
 #   - print_info "message"    - Print info message in blue

@@ -50,6 +50,7 @@ execute_project_cmd() {
     # Set environment variables for the project
     export ROOT_DIR
     export PROJECT_DIR="$ROOT_DIR/$project_path"
+    export PROJECT_REL_DIR="$project_path"
 
     # Check if build.sh exists
     if [ ! -f "$PROJECT_DIR/build.sh" ]; then
