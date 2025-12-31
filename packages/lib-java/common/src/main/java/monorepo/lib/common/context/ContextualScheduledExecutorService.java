@@ -11,6 +11,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * Contextual scheduled executor service.
+ *
  * @author Freeman
  * @since 2025/11/19
  */

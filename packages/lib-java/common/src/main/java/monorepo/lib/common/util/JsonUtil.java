@@ -8,7 +8,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import tools.jackson.databind.json.JsonMapper;
 
 /**
- *
+ * JSON utility.
  *
  * @author Freeman
  * @since 2025/11/18

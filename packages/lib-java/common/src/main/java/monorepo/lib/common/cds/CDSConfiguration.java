@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * CDS configuration.
+ *
  * @author Freeman
  * @since 2025/5/19
  */

@@ -6,7 +6,7 @@ import tools.jackson.databind.module.SimpleModule;
 import tools.jackson.databind.ser.std.ToStringSerializer;
 
 /**
- *
+ * Jackson module for serializing big numbers as strings.
  *
  * @author Freeman
  * @since 2025/11/18

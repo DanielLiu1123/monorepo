@@ -86,10 +86,10 @@ subprojects {
     tasks.withType(JavaCompile).configureEach {
         options.errorprone {
             // https://github.com/tbroyer/gradle-errorprone-plugin?tab=readme-ov-file#properties
-            excludedPaths = ".*/(generated|proto-gen-java|entity|mapper)/.*"
+            excludedPaths = "(.*/(generated|proto-gen-java)/.*)|(.*/(mapper|entity)/[^/]*\\.java)"
             // https://github.com/uber/NullAway/wiki/Configuration
             check("NullAway", net.ltgt.gradle.errorprone.CheckSeverity.ERROR)
-            option("NullAway:AnnotatedPackages", "grpcstarter")
+            option("NullAway:AnnotatedPackages", "monorepo")
             option("NullAway:HandleTestAssertionLibraries", "true")
         }
     }

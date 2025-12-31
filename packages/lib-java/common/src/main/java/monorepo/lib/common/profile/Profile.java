@@ -1,7 +1,7 @@
 package monorepo.lib.common.profile;
 
 /**
- *
+ * Profile for application.
  *
  * @author Freeman
  * @since 2025/11/18

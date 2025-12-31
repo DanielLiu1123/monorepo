@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *
+ * Utility configuration.
  *
  * @author Freeman
  * @since 2025/11/19

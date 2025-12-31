@@ -3,6 +3,7 @@ plugins{
 }
 
 dependencies {
+    api "org.jspecify:jspecify"
     compileOnly "org.mapstruct:mapstruct:${mapstructVersion}"
     compileOnly "org.mapstruct:mapstruct-processor:${mapstructVersion}"
     compileOnly "com.google.protobuf:protobuf-java"

@@ -47,17 +47,17 @@ public abstract class BasePostgresJsonbTypeHandler<T> extends BaseTypeHandler<T>
     }
 
     @Override
-    public T getNullableResult(ResultSet rs, String columnName) throws SQLException {
+    public @Nullable T getNullableResult(ResultSet rs, String columnName) throws SQLException {
         return fromJson(rs.getString(columnName));
     }
 
     @Override
-    public T getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
+    public @Nullable T getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         return fromJson(rs.getString(columnIndex));
     }
 
     @Override
-    public T getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
+    public @Nullable T getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         return fromJson(cs.getString(columnIndex));
     }
 

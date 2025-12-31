@@ -14,7 +14,7 @@ import monorepo.lib.common.util.JsonUtil;
 import org.jspecify.annotations.Nullable;
 
 /**
- *
+ * Contextual client interceptor for gRPC.
  *
  * @author Freeman
  * @since 2025/11/19

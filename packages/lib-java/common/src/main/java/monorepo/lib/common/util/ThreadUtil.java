@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import monorepo.lib.common.context.ContextualExecutorService;
 
 /**
- *
+ * Utility for thread.
  *
  * @author Freeman
  * @since 2025/11/18

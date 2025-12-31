@@ -7,6 +7,8 @@ import org.springframework.transaction.support.TransactionOperations;
 import org.springframework.util.function.SingletonSupplier;
 
 /**
+ * Spring utility.
+ *
  * @author Freeman
  * @since 2025/11/19
  */

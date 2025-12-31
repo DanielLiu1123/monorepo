@@ -39,17 +39,17 @@ public abstract class BaseProtobufEnumNumberTypeHandler<T extends Enum<T> & Prot
     }
 
     @Override
-    public T getNullableResult(ResultSet rs, String columnName) throws SQLException {
+    public @Nullable T getNullableResult(ResultSet rs, String columnName) throws SQLException {
         return fromInt(rs.getInt(columnName), rs.wasNull());
     }
 
     @Override
-    public T getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
+    public @Nullable T getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         return fromInt(rs.getInt(columnIndex), rs.wasNull());
     }
 
     @Override
-    public T getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
+    public @Nullable T getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         return fromInt(cs.getInt(columnIndex), cs.wasNull());
     }
 

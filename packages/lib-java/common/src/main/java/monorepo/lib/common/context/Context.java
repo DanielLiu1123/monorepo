@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Context information for request.
+ *
  * @author Freeman
  * @since 2025/5/1
  */

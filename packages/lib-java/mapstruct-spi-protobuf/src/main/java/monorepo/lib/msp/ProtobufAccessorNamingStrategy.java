@@ -18,6 +18,7 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
+import org.jspecify.annotations.Nullable;
 import org.mapstruct.ap.spi.AccessorNamingStrategy;
 import org.mapstruct.ap.spi.DefaultAccessorNamingStrategy;
 import org.mapstruct.ap.spi.MapStructProcessingEnvironment;
@@ -73,6 +74,7 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
     /**
      * interface name -> set of internal method signatures
      */
+    @SuppressWarnings("NullAway")
     private Map<String, Set<MethodSignature>> internalMethods;
 
     @Override
@@ -574,7 +576,10 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return isTargetClass(t, Map.class);
     }
 
-    private boolean isProtobufMessageOrBuilder(Element type) {
+    private boolean isProtobufMessageOrBuilder(@Nullable Element type) {
+        if (type == null) {
+            return false;
+        }
         if (!(type instanceof TypeElement typeElement)) {
             return false;
         }
@@ -582,7 +587,10 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return isMessageOrBuilderType(typeElement.asType());
     }
 
-    private boolean isProtobufMessageBuilder(Element type) {
+    private boolean isProtobufMessageBuilder(@Nullable Element type) {
+        if (type == null) {
+            return false;
+        }
         if (!(type instanceof TypeElement typeElement)) {
             return false;
         }
@@ -668,7 +676,10 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         }
     }
 
-    private static List<ExecutableElement> getPublicNonStaticMethods(Element type) {
+    private static List<ExecutableElement> getPublicNonStaticMethods(@Nullable Element type) {
+        if (type == null) {
+            return List.of();
+        }
         return type.getEnclosedElements().stream()
                 .filter(e ->
                         e instanceof ExecutableElement executableElement && isPublicNonStaticMethod(executableElement))

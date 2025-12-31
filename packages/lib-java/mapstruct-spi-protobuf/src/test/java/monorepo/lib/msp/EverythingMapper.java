@@ -23,9 +23,6 @@ public abstract class EverythingMapper {
     abstract Everything javaBeanToProto3(EverythingDTO javaBean);
 
     Everything.Message javaBeanMessageToProtobufMessage(EverythingDTO.Message value) {
-        if (value == null) {
-            return null;
-        }
         var builder = Everything.Message.newBuilder();
         builder.setId(value.id());
         builder.setName(value.name());
@@ -33,9 +30,6 @@ public abstract class EverythingMapper {
     }
 
     EverythingDTO.Message protobufMessageToJavaBeanMessage(Everything.Message value) {
-        if (value == null) {
-            return null;
-        }
         return new EverythingDTO.Message(value.getId(), value.getName());
     }
 }

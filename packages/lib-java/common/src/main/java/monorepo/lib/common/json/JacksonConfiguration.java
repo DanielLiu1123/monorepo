@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *
+ * Jackson configuration.
  *
  * @author Freeman
  * @since 2025/11/18

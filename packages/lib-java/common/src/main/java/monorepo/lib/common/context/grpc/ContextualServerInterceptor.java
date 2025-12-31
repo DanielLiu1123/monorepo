@@ -18,7 +18,7 @@ import monorepo.lib.common.context.ContextHolder;
 import monorepo.lib.common.util.JsonUtil;
 
 /**
- *
+ * Contextual server interceptor for gRPC.
  *
  * @author Freeman
  * @since 2025/11/19

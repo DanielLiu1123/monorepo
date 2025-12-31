@@ -5,6 +5,8 @@ import java.util.function.Supplier;
 import org.jspecify.annotations.Nullable;
 
 /**
+ * Context holder for request.
+ *
  * @author Freeman
  * @since 2025/11/19
  */

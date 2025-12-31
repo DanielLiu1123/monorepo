@@ -13,6 +13,7 @@ import java.time.Month;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 
 class JsonUtilTest {
@@ -112,7 +113,7 @@ class JsonUtilTest {
             List<Month> listMonth,
             Month month,
             DayOfWeek dayOfWeek,
-            Object object,
-            @JsonProperty("null") Object null_,
+            @Nullable Object object,
+            @JsonProperty("null") @Nullable Object null_,
             Optional<String> optionalString) {}
 }

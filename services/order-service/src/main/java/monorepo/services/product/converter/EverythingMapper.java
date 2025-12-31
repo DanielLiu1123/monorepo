@@ -92,9 +92,6 @@ public abstract class EverythingMapper {
     public abstract EverythingEdition2023 edition2023ToEdition2023(EverythingEdition2023 proto);
 
     protected EverythingProto2.Message javaBeanMessageToProto2Message(Everything.Message value) {
-        if (value == null) {
-            return null;
-        }
         var builder = EverythingProto2.Message.newBuilder();
         builder.setId(value.getId());
         builder.setName(value.getName());
@@ -102,9 +99,6 @@ public abstract class EverythingMapper {
     }
 
     protected Everything.Message proto2MessageToJavaBeanMessage(EverythingProto2.Message value) {
-        if (value == null) {
-            return null;
-        }
         Everything.Message message = new Everything.Message();
         message.setId(value.getId());
         message.setName(value.getName());
@@ -112,9 +106,6 @@ public abstract class EverythingMapper {
     }
 
     protected EverythingProto3.Message javaBeanMessageToProto3Message(Everything.Message value) {
-        if (value == null) {
-            return null;
-        }
         var builder = EverythingProto3.Message.newBuilder();
         builder.setId(value.getId());
         builder.setName(value.getName());
@@ -122,9 +113,6 @@ public abstract class EverythingMapper {
     }
 
     protected Everything.Message proto3MessageToJavaBeanMessage(EverythingProto3.Message value) {
-        if (value == null) {
-            return null;
-        }
         Everything.Message message = new Everything.Message();
         message.setId(value.getId());
         message.setName(value.getName());
@@ -132,9 +120,6 @@ public abstract class EverythingMapper {
     }
 
     protected EverythingEdition2023.Message javaBeanMessageToEdition2023Message(Everything.Message value) {
-        if (value == null) {
-            return null;
-        }
         var builder = EverythingEdition2023.Message.newBuilder();
         builder.setId(value.getId());
         builder.setName(value.getName());
@@ -142,9 +127,6 @@ public abstract class EverythingMapper {
     }
 
     protected Everything.Message edition2023MessageToJavaBeanMessage(EverythingEdition2023.Message value) {
-        if (value == null) {
-            return null;
-        }
         Everything.Message message = new Everything.Message();
         message.setId(value.getId());
         message.setName(value.getName());
