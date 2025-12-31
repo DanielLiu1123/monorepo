@@ -13,122 +13,6 @@ get_proto_packages() {
     sort -u
 }
 
-# Setup Java module for a package (create build.gradle and build.sh if needed)
-setup_java_module() {
-  local package_rel_path="$1" # e.g., "monorepo/user" or "foo/bar"
-  local java_module_dir="$ROOT_DIR/packages/proto-gen-java/$package_rel_path"
-  local build_gradle_tpl="$ROOT_DIR/packages/proto-gen-java/build.gradle.tpl"
-  local build_sh_tpl="$ROOT_DIR/packages/proto-gen-java/build.sh.tpl"
-  local module_build_gradle="$java_module_dir/build.gradle"
-  local module_build_sh="$java_module_dir/build.sh"
-
-  # Create module directory if it doesn't exist
-  if [ ! -d "$java_module_dir" ]; then
-    mkdir -p "$java_module_dir"
-    print_info "Created Java module directory: $package_rel_path"
-  fi
-
-  # Create build.gradle from template if it doesn't exist
-  if [ ! -f "$module_build_gradle" ]; then
-    if [ ! -f "$build_gradle_tpl" ]; then
-      print_warning "Template file not found: $build_gradle_tpl"
-      return 1
-    fi
-
-    cp "$build_gradle_tpl" "$module_build_gradle"
-    print_success "Created build.gradle for $package_rel_path from template"
-  fi
-
-  # Create build.sh from template if it doesn't exist
-  if [ ! -f "$module_build_sh" ]; then
-    if [ ! -f "$build_sh_tpl" ]; then
-      print_warning "Template file not found: $build_sh_tpl"
-      return 1
-    fi
-
-    cp "$build_sh_tpl" "$module_build_sh"
-    chmod +x "$module_build_sh"
-    print_success "Created build.sh for $package_rel_path from template"
-  fi
-
-  return 0
-}
-
-# Update proto-gen-java/monorepo/build.gradle (or equivalent parent) to include the module
-update_parent_build_gradle() {
-  local package_rel_path="$1" # e.g., "monorepo/user"
-  local first_part=$(echo "$package_rel_path" | cut -d'/' -f1)
-  local parent_build_gradle="$ROOT_DIR/packages/proto-gen-java/$first_part/build.gradle"
-  
-  # If it's a deep path like foo/bar/baz, we still register it in foo/build.gradle
-  # assuming each first-level directory has a build.gradle
-  
-  # Ensure first_part has a build.gradle
-  if [ ! -f "$parent_build_gradle" ]; then
-    # If parent build.gradle doesn't exist, we might need to create a simple one or skip
-    # For now, let's assume the structure exists or we skip registration if it's not a known pattern
-    # In monorepo, packages/proto-gen-java/monorepo/build.gradle exists.
-    # If someone adds 'foo/bar', we might need packages/proto-gen-java/foo/build.gradle
-    print_warning "Parent build.gradle not found: $parent_build_gradle. Skipping dependency registration."
-    return 0
-  fi
-
-  local gradle_path=$(echo "$package_rel_path" | sed 's|/$||' | tr '/' ':')
-  local module_reference="api project(\":packages:proto-gen-java:$gradle_path\")"
-
-  # Check if module is already in build.gradle
-  if grep -q ":$gradle_path" "$parent_build_gradle" 2>/dev/null; then
-    return 0
-  fi
-
-  # Add module to dependencies
-  # Insert before the closing brace of dependencies block
-  sed -i '' "/^dependencies {/a\\
-    $module_reference
-" "$parent_build_gradle"
-  print_success "Added $gradle_path to $parent_build_gradle"
-
-  return 0
-}
-
-# Update settings.gradle to include the module
-update_settings_gradle() {
-  local package_rel_path="$1" # e.g., "monorepo/user"
-  local settings_gradle="$ROOT_DIR/settings.gradle"
-  local gradle_path=$(echo "$package_rel_path" | sed 's|/$||' | tr '/' ':')
-  local module_include="include \":packages:proto-gen-java:$gradle_path\""
-
-  # Check if module is already in settings.gradle
-  if grep -q "proto-gen-java:$gradle_path\"" "$settings_gradle" 2>/dev/null; then
-    return 0
-  fi
-
-  # Find the last proto-gen-java include line and add after it
-  if [ -f "$settings_gradle" ]; then
-    # Find line number of last proto-gen-java include
-    local last_line=$(grep -n "include \":packages:proto-gen-java" "$settings_gradle" | tail -1 | cut -d: -f1)
-
-    if [ -n "$last_line" ]; then
-      # Insert after the last proto-gen-java include
-      sed -i '' "${last_line}a\\
-$module_include
-" "$settings_gradle"
-    else
-      # If no proto-gen-java includes found, add after the main proto-gen-java include
-      sed -i '' "/include \":packages:proto-gen-java\"/a\\
-$module_include
-" "$settings_gradle"
-    fi
-
-    print_success "Added $gradle_path to settings.gradle"
-  else
-    print_warning "settings.gradle not found: $settings_gradle"
-    return 1
-  fi
-
-  return 0
-}
-
 # Generate code for a specific package
 generate_package() {
   local proto_dir="$1"
@@ -173,11 +57,6 @@ generate_package() {
   local result=0
   if cd "$proto_dir" && eval "$buf_cmd"; then
     print_success "Package $package_rel_path generated successfully"
-
-    # Setup Java module (create build.gradle if needed and register in parent files)
-    setup_java_module "$package_rel_path"
-    update_parent_build_gradle "$package_rel_path"
-    update_settings_gradle "$package_rel_path"
   else
     print_error "Failed to generate package: $package_rel_path"
     result=1
