@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * Contextual ExecutorService that wraps tasks to propagate context.
+ *
  * @author Freeman
  * @since 2025/11/19
  */

@@ -2,8 +2,8 @@ plugins {
     id "org.springframework.boot" version "${springBootVersion}" apply false
     id "io.spring.dependency-management" version "${dependencyManagementPluginVersion}" apply false
     id "com.diffplug.spotless" version "${spotlessPluginVersion}" apply false
-    id "com.github.spotbugs" version "${spotbugsPluginVersion}" apply false
     id "com.google.protobuf" version "${protobufPluginVersion}" apply false
+    id "net.ltgt.errorprone" version "${errorPronePluginVersion}" apply false
 }
 
 //allprojects { // uncomment this if you want to get IDE support, only for debugging purpose!
@@ -12,7 +12,6 @@ subprojects {
     apply plugin: "java-library"
     apply plugin: "io.spring.dependency-management"
     apply plugin: "com.diffplug.spotless"
-    apply plugin: "com.github.spotbugs"
 
     java {
         sourceCompatibility = 25
@@ -43,7 +42,6 @@ subprojects {
         annotationProcessor("org.projectlombok:lombok")
         testCompileOnly("org.projectlombok:lombok")
         testAnnotationProcessor("org.projectlombok:lombok")
-        compileOnly("com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}")
 
         testImplementation("org.junit.jupiter:junit-jupiter")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -79,9 +77,20 @@ subprojects {
         }
     }
 
-    spotbugs {
-        spotbugsTest.enabled = false
-        omitVisitors.addAll "FindReturnRef", "DontReusePublicIdentifiers"
-        excludeFilter = file("${rootDir}/gradle/config/spotbugs/exclude.xml")
+    apply plugin: "net.ltgt.errorprone"
+    dependencies {
+        errorprone "com.google.errorprone:error_prone_core:${errorProneCoreVersion}"
+        errorprone "com.uber.nullaway:nullaway:${nullAwayVersion}"
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.errorprone {
+            // https://github.com/tbroyer/gradle-errorprone-plugin?tab=readme-ov-file#properties
+            excludedPaths = ".*/(generated|proto-gen-java|entity|mapper)/.*"
+            // https://github.com/uber/NullAway/wiki/Configuration
+            check("NullAway", net.ltgt.gradle.errorprone.CheckSeverity.ERROR)
+            option("NullAway:AnnotatedPackages", "grpcstarter")
+            option("NullAway:HandleTestAssertionLibraries", "true")
+        }
     }
 }

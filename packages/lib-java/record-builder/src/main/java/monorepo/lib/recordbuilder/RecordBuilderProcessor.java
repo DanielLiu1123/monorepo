@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -86,7 +87,7 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
                         Diagnostic.Kind.ERROR, "Failed to generate builder: " + e.getMessage(), recordElement);
             }
         }
-        return true;
+        return false;
     }
 
     private void generateBuilder(TypeElement recordElement) throws IOException {
@@ -842,7 +843,7 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
         if (str == null || str.isEmpty()) {
             return str;
         }
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
+        return str.substring(0, 1).toUpperCase(Locale.ROOT) + str.substring(1);
     }
 
     private CodeBlock generateSetBitStatement(int bitIndex, int totalFields) {

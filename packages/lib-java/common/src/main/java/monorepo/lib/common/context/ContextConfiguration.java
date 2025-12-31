@@ -18,10 +18,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-/**
- * @author Freeman
- * @since 2025/11/19
- */
 @Configuration(proxyBeanMethods = false)
 public class ContextConfiguration {
 

@@ -1,7 +1,6 @@
 package monorepo.lib.mybatis.typehandler;
 
 import com.google.protobuf.ProtocolMessageEnum;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +29,6 @@ public abstract class BaseProtobufEnumNumberTypeHandler<T extends Enum<T> & Prot
 
     private final Map<Integer, T> enumMap;
 
-    @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
     protected BaseProtobufEnumNumberTypeHandler() {
         this.enumMap = buildNumberToEnumMap();
     }

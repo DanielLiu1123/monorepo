@@ -43,8 +43,7 @@ public final class ContextualClientInterceptor implements ClientInterceptor {
 
         private final MethodDescriptor<Req, Resp> method;
 
-        public ContextualClientCall(
-                ClientCall<Req, Resp> delegate, Context context, MethodDescriptor<Req, Resp> method) {
+        ContextualClientCall(ClientCall<Req, Resp> delegate, Context context, MethodDescriptor<Req, Resp> method) {
             super(delegate);
             this.context = context;
             this.observation = context.observationRegistry().getCurrentObservation();

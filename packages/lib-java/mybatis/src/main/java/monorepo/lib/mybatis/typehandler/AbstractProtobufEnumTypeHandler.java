@@ -1,7 +1,6 @@
 package monorepo.lib.mybatis.typehandler;
 
 import com.google.protobuf.ProtocolMessageEnum;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Objects;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.springframework.core.ResolvableType;
@@ -19,7 +18,6 @@ abstract class AbstractProtobufEnumTypeHandler<T extends Enum<T> & ProtocolMessa
     protected final T defaultEnum;
     protected final T unrecognizedEnum;
 
-    @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
     protected AbstractProtobufEnumTypeHandler() {
         this.defaultEnum = getDefaultEnum();
         this.unrecognizedEnum = getUnrecognizedEnum();

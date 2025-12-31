@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Import;
 
 /**
- *
+ * Common auto-configuration.
  *
  * @author Freeman
  * @since 2025/11/18

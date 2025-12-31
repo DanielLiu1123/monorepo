@@ -19,6 +19,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 
 /**
+ * Contextual filter that runs once per request, capturing request body and headers into the context.
+ *
  * @author Freeman
  * @since 2025/11/19
  */
