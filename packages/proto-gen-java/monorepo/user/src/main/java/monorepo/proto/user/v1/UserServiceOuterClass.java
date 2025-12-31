@@ -78,10 +78,11 @@ public final class UserServiceOuterClass extends com.google.protobuf.GeneratedFi
       "1.BatchGetUsersRequest\032\'.monorepo.user.v" +
       "1.BatchGetUsersResponse\"\000\022V\n\tListUsers\022\"" +
       ".monorepo.user.v1.ListUsersRequest\032#.mon" +
-      "orepo.user.v1.ListUsersResponse\"\000Bs\n\026mon" +
-      "orepo.proto.user.v1P\001ZWgithub.com/youror" +
+      "orepo.user.v1.ListUsersResponse\"\000Bw\n\026mon" +
+      "orepo.proto.user.v1P\001Z[github.com/youror" +
       "g/monorepo/packages/proto-gen-go/monorep" +
-      "o/user/monorepo/user/v1;userv1b\006proto3"
+      "o/user/pkg/monorepo/user/v1;userv1b\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

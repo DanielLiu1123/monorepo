@@ -215,11 +215,11 @@ public final class EverythingEdition2023Proto extends com.google.protobuf.Genera
       "ion2023.EnumR\005value:\0028\001\032-\n\007Message\022\016\n\002id" +
       "\030\001 \001(\003R\002id\022\022\n\004name\030\002 \001(\tR\004name\"@\n\004Enum\022\024" +
       "\n\020ENUM_UNSPECIFIED\020\000\022\020\n\014ENUM_VALUE_1\020\001\022\020" +
-      "\n\014ENUM_VALUE_2\020\002B\007\n\005oneofB\223\001\n\027monorepo.p" +
+      "\n\014ENUM_VALUE_2\020\002B\007\n\005oneofB\227\001\n\027monorepo.p" +
       "roto.order.v1B\032EverythingEdition2023Prot" +
-      "oP\001ZZgithub.com/yourorg/monorepo/package" +
-      "s/proto-gen-go/monorepo/order/monorepo/o" +
-      "rder/v1;orderv1b\010editionsp\350\007"
+      "oP\001Z^github.com/yourorg/monorepo/package" +
+      "s/proto-gen-go/monorepo/order/pkg/monore" +
+      "po/order/v1;orderv1b\010editionsp\350\007"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

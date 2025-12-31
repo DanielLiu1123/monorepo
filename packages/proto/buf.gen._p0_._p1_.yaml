@@ -7,12 +7,12 @@ plugins:
     out: ../proto-gen-java/${p0}/${p1}/src/main/java
 
   - local: protoc-gen-go
-    out: ../proto-gen-go/${p0}/${p1}
+    out: ../proto-gen-go/${p0}/${p1}/pkg
     opt:
       - paths=source_relative
       - default_api_level=API_OPAQUE
   - local: protoc-gen-go-grpc
-    out: ../proto-gen-go/${p0}/${p1}
+    out: ../proto-gen-go/${p0}/${p1}/pkg
     opt:
       - paths=source_relative
 

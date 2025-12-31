@@ -7,7 +7,7 @@ import "google/protobuf/field_mask.proto";
 import "google/type/date.proto";
 import "monorepo/todo/v1/todo.proto";
 
-option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/monorepo/todo/monorepo/todo/v1;todov1";
+option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/monorepo/todo/pkg/monorepo/todo/v1;todov1";
 option java_multiple_files = true;
 option java_package = "monorepo.proto.todo.v1";
 

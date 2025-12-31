@@ -212,10 +212,10 @@ public final class EverythingProto2Proto extends com.google.protobuf.GeneratedFi
       "\001\032-\n\007Message\022\016\n\002id\030\001 \001(\003R\002id\022\022\n\004name\030\002 \001" +
       "(\tR\004name\"@\n\004Enum\022\024\n\020ENUM_UNSPECIFIED\020\000\022\020" +
       "\n\014ENUM_VALUE_1\020\001\022\020\n\014ENUM_VALUE_2\020\002B\007\n\005on" +
-      "eofB\216\001\n\027monorepo.proto.order.v1B\025Everyth" +
-      "ingProto2ProtoP\001ZZgithub.com/yourorg/mon" +
+      "eofB\222\001\n\027monorepo.proto.order.v1B\025Everyth" +
+      "ingProto2ProtoP\001Z^github.com/yourorg/mon" +
       "orepo/packages/proto-gen-go/monorepo/ord" +
-      "er/monorepo/order/v1;orderv1"
+      "er/pkg/monorepo/order/v1;orderv1"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

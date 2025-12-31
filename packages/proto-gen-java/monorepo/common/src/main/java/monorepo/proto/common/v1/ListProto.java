@@ -54,10 +54,10 @@ public final class ListProto extends com.google.protobuf.GeneratedFile {
       "o.common.v1\"$\n\nStringList\022\026\n\006values\030\001 \003(" +
       "\tR\006values\"#\n\tInt32List\022\026\n\006values\030\001 \003(\005R\006" +
       "values\"#\n\tInt64List\022\026\n\006values\030\001 \003(\003R\006val" +
-      "uesB\206\001\n\030monorepo.proto.common.v1B\tListPr" +
-      "otoP\001Z]github.com/yourorg/monorepo/packa" +
-      "ges/proto-gen-go/monorepo/common/monorep" +
-      "o/common/v1;commonv1b\006proto3"
+      "uesB\212\001\n\030monorepo.proto.common.v1B\tListPr" +
+      "otoP\001Zagithub.com/yourorg/monorepo/packa" +
+      "ges/proto-gen-go/monorepo/common/pkg/mon" +
+      "orepo/common/v1;commonv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

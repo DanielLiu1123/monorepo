@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package foo.bar.v1;
 
-option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/foo/bar/foo/bar/v1;barv1";
+option go_package = "github.com/yourorg/monorepo/packages/proto-gen-go/foo/bar/pkg/foo/bar/v1;barv1";
 option java_multiple_files = true;
 option java_outer_classname = "FooProto";
 option java_package = "foo.proto.bar.v1";

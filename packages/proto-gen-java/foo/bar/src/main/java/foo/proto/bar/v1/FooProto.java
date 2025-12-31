@@ -41,10 +41,10 @@ public final class FooProto extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\024foo/bar/v1/foo.proto\022\nfoo.bar.v1\"\025\n\003Fo" +
-      "o\022\016\n\002id\030\001 \001(\tR\002idBj\n\020foo.proto.bar.v1B\010F" +
-      "ooProtoP\001ZJgithub.com/yourorg/monorepo/p" +
-      "ackages/proto-gen-go/foo/bar/foo/bar/v1;" +
-      "barv1b\006proto3"
+      "o\022\016\n\002id\030\001 \001(\tR\002idBn\n\020foo.proto.bar.v1B\010F" +
+      "ooProtoP\001ZNgithub.com/yourorg/monorepo/p" +
+      "ackages/proto-gen-go/foo/bar/pkg/foo/bar" +
+      "/v1;barv1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
