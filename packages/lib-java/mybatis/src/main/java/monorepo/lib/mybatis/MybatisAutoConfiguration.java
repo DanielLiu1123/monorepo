@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *
+ * MyBatis auto configuration.
  *
  * @author Freeman
  * @since 2025/12/3

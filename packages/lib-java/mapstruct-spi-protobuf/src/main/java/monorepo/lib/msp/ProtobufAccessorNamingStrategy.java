@@ -575,20 +575,18 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
     }
 
     private boolean isProtobufMessageOrBuilder(Element type) {
-        if (!(type instanceof TypeElement)) {
+        if (!(type instanceof TypeElement typeElement)) {
             return false;
         }
 
-        TypeElement typeElement = (TypeElement) type;
         return isMessageOrBuilderType(typeElement.asType());
     }
 
     private boolean isProtobufMessageBuilder(Element type) {
-        if (!(type instanceof TypeElement)) {
+        if (!(type instanceof TypeElement typeElement)) {
             return false;
         }
 
-        TypeElement typeElement = (TypeElement) type;
         return isMessageBuilderType(typeElement.asType());
     }
 
@@ -619,11 +617,10 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
 
     private boolean isInternalMethod(ExecutableElement method) {
         Element enclosingElement = method.getEnclosingElement();
-        if (!(enclosingElement instanceof TypeElement)) {
+        if (!(enclosingElement instanceof TypeElement typeElement)) {
             return false;
         }
 
-        TypeElement typeElement = (TypeElement) enclosingElement;
         MethodSignature signature = new MethodSignature(method);
 
         // Check all interfaces and superclasses of the enclosing type
@@ -642,31 +639,30 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         return false;
     }
 
-    private static void collectMethods(TypeElement typeElement, HashSet<MethodSignature> methods) {
+    private static void collectMethods(TypeElement typeElement, Set<MethodSignature> methods) {
         // Collect methods from current type
         for (Element element : typeElement.getEnclosedElements()) {
-            if (element instanceof ExecutableElement && isPublicNonStaticMethod((ExecutableElement) element)) {
-                methods.add(new MethodSignature((ExecutableElement) element));
+            if (element instanceof ExecutableElement executableElement && isPublicNonStaticMethod(executableElement)) {
+                methods.add(new MethodSignature(executableElement));
             }
         }
 
         // Collect from superclass
         TypeMirror superclass = typeElement.getSuperclass();
-        if (superclass instanceof DeclaredType) {
-            DeclaredType declaredType = (DeclaredType) superclass;
+        if (superclass instanceof DeclaredType declaredType) {
             Element superElement = declaredType.asElement();
-            if (superElement instanceof TypeElement && !superElement.toString().equals("java.lang.Object")) {
-                collectMethods((TypeElement) superElement, methods);
+            if (superElement instanceof TypeElement typeElementSuper
+                    && !superElement.toString().equals("java.lang.Object")) {
+                collectMethods(typeElementSuper, methods);
             }
         }
 
         // Collect from interfaces
         for (TypeMirror interfaceType : typeElement.getInterfaces()) {
-            if (interfaceType instanceof DeclaredType) {
-                DeclaredType declaredType = (DeclaredType) interfaceType;
+            if (interfaceType instanceof DeclaredType declaredType) {
                 Element interfaceElement = declaredType.asElement();
-                if (interfaceElement instanceof TypeElement) {
-                    collectMethods((TypeElement) interfaceElement, methods);
+                if (interfaceElement instanceof TypeElement typeElementInterface) {
+                    collectMethods(typeElementInterface, methods);
                 }
             }
         }
@@ -674,13 +670,8 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
 
     private static List<ExecutableElement> getPublicNonStaticMethods(Element type) {
         return type.getEnclosedElements().stream()
-                .filter(e -> {
-                    if (e instanceof ExecutableElement) {
-                        return isPublicNonStaticMethod((ExecutableElement) e);
-                    } else {
-                        return false;
-                    }
-                })
+                .filter(e ->
+                        e instanceof ExecutableElement executableElement && isPublicNonStaticMethod(executableElement))
                 .map(e -> (ExecutableElement) e)
                 .collect(Collectors.toList());
     }
@@ -714,14 +705,14 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         private final Predicate<ExecutableElement> quickCheck;
         private final BiPredicate<ExecutableElement, List<ExecutableElement>> fullCheck;
 
-        public SpecialMethodRule(
+        SpecialMethodRule(
                 Predicate<ExecutableElement> quickCheck,
                 BiPredicate<ExecutableElement, List<ExecutableElement>> fullCheck) {
             this.quickCheck = quickCheck;
             this.fullCheck = fullCheck;
         }
 
-        public boolean matches(ExecutableElement method, List<ExecutableElement> allMethods) {
+        boolean matches(ExecutableElement method, List<ExecutableElement> allMethods) {
             return quickCheck.test(method) && fullCheck.test(method, allMethods);
         }
     }
@@ -730,7 +721,7 @@ public class ProtobufAccessorNamingStrategy extends DefaultAccessorNamingStrateg
         private final String name;
         private final List<String> parameterTypes;
 
-        public MethodSignature(ExecutableElement method) {
+        MethodSignature(ExecutableElement method) {
             this.name = method.getSimpleName().toString();
             this.parameterTypes = method.getParameters().stream()
                     .map(p -> p.asType().toString())

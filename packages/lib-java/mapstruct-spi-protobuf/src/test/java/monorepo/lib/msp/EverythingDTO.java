@@ -31,7 +31,7 @@ record EverythingDTO(
         boolean boolValue,
         StringValue stringValue,
         ByteString bytesValue,
-        Integer[] repeatedInt32,
+        @SuppressWarnings("ArrayRecordComponent") Integer[] repeatedInt32,
         Set<Long> repeatedInt64,
         List<Float> repeatedFloat,
         List<DoubleValue> repeatedDouble,

@@ -665,8 +665,6 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
         // Determine the appropriate implementation class based on the interface
         if (qualifiedName.equals("java.util.Set") || qualifiedName.equals("java.util.HashSet")) {
             return HashSet.class;
-        } else if (qualifiedName.equals("java.util.List") || qualifiedName.equals("java.util.ArrayList")) {
-            return ArrayList.class;
         } else {
             // Default to ArrayList for other Collection types
             return ArrayList.class;
@@ -684,8 +682,6 @@ public final class RecordBuilderProcessor extends AbstractProcessor {
         // Return the appropriate interface class
         if (qualifiedName.equals("java.util.Set") || qualifiedName.equals("java.util.HashSet")) {
             return ClassName.get(Set.class);
-        } else if (qualifiedName.equals("java.util.List") || qualifiedName.equals("java.util.ArrayList")) {
-            return ClassName.get(List.class);
         } else {
             // Default to List for other Collection types
             return ClassName.get(List.class);

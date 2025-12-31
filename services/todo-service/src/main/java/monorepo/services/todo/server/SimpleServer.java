@@ -12,7 +12,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestClient;
 
 /**
- *
+ * Simple gRPC server.
  *
  * @author Freeman
  * @since 2025/11/27

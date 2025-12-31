@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Order DTO.
  *
  * @author Freeman
  * @since 2025/11/6

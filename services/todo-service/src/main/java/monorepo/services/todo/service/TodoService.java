@@ -16,6 +16,7 @@ import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -512,7 +513,7 @@ public class TodoService {
     private boolean updateTodo(UpdateTodoRequest request) {
         var entity = TodoConverter.INSTANCE.toTodoEntity(request);
         if (entity.getUpdatedAt() == null) {
-            entity.setUpdatedAt(LocalDateTime.now());
+            entity.setUpdatedAt(LocalDateTime.now(ZoneId.systemDefault()));
         }
         return todoMapper.update(c -> TodoMapper.updateSelectiveColumns(entity, c)
                         .where(todo.id, isEqualTo(request.getId()))
@@ -522,7 +523,7 @@ public class TodoService {
 
     private boolean deleteTodo(long id) {
         return todoMapper.update(c -> c.set(todo.deletedAt)
-                        .equalTo(LocalDateTime.now())
+                        .equalTo(LocalDateTime.now(ZoneId.systemDefault()))
                         .where(todo.id, isEqualTo(id))
                         .and(todo.deletedAt, isNull()))
                 > 0;
@@ -546,7 +547,7 @@ public class TodoService {
 
     private boolean deleteTodoSubtask(DeleteSubtaskRequest request, long todoId) {
         return todoSubtaskMapper.update(c -> c.set(todoSubtask.deletedAt)
-                        .equalTo(LocalDateTime.now())
+                        .equalTo(LocalDateTime.now(ZoneId.systemDefault()))
                         .where(todoSubtask.id, isEqualTo(request.getId()))
                         .and(todoSubtask.todoId, isEqualTo(todoId))
                         .and(todoSubtask.deletedAt, isNull()))

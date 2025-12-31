@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- *
+ * Order converter.
  *
  * @author Freeman
  * @since 2025/11/6

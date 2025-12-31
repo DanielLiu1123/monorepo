@@ -11,7 +11,7 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 /**
- *
+ * Everything mapper.
  *
  * @author Freeman
  * @since 2025/11/8

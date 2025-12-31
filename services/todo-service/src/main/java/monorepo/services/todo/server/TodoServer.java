@@ -16,7 +16,7 @@ import monorepo.proto.todo.v1.UpdateTodoRequest;
 import monorepo.services.todo.service.TodoService;
 
 /**
- *
+ * Todo gRPC server.
  *
  * @author Freeman
  * @since 2025/11/23
