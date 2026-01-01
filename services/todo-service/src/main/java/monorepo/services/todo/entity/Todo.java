@@ -1,8 +1,8 @@
 package monorepo.services.todo.entity;
 
 import jakarta.annotation.Generated;
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import monorepo.proto.todo.v1.Todo.Priority;
 import monorepo.proto.todo.v1.Todo.State;
 import org.jspecify.annotations.Nullable;
@@ -78,14 +78,14 @@ public class Todo {
      *   Creation timestamp
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.created_at")
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
     /**
      * Database Column Remarks:
      *   Last update timestamp
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.updated_at")
-    private LocalDateTime updatedAt;
+    private Instant updatedAt;
 
     /**
      * Database Column Remarks:
@@ -93,7 +93,7 @@ public class Todo {
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.deleted_at")
     @Nullable
-    private LocalDateTime deletedAt;
+    private Instant deletedAt;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.id")
     public Long getId() {
@@ -178,33 +178,33 @@ public class Todo {
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.created_at")
-    public LocalDateTime getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.created_at")
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.updated_at")
-    public LocalDateTime getUpdatedAt() {
+    public Instant getUpdatedAt() {
         return updatedAt;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.updated_at")
-    public void setUpdatedAt(LocalDateTime updatedAt) {
+    public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.deleted_at")
     @Nullable
-    public LocalDateTime getDeletedAt() {
+    public Instant getDeletedAt() {
         return deletedAt;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.deleted_at")
-    public void setDeletedAt(@Nullable LocalDateTime deletedAt) {
+    public void setDeletedAt(@Nullable Instant deletedAt) {
         this.deletedAt = deletedAt;
     }
 

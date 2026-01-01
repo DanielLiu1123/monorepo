@@ -2,8 +2,8 @@ package monorepo.services.todo.mapper;
 
 import jakarta.annotation.Generated;
 import java.sql.JDBCType;
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import monorepo.proto.todo.v1.Todo.Priority;
 import monorepo.proto.todo.v1.Todo.State;
 import org.mybatis.dynamic.sql.AliasableSqlTable;
@@ -74,21 +74,21 @@ public final class TodoDynamicSqlSupport {
      *   Creation timestamp
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.created_at")
-    public static final SqlColumn<LocalDateTime> createdAt = todo.createdAt;
+    public static final SqlColumn<Instant> createdAt = todo.createdAt;
 
     /**
      * Database Column Remarks:
      *   Last update timestamp
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.updated_at")
-    public static final SqlColumn<LocalDateTime> updatedAt = todo.updatedAt;
+    public static final SqlColumn<Instant> updatedAt = todo.updatedAt;
 
     /**
      * Database Column Remarks:
      *   Deletion timestamp for soft deletes
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.deleted_at")
-    public static final SqlColumn<LocalDateTime> deletedAt = todo.deletedAt;
+    public static final SqlColumn<Instant> deletedAt = todo.deletedAt;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
     public static final class Todo extends AliasableSqlTable<Todo> {
@@ -108,11 +108,11 @@ public final class TodoDynamicSqlSupport {
 
         public final SqlColumn<LocalDate> dueDate = column("due_date", JDBCType.DATE);
 
-        public final SqlColumn<LocalDateTime> createdAt = column("created_at", JDBCType.TIMESTAMP);
+        public final SqlColumn<Instant> createdAt = column("created_at", JDBCType.TIMESTAMP);
 
-        public final SqlColumn<LocalDateTime> updatedAt = column("updated_at", JDBCType.TIMESTAMP);
+        public final SqlColumn<Instant> updatedAt = column("updated_at", JDBCType.TIMESTAMP);
 
-        public final SqlColumn<LocalDateTime> deletedAt = column("deleted_at", JDBCType.TIMESTAMP);
+        public final SqlColumn<Instant> deletedAt = column("deleted_at", JDBCType.TIMESTAMP);
 
         public Todo() {
             super("todo", Todo::new);

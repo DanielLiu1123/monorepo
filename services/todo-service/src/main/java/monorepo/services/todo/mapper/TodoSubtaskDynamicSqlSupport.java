@@ -2,7 +2,7 @@ package monorepo.services.todo.mapper;
 
 import jakarta.annotation.Generated;
 import java.sql.JDBCType;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import org.mybatis.dynamic.sql.AliasableSqlTable;
 import org.mybatis.dynamic.sql.SqlColumn;
 
@@ -36,21 +36,21 @@ public final class TodoSubtaskDynamicSqlSupport {
      *   Timestamp when the subtask was created
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo_subtask.created_at")
-    public static final SqlColumn<LocalDateTime> createdAt = todoSubtask.createdAt;
+    public static final SqlColumn<Instant> createdAt = todoSubtask.createdAt;
 
     /**
      * Database Column Remarks:
      *   Timestamp when the subtask was last updated
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo_subtask.updated_at")
-    public static final SqlColumn<LocalDateTime> updatedAt = todoSubtask.updatedAt;
+    public static final SqlColumn<Instant> updatedAt = todoSubtask.updatedAt;
 
     /**
      * Database Column Remarks:
      *   Timestamp when the subtask was deleted (soft delete)
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo_subtask.deleted_at")
-    public static final SqlColumn<LocalDateTime> deletedAt = todoSubtask.deletedAt;
+    public static final SqlColumn<Instant> deletedAt = todoSubtask.deletedAt;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo_subtask")
     public static final class TodoSubtask extends AliasableSqlTable<TodoSubtask> {
@@ -60,11 +60,11 @@ public final class TodoSubtaskDynamicSqlSupport {
 
         public final SqlColumn<String> title = column("title", JDBCType.VARCHAR);
 
-        public final SqlColumn<LocalDateTime> createdAt = column("created_at", JDBCType.TIMESTAMP);
+        public final SqlColumn<Instant> createdAt = column("created_at", JDBCType.TIMESTAMP);
 
-        public final SqlColumn<LocalDateTime> updatedAt = column("updated_at", JDBCType.TIMESTAMP);
+        public final SqlColumn<Instant> updatedAt = column("updated_at", JDBCType.TIMESTAMP);
 
-        public final SqlColumn<LocalDateTime> deletedAt = column("deleted_at", JDBCType.TIMESTAMP);
+        public final SqlColumn<Instant> deletedAt = column("deleted_at", JDBCType.TIMESTAMP);
 
         public TodoSubtask() {
             super("todo_subtask", TodoSubtask::new);

@@ -25,7 +25,7 @@
                         userId="root" password="root">
         </jdbcConnection>
 
-        <javaTypeResolver>
+        <javaTypeResolver type="monorepo.lib.mybatis.typeresolver.MonorepoJavaTypeResolver">
             <property name="forceBigDecimals" value="true"/>
             <!-- https://mybatis.org/generator/configreference/javaTypeResolver.html -->
             <property name="useJSR310Types" value="true"/>
