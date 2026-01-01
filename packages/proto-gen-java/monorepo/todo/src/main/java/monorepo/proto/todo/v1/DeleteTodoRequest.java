@@ -43,6 +43,7 @@ private static final long serialVersionUID = 0L;
             monorepo.proto.todo.v1.DeleteTodoRequest.class, monorepo.proto.todo.v1.DeleteTodoRequest.Builder.class);
   }
 
+  private int bitField0_;
   public static final int ID_FIELD_NUMBER = 1;
   private long id_ = 0L;
   /**
@@ -52,6 +53,33 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public long getId() {
     return id_;
+  }
+
+  public static final int USER_ID_FIELD_NUMBER = 2;
+  private long userId_ = 0L;
+  /**
+   * <pre>
+   * optional user_id to filter by, can't be changed, only used for validation
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return Whether the userId field is set.
+   */
+  @java.lang.Override
+  public boolean hasUserId() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <pre>
+   * optional user_id to filter by, can't be changed, only used for validation
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return The userId.
+   */
+  @java.lang.Override
+  public long getUserId() {
+    return userId_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -71,6 +99,9 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0L) {
       output.writeInt64(1, id_);
     }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeInt64(2, userId_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -83,6 +114,10 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(1, id_);
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(2, userId_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -101,6 +136,11 @@ private static final long serialVersionUID = 0L;
 
     if (getId()
         != other.getId()) return false;
+    if (hasUserId() != other.hasUserId()) return false;
+    if (hasUserId()) {
+      if (getUserId()
+          != other.getUserId()) return false;
+    }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -115,6 +155,11 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getId());
+    if (hasUserId()) {
+      hash = (37 * hash) + USER_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUserId());
+    }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -247,6 +292,7 @@ private static final long serialVersionUID = 0L;
       super.clear();
       bitField0_ = 0;
       id_ = 0L;
+      userId_ = 0L;
       return this;
     }
 
@@ -283,6 +329,12 @@ private static final long serialVersionUID = 0L;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.id_ = id_;
       }
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.userId_ = userId_;
+        to_bitField0_ |= 0x00000001;
+      }
+      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -299,6 +351,9 @@ private static final long serialVersionUID = 0L;
       if (other == monorepo.proto.todo.v1.DeleteTodoRequest.getDefaultInstance()) return this;
       if (other.getId() != 0L) {
         setId(other.getId());
+      }
+      if (other.hasUserId()) {
+        setUserId(other.getUserId());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -331,6 +386,11 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000001;
               break;
             } // case 8
+            case 16: {
+              userId_ = input.readInt64();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 16
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -376,6 +436,62 @@ private static final long serialVersionUID = 0L;
     public Builder clearId() {
       bitField0_ = (bitField0_ & ~0x00000001);
       id_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long userId_ ;
+    /**
+     * <pre>
+     * optional user_id to filter by, can't be changed, only used for validation
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @return Whether the userId field is set.
+     */
+    @java.lang.Override
+    public boolean hasUserId() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * optional user_id to filter by, can't be changed, only used for validation
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @return The userId.
+     */
+    @java.lang.Override
+    public long getUserId() {
+      return userId_;
+    }
+    /**
+     * <pre>
+     * optional user_id to filter by, can't be changed, only used for validation
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @param value The userId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setUserId(long value) {
+
+      userId_ = value;
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * optional user_id to filter by, can't be changed, only used for validation
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearUserId() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      userId_ = 0L;
       onChanged();
       return this;
     }

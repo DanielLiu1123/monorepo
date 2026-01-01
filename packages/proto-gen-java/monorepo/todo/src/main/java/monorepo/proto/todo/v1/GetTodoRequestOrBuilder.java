@@ -18,10 +18,29 @@ public interface GetTodoRequestOrBuilder extends
 
   /**
    * <pre>
+   * optional user_id to filter by
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return Whether the userId field is set.
+   */
+  boolean hasUserId();
+  /**
+   * <pre>
+   * optional user_id to filter by
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return The userId.
+   */
+  long getUserId();
+
+  /**
+   * <pre>
    * default to true if not set
    * </pre>
    *
-   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * <code>optional bool show_deleted = 3 [json_name = "showDeleted"];</code>
    * @return Whether the showDeleted field is set.
    */
   boolean hasShowDeleted();
@@ -30,7 +49,7 @@ public interface GetTodoRequestOrBuilder extends
    * default to true if not set
    * </pre>
    *
-   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * <code>optional bool show_deleted = 3 [json_name = "showDeleted"];</code>
    * @return The showDeleted.
    */
   boolean getShowDeleted();

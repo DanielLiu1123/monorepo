@@ -5,6 +5,7 @@ import static monorepo.services.todo.mapper.TodoDynamicSqlSupport.todo;
 import static monorepo.services.todo.mapper.TodoSubtaskDynamicSqlSupport.todoSubtask;
 import static org.mybatis.dynamic.sql.SqlBuilder.and;
 import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
+import static org.mybatis.dynamic.sql.SqlBuilder.isEqualToWhenPresent;
 import static org.mybatis.dynamic.sql.SqlBuilder.isGreaterThan;
 import static org.mybatis.dynamic.sql.SqlBuilder.isIn;
 import static org.mybatis.dynamic.sql.SqlBuilder.isInWhenPresent;
@@ -101,7 +102,7 @@ public class TodoService {
      * @return whether delete succeeded
      */
     public boolean delete(DeleteTodoRequest request) {
-        return deleteTodo(request.getId());
+        return deleteTodo(request);
     }
 
     /**
@@ -115,7 +116,11 @@ public class TodoService {
         if (todos.isEmpty()) {
             return null;
         }
-        return todos.getFirst();
+        var result = todos.getFirst();
+        if (request.hasUserId() && result.getUserId() != request.getUserId()) {
+            return null;
+        }
+        return result;
     }
 
     /**
@@ -505,6 +510,12 @@ public class TodoService {
 
     private long createTodo(CreateTodoRequest request) {
         var todo = TodoConverter.INSTANCE.toTodoEntity(request);
+        if (todo.getCreatedAt() == null) {
+            todo.setCreatedAt(Instant.now());
+        }
+        if (todo.getUpdatedAt() == null) {
+            todo.setUpdatedAt(Instant.now());
+        }
         todoMapper.insertSelective(todo);
         return todo.getId();
     }
@@ -514,16 +525,23 @@ public class TodoService {
         if (entity.getUpdatedAt() == null) {
             entity.setUpdatedAt(Instant.now());
         }
+
+        var id = request.getId();
+        var userId = request.hasUserId() ? request.getUserId() : null;
         return todoMapper.update(c -> TodoMapper.updateSelectiveColumns(entity, c)
-                        .where(todo.id, isEqualTo(request.getId()))
+                        .where(todo.id, isEqualTo(id))
+                        .and(todo.userId, isEqualToWhenPresent(userId))
                         .and(todo.deletedAt, isNull()))
                 > 0;
     }
 
-    private boolean deleteTodo(long id) {
+    private boolean deleteTodo(DeleteTodoRequest request) {
+        var id = request.getId();
+        var userId = request.hasUserId() ? request.getUserId() : null;
         return todoMapper.update(c -> c.set(todo.deletedAt)
                         .equalTo(Instant.now())
                         .where(todo.id, isEqualTo(id))
+                        .and(todo.userId, isEqualToWhenPresent(userId))
                         .and(todo.deletedAt, isNull()))
                 > 0;
     }
@@ -531,12 +549,21 @@ public class TodoService {
     private long createTodoSubtask(CreateSubtaskRequest request, long todoId) {
         var subtask = TodoConverter.INSTANCE.toTodoSubtaskEntity(request);
         subtask.setTodoId(todoId);
+        if (subtask.getCreatedAt() == null) {
+            subtask.setCreatedAt(Instant.now());
+        }
+        if (subtask.getUpdatedAt() == null) {
+            subtask.setUpdatedAt(Instant.now());
+        }
         todoSubtaskMapper.insertSelective(subtask);
         return subtask.getId();
     }
 
     private boolean updateTodoSubtask(UpdateSubtaskRequest request, long todoId) {
         var subtask = TodoConverter.INSTANCE.toTodoSubtaskEntity(request);
+        if (subtask.getUpdatedAt() == null) {
+            subtask.setUpdatedAt(Instant.now());
+        }
         return todoSubtaskMapper.update(c -> TodoSubtaskMapper.updateSelectiveColumns(subtask, c)
                         .where(todoSubtask.id, isEqualTo(request.getId()))
                         .and(todoSubtask.todoId, isEqualTo(todoId))

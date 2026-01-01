@@ -315,7 +315,8 @@ func (b0 CreateTodoRequest_builder) Build() *CreateTodoRequest {
 type GetTodoRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id          int64                  `protobuf:"varint,1,opt,name=id,proto3"`
-	xxx_hidden_ShowDeleted bool                   `protobuf:"varint,2,opt,name=show_deleted,json=showDeleted,proto3,oneof"`
+	xxx_hidden_UserId      int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3,oneof"`
+	xxx_hidden_ShowDeleted bool                   `protobuf:"varint,3,opt,name=show_deleted,json=showDeleted,proto3,oneof"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -354,6 +355,13 @@ func (x *GetTodoRequest) GetId() int64 {
 	return 0
 }
 
+func (x *GetTodoRequest) GetUserId() int64 {
+	if x != nil {
+		return x.xxx_hidden_UserId
+	}
+	return 0
+}
+
 func (x *GetTodoRequest) GetShowDeleted() bool {
 	if x != nil {
 		return x.xxx_hidden_ShowDeleted
@@ -365,20 +373,37 @@ func (x *GetTodoRequest) SetId(v int64) {
 	x.xxx_hidden_Id = v
 }
 
-func (x *GetTodoRequest) SetShowDeleted(v bool) {
-	x.xxx_hidden_ShowDeleted = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+func (x *GetTodoRequest) SetUserId(v int64) {
+	x.xxx_hidden_UserId = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
-func (x *GetTodoRequest) HasShowDeleted() bool {
+func (x *GetTodoRequest) SetShowDeleted(v bool) {
+	x.xxx_hidden_ShowDeleted = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
+}
+
+func (x *GetTodoRequest) HasUserId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *GetTodoRequest) ClearShowDeleted() {
+func (x *GetTodoRequest) HasShowDeleted() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *GetTodoRequest) ClearUserId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_UserId = 0
+}
+
+func (x *GetTodoRequest) ClearShowDeleted() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_ShowDeleted = false
 }
 
@@ -386,6 +411,8 @@ type GetTodoRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Id int64
+	// optional user_id to filter by
+	UserId *int64
 	// default to true if not set
 	ShowDeleted *bool
 }
@@ -395,8 +422,12 @@ func (b0 GetTodoRequest_builder) Build() *GetTodoRequest {
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Id = b.Id
+	if b.UserId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_UserId = *b.UserId
+	}
 	if b.ShowDeleted != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
 		x.xxx_hidden_ShowDeleted = *b.ShowDeleted
 	}
 	return m0
@@ -669,13 +700,14 @@ func (b0 ListTodosResponse_builder) Build() *ListTodosResponse {
 type UpdateTodoRequest struct {
 	state                        protoimpl.MessageState                 `protogen:"opaque.v1"`
 	xxx_hidden_Id                int64                                  `protobuf:"varint,1,opt,name=id,proto3"`
-	xxx_hidden_Title             *string                                `protobuf:"bytes,2,opt,name=title,proto3,oneof"`
-	xxx_hidden_Description       *string                                `protobuf:"bytes,3,opt,name=description,proto3,oneof"`
-	xxx_hidden_State             Todo_State                             `protobuf:"varint,4,opt,name=state,proto3,enum=monorepo.todo.v1.Todo_State,oneof"`
-	xxx_hidden_Priority          Todo_Priority                          `protobuf:"varint,5,opt,name=priority,proto3,enum=monorepo.todo.v1.Todo_Priority,oneof"`
-	xxx_hidden_Assignee          int64                                  `protobuf:"varint,6,opt,name=assignee,proto3,oneof"`
-	xxx_hidden_DueDate           *date.Date                             `protobuf:"bytes,7,opt,name=due_date,json=dueDate,proto3,oneof"`
-	xxx_hidden_SubTaskOperations *[]*UpdateTodoRequest_SubTaskOperation `protobuf:"bytes,8,rep,name=sub_task_operations,json=subTaskOperations,proto3"`
+	xxx_hidden_UserId            int64                                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3,oneof"`
+	xxx_hidden_Title             *string                                `protobuf:"bytes,3,opt,name=title,proto3,oneof"`
+	xxx_hidden_Description       *string                                `protobuf:"bytes,4,opt,name=description,proto3,oneof"`
+	xxx_hidden_State             Todo_State                             `protobuf:"varint,5,opt,name=state,proto3,enum=monorepo.todo.v1.Todo_State,oneof"`
+	xxx_hidden_Priority          Todo_Priority                          `protobuf:"varint,6,opt,name=priority,proto3,enum=monorepo.todo.v1.Todo_Priority,oneof"`
+	xxx_hidden_Assignee          int64                                  `protobuf:"varint,7,opt,name=assignee,proto3,oneof"`
+	xxx_hidden_DueDate           *date.Date                             `protobuf:"bytes,8,opt,name=due_date,json=dueDate,proto3,oneof"`
+	xxx_hidden_SubTaskOperations *[]*UpdateTodoRequest_SubTaskOperation `protobuf:"bytes,9,rep,name=sub_task_operations,json=subTaskOperations,proto3"`
 	XXX_raceDetectHookData       protoimpl.RaceDetectHookData
 	XXX_presence                 [1]uint32
 	unknownFields                protoimpl.UnknownFields
@@ -714,6 +746,13 @@ func (x *UpdateTodoRequest) GetId() int64 {
 	return 0
 }
 
+func (x *UpdateTodoRequest) GetUserId() int64 {
+	if x != nil {
+		return x.xxx_hidden_UserId
+	}
+	return 0
+}
+
 func (x *UpdateTodoRequest) GetTitle() string {
 	if x != nil {
 		if x.xxx_hidden_Title != nil {
@@ -736,7 +775,7 @@ func (x *UpdateTodoRequest) GetDescription() string {
 
 func (x *UpdateTodoRequest) GetState() Todo_State {
 	if x != nil {
-		if protoimpl.X.Present(&(x.XXX_presence[0]), 3) {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 4) {
 			return x.xxx_hidden_State
 		}
 	}
@@ -745,7 +784,7 @@ func (x *UpdateTodoRequest) GetState() Todo_State {
 
 func (x *UpdateTodoRequest) GetPriority() Todo_Priority {
 	if x != nil {
-		if protoimpl.X.Present(&(x.XXX_presence[0]), 4) {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 5) {
 			return x.xxx_hidden_Priority
 		}
 	}
@@ -779,29 +818,34 @@ func (x *UpdateTodoRequest) SetId(v int64) {
 	x.xxx_hidden_Id = v
 }
 
+func (x *UpdateTodoRequest) SetUserId(v int64) {
+	x.xxx_hidden_UserId = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
+}
+
 func (x *UpdateTodoRequest) SetTitle(v string) {
 	x.xxx_hidden_Title = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 9)
 }
 
 func (x *UpdateTodoRequest) SetDescription(v string) {
 	x.xxx_hidden_Description = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 9)
 }
 
 func (x *UpdateTodoRequest) SetState(v Todo_State) {
 	x.xxx_hidden_State = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 9)
 }
 
 func (x *UpdateTodoRequest) SetPriority(v Todo_Priority) {
 	x.xxx_hidden_Priority = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 9)
 }
 
 func (x *UpdateTodoRequest) SetAssignee(v int64) {
 	x.xxx_hidden_Assignee = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 9)
 }
 
 func (x *UpdateTodoRequest) SetDueDate(v *date.Date) {
@@ -812,39 +856,46 @@ func (x *UpdateTodoRequest) SetSubTaskOperations(v []*UpdateTodoRequest_SubTaskO
 	x.xxx_hidden_SubTaskOperations = &v
 }
 
-func (x *UpdateTodoRequest) HasTitle() bool {
+func (x *UpdateTodoRequest) HasUserId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *UpdateTodoRequest) HasDescription() bool {
+func (x *UpdateTodoRequest) HasTitle() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *UpdateTodoRequest) HasState() bool {
+func (x *UpdateTodoRequest) HasDescription() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
-func (x *UpdateTodoRequest) HasPriority() bool {
+func (x *UpdateTodoRequest) HasState() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
-func (x *UpdateTodoRequest) HasAssignee() bool {
+func (x *UpdateTodoRequest) HasPriority() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
+}
+
+func (x *UpdateTodoRequest) HasAssignee() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
 }
 
 func (x *UpdateTodoRequest) HasDueDate() bool {
@@ -854,28 +905,33 @@ func (x *UpdateTodoRequest) HasDueDate() bool {
 	return x.xxx_hidden_DueDate != nil
 }
 
-func (x *UpdateTodoRequest) ClearTitle() {
+func (x *UpdateTodoRequest) ClearUserId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_UserId = 0
+}
+
+func (x *UpdateTodoRequest) ClearTitle() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_Title = nil
 }
 
 func (x *UpdateTodoRequest) ClearDescription() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
 	x.xxx_hidden_Description = nil
 }
 
 func (x *UpdateTodoRequest) ClearState() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
 	x.xxx_hidden_State = Todo_STATE_UNSPECIFIED
 }
 
 func (x *UpdateTodoRequest) ClearPriority() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
 	x.xxx_hidden_Priority = Todo_PRIORITY_UNSPECIFIED
 }
 
 func (x *UpdateTodoRequest) ClearAssignee() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
 	x.xxx_hidden_Assignee = 0
 }
 
@@ -887,6 +943,7 @@ type UpdateTodoRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Id                int64
+	UserId            *int64
 	Title             *string
 	Description       *string
 	State             *Todo_State
@@ -901,24 +958,28 @@ func (b0 UpdateTodoRequest_builder) Build() *UpdateTodoRequest {
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Id = b.Id
+	if b.UserId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 9)
+		x.xxx_hidden_UserId = *b.UserId
+	}
 	if b.Title != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 9)
 		x.xxx_hidden_Title = b.Title
 	}
 	if b.Description != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 9)
 		x.xxx_hidden_Description = b.Description
 	}
 	if b.State != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 9)
 		x.xxx_hidden_State = *b.State
 	}
 	if b.Priority != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 9)
 		x.xxx_hidden_Priority = *b.Priority
 	}
 	if b.Assignee != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 9)
 		x.xxx_hidden_Assignee = *b.Assignee
 	}
 	x.xxx_hidden_DueDate = b.DueDate
@@ -927,10 +988,13 @@ func (b0 UpdateTodoRequest_builder) Build() *UpdateTodoRequest {
 }
 
 type DeleteTodoRequest struct {
-	state         protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id int64                  `protobuf:"varint,1,opt,name=id,proto3"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id          int64                  `protobuf:"varint,1,opt,name=id,proto3"`
+	xxx_hidden_UserId      int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3,oneof"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *DeleteTodoRequest) Reset() {
@@ -965,14 +1029,39 @@ func (x *DeleteTodoRequest) GetId() int64 {
 	return 0
 }
 
+func (x *DeleteTodoRequest) GetUserId() int64 {
+	if x != nil {
+		return x.xxx_hidden_UserId
+	}
+	return 0
+}
+
 func (x *DeleteTodoRequest) SetId(v int64) {
 	x.xxx_hidden_Id = v
+}
+
+func (x *DeleteTodoRequest) SetUserId(v int64) {
+	x.xxx_hidden_UserId = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *DeleteTodoRequest) HasUserId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *DeleteTodoRequest) ClearUserId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_UserId = 0
 }
 
 type DeleteTodoRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Id int64
+	Id     int64
+	UserId *int64
 }
 
 func (b0 DeleteTodoRequest_builder) Build() *DeleteTodoRequest {
@@ -980,6 +1069,10 @@ func (b0 DeleteTodoRequest_builder) Build() *DeleteTodoRequest {
 	b, x := &b0, m0
 	_, _ = b, x
 	x.xxx_hidden_Id = b.Id
+	if b.UserId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_UserId = *b.UserId
+	}
 	return m0
 }
 
@@ -1713,10 +1806,13 @@ const file_monorepo_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x06_stateB\v\n" +
 	"\t_priorityB\v\n" +
 	"\t_assigneeB\v\n" +
-	"\t_due_date\"Y\n" +
+	"\t_due_date\"\x83\x01\n" +
 	"\x0eGetTodoRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12&\n" +
-	"\fshow_deleted\x18\x02 \x01(\bH\x00R\vshowDeleted\x88\x01\x01B\x0f\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1c\n" +
+	"\auser_id\x18\x02 \x01(\x03H\x00R\x06userId\x88\x01\x01\x12&\n" +
+	"\fshow_deleted\x18\x03 \x01(\bH\x01R\vshowDeleted\x88\x01\x01B\n" +
+	"\n" +
+	"\b_user_idB\x0f\n" +
 	"\r_show_deleted\"\xf4\x04\n" +
 	"\x10ListTodosRequest\x12\x1b\n" +
 	"\tpage_size\x18\x01 \x01(\x05R\bpageSize\x12\x1d\n" +
@@ -1746,29 +1842,35 @@ const file_monorepo_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x05todos\x18\x01 \x03(\v2\x16.monorepo.todo.v1.TodoR\x05todos\x12&\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1d\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05R\ttotalSize\"\xcd\x05\n" +
+	"total_size\x18\x03 \x01(\x05R\ttotalSize\"\xf7\x05\n" +
 	"\x11UpdateTodoRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
-	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01\x12%\n" +
-	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x127\n" +
-	"\x05state\x18\x04 \x01(\x0e2\x1c.monorepo.todo.v1.Todo.StateH\x02R\x05state\x88\x01\x01\x12@\n" +
-	"\bpriority\x18\x05 \x01(\x0e2\x1f.monorepo.todo.v1.Todo.PriorityH\x03R\bpriority\x88\x01\x01\x12\x1f\n" +
-	"\bassignee\x18\x06 \x01(\x03H\x04R\bassignee\x88\x01\x01\x121\n" +
-	"\bdue_date\x18\a \x01(\v2\x11.google.type.DateH\x05R\adueDate\x88\x01\x01\x12d\n" +
-	"\x13sub_task_operations\x18\b \x03(\v24.monorepo.todo.v1.UpdateTodoRequest.SubTaskOperationR\x11subTaskOperations\x1a\xe5\x01\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1c\n" +
+	"\auser_id\x18\x02 \x01(\x03H\x00R\x06userId\x88\x01\x01\x12\x19\n" +
+	"\x05title\x18\x03 \x01(\tH\x01R\x05title\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x04 \x01(\tH\x02R\vdescription\x88\x01\x01\x127\n" +
+	"\x05state\x18\x05 \x01(\x0e2\x1c.monorepo.todo.v1.Todo.StateH\x03R\x05state\x88\x01\x01\x12@\n" +
+	"\bpriority\x18\x06 \x01(\x0e2\x1f.monorepo.todo.v1.Todo.PriorityH\x04R\bpriority\x88\x01\x01\x12\x1f\n" +
+	"\bassignee\x18\a \x01(\x03H\x05R\bassignee\x88\x01\x01\x121\n" +
+	"\bdue_date\x18\b \x01(\v2\x11.google.type.DateH\x06R\adueDate\x88\x01\x01\x12d\n" +
+	"\x13sub_task_operations\x18\t \x03(\v24.monorepo.todo.v1.UpdateTodoRequest.SubTaskOperationR\x11subTaskOperations\x1a\xe5\x01\n" +
 	"\x10SubTaskOperation\x12@\n" +
 	"\x06create\x18\x01 \x01(\v2&.monorepo.todo.v1.CreateSubtaskRequestH\x00R\x06create\x12@\n" +
 	"\x06update\x18\x02 \x01(\v2&.monorepo.todo.v1.UpdateSubtaskRequestH\x00R\x06update\x12@\n" +
 	"\x06delete\x18\x03 \x01(\v2&.monorepo.todo.v1.DeleteSubtaskRequestH\x00R\x06deleteB\v\n" +
-	"\toperationB\b\n" +
+	"\toperationB\n" +
+	"\n" +
+	"\b_user_idB\b\n" +
 	"\x06_titleB\x0e\n" +
 	"\f_descriptionB\b\n" +
 	"\x06_stateB\v\n" +
 	"\t_priorityB\v\n" +
 	"\t_assigneeB\v\n" +
-	"\t_due_date\"#\n" +
+	"\t_due_date\"M\n" +
 	"\x11DeleteTodoRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\",\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1c\n" +
+	"\auser_id\x18\x02 \x01(\x03H\x00R\x06userId\x88\x01\x01B\n" +
+	"\n" +
+	"\b_user_id\",\n" +
 	"\x14CreateSubtaskRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\"K\n" +
 	"\x14UpdateSubtaskRequest\x12\x0e\n" +
@@ -1866,6 +1968,7 @@ func file_monorepo_todo_v1_todo_service_proto_init() {
 	file_monorepo_todo_v1_todo_service_proto_msgTypes[1].OneofWrappers = []any{}
 	file_monorepo_todo_v1_todo_service_proto_msgTypes[2].OneofWrappers = []any{}
 	file_monorepo_todo_v1_todo_service_proto_msgTypes[4].OneofWrappers = []any{}
+	file_monorepo_todo_v1_todo_service_proto_msgTypes[5].OneofWrappers = []any{}
 	file_monorepo_todo_v1_todo_service_proto_msgTypes[7].OneofWrappers = []any{}
 	file_monorepo_todo_v1_todo_service_proto_msgTypes[9].OneofWrappers = []any{}
 	file_monorepo_todo_v1_todo_service_proto_msgTypes[13].OneofWrappers = []any{

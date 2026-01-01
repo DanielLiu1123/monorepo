@@ -1172,19 +1172,46 @@ private static final long serialVersionUID = 0L;
     return id_;
   }
 
-  public static final int TITLE_FIELD_NUMBER = 2;
+  public static final int USER_ID_FIELD_NUMBER = 2;
+  private long userId_ = 0L;
+  /**
+   * <pre>
+   * optional user_id to filter by, can't be changed, only used for validation
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return Whether the userId field is set.
+   */
+  @java.lang.Override
+  public boolean hasUserId() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <pre>
+   * optional user_id to filter by, can't be changed, only used for validation
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return The userId.
+   */
+  @java.lang.Override
+  public long getUserId() {
+    return userId_;
+  }
+
+  public static final int TITLE_FIELD_NUMBER = 3;
   @SuppressWarnings("serial")
   private volatile java.lang.Object title_ = "";
   /**
-   * <code>optional string title = 2 [json_name = "title"];</code>
+   * <code>optional string title = 3 [json_name = "title"];</code>
    * @return Whether the title field is set.
    */
   @java.lang.Override
   public boolean hasTitle() {
-    return ((bitField0_ & 0x00000001) != 0);
+    return ((bitField0_ & 0x00000002) != 0);
   }
   /**
-   * <code>optional string title = 2 [json_name = "title"];</code>
+   * <code>optional string title = 3 [json_name = "title"];</code>
    * @return The title.
    */
   @java.lang.Override
@@ -1201,7 +1228,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>optional string title = 2 [json_name = "title"];</code>
+   * <code>optional string title = 3 [json_name = "title"];</code>
    * @return The bytes for title.
    */
   @java.lang.Override
@@ -1219,19 +1246,19 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DESCRIPTION_FIELD_NUMBER = 3;
+  public static final int DESCRIPTION_FIELD_NUMBER = 4;
   @SuppressWarnings("serial")
   private volatile java.lang.Object description_ = "";
   /**
-   * <code>optional string description = 3 [json_name = "description"];</code>
+   * <code>optional string description = 4 [json_name = "description"];</code>
    * @return Whether the description field is set.
    */
   @java.lang.Override
   public boolean hasDescription() {
-    return ((bitField0_ & 0x00000002) != 0);
+    return ((bitField0_ & 0x00000004) != 0);
   }
   /**
-   * <code>optional string description = 3 [json_name = "description"];</code>
+   * <code>optional string description = 4 [json_name = "description"];</code>
    * @return The description.
    */
   @java.lang.Override
@@ -1248,7 +1275,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>optional string description = 3 [json_name = "description"];</code>
+   * <code>optional string description = 4 [json_name = "description"];</code>
    * @return The bytes for description.
    */
   @java.lang.Override
@@ -1266,24 +1293,24 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int STATE_FIELD_NUMBER = 4;
+  public static final int STATE_FIELD_NUMBER = 5;
   private int state_ = 0;
   /**
-   * <code>optional .monorepo.todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+   * <code>optional .monorepo.todo.v1.Todo.State state = 5 [json_name = "state"];</code>
    * @return Whether the state field is set.
    */
   @java.lang.Override public boolean hasState() {
-    return ((bitField0_ & 0x00000004) != 0);
+    return ((bitField0_ & 0x00000008) != 0);
   }
   /**
-   * <code>optional .monorepo.todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+   * <code>optional .monorepo.todo.v1.Todo.State state = 5 [json_name = "state"];</code>
    * @return The enum numeric value on the wire for state.
    */
   @java.lang.Override public int getStateValue() {
     return state_;
   }
   /**
-   * <code>optional .monorepo.todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+   * <code>optional .monorepo.todo.v1.Todo.State state = 5 [json_name = "state"];</code>
    * @return The state.
    */
   @java.lang.Override public monorepo.proto.todo.v1.Todo.State getState() {
@@ -1291,24 +1318,24 @@ private static final long serialVersionUID = 0L;
     return result == null ? monorepo.proto.todo.v1.Todo.State.UNRECOGNIZED : result;
   }
 
-  public static final int PRIORITY_FIELD_NUMBER = 5;
+  public static final int PRIORITY_FIELD_NUMBER = 6;
   private int priority_ = 0;
   /**
-   * <code>optional .monorepo.todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+   * <code>optional .monorepo.todo.v1.Todo.Priority priority = 6 [json_name = "priority"];</code>
    * @return Whether the priority field is set.
    */
   @java.lang.Override public boolean hasPriority() {
-    return ((bitField0_ & 0x00000008) != 0);
+    return ((bitField0_ & 0x00000010) != 0);
   }
   /**
-   * <code>optional .monorepo.todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+   * <code>optional .monorepo.todo.v1.Todo.Priority priority = 6 [json_name = "priority"];</code>
    * @return The enum numeric value on the wire for priority.
    */
   @java.lang.Override public int getPriorityValue() {
     return priority_;
   }
   /**
-   * <code>optional .monorepo.todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+   * <code>optional .monorepo.todo.v1.Todo.Priority priority = 6 [json_name = "priority"];</code>
    * @return The priority.
    */
   @java.lang.Override public monorepo.proto.todo.v1.Todo.Priority getPriority() {
@@ -1316,18 +1343,18 @@ private static final long serialVersionUID = 0L;
     return result == null ? monorepo.proto.todo.v1.Todo.Priority.UNRECOGNIZED : result;
   }
 
-  public static final int ASSIGNEE_FIELD_NUMBER = 6;
+  public static final int ASSIGNEE_FIELD_NUMBER = 7;
   private long assignee_ = 0L;
   /**
-   * <code>optional int64 assignee = 6 [json_name = "assignee"];</code>
+   * <code>optional int64 assignee = 7 [json_name = "assignee"];</code>
    * @return Whether the assignee field is set.
    */
   @java.lang.Override
   public boolean hasAssignee() {
-    return ((bitField0_ & 0x00000010) != 0);
+    return ((bitField0_ & 0x00000020) != 0);
   }
   /**
-   * <code>optional int64 assignee = 6 [json_name = "assignee"];</code>
+   * <code>optional int64 assignee = 7 [json_name = "assignee"];</code>
    * @return The assignee.
    */
   @java.lang.Override
@@ -1335,18 +1362,18 @@ private static final long serialVersionUID = 0L;
     return assignee_;
   }
 
-  public static final int DUE_DATE_FIELD_NUMBER = 7;
+  public static final int DUE_DATE_FIELD_NUMBER = 8;
   private com.google.type.Date dueDate_;
   /**
-   * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+   * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
    * @return Whether the dueDate field is set.
    */
   @java.lang.Override
   public boolean hasDueDate() {
-    return ((bitField0_ & 0x00000020) != 0);
+    return ((bitField0_ & 0x00000040) != 0);
   }
   /**
-   * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+   * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
    * @return The dueDate.
    */
   @java.lang.Override
@@ -1354,25 +1381,25 @@ private static final long serialVersionUID = 0L;
     return dueDate_ == null ? com.google.type.Date.getDefaultInstance() : dueDate_;
   }
   /**
-   * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+   * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
    */
   @java.lang.Override
   public com.google.type.DateOrBuilder getDueDateOrBuilder() {
     return dueDate_ == null ? com.google.type.Date.getDefaultInstance() : dueDate_;
   }
 
-  public static final int SUB_TASK_OPERATIONS_FIELD_NUMBER = 8;
+  public static final int SUB_TASK_OPERATIONS_FIELD_NUMBER = 9;
   @SuppressWarnings("serial")
   private java.util.List<monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation> subTaskOperations_;
   /**
-   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
    */
   @java.lang.Override
   public java.util.List<monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation> getSubTaskOperationsList() {
     return subTaskOperations_;
   }
   /**
-   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
    */
   @java.lang.Override
   public java.util.List<? extends monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperationOrBuilder> 
@@ -1380,21 +1407,21 @@ private static final long serialVersionUID = 0L;
     return subTaskOperations_;
   }
   /**
-   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
    */
   @java.lang.Override
   public int getSubTaskOperationsCount() {
     return subTaskOperations_.size();
   }
   /**
-   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
    */
   @java.lang.Override
   public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation getSubTaskOperations(int index) {
     return subTaskOperations_.get(index);
   }
   /**
-   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+   * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
    */
   @java.lang.Override
   public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperationOrBuilder getSubTaskOperationsOrBuilder(
@@ -1420,25 +1447,28 @@ private static final long serialVersionUID = 0L;
       output.writeInt64(1, id_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 2, title_);
+      output.writeInt64(2, userId_);
     }
     if (((bitField0_ & 0x00000002) != 0)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 3, description_);
+      com.google.protobuf.GeneratedMessage.writeString(output, 3, title_);
     }
     if (((bitField0_ & 0x00000004) != 0)) {
-      output.writeEnum(4, state_);
+      com.google.protobuf.GeneratedMessage.writeString(output, 4, description_);
     }
     if (((bitField0_ & 0x00000008) != 0)) {
-      output.writeEnum(5, priority_);
+      output.writeEnum(5, state_);
     }
     if (((bitField0_ & 0x00000010) != 0)) {
-      output.writeInt64(6, assignee_);
+      output.writeEnum(6, priority_);
     }
     if (((bitField0_ & 0x00000020) != 0)) {
-      output.writeMessage(7, getDueDate());
+      output.writeInt64(7, assignee_);
+    }
+    if (((bitField0_ & 0x00000040) != 0)) {
+      output.writeMessage(8, getDueDate());
     }
     for (int i = 0; i < subTaskOperations_.size(); i++) {
-      output.writeMessage(8, subTaskOperations_.get(i));
+      output.writeMessage(9, subTaskOperations_.get(i));
     }
     getUnknownFields().writeTo(output);
   }
@@ -1454,30 +1484,34 @@ private static final long serialVersionUID = 0L;
         .computeInt64Size(1, id_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, title_);
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(2, userId_);
     }
     if (((bitField0_ & 0x00000002) != 0)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(3, description_);
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(3, title_);
     }
     if (((bitField0_ & 0x00000004) != 0)) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(4, state_);
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(4, description_);
     }
     if (((bitField0_ & 0x00000008) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(5, priority_);
+        .computeEnumSize(5, state_);
     }
     if (((bitField0_ & 0x00000010) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(6, assignee_);
+        .computeEnumSize(6, priority_);
     }
     if (((bitField0_ & 0x00000020) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(7, getDueDate());
+        .computeInt64Size(7, assignee_);
+    }
+    if (((bitField0_ & 0x00000040) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(8, getDueDate());
     }
     for (int i = 0; i < subTaskOperations_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(8, subTaskOperations_.get(i));
+        .computeMessageSize(9, subTaskOperations_.get(i));
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -1496,6 +1530,11 @@ private static final long serialVersionUID = 0L;
 
     if (getId()
         != other.getId()) return false;
+    if (hasUserId() != other.hasUserId()) return false;
+    if (hasUserId()) {
+      if (getUserId()
+          != other.getUserId()) return false;
+    }
     if (hasTitle() != other.hasTitle()) return false;
     if (hasTitle()) {
       if (!getTitle()
@@ -1540,6 +1579,11 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getId());
+    if (hasUserId()) {
+      hash = (37 * hash) + USER_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUserId());
+    }
     if (hasTitle()) {
       hash = (37 * hash) + TITLE_FIELD_NUMBER;
       hash = (53 * hash) + getTitle().hashCode();
@@ -1712,6 +1756,7 @@ private static final long serialVersionUID = 0L;
       super.clear();
       bitField0_ = 0;
       id_ = 0L;
+      userId_ = 0L;
       title_ = "";
       description_ = "";
       state_ = 0;
@@ -1728,7 +1773,7 @@ private static final long serialVersionUID = 0L;
         subTaskOperations_ = null;
         subTaskOperationsBuilder_.clear();
       }
-      bitField0_ = (bitField0_ & ~0x00000080);
+      bitField0_ = (bitField0_ & ~0x00000100);
       return this;
     }
 
@@ -1763,9 +1808,9 @@ private static final long serialVersionUID = 0L;
 
     private void buildPartialRepeatedFields(monorepo.proto.todo.v1.UpdateTodoRequest result) {
       if (subTaskOperationsBuilder_ == null) {
-        if (((bitField0_ & 0x00000080) != 0)) {
+        if (((bitField0_ & 0x00000100) != 0)) {
           subTaskOperations_ = java.util.Collections.unmodifiableList(subTaskOperations_);
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000100);
         }
         result.subTaskOperations_ = subTaskOperations_;
       } else {
@@ -1780,30 +1825,34 @@ private static final long serialVersionUID = 0L;
       }
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.title_ = title_;
+        result.userId_ = userId_;
         to_bitField0_ |= 0x00000001;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.description_ = description_;
+        result.title_ = title_;
         to_bitField0_ |= 0x00000002;
       }
       if (((from_bitField0_ & 0x00000008) != 0)) {
-        result.state_ = state_;
+        result.description_ = description_;
         to_bitField0_ |= 0x00000004;
       }
       if (((from_bitField0_ & 0x00000010) != 0)) {
-        result.priority_ = priority_;
+        result.state_ = state_;
         to_bitField0_ |= 0x00000008;
       }
       if (((from_bitField0_ & 0x00000020) != 0)) {
-        result.assignee_ = assignee_;
+        result.priority_ = priority_;
         to_bitField0_ |= 0x00000010;
       }
       if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.assignee_ = assignee_;
+        to_bitField0_ |= 0x00000020;
+      }
+      if (((from_bitField0_ & 0x00000080) != 0)) {
         result.dueDate_ = dueDateBuilder_ == null
             ? dueDate_
             : dueDateBuilder_.build();
-        to_bitField0_ |= 0x00000020;
+        to_bitField0_ |= 0x00000040;
       }
       result.bitField0_ |= to_bitField0_;
     }
@@ -1823,14 +1872,17 @@ private static final long serialVersionUID = 0L;
       if (other.getId() != 0L) {
         setId(other.getId());
       }
+      if (other.hasUserId()) {
+        setUserId(other.getUserId());
+      }
       if (other.hasTitle()) {
         title_ = other.title_;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
       }
       if (other.hasDescription()) {
         description_ = other.description_;
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
       }
       if (other.hasState()) {
@@ -1849,7 +1901,7 @@ private static final long serialVersionUID = 0L;
         if (!other.subTaskOperations_.isEmpty()) {
           if (subTaskOperations_.isEmpty()) {
             subTaskOperations_ = other.subTaskOperations_;
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000100);
           } else {
             ensureSubTaskOperationsIsMutable();
             subTaskOperations_.addAll(other.subTaskOperations_);
@@ -1862,7 +1914,7 @@ private static final long serialVersionUID = 0L;
             subTaskOperationsBuilder_.dispose();
             subTaskOperationsBuilder_ = null;
             subTaskOperations_ = other.subTaskOperations_;
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000100);
             subTaskOperationsBuilder_ = 
               com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                  internalGetSubTaskOperationsFieldBuilder() : null;
@@ -1902,39 +1954,44 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000001;
               break;
             } // case 8
-            case 18: {
-              title_ = input.readStringRequireUtf8();
+            case 16: {
+              userId_ = input.readInt64();
               bitField0_ |= 0x00000002;
               break;
-            } // case 18
+            } // case 16
             case 26: {
-              description_ = input.readStringRequireUtf8();
+              title_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000004;
               break;
             } // case 26
-            case 32: {
-              state_ = input.readEnum();
+            case 34: {
+              description_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000008;
               break;
-            } // case 32
+            } // case 34
             case 40: {
-              priority_ = input.readEnum();
+              state_ = input.readEnum();
               bitField0_ |= 0x00000010;
               break;
             } // case 40
             case 48: {
-              assignee_ = input.readInt64();
+              priority_ = input.readEnum();
               bitField0_ |= 0x00000020;
               break;
             } // case 48
-            case 58: {
+            case 56: {
+              assignee_ = input.readInt64();
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 56
+            case 66: {
               input.readMessage(
                   internalGetDueDateFieldBuilder().getBuilder(),
                   extensionRegistry);
-              bitField0_ |= 0x00000040;
+              bitField0_ |= 0x00000080;
               break;
-            } // case 58
-            case 66: {
+            } // case 66
+            case 74: {
               monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation m =
                   input.readMessage(
                       monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.parser(),
@@ -1946,7 +2003,7 @@ private static final long serialVersionUID = 0L;
                 subTaskOperationsBuilder_.addMessage(m);
               }
               break;
-            } // case 66
+            } // case 74
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -1996,16 +2053,72 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object title_ = "";
+    private long userId_ ;
     /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
-     * @return Whether the title field is set.
+     * <pre>
+     * optional user_id to filter by, can't be changed, only used for validation
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @return Whether the userId field is set.
      */
-    public boolean hasTitle() {
+    @java.lang.Override
+    public boolean hasUserId() {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
+     * <pre>
+     * optional user_id to filter by, can't be changed, only used for validation
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @return The userId.
+     */
+    @java.lang.Override
+    public long getUserId() {
+      return userId_;
+    }
+    /**
+     * <pre>
+     * optional user_id to filter by, can't be changed, only used for validation
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @param value The userId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setUserId(long value) {
+
+      userId_ = value;
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * optional user_id to filter by, can't be changed, only used for validation
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearUserId() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      userId_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object title_ = "";
+    /**
+     * <code>optional string title = 3 [json_name = "title"];</code>
+     * @return Whether the title field is set.
+     */
+    public boolean hasTitle() {
+      return ((bitField0_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>optional string title = 3 [json_name = "title"];</code>
      * @return The title.
      */
     public java.lang.String getTitle() {
@@ -2021,7 +2134,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
+     * <code>optional string title = 3 [json_name = "title"];</code>
      * @return The bytes for title.
      */
     public com.google.protobuf.ByteString
@@ -2038,7 +2151,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
+     * <code>optional string title = 3 [json_name = "title"];</code>
      * @param value The title to set.
      * @return This builder for chaining.
      */
@@ -2046,22 +2159,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       title_ = value;
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
     /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
+     * <code>optional string title = 3 [json_name = "title"];</code>
      * @return This builder for chaining.
      */
     public Builder clearTitle() {
       title_ = getDefaultInstance().getTitle();
-      bitField0_ = (bitField0_ & ~0x00000002);
+      bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }
     /**
-     * <code>optional string title = 2 [json_name = "title"];</code>
+     * <code>optional string title = 3 [json_name = "title"];</code>
      * @param value The bytes for title to set.
      * @return This builder for chaining.
      */
@@ -2070,21 +2183,21 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       title_ = value;
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
 
     private java.lang.Object description_ = "";
     /**
-     * <code>optional string description = 3 [json_name = "description"];</code>
+     * <code>optional string description = 4 [json_name = "description"];</code>
      * @return Whether the description field is set.
      */
     public boolean hasDescription() {
-      return ((bitField0_ & 0x00000004) != 0);
+      return ((bitField0_ & 0x00000008) != 0);
     }
     /**
-     * <code>optional string description = 3 [json_name = "description"];</code>
+     * <code>optional string description = 4 [json_name = "description"];</code>
      * @return The description.
      */
     public java.lang.String getDescription() {
@@ -2100,7 +2213,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>optional string description = 3 [json_name = "description"];</code>
+     * <code>optional string description = 4 [json_name = "description"];</code>
      * @return The bytes for description.
      */
     public com.google.protobuf.ByteString
@@ -2117,7 +2230,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>optional string description = 3 [json_name = "description"];</code>
+     * <code>optional string description = 4 [json_name = "description"];</code>
      * @param value The description to set.
      * @return This builder for chaining.
      */
@@ -2125,22 +2238,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       description_ = value;
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
     /**
-     * <code>optional string description = 3 [json_name = "description"];</code>
+     * <code>optional string description = 4 [json_name = "description"];</code>
      * @return This builder for chaining.
      */
     public Builder clearDescription() {
       description_ = getDefaultInstance().getDescription();
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000008);
       onChanged();
       return this;
     }
     /**
-     * <code>optional string description = 3 [json_name = "description"];</code>
+     * <code>optional string description = 4 [json_name = "description"];</code>
      * @param value The bytes for description to set.
      * @return This builder for chaining.
      */
@@ -2149,39 +2262,39 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       description_ = value;
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
 
     private int state_ = 0;
     /**
-     * <code>optional .monorepo.todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.State state = 5 [json_name = "state"];</code>
      * @return Whether the state field is set.
      */
     @java.lang.Override public boolean hasState() {
-      return ((bitField0_ & 0x00000008) != 0);
+      return ((bitField0_ & 0x00000010) != 0);
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.State state = 5 [json_name = "state"];</code>
      * @return The enum numeric value on the wire for state.
      */
     @java.lang.Override public int getStateValue() {
       return state_;
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.State state = 5 [json_name = "state"];</code>
      * @param value The enum numeric value on the wire for state to set.
      * @return This builder for chaining.
      */
     public Builder setStateValue(int value) {
       state_ = value;
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.State state = 5 [json_name = "state"];</code>
      * @return The state.
      */
     @java.lang.Override
@@ -2190,23 +2303,23 @@ private static final long serialVersionUID = 0L;
       return result == null ? monorepo.proto.todo.v1.Todo.State.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.State state = 5 [json_name = "state"];</code>
      * @param value The state to set.
      * @return This builder for chaining.
      */
     public Builder setState(monorepo.proto.todo.v1.Todo.State value) {
       if (value == null) { throw new NullPointerException(); }
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000010;
       state_ = value.getNumber();
       onChanged();
       return this;
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.State state = 4 [json_name = "state"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.State state = 5 [json_name = "state"];</code>
      * @return This builder for chaining.
      */
     public Builder clearState() {
-      bitField0_ = (bitField0_ & ~0x00000008);
+      bitField0_ = (bitField0_ & ~0x00000010);
       state_ = 0;
       onChanged();
       return this;
@@ -2214,32 +2327,32 @@ private static final long serialVersionUID = 0L;
 
     private int priority_ = 0;
     /**
-     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 6 [json_name = "priority"];</code>
      * @return Whether the priority field is set.
      */
     @java.lang.Override public boolean hasPriority() {
-      return ((bitField0_ & 0x00000010) != 0);
+      return ((bitField0_ & 0x00000020) != 0);
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 6 [json_name = "priority"];</code>
      * @return The enum numeric value on the wire for priority.
      */
     @java.lang.Override public int getPriorityValue() {
       return priority_;
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 6 [json_name = "priority"];</code>
      * @param value The enum numeric value on the wire for priority to set.
      * @return This builder for chaining.
      */
     public Builder setPriorityValue(int value) {
       priority_ = value;
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 6 [json_name = "priority"];</code>
      * @return The priority.
      */
     @java.lang.Override
@@ -2248,23 +2361,23 @@ private static final long serialVersionUID = 0L;
       return result == null ? monorepo.proto.todo.v1.Todo.Priority.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 6 [json_name = "priority"];</code>
      * @param value The priority to set.
      * @return This builder for chaining.
      */
     public Builder setPriority(monorepo.proto.todo.v1.Todo.Priority value) {
       if (value == null) { throw new NullPointerException(); }
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000020;
       priority_ = value.getNumber();
       onChanged();
       return this;
     }
     /**
-     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 5 [json_name = "priority"];</code>
+     * <code>optional .monorepo.todo.v1.Todo.Priority priority = 6 [json_name = "priority"];</code>
      * @return This builder for chaining.
      */
     public Builder clearPriority() {
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000020);
       priority_ = 0;
       onChanged();
       return this;
@@ -2272,15 +2385,15 @@ private static final long serialVersionUID = 0L;
 
     private long assignee_ ;
     /**
-     * <code>optional int64 assignee = 6 [json_name = "assignee"];</code>
+     * <code>optional int64 assignee = 7 [json_name = "assignee"];</code>
      * @return Whether the assignee field is set.
      */
     @java.lang.Override
     public boolean hasAssignee() {
-      return ((bitField0_ & 0x00000020) != 0);
+      return ((bitField0_ & 0x00000040) != 0);
     }
     /**
-     * <code>optional int64 assignee = 6 [json_name = "assignee"];</code>
+     * <code>optional int64 assignee = 7 [json_name = "assignee"];</code>
      * @return The assignee.
      */
     @java.lang.Override
@@ -2288,23 +2401,23 @@ private static final long serialVersionUID = 0L;
       return assignee_;
     }
     /**
-     * <code>optional int64 assignee = 6 [json_name = "assignee"];</code>
+     * <code>optional int64 assignee = 7 [json_name = "assignee"];</code>
      * @param value The assignee to set.
      * @return This builder for chaining.
      */
     public Builder setAssignee(long value) {
 
       assignee_ = value;
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }
     /**
-     * <code>optional int64 assignee = 6 [json_name = "assignee"];</code>
+     * <code>optional int64 assignee = 7 [json_name = "assignee"];</code>
      * @return This builder for chaining.
      */
     public Builder clearAssignee() {
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000040);
       assignee_ = 0L;
       onChanged();
       return this;
@@ -2314,14 +2427,14 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilder<
         com.google.type.Date, com.google.type.Date.Builder, com.google.type.DateOrBuilder> dueDateBuilder_;
     /**
-     * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+     * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
      * @return Whether the dueDate field is set.
      */
     public boolean hasDueDate() {
-      return ((bitField0_ & 0x00000040) != 0);
+      return ((bitField0_ & 0x00000080) != 0);
     }
     /**
-     * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+     * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
      * @return The dueDate.
      */
     public com.google.type.Date getDueDate() {
@@ -2332,7 +2445,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+     * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
      */
     public Builder setDueDate(com.google.type.Date value) {
       if (dueDateBuilder_ == null) {
@@ -2343,12 +2456,12 @@ private static final long serialVersionUID = 0L;
       } else {
         dueDateBuilder_.setMessage(value);
       }
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }
     /**
-     * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+     * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
      */
     public Builder setDueDate(
         com.google.type.Date.Builder builderForValue) {
@@ -2357,16 +2470,16 @@ private static final long serialVersionUID = 0L;
       } else {
         dueDateBuilder_.setMessage(builderForValue.build());
       }
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }
     /**
-     * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+     * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
      */
     public Builder mergeDueDate(com.google.type.Date value) {
       if (dueDateBuilder_ == null) {
-        if (((bitField0_ & 0x00000040) != 0) &&
+        if (((bitField0_ & 0x00000080) != 0) &&
           dueDate_ != null &&
           dueDate_ != com.google.type.Date.getDefaultInstance()) {
           getDueDateBuilder().mergeFrom(value);
@@ -2377,16 +2490,16 @@ private static final long serialVersionUID = 0L;
         dueDateBuilder_.mergeFrom(value);
       }
       if (dueDate_ != null) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         onChanged();
       }
       return this;
     }
     /**
-     * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+     * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
      */
     public Builder clearDueDate() {
-      bitField0_ = (bitField0_ & ~0x00000040);
+      bitField0_ = (bitField0_ & ~0x00000080);
       dueDate_ = null;
       if (dueDateBuilder_ != null) {
         dueDateBuilder_.dispose();
@@ -2396,15 +2509,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+     * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
      */
     public com.google.type.Date.Builder getDueDateBuilder() {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000080;
       onChanged();
       return internalGetDueDateFieldBuilder().getBuilder();
     }
     /**
-     * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+     * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
      */
     public com.google.type.DateOrBuilder getDueDateOrBuilder() {
       if (dueDateBuilder_ != null) {
@@ -2415,7 +2528,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>optional .google.type.Date due_date = 7 [json_name = "dueDate"];</code>
+     * <code>optional .google.type.Date due_date = 8 [json_name = "dueDate"];</code>
      */
     private com.google.protobuf.SingleFieldBuilder<
         com.google.type.Date, com.google.type.Date.Builder, com.google.type.DateOrBuilder> 
@@ -2434,9 +2547,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation> subTaskOperations_ =
       java.util.Collections.emptyList();
     private void ensureSubTaskOperationsIsMutable() {
-      if (!((bitField0_ & 0x00000080) != 0)) {
+      if (!((bitField0_ & 0x00000100) != 0)) {
         subTaskOperations_ = new java.util.ArrayList<monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation>(subTaskOperations_);
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
        }
     }
 
@@ -2444,7 +2557,7 @@ private static final long serialVersionUID = 0L;
         monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.Builder, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperationOrBuilder> subTaskOperationsBuilder_;
 
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public java.util.List<monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation> getSubTaskOperationsList() {
       if (subTaskOperationsBuilder_ == null) {
@@ -2454,7 +2567,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public int getSubTaskOperationsCount() {
       if (subTaskOperationsBuilder_ == null) {
@@ -2464,7 +2577,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation getSubTaskOperations(int index) {
       if (subTaskOperationsBuilder_ == null) {
@@ -2474,7 +2587,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public Builder setSubTaskOperations(
         int index, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation value) {
@@ -2491,7 +2604,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public Builder setSubTaskOperations(
         int index, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.Builder builderForValue) {
@@ -2505,7 +2618,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public Builder addSubTaskOperations(monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation value) {
       if (subTaskOperationsBuilder_ == null) {
@@ -2521,7 +2634,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public Builder addSubTaskOperations(
         int index, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation value) {
@@ -2538,7 +2651,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public Builder addSubTaskOperations(
         monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.Builder builderForValue) {
@@ -2552,7 +2665,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public Builder addSubTaskOperations(
         int index, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.Builder builderForValue) {
@@ -2566,7 +2679,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public Builder addAllSubTaskOperations(
         java.lang.Iterable<? extends monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation> values) {
@@ -2581,12 +2694,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public Builder clearSubTaskOperations() {
       if (subTaskOperationsBuilder_ == null) {
         subTaskOperations_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         onChanged();
       } else {
         subTaskOperationsBuilder_.clear();
@@ -2594,7 +2707,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public Builder removeSubTaskOperations(int index) {
       if (subTaskOperationsBuilder_ == null) {
@@ -2607,14 +2720,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.Builder getSubTaskOperationsBuilder(
         int index) {
       return internalGetSubTaskOperationsFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperationOrBuilder getSubTaskOperationsOrBuilder(
         int index) {
@@ -2624,7 +2737,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public java.util.List<? extends monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperationOrBuilder> 
          getSubTaskOperationsOrBuilderList() {
@@ -2635,14 +2748,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.Builder addSubTaskOperationsBuilder() {
       return internalGetSubTaskOperationsFieldBuilder().addBuilder(
           monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.getDefaultInstance());
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.Builder addSubTaskOperationsBuilder(
         int index) {
@@ -2650,7 +2763,7 @@ private static final long serialVersionUID = 0L;
           index, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.getDefaultInstance());
     }
     /**
-     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 8 [json_name = "subTaskOperations"];</code>
+     * <code>repeated .monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation sub_task_operations = 9 [json_name = "subTaskOperations"];</code>
      */
     public java.util.List<monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.Builder> 
          getSubTaskOperationsBuilderList() {
@@ -2663,7 +2776,7 @@ private static final long serialVersionUID = 0L;
         subTaskOperationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
             monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperation.Builder, monorepo.proto.todo.v1.UpdateTodoRequest.SubTaskOperationOrBuilder>(
                 subTaskOperations_,
-                ((bitField0_ & 0x00000080) != 0),
+                ((bitField0_ & 0x00000100) != 0),
                 getParentForChildren(),
                 isClean());
         subTaskOperations_ = null;

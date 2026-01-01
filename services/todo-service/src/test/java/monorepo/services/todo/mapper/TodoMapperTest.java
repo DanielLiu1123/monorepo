@@ -10,7 +10,7 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isLessThan;
 import static org.mybatis.dynamic.sql.SqlBuilder.or;
 import static org.mybatis.dynamic.sql.SqlBuilder.select;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import monorepo.proto.todo.v1.Todo;
@@ -25,14 +25,14 @@ class TodoMapperTest {
         // @spotless:off
         var conditions = new ArrayList<AndOrCriteriaGroup>();
         conditions.add(or(List.of(
-                and(todo.createdAt, isLessThan(LocalDateTime.now()))))
+                and(todo.createdAt, isLessThan(Instant.now()))))
         );
         conditions.add(or(List.of(
-                and(todo.updatedAt, isEqualTo(LocalDateTime.now())),
+                and(todo.updatedAt, isEqualTo(Instant.now())),
                 and(todo.priority, isLessThan(Todo.Priority.HIGH))))
         );
         conditions.add(or(List.of(
-                and(todo.updatedAt, isEqualTo(LocalDateTime.now())),
+                and(todo.updatedAt, isEqualTo(Instant.now())),
                 and(todo.priority, isEqualTo(Todo.Priority.HIGH)),
                 and(todo.id, isGreaterThan(1L))))
         );

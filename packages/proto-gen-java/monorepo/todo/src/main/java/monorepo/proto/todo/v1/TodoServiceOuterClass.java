@@ -120,72 +120,75 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
       "ate\210\001\001\022C\n\tsub_tasks\030\010 \003(\0132&.monorepo.tod" +
       "o.v1.CreateSubtaskRequestR\010subTasksB\016\n\014_" +
       "descriptionB\010\n\006_stateB\013\n\t_priorityB\013\n\t_a" +
-      "ssigneeB\013\n\t_due_date\"Y\n\016GetTodoRequest\022\016" +
-      "\n\002id\030\001 \001(\003R\002id\022&\n\014show_deleted\030\002 \001(\010H\000R\013" +
-      "showDeleted\210\001\001B\017\n\r_show_deleted\"\364\004\n\020List" +
-      "TodosRequest\022\033\n\tpage_size\030\001 \001(\005R\010pageSiz" +
-      "e\022\035\n\npage_token\030\002 \001(\tR\tpageToken\022\027\n\007user" +
-      "_id\030\003 \001(\003R\006userId\022F\n\006filter\030\004 \001(\0132).mono" +
-      "repo.todo.v1.ListTodosRequest.FilterH\000R\006" +
-      "filter\210\001\001\022E\n\010order_by\030\005 \003(\0132*.monorepo.t" +
-      "odo.v1.ListTodosRequest.OrderByR\007orderBy" +
-      "\022&\n\014show_deleted\030\006 \001(\010H\001R\013showDeleted\210\001\001" +
-      "\032\177\n\006Filter\0224\n\006states\030\001 \003(\0162\034.monorepo.to" +
-      "do.v1.Todo.StateR\006states\022?\n\npriorities\030\002" +
-      " \003(\0162\037.monorepo.todo.v1.Todo.PriorityR\np" +
-      "riorities\032\266\001\n\007OrderBy\022F\n\005field\030\001 \001(\01620.m" +
-      "onorepo.todo.v1.ListTodosRequest.OrderBy" +
-      ".FieldR\005field\022\027\n\007is_desc\030\002 \001(\010R\006isDesc\"J" +
-      "\n\005Field\022\025\n\021FIELD_UNSPECIFIED\020\000\022\016\n\nCREATE" +
-      "D_AT\020\001\022\014\n\010DUE_DATE\020\002\022\014\n\010PRIORITY\020\003B\t\n\007_f" +
-      "ilterB\017\n\r_show_deleted\"\210\001\n\021ListTodosResp" +
-      "onse\022,\n\005todos\030\001 \003(\0132\026.monorepo.todo.v1.T" +
-      "odoR\005todos\022&\n\017next_page_token\030\002 \001(\tR\rnex" +
-      "tPageToken\022\035\n\ntotal_size\030\003 \001(\005R\ttotalSiz" +
-      "e\"\315\005\n\021UpdateTodoRequest\022\016\n\002id\030\001 \001(\003R\002id\022" +
-      "\031\n\005title\030\002 \001(\tH\000R\005title\210\001\001\022%\n\013descriptio" +
-      "n\030\003 \001(\tH\001R\013description\210\001\001\0227\n\005state\030\004 \001(\016" +
-      "2\034.monorepo.todo.v1.Todo.StateH\002R\005state\210" +
-      "\001\001\022@\n\010priority\030\005 \001(\0162\037.monorepo.todo.v1." +
-      "Todo.PriorityH\003R\010priority\210\001\001\022\037\n\010assignee" +
-      "\030\006 \001(\003H\004R\010assignee\210\001\001\0221\n\010due_date\030\007 \001(\0132" +
-      "\021.google.type.DateH\005R\007dueDate\210\001\001\022d\n\023sub_" +
-      "task_operations\030\010 \003(\01324.monorepo.todo.v1" +
-      ".UpdateTodoRequest.SubTaskOperationR\021sub" +
-      "TaskOperations\032\345\001\n\020SubTaskOperation\022@\n\006c" +
-      "reate\030\001 \001(\0132&.monorepo.todo.v1.CreateSub" +
-      "taskRequestH\000R\006create\022@\n\006update\030\002 \001(\0132&." +
-      "monorepo.todo.v1.UpdateSubtaskRequestH\000R" +
-      "\006update\022@\n\006delete\030\003 \001(\0132&.monorepo.todo." +
-      "v1.DeleteSubtaskRequestH\000R\006deleteB\013\n\tope" +
-      "rationB\010\n\006_titleB\016\n\014_descriptionB\010\n\006_sta" +
-      "teB\013\n\t_priorityB\013\n\t_assigneeB\013\n\t_due_dat" +
-      "e\"#\n\021DeleteTodoRequest\022\016\n\002id\030\001 \001(\003R\002id\"," +
-      "\n\024CreateSubtaskRequest\022\024\n\005title\030\001 \001(\tR\005t" +
-      "itle\"K\n\024UpdateSubtaskRequest\022\016\n\002id\030\001 \001(\003" +
-      "R\002id\022\031\n\005title\030\002 \001(\tH\000R\005title\210\001\001B\010\n\006_titl" +
-      "e\"&\n\024DeleteSubtaskRequest\022\016\n\002id\030\001 \001(\003R\002i" +
-      "d\"a\n\024BatchGetTodosRequest\022\020\n\003ids\030\001 \003(\003R\003" +
-      "ids\022&\n\014show_deleted\030\002 \001(\010H\000R\013showDeleted" +
-      "\210\001\001B\017\n\r_show_deleted\"E\n\025BatchGetTodosRes" +
-      "ponse\022,\n\005todos\030\001 \003(\0132\026.monorepo.todo.v1." +
-      "TodoR\005todos2\367\003\n\013TodoService\022K\n\nCreateTod" +
-      "o\022#.monorepo.todo.v1.CreateTodoRequest\032\026" +
-      ".monorepo.todo.v1.Todo\"\000\022E\n\007GetTodo\022 .mo" +
-      "norepo.todo.v1.GetTodoRequest\032\026.monorepo" +
-      ".todo.v1.Todo\"\000\022V\n\tListTodos\022\".monorepo." +
-      "todo.v1.ListTodosRequest\032#.monorepo.todo" +
-      ".v1.ListTodosResponse\"\000\022K\n\nUpdateTodo\022#." +
-      "monorepo.todo.v1.UpdateTodoRequest\032\026.mon" +
-      "orepo.todo.v1.Todo\"\000\022K\n\nDeleteTodo\022#.mon" +
-      "orepo.todo.v1.DeleteTodoRequest\032\026.monore" +
-      "po.todo.v1.Todo\"\000\022b\n\rBatchGetTodos\022&.mon" +
-      "orepo.todo.v1.BatchGetTodosRequest\032\'.mon" +
-      "orepo.todo.v1.BatchGetTodosResponse\"\000Bw\n" +
-      "\026monorepo.proto.todo.v1P\001Z[github.com/yo" +
-      "urorg/monorepo/packages/proto-gen-go/mon" +
-      "orepo/todo/pkg/monorepo/todo/v1;todov1b\006" +
-      "proto3"
+      "ssigneeB\013\n\t_due_date\"\203\001\n\016GetTodoRequest\022" +
+      "\016\n\002id\030\001 \001(\003R\002id\022\034\n\007user_id\030\002 \001(\003H\000R\006user" +
+      "Id\210\001\001\022&\n\014show_deleted\030\003 \001(\010H\001R\013showDelet" +
+      "ed\210\001\001B\n\n\010_user_idB\017\n\r_show_deleted\"\364\004\n\020L" +
+      "istTodosRequest\022\033\n\tpage_size\030\001 \001(\005R\010page" +
+      "Size\022\035\n\npage_token\030\002 \001(\tR\tpageToken\022\027\n\007u" +
+      "ser_id\030\003 \001(\003R\006userId\022F\n\006filter\030\004 \001(\0132).m" +
+      "onorepo.todo.v1.ListTodosRequest.FilterH" +
+      "\000R\006filter\210\001\001\022E\n\010order_by\030\005 \003(\0132*.monorep" +
+      "o.todo.v1.ListTodosRequest.OrderByR\007orde" +
+      "rBy\022&\n\014show_deleted\030\006 \001(\010H\001R\013showDeleted" +
+      "\210\001\001\032\177\n\006Filter\0224\n\006states\030\001 \003(\0162\034.monorepo" +
+      ".todo.v1.Todo.StateR\006states\022?\n\nprioritie" +
+      "s\030\002 \003(\0162\037.monorepo.todo.v1.Todo.Priority" +
+      "R\npriorities\032\266\001\n\007OrderBy\022F\n\005field\030\001 \001(\0162" +
+      "0.monorepo.todo.v1.ListTodosRequest.Orde" +
+      "rBy.FieldR\005field\022\027\n\007is_desc\030\002 \001(\010R\006isDes" +
+      "c\"J\n\005Field\022\025\n\021FIELD_UNSPECIFIED\020\000\022\016\n\nCRE" +
+      "ATED_AT\020\001\022\014\n\010DUE_DATE\020\002\022\014\n\010PRIORITY\020\003B\t\n" +
+      "\007_filterB\017\n\r_show_deleted\"\210\001\n\021ListTodosR" +
+      "esponse\022,\n\005todos\030\001 \003(\0132\026.monorepo.todo.v" +
+      "1.TodoR\005todos\022&\n\017next_page_token\030\002 \001(\tR\r" +
+      "nextPageToken\022\035\n\ntotal_size\030\003 \001(\005R\ttotal" +
+      "Size\"\367\005\n\021UpdateTodoRequest\022\016\n\002id\030\001 \001(\003R\002" +
+      "id\022\034\n\007user_id\030\002 \001(\003H\000R\006userId\210\001\001\022\031\n\005titl" +
+      "e\030\003 \001(\tH\001R\005title\210\001\001\022%\n\013description\030\004 \001(\t" +
+      "H\002R\013description\210\001\001\0227\n\005state\030\005 \001(\0162\034.mono" +
+      "repo.todo.v1.Todo.StateH\003R\005state\210\001\001\022@\n\010p" +
+      "riority\030\006 \001(\0162\037.monorepo.todo.v1.Todo.Pr" +
+      "iorityH\004R\010priority\210\001\001\022\037\n\010assignee\030\007 \001(\003H" +
+      "\005R\010assignee\210\001\001\0221\n\010due_date\030\010 \001(\0132\021.googl" +
+      "e.type.DateH\006R\007dueDate\210\001\001\022d\n\023sub_task_op" +
+      "erations\030\t \003(\01324.monorepo.todo.v1.Update" +
+      "TodoRequest.SubTaskOperationR\021subTaskOpe" +
+      "rations\032\345\001\n\020SubTaskOperation\022@\n\006create\030\001" +
+      " \001(\0132&.monorepo.todo.v1.CreateSubtaskReq" +
+      "uestH\000R\006create\022@\n\006update\030\002 \001(\0132&.monorep" +
+      "o.todo.v1.UpdateSubtaskRequestH\000R\006update" +
+      "\022@\n\006delete\030\003 \001(\0132&.monorepo.todo.v1.Dele" +
+      "teSubtaskRequestH\000R\006deleteB\013\n\toperationB" +
+      "\n\n\010_user_idB\010\n\006_titleB\016\n\014_descriptionB\010\n" +
+      "\006_stateB\013\n\t_priorityB\013\n\t_assigneeB\013\n\t_du" +
+      "e_date\"M\n\021DeleteTodoRequest\022\016\n\002id\030\001 \001(\003R" +
+      "\002id\022\034\n\007user_id\030\002 \001(\003H\000R\006userId\210\001\001B\n\n\010_us" +
+      "er_id\",\n\024CreateSubtaskRequest\022\024\n\005title\030\001" +
+      " \001(\tR\005title\"K\n\024UpdateSubtaskRequest\022\016\n\002i" +
+      "d\030\001 \001(\003R\002id\022\031\n\005title\030\002 \001(\tH\000R\005title\210\001\001B\010" +
+      "\n\006_title\"&\n\024DeleteSubtaskRequest\022\016\n\002id\030\001" +
+      " \001(\003R\002id\"a\n\024BatchGetTodosRequest\022\020\n\003ids\030" +
+      "\001 \003(\003R\003ids\022&\n\014show_deleted\030\002 \001(\010H\000R\013show" +
+      "Deleted\210\001\001B\017\n\r_show_deleted\"E\n\025BatchGetT" +
+      "odosResponse\022,\n\005todos\030\001 \003(\0132\026.monorepo.t" +
+      "odo.v1.TodoR\005todos2\367\003\n\013TodoService\022K\n\nCr" +
+      "eateTodo\022#.monorepo.todo.v1.CreateTodoRe" +
+      "quest\032\026.monorepo.todo.v1.Todo\"\000\022E\n\007GetTo" +
+      "do\022 .monorepo.todo.v1.GetTodoRequest\032\026.m" +
+      "onorepo.todo.v1.Todo\"\000\022V\n\tListTodos\022\".mo" +
+      "norepo.todo.v1.ListTodosRequest\032#.monore" +
+      "po.todo.v1.ListTodosResponse\"\000\022K\n\nUpdate" +
+      "Todo\022#.monorepo.todo.v1.UpdateTodoReques" +
+      "t\032\026.monorepo.todo.v1.Todo\"\000\022K\n\nDeleteTod" +
+      "o\022#.monorepo.todo.v1.DeleteTodoRequest\032\026" +
+      ".monorepo.todo.v1.Todo\"\000\022b\n\rBatchGetTodo" +
+      "s\022&.monorepo.todo.v1.BatchGetTodosReques" +
+      "t\032\'.monorepo.todo.v1.BatchGetTodosRespon" +
+      "se\"\000Bw\n\026monorepo.proto.todo.v1P\001Z[github" +
+      ".com/yourorg/monorepo/packages/proto-gen" +
+      "-go/monorepo/todo/pkg/monorepo/todo/v1;t" +
+      "odov1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -206,7 +209,7 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     internal_static_monorepo_todo_v1_GetTodoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_monorepo_todo_v1_GetTodoRequest_descriptor,
-        new java.lang.String[] { "Id", "ShowDeleted", });
+        new java.lang.String[] { "Id", "UserId", "ShowDeleted", });
     internal_static_monorepo_todo_v1_ListTodosRequest_descriptor =
       getDescriptor().getMessageType(2);
     internal_static_monorepo_todo_v1_ListTodosRequest_fieldAccessorTable = new
@@ -236,7 +239,7 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     internal_static_monorepo_todo_v1_UpdateTodoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_monorepo_todo_v1_UpdateTodoRequest_descriptor,
-        new java.lang.String[] { "Id", "Title", "Description", "State", "Priority", "Assignee", "DueDate", "SubTaskOperations", });
+        new java.lang.String[] { "Id", "UserId", "Title", "Description", "State", "Priority", "Assignee", "DueDate", "SubTaskOperations", });
     internal_static_monorepo_todo_v1_UpdateTodoRequest_SubTaskOperation_descriptor =
       internal_static_monorepo_todo_v1_UpdateTodoRequest_descriptor.getNestedType(0);
     internal_static_monorepo_todo_v1_UpdateTodoRequest_SubTaskOperation_fieldAccessorTable = new
@@ -248,7 +251,7 @@ public final class TodoServiceOuterClass extends com.google.protobuf.GeneratedFi
     internal_static_monorepo_todo_v1_DeleteTodoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_monorepo_todo_v1_DeleteTodoRequest_descriptor,
-        new java.lang.String[] { "Id", });
+        new java.lang.String[] { "Id", "UserId", });
     internal_static_monorepo_todo_v1_CreateSubtaskRequest_descriptor =
       getDescriptor().getMessageType(6);
     internal_static_monorepo_todo_v1_CreateSubtaskRequest_fieldAccessorTable = new

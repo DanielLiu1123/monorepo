@@ -50,8 +50,10 @@ message CreateTodoRequest {
 // Request message for GetTodo
 message GetTodoRequest {
   int64 id = 1;
+  // optional user_id to filter by
+  optional int64 user_id = 2;
   // default to true if not set
-  optional bool show_deleted = 2;
+  optional bool show_deleted = 3;
 }
 
 // Request message for ListTodos
@@ -114,13 +116,14 @@ message ListTodosResponse {
 // Request message for UpdateTodo
 message UpdateTodoRequest {
   int64 id = 1;
-  optional string title = 2;
-  optional string description = 3;
-  optional Todo.State state = 4;
-  optional Todo.Priority priority = 5;
-  optional int64 assignee = 6;
-  optional google.type.Date due_date = 7;
-  repeated SubTaskOperation sub_task_operations = 8;
+  optional int64 user_id = 2; // optional user_id to filter by, can't be changed, only used for validation
+  optional string title = 3;
+  optional string description = 4;
+  optional Todo.State state = 5;
+  optional Todo.Priority priority = 6;
+  optional int64 assignee = 7;
+  optional google.type.Date due_date = 8;
+  repeated SubTaskOperation sub_task_operations = 9;
 
   message SubTaskOperation {
     oneof operation {
@@ -133,6 +136,7 @@ message UpdateTodoRequest {
 
 message DeleteTodoRequest {
   int64 id = 1;
+  optional int64 user_id = 2; // optional user_id to filter by, can't be changed, only used for validation
 }
 
 message CreateSubtaskRequest {

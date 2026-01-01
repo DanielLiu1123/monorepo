@@ -15,4 +15,23 @@ public interface DeleteTodoRequestOrBuilder extends
    * @return The id.
    */
   long getId();
+
+  /**
+   * <pre>
+   * optional user_id to filter by, can't be changed, only used for validation
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return Whether the userId field is set.
+   */
+  boolean hasUserId();
+  /**
+   * <pre>
+   * optional user_id to filter by, can't be changed, only used for validation
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return The userId.
+   */
+  long getUserId();
 }

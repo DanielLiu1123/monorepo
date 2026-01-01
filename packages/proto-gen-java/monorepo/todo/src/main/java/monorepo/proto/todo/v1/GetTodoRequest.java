@@ -59,26 +59,53 @@ private static final long serialVersionUID = 0L;
     return id_;
   }
 
-  public static final int SHOW_DELETED_FIELD_NUMBER = 2;
+  public static final int USER_ID_FIELD_NUMBER = 2;
+  private long userId_ = 0L;
+  /**
+   * <pre>
+   * optional user_id to filter by
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return Whether the userId field is set.
+   */
+  @java.lang.Override
+  public boolean hasUserId() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <pre>
+   * optional user_id to filter by
+   * </pre>
+   *
+   * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+   * @return The userId.
+   */
+  @java.lang.Override
+  public long getUserId() {
+    return userId_;
+  }
+
+  public static final int SHOW_DELETED_FIELD_NUMBER = 3;
   private boolean showDeleted_ = false;
   /**
    * <pre>
    * default to true if not set
    * </pre>
    *
-   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * <code>optional bool show_deleted = 3 [json_name = "showDeleted"];</code>
    * @return Whether the showDeleted field is set.
    */
   @java.lang.Override
   public boolean hasShowDeleted() {
-    return ((bitField0_ & 0x00000001) != 0);
+    return ((bitField0_ & 0x00000002) != 0);
   }
   /**
    * <pre>
    * default to true if not set
    * </pre>
    *
-   * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+   * <code>optional bool show_deleted = 3 [json_name = "showDeleted"];</code>
    * @return The showDeleted.
    */
   @java.lang.Override
@@ -104,7 +131,10 @@ private static final long serialVersionUID = 0L;
       output.writeInt64(1, id_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeBool(2, showDeleted_);
+      output.writeInt64(2, userId_);
+    }
+    if (((bitField0_ & 0x00000002) != 0)) {
+      output.writeBool(3, showDeleted_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -121,7 +151,11 @@ private static final long serialVersionUID = 0L;
     }
     if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(2, showDeleted_);
+        .computeInt64Size(2, userId_);
+    }
+    if (((bitField0_ & 0x00000002) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(3, showDeleted_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -140,6 +174,11 @@ private static final long serialVersionUID = 0L;
 
     if (getId()
         != other.getId()) return false;
+    if (hasUserId() != other.hasUserId()) return false;
+    if (hasUserId()) {
+      if (getUserId()
+          != other.getUserId()) return false;
+    }
     if (hasShowDeleted() != other.hasShowDeleted()) return false;
     if (hasShowDeleted()) {
       if (getShowDeleted()
@@ -159,6 +198,11 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getId());
+    if (hasUserId()) {
+      hash = (37 * hash) + USER_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUserId());
+    }
     if (hasShowDeleted()) {
       hash = (37 * hash) + SHOW_DELETED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
@@ -300,6 +344,7 @@ private static final long serialVersionUID = 0L;
       super.clear();
       bitField0_ = 0;
       id_ = 0L;
+      userId_ = 0L;
       showDeleted_ = false;
       return this;
     }
@@ -339,8 +384,12 @@ private static final long serialVersionUID = 0L;
       }
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.showDeleted_ = showDeleted_;
+        result.userId_ = userId_;
         to_bitField0_ |= 0x00000001;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.showDeleted_ = showDeleted_;
+        to_bitField0_ |= 0x00000002;
       }
       result.bitField0_ |= to_bitField0_;
     }
@@ -359,6 +408,9 @@ private static final long serialVersionUID = 0L;
       if (other == monorepo.proto.todo.v1.GetTodoRequest.getDefaultInstance()) return this;
       if (other.getId() != 0L) {
         setId(other.getId());
+      }
+      if (other.hasUserId()) {
+        setUserId(other.getUserId());
       }
       if (other.hasShowDeleted()) {
         setShowDeleted(other.getShowDeleted());
@@ -395,10 +447,15 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 8
             case 16: {
-              showDeleted_ = input.readBool();
+              userId_ = input.readInt64();
               bitField0_ |= 0x00000002;
               break;
             } // case 16
+            case 24: {
+              showDeleted_ = input.readBool();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 24
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -448,25 +505,81 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private long userId_ ;
+    /**
+     * <pre>
+     * optional user_id to filter by
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @return Whether the userId field is set.
+     */
+    @java.lang.Override
+    public boolean hasUserId() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * optional user_id to filter by
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @return The userId.
+     */
+    @java.lang.Override
+    public long getUserId() {
+      return userId_;
+    }
+    /**
+     * <pre>
+     * optional user_id to filter by
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @param value The userId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setUserId(long value) {
+
+      userId_ = value;
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * optional user_id to filter by
+     * </pre>
+     *
+     * <code>optional int64 user_id = 2 [json_name = "userId"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearUserId() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      userId_ = 0L;
+      onChanged();
+      return this;
+    }
+
     private boolean showDeleted_ ;
     /**
      * <pre>
      * default to true if not set
      * </pre>
      *
-     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * <code>optional bool show_deleted = 3 [json_name = "showDeleted"];</code>
      * @return Whether the showDeleted field is set.
      */
     @java.lang.Override
     public boolean hasShowDeleted() {
-      return ((bitField0_ & 0x00000002) != 0);
+      return ((bitField0_ & 0x00000004) != 0);
     }
     /**
      * <pre>
      * default to true if not set
      * </pre>
      *
-     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * <code>optional bool show_deleted = 3 [json_name = "showDeleted"];</code>
      * @return The showDeleted.
      */
     @java.lang.Override
@@ -478,14 +591,14 @@ private static final long serialVersionUID = 0L;
      * default to true if not set
      * </pre>
      *
-     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * <code>optional bool show_deleted = 3 [json_name = "showDeleted"];</code>
      * @param value The showDeleted to set.
      * @return This builder for chaining.
      */
     public Builder setShowDeleted(boolean value) {
 
       showDeleted_ = value;
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -494,11 +607,11 @@ private static final long serialVersionUID = 0L;
      * default to true if not set
      * </pre>
      *
-     * <code>optional bool show_deleted = 2 [json_name = "showDeleted"];</code>
+     * <code>optional bool show_deleted = 3 [json_name = "showDeleted"];</code>
      * @return This builder for chaining.
      */
     public Builder clearShowDeleted() {
-      bitField0_ = (bitField0_ & ~0x00000002);
+      bitField0_ = (bitField0_ & ~0x00000004);
       showDeleted_ = false;
       onChanged();
       return this;
