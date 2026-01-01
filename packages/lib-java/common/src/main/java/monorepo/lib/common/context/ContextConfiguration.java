@@ -1,7 +1,7 @@
 package monorepo.lib.common.context;
 
-import io.grpc.ClientInterceptor;
-import io.grpc.ServerInterceptor;
+import grpcstarter.client.ConditionOnGrpcClientEnabled;
+import grpcstarter.server.ConditionOnGrpcServerEnabled;
 import io.micrometer.core.instrument.binder.grpc.ObservationGrpcClientInterceptor;
 import io.micrometer.core.instrument.binder.grpc.ObservationGrpcServerInterceptor;
 import io.micrometer.observation.ObservationRegistry;
@@ -42,33 +42,43 @@ public class ContextConfiguration {
     }
 
     @Configuration(proxyBeanMethods = false)
-    @ConditionalOnClass(ServerInterceptor.class)
+    @ConditionOnGrpcServerEnabled
     static class GrpcServer {
         @Bean
-        @Order(0)
-        public ServerInterceptor observationGrpcServerInterceptor(Optional<ObservationRegistry> observationRegistry) {
-            return new ObservationGrpcServerInterceptor(observationRegistry.orElse(ObservationRegistry.NOOP));
+        public ContextualServerInterceptor contextualServerInterceptor(
+                Optional<ObservationRegistry> observationRegistry) {
+            return new ContextualServerInterceptor(observationRegistry.orElse(ObservationRegistry.NOOP));
         }
 
-        @Bean
-        public ServerInterceptor contextualServerInterceptor(Optional<ObservationRegistry> observationRegistry) {
-            return new ContextualServerInterceptor(observationRegistry.orElse(ObservationRegistry.NOOP));
+        @Configuration(proxyBeanMethods = false)
+        @ConditionalOnClass(ObservationGrpcServerInterceptor.class) // micrometer exists
+        static class Micrometer {
+            @Bean
+            @Order(-100000) // relative high precedence
+            public ObservationGrpcServerInterceptor observationGrpcServerInterceptor(
+                    Optional<ObservationRegistry> observationRegistry) {
+                return new ObservationGrpcServerInterceptor(observationRegistry.orElse(ObservationRegistry.NOOP));
+            }
         }
     }
 
     @Configuration(proxyBeanMethods = false)
-    @ConditionalOnClass(ClientInterceptor.class)
+    @ConditionOnGrpcClientEnabled
     static class GrpcClient {
-        @Bean
-        @Order(0)
-        public ObservationGrpcClientInterceptor observationGrpcClientInterceptor(
-                Optional<ObservationRegistry> observationRegistry) {
-            return new ObservationGrpcClientInterceptor(observationRegistry.orElse(ObservationRegistry.NOOP));
-        }
-
         @Bean
         public ContextualClientInterceptor contextualClientInterceptor() {
             return new ContextualClientInterceptor();
+        }
+
+        @Configuration(proxyBeanMethods = false)
+        @ConditionalOnClass(ObservationGrpcClientInterceptor.class) // micrometer exists
+        static class Micrometer {
+            @Bean
+            @Order(-100000) // relative high precedence
+            public ObservationGrpcClientInterceptor observationGrpcClientInterceptor(
+                    Optional<ObservationRegistry> observationRegistry) {
+                return new ObservationGrpcClientInterceptor(observationRegistry.orElse(ObservationRegistry.NOOP));
+            }
         }
     }
 }
