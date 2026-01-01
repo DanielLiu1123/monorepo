@@ -19,7 +19,10 @@ public final class SpringUtil {
     @Nullable
     private static ApplicationContext ctx;
 
-    private static final SingletonSupplier<TransactionOperations> transactionOperations = SingletonSupplier.of(
+    /**
+     * Avoid early loading TransactionOperations class.
+     */
+    private static final SingletonSupplier<Object> transactionOperations = SingletonSupplier.of(
             () -> getContext().getBeanProvider(TransactionOperations.class).getIfUnique());
 
     static void setContext(ApplicationContext applicationContext) {
@@ -46,7 +49,7 @@ public final class SpringUtil {
      * @return result
      */
     public static <T> T withTransaction(Supplier<T> supplier) {
-        var tx = transactionOperations.get();
+        var tx = getTransactionOperations();
         if (tx != null) {
             return tx.execute(_ -> supplier.get());
         } else {
@@ -60,11 +63,15 @@ public final class SpringUtil {
      * @param runnable runnable
      */
     public static void withTransaction(Runnable runnable) {
-        var tx = transactionOperations.get();
+        var tx = getTransactionOperations();
         if (tx != null) {
             tx.executeWithoutResult(_ -> runnable.run());
         } else {
             runnable.run();
         }
+    }
+
+    private static @Nullable TransactionOperations getTransactionOperations() {
+        return (TransactionOperations) transactionOperations.get();
     }
 }
