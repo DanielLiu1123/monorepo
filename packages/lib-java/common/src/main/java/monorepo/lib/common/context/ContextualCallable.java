@@ -12,11 +12,9 @@ final class ContextualCallable<T> implements Callable<T> {
 
     private final Callable<T> delegate;
 
-    @Nullable
-    private final Context context;
+    @Nullable private final Context context;
 
-    @Nullable
-    private final Observation parentObservation;
+    @Nullable private final Observation parentObservation;
 
     private ContextualCallable(Callable<T> delegate) {
         this.delegate = delegate;

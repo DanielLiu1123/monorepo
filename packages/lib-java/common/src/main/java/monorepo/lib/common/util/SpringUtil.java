@@ -16,8 +16,7 @@ public final class SpringUtil {
 
     private SpringUtil() {}
 
-    @Nullable
-    private static ApplicationContext ctx;
+    @Nullable private static ApplicationContext ctx;
 
     /**
      * Avoid early loading TransactionOperations class.

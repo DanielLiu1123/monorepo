@@ -247,9 +247,9 @@ public class TodoService {
     }
 
     /**
-     * Build cursor condition for multi-field pagination.
-     * For sort order [field1 DESC, field2 ASC, id ASC] with last values {field1: v1, field2: v2, id: v3},
-     * generates: (field1 < v1) OR (field1 = v1 AND field2 > v2) OR (field1 = v1 AND field2 = v2 AND id > v3)
+     * Build cursor condition for multi-field pagination. For sort order [field1 DESC, field2 ASC, id
+     * ASC] with last values {field1: v1, field2: v2, id: v3}, generates: (field1 < v1) OR (field1 =
+     * v1 AND field2 > v2) OR (field1 = v1 AND field2 = v2 AND id > v3)
      */
     private static List<AndOrCriteriaGroup> buildCursorCondition(
             List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues) {
@@ -273,8 +273,8 @@ public class TodoService {
     }
 
     /**
-     * Build condition for a single orderBy field at the given index.
-     * Returns: (prefix conditions) AND (current field comparison)
+     * Build condition for a single orderBy field at the given index. Returns: (prefix conditions) AND
+     * (current field comparison)
      */
     private static List<AndOrCriteriaGroup> buildOrderByFieldCondition(
             List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues, int currentIndex) {
@@ -299,8 +299,8 @@ public class TodoService {
     }
 
     /**
-     * Build condition for the stable sort field 'id'.
-     * Returns: (all orderBy fields equal) AND (id > lastId)
+     * Build condition for the stable sort field 'id'. Returns: (all orderBy fields equal) AND (id >
+     * lastId)
      */
     private static List<AndOrCriteriaGroup> buildIdFieldCondition(
             List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues) {
@@ -322,9 +322,7 @@ public class TodoService {
         return result;
     }
 
-    /**
-     * Build equality conditions for fields in range [startIndex, endIndex).
-     */
+    /** Build equality conditions for fields in range [startIndex, endIndex). */
     private static List<AndOrCriteriaGroup> buildPrefixEqualityConditions(
             List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues, int startIndex, int endIndex) {
         var conditions = new ArrayList<AndOrCriteriaGroup>();
@@ -343,9 +341,7 @@ public class TodoService {
         return conditions;
     }
 
-    /**
-     * Build equality condition for a field.
-     */
+    /** Build equality condition for a field. */
     private static AndOrCriteriaGroup buildFieldEquality(ListTodosRequest.OrderBy orderBy, String value) {
         var field = orderBy.getField();
         return switch (field) {
@@ -386,9 +382,7 @@ public class TodoService {
         };
     }
 
-    /**
-     * Extract field values from entity for all sort fields.
-     */
+    /** Extract field values from entity for all sort fields. */
     private static Map<String, String> extractFieldValues(Todo entity, List<ListTodosRequest.OrderBy> orderBys) {
         var result = new HashMap<String, String>();
 
@@ -413,8 +407,7 @@ public class TodoService {
         return result;
     }
 
-    @Nullable
-    private static PageTokenState fromPageToken(ListTodosRequest request) {
+    @Nullable private static PageTokenState fromPageToken(ListTodosRequest request) {
         var pageToken = request.getPageToken();
         if (pageToken.isBlank()) {
             return null;

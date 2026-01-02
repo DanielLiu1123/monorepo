@@ -16,17 +16,6 @@ val springBootVersion: String = providers.gradleProperty("springBootVersion").ge
 subprojects {
     apply(plugin = "java")
     apply(plugin = "java-library")
-    apply(plugin = "io.spring.dependency-management")
-    apply(plugin = "com.diffplug.spotless")
-
-    configure<io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension> {
-        imports {
-            mavenBom("io.github.danielliu1123:grpc-starter-dependencies:$grpcStarterVersion")
-            mavenBom("io.grpc:grpc-bom:$grpcVersion")
-            mavenBom("com.google.protobuf:protobuf-bom:$protobufVersion")
-            mavenBom("org.springframework.boot:spring-boot-dependencies:$springBootVersion")
-        }
-    }
 
     configure<JavaPluginExtension> {
         sourceCompatibility = JavaVersion.VERSION_25
@@ -38,9 +27,24 @@ subprojects {
         options.encoding = "UTF-8"
     }
 
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
+        jvmArgs("-XX:+EnableDynamicAgentLoading")
+    }
+
     repositories {
         mavenLocal()
         mavenCentral()
+    }
+
+    apply(plugin = "io.spring.dependency-management")
+    configure<io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension> {
+        imports {
+            mavenBom("io.github.danielliu1123:grpc-starter-dependencies:$grpcStarterVersion")
+            mavenBom("io.grpc:grpc-bom:$grpcVersion")
+            mavenBom("com.google.protobuf:protobuf-bom:$protobufVersion")
+            mavenBom("org.springframework.boot:spring-boot-dependencies:$springBootVersion")
+        }
     }
 
     dependencies {
@@ -61,20 +65,17 @@ subprojects {
         testImplementation("org.assertj:assertj-core")
     }
 
-    tasks.withType<Test>().configureEach {
-        useJUnitPlatform()
-        jvmArgs("-XX:+EnableDynamicAgentLoading")
-    }
-
+    apply(plugin = "com.diffplug.spotless")
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-        encoding("UTF-8")
         java {
             toggleOffOn()
+            palantirJavaFormat()
+            importOrder()
             removeUnusedImports()
+            formatAnnotations()
+            forbidWildcardImports()
             trimTrailingWhitespace()
             endWithNewline()
-            palantirJavaFormat()
-            forbidWildcardImports()
 
             targetExclude(
                 "build/generated/**",
@@ -82,20 +83,13 @@ subprojects {
                 "**/mapper/*Mapper.java",
                 "**/mapper/*DynamicSqlSupport.java"
             )
-
-            custom("Refuse wildcard imports") { input ->
-                if (Regex("\nimport .+\\*;").containsMatchIn(input)) {
-                    throw GradleException("Do not use wildcard imports, 'spotlessApply' cannot resolve this issue, please fix it manually.")
-                }
-                input
-            }
         }
 
         kotlinGradle {
             toggleOffOn()
+            ktfmt()
             trimTrailingWhitespace()
             endWithNewline()
-            ktfmt()
         }
     }
 

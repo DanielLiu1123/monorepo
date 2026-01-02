@@ -53,8 +53,7 @@ public abstract class BaseProtobufEnumNumberTypeHandler<T extends Enum<T> & Prot
         return fromInt(cs.getInt(columnIndex), cs.wasNull());
     }
 
-    @Nullable
-    private T fromInt(Integer number, boolean wasNull) {
+    @Nullable private T fromInt(Integer number, boolean wasNull) {
         if (wasNull) {
             return null;
         }

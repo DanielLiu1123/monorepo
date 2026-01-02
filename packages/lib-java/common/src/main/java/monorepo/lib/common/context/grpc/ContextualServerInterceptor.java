@@ -62,8 +62,7 @@ public final class ContextualServerInterceptor implements ServerInterceptor {
 
         private final Context context;
 
-        @Nullable
-        private final Observation observation;
+        @Nullable private final Observation observation;
 
         private final MethodDescriptor<?, ?> descriptor;
 

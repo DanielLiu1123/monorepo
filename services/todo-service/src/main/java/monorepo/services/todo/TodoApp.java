@@ -1,6 +1,6 @@
 package monorepo.services.todo;
 
-import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.annotation.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
