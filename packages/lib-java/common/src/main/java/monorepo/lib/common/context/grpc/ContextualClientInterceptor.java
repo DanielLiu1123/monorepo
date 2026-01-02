@@ -38,7 +38,7 @@ public final class ContextualClientInterceptor implements ClientInterceptor {
 
         private final Context context;
 
-        @Nullable private final Observation observation;
+        private final @Nullable Observation observation;
 
         private final MethodDescriptor<Req, Resp> method;
 

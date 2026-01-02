@@ -61,7 +61,7 @@ public abstract class BasePostgresJsonbTypeHandler<T> extends BaseTypeHandler<T>
         return fromJson(cs.getString(columnIndex));
     }
 
-    @Nullable private T fromJson(@Nullable String value) {
+    private @Nullable T fromJson(@Nullable String value) {
         if (value == null) {
             return null;
         }

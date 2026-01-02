@@ -59,7 +59,7 @@ public final class DefaultConfigEnvironmentPostProcessor implements EnvironmentP
         log.info("Loaded default configuration: " + resource.getFilename());
     }
 
-    @Nullable private static Profile getProfileOrNull(ConfigurableEnvironment environment) {
+    private static @Nullable Profile getProfileOrNull(ConfigurableEnvironment environment) {
         for (var activeProfile : environment.getActiveProfiles()) {
             for (var profile : Profile.values()) {
                 if (profile.name().equalsIgnoreCase(activeProfile)) {

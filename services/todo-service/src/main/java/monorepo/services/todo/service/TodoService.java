@@ -407,7 +407,7 @@ public class TodoService {
         return result;
     }
 
-    @Nullable private static PageTokenState fromPageToken(ListTodosRequest request) {
+    private static @Nullable PageTokenState fromPageToken(ListTodosRequest request) {
         var pageToken = request.getPageToken();
         if (pageToken.isBlank()) {
             return null;

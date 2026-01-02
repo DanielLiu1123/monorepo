@@ -53,7 +53,7 @@ public abstract class BaseProtobufEnumNameTypeHandler<T extends Enum<T> & Protoc
         return fromString(cs.getString(columnIndex), cs.wasNull());
     }
 
-    @Nullable private T fromString(@Nullable String name, boolean wasNull) {
+    private @Nullable T fromString(@Nullable String name, boolean wasNull) {
         if (wasNull) {
             return null;
         }

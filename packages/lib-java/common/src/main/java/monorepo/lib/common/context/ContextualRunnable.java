@@ -11,9 +11,9 @@ final class ContextualRunnable implements Runnable {
 
     private final Runnable delegate;
 
-    @Nullable private final Context context;
+    private final @Nullable Context context;
 
-    @Nullable private final Observation parentObservation;
+    private final @Nullable Observation parentObservation;
 
     private ContextualRunnable(Runnable delegate) {
         this.delegate = delegate;
