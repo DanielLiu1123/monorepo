@@ -1,6 +1,6 @@
-val mapstructVersion: String by project
-
 plugins { id("org.springframework.boot") }
+
+val mapstructVersion: String = providers.gradleProperty("mapstructVersion").get()
 
 dependencies {
   // lib

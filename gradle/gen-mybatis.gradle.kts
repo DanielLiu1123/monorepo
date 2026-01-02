@@ -1,6 +1,6 @@
-val mybatisGeneratorVersion: String by project
+val generator: Configuration = configurations.create("generator")
 
-val generator by configurations.creating
+val mybatisGeneratorVersion: String = providers.gradleProperty("mybatisGeneratorVersion").get()
 
 dependencies {
     generator("org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion")
@@ -10,7 +10,7 @@ dependencies {
 
 tasks.register<JavaExec>("genMyBatis") {
     group = "codegen"
-    description = "Generates MyBatis artifacts"
+    description = "Generates MyBatis Mapper and Model classes"
 
     classpath = generator
     mainClass.set("org.mybatis.generator.api.ShellRunner")
