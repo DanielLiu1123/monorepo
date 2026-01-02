@@ -4,8 +4,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jacksonmodule.protobuf.v3.ProtobufModule;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import monorepo.lib.common.json.BigNumberModule;
+import org.jspecify.annotations.Nullable;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.util.function.SingletonSupplier;
+import tools.jackson.databind.JavaType;
 import tools.jackson.databind.ObjectReader;
 import tools.jackson.databind.ObjectWriter;
 import tools.jackson.databind.json.JsonMapper;
@@ -20,61 +24,69 @@ public final class JsonUtil {
 
     private JsonUtil() {}
 
-    private static final JsonMapper jsonMapper = JsonMapper.builder()
-            .addModule(new ProtobufModule())
-            .addModule(new BigNumberModule())
-            .changeDefaultPropertyInclusion(value -> value.withValueInclusion(JsonInclude.Include.NON_NULL))
-            .build();
+    private static final Supplier<JsonMapper> jsonMapper = SingletonSupplier.of(JsonUtil::getJsonMapper);
 
     @SafeVarargs
     public static <T> T parse(String json, Class<T> clazz, Function<ObjectReader, ObjectReader>... customizers) {
-        if (customizers.length == 0) {
-            return jsonMapper.readValue(json, clazz);
-        }
-        var reader = jsonMapper.readerFor(clazz);
-        for (var customizer : customizers) {
-            reader = customizer.apply(reader);
-        }
-        return reader.readValue(json);
+        return parse(json, jsonMapper().constructType(clazz), customizers);
     }
 
     @SafeVarargs
     public static <T> T parse(
             String json, ParameterizedTypeReference<T> typeRef, Function<ObjectReader, ObjectReader>... customizers) {
-        if (customizers.length == 0) {
-            return jsonMapper.readValue(json, jsonMapper.constructType(typeRef.getType()));
-        }
-        var reader = jsonMapper.readerFor(jsonMapper.constructType(typeRef.getType()));
-        for (var customizer : customizers) {
-            reader = customizer.apply(reader);
-        }
-        return reader.readValue(json);
+        return parse(json, jsonMapper().constructType(typeRef.getType()), customizers);
     }
 
     @SafeVarargs
     public static <T> List<T> parseList(
             String json, Class<T> elementClazz, Function<ObjectReader, ObjectReader>... customizers) {
+        return parse(
+                json, jsonMapper().getTypeFactory().constructCollectionType(List.class, elementClazz), customizers);
+    }
+
+    @SafeVarargs
+    public static String stringify(@Nullable Object obj, Function<ObjectWriter, ObjectWriter>... customizers) {
         if (customizers.length == 0) {
-            return jsonMapper.readValue(
-                    json, jsonMapper.getTypeFactory().constructCollectionType(List.class, elementClazz));
+            return jsonMapper().writeValueAsString(obj);
         }
-        var reader =
-                jsonMapper.readerFor(jsonMapper.getTypeFactory().constructCollectionType(List.class, elementClazz));
+        var writer = jsonMapper().writer();
+        for (var customizer : customizers) {
+            writer = customizer.apply(writer);
+        }
+        return writer.writeValueAsString(obj);
+    }
+
+    @SafeVarargs
+    @SuppressWarnings({"TypeParameterUnusedInFormals"})
+    private static <T> T parse(String json, JavaType type, Function<ObjectReader, ObjectReader>... customizers) {
+        if (customizers.length == 0) {
+            return jsonMapper().readValue(json, type);
+        }
+        var reader = jsonMapper().readerFor(type);
         for (var customizer : customizers) {
             reader = customizer.apply(reader);
         }
         return reader.readValue(json);
     }
 
-    @SafeVarargs
-    public static String stringify(Object obj, Function<ObjectWriter, ObjectWriter>... customizers) {
-        if (customizers.length == 0) {
-            return jsonMapper.writeValueAsString(obj);
+    private static JsonMapper jsonMapper() {
+        return jsonMapper.get();
+    }
+
+    private static JsonMapper getJsonMapper() {
+        // Use the JsonMapper bean from Spring context if available
+        try {
+            return SpringUtil.getContext().getBean(JsonMapper.class);
+        } catch (Exception _) {
+            return defaultJsonMapper();
         }
-        var writer = jsonMapper.writer();
-        for (var customizer : customizers) {
-            writer = customizer.apply(writer);
-        }
-        return writer.writeValueAsString(obj);
+    }
+
+    private static JsonMapper defaultJsonMapper() {
+        return JsonMapper.builder()
+                .addModule(new ProtobufModule())
+                .addModule(new BigNumberModule())
+                .changeDefaultPropertyInclusion(value -> value.withValueInclusion(JsonInclude.Include.NON_NULL))
+                .build();
     }
 }
