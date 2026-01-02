@@ -57,18 +57,9 @@ install_tools() {
     print_success "All required tools installed"
 }
 
-cmd_init() {
-    print_info "Initializing development environment..."
-
-    print_info "Configuring git hooks..."
-    git config core.hooksPath ./scripts/githooks
-
-    install_tools
-
-    # Install bash completion to .zshrc if it exists
+install_completion() {
     if [ -f "$HOME/.zshrc" ]; then
         if ! grep -q "scripts/build/completion.sh" "$HOME/.zshrc"; then
-            print_info "Adding completion script to .zshrc..."
             echo "" >> "$HOME/.zshrc"
             echo "# Monorepo build completion" >> "$HOME/.zshrc"
             echo "source $ROOT_DIR/scripts/build/completion.sh" >> "$HOME/.zshrc"
@@ -77,6 +68,17 @@ cmd_init() {
             print_info "Completion script already in .zshrc"
         fi
     fi
+}
+
+cmd_init() {
+    print_info "Initializing development environment..."
+
+    print_info "Configuring git hooks..."
+    git config core.hooksPath ./scripts/githooks
+
+    install_tools
+
+    install_completion
 
     print_success "Development environment initialized"
 }
