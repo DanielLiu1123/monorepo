@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Function;
 import monorepo.lib.common.json.BigNumberModule;
 import org.springframework.core.ParameterizedTypeReference;
+import tools.jackson.databind.ObjectReader;
 import tools.jackson.databind.ObjectWriter;
 import tools.jackson.databind.json.JsonMapper;
 
@@ -25,17 +26,44 @@ public final class JsonUtil {
             .changeDefaultPropertyInclusion(value -> value.withValueInclusion(JsonInclude.Include.NON_NULL))
             .build();
 
-    public static <T> T parse(String json, Class<T> clazz) {
-        return jsonMapper.readValue(json, clazz);
+    @SafeVarargs
+    public static <T> T parse(String json, Class<T> clazz, Function<ObjectReader, ObjectReader>... customizers) {
+        if (customizers.length == 0) {
+            return jsonMapper.readValue(json, clazz);
+        }
+        var reader = jsonMapper.readerFor(clazz);
+        for (var customizer : customizers) {
+            reader = customizer.apply(reader);
+        }
+        return reader.readValue(json);
     }
 
-    public static <T> T parse(String json, ParameterizedTypeReference<T> typeRef) {
-        return jsonMapper.readValue(json, jsonMapper.getTypeFactory().constructType(typeRef.getType()));
+    @SafeVarargs
+    public static <T> T parse(
+            String json, ParameterizedTypeReference<T> typeRef, Function<ObjectReader, ObjectReader>... customizers) {
+        if (customizers.length == 0) {
+            return jsonMapper.readValue(json, jsonMapper.constructType(typeRef.getType()));
+        }
+        var reader = jsonMapper.readerFor(jsonMapper.constructType(typeRef.getType()));
+        for (var customizer : customizers) {
+            reader = customizer.apply(reader);
+        }
+        return reader.readValue(json);
     }
 
-    public static <T> List<T> parseList(String json, Class<T> elementClazz) {
-        return jsonMapper.readValue(
-                json, jsonMapper.getTypeFactory().constructCollectionType(List.class, elementClazz));
+    @SafeVarargs
+    public static <T> List<T> parseList(
+            String json, Class<T> elementClazz, Function<ObjectReader, ObjectReader>... customizers) {
+        if (customizers.length == 0) {
+            return jsonMapper.readValue(
+                    json, jsonMapper.getTypeFactory().constructCollectionType(List.class, elementClazz));
+        }
+        var reader =
+                jsonMapper.readerFor(jsonMapper.getTypeFactory().constructCollectionType(List.class, elementClazz));
+        for (var customizer : customizers) {
+            reader = customizer.apply(reader);
+        }
+        return reader.readValue(json);
     }
 
     @SafeVarargs
