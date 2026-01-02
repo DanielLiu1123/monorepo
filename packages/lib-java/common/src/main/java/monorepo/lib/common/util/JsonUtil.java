@@ -3,8 +3,10 @@ package monorepo.lib.common.util;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jacksonmodule.protobuf.v3.ProtobufModule;
 import java.util.List;
+import java.util.function.Function;
 import monorepo.lib.common.json.BigNumberModule;
 import org.springframework.core.ParameterizedTypeReference;
+import tools.jackson.databind.ObjectWriter;
 import tools.jackson.databind.json.JsonMapper;
 
 /**
@@ -36,7 +38,15 @@ public final class JsonUtil {
                 json, jsonMapper.getTypeFactory().constructCollectionType(List.class, elementClazz));
     }
 
-    public static String stringify(Object obj) {
-        return jsonMapper.writeValueAsString(obj);
+    @SafeVarargs
+    public static String stringify(Object obj, Function<ObjectWriter, ObjectWriter>... customizers) {
+        if (customizers.length == 0) {
+            return jsonMapper.writeValueAsString(obj);
+        }
+        var writer = jsonMapper.writer();
+        for (var customizer : customizers) {
+            writer = customizer.apply(writer);
+        }
+        return writer.writeValueAsString(obj);
     }
 }

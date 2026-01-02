@@ -15,6 +15,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
+import org.springframework.core.ParameterizedTypeReference;
+import tools.jackson.databind.ObjectWriter;
 
 class JsonUtilTest {
 
@@ -98,6 +100,29 @@ class JsonUtilTest {
             var actual = JsonUtil.stringify(input);
             assertThat(actual).isEqualTo(expected);
         }
+    }
+
+    @Test
+    void stringifyWithPrettyPrinter() {
+        var inputString = """
+                {
+                  "string" : "example",
+                  "int" : 42,
+                  "long" : "1234567890123456789",
+                  "listString" : [ "a", "b", "c" ],
+                  "mapStringInt" : {
+                    "key1" : 100,
+                    "key2" : 200
+                  }
+                }""";
+
+        var input = JsonUtil.parse(inputString, new ParameterizedTypeReference<Map<String, Object>>() {});
+
+        var expected = inputString;
+
+        var actual = JsonUtil.stringify(input, ObjectWriter::withDefaultPrettyPrinter);
+
+        assertThat(actual).isEqualTo(expected);
     }
 
     record Anything(
