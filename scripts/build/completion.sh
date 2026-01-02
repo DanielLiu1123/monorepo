@@ -45,12 +45,10 @@ _mono_find_proto_packages() {
         return
     fi
 
-    # Extract p0/p1 and p0/p1/vN, and sort -u once at the end
+    # Extract p0/p1, and sort -u once at the end
     {
         # Extract p0/p1
         echo "$proto_files" | sed "s|^$proto_dir/||" | rev | cut -d'/' -f3- | rev
-        # Extract p0/p1/vN
-        echo "$proto_files" | sed "s|^$proto_dir/||" | rev | cut -d'/' -f2- | rev
     } | sort -u
 }
 
