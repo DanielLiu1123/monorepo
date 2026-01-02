@@ -1,9 +1,9 @@
 plugins {
-    id("org.springframework.boot") version "4.0.1" apply false
-    id("io.spring.dependency-management") version "1.1.7" apply false
-    id("com.diffplug.spotless") version "8.1.0" apply false
-    id("com.google.protobuf") version "0.9.6" apply false
-    id("net.ltgt.errorprone") version "4.3.0" apply false
+    id("org.springframework.boot") apply false
+    id("io.spring.dependency-management") apply false
+    id("com.diffplug.spotless") apply false
+    id("com.google.protobuf") apply false
+    id("net.ltgt.errorprone") apply false
 }
 
 val grpcStarterVersion: String = providers.gradleProperty("grpcStarterVersion").get()
@@ -102,7 +102,9 @@ subprojects {
 
     tasks.withType<JavaCompile>().configureEach {
         (this.options as ExtensionAware).extensions.configure<net.ltgt.gradle.errorprone.ErrorProneOptions>("errorprone") {
+            // https://github.com/tbroyer/gradle-errorprone-plugin?tab=readme-ov-file#properties
             excludedPaths.set("(.*/(generated|proto-gen-java)/.*)|(.*/(mapper|entity)/[^/]+\\.java)")
+            // https://github.com/uber/NullAway/wiki/Configuration
             check("NullAway", net.ltgt.gradle.errorprone.CheckSeverity.ERROR)
             option("NullAway:AnnotatedPackages", "monorepo")
             option("NullAway:HandleTestAssertionLibraries", "true")

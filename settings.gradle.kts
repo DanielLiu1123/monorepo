@@ -1,3 +1,19 @@
+pluginManagement {
+    val springBootVersion: String = providers.gradleProperty("springBootVersion").get()
+    val dependencyManagementPluginVersion: String = providers.gradleProperty("dependencyManagementPluginVersion").get()
+    val spotlessPluginVersion: String = providers.gradleProperty("spotlessPluginVersion").get()
+    val protobufPluginVersion: String = providers.gradleProperty("protobufPluginVersion").get()
+    val errorPronePluginVersion: String = providers.gradleProperty("errorPronePluginVersion").get()
+
+    plugins {
+        id("org.springframework.boot") version springBootVersion
+        id("io.spring.dependency-management") version dependencyManagementPluginVersion
+        id("com.diffplug.spotless") version spotlessPluginVersion
+        id("com.google.protobuf") version protobufPluginVersion
+        id("net.ltgt.errorprone") version errorPronePluginVersion
+    }
+}
+
 rootProject.name = "monorepo"
 
 include(":packages:lib-java:common")
