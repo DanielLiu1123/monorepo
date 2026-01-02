@@ -48,7 +48,7 @@ public final class SpringUtil {
      * @return result
      */
     public static <T> T withTransaction(Supplier<T> supplier) {
-        var tx = getTransactionOperations();
+        var tx = transactionOperations();
         if (tx != null) {
             return tx.execute(_ -> supplier.get());
         } else {
@@ -62,7 +62,7 @@ public final class SpringUtil {
      * @param runnable runnable
      */
     public static void withTransaction(Runnable runnable) {
-        var tx = getTransactionOperations();
+        var tx = transactionOperations();
         if (tx != null) {
             tx.executeWithoutResult(_ -> runnable.run());
         } else {
@@ -70,7 +70,7 @@ public final class SpringUtil {
         }
     }
 
-    private static @Nullable TransactionOperations getTransactionOperations() {
+    private static @Nullable TransactionOperations transactionOperations() {
         return (TransactionOperations) transactionOperations.get();
     }
 }
