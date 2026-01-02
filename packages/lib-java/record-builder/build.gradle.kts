@@ -1,5 +1,5 @@
-val javapoetVersion: String by project
-val compileTestingVersion: String by project
+val javapoetVersion: String = providers.gradleProperty("javapoetVersion").get()
+val compileTestingVersion: String = providers.gradleProperty("compileTestingVersion").get()
 
 dependencies {
   implementation("com.palantir.javapoet:javapoet:$javapoetVersion")

@@ -1,4 +1,4 @@
-val springdocBridgeVersion: String by project
+val springdocBridgeVersion: String = providers.gradleProperty("springdocBridgeVersion").get()
 
 dependencies {
   api("org.springframework.boot:spring-boot-starter")

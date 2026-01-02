@@ -1,6 +1,6 @@
-val mybatisBootStarterVersion: String by project
-val mybatisDynamicSqlVersion: String by project
-val mybatisGeneratorVersion: String by project
+val mybatisBootStarterVersion: String = providers.gradleProperty("mybatisBootStarterVersion").get()
+val mybatisDynamicSqlVersion: String = providers.gradleProperty("mybatisDynamicSqlVersion").get()
+val mybatisGeneratorVersion: String = providers.gradleProperty("mybatisGeneratorVersion").get()
 
 dependencies {
   api(project(":packages:lib-java:common"))
