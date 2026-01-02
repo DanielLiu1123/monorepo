@@ -149,7 +149,14 @@ find_projects() {
         return 1
     fi
 
-    find "$search_path" -type f -name "build.sh" -print0 2>/dev/null \
+    find "$search_path" \
+        -name ".git" -prune -o \
+        -name "node_modules" -prune -o \
+        -name "build" -prune -o \
+        -name "dist" -prune -o \
+        -name ".idea" -prune -o \
+        -name "target" -prune -o \
+        -type f -name "build.sh" -print0 2>/dev/null \
     | xargs -0 -n1 dirname \
     | sort -u
 }
@@ -215,33 +222,50 @@ execute_for_projects() {
     local success=0
     local failed=0
     local failed_projects=()
+    local -A project_durations
+    local start_all=$(date +%s)
 
     while IFS= read -r project; do
         project="$(normalize_path "$project")"
         ((total++))
         echo ""
         print_info "[$total] Processing: $project"
+        
+        local start_pkg=$(date +%s)
         if execute_project_cmd "$command" "$project"; then
             ((success++))
+            local end_pkg=$(date +%s)
+            project_durations["$project"]=$((end_pkg - start_pkg))
         else
             ((failed++))
             failed_projects+=("$project")
+            local end_pkg=$(date +%s)
+            project_durations["$project"]=$((end_pkg - start_pkg))
         fi
     done <<< "$projects"
 
+    local end_all=$(date +%s)
+    local total_duration=$((end_all - start_all))
+
     echo ""
     echo "================================"
-    print_info "Summary: $total project(s) processed"
+    print_info "Summary: $total project(s) processed in ${total_duration}s"
     print_success "$success succeeded"
     if [ $failed -gt 0 ]; then
         print_error "$failed failed"
         echo ""
         print_error "Failed projects:"
         for project in "${failed_projects[@]}"; do
-            echo "  - $project"
+            echo "  - $project (${project_durations[$project]}s)"
         done
         return 1
     fi
+
+    echo ""
+    print_info "Project durations:"
+    for project in "${!project_durations[@]}"; do
+        printf "  - %-40s %ss\n" "$project" "${project_durations[$project]}"
+    done | sort
 }
 
 # ============================================================================

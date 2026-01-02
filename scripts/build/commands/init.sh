@@ -65,5 +65,18 @@ cmd_init() {
 
     install_tools
 
+    # Install bash completion to .zshrc if it exists
+    if [ -f "$HOME/.zshrc" ]; then
+        if ! grep -q "scripts/build/completion.sh" "$HOME/.zshrc"; then
+            print_info "Adding completion script to .zshrc..."
+            echo "" >> "$HOME/.zshrc"
+            echo "# Monorepo build completion" >> "$HOME/.zshrc"
+            echo "source $ROOT_DIR/scripts/build/completion.sh" >> "$HOME/.zshrc"
+            print_success "Completion script added to .zshrc"
+        else
+            print_info "Completion script already in .zshrc"
+        fi
+    fi
+
     print_success "Development environment initialized"
 }
