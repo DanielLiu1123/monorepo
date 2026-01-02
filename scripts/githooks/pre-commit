@@ -2,3 +2,8 @@
 
 set -e
 
+./mono fmt
+
+./mono lint
+
+git add -u
