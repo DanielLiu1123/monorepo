@@ -222,7 +222,7 @@ execute_for_projects() {
     local success=0
     local failed=0
     local failed_projects=()
-    local -A project_durations
+    local project_durations=()
     local start_all=$(date +%s)
 
     while IFS= read -r project; do
@@ -235,12 +235,12 @@ execute_for_projects() {
         if execute_project_cmd "$command" "$project"; then
             ((success++))
             local end_pkg=$(date +%s)
-            project_durations["$project"]=$((end_pkg - start_pkg))
+            project_durations+=("$project:$((end_pkg - start_pkg))")
         else
             ((failed++))
             failed_projects+=("$project")
             local end_pkg=$(date +%s)
-            project_durations["$project"]=$((end_pkg - start_pkg))
+            project_durations+=("$project:$((end_pkg - start_pkg))")
         fi
     done <<< "$projects"
 
@@ -255,16 +255,24 @@ execute_for_projects() {
         print_error "$failed failed"
         echo ""
         print_error "Failed projects:"
-        for project in "${failed_projects[@]}"; do
-            echo "  - $project (${project_durations[$project]}s)"
+        for entry in "${project_durations[@]}"; do
+            local p="${entry%%:*}"
+            local d="${entry#*:}"
+            for f in "${failed_projects[@]}"; do
+                if [ "$f" = "$p" ]; then
+                    echo "  - $p (${d}s)"
+                fi
+            done
         done
         return 1
     fi
 
     echo ""
     print_info "Project durations:"
-    for project in "${!project_durations[@]}"; do
-        printf "  - %-40s %ss\n" "$project" "${project_durations[$project]}"
+    for entry in "${project_durations[@]}"; do
+        local p="${entry%%:*}"
+        local d="${entry#*:}"
+        printf "  - %-40s %ss\n" "$p" "$d"
     done | sort
 }
 
