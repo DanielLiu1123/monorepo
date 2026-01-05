@@ -16,7 +16,8 @@ public final class ThreadUtil {
     private ThreadUtil() {}
 
     private static final ExecutorService executorService =
-            new ContextualExecutorService(Executors.newVirtualThreadPerTaskExecutor());
+            new ContextualExecutorService(Executors.newThreadPerTaskExecutor(
+                    Thread.ofVirtual().name("virtual-", 0).factory()));
 
     /**
      * Get the shared executor service.
