@@ -21,7 +21,7 @@ public final class SpringUtil {
     /**
      * Avoid early loading TransactionOperations class.
      */
-    private static final SingletonSupplier<Object> transactionOperations = SingletonSupplier.of(
+    private static final Supplier<Object> transactionOperations = SingletonSupplier.of(
             () -> getContext().getBeanProvider(TransactionOperations.class).getIfUnique());
 
     static void setContext(ApplicationContext applicationContext) {
