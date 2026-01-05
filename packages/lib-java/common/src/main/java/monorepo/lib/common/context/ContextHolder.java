@@ -24,7 +24,7 @@ public final class ContextHolder {
         return ctx;
     }
 
-    @Nullable public static Context getOrNull() {
+    public static @Nullable Context getOrNull() {
         return CONTEXT.get();
     }
 

@@ -2,6 +2,7 @@ package monorepo.lib.common.config;
 
 import jakarta.annotation.Nullable;
 import java.time.ZoneOffset;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.TimeZone;
 import monorepo.lib.common.profile.Profile;
@@ -80,7 +81,7 @@ public final class DefaultConfigEnvironmentPostProcessor implements EnvironmentP
         var bean = new YamlPropertiesFactoryBean();
         bean.setResources(resource);
 
-        var prop = Optional.ofNullable(bean.getObject()).orElseThrow();
+        var prop = Objects.requireNonNull(bean.getObject());
 
         return new PropertiesPropertySource(filename, prop);
     }

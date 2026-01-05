@@ -16,10 +16,13 @@ final class ContextualCallable<T> implements Callable<T> {
 
     private final @Nullable Observation parentObservation;
 
+    private final String parentThreadName;
+
     private ContextualCallable(Callable<T> delegate) {
         this.delegate = delegate;
         this.context = ContextHolder.getOrNull();
         this.parentObservation = context != null ? context.observationRegistry().getCurrentObservation() : null;
+        this.parentThreadName = Thread.currentThread().getName();
     }
 
     public static <T> ContextualCallable<T> of(Callable<T> delegate) {
@@ -34,26 +37,21 @@ final class ContextualCallable<T> implements Callable<T> {
         if (context == null) {
             return delegate.call();
         } else {
-            return ContextHolder.callWithContext(context, () -> withObservation(delegate));
+            return ContextHolder.callWithContext(context, this::withObservation);
         }
     }
 
-    private T withObservation(Callable<T> callable) throws Exception {
+    private T withObservation() throws Exception {
         if (context == null) {
-            return callable.call();
+            return delegate.call();
         }
-        var ob = Observation.createNotStarted("async.callable", context.observationRegistry());
+        var observation = Observation.createNotStarted("async.callable", context.observationRegistry());
+        observation.highCardinalityKeyValue("thread.caller", parentThreadName);
+        observation.highCardinalityKeyValue(
+                "thread.current", Thread.currentThread().getName());
         if (parentObservation != null) {
-            ob.parentObservation(parentObservation);
+            observation.parentObservation(parentObservation);
         }
-        ob.start();
-        try (var _ = ob.openScope()) {
-            return callable.call();
-        } catch (Throwable e) {
-            ob.error(e);
-            throw e;
-        } finally {
-            ob.stop();
-        }
+        return observation.observeChecked(delegate::call);
     }
 }

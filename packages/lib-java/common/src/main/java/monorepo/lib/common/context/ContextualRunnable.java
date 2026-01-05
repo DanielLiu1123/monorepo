@@ -15,10 +15,13 @@ final class ContextualRunnable implements Runnable {
 
     private final @Nullable Observation parentObservation;
 
+    private final String parentThreadName;
+
     private ContextualRunnable(Runnable delegate) {
         this.delegate = delegate;
         this.context = ContextHolder.getOrNull();
         this.parentObservation = context != null ? context.observationRegistry().getCurrentObservation() : null;
+        this.parentThreadName = Thread.currentThread().getName();
     }
 
     public static ContextualRunnable of(Runnable delegate) {
@@ -33,27 +36,22 @@ final class ContextualRunnable implements Runnable {
         if (context == null) {
             delegate.run();
         } else {
-            ContextHolder.runWithContext(context, () -> withObservation(delegate));
+            ContextHolder.runWithContext(context, this::withObservation);
         }
     }
 
-    private void withObservation(Runnable runnable) {
+    private void withObservation() {
         if (context == null) {
-            runnable.run();
+            delegate.run();
             return;
         }
-        var ob = Observation.createNotStarted("async.runnable", this.context.observationRegistry());
+        var observation = Observation.createNotStarted("async.runnable", this.context.observationRegistry());
+        observation.highCardinalityKeyValue("thread.caller", parentThreadName);
+        observation.highCardinalityKeyValue(
+                "thread.current", Thread.currentThread().getName());
         if (parentObservation != null) {
-            ob.parentObservation(parentObservation);
+            observation.parentObservation(parentObservation);
         }
-        ob.start();
-        try (var _ = ob.openScope()) {
-            runnable.run();
-        } catch (Throwable e) {
-            ob.error(e);
-            throw e;
-        } finally {
-            ob.stop();
-        }
+        observation.observe(delegate);
     }
 }

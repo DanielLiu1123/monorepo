@@ -50,15 +50,6 @@ public final class TraceInterceptor implements Interceptor {
         Observation observation = Observation.createNotStarted("db.sql." + operationType, observationRegistry)
                 .highCardinalityKeyValue("db.statement", sql);
 
-        observation.start();
-
-        try (var _ = observation.openScope()) {
-            return invocation.proceed();
-        } catch (Throwable t) {
-            observation.error(t);
-            throw t;
-        } finally {
-            observation.stop();
-        }
+        return observation.observeChecked(invocation::proceed);
     }
 }
