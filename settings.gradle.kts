@@ -19,7 +19,6 @@ rootProject.name = "monorepo"
 include(":packages:lib-java:common")
 include(":packages:lib-java:mapstruct-spi-protobuf")
 include(":packages:lib-java:mybatis")
-include(":packages:lib-java:record-builder")
 
 include(":packages:proto-gen-java:foo")
 include(":packages:proto-gen-java:foo:bar")
