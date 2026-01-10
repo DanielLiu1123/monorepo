@@ -4,6 +4,7 @@ import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.composite.CompositeMeterRegistry;
 import io.micrometer.observation.ObservationRegistry;
 import java.util.Optional;
+import monorepo.lib.mybatis.datasources.DataSourcesConfiguration;
 import monorepo.lib.mybatis.observability.MetricsInterceptor;
 import monorepo.lib.mybatis.observability.TraceInterceptor;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * MyBatis auto configuration.
@@ -20,6 +22,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @AutoConfiguration
 @ConditionalOnClass(MybatisProperties.class)
+@Import(DataSourcesConfiguration.class)
 public class MybatisAutoConfiguration {
 
     @Configuration(proxyBeanMethods = false)
