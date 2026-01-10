@@ -3,9 +3,12 @@ package monorepo.lib.mybatis.datasources.dynamic;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import javax.sql.DataSource;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.slf4j.Logger;
@@ -24,6 +27,10 @@ import org.springframework.util.ReflectionUtils;
  */
 final class MyBatisDynamicDataSourceMethodInterceptor implements MethodInterceptor {
     private static final Logger log = LoggerFactory.getLogger(MyBatisDynamicDataSourceMethodInterceptor.class);
+
+    private static final ConcurrentMap<String, DataSource> dataSources = new ConcurrentHashMap<>();
+    private static final ConcurrentMap<String, SqlSessionTemplate> sqlSessionTemplates = new ConcurrentHashMap<>();
+    private static final ConcurrentMap<String, Object> mappers = new ConcurrentHashMap<>();
 
     private final Object originMapper;
     private final ConfigurableApplicationContext ctx;
@@ -52,33 +59,36 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
         }
     }
 
-    private Object getOrRegisterMapper(ProxyMethodInvocation invocation) throws Exception {
+    private Object getOrRegisterMapper(ProxyMethodInvocation invocation) {
         var datasourceName = Objects.requireNonNull((String) invocation.getArguments()[0]);
 
-        var mapperBeanName = mapperInterface.getName() + "#" + datasourceName;
-        if (!ctx.containsBean(mapperBeanName)) {
-            DataSource dataSource;
-            try {
-                dataSource = ctx.getBean(datasourceName, DataSource.class);
-            } catch (BeansException e) {
-                log.error(
-                        "No such datasource: {}, available datasource(s): {}",
-                        datasourceName,
-                        ctx.getBeanNamesForType(DataSource.class));
-                return invocation.getProxy();
-            }
-            var sqlSessionTemplate = getOrRegisterSqlSessionTemplate(datasourceName, dataSource);
-            synchronized (sqlSessionTemplate) {
-                if (!ctx.containsBean(mapperBeanName)) {
-                    registerMapper(sqlSessionTemplate, mapperBeanName);
-                    log.debug("Registered mapper {}", mapperBeanName);
-                }
-            }
+        DataSource datasource;
+        try {
+            datasource = ctx.getBean(datasourceName, DataSource.class);
+        } catch (BeansException e) {
+            log.error(
+                    "No such datasource: {}, available datasource(s): {}",
+                    datasourceName,
+                    ctx.getBeanNamesForType(DataSource.class));
+            return invocation.getProxy();
         }
 
-        var mapper = ctx.getBean(mapperBeanName);
-        log.debug("Found existing mapper {}", mapperBeanName);
-        return mapper;
+        var mapperBeanName = mapperInterface.getName() + "#" + datasourceName;
+
+        var result = mappers.computeIfAbsent(mapperBeanName, _ -> {
+            var sqlSessionTemplate = getOrRegisterSqlSessionTemplate(datasourceName, datasource);
+            var mapper = registerMapper(sqlSessionTemplate, mapperBeanName);
+            if (log.isDebugEnabled()) {
+                log.debug("Registered mapper {}", mapperBeanName);
+            }
+            return mapper;
+        });
+
+        if (log.isDebugEnabled()) {
+            log.debug("Found existing mapper {}", mapperBeanName);
+        }
+
+        return result;
     }
 
     private Object registerMapper(SqlSessionTemplate sqlSessionTemplate, String beanName) {
@@ -90,22 +100,22 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
         return proxy;
     }
 
-    private SqlSessionTemplate getOrRegisterSqlSessionTemplate(String datasourceName, DataSource dataSource)
-            throws Exception {
+    private SqlSessionTemplate getOrRegisterSqlSessionTemplate(String datasourceName, DataSource dataSource) {
         var sstBeanName = "sqlSessionTemplate#" + datasourceName;
-        if (!ctx.containsBean(sstBeanName)) {
-            synchronized (dataSource) {
-                if (!ctx.containsBean(sstBeanName)) {
-                    registerSqlSessionTemplate(dataSource, sstBeanName);
-                    log.debug("Registered SqlSessionTemplate {}", sstBeanName);
-                }
+
+        var result = sqlSessionTemplates.computeIfAbsent(sstBeanName, _ -> {
+            var sst = registerSqlSessionTemplate(dataSource, sstBeanName);
+            if (log.isDebugEnabled()) {
+                log.debug("Registered SqlSessionTemplate {}", sstBeanName);
             }
+            return sst;
+        });
+
+        if (log.isDebugEnabled()) {
+            log.debug("Found existing SqlSessionTemplate {}", sstBeanName);
         }
 
-        var sst = ctx.getBean(sstBeanName, SqlSessionTemplate.class);
-        log.debug("Found existing SqlSessionTemplate {}", sstBeanName);
-
-        var configuration = sst.getConfiguration();
+        var configuration = result.getConfiguration();
         if (!configuration.hasMapper(mapperInterface)) {
             synchronized (configuration) {
                 if (!configuration.hasMapper(mapperInterface)) {
@@ -113,12 +123,18 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
                 }
             }
         }
-        return sst;
+
+        return result;
     }
 
-    private SqlSessionTemplate registerSqlSessionTemplate(DataSource dataSource, String sstBeanName) throws Exception {
+    private SqlSessionTemplate registerSqlSessionTemplate(DataSource dataSource, String sstBeanName) {
         var mybatisAutoConfiguration = ctx.getAutowireCapableBeanFactory().createBean(MybatisAutoConfiguration.class);
-        var sqlSessionFactory = mybatisAutoConfiguration.sqlSessionFactory(dataSource);
+        SqlSessionFactory sqlSessionFactory;
+        try {
+            sqlSessionFactory = mybatisAutoConfiguration.sqlSessionFactory(dataSource);
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to create SqlSessionFactory", e);
+        }
         var sqlSessionTemplate = mybatisAutoConfiguration.sqlSessionTemplate(sqlSessionFactory);
 
         registerSingleton(sstBeanName, sqlSessionTemplate);
