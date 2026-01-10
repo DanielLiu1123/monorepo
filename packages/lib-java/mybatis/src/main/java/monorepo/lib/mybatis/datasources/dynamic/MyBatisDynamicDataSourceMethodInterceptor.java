@@ -55,8 +55,8 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
     private Object getOrRegisterMapper(ProxyMethodInvocation invocation) throws Exception {
         var datasourceName = Objects.requireNonNull((String) invocation.getArguments()[0]);
 
-        var beanName = mapperInterface.getName() + "#" + datasourceName;
-        if (!ctx.containsBean(beanName)) {
+        var mapperBeanName = mapperInterface.getName() + "#" + datasourceName;
+        if (!ctx.containsBean(mapperBeanName)) {
             DataSource dataSource;
             try {
                 dataSource = ctx.getBean(datasourceName, DataSource.class);
@@ -69,15 +69,15 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
             }
             var sqlSessionTemplate = getOrRegisterSqlSessionTemplate(datasourceName, dataSource);
             synchronized (sqlSessionTemplate) {
-                if (!ctx.containsBean(beanName)) {
-                    registerMapper(sqlSessionTemplate, beanName);
-                    log.debug("Registered mapper {}", beanName);
+                if (!ctx.containsBean(mapperBeanName)) {
+                    registerMapper(sqlSessionTemplate, mapperBeanName);
+                    log.debug("Registered mapper {}", mapperBeanName);
                 }
             }
         }
 
-        var mapper = ctx.getBean(beanName);
-        log.debug("Found existing mapper {}", beanName);
+        var mapper = ctx.getBean(mapperBeanName);
+        log.debug("Found existing mapper {}", mapperBeanName);
         return mapper;
     }
 
