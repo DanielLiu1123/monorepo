@@ -7,7 +7,6 @@ import jakarta.annotation.Generated;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-
 import monorepo.lib.mybatis.datasources.dynamic.DynamicDataSource;
 import monorepo.services.todo.entity.Todo;
 import monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler;
