@@ -150,16 +150,15 @@ public class TodoService {
             return List.of();
         }
 
-        var entities = todoMapper
-                .useDataSource(ids.getFirst() > 10 ? "reader" : "writer")
-                .select(c -> {
-                    var sql = c.where(todo.id, isIn(ids));
-                    var showDeleted = !request.hasShowDeleted() || request.getShowDeleted();
-                    if (!showDeleted) {
-                        sql.and(todo.deletedAt, isNull());
-                    }
-                    return sql;
-                });
+        var mapper = ids.getFirst() > 10 ? todoMapper.useDataSource("reader") : todoMapper;
+        var entities = mapper.select(c -> {
+            var sql = c.where(todo.id, isIn(ids));
+            var showDeleted = !request.hasShowDeleted() || request.getShowDeleted();
+            if (!showDeleted) {
+                sql.and(todo.deletedAt, isNull());
+            }
+            return sql;
+        });
 
         return buildTodos(entities);
     }

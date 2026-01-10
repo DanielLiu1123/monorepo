@@ -48,6 +48,7 @@ public class Todo {
      *   Todo state
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.state")
+    @Nullable
     private State state;
 
     /**
@@ -136,12 +137,13 @@ public class Todo {
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.state")
+    @Nullable
     public State getState() {
         return state;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.state")
-    public void setState(State state) {
+    public void setState(@Nullable State state) {
         this.state = state;
     }
 

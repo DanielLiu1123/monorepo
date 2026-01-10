@@ -7,6 +7,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import monorepo.lib.common.json.BigNumberModule;
 import org.jspecify.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.util.function.SingletonSupplier;
 import tools.jackson.databind.JavaType;
@@ -21,6 +23,7 @@ import tools.jackson.databind.json.JsonMapper;
  * @since 2025/11/18
  */
 public final class JsonUtil {
+    private static final Logger log = LoggerFactory.getLogger(JsonUtil.class);
 
     private JsonUtil() {}
 
@@ -76,8 +79,11 @@ public final class JsonUtil {
     private static JsonMapper getJsonMapper() {
         // Use the JsonMapper bean from Spring context if available
         try {
-            return SpringUtil.getContext().getBean(JsonMapper.class);
+            var bean = SpringUtil.getContext().getBean(JsonMapper.class);
+            log.debug("Using JsonMapper bean from Spring context");
+            return bean;
         } catch (Exception _) {
+            log.debug("Not in Spring context or no JsonMapper bean found, using default JsonMapper");
             return defaultJsonMapper();
         }
     }
