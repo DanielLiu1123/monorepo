@@ -7,6 +7,8 @@ import jakarta.annotation.Generated;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import monorepo.lib.mybatis.datasources.dynamic.DynamicDataSource;
 import monorepo.services.todo.entity.Todo;
 import monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler;
 import monorepo.services.todo.entity.typehandler.TodoStateTypeHandler;
@@ -36,7 +38,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.CommonUpdateMapper;
 import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
-public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, CommonDeleteMapper, CommonUpdateMapper {
+public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, CommonDeleteMapper, CommonUpdateMapper, DynamicDataSource<TodoMapper> {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
     BasicColumn[] selectList = BasicColumn.columnList(id, userId, title, description, state, priority, assignee, dueDate, createdAt, updatedAt, deletedAt);
 

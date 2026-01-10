@@ -150,7 +150,7 @@ public class TodoService {
             return List.of();
         }
 
-        var entities = todoMapper.select(c -> {
+        var entities = todoMapper.useDataSource("reader").select(c -> {
             var sql = c.where(todo.id, isIn(ids));
             var showDeleted = !request.hasShowDeleted() || request.getShowDeleted();
             if (!showDeleted) {
