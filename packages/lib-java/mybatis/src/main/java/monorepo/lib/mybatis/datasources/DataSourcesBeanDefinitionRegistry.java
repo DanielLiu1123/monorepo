@@ -17,11 +17,11 @@ import org.springframework.core.env.Environment;
  * @author Freeman
  * @since 2026/1/10
  */
-public class DataSourcesBeanDefinitionRegistry implements BeanDefinitionRegistryPostProcessor {
+class DataSourcesBeanDefinitionRegistry implements BeanDefinitionRegistryPostProcessor {
 
     private final Environment env;
 
-    public DataSourcesBeanDefinitionRegistry(Environment env) {
+    DataSourcesBeanDefinitionRegistry(Environment env) {
         this.env = env;
     }
 
@@ -36,7 +36,7 @@ public class DataSourcesBeanDefinitionRegistry implements BeanDefinitionRegistry
 
         for (var ds : properties.additions()) {
             var bd = BeanDefinitionBuilder.rootBeanDefinition(
-                            HikariDataSource.class, () -> new HikariDataSource(ds.merge(hikariConfig)))
+                            HikariDataSource.class, () -> ds.newHikariDataSource(hikariConfig))
                     .getBeanDefinition();
             bd.setLazyInit(true);
 

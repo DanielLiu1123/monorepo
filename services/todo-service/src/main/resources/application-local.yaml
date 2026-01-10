@@ -4,6 +4,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/todo
     username: root
     password: root
+    additions:
+      - name: reader
+        url: jdbc:postgresql://localhost:5432/todo
+        username: root
+        password: root
 
 management:
   opentelemetry:
@@ -15,6 +20,8 @@ management:
   tracing:
     sampling:
       probability: 1
+    export:
+      enabled: false
   otlp:
     metrics:
       export:
@@ -24,3 +31,4 @@ management:
 logging:
   level:
     monorepo.services.todo.mapper: debug
+    monorepo.lib: debug

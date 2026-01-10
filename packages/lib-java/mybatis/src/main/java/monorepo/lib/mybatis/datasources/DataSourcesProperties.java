@@ -1,6 +1,7 @@
 package monorepo.lib.mybatis.datasources;
 
 import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import java.util.List;
 import java.util.Objects;
 import org.jspecify.annotations.Nullable;
@@ -31,13 +32,13 @@ public record DataSourcesProperties(List<DataSource> additions) {
             hikari = hikari != null ? hikari : new Hikari(null, null);
         }
 
-        public HikariConfig merge(HikariConfig hikariConfig) {
+        public HikariDataSource newHikariDataSource(HikariConfig hikariConfig) {
             var maximumPoolSize = this.hikari.maximumPoolSize() != null
                     ? this.hikari.maximumPoolSize()
                     : hikariConfig.getMaximumPoolSize();
             var minimumIdle =
                     this.hikari.minimumIdle() != null ? this.hikari.minimumIdle() : hikariConfig.getMinimumIdle();
-            var result = new HikariConfig();
+            var result = new HikariDataSource();
             result.setPoolName(name);
             result.setDriverClassName(driverClassName);
             result.setJdbcUrl(url);

@@ -57,6 +57,7 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
 
         var beanName = mapperInterface.getName() + "#" + datasourceName;
         if (ctx.containsBean(beanName)) {
+            log.debug("Found existing mapper {}", beanName);
             return ctx.getBean(beanName);
         }
 
@@ -73,7 +74,11 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
 
         var sqlSessionTemplate = getOrRegisterSqlSessionTemplate(datasourceName, dataSource);
 
-        return registerMapper(sqlSessionTemplate, beanName);
+        var mapper = registerMapper(sqlSessionTemplate, beanName);
+
+        log.debug("Registered mapper {}", beanName);
+
+        return mapper;
     }
 
     private Object registerMapper(SqlSessionTemplate sqlSessionTemplate, String beanName) {
@@ -90,9 +95,11 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
         var sstBeanName = "sqlSessionTemplate#" + datasourceName;
         SqlSessionTemplate sst;
         if (ctx.containsBean(sstBeanName)) {
+            log.debug("Found existing sqlSessionTemplate {}", sstBeanName);
             sst = ctx.getBean(sstBeanName, SqlSessionTemplate.class);
         } else {
             sst = registerSqlSessionTemplate(dataSource, sstBeanName);
+            log.debug("Registered sqlSessionTemplate {}", sstBeanName);
         }
         var configuration = sst.getConfiguration();
         if (!configuration.hasMapper(mapperInterface)) {
