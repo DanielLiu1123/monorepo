@@ -28,7 +28,6 @@ import org.springframework.util.ReflectionUtils;
 final class MyBatisDynamicDataSourceMethodInterceptor implements MethodInterceptor {
     private static final Logger log = LoggerFactory.getLogger(MyBatisDynamicDataSourceMethodInterceptor.class);
 
-    private static final ConcurrentMap<String, DataSource> dataSources = new ConcurrentHashMap<>();
     private static final ConcurrentMap<String, SqlSessionTemplate> sqlSessionTemplates = new ConcurrentHashMap<>();
     private static final ConcurrentMap<String, Object> mappers = new ConcurrentHashMap<>();
 
