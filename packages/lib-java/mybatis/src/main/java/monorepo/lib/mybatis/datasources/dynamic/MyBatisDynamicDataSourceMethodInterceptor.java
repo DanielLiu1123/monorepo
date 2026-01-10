@@ -74,11 +74,16 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
 
         var sqlSessionTemplate = getOrRegisterSqlSessionTemplate(datasourceName, dataSource);
 
-        var mapper = registerMapper(sqlSessionTemplate, beanName);
-
-        log.debug("Registered mapper {}", beanName);
-
-        return mapper;
+        synchronized (sqlSessionTemplate) {
+            if (ctx.containsBean(beanName)) {
+                log.debug("Found existing mapper {}", beanName);
+                return ctx.getBean(beanName);
+            } else {
+                var mapper = registerMapper(sqlSessionTemplate, beanName);
+                log.debug("Registered mapper {}", beanName);
+                return mapper;
+            }
+        }
     }
 
     private Object registerMapper(SqlSessionTemplate sqlSessionTemplate, String beanName) {
@@ -95,15 +100,26 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
         var sstBeanName = "sqlSessionTemplate#" + datasourceName;
         SqlSessionTemplate sst;
         if (ctx.containsBean(sstBeanName)) {
-            log.debug("Found existing sqlSessionTemplate {}", sstBeanName);
+            log.debug("Found existing SqlSessionTemplate {}", sstBeanName);
             sst = ctx.getBean(sstBeanName, SqlSessionTemplate.class);
         } else {
-            sst = registerSqlSessionTemplate(dataSource, sstBeanName);
-            log.debug("Registered sqlSessionTemplate {}", sstBeanName);
+            synchronized (dataSource) {
+                if (ctx.containsBean(sstBeanName)) {
+                    log.debug("Found existing SqlSessionTemplate {}", sstBeanName);
+                    sst = ctx.getBean(sstBeanName, SqlSessionTemplate.class);
+                } else {
+                    sst = registerSqlSessionTemplate(dataSource, sstBeanName);
+                    log.debug("Registered SqlSessionTemplate {}", sstBeanName);
+                }
+            }
         }
         var configuration = sst.getConfiguration();
         if (!configuration.hasMapper(mapperInterface)) {
-            configuration.addMapper(mapperInterface);
+            synchronized (configuration) {
+                if (!configuration.hasMapper(mapperInterface)) {
+                    configuration.addMapper(mapperInterface);
+                }
+            }
         }
         return sst;
     }
