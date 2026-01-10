@@ -6,6 +6,7 @@ spring:
     password: root
     datasources:
       - name: reader
+        driver-class-name: org.postgresql.Driver
         url: jdbc:postgresql://localhost:5432/todo
         username: root
         password: root
