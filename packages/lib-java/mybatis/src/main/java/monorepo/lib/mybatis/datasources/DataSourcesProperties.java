@@ -48,7 +48,7 @@ public record DataSourcesProperties(List<DataSource> additions) {
             return result;
         }
 
-        record Hikari(
+        public record Hikari(
                 @Nullable Integer maximumPoolSize, @Nullable Integer minimumIdle) {}
     }
 }

@@ -22,7 +22,7 @@ import org.springframework.util.function.SingletonSupplier;
 
 /**
  * @author Freeman
- * @since 2024/12/13
+ * @since 2026/1/10
  */
 final class MyBatisDynamicDataSourceMethodInterceptor implements MethodInterceptor {
     private static final Logger log = LoggerFactory.getLogger(MyBatisDynamicDataSourceMethodInterceptor.class);
@@ -45,7 +45,7 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
         Method method = invocation.getMethod();
         if (Objects.equals(method, DynamicDataSource.useDataSourceMethod)
                 && invocation instanceof ProxyMethodInvocation pmi) {
-            return getCachedMapper(pmi);
+            return getOrRegisterMapper(pmi);
         }
 
         ReflectionUtils.makeAccessible(method);
@@ -57,7 +57,7 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
         }
     }
 
-    private Object getCachedMapper(ProxyMethodInvocation invocation) throws Exception {
+    private Object getOrRegisterMapper(ProxyMethodInvocation invocation) throws Exception {
         var datasourceName = Objects.requireNonNull((String) invocation.getArguments()[0]);
 
         var beanName = mapperInterface.getName() + "#" + datasourceName;
