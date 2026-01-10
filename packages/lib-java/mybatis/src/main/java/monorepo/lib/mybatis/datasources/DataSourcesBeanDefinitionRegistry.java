@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.core.env.Environment;
 
 /**
- * Used to parse {@code spring.datasource.additions} configuration
+ * Used to parse {@code spring.datasource.datasources} configuration
  * and dynamically register {@link HikariDataSource} Beans.
  *
  * @author Freeman
@@ -28,13 +28,13 @@ class DataSourcesBeanDefinitionRegistry implements BeanDefinitionRegistryPostPro
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         var properties = Binder.get(env).bindOrCreate(DataSourcesProperties.PREFIX, DataSourcesProperties.class);
-        if (properties.additions().isEmpty()) {
+        if (properties.datasources().isEmpty()) {
             return;
         }
 
         var hikariConfig = Binder.get(env).bindOrCreate("spring.datasource.hikari", HikariConfig.class);
 
-        for (var ds : properties.additions()) {
+        for (var ds : properties.datasources()) {
             var bd = BeanDefinitionBuilder.rootBeanDefinition(
                             HikariDataSource.class, () -> ds.newHikariDataSource(hikariConfig))
                     .getBeanDefinition();

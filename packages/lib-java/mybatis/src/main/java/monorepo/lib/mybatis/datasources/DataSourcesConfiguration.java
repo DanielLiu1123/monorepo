@@ -33,7 +33,7 @@ public class DataSourcesConfiguration {
         public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
             var properties = Binder.get(context.getEnvironment())
                     .bindOrCreate(DataSourcesProperties.PREFIX, DataSourcesProperties.class);
-            var configured = !properties.additions().isEmpty();
+            var configured = !properties.datasources().isEmpty();
             if (configured) {
                 return ConditionOutcome.match("Multiple data sources configured.");
             } else {

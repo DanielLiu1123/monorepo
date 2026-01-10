@@ -4,7 +4,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/todo
     username: root
     password: root
-    additions:
+    datasources:
       - name: reader
         url: jdbc:postgresql://localhost:5432/todo
         username: root

@@ -9,12 +9,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DatabaseDriver;
 
 @ConfigurationProperties(DataSourcesProperties.PREFIX)
-public record DataSourcesProperties(List<DataSource> additions) {
+public record DataSourcesProperties(List<DataSource> datasources) {
 
     public static final String PREFIX = "spring.datasource";
 
     public DataSourcesProperties {
-        additions = additions != null ? additions : List.of();
+        datasources = datasources != null ? datasources : List.of();
     }
 
     public record DataSource(
