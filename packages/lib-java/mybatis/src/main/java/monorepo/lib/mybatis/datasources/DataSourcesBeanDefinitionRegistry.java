@@ -35,11 +35,14 @@ class DataSourcesBeanDefinitionRegistry implements BeanDefinitionRegistryPostPro
         var hikariConfig = Binder.get(env).bindOrCreate("spring.datasource.hikari", HikariConfig.class);
 
         for (var ds : properties.datasources()) {
-            var bd = BeanDefinitionBuilder.rootBeanDefinition(
-                            HikariDataSource.class, () -> ds.newHikariDataSource(hikariConfig))
+            var bd = BeanDefinitionBuilder.rootBeanDefinition(HikariDataSource.class, () -> {
+                        // Use com.zaxxer.hikari.HikariDataSource.HikariDataSource(com.zaxxer.hikari.HikariConfig)
+                        // to explicitly trigger the initialization logic
+                        // so that potential errors can be detected earlier (shift left).
+                        var hc = ds.newHikariConfig(hikariConfig);
+                        return new HikariDataSource(hc);
+                    })
                     .getBeanDefinition();
-            bd.setLazyInit(true);
-
             registry.registerBeanDefinition(ds.name(), bd);
         }
     }
