@@ -3,7 +3,6 @@ package monorepo.lib.mybatis.datasources.dynamic;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Objects;
-import java.util.function.Supplier;
 import javax.sql.DataSource;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -18,7 +17,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.ReflectionUtils;
-import org.springframework.util.function.SingletonSupplier;
 
 /**
  * @author Freeman
@@ -30,14 +28,11 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
     private final Object originMapper;
     private final ConfigurableApplicationContext ctx;
     private final Class<?> mapperInterface;
-    private final Supplier<MybatisAutoConfiguration> mybatisAutoConfigurationSupplier;
 
     MyBatisDynamicDataSourceMethodInterceptor(Object originMapper, ApplicationContext ctx) {
         this.originMapper = originMapper;
         this.mapperInterface = AopProxyUtils.proxiedUserInterfaces(originMapper)[0];
         this.ctx = (ConfigurableApplicationContext) ctx;
-        this.mybatisAutoConfigurationSupplier = SingletonSupplier.of(
-                () -> ctx.getAutowireCapableBeanFactory().createBean(MybatisAutoConfiguration.class));
     }
 
     @Override
@@ -107,7 +102,7 @@ final class MyBatisDynamicDataSourceMethodInterceptor implements MethodIntercept
     }
 
     private SqlSessionTemplate registerSqlSessionTemplate(DataSource dataSource, String sstBeanName) throws Exception {
-        var mybatisAutoConfiguration = mybatisAutoConfigurationSupplier.get();
+        var mybatisAutoConfiguration = ctx.getAutowireCapableBeanFactory().createBean(MybatisAutoConfiguration.class);
         var sqlSessionFactory = mybatisAutoConfiguration.sqlSessionFactory(dataSource);
         var sqlSessionTemplate = mybatisAutoConfiguration.sqlSessionTemplate(sqlSessionFactory);
 
