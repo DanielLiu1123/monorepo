@@ -21,7 +21,7 @@ import org.mybatis.generator.api.dom.java.Method;
  * }</pre>
  *
  * @author Freeman
- * @since 2025/1/16
+ * @since 2026/1/10
  */
 public class DisableGeneratedMapperMethodsPlugin extends PluginAdapter {
 

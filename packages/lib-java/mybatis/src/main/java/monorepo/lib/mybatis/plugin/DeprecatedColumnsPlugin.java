@@ -21,7 +21,7 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
  * <table tableName="payment">
  *   <columnOverride column="is_prepaid">
  *       <property name="deprecated" value="true"/>
- *       <property name="deprecatedSince" value="2025-01-22"/>
+ *       <property name="deprecatedSince" value="2026-01-22"/>
  *       <property name="deprecatedForRemoval" value="false"/>
  *       <property name="deprecatedDescription" value="Use payment_status instead"/>
  *   </columnOverride>
@@ -29,7 +29,7 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
  * }</pre>
  *
  * @author Freeman
- * @since 2025/1/3
+ * @since 2026/1/10
  */
 public class DeprecatedColumnsPlugin extends PluginAdapter {
 
