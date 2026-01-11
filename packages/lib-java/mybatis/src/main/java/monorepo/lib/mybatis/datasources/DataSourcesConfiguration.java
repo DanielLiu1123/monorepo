@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
 @Configuration(proxyBeanMethods = false)
-@EnableConfigurationProperties(DataSourcesProperties.class)
 @ConditionalOnDataSources
+@EnableConfigurationProperties(DataSourcesProperties.class)
 public class DataSourcesConfiguration {
 
     @Bean
