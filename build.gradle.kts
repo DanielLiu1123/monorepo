@@ -1,3 +1,5 @@
+import net.ltgt.gradle.errorprone.errorprone
+
 plugins {
     id("org.springframework.boot") apply false
     id("io.spring.dependency-management") apply false
@@ -84,13 +86,6 @@ subprojects {
                 "**/mapper/*DynamicSqlSupport.java"
             )
         }
-
-        kotlinGradle {
-            toggleOffOn()
-            ktfmt()
-            trimTrailingWhitespace()
-            endWithNewline()
-        }
     }
 
     apply(plugin = "net.ltgt.errorprone")
@@ -101,9 +96,10 @@ subprojects {
     }
 
     tasks.withType<JavaCompile>().configureEach {
-        (this.options as ExtensionAware).extensions.configure<net.ltgt.gradle.errorprone.ErrorProneOptions>("errorprone") {
+        options.errorprone {
+            isEnabled = project.findProperty("errorprone.enabled")?.toString()?.toBoolean() != false
             // https://github.com/tbroyer/gradle-errorprone-plugin?tab=readme-ov-file#properties
-            excludedPaths.set("(.*/(generated|proto-gen-java)/.*)|(.*/(mapper|entity)/[^/]+\\.java)")
+            excludedPaths = "(.*/(generated|proto-gen-java)/.*)|(.*/(mapper|entity)/[^/]+\\.java)"
             // https://github.com/uber/NullAway/wiki/Configuration
             check("NullAway", net.ltgt.gradle.errorprone.CheckSeverity.ERROR)
             option("NullAway:AnnotatedPackages", "monorepo")
