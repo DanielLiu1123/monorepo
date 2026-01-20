@@ -50,21 +50,14 @@ subprojects {
     }
 
     dependencies {
-        val compileOnly by configurations
-        val annotationProcessor by configurations
-        val testCompileOnly by configurations
-        val testAnnotationProcessor by configurations
-        val testImplementation by configurations
-        val testRuntimeOnly by configurations
+        "compileOnly"("org.projectlombok:lombok")
+        "annotationProcessor"("org.projectlombok:lombok")
+        "testCompileOnly"("org.projectlombok:lombok")
+        "testAnnotationProcessor"("org.projectlombok:lombok")
 
-        compileOnly("org.projectlombok:lombok")
-        annotationProcessor("org.projectlombok:lombok")
-        testCompileOnly("org.projectlombok:lombok")
-        testAnnotationProcessor("org.projectlombok:lombok")
-
-        testImplementation("org.junit.jupiter:junit-jupiter")
-        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-        testImplementation("org.assertj:assertj-core")
+        "testImplementation"("org.junit.jupiter:junit-jupiter")
+        "testRuntimeOnly"("org.junit.platform:junit-platform-launcher")
+        "testImplementation"("org.assertj:assertj-core")
     }
 
     apply(plugin = "com.diffplug.spotless")

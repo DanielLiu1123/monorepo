@@ -3,17 +3,17 @@ val mybatisDynamicSqlVersion: String = providers.gradleProperty("mybatisDynamicS
 val mybatisGeneratorVersion: String = providers.gradleProperty("mybatisGeneratorVersion").get()
 
 dependencies {
-  api(project(":packages:lib-java:common"))
-  api("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisBootStarterVersion")
-  api("org.mybatis.dynamic-sql:mybatis-dynamic-sql:$mybatisDynamicSqlVersion")
+    api(project(":packages:lib-java:common"))
+    api("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisBootStarterVersion")
+    api("org.mybatis.dynamic-sql:mybatis-dynamic-sql:$mybatisDynamicSqlVersion")
 
-  compileOnly("io.micrometer:micrometer-core")
+    compileOnly("io.micrometer:micrometer-core")
 
-  compileOnly("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisBootStarterVersion")
+    compileOnly("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisBootStarterVersion")
 
-  // mybatis generator plugins
-  compileOnly("org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion")
+    // mybatis generator plugins
+    compileOnly("org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion")
 
-  // typeHandlers
-  compileOnly("org.postgresql:postgresql")
+    // typeHandlers
+    compileOnly("org.postgresql:postgresql")
 }

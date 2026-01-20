@@ -89,10 +89,10 @@ public final class JsonUtil {
     }
 
     private static JsonMapper defaultJsonMapper() {
-        return JsonMapper.builder()
-                .addModule(new ProtobufModule())
-                .addModule(new BigNumberModule())
-                .changeDefaultPropertyInclusion(value -> value.withValueInclusion(JsonInclude.Include.NON_NULL))
-                .build();
+        var builder = JsonMapper.builder();
+        builder.addModule(new BigNumberModule());
+        builder.addModule(new ProtobufModule());
+        builder.changeDefaultPropertyInclusion(value -> value.withValueInclusion(JsonInclude.Include.NON_NULL));
+        return builder.build();
     }
 }

@@ -1,40 +1,42 @@
-plugins { id("org.springframework.boot") }
+plugins {
+    id("org.springframework.boot")
+}
 
 val mapstructVersion: String = providers.gradleProperty("mapstructVersion").get()
 
 dependencies {
-  // lib
-  implementation(project(":packages:lib-java:common"))
-  implementation(project(":packages:lib-java:mybatis"))
+    // lib
+    implementation(project(":packages:lib-java:common"))
+    implementation(project(":packages:lib-java:mybatis"))
 
-  // proto
-  implementation(project(":packages:proto-gen-java:monorepo:todo"))
+    // proto
+    implementation(project(":packages:proto-gen-java:monorepo:todo"))
 
-  // grpc
-  implementation("io.github.danielliu1123:grpc-boot-starter")
-  implementation("io.grpc:grpc-testing-proto")
+    // grpc
+    implementation("io.github.danielliu1123:grpc-boot-starter")
+    implementation("io.grpc:grpc-testing-proto")
 
-  // http client
-  implementation("org.springframework.boot:spring-boot-starter-restclient")
+    // http client
+    implementation("org.springframework.boot:spring-boot-starter-restclient")
 
-  // observability
-  implementation("org.springframework.boot:spring-boot-starter-opentelemetry")
+    // observability
+    implementation("org.springframework.boot:spring-boot-starter-opentelemetry")
 
-  // postgres
-  implementation("org.postgresql:postgresql")
+    // postgres
+    implementation("org.postgresql:postgresql")
 
-  implementation("org.mapstruct:mapstruct:$mapstructVersion")
-  implementation(project(":packages:lib-java:mapstruct-spi-protobuf"))
-  annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
-  annotationProcessor("org.projectlombok:lombok-mapstruct-binding:+")
-  annotationProcessor(project(":packages:lib-java:mapstruct-spi-protobuf"))
+    implementation("org.mapstruct:mapstruct:$mapstructVersion")
+    implementation(project(":packages:lib-java:mapstruct-spi-protobuf"))
+    annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:+")
+    annotationProcessor(project(":packages:lib-java:mapstruct-spi-protobuf"))
 
-  testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
-  archiveBaseName.set("app")
-  archiveVersion.set("")
+    archiveBaseName.set("app")
+    archiveVersion.set("")
 }
 
 apply(from = "$rootDir/gradle/gen-mybatis.gradle.kts")

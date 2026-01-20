@@ -1,6 +1,7 @@
 package monorepo.lib.common.json;
 
 import jacksonmodule.protobuf.v3.ProtobufModule;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,13 +16,17 @@ import org.springframework.context.annotation.Configuration;
 public class JacksonConfiguration {
 
     @Bean
-    @ConditionalOnMissingBean
-    public ProtobufModule protobufJacksonModuleModule() {
-        return new ProtobufModule();
-    }
-
-    @Bean
     public BigNumberModule bigNumberJacksonModule() {
         return new BigNumberModule();
+    }
+
+    @Configuration(proxyBeanMethods = false)
+    @ConditionalOnClass(ProtobufModule.class)
+    static class ProtobufModuleConfiguration {
+        @Bean
+        @ConditionalOnMissingBean
+        public ProtobufModule protobufJacksonModule() {
+            return new ProtobufModule();
+        }
     }
 }

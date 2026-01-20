@@ -2,22 +2,24 @@ val mapstructVersion: String by project
 val compileTestingVersion: String by project
 val protobufVersion: String by project
 
-plugins { id("com.google.protobuf") }
+plugins {
+    id("com.google.protobuf")
+}
 
 dependencies {
-  api("org.jspecify:jspecify")
-  compileOnly("org.mapstruct:mapstruct:$mapstructVersion")
-  compileOnly("org.mapstruct:mapstruct-processor:$mapstructVersion")
-  compileOnly("com.google.protobuf:protobuf-java")
-  compileOnly("com.google.api.grpc:proto-google-common-protos")
+    api("org.jspecify:jspecify")
+    compileOnly("org.mapstruct:mapstruct:$mapstructVersion")
+    compileOnly("org.mapstruct:mapstruct-processor:$mapstructVersion")
+    compileOnly("com.google.protobuf:protobuf-java")
+    compileOnly("com.google.api.grpc:proto-google-common-protos")
 
-  testImplementation("org.mapstruct:mapstruct:$mapstructVersion")
-  testImplementation("org.mapstruct:mapstruct-processor:$mapstructVersion")
-  testAnnotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
-  testAnnotationProcessor(project(":packages:lib-java:mapstruct-spi-protobuf"))
-  testImplementation("com.google.protobuf:protobuf-java")
-  testImplementation("com.google.api.grpc:proto-google-common-protos")
-  testImplementation("com.google.testing.compile:compile-testing:$compileTestingVersion")
+    testImplementation("org.mapstruct:mapstruct:$mapstructVersion")
+    testImplementation("org.mapstruct:mapstruct-processor:$mapstructVersion")
+    testAnnotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
+    testAnnotationProcessor(project(":packages:lib-java:mapstruct-spi-protobuf"))
+    testImplementation("com.google.protobuf:protobuf-java")
+    testImplementation("com.google.api.grpc:proto-google-common-protos")
+    testImplementation("com.google.testing.compile:compile-testing:$compileTestingVersion")
 }
 
 protobuf { protoc { artifact = "com.google.protobuf:protoc:$protobufVersion" } }
