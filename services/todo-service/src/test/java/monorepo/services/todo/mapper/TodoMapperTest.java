@@ -3,7 +3,6 @@ package monorepo.services.todo.mapper;
 import static monorepo.services.todo.mapper.TodoDynamicSqlSupport.todo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mybatis.dynamic.sql.SqlBuilder.and;
-import static org.mybatis.dynamic.sql.SqlBuilder.group;
 import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 import static org.mybatis.dynamic.sql.SqlBuilder.isGreaterThan;
 import static org.mybatis.dynamic.sql.SqlBuilder.isLessThan;
@@ -24,8 +23,8 @@ class TodoMapperTest {
     void testComplexAndOrConditions() {
         // @spotless:off
         var conditions = new ArrayList<AndOrCriteriaGroup>();
-        conditions.add(or(List.of(
-                and(todo.createdAt, isLessThan(Instant.now()))))
+        conditions.add(
+                and(todo.createdAt, isLessThan(Instant.now()))
         );
         conditions.add(or(List.of(
                 and(todo.updatedAt, isEqualTo(Instant.now())),
@@ -42,7 +41,7 @@ class TodoMapperTest {
                 .from(todo)
                 .where()
                 .and(todo.userId, isEqualTo(1L))
-                .and(group(conditions))
+                .and(conditions)
                 .build()
                 .render(RenderingStrategies.MYBATIS3)
                 .getSelectStatement();
