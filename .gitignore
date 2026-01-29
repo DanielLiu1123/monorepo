@@ -420,9 +420,7 @@ celerybeat.pid
 
 # Environments
 .venv
-env/
 venv/
-ENV/
 env.bak/
 venv.bak/
 
@@ -454,3 +452,6 @@ cython_debug/
 .serena/
 
 !scripts/build/
+
+# Terraform
+.terraform/
