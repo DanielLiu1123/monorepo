@@ -1,6 +1,6 @@
 module github.com/yourorg/monorepo/apps/web-bff
 
-go 1.25.5
+go 1.26.1
 
 replace (
 	github.com/yourorg/monorepo/packages/grpc-clients => ../../packages/grpc-clients

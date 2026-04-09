@@ -1,3 +1,3 @@
 module github.com/yourorg/monorepo/packages/lib-go
 
-go 1.25.5
+go 1.26.1
