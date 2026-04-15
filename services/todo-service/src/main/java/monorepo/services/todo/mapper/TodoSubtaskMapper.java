@@ -19,14 +19,13 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.type.JdbcType;
 import org.mybatis.dynamic.sql.BasicColumn;
-import org.mybatis.dynamic.sql.delete.DeleteDSLCompleter;
+import org.mybatis.dynamic.sql.dsl.CountDSLCompleter;
+import org.mybatis.dynamic.sql.dsl.DeleteDSLCompleter;
+import org.mybatis.dynamic.sql.dsl.SelectDSLCompleter;
+import org.mybatis.dynamic.sql.dsl.UpdateDSL;
+import org.mybatis.dynamic.sql.dsl.UpdateDSLCompleter;
 import org.mybatis.dynamic.sql.insert.render.InsertStatementProvider;
-import org.mybatis.dynamic.sql.select.CountDSLCompleter;
-import org.mybatis.dynamic.sql.select.SelectDSLCompleter;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
-import org.mybatis.dynamic.sql.update.UpdateDSL;
-import org.mybatis.dynamic.sql.update.UpdateDSLCompleter;
-import org.mybatis.dynamic.sql.update.UpdateModel;
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
 import org.mybatis.dynamic.sql.util.mybatis3.CommonCountMapper;
 import org.mybatis.dynamic.sql.util.mybatis3.CommonDeleteMapper;
@@ -41,12 +40,12 @@ public interface TodoSubtaskMapper extends CommonSelectMapper, CommonCountMapper
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo_subtask")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
-    @Options(useGeneratedKeys=true,keyProperty="row.id")
+    @Options(useGeneratedKeys=true, keyProperty="row.id", keyColumn="id")
     int insert(InsertStatementProvider<TodoSubtask> insertStatement);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo_subtask")
     @InsertProvider(type=SqlProviderAdapter.class, method="insertMultipleWithGeneratedKeys")
-    @Options(useGeneratedKeys=true,keyProperty="records.id")
+    @Options(useGeneratedKeys=true, keyProperty="records.id", keyColumn="id")
     int insertMultiple(@Param("insertStatement") String insertStatement, @Param("records") List<TodoSubtask> records);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo_subtask")
@@ -86,22 +85,22 @@ public interface TodoSubtaskMapper extends CommonSelectMapper, CommonCountMapper
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo_subtask")
     default int insertMultiple(Collection<TodoSubtask> records) {
         return MyBatis3Utils.insertMultipleWithGeneratedKeys(this::insertMultiple, records, todoSubtask, c ->
-            c.map(todoId).toProperty("todoId")
-            .map(title).toProperty("title")
-            .map(createdAt).toProperty("createdAt")
-            .map(updatedAt).toProperty("updatedAt")
-            .map(deletedAt).toProperty("deletedAt")
+            c.withMappedColumn(todoId)
+            .withMappedColumn(title)
+            .withMappedColumn(createdAt)
+            .withMappedColumn(updatedAt)
+            .withMappedColumn(deletedAt)
         );
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo_subtask")
     default int insertSelective(TodoSubtask row) {
         return MyBatis3Utils.insert(this::insert, row, todoSubtask, c ->
-            c.map(todoId).toPropertyWhenPresent("todoId", row::getTodoId)
-            .map(title).toPropertyWhenPresent("title", row::getTitle)
-            .map(createdAt).toPropertyWhenPresent("createdAt", row::getCreatedAt)
-            .map(updatedAt).toPropertyWhenPresent("updatedAt", row::getUpdatedAt)
-            .map(deletedAt).toPropertyWhenPresent("deletedAt", row::getDeletedAt)
+            c.withMappedColumnWhenPresent(todoId, row::getTodoId)
+            .withMappedColumnWhenPresent(title, row::getTitle)
+            .withMappedColumnWhenPresent(createdAt, row::getCreatedAt)
+            .withMappedColumnWhenPresent(updatedAt, row::getUpdatedAt)
+            .withMappedColumnWhenPresent(deletedAt, row::getDeletedAt)
         );
     }
 
@@ -133,8 +132,9 @@ public interface TodoSubtaskMapper extends CommonSelectMapper, CommonCountMapper
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo_subtask")
-    static UpdateDSL<UpdateModel> updateAllColumns(TodoSubtask row, UpdateDSL<UpdateModel> dsl) {
-        return dsl.set(todoId).equalTo(row::getTodoId)
+    static UpdateDSL updateAllColumns(TodoSubtask row, UpdateDSL dsl) {
+        return dsl.set(id).equalTo(row::getId)
+                .set(todoId).equalTo(row::getTodoId)
                 .set(title).equalTo(row::getTitle)
                 .set(createdAt).equalTo(row::getCreatedAt)
                 .set(updatedAt).equalTo(row::getUpdatedAt)
@@ -142,8 +142,9 @@ public interface TodoSubtaskMapper extends CommonSelectMapper, CommonCountMapper
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo_subtask")
-    static UpdateDSL<UpdateModel> updateSelectiveColumns(TodoSubtask row, UpdateDSL<UpdateModel> dsl) {
-        return dsl.set(todoId).equalToWhenPresent(row::getTodoId)
+    static UpdateDSL updateSelectiveColumns(TodoSubtask row, UpdateDSL dsl) {
+        return dsl.set(id).equalToWhenPresent(row::getId)
+                .set(todoId).equalToWhenPresent(row::getTodoId)
                 .set(title).equalToWhenPresent(row::getTitle)
                 .set(createdAt).equalToWhenPresent(row::getCreatedAt)
                 .set(updatedAt).equalToWhenPresent(row::getUpdatedAt)

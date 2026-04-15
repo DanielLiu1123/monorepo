@@ -28,20 +28,18 @@
 
         <javaTypeResolver type="monorepo.lib.mybatis.typeresolver.MonorepoJavaTypeResolver">
             <property name="forceBigDecimals" value="true"/>
-            <!-- https://mybatis.org/generator/configreference/javaTypeResolver.html -->
-            <property name="useJSR310Types" value="true"/>
         </javaTypeResolver>
 
-        <javaModelGenerator
+        <modelGenerator
                 targetProject="src/main/java"
                 targetPackage="monorepo.services.todo.entity">
-        </javaModelGenerator>
+        </modelGenerator>
 
-        <javaClientGenerator
+        <clientGenerator
                 targetProject="src/main/java"
                 targetPackage="monorepo.services.todo.mapper">
             <property name="rootInterface" value="org.mybatis.dynamic.sql.util.mybatis3.CommonSelectMapper"/>
-        </javaClientGenerator>
+        </clientGenerator>
 
         <!-- Don't comment on the table below!! Generate every time to ensure that the code and table structure are synchronized -->
         <table tableName="todo">

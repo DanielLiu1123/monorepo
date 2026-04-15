@@ -9,12 +9,14 @@ import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
 public final class MonorepoJavaTypeResolver extends JavaTypeResolverDefaultImpl {
 
     @Override
-    protected FullyQualifiedJavaType overrideDefaultType(
-            IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+    protected JdbcTypeInformation overrideDefault(
+            IntrospectedColumn column, JdbcTypeInformation defaultTypeInformation) {
         return switch (column.getJdbcType()) {
-            case Types.TIMESTAMP -> new FullyQualifiedJavaType(Instant.class.getName());
-            case Types.TINYINT, Types.SMALLINT -> new FullyQualifiedJavaType(Integer.class.getName());
-            default -> super.overrideDefaultType(column, defaultType);
+            case Types.TIMESTAMP ->
+                defaultTypeInformation.withJavaType(new FullyQualifiedJavaType(Instant.class.getName()));
+            case Types.TINYINT, Types.SMALLINT ->
+                defaultTypeInformation.withJavaType(new FullyQualifiedJavaType(Integer.class.getName()));
+            default -> super.overrideDefault(column, defaultTypeInformation);
         };
     }
 }

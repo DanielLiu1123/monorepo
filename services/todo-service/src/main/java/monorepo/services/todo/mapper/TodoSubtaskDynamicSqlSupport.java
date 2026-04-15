@@ -54,17 +54,17 @@ public final class TodoSubtaskDynamicSqlSupport {
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo_subtask")
     public static final class TodoSubtask extends AliasableSqlTable<TodoSubtask> {
-        public final SqlColumn<Long> id = column("id", JDBCType.BIGINT);
+        public final SqlColumn<Long> id = column("id", JDBCType.BIGINT).withJavaProperty("id");
 
-        public final SqlColumn<Long> todoId = column("todo_id", JDBCType.BIGINT);
+        public final SqlColumn<Long> todoId = column("todo_id", JDBCType.BIGINT).withJavaProperty("todoId");
 
-        public final SqlColumn<String> title = column("title", JDBCType.VARCHAR);
+        public final SqlColumn<String> title = column("title", JDBCType.VARCHAR).withJavaProperty("title");
 
-        public final SqlColumn<Instant> createdAt = column("created_at", JDBCType.TIMESTAMP);
+        public final SqlColumn<Instant> createdAt = column("created_at", JDBCType.TIMESTAMP).withJavaProperty("createdAt");
 
-        public final SqlColumn<Instant> updatedAt = column("updated_at", JDBCType.TIMESTAMP);
+        public final SqlColumn<Instant> updatedAt = column("updated_at", JDBCType.TIMESTAMP).withJavaProperty("updatedAt");
 
-        public final SqlColumn<Instant> deletedAt = column("deleted_at", JDBCType.TIMESTAMP);
+        public final SqlColumn<Instant> deletedAt = column("deleted_at", JDBCType.TIMESTAMP).withJavaProperty("deletedAt");
 
         public TodoSubtask() {
             super("todo_subtask", TodoSubtask::new);

@@ -21,14 +21,13 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.type.JdbcType;
 import org.mybatis.dynamic.sql.BasicColumn;
-import org.mybatis.dynamic.sql.delete.DeleteDSLCompleter;
+import org.mybatis.dynamic.sql.dsl.CountDSLCompleter;
+import org.mybatis.dynamic.sql.dsl.DeleteDSLCompleter;
+import org.mybatis.dynamic.sql.dsl.SelectDSLCompleter;
+import org.mybatis.dynamic.sql.dsl.UpdateDSL;
+import org.mybatis.dynamic.sql.dsl.UpdateDSLCompleter;
 import org.mybatis.dynamic.sql.insert.render.InsertStatementProvider;
-import org.mybatis.dynamic.sql.select.CountDSLCompleter;
-import org.mybatis.dynamic.sql.select.SelectDSLCompleter;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
-import org.mybatis.dynamic.sql.update.UpdateDSL;
-import org.mybatis.dynamic.sql.update.UpdateDSLCompleter;
-import org.mybatis.dynamic.sql.update.UpdateModel;
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
 import org.mybatis.dynamic.sql.util.mybatis3.CommonCountMapper;
 import org.mybatis.dynamic.sql.util.mybatis3.CommonDeleteMapper;
@@ -43,12 +42,12 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
-    @Options(useGeneratedKeys=true,keyProperty="row.id")
+    @Options(useGeneratedKeys=true, keyProperty="row.id", keyColumn="id")
     int insert(InsertStatementProvider<Todo> insertStatement);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
     @InsertProvider(type=SqlProviderAdapter.class, method="insertMultipleWithGeneratedKeys")
-    @Options(useGeneratedKeys=true,keyProperty="records.id")
+    @Options(useGeneratedKeys=true, keyProperty="records.id", keyColumn="id")
     int insertMultiple(@Param("insertStatement") String insertStatement, @Param("records") List<Todo> records);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
@@ -93,32 +92,32 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
     default int insertMultiple(Collection<Todo> records) {
         return MyBatis3Utils.insertMultipleWithGeneratedKeys(this::insertMultiple, records, todo, c ->
-            c.map(userId).toProperty("userId")
-            .map(title).toProperty("title")
-            .map(description).toProperty("description")
-            .map(state).toProperty("state")
-            .map(priority).toProperty("priority")
-            .map(assignee).toProperty("assignee")
-            .map(dueDate).toProperty("dueDate")
-            .map(createdAt).toProperty("createdAt")
-            .map(updatedAt).toProperty("updatedAt")
-            .map(deletedAt).toProperty("deletedAt")
+            c.withMappedColumn(userId)
+            .withMappedColumn(title)
+            .withMappedColumn(description)
+            .withMappedColumn(state)
+            .withMappedColumn(priority)
+            .withMappedColumn(assignee)
+            .withMappedColumn(dueDate)
+            .withMappedColumn(createdAt)
+            .withMappedColumn(updatedAt)
+            .withMappedColumn(deletedAt)
         );
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
     default int insertSelective(Todo row) {
         return MyBatis3Utils.insert(this::insert, row, todo, c ->
-            c.map(userId).toPropertyWhenPresent("userId", row::getUserId)
-            .map(title).toPropertyWhenPresent("title", row::getTitle)
-            .map(description).toPropertyWhenPresent("description", row::getDescription)
-            .map(state).toPropertyWhenPresent("state", row::getState)
-            .map(priority).toPropertyWhenPresent("priority", row::getPriority)
-            .map(assignee).toPropertyWhenPresent("assignee", row::getAssignee)
-            .map(dueDate).toPropertyWhenPresent("dueDate", row::getDueDate)
-            .map(createdAt).toPropertyWhenPresent("createdAt", row::getCreatedAt)
-            .map(updatedAt).toPropertyWhenPresent("updatedAt", row::getUpdatedAt)
-            .map(deletedAt).toPropertyWhenPresent("deletedAt", row::getDeletedAt)
+            c.withMappedColumnWhenPresent(userId, row::getUserId)
+            .withMappedColumnWhenPresent(title, row::getTitle)
+            .withMappedColumnWhenPresent(description, row::getDescription)
+            .withMappedColumnWhenPresent(state, row::getState)
+            .withMappedColumnWhenPresent(priority, row::getPriority)
+            .withMappedColumnWhenPresent(assignee, row::getAssignee)
+            .withMappedColumnWhenPresent(dueDate, row::getDueDate)
+            .withMappedColumnWhenPresent(createdAt, row::getCreatedAt)
+            .withMappedColumnWhenPresent(updatedAt, row::getUpdatedAt)
+            .withMappedColumnWhenPresent(deletedAt, row::getDeletedAt)
         );
     }
 
@@ -150,8 +149,9 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
-    static UpdateDSL<UpdateModel> updateAllColumns(Todo row, UpdateDSL<UpdateModel> dsl) {
-        return dsl.set(userId).equalTo(row::getUserId)
+    static UpdateDSL updateAllColumns(Todo row, UpdateDSL dsl) {
+        return dsl.set(id).equalTo(row::getId)
+                .set(userId).equalTo(row::getUserId)
                 .set(title).equalTo(row::getTitle)
                 .set(description).equalTo(row::getDescription)
                 .set(state).equalTo(row::getState)
@@ -164,8 +164,9 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
-    static UpdateDSL<UpdateModel> updateSelectiveColumns(Todo row, UpdateDSL<UpdateModel> dsl) {
-        return dsl.set(userId).equalToWhenPresent(row::getUserId)
+    static UpdateDSL updateSelectiveColumns(Todo row, UpdateDSL dsl) {
+        return dsl.set(id).equalToWhenPresent(row::getId)
+                .set(userId).equalToWhenPresent(row::getUserId)
                 .set(title).equalToWhenPresent(row::getTitle)
                 .set(description).equalToWhenPresent(row::getDescription)
                 .set(state).equalToWhenPresent(row::getState)
