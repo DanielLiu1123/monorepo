@@ -303,6 +303,7 @@ show_usage() {
     echo "  run <path>          - Run project (single project only, path required)"
     echo "  lint [path]         - Run linter"
     echo "  fmt [path]          - Format code"
+    echo "  gen [path]          - Generate code"
     echo ""
     echo "Path behavior:"
     echo "  - If [path] is omitted: Auto-detect affected projects based on git changes"
@@ -343,7 +344,7 @@ main() {
         list-projects)
             cmd_list_projects "${path:-.}"
             ;;
-        clean|install|build|test|lint|fmt)
+        clean|install|build|test|lint|fmt|gen)
             # If path is specified, validate and use it
             # If path is not specified, use git-based detection
             if [ -n "$path" ]; then

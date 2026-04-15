@@ -27,3 +27,7 @@ clean() {
 run() {
     execute_cmd "./gradlew bootRun --project-dir $PROJECT_REL_DIR"
 }
+
+gen() {
+    execute_cmd "./gradlew genMyBatis --project-dir $PROJECT_REL_DIR"
+}
