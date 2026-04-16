@@ -100,9 +100,9 @@ public final class TodoDynamicSqlSupport {
 
         public final SqlColumn<String> description = column("description", JDBCType.VARCHAR).withJavaProperty("description");
 
-        public final SqlColumn<State> state = column("\"state\"", JDBCType.SMALLINT, "monorepo.services.todo.entity.typehandler.TodoStateTypeHandler").withJavaProperty("state");
+        public final SqlColumn<State> state = column("\"state\"", JDBCType.SMALLINT, "monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler").withJavaProperty("state");
 
-        public final SqlColumn<Priority> priority = column("priority", JDBCType.VARCHAR, "monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler").withJavaProperty("priority");
+        public final SqlColumn<Priority> priority = column("priority", JDBCType.VARCHAR, "monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler").withJavaProperty("priority");
 
         public final SqlColumn<Long> assignee = column("assignee", JDBCType.BIGINT).withJavaProperty("assignee");
 

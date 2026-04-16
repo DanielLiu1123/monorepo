@@ -8,9 +8,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import monorepo.lib.mybatis.datasources.dynamic.DynamicDataSource;
+import monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler;
 import monorepo.services.todo.entity.Todo;
-import monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler;
-import monorepo.services.todo.entity.typehandler.TodoStateTypeHandler;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -57,8 +56,8 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
         @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT),
         @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
         @Result(column="description", property="description", jdbcType=JdbcType.VARCHAR),
-        @Result(column="state", property="state", typeHandler=TodoStateTypeHandler.class, jdbcType=JdbcType.SMALLINT),
-        @Result(column="priority", property="priority", typeHandler=TodoPriorityTypeHandler.class, jdbcType=JdbcType.VARCHAR),
+        @Result(column="state", property="state", typeHandler=ProtobufEnumTypeHandler.class, jdbcType=JdbcType.SMALLINT),
+        @Result(column="priority", property="priority", typeHandler=ProtobufEnumTypeHandler.class, jdbcType=JdbcType.VARCHAR),
         @Result(column="assignee", property="assignee", jdbcType=JdbcType.BIGINT),
         @Result(column="due_date", property="dueDate", jdbcType=JdbcType.DATE),
         @Result(column="created_at", property="createdAt", jdbcType=JdbcType.TIMESTAMP),

@@ -3,7 +3,7 @@
         "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <context id="Postgres">
+    <context id="postgres">
         <property name="javaFileEncoding" value="UTF-8"/>
         <property name="beginningDelimiter" value='"'/>
         <property name="endingDelimiter" value='"'/>
@@ -45,9 +45,9 @@
         <table tableName="todo">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
             <columnOverride column="state" javaType="monorepo.proto.todo.v1.Todo.State"
-                            typeHandler="monorepo.services.todo.entity.typehandler.TodoStateTypeHandler"/>
+                            typeHandler="monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler"/>
             <columnOverride column="priority" javaType="monorepo.proto.todo.v1.Todo.Priority"
-                            typeHandler="monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler"/>
+                            typeHandler="monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler"/>
         </table>
         <table tableName="todo_subtask">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>

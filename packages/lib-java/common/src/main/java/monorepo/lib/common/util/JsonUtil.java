@@ -80,10 +80,10 @@ public final class JsonUtil {
         // Use the JsonMapper bean from Spring context if available
         try {
             var bean = SpringUtil.getContext().getBean(JsonMapper.class);
-            log.debug("Using JsonMapper bean from Spring context");
+            log.info("Using JsonMapper bean from Spring context");
             return bean;
         } catch (Exception _) {
-            log.debug("Not in Spring context or no JsonMapper bean found, using default JsonMapper");
+            log.info("Not in Spring context or no JsonMapper bean found, using default JsonMapper");
             return defaultJsonMapper();
         }
     }
