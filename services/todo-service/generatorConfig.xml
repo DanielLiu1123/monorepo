@@ -45,9 +45,13 @@
         <table tableName="todo">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
             <columnOverride column="state" javaType="monorepo.proto.todo.v1.Todo.State"
-                            typeHandler="monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler"/>
+                            typeHandler="monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler">
+                <property name="forceJavaTypeIntoMapping" value="true"/>
+            </columnOverride>
             <columnOverride column="priority" javaType="monorepo.proto.todo.v1.Todo.Priority"
-                            typeHandler="monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler"/>
+                            typeHandler="monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler">
+                <property name="forceJavaTypeIntoMapping" value="true"/>
+            </columnOverride>
         </table>
         <table tableName="todo_subtask">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
