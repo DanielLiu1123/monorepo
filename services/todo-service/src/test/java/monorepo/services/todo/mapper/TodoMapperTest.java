@@ -52,8 +52,8 @@ class TodoMapperTest {
                 from todo
                 where user_id = #{parameters.p1,jdbcType=BIGINT}
                   and (created_at < #{parameters.p2,jdbcType=TIMESTAMP}
-                    or (updated_at = #{parameters.p3,jdbcType=TIMESTAMP} and priority < #{parameters.p4,jdbcType=VARCHAR,javaType=monorepo.proto.todo.v1.Todo$Priority,typeHandler=monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler})
-                    or (updated_at = #{parameters.p5,jdbcType=TIMESTAMP} and priority = #{parameters.p6,jdbcType=VARCHAR,javaType=monorepo.proto.todo.v1.Todo$Priority,typeHandler=monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler} and id > #{parameters.p7,jdbcType=BIGINT}))
+                    or (updated_at = #{parameters.p3,jdbcType=TIMESTAMP} and priority < #{parameters.p4,jdbcType=VARCHAR,typeHandler=monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler})
+                    or (updated_at = #{parameters.p5,jdbcType=TIMESTAMP} and priority = #{parameters.p6,jdbcType=VARCHAR,typeHandler=monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler} and id > #{parameters.p7,jdbcType=BIGINT}))
                 """.trim();
 
         assertThat(actual).isEqualToIgnoringWhitespace(expected);

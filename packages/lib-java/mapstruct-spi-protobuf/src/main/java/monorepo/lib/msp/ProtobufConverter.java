@@ -17,6 +17,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Objects;
 import org.mapstruct.TargetType;
 
 /**
@@ -32,14 +33,27 @@ public final class ProtobufConverter {
         return enumValue.getNumber();
     }
 
-    @SuppressWarnings("unchecked")
     public static <E extends ProtocolMessageEnum> E integerToProtobufEnum(
             Integer number, @TargetType Class<E> enumClass) {
-        try {
-            return (E) enumClass.getMethod("forNumber", int.class).invoke(null, number);
-        } catch (Exception e) {
+        var enumConstants = enumClass.getEnumConstants();
+        if (enumConstants == null) {
+            throw new IllegalArgumentException("Enum class " + enumClass.getName() + " has no constants");
+        }
+        E unrecognizedEnum = null;
+        for (E enumConstant : enumConstants) {
+            if (Objects.equals(enumConstant.toString(), "UNRECOGNIZED")) {
+                unrecognizedEnum = enumConstant;
+                continue;
+            }
+            if (enumConstant.getNumber() == number) {
+                return enumConstant;
+            }
+        }
+        if (unrecognizedEnum != null) {
+            return unrecognizedEnum;
+        } else {
             throw new IllegalArgumentException(
-                    String.format("Unable to convert number '%d' to enum %s", number, enumClass.getName()), e);
+                    "No protobuf enum %s for number %d".formatted(enumClass.getName(), number));
         }
     }
 
