@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import monorepo.lib.mybatis.datasources.dynamic.DynamicDataSource;
+import monorepo.lib.mybatis.typehandler.JsonbTypeHandler;
 import monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler;
 import monorepo.services.todo.entity.Todo;
 import org.apache.ibatis.annotations.InsertProvider;
@@ -37,7 +38,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 @Mapper
 public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, CommonDeleteMapper, CommonUpdateMapper, DynamicDataSource<TodoMapper> {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
-    BasicColumn[] selectList = BasicColumn.columnList(id, userId, title, description, state, priority, assignee, dueDate, createdAt, updatedAt, deletedAt);
+    BasicColumn[] selectList = BasicColumn.columnList(id, userId, title, description, state, priority, assignee, dueDate, attributes, tags, createdAt, updatedAt, deletedAt);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: todo")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
@@ -60,6 +61,8 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
         @Result(column="priority", property="priority", typeHandler=ProtobufEnumTypeHandler.class, jdbcType=JdbcType.VARCHAR),
         @Result(column="assignee", property="assignee", jdbcType=JdbcType.BIGINT),
         @Result(column="due_date", property="dueDate", jdbcType=JdbcType.DATE),
+        @Result(column="attributes", property="attributes", typeHandler=JsonbTypeHandler.class, jdbcType=JdbcType.OTHER),
+        @Result(column="tags", property="tags", typeHandler=JsonbTypeHandler.class, jdbcType=JdbcType.OTHER),
         @Result(column="created_at", property="createdAt", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="updated_at", property="updatedAt", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="deleted_at", property="deletedAt", jdbcType=JdbcType.TIMESTAMP)
@@ -98,6 +101,8 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
             .withMappedColumn(priority)
             .withMappedColumn(assignee)
             .withMappedColumn(dueDate)
+            .withMappedColumn(attributes)
+            .withMappedColumn(tags)
             .withMappedColumn(createdAt)
             .withMappedColumn(updatedAt)
             .withMappedColumn(deletedAt)
@@ -114,6 +119,8 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
             .withMappedColumnWhenPresent(priority, row::getPriority)
             .withMappedColumnWhenPresent(assignee, row::getAssignee)
             .withMappedColumnWhenPresent(dueDate, row::getDueDate)
+            .withMappedColumnWhenPresent(attributes, row::getAttributes)
+            .withMappedColumnWhenPresent(tags, row::getTags)
             .withMappedColumnWhenPresent(createdAt, row::getCreatedAt)
             .withMappedColumnWhenPresent(updatedAt, row::getUpdatedAt)
             .withMappedColumnWhenPresent(deletedAt, row::getDeletedAt)
@@ -157,6 +164,8 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
                 .set(priority).equalTo(row::getPriority)
                 .set(assignee).equalTo(row::getAssignee)
                 .set(dueDate).equalTo(row::getDueDate)
+                .set(attributes).equalTo(row::getAttributes)
+                .set(tags).equalTo(row::getTags)
                 .set(createdAt).equalTo(row::getCreatedAt)
                 .set(updatedAt).equalTo(row::getUpdatedAt)
                 .set(deletedAt).equalTo(row::getDeletedAt);
@@ -172,6 +181,8 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
                 .set(priority).equalToWhenPresent(row::getPriority)
                 .set(assignee).equalToWhenPresent(row::getAssignee)
                 .set(dueDate).equalToWhenPresent(row::getDueDate)
+                .set(attributes).equalToWhenPresent(row::getAttributes)
+                .set(tags).equalToWhenPresent(row::getTags)
                 .set(createdAt).equalToWhenPresent(row::getCreatedAt)
                 .set(updatedAt).equalToWhenPresent(row::getUpdatedAt)
                 .set(deletedAt).equalToWhenPresent(row::getDeletedAt);
@@ -187,6 +198,8 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
             .set(priority).equalToWhenPresent(row::getPriority)
             .set(assignee).equalToWhenPresent(row::getAssignee)
             .set(dueDate).equalToWhenPresent(row::getDueDate)
+            .set(attributes).equalToWhenPresent(row::getAttributes)
+            .set(tags).equalToWhenPresent(row::getTags)
             .set(createdAt).equalToWhenPresent(row::getCreatedAt)
             .set(updatedAt).equalToWhenPresent(row::getUpdatedAt)
             .set(deletedAt).equalToWhenPresent(row::getDeletedAt)

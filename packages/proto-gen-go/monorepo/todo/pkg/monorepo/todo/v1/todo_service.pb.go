@@ -79,7 +79,9 @@ type CreateTodoRequest struct {
 	xxx_hidden_Priority    Todo_Priority            `protobuf:"varint,5,opt,name=priority,proto3,enum=monorepo.todo.v1.Todo_Priority,oneof"`
 	xxx_hidden_Assignee    int64                    `protobuf:"varint,6,opt,name=assignee,proto3,oneof"`
 	xxx_hidden_DueDate     *date.Date               `protobuf:"bytes,7,opt,name=due_date,json=dueDate,proto3,oneof"`
-	xxx_hidden_SubTasks    *[]*CreateSubtaskRequest `protobuf:"bytes,8,rep,name=sub_tasks,json=subTasks,proto3"`
+	xxx_hidden_Attributes  *[]*Todo_Attribute       `protobuf:"bytes,8,rep,name=attributes,proto3"`
+	xxx_hidden_Tags        []string                 `protobuf:"bytes,9,rep,name=tags,proto3"`
+	xxx_hidden_SubTasks    *[]*CreateSubtaskRequest `protobuf:"bytes,10,rep,name=sub_tasks,json=subTasks,proto3"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -167,6 +169,22 @@ func (x *CreateTodoRequest) GetDueDate() *date.Date {
 	return nil
 }
 
+func (x *CreateTodoRequest) GetAttributes() []*Todo_Attribute {
+	if x != nil {
+		if x.xxx_hidden_Attributes != nil {
+			return *x.xxx_hidden_Attributes
+		}
+	}
+	return nil
+}
+
+func (x *CreateTodoRequest) GetTags() []string {
+	if x != nil {
+		return x.xxx_hidden_Tags
+	}
+	return nil
+}
+
 func (x *CreateTodoRequest) GetSubTasks() []*CreateSubtaskRequest {
 	if x != nil {
 		if x.xxx_hidden_SubTasks != nil {
@@ -186,26 +204,34 @@ func (x *CreateTodoRequest) SetTitle(v string) {
 
 func (x *CreateTodoRequest) SetDescription(v string) {
 	x.xxx_hidden_Description = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 10)
 }
 
 func (x *CreateTodoRequest) SetState(v Todo_State) {
 	x.xxx_hidden_State = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 10)
 }
 
 func (x *CreateTodoRequest) SetPriority(v Todo_Priority) {
 	x.xxx_hidden_Priority = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 10)
 }
 
 func (x *CreateTodoRequest) SetAssignee(v int64) {
 	x.xxx_hidden_Assignee = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 8)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 10)
 }
 
 func (x *CreateTodoRequest) SetDueDate(v *date.Date) {
 	x.xxx_hidden_DueDate = v
+}
+
+func (x *CreateTodoRequest) SetAttributes(v []*Todo_Attribute) {
+	x.xxx_hidden_Attributes = &v
+}
+
+func (x *CreateTodoRequest) SetTags(v []string) {
+	x.xxx_hidden_Tags = v
 }
 
 func (x *CreateTodoRequest) SetSubTasks(v []*CreateSubtaskRequest) {
@@ -281,6 +307,8 @@ type CreateTodoRequest_builder struct {
 	Priority    *Todo_Priority
 	Assignee    *int64
 	DueDate     *date.Date
+	Attributes  []*Todo_Attribute
+	Tags        []string
 	SubTasks    []*CreateSubtaskRequest
 }
 
@@ -291,22 +319,24 @@ func (b0 CreateTodoRequest_builder) Build() *CreateTodoRequest {
 	x.xxx_hidden_UserId = b.UserId
 	x.xxx_hidden_Title = b.Title
 	if b.Description != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 10)
 		x.xxx_hidden_Description = b.Description
 	}
 	if b.State != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 10)
 		x.xxx_hidden_State = *b.State
 	}
 	if b.Priority != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 10)
 		x.xxx_hidden_Priority = *b.Priority
 	}
 	if b.Assignee != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 8)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 10)
 		x.xxx_hidden_Assignee = *b.Assignee
 	}
 	x.xxx_hidden_DueDate = b.DueDate
+	x.xxx_hidden_Attributes = &b.Attributes
+	x.xxx_hidden_Tags = b.Tags
 	x.xxx_hidden_SubTasks = &b.SubTasks
 	return m0
 }
@@ -707,7 +737,9 @@ type UpdateTodoRequest struct {
 	xxx_hidden_Priority          Todo_Priority                          `protobuf:"varint,6,opt,name=priority,proto3,enum=monorepo.todo.v1.Todo_Priority,oneof"`
 	xxx_hidden_Assignee          int64                                  `protobuf:"varint,7,opt,name=assignee,proto3,oneof"`
 	xxx_hidden_DueDate           *date.Date                             `protobuf:"bytes,8,opt,name=due_date,json=dueDate,proto3,oneof"`
-	xxx_hidden_SubTaskOperations *[]*UpdateTodoRequest_SubTaskOperation `protobuf:"bytes,9,rep,name=sub_task_operations,json=subTaskOperations,proto3"`
+	xxx_hidden_Attributes        *[]*Todo_Attribute                     `protobuf:"bytes,9,rep,name=attributes,proto3"`
+	xxx_hidden_Tags              []string                               `protobuf:"bytes,10,rep,name=tags,proto3"`
+	xxx_hidden_SubTaskOperations *[]*UpdateTodoRequest_SubTaskOperation `protobuf:"bytes,11,rep,name=sub_task_operations,json=subTaskOperations,proto3"`
 	XXX_raceDetectHookData       protoimpl.RaceDetectHookData
 	XXX_presence                 [1]uint32
 	unknownFields                protoimpl.UnknownFields
@@ -805,6 +837,22 @@ func (x *UpdateTodoRequest) GetDueDate() *date.Date {
 	return nil
 }
 
+func (x *UpdateTodoRequest) GetAttributes() []*Todo_Attribute {
+	if x != nil {
+		if x.xxx_hidden_Attributes != nil {
+			return *x.xxx_hidden_Attributes
+		}
+	}
+	return nil
+}
+
+func (x *UpdateTodoRequest) GetTags() []string {
+	if x != nil {
+		return x.xxx_hidden_Tags
+	}
+	return nil
+}
+
 func (x *UpdateTodoRequest) GetSubTaskOperations() []*UpdateTodoRequest_SubTaskOperation {
 	if x != nil {
 		if x.xxx_hidden_SubTaskOperations != nil {
@@ -820,36 +868,44 @@ func (x *UpdateTodoRequest) SetId(v int64) {
 
 func (x *UpdateTodoRequest) SetUserId(v int64) {
 	x.xxx_hidden_UserId = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 11)
 }
 
 func (x *UpdateTodoRequest) SetTitle(v string) {
 	x.xxx_hidden_Title = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 11)
 }
 
 func (x *UpdateTodoRequest) SetDescription(v string) {
 	x.xxx_hidden_Description = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 11)
 }
 
 func (x *UpdateTodoRequest) SetState(v Todo_State) {
 	x.xxx_hidden_State = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 11)
 }
 
 func (x *UpdateTodoRequest) SetPriority(v Todo_Priority) {
 	x.xxx_hidden_Priority = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 11)
 }
 
 func (x *UpdateTodoRequest) SetAssignee(v int64) {
 	x.xxx_hidden_Assignee = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 11)
 }
 
 func (x *UpdateTodoRequest) SetDueDate(v *date.Date) {
 	x.xxx_hidden_DueDate = v
+}
+
+func (x *UpdateTodoRequest) SetAttributes(v []*Todo_Attribute) {
+	x.xxx_hidden_Attributes = &v
+}
+
+func (x *UpdateTodoRequest) SetTags(v []string) {
+	x.xxx_hidden_Tags = v
 }
 
 func (x *UpdateTodoRequest) SetSubTaskOperations(v []*UpdateTodoRequest_SubTaskOperation) {
@@ -950,6 +1006,8 @@ type UpdateTodoRequest_builder struct {
 	Priority          *Todo_Priority
 	Assignee          *int64
 	DueDate           *date.Date
+	Attributes        []*Todo_Attribute
+	Tags              []string
 	SubTaskOperations []*UpdateTodoRequest_SubTaskOperation
 }
 
@@ -959,30 +1017,32 @@ func (b0 UpdateTodoRequest_builder) Build() *UpdateTodoRequest {
 	_, _ = b, x
 	x.xxx_hidden_Id = b.Id
 	if b.UserId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 11)
 		x.xxx_hidden_UserId = *b.UserId
 	}
 	if b.Title != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 11)
 		x.xxx_hidden_Title = b.Title
 	}
 	if b.Description != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 11)
 		x.xxx_hidden_Description = b.Description
 	}
 	if b.State != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 11)
 		x.xxx_hidden_State = *b.State
 	}
 	if b.Priority != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 11)
 		x.xxx_hidden_Priority = *b.Priority
 	}
 	if b.Assignee != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 11)
 		x.xxx_hidden_Assignee = *b.Assignee
 	}
 	x.xxx_hidden_DueDate = b.DueDate
+	x.xxx_hidden_Attributes = &b.Attributes
+	x.xxx_hidden_Tags = b.Tags
 	x.xxx_hidden_SubTaskOperations = &b.SubTaskOperations
 	return m0
 }
@@ -1792,7 +1852,7 @@ var File_monorepo_todo_v1_todo_service_proto protoreflect.FileDescriptor
 
 const file_monorepo_todo_v1_todo_service_proto_rawDesc = "" +
 	"\n" +
-	"#monorepo/todo/v1/todo_service.proto\x12\x10monorepo.todo.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x16google/type/date.proto\x1a\x1bmonorepo/todo/v1/todo.proto\"\xbe\x03\n" +
+	"#monorepo/todo/v1/todo_service.proto\x12\x10monorepo.todo.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x16google/type/date.proto\x1a\x1bmonorepo/todo/v1/todo.proto\"\x94\x04\n" +
 	"\x11CreateTodoRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12%\n" +
@@ -1800,8 +1860,13 @@ const file_monorepo_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x05state\x18\x04 \x01(\x0e2\x1c.monorepo.todo.v1.Todo.StateH\x01R\x05state\x88\x01\x01\x12@\n" +
 	"\bpriority\x18\x05 \x01(\x0e2\x1f.monorepo.todo.v1.Todo.PriorityH\x02R\bpriority\x88\x01\x01\x12\x1f\n" +
 	"\bassignee\x18\x06 \x01(\x03H\x03R\bassignee\x88\x01\x01\x121\n" +
-	"\bdue_date\x18\a \x01(\v2\x11.google.type.DateH\x04R\adueDate\x88\x01\x01\x12C\n" +
-	"\tsub_tasks\x18\b \x03(\v2&.monorepo.todo.v1.CreateSubtaskRequestR\bsubTasksB\x0e\n" +
+	"\bdue_date\x18\a \x01(\v2\x11.google.type.DateH\x04R\adueDate\x88\x01\x01\x12@\n" +
+	"\n" +
+	"attributes\x18\b \x03(\v2 .monorepo.todo.v1.Todo.AttributeR\n" +
+	"attributes\x12\x12\n" +
+	"\x04tags\x18\t \x03(\tR\x04tags\x12C\n" +
+	"\tsub_tasks\x18\n" +
+	" \x03(\v2&.monorepo.todo.v1.CreateSubtaskRequestR\bsubTasksB\x0e\n" +
 	"\f_descriptionB\b\n" +
 	"\x06_stateB\v\n" +
 	"\t_priorityB\v\n" +
@@ -1842,7 +1907,7 @@ const file_monorepo_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x05todos\x18\x01 \x03(\v2\x16.monorepo.todo.v1.TodoR\x05todos\x12&\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1d\n" +
 	"\n" +
-	"total_size\x18\x03 \x01(\x05R\ttotalSize\"\xf7\x05\n" +
+	"total_size\x18\x03 \x01(\x05R\ttotalSize\"\xcd\x06\n" +
 	"\x11UpdateTodoRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1c\n" +
 	"\auser_id\x18\x02 \x01(\x03H\x00R\x06userId\x88\x01\x01\x12\x19\n" +
@@ -1851,8 +1916,13 @@ const file_monorepo_todo_v1_todo_service_proto_rawDesc = "" +
 	"\x05state\x18\x05 \x01(\x0e2\x1c.monorepo.todo.v1.Todo.StateH\x03R\x05state\x88\x01\x01\x12@\n" +
 	"\bpriority\x18\x06 \x01(\x0e2\x1f.monorepo.todo.v1.Todo.PriorityH\x04R\bpriority\x88\x01\x01\x12\x1f\n" +
 	"\bassignee\x18\a \x01(\x03H\x05R\bassignee\x88\x01\x01\x121\n" +
-	"\bdue_date\x18\b \x01(\v2\x11.google.type.DateH\x06R\adueDate\x88\x01\x01\x12d\n" +
-	"\x13sub_task_operations\x18\t \x03(\v24.monorepo.todo.v1.UpdateTodoRequest.SubTaskOperationR\x11subTaskOperations\x1a\xe5\x01\n" +
+	"\bdue_date\x18\b \x01(\v2\x11.google.type.DateH\x06R\adueDate\x88\x01\x01\x12@\n" +
+	"\n" +
+	"attributes\x18\t \x03(\v2 .monorepo.todo.v1.Todo.AttributeR\n" +
+	"attributes\x12\x12\n" +
+	"\x04tags\x18\n" +
+	" \x03(\tR\x04tags\x12d\n" +
+	"\x13sub_task_operations\x18\v \x03(\v24.monorepo.todo.v1.UpdateTodoRequest.SubTaskOperationR\x11subTaskOperations\x1a\xe5\x01\n" +
 	"\x10SubTaskOperation\x12@\n" +
 	"\x06create\x18\x01 \x01(\v2&.monorepo.todo.v1.CreateSubtaskRequestH\x00R\x06create\x12@\n" +
 	"\x06update\x18\x02 \x01(\v2&.monorepo.todo.v1.UpdateSubtaskRequestH\x00R\x06update\x12@\n" +
@@ -1918,44 +1988,47 @@ var file_monorepo_todo_v1_todo_service_proto_goTypes = []any{
 	(Todo_State)(0),                            // 15: monorepo.todo.v1.Todo.State
 	(Todo_Priority)(0),                         // 16: monorepo.todo.v1.Todo.Priority
 	(*date.Date)(nil),                          // 17: google.type.Date
-	(*Todo)(nil),                               // 18: monorepo.todo.v1.Todo
+	(*Todo_Attribute)(nil),                     // 18: monorepo.todo.v1.Todo.Attribute
+	(*Todo)(nil),                               // 19: monorepo.todo.v1.Todo
 }
 var file_monorepo_todo_v1_todo_service_proto_depIdxs = []int32{
 	15, // 0: monorepo.todo.v1.CreateTodoRequest.state:type_name -> monorepo.todo.v1.Todo.State
 	16, // 1: monorepo.todo.v1.CreateTodoRequest.priority:type_name -> monorepo.todo.v1.Todo.Priority
 	17, // 2: monorepo.todo.v1.CreateTodoRequest.due_date:type_name -> google.type.Date
-	7,  // 3: monorepo.todo.v1.CreateTodoRequest.sub_tasks:type_name -> monorepo.todo.v1.CreateSubtaskRequest
-	12, // 4: monorepo.todo.v1.ListTodosRequest.filter:type_name -> monorepo.todo.v1.ListTodosRequest.Filter
-	13, // 5: monorepo.todo.v1.ListTodosRequest.order_by:type_name -> monorepo.todo.v1.ListTodosRequest.OrderBy
-	18, // 6: monorepo.todo.v1.ListTodosResponse.todos:type_name -> monorepo.todo.v1.Todo
-	15, // 7: monorepo.todo.v1.UpdateTodoRequest.state:type_name -> monorepo.todo.v1.Todo.State
-	16, // 8: monorepo.todo.v1.UpdateTodoRequest.priority:type_name -> monorepo.todo.v1.Todo.Priority
-	17, // 9: monorepo.todo.v1.UpdateTodoRequest.due_date:type_name -> google.type.Date
-	14, // 10: monorepo.todo.v1.UpdateTodoRequest.sub_task_operations:type_name -> monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation
-	18, // 11: monorepo.todo.v1.BatchGetTodosResponse.todos:type_name -> monorepo.todo.v1.Todo
-	15, // 12: monorepo.todo.v1.ListTodosRequest.Filter.states:type_name -> monorepo.todo.v1.Todo.State
-	16, // 13: monorepo.todo.v1.ListTodosRequest.Filter.priorities:type_name -> monorepo.todo.v1.Todo.Priority
-	0,  // 14: monorepo.todo.v1.ListTodosRequest.OrderBy.field:type_name -> monorepo.todo.v1.ListTodosRequest.OrderBy.Field
-	7,  // 15: monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation.create:type_name -> monorepo.todo.v1.CreateSubtaskRequest
-	8,  // 16: monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation.update:type_name -> monorepo.todo.v1.UpdateSubtaskRequest
-	9,  // 17: monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation.delete:type_name -> monorepo.todo.v1.DeleteSubtaskRequest
-	1,  // 18: monorepo.todo.v1.TodoService.CreateTodo:input_type -> monorepo.todo.v1.CreateTodoRequest
-	2,  // 19: monorepo.todo.v1.TodoService.GetTodo:input_type -> monorepo.todo.v1.GetTodoRequest
-	3,  // 20: monorepo.todo.v1.TodoService.ListTodos:input_type -> monorepo.todo.v1.ListTodosRequest
-	5,  // 21: monorepo.todo.v1.TodoService.UpdateTodo:input_type -> monorepo.todo.v1.UpdateTodoRequest
-	6,  // 22: monorepo.todo.v1.TodoService.DeleteTodo:input_type -> monorepo.todo.v1.DeleteTodoRequest
-	10, // 23: monorepo.todo.v1.TodoService.BatchGetTodos:input_type -> monorepo.todo.v1.BatchGetTodosRequest
-	18, // 24: monorepo.todo.v1.TodoService.CreateTodo:output_type -> monorepo.todo.v1.Todo
-	18, // 25: monorepo.todo.v1.TodoService.GetTodo:output_type -> monorepo.todo.v1.Todo
-	4,  // 26: monorepo.todo.v1.TodoService.ListTodos:output_type -> monorepo.todo.v1.ListTodosResponse
-	18, // 27: monorepo.todo.v1.TodoService.UpdateTodo:output_type -> monorepo.todo.v1.Todo
-	18, // 28: monorepo.todo.v1.TodoService.DeleteTodo:output_type -> monorepo.todo.v1.Todo
-	11, // 29: monorepo.todo.v1.TodoService.BatchGetTodos:output_type -> monorepo.todo.v1.BatchGetTodosResponse
-	24, // [24:30] is the sub-list for method output_type
-	18, // [18:24] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	18, // 3: monorepo.todo.v1.CreateTodoRequest.attributes:type_name -> monorepo.todo.v1.Todo.Attribute
+	7,  // 4: monorepo.todo.v1.CreateTodoRequest.sub_tasks:type_name -> monorepo.todo.v1.CreateSubtaskRequest
+	12, // 5: monorepo.todo.v1.ListTodosRequest.filter:type_name -> monorepo.todo.v1.ListTodosRequest.Filter
+	13, // 6: monorepo.todo.v1.ListTodosRequest.order_by:type_name -> monorepo.todo.v1.ListTodosRequest.OrderBy
+	19, // 7: monorepo.todo.v1.ListTodosResponse.todos:type_name -> monorepo.todo.v1.Todo
+	15, // 8: monorepo.todo.v1.UpdateTodoRequest.state:type_name -> monorepo.todo.v1.Todo.State
+	16, // 9: monorepo.todo.v1.UpdateTodoRequest.priority:type_name -> monorepo.todo.v1.Todo.Priority
+	17, // 10: monorepo.todo.v1.UpdateTodoRequest.due_date:type_name -> google.type.Date
+	18, // 11: monorepo.todo.v1.UpdateTodoRequest.attributes:type_name -> monorepo.todo.v1.Todo.Attribute
+	14, // 12: monorepo.todo.v1.UpdateTodoRequest.sub_task_operations:type_name -> monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation
+	19, // 13: monorepo.todo.v1.BatchGetTodosResponse.todos:type_name -> monorepo.todo.v1.Todo
+	15, // 14: monorepo.todo.v1.ListTodosRequest.Filter.states:type_name -> monorepo.todo.v1.Todo.State
+	16, // 15: monorepo.todo.v1.ListTodosRequest.Filter.priorities:type_name -> monorepo.todo.v1.Todo.Priority
+	0,  // 16: monorepo.todo.v1.ListTodosRequest.OrderBy.field:type_name -> monorepo.todo.v1.ListTodosRequest.OrderBy.Field
+	7,  // 17: monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation.create:type_name -> monorepo.todo.v1.CreateSubtaskRequest
+	8,  // 18: monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation.update:type_name -> monorepo.todo.v1.UpdateSubtaskRequest
+	9,  // 19: monorepo.todo.v1.UpdateTodoRequest.SubTaskOperation.delete:type_name -> monorepo.todo.v1.DeleteSubtaskRequest
+	1,  // 20: monorepo.todo.v1.TodoService.CreateTodo:input_type -> monorepo.todo.v1.CreateTodoRequest
+	2,  // 21: monorepo.todo.v1.TodoService.GetTodo:input_type -> monorepo.todo.v1.GetTodoRequest
+	3,  // 22: monorepo.todo.v1.TodoService.ListTodos:input_type -> monorepo.todo.v1.ListTodosRequest
+	5,  // 23: monorepo.todo.v1.TodoService.UpdateTodo:input_type -> monorepo.todo.v1.UpdateTodoRequest
+	6,  // 24: monorepo.todo.v1.TodoService.DeleteTodo:input_type -> monorepo.todo.v1.DeleteTodoRequest
+	10, // 25: monorepo.todo.v1.TodoService.BatchGetTodos:input_type -> monorepo.todo.v1.BatchGetTodosRequest
+	19, // 26: monorepo.todo.v1.TodoService.CreateTodo:output_type -> monorepo.todo.v1.Todo
+	19, // 27: monorepo.todo.v1.TodoService.GetTodo:output_type -> monorepo.todo.v1.Todo
+	4,  // 28: monorepo.todo.v1.TodoService.ListTodos:output_type -> monorepo.todo.v1.ListTodosResponse
+	19, // 29: monorepo.todo.v1.TodoService.UpdateTodo:output_type -> monorepo.todo.v1.Todo
+	19, // 30: monorepo.todo.v1.TodoService.DeleteTodo:output_type -> monorepo.todo.v1.Todo
+	11, // 31: monorepo.todo.v1.TodoService.BatchGetTodos:output_type -> monorepo.todo.v1.BatchGetTodosResponse
+	26, // [26:32] is the sub-list for method output_type
+	20, // [20:26] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_monorepo_todo_v1_todo_service_proto_init() }

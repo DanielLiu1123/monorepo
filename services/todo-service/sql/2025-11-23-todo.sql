@@ -3,15 +3,17 @@ drop table if exists todo;
 CREATE TABLE if not exists todo
 (
     id          bigserial PRIMARY KEY,
-    user_id     bigint      NOT NULL,
-    title       VARCHAR(500)         default '' NOT NULL,
-    description TEXT                 default '' NOT NULL,
-    state       smallint NOT NULL,
-    priority    VARCHAR(50) NOT NULL,
+    user_id     bigint                    NOT NULL,
+    title       VARCHAR(500) default ''   NOT NULL,
+    description TEXT         default ''   NOT NULL,
+    state       smallint                  NOT NULL,
+    priority    VARCHAR(50)               NOT NULL,
     assignee    bigint,
     due_date    date,
-    created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    attributes  jsonb        default '{}' NOT NULL,
+    tags        jsonb        default '[]' NOT NULL,
+    created_at  TIMESTAMP                 NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP                 NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at  TIMESTAMP
 );
 
@@ -59,6 +61,10 @@ COMMENT
     ON COLUMN todo.assignee IS 'Assignee user ID';
 COMMENT
     ON COLUMN todo.due_date IS 'Due date';
+COMMENT
+    ON COLUMN todo.attributes IS 'Additional attributes';
+COMMENT
+    ON COLUMN todo.tags IS 'Tags';
 COMMENT
     ON COLUMN todo.created_at IS 'Creation timestamp';
 COMMENT

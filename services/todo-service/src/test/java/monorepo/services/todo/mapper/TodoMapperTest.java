@@ -48,12 +48,12 @@ class TodoMapperTest {
         IO.println(actual);
 
         var expected = """
-                select id, user_id, title, description, "state", priority, assignee, due_date, created_at, updated_at, deleted_at
+                select id, user_id, title, description, "state", priority, assignee, due_date, "attributes", tags, created_at, updated_at, deleted_at
                 from todo
                 where user_id = #{parameters.p1,jdbcType=BIGINT}
                   and (created_at < #{parameters.p2,jdbcType=TIMESTAMP}
-                    or (updated_at = #{parameters.p3,jdbcType=TIMESTAMP} and priority < #{parameters.p4,jdbcType=VARCHAR,typeHandler=monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler})
-                    or (updated_at = #{parameters.p5,jdbcType=TIMESTAMP} and priority = #{parameters.p6,jdbcType=VARCHAR,typeHandler=monorepo.services.todo.entity.typehandler.TodoPriorityTypeHandler} and id > #{parameters.p7,jdbcType=BIGINT}))
+                    or (updated_at = #{parameters.p3,jdbcType=TIMESTAMP} and priority < #{parameters.p4,jdbcType=VARCHAR,javaType=monorepo.proto.todo.v1.Todo$Priority,typeHandler=monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler})
+                    or (updated_at = #{parameters.p5,jdbcType=TIMESTAMP} and priority = #{parameters.p6,jdbcType=VARCHAR,javaType=monorepo.proto.todo.v1.Todo$Priority,typeHandler=monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler} and id > #{parameters.p7,jdbcType=BIGINT}))
                 """.trim();
 
         assertThat(actual).isEqualToIgnoringWhitespace(expected);

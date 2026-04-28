@@ -20,9 +20,11 @@ message Todo {
   optional int64 assignee = 7;
   google.type.Date due_date = 8;
   repeated SubTask sub_tasks = 9;
-  google.protobuf.Timestamp created_at = 10;
-  google.protobuf.Timestamp updated_at = 11;
-  optional google.protobuf.Timestamp deleted_at = 12;
+  repeated Attribute attributes = 10;
+  repeated string tags = 11;
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
+  optional google.protobuf.Timestamp deleted_at = 14;
 
   enum State {
     STATE_UNSPECIFIED = 0;
@@ -36,6 +38,11 @@ message Todo {
     MEDIUM = 2;
     HIGH = 3;
     URGENT = 4;
+  }
+
+  message Attribute {
+    string key = 1;
+    string value = 2;
   }
 }
 

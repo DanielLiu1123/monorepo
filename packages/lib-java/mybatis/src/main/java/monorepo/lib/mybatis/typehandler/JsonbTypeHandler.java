@@ -11,31 +11,19 @@ import org.apache.ibatis.type.JdbcType;
 import org.jspecify.annotations.Nullable;
 import org.postgresql.util.PGobject;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.ResolvableType;
 
 /**
  * Converts Postgres jsonb type to Java objects using {@link JsonUtil}.
  *
- * <p> Example:
- * <pre>{@code
- * record Person(String name, int age) {}
- *
- * public class PersonTypeHandler extends BasePostgresJsonbTypeHandler<Person> {
- * }
- * }</pre>
- *
  * @author Freeman
  * @since 2025/11/22
  */
-public abstract class BasePostgresJsonbTypeHandler<T> extends BaseTypeHandler<T> {
+public final class JsonbTypeHandler<T> extends BaseTypeHandler<T> {
 
     private final Type type;
 
-    protected BasePostgresJsonbTypeHandler() {
-        this.type = ResolvableType.forClass(getClass())
-                .as(BasePostgresJsonbTypeHandler.class)
-                .getGeneric(0)
-                .getType();
+    public JsonbTypeHandler(Type type) {
+        this.type = type;
     }
 
     @Override

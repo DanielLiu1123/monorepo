@@ -44,7 +44,9 @@ message CreateTodoRequest {
   optional Todo.Priority priority = 5;
   optional int64 assignee = 6;
   optional google.type.Date due_date = 7;
-  repeated CreateSubtaskRequest sub_tasks = 8;
+  repeated Todo.Attribute attributes = 8;
+  repeated string tags = 9;
+  repeated CreateSubtaskRequest sub_tasks = 10;
 }
 
 // Request message for GetTodo
@@ -123,7 +125,9 @@ message UpdateTodoRequest {
   optional Todo.Priority priority = 6;
   optional int64 assignee = 7;
   optional google.type.Date due_date = 8;
-  repeated SubTaskOperation sub_task_operations = 9;
+  repeated monorepo.todo.v1.Todo.Attribute attributes = 9;
+  repeated string tags = 10;
+  repeated SubTaskOperation sub_task_operations = 11;
 
   message SubTaskOperation {
     oneof operation {

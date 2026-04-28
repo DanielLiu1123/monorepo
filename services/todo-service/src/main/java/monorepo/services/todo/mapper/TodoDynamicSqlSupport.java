@@ -4,6 +4,8 @@ import jakarta.annotation.Generated;
 import java.sql.JDBCType;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
+import monorepo.proto.todo.v1.Todo.Attribute;
 import monorepo.proto.todo.v1.Todo.Priority;
 import monorepo.proto.todo.v1.Todo.State;
 import org.mybatis.dynamic.sql.AliasableSqlTable;
@@ -71,6 +73,20 @@ public final class TodoDynamicSqlSupport {
 
     /**
      * Database Column Remarks:
+     *   Additional attributes
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.attributes")
+    public static final SqlColumn<List<Attribute>> attributes = todo.attributes;
+
+    /**
+     * Database Column Remarks:
+     *   Tags
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.tags")
+    public static final SqlColumn<List<String>> tags = todo.tags;
+
+    /**
+     * Database Column Remarks:
      *   Creation timestamp
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.created_at")
@@ -100,13 +116,17 @@ public final class TodoDynamicSqlSupport {
 
         public final SqlColumn<String> description = column("description", JDBCType.VARCHAR).withJavaProperty("description");
 
-        public final SqlColumn<State> state = column("\"state\"", JDBCType.SMALLINT, "monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler").withJavaType(State.class).withJavaProperty("state");
+        public final SqlColumn<State> state = column("\"state\"", JDBCType.SMALLINT, "monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler").withJavaProperty("state");
 
-        public final SqlColumn<Priority> priority = column("priority", JDBCType.VARCHAR, "monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler").withJavaType(Priority.class).withJavaProperty("priority");
+        public final SqlColumn<Priority> priority = column("priority", JDBCType.VARCHAR, "monorepo.lib.mybatis.typehandler.ProtobufEnumTypeHandler").withJavaProperty("priority");
 
         public final SqlColumn<Long> assignee = column("assignee", JDBCType.BIGINT).withJavaProperty("assignee");
 
         public final SqlColumn<LocalDate> dueDate = column("due_date", JDBCType.DATE).withJavaProperty("dueDate");
+
+        public final SqlColumn<List<Attribute>> attributes = column("\"attributes\"", JDBCType.OTHER, "monorepo.lib.mybatis.typehandler.JsonbTypeHandler").withJavaProperty("attributes");
+
+        public final SqlColumn<List<String>> tags = column("tags", JDBCType.OTHER, "monorepo.lib.mybatis.typehandler.JsonbTypeHandler").withJavaProperty("tags");
 
         public final SqlColumn<Instant> createdAt = column("created_at", JDBCType.TIMESTAMP).withJavaProperty("createdAt");
 

@@ -3,6 +3,8 @@ package monorepo.services.todo.entity;
 import jakarta.annotation.Generated;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
+import monorepo.proto.todo.v1.Todo.Attribute;
 import monorepo.proto.todo.v1.Todo.Priority;
 import monorepo.proto.todo.v1.Todo.State;
 import org.jspecify.annotations.Nullable;
@@ -45,7 +47,6 @@ public class Todo {
      *   Todo state
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.state")
-    @Nullable
     private State state;
 
     /**
@@ -70,6 +71,20 @@ public class Todo {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.due_date")
     @Nullable
     private LocalDate dueDate;
+
+    /**
+     * Database Column Remarks:
+     *   Additional attributes
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.attributes")
+    private List<Attribute> attributes;
+
+    /**
+     * Database Column Remarks:
+     *   Tags
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.tags")
+    private List<String> tags;
 
     /**
      * Database Column Remarks:
@@ -134,13 +149,12 @@ public class Todo {
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.state")
-    @Nullable
     public State getState() {
         return state;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.state")
-    public void setState(@Nullable State state) {
+    public void setState(State state) {
         this.state = state;
     }
 
@@ -174,6 +188,26 @@ public class Todo {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.due_date")
     public void setDueDate(@Nullable LocalDate dueDate) {
         this.dueDate = dueDate;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.attributes")
+    public List<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.attributes")
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.tags")
+    public List<String> getTags() {
+        return tags;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.tags")
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: todo.created_at")
@@ -222,6 +256,8 @@ public class Todo {
         sb.append(", priority=").append(priority);
         sb.append(", assignee=").append(assignee);
         sb.append(", dueDate=").append(dueDate);
+        sb.append(", attributes=").append(attributes);
+        sb.append(", tags=").append(tags);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
         sb.append(", deletedAt=").append(deletedAt);
@@ -250,6 +286,8 @@ public class Todo {
             && (this.getPriority() == null ? other.getPriority() == null : this.getPriority().equals(other.getPriority()))
             && (this.getAssignee() == null ? other.getAssignee() == null : this.getAssignee().equals(other.getAssignee()))
             && (this.getDueDate() == null ? other.getDueDate() == null : this.getDueDate().equals(other.getDueDate()))
+            && (this.getAttributes() == null ? other.getAttributes() == null : this.getAttributes().equals(other.getAttributes()))
+            && (this.getTags() == null ? other.getTags() == null : this.getTags().equals(other.getTags()))
             && (this.getCreatedAt() == null ? other.getCreatedAt() == null : this.getCreatedAt().equals(other.getCreatedAt()))
             && (this.getUpdatedAt() == null ? other.getUpdatedAt() == null : this.getUpdatedAt().equals(other.getUpdatedAt()))
             && (this.getDeletedAt() == null ? other.getDeletedAt() == null : this.getDeletedAt().equals(other.getDeletedAt()));
@@ -268,6 +306,8 @@ public class Todo {
         result = prime * result + ((getPriority() == null) ? 0 : getPriority().hashCode());
         result = prime * result + ((getAssignee() == null) ? 0 : getAssignee().hashCode());
         result = prime * result + ((getDueDate() == null) ? 0 : getDueDate().hashCode());
+        result = prime * result + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
+        result = prime * result + ((getTags() == null) ? 0 : getTags().hashCode());
         result = prime * result + ((getCreatedAt() == null) ? 0 : getCreatedAt().hashCode());
         result = prime * result + ((getUpdatedAt() == null) ? 0 : getUpdatedAt().hashCode());
         result = prime * result + ((getDeletedAt() == null) ? 0 : getDeletedAt().hashCode());

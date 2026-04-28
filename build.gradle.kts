@@ -35,6 +35,7 @@ subprojects {
     }
 
     repositories {
+        mavenLocal()
         mavenCentral()
     }
 
@@ -45,6 +46,9 @@ subprojects {
             mavenBom("io.grpc:grpc-bom:$grpcVersion")
             mavenBom("com.google.protobuf:protobuf-bom:$protobufVersion")
             mavenBom("org.springframework.boot:spring-boot-dependencies:$springBootVersion")
+        }
+        dependencies {
+            dependency("org.mybatis:mybatis:3.6.0-SNAPSHOT")
         }
     }
 

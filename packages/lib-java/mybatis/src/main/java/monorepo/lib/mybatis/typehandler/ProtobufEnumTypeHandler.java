@@ -37,19 +37,16 @@ import org.jspecify.annotations.Nullable;
  * @author Freeman
  * @since 2026/4/16
  */
-public class ProtobufEnumTypeHandler<T extends Enum<T> & ProtocolMessageEnum> extends BaseTypeHandler<T> {
+public final class ProtobufEnumTypeHandler<T extends Enum<T> & ProtocolMessageEnum> extends BaseTypeHandler<T> {
 
     private static final String UNRECOGNIZED = "UNRECOGNIZED";
 
-    private final T defaultEnum;
-    private final T unrecognizedEnum;
     private final Map<String, T> enumNameMap;
     private final Map<Integer, T> enumNumberMap;
+    private final @Nullable T defaultEnum;
+    private final @Nullable T unrecognizedEnum;
 
     public ProtobufEnumTypeHandler(Class<T> enumClass) {
-        assert ProtocolMessageEnum.class.isAssignableFrom(enumClass)
-                : "Not a ProtocolMessageEnum: " + enumClass.getName();
-        assert enumClass.isEnum() : "Not an enum: " + enumClass.getName();
         this.enumNameMap = buildNameToEnumMap(enumClass);
         this.enumNumberMap = buildNumberToEnumMap(enumClass);
         this.defaultEnum = getDefaultEnum(enumClass);
@@ -119,25 +116,30 @@ public class ProtobufEnumTypeHandler<T extends Enum<T> & ProtocolMessageEnum> ex
         return true;
     }
 
-    private T getDefaultEnum(Class<T> enumClass) {
+    private @Nullable T getDefaultEnum(Class<T> enumClass) {
         var enumConstants = enumClass.getEnumConstants();
+        if (enumConstants == null) {
+            return null;
+        }
         for (var e : enumConstants) {
             if (e.getNumber() == 0) {
                 return e;
             }
         }
-        throw new IllegalArgumentException(
-                "Protobuf enum " + enumClass.getName() + " should have a default value with number 0");
+        return null;
     }
 
-    private T getUnrecognizedEnum(Class<T> enumClass) {
-        for (var e : enumClass.getEnumConstants()) {
+    private @Nullable T getUnrecognizedEnum(Class<T> enumClass) {
+        var enumConstants = enumClass.getEnumConstants();
+        if (enumConstants == null) {
+            return null;
+        }
+        for (var e : enumConstants) {
             if (UNRECOGNIZED.equals(e.name())) {
                 return e;
             }
         }
-        throw new IllegalArgumentException(
-                "Protobuf enum " + enumClass.getName() + " should have an UNRECOGNIZED value");
+        return null;
     }
 
     private Map<String, T> buildNameToEnumMap(Class<T> enumClass) {
