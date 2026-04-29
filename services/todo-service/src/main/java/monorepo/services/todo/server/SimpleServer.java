@@ -7,7 +7,7 @@ import io.grpc.testing.protobuf.SimpleResponse;
 import io.grpc.testing.protobuf.SimpleServiceGrpc;
 import java.util.ArrayList;
 import java.util.List;
-import monorepo.lib.common.util.ThreadUtil;
+import monorepo.lib.core.util.ThreadUtil;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestClient;
 

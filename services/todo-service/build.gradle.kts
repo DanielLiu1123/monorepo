@@ -6,7 +6,7 @@ val mapstructVersion: String = providers.gradleProperty("mapstructVersion").get(
 
 dependencies {
     // lib
-    implementation(project(":packages:lib-java:common"))
+    implementation(project(":packages:lib-java:core"))
     implementation(project(":packages:lib-java:mybatis"))
 
     // proto

@@ -16,7 +16,7 @@ pluginManagement {
 
 rootProject.name = "monorepo"
 
-include(":packages:lib-java:common")
+include(":packages:lib-java:core")
 include(":packages:lib-java:mapstruct-spi-protobuf")
 include(":packages:lib-java:mybatis")
 

@@ -3,7 +3,7 @@ val mybatisDynamicSqlVersion: String = providers.gradleProperty("mybatisDynamicS
 val mybatisGeneratorVersion: String = providers.gradleProperty("mybatisGeneratorVersion").get()
 
 dependencies {
-    api(project(":packages:lib-java:common"))
+    api(project(":packages:lib-java:core"))
     api("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisBootStarterVersion")
     api("org.mybatis.dynamic-sql:mybatis-dynamic-sql:$mybatisDynamicSqlVersion")
 

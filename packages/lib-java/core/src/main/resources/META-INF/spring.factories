@@ -1,0 +1,2 @@
+org.springframework.boot.EnvironmentPostProcessor=\
+  monorepo.lib.core.config.DefaultConfigEnvironmentPostProcessor

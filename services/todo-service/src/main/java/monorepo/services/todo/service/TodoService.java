@@ -1,6 +1,6 @@
 package monorepo.services.todo.service;
 
-import static monorepo.lib.common.util.SpringUtil.withTransaction;
+import static monorepo.lib.core.util.SpringUtil.withTransaction;
 import static monorepo.services.todo.mapper.TodoDynamicSqlSupport.todo;
 import static monorepo.services.todo.mapper.TodoSubtaskDynamicSqlSupport.todoSubtask;
 import static org.mybatis.dynamic.sql.SqlBuilder.and;
@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import monorepo.lib.common.pagination.PageTokenState;
+import monorepo.lib.core.pagination.PageTokenState;
 import monorepo.proto.todo.v1.BatchGetTodosRequest;
 import monorepo.proto.todo.v1.CreateSubtaskRequest;
 import monorepo.proto.todo.v1.CreateTodoRequest;

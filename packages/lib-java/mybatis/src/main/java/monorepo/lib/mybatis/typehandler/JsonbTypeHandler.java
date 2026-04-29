@@ -5,7 +5,7 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import monorepo.lib.common.util.JsonUtil;
+import monorepo.lib.core.util.JsonUtil;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.jspecify.annotations.Nullable;
