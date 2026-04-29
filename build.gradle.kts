@@ -16,8 +16,8 @@ val nullAwayVersion: String = providers.gradleProperty("nullAwayVersion").get()
 val springBootVersion: String = providers.gradleProperty("springBootVersion").get()
 
 subprojects {
-    apply(plugin = "java")
-    apply(plugin = "java-library")
+    plugins.apply("java")
+    plugins.apply("java-library")
 
     configure<JavaPluginExtension> {
         sourceCompatibility = JavaVersion.VERSION_25
@@ -39,7 +39,7 @@ subprojects {
         mavenCentral()
     }
 
-    apply(plugin = "io.spring.dependency-management")
+    plugins.apply("io.spring.dependency-management")
     configure<io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension> {
         imports {
             mavenBom("io.github.danielliu1123:grpc-starter-dependencies:$grpcStarterVersion")
@@ -63,7 +63,7 @@ subprojects {
         "testImplementation"("org.assertj:assertj-core")
     }
 
-    apply(plugin = "com.diffplug.spotless")
+    plugins.apply("com.diffplug.spotless")
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         java {
             toggleOffOn()
@@ -84,7 +84,7 @@ subprojects {
         }
     }
 
-    apply(plugin = "net.ltgt.errorprone")
+    plugins.apply("net.ltgt.errorprone")
     dependencies {
         val errorprone by configurations
         errorprone("com.google.errorprone:error_prone_core:$errorProneCoreVersion")
