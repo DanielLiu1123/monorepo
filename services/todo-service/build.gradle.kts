@@ -1,5 +1,6 @@
 plugins {
     id("org.springframework.boot")
+    id("gen-mybatis")
 }
 
 val mapstructVersion: String = providers.gradleProperty("mapstructVersion").get()
@@ -38,5 +39,3 @@ tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar
     archiveBaseName.set("app")
     archiveVersion.set("")
 }
-
-apply(from = "$rootDir/gradle/gen-mybatis.gradle.kts")

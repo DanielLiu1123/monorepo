@@ -1,4 +1,4 @@
-val generator: Configuration = configurations.create("generator")
+val generator = configurations.create("generator")
 
 val mybatisGeneratorVersion: String = providers.gradleProperty("mybatisGeneratorVersion").get()
 
