@@ -46,6 +46,8 @@ execute_project_cmd() {
     local command="$1"
     local project_path
     project_path=$(normalize_path "$2")
+    shift 2
+    local extra_args=("$@")
 
     # Set environment variables for the project
     export ROOT_DIR
@@ -58,18 +60,18 @@ execute_project_cmd() {
         return 1
     fi
 
-    # Load project's build.sh
+    # Run in subshell to isolate function namespace between projects
     # shellcheck disable=SC1090
-    source "$PROJECT_DIR/build.sh"
+    (
+        source "$PROJECT_DIR/build.sh"
 
-    # Check if command function exists
-    if ! declare -f "$command" > /dev/null 2>&1; then
-        print_error "No '$command' function found in $project_path/build.sh"
-        return 1
-    fi
+        if ! declare -f "$command" > /dev/null 2>&1; then
+            print_error "No '$command' function found in $project_path/build.sh"
+            exit 1
+        fi
 
-    # Execute command
-    $command || return 1
+        $command "${extra_args[@]}"
+    ) || return 1
 }
 
 # Normalize path: remove leading ./ and trailing /
@@ -185,6 +187,8 @@ validate_project() {
 execute_for_projects() {
     local command="$1"
     local path="$2"
+    shift 2
+    local extra_args=("$@")
     local projects
 
     # If no path specified, use git changes to determine affected projects
@@ -232,7 +236,7 @@ execute_for_projects() {
         print_info "[$total] Processing: $project"
         
         local start_pkg=$(date +%s)
-        if execute_project_cmd "$command" "$project"; then
+        if execute_project_cmd "$command" "$project" "${extra_args[@]}"; then
             ((success++))
             local end_pkg=$(date +%s)
             project_durations+=("$project:$((end_pkg - start_pkg))")
@@ -280,7 +284,6 @@ execute_for_projects() {
 # Load Command Modules
 # ============================================================================
 
-source "$SCRIPT_DIR/commands/gen-proto.sh"
 source "$SCRIPT_DIR/commands/init.sh"
 source "$SCRIPT_DIR/commands/list-projects.sh"
 
@@ -290,20 +293,19 @@ source "$SCRIPT_DIR/commands/list-projects.sh"
 
 show_usage() {
     local script_name="./scripts/build/main.sh"
-    echo "Usage: $script_name <command> [path]"
+    echo "Usage: $script_name <command> [path] [extra-args...]"
     echo ""
     echo "Commands:"
-    echo "  init                - Initialize development environment"
-    echo "  gen-proto [path]    - Generate code from proto files"
-    echo "  list-projects [path] - List all projects in monorepo (or in specified path)"
-    echo "  clean [path]        - Clean build artifacts"
-    echo "  install [path]      - Install dependencies"
-    echo "  build [path]        - Build project(s)"
-    echo "  test [path]         - Run tests"
-    echo "  run <path>          - Run project (single project only, path required)"
-    echo "  lint [path]         - Run linter"
-    echo "  fmt [path]          - Format code"
-    echo "  gen [path]          - Generate code"
+    echo "  init                         - Initialize development environment"
+    echo "  list-projects [path]         - List all projects in monorepo (or in specified path)"
+    echo "  clean [path]                 - Clean build artifacts"
+    echo "  install [path]               - Install dependencies"
+    echo "  build [path]                 - Build project(s)"
+    echo "  test [path]                  - Run tests"
+    echo "  run <path>                   - Run project (single project only, path required)"
+    echo "  lint [path]                  - Run linter"
+    echo "  fmt [path]                   - Format code"
+    echo "  gen [path] [extra-args...]   - Generate code (extra args passed to project's gen())"
     echo ""
     echo "Path behavior:"
     echo "  - If [path] is omitted: Auto-detect affected projects based on git changes"
@@ -312,22 +314,24 @@ show_usage() {
     echo ""
     echo "Examples:"
     echo "  $script_name init"
-    echo "  $script_name gen-proto                      # Auto-detect changed proto files"
-    echo "  $script_name gen-proto user                 # Generate code for user proto files"
-    echo "  $script_name gen-proto user/v1              # Generate code for specific version"
-    echo "  $script_name list-projects                  # List all projects"
-    echo "  $script_name list-projects services         # List projects in services/"
-    echo "  $script_name fmt                            # Format only projects with git changes"
-    echo "  $script_name build                          # Build only projects with git changes"
-    echo "  $script_name build services/user-service    # Build single project"
-    echo "  $script_name build services                 # Build all projects in services/"
-    echo "  $script_name build .                        # Build all projects in monorepo"
+    echo "  $script_name gen packages/proto                    # Auto-detect changed proto files"
+    echo "  $script_name gen packages/proto monorepo/user      # Generate code for user proto files"
+    echo "  $script_name gen packages/proto monorepo/user/v1   # Generate code for specific version"
+    echo "  $script_name list-projects                         # List all projects"
+    echo "  $script_name list-projects services                # List projects in services/"
+    echo "  $script_name fmt                                   # Format only projects with git changes"
+    echo "  $script_name build                                 # Build only projects with git changes"
+    echo "  $script_name build services/user-service           # Build single project"
+    echo "  $script_name build services                        # Build all projects in services/"
+    echo "  $script_name build .                               # Build all projects in monorepo"
 }
 
 main() {
     local command="$1"
     local path
     path=$(normalize_path "$2")
+    shift 2 2>/dev/null || shift $# 2>/dev/null || true
+    local extra_args=("$@")
 
     if [ -z "$command" ]; then
         show_usage
@@ -338,33 +342,23 @@ main() {
         init)
             cmd_init
             ;;
-        gen-proto)
-            cmd_gen_proto "$path"
-            ;;
         list-projects)
             cmd_list_projects "${path:-.}"
             ;;
         clean|install|build|test|lint|fmt|gen)
-            # If path is specified, validate and use it
-            # If path is not specified, use git-based detection
             if [ -n "$path" ]; then
                 validate_project "$path"
-                
-                # Check if path is a project directory or a parent directory
+
                 if is_project_dir "$path"; then
-                    # Single project: execute command with custom support
-                    execute_project_cmd "${command}" "$path"
+                    execute_project_cmd "${command}" "$path" "${extra_args[@]}"
                 else
-                    # Parent directory: find and execute for all projects
-                    execute_for_projects "${command}" "$path"
+                    execute_for_projects "${command}" "$path" "${extra_args[@]}"
                 fi
             else
-                # No path specified: use git-based detection
-                execute_for_projects "${command}" ""
+                execute_for_projects "${command}" "" "${extra_args[@]}"
             fi
             ;;
         run)
-            # Run command only works for single projects
             validate_project "$path"
             if ! is_project_dir "$path"; then
                 print_error "The 'run' command only works for single projects, not directories"
