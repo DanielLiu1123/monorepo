@@ -16,7 +16,7 @@
 #   ./mono build                        # Build all projects
 #   ./mono build services/              # Build all projects in services/
 #   ./mono run services/order-service   # Run specific service
-#   ./mono gen-proto                    # Generate proto files
+#   ./mono gen packages/proto           # Generate proto files
 #   ./mono test .                       # Test all projects
 
 set -e

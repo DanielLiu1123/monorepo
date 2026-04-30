@@ -27,3 +27,10 @@ clean() {
 run() {
     print_info "Nothing to run for proto definitions"
 }
+
+gen() {
+    local _gen_dir
+    _gen_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    source "$_gen_dir/gen.sh"
+    run_gen "$1"
+}
