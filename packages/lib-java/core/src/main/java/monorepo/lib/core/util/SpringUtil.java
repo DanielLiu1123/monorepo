@@ -47,7 +47,7 @@ public final class SpringUtil {
      * @param <T>     return type
      * @return result
      */
-    public static <T> T withTransaction(Supplier<T> supplier) {
+    public static <T> T doInTransaction(Supplier<T> supplier) {
         var tx = transactionOperations();
         if (tx != null) {
             return tx.execute(_ -> supplier.get());
@@ -61,7 +61,7 @@ public final class SpringUtil {
      *
      * @param runnable runnable
      */
-    public static void withTransaction(Runnable runnable) {
+    public static void doInTransaction(Runnable runnable) {
         var tx = transactionOperations();
         if (tx != null) {
             tx.executeWithoutResult(_ -> runnable.run());

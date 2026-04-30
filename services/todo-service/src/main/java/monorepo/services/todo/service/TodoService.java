@@ -1,6 +1,5 @@
 package monorepo.services.todo.service;
 
-import static monorepo.lib.core.util.SpringUtil.withTransaction;
 import static monorepo.services.todo.mapper.TodoDynamicSqlSupport.todo;
 import static monorepo.services.todo.mapper.TodoSubtaskDynamicSqlSupport.todoSubtask;
 import static org.mybatis.dynamic.sql.SqlBuilder.and;
@@ -25,6 +24,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import monorepo.lib.core.pagination.PageTokenState;
+import monorepo.lib.core.util.SpringUtil;
 import monorepo.proto.todo.v1.BatchGetTodosRequest;
 import monorepo.proto.todo.v1.CreateSubtaskRequest;
 import monorepo.proto.todo.v1.CreateTodoRequest;
@@ -60,7 +60,7 @@ public class TodoService {
      * @return created todo id
      */
     public long create(CreateTodoRequest request) {
-        return withTransaction(() -> {
+        return SpringUtil.doInTransaction(() -> {
             var todoId = createTodo(request);
 
             for (var subtaskRequest : request.getSubTasksList()) {
@@ -78,7 +78,7 @@ public class TodoService {
      * @return whether update succeeded
      */
     public boolean update(UpdateTodoRequest request) {
-        return withTransaction(() -> {
+        return SpringUtil.doInTransaction(() -> {
             var result = updateTodo(request);
 
             var todoId = request.getId();
@@ -323,7 +323,9 @@ public class TodoService {
         return result;
     }
 
-    /** Build equality conditions for fields in range [startIndex, endIndex). */
+    /**
+     * Build equality conditions for fields in range [startIndex, endIndex).
+     */
     private static List<AndOrCriteriaGroup> buildPrefixEqualityConditions(
             List<ListTodosRequest.OrderBy> orderBys, Map<String, String> lastValues, int startIndex, int endIndex) {
         var conditions = new ArrayList<AndOrCriteriaGroup>();
@@ -342,7 +344,9 @@ public class TodoService {
         return conditions;
     }
 
-    /** Build equality condition for a field. */
+    /**
+     * Build equality condition for a field.
+     */
     private static AndOrCriteriaGroup buildFieldEquality(ListTodosRequest.OrderBy orderBy, String value) {
         var field = orderBy.getField();
         return switch (field) {
@@ -383,7 +387,9 @@ public class TodoService {
         };
     }
 
-    /** Extract field values from entity for all sort fields. */
+    /**
+     * Extract field values from entity for all sort fields.
+     */
     private static Map<String, String> extractFieldValues(Todo entity, List<ListTodosRequest.OrderBy> orderBys) {
         var result = new HashMap<String, String>();
 
