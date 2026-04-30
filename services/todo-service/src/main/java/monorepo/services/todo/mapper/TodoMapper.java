@@ -34,6 +34,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.CommonDeleteMapper;
 import org.mybatis.dynamic.sql.util.mybatis3.CommonSelectMapper;
 import org.mybatis.dynamic.sql.util.mybatis3.CommonUpdateMapper;
 import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, CommonDeleteMapper, CommonUpdateMapper, DynamicDataSource<TodoMapper> {
@@ -206,4 +207,7 @@ public interface TodoMapper extends CommonSelectMapper, CommonCountMapper, Commo
             .where(id, isEqualTo(row::getId))
         );
     }
+    
+    @Select("SELECT * FROM todo where deleted_at is null")
+    List<Todo> selectAll();
 }

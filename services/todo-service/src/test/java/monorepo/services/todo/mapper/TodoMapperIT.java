@@ -1,6 +1,7 @@
 package monorepo.services.todo.mapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -50,5 +51,10 @@ class TodoMapperIT {
         assertThat(result.getTags()).containsExactlyInAnyOrderElementsOf(todo.getTags());
 
         IO.println(JsonUtil.stringify(result, ObjectWriter::withDefaultPrettyPrinter));
+    }
+
+    @Test
+    void testManuallyAddedMethodShouldPreserveWhenRegeneratingMapper() {
+        assertThatCode(() -> todoMapper.selectAll()).doesNotThrowAnyException();
     }
 }
