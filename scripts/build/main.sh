@@ -296,16 +296,16 @@ show_usage() {
     echo "Usage: $script_name <command> [path] [extra-args...]"
     echo ""
     echo "Commands:"
-    echo "  init                         - Initialize development environment"
-    echo "  list-projects [path]         - List all projects in monorepo (or in specified path)"
-    echo "  clean [path]                 - Clean build artifacts"
-    echo "  install [path]               - Install dependencies"
-    echo "  build [path]                 - Build project(s)"
-    echo "  test [path]                  - Run tests"
-    echo "  run <path>                   - Run project (single project only, path required)"
-    echo "  lint [path]                  - Run linter"
-    echo "  fmt [path]                   - Format code"
-    echo "  gen [path] [extra-args...]   - Generate code (extra args passed to project's gen())"
+    echo "  init                              - Initialize development environment"
+    echo "  list-projects [path]              - List all projects in monorepo (or in specified path)"
+    echo "  clean   [path] [extra-args...]    - Clean build artifacts"
+    echo "  install [path] [extra-args...]    - Install dependencies"
+    echo "  build   [path] [extra-args...]    - Build project(s)"
+    echo "  test    [path] [extra-args...]    - Run tests"
+    echo "  run     <path> [extra-args...]    - Run project (single project only, path required)"
+    echo "  lint    [path] [extra-args...]    - Run linter"
+    echo "  fmt     [path] [extra-args...]    - Format code"
+    echo "  gen     [path] [extra-args...]    - Generate code"
     echo ""
     echo "Path behavior:"
     echo "  - If [path] is omitted: Auto-detect affected projects based on git changes"
@@ -365,7 +365,7 @@ main() {
                 print_info "Please specify a project path"
                 exit 1
             fi
-            execute_project_cmd "${command}" "$path"
+            execute_project_cmd "${command}" "$path" "${extra_args[@]}"
             ;;
         help|--help|-h)
             show_usage

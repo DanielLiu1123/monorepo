@@ -25,7 +25,7 @@ clean() {
 }
 
 run() {
-    execute_cmd "./gradlew bootRun --project-dir $PROJECT_REL_DIR"
+    execute_cmd "./gradlew bootRun --project-dir $PROJECT_REL_DIR $*"
 }
 
 gen() {

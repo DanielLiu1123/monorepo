@@ -28,5 +28,5 @@ clean() {
 }
 
 run() {
-    execute_cmd "cd $PROJECT_DIR && go run ./cmd/app/"
+    execute_cmd "cd $PROJECT_DIR && go run ./cmd/app/ $*"
 }
