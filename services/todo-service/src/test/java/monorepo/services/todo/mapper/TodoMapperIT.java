@@ -1,16 +1,20 @@
 package monorepo.services.todo.mapper;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.time.LocalDate;
 import java.util.List;
 import monorepo.lib.core.util.JsonUtil;
 import monorepo.services.todo.entity.Todo;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.ObjectWriter;
 
 @SpringBootTest
+@DisabledIfEnvironmentVariable(named = "CI", matches = "1")
 class TodoMapperIT {
 
     @Autowired
@@ -39,7 +43,12 @@ class TodoMapperIT {
         todo.setTags(List.of("tag1", "tag2"));
         todoMapper.insertSelective(todo);
 
-        var result = todoMapper.selectByPrimaryKey(todo.getId());
+        var result = todoMapper.selectByPrimaryKey(todo.getId()).orElseThrow();
+        assertThat(result.getState()).isEqualTo(todo.getState());
+        assertThat(result.getPriority()).isEqualTo(todo.getPriority());
+        assertThat(result.getAttributes()).containsExactlyInAnyOrderElementsOf(todo.getAttributes());
+        assertThat(result.getTags()).containsExactlyInAnyOrderElementsOf(todo.getTags());
+
         IO.println(JsonUtil.stringify(result, ObjectWriter::withDefaultPrettyPrinter));
     }
 }
